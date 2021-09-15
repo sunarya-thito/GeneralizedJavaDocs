@@ -1,0 +1,1414 @@
+{
+  "packageName": "javax.sql.rowset",
+  "simpleName": "CachedRowSet",
+  "moduleName": "java.sql.rowset",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "javax.sql.RowSet",
+      "type": "Class"
+    },
+    {
+      "name": "javax.sql.rowset.Joinable",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "type": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "COMMIT_ON_ACCEPT_CHANGES",
+      "comment": "Causes the CachedRowSet object\u0027s SyncProvider to commit the changes when acceptChanges() is called. If set to false, the changes will not be committed until one of the CachedRowSet interface transaction methods is called.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#commit()\"\u003e\u003ccode\u003ecommit()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#rollback()\"\u003e\u003ccode\u003erollback()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.CachedRowSet.COMMIT_ON_ACCEPT_CHANGES\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.ResultSet",
+            "type": "Class"
+          },
+          "name": "data",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "populate",
+      "comment": "Populates this CachedRowSet object with data from the given ResultSet object. This method can be used as an alternative to the execute method when an application has a connection to an open ResultSet object. Using the method populate can be more efficient than using the version of the execute method that takes no parameters because it does not open a new connection and re-execute this CachedRowSet object\u0027s command. Using the populate method is more a matter of convenience when compared to using the version of execute that takes a ResultSet object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#execute(java.sql.Connection)\"\u003e\u003ccode\u003eexecute(java.sql.Connection)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSet.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eResultSet\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSetMetaData.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eResultSetMetaData\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003edata\u003c/code\u003e - the \n\u003ccode\u003eResultSet\u003c/code\u003e object containing the data to be read into this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a null \n\u003ccode\u003eResultSet\u003c/code\u003e object is supplied or this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object cannot retrieve the associated \n\u003ccode\u003eResultSetMetaData\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.Connection",
+            "type": "Class"
+          },
+          "name": "conn",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "execute",
+      "comment": "Populates this CachedRowSet object with data, using the given connection to produce the result set from which the data will be read. This method should close any database connections that it creates to ensure that this CachedRowSet object is disconnected except when it is reading data from its data source or writing data to its data source. The reader for this CachedRowSet object will use conn to establish a connection to the data source so that it can execute the rowset\u0027s command and read data from the the resulting ResultSet object into this CachedRowSet object. This method also closes conn after it has populated this CachedRowSet object. If this method is called when an implementation has already been populated, the contents and the metadata are (re)set. Also, if this method is called before the method acceptChanges has been called to commit outstanding updates, those updates are lost.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#populate(java.sql.ResultSet)\"\u003e\u003ccode\u003epopulate(java.sql.ResultSet)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/Connection.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eConnection\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003econn\u003c/code\u003e - a standard JDBC \n\u003ccode\u003eConnection\u003c/code\u003e object with valid properties"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an invalid \n\u003ccode\u003eConnection\u003c/code\u003e object is supplied or an error occurs in establishing the connection to the data source"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncProviderException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "acceptChanges",
+      "comment": "Propagates row update, insert and delete changes made to this CachedRowSet object to the underlying data source. This method calls on this CachedRowSet object\u0027s writer to do the work behind the scenes. Standard CachedRowSet implementations should use the SyncFactory singleton to obtain a SyncProvider instance providing a RowSetWriter object (writer). The writer will attempt to propagate changes made in this CachedRowSet object back to the data source. When the method acceptChanges executes successfully, in addition to writing changes to the data source, it makes the values in the current row be the values in the original row. Depending on the synchronization level of the SyncProvider implementation being used, the writer will compare the original values with those in the data source to check for conflicts. When there is a conflict, the RIOptimisticProvider implementation, for example, throws a SyncProviderException and does not write anything to the data source. An application may choose to catch the SyncProviderException object and retrieve the SyncResolver object it contains. The SyncResolver object lists the conflicts row by row and sets a lock on the data source to avoid further conflicts while the current conflicts are being resolved. Further, for each conflict, it provides methods for examining the conflict and setting the value that should be persisted in the data source. After all conflicts have been resolved, an application must call the acceptChanges method again to write resolved values to the data source. If all of the values in the data source are already the values to be persisted, the method acceptChanges does nothing. Some provider implementations may use locks to ensure that there are no conflicts. In such cases, it is guaranteed that the writer will succeed in writing changes to the data source when the method acceptChanges is called. This method may be called immediately after the methods updateRow, insertRow, or deleteRow have been called, but it is more efficient to call it only once after all changes have been made so that only one connection needs to be established. Note: The acceptChanges() method will determine if the COMMIT_ON_ACCEPT_CHANGES is set to true or not. If it is set to true, all updates in the synchronization are committed to the data source. Otherwise, the application must explicitly call the commit() or rollback() methods as appropriate.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#acceptChanges(java.sql.Connection)\"\u003e\u003ccode\u003eacceptChanges(java.sql.Connection)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetWriter.html\" title\u003d\"interface in javax.sql\"\u003e\u003ccode\u003eRowSetWriter\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactory.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncFactory\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProvider.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncProvider\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProviderException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncProviderException\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncResolver.html\" title\u003d\"interface in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncResolver\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProviderException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncProviderException\u003c/a\u003e\u003c/code\u003e - if the underlying synchronization provider\u0027s writer fails to write the updates back to the data source"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncProviderException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.Connection",
+            "type": "Class"
+          },
+          "name": "con",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "acceptChanges",
+      "comment": "Propagates all row update, insert and delete changes to the data source backing this CachedRowSet object using the specified Connection object to establish a connection to the data source. The other version of the acceptChanges method is not passed a connection because it uses the Connection object already defined within the RowSet object, which is the connection used for populating it initially. This form of the method acceptChanges is similar to the form that takes no arguments; however, unlike the other form, this form can be used only when the underlying data source is a JDBC data source. The updated Connection properties must be used by the SyncProvider to reset the RowSetWriter configuration to ensure that the contents of the CachedRowSet object are synchronized correctly. When the method acceptChanges executes successfully, in addition to writing changes to the data source, it makes the values in the current row be the values in the original row. Depending on the synchronization level of the SyncProvider implementation being used, the writer will compare the original values with those in the data source to check for conflicts. When there is a conflict, the RIOptimisticProvider implementation, for example, throws a SyncProviderException and does not write anything to the data source. An application may choose to catch the SyncProviderException object and retrieve the SyncResolver object it contains. The SyncResolver object lists the conflicts row by row and sets a lock on the data source to avoid further conflicts while the current conflicts are being resolved. Further, for each conflict, it provides methods for examining the conflict and setting the value that should be persisted in the data source. After all conflicts have been resolved, an application must call the acceptChanges method again to write resolved values to the data source. If all of the values in the data source are already the values to be persisted, the method acceptChanges does nothing. Some provider implementations may use locks to ensure that there are no conflicts. In such cases, it is guaranteed that the writer will succeed in writing changes to the data source when the method acceptChanges is called. This method may be called immediately after the methods updateRow, insertRow, or deleteRow have been called, but it is more efficient to call it only once after all changes have been made so that only one connection needs to be established. Note: The acceptChanges() method will determine if the COMMIT_ON_ACCEPT_CHANGES is set to true or not. If it is set to true, all updates in the synchronization are committed to the data source. Otherwise, the application must explicitly call the commit or rollback methods as appropriate.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#acceptChanges()\"\u003e\u003ccode\u003eacceptChanges()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetWriter.html\" title\u003d\"interface in javax.sql\"\u003e\u003ccode\u003eRowSetWriter\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactory.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncFactory\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProvider.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncProvider\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProviderException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncProviderException\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncResolver.html\" title\u003d\"interface in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncResolver\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003econ\u003c/code\u003e - a standard JDBC \n\u003ccode\u003eConnection\u003c/code\u003e object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProviderException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncProviderException\u003c/a\u003e\u003c/code\u003e - if the underlying synchronization provider\u0027s writer fails to write the updates back to the data source"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "restoreOriginal",
+      "comment": "Restores this CachedRowSet object to its original value, that is, its value before the last set of changes. If there have been no changes to the rowset or only one set of changes, the original value is the value with which this CachedRowSet object was populated; otherwise, the original value is the value it had immediately before its current value. When this method is called, a CachedRowSet implementation must ensure that all updates, inserts, and deletes to the current rowset instance are replaced by the previous values. In addition, the cursor should be reset to the first row and a rowSetChanged event should be fired to notify all registered listeners.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetListener.html#rowSetChanged(javax.sql.RowSetEvent)\"\u003e\u003ccode\u003eRowSetListener.rowSetChanged(javax.sql.RowSetEvent)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs rolling back the current value of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object to its previous value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "release",
+      "comment": "Releases the current contents of this CachedRowSet object and sends a rowSetChanged event to all registered listeners. Any outstanding updates are discarded and the rowset contains no rows after this method is called. There are no interactions with the underlying data source, and any rowset content, metadata, and content updates should be non-recoverable. This CachedRowSet object should lock until its contents and associated updates are fully cleared, thus preventing \u0027dirty\u0027 reads by other components that hold a reference to this RowSet object. In addition, the contents cannot be released until all components reading this CachedRowSet object have completed their reads. This CachedRowSet object should be returned to normal behavior after firing the rowSetChanged event. The metadata, including JDBC properties and Synchronization SPI properties, are maintained for future use. It is important that properties such as the command property be relevant to the originating data source from which this CachedRowSet object was originally established. This method empties a rowset, as opposed to the close method, which marks the entire rowset as recoverable to allow the garbage collector the rowset\u0027s Java VM resources.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetListener.html#rowSetChanged(javax.sql.RowSetEvent)\"\u003e\u003ccode\u003eRowSetListener.rowSetChanged(javax.sql.RowSetEvent)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSet.html#close()\"\u003e\u003ccode\u003eResultSet.close()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs flushing the contents of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "undoDelete",
+      "comment": "Cancels the deletion of the current row and notifies listeners that a row has changed. After this method is called, the current row is no longer marked for deletion. This method can be called at any time during the lifetime of the rowset. In addition, multiple cancellations of row deletions can be made by adjusting the position of the cursor using any of the cursor position control methods such as: CachedRowSet.absolute CachedRowSet.first CachedRowSet.last",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#undoInsert()\"\u003e\u003ccode\u003eundoInsert()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSet.html#cancelRowUpdates()\"\u003e\u003ccode\u003eResultSet.cancelRowUpdates()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if (1) the current row has not been deleted or (2) the cursor is on the insert row, before the first row, or after the last row"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "undoInsert",
+      "comment": "Immediately removes the current row from this CachedRowSet object if the row has been inserted, and also notifies listeners that a row has changed. This method can be called at any time during the lifetime of a rowset and assuming the current row is within the exception limitations (see below), it cancels the row insertion of the current row. In addition, multiple cancellations of row insertions can be made by adjusting the position of the cursor using any of the cursor position control methods such as: CachedRowSet.absolute CachedRowSet.first CachedRowSet.last",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#undoDelete()\"\u003e\u003ccode\u003eundoDelete()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSet.html#cancelRowUpdates()\"\u003e\u003ccode\u003eResultSet.cancelRowUpdates()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if (1) the current row has not been inserted or (2) the cursor is before the first row, after the last row, or on the insert row"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "undoUpdate",
+      "comment": "Immediately reverses the last update operation if the row has been modified. This method can be called to reverse updates on all columns until all updates in a row have been rolled back to their state just prior to the last synchronization (acceptChanges) or population. This method may also be called while performing updates to the insert row. undoUpdate may be called at any time during the lifetime of a rowset; however, after a synchronization has occurred, this method has no effect until further modification to the rowset data has occurred.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#undoDelete()\"\u003e\u003ccode\u003eundoDelete()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#undoInsert()\"\u003e\u003ccode\u003eundoInsert()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSet.html#cancelRowUpdates()\"\u003e\u003ccode\u003eResultSet.cancelRowUpdates()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if the cursor is before the first row or after the last row in this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "idx",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "columnUpdated",
+      "comment": "Indicates whether the designated column in the current row of this CachedRowSet object has been updated.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DatabaseMetaData.html#updatesAreDetected(int)\"\u003e\u003ccode\u003eDatabaseMetaData.updatesAreDetected(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eidx\u003c/code\u003e - an \n\u003ccode\u003eint\u003c/code\u003e identifying the column to be checked for updates"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if the cursor is on the insert row, before the first row, or after the last row"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the designated column has been visibly updated; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "columnName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "columnUpdated",
+      "comment": "Indicates whether the designated column in the current row of this CachedRowSet object has been updated.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DatabaseMetaData.html#updatesAreDetected(int)\"\u003e\u003ccode\u003eDatabaseMetaData.updatesAreDetected(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecolumnName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e object giving the name of the column to be checked for updates"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if the cursor is on the insert row, before the first row, or after the last row"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the column has been visibly updated; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toCollection",
+      "comment": "Converts this CachedRowSet object to a Collection object that contains all of this CachedRowSet object\u0027s data. Implementations have some latitude in how they can represent this Collection object because of the abstract nature of the Collection framework. Each row must be fully represented in either a general purpose Collection implementation or a specialized Collection implementation, such as a TreeMap object or a Vector object. An SQL NULL column value must be represented as a null in the Java programming language. The standard reference implementation for the CachedRowSet interface uses a TreeMap object for the rowset, with the values in each row being contained in Vector objects. It is expected that most implementations will do the same. The TreeMap type of collection guarantees that the map will be in ascending key order, sorted according to the natural order for the key\u0027s class. Each key references a Vector object that corresponds to one row of a RowSet object. Therefore, the size of each Vector object must be exactly equal to the number of columns in the RowSet object. The key used by the TreeMap collection is determined by the implementation, which may choose to leverage a set key that is available within the internal RowSet tabular structure by virtue of a key already set either on the RowSet object itself or on the underlying SQL data.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#toCollection(int)\"\u003e\u003ccode\u003etoCollection(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#toCollection(java.lang.String)\"\u003e\u003ccode\u003etoCollection(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs generating the collection"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCollection\u003c/code\u003e object that contains the values in each row in this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "column",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toCollection",
+      "comment": "Converts the designated column in this CachedRowSet object to a Collection object. Implementations have some latitude in how they can represent this Collection object because of the abstract nature of the Collection framework. Each column value should be fully represented in either a general purpose Collection implementation or a specialized Collection implementation, such as a Vector object. An SQL NULL column value must be represented as a null in the Java programming language. The standard reference implementation uses a Vector object to contain the column values, and it is expected that most implementations will do the same. If a Vector object is used, it size must be exactly equal to the number of rows in this CachedRowSet object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#toCollection()\"\u003e\u003ccode\u003etoCollection()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#toCollection(java.lang.String)\"\u003e\u003ccode\u003etoCollection(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecolumn\u003c/code\u003e - an \n\u003ccode\u003eint\u003c/code\u003e indicating the column whose values are to be represented in a \n\u003ccode\u003eCollection\u003c/code\u003e object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs generating the collection or an invalid column id is provided"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCollection\u003c/code\u003e object that contains the values stored in the specified column of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "column",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toCollection",
+      "comment": "Converts the designated column in this CachedRowSet object to a Collection object. Implementations have some latitude in how they can represent this Collection object because of the abstract nature of the Collection framework. Each column value should be fully represented in either a general purpose Collection implementation or a specialized Collection implementation, such as a Vector object. An SQL NULL column value must be represented as a null in the Java programming language. The standard reference implementation uses a Vector object to contain the column values, and it is expected that most implementations will do the same. If a Vector object is used, it size must be exactly equal to the number of rows in this CachedRowSet object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#toCollection()\"\u003e\u003ccode\u003etoCollection()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#toCollection(int)\"\u003e\u003ccode\u003etoCollection(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecolumn\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e object giving the name of the column whose values are to be represented in a collection"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs generating the collection or an invalid column id is provided"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCollection\u003c/code\u003e object that contains the values stored in the specified column of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.spi.SyncProvider",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSyncProvider",
+      "comment": "Retrieves the SyncProvider implementation for this CachedRowSet object. Internally, this method is used by a rowset to trigger read or write actions between the rowset and the data source. For example, a rowset may need to get a handle on the rowset reader (RowSetReader object) from the SyncProvider to allow the rowset to be populated.      RowSetReader rowsetReader \u003d null;\n     SyncProvider provider \u003d\n         SyncFactory.getInstance(\"javax.sql.rowset.provider.RIOptimisticProvider\");\n         if (provider instanceof RIOptimisticProvider) {\n             rowsetReader \u003d provider.getRowSetReader();\n         }\n Assuming rowsetReader is a private, accessible field within the rowset implementation, when an application calls the execute method, it in turn calls on the reader\u0027s readData method to populate the RowSet object.      rowsetReader.readData((RowSetInternal)this);\n In addition, an application can use the SyncProvider object returned by this method to call methods that return information about the SyncProvider object, including information about the vendor, version, provider identification, synchronization grade, and locks it currently has set.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#setSyncProvider(java.lang.String)\"\u003e\u003ccode\u003esetSyncProvider(java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs while returning the \n\u003ccode\u003eSyncProvider\u003c/code\u003e object"
+        ],
+        "return": [
+          "the \n\u003ccode\u003eSyncProvider\u003c/code\u003e object that was set when the rowset was instantiated, or if none was set, the default provider"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "provider",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setSyncProvider",
+      "comment": "Sets the SyncProvider object for this CachedRowSet object to the one specified. This method allows the SyncProvider object to be reset. A CachedRowSet implementation should always be instantiated with an available SyncProvider mechanism, but there are cases where resetting the SyncProvider object is desirable or necessary. For example, an application might want to use the default SyncProvider object for a time and then choose to use a provider that has more recently become available and better fits its needs. Resetting the SyncProvider object causes the RowSet object to request a new SyncProvider implementation from the SyncFactory. This has the effect of resetting all previous connections and relationships with the originating data source and can potentially drastically change the synchronization behavior of a disconnected rowset.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#getSyncProvider()\"\u003e\u003ccode\u003egetSyncProvider()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eprovider\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e object giving the fully qualified class name of a \n\u003ccode\u003eSyncProvider\u003c/code\u003e implementation"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs while attempting to reset the \n\u003ccode\u003eSyncProvider\u003c/code\u003e implementation"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "size",
+      "comment": "Returns the number of rows in this CachedRowSet object.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "number of rows in the rowset"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.sql.RowSetMetaData",
+            "type": "Class"
+          },
+          "name": "md",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setMetaData",
+      "comment": "Sets the metadata for this CachedRowSet object with the given RowSetMetaData object. When a RowSetReader object is reading the contents of a rowset, it creates a RowSetMetaData object and initializes it using the methods in the RowSetMetaData implementation. The reference implementation uses the RowSetMetaDataImpl class. When the reader has completed reading the rowset contents, this method is called internally to pass the RowSetMetaData object to the rowset.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emd\u003c/code\u003e - a \n\u003ccode\u003eRowSetMetaData\u003c/code\u003e object containing metadata about the columns in this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if invalid metadata is supplied to the rowset"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.ResultSet",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getOriginal",
+      "comment": "Returns a ResultSet object containing the original value of this CachedRowSet object. The cursor for the ResultSet object should be positioned before the first row. In addition, the returned ResultSet object should have the following properties: ResultSet.TYPE_SCROLL_INSENSITIVE ResultSet.CONCUR_UPDATABLE The original value for a RowSet object is the value it had before the last synchronization with the underlying data source. If there have been no synchronizations, the original value will be the value with which the RowSet object was populated. This method is called internally when an application calls the method acceptChanges and the SyncProvider object has been implemented to check for conflicts. If this is the case, the writer compares the original value with the value currently in the data source to check for conflicts.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs producing the \n\u003ccode\u003eResultSet\u003c/code\u003e object"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eResultSet\u003c/code\u003e object that contains the original value for this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.ResultSet",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getOriginalRow",
+      "comment": "Returns a ResultSet object containing the original value for the current row only of this CachedRowSet object. The cursor for the ResultSet object should be positioned before the first row. In addition, the returned ResultSet object should have the following properties: ResultSet.TYPE_SCROLL_INSENSITIVE ResultSet.CONCUR_UPDATABLE",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#setOriginalRow()\"\u003e\u003ccode\u003esetOriginalRow()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if there is no current row"
+        ],
+        "return": [
+          "the original result set of the row"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setOriginalRow",
+      "comment": "Sets the current row in this CachedRowSet object as the original row. This method is called internally after the any modified values in the current row have been synchronized with the data source. The current row must be tagged as no longer inserted, deleted or updated. A call to setOriginalRow is irreversible.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#getOriginalRow()\"\u003e\u003ccode\u003egetOriginalRow()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if there is no current row or an error is encountered resetting the contents of the original row"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTableName",
+      "comment": "Returns an identifier for the object (table) that was used to create this CachedRowSet object. This name may be set on multiple occasions, and the specification imposes no limits on how many times this may occur or whether standard implementations should keep track of previous table names.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSetMetaData.html#getTableName(int)\"\u003e\u003ccode\u003eResultSetMetaData.getTableName(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error is encountered returning the table name"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eString\u003c/code\u003e object giving the name of the table that is the source of data for this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object or \n\u003ccode\u003enull\u003c/code\u003e if no name has been set for the table"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "tabName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setTableName",
+      "comment": "Sets the identifier for the table from which this CachedRowSet object was derived to the given table name. The writer uses this name to determine which table to use when comparing the values in the data source with the CachedRowSet object\u0027s values during a synchronization attempt. The table identifier also indicates where modified values from this CachedRowSet object should be written. The implementation of this CachedRowSet object may obtain the the name internally from the RowSetMetaDataImpl object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetMetaData.html#setTableName(int,java.lang.String)\"\u003e\u003ccode\u003eRowSetMetaData.setTableName(int, java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetWriter.html\" title\u003d\"interface in javax.sql\"\u003e\u003ccode\u003eRowSetWriter\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProvider.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncProvider\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etabName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e object identifying the table from which this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object was derived; cannot be \n\u003ccode\u003enull\u003c/code\u003e but may be an empty string"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error is encountered naming the table or \n\u003ci\u003etabName\u003c/i\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getKeyColumns",
+      "comment": "Returns an array containing one or more column numbers indicating the columns that form a key that uniquely identifies a row in this CachedRowSet object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#setKeyColumns(int%5B%5D)\"\u003e\u003ccode\u003esetKeyColumns(int[])\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/Joinable.html#getMatchColumnIndexes()\"\u003e\u003ccode\u003eJoinable.getMatchColumnIndexes()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/Joinable.html#getMatchColumnNames()\"\u003e\u003ccode\u003eJoinable.getMatchColumnNames()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object is empty"
+        ],
+        "return": [
+          "an array containing the column number or numbers that indicate which columns constitute a primary key for a row in this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object. This array should be empty if no columns are representative of a primary key."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "keys",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setKeyColumns",
+      "comment": "Sets this CachedRowSet object\u0027s keyCols field with the given array of column numbers, which forms a key for uniquely identifying a row in this CachedRowSet object. If a CachedRowSet object becomes part of a JoinRowSet object, the keys defined by this method and the resulting constraints are maintained if the columns designated as key columns also become match columns.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#getKeyColumns()\"\u003e\u003ccode\u003egetKeyColumns()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/Joinable.html#setMatchColumn(java.lang.String)\"\u003e\u003ccode\u003eJoinable.setMatchColumn(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/Joinable.html#setMatchColumn(int)\"\u003e\u003ccode\u003eJoinable.setMatchColumn(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekeys\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e indicating the columns that form a primary key for this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object; every element in the array must be greater than \n\u003ccode\u003e0\u003c/code\u003e and less than or equal to the number of columns in this rowset"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if any of the numbers in the given array are not valid for this rowset"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.RowSet",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createShared",
+      "comment": "Returns a new RowSet object backed by the same data as that of this CachedRowSet object. In effect, both CachedRowSet objects have a cursor over the same data. As a result, any changes made by a duplicate are visible to the original and to any other duplicates, just as a change made by the original is visible to all of its duplicates. If a duplicate calls a method that changes the underlying data, the method it calls notifies all registered listeners just as it would when it is called by the original CachedRowSet object. In addition, any RowSet object created by this method will have the same properties as this CachedRowSet object. For example, if this CachedRowSet object is read-only, all of its duplicates will also be read-only. If it is changed to be updatable, the duplicates also become updatable. NOTE: If multiple threads access RowSet objects created from the createShared() method, the following behavior is specified to preserve shared data integrity: reads and writes of all shared RowSet objects should be made serially between each object and the single underlying tabular structure.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetEvent.html\" title\u003d\"class in javax.sql\"\u003e\u003ccode\u003eRowSetEvent\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetListener.html\" title\u003d\"interface in javax.sql\"\u003e\u003ccode\u003eRowSetListener\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs or cloning is not supported in the underlying platform"
+        ],
+        "return": [
+          "a new shared \n\u003ccode\u003eRowSet\u003c/code\u003e object that has the same properties as this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object and that has a cursor over the same data"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.CachedRowSet",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createCopy",
+      "comment": "Creates a RowSet object that is a deep copy of the data in this CachedRowSet object. In contrast to the RowSet object generated from a createShared call, updates made to the copy of the original RowSet object must not be visible to the original RowSet object. Also, any event listeners that are registered with the original RowSet must not have scope over the new RowSet copies. In addition, any constraint restrictions established must be maintained.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createShared()\"\u003e\u003ccode\u003ecreateShared()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createCopySchema()\"\u003e\u003ccode\u003ecreateCopySchema()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createCopyNoConstraints()\"\u003e\u003ccode\u003ecreateCopyNoConstraints()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetEvent.html\" title\u003d\"class in javax.sql\"\u003e\u003ccode\u003eRowSetEvent\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetListener.html\" title\u003d\"interface in javax.sql\"\u003e\u003ccode\u003eRowSetListener\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs in generating the copy of the of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ],
+        "return": [
+          "a new \n\u003ccode\u003eRowSet\u003c/code\u003e object that is a deep copy of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object and is completely independent of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.CachedRowSet",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createCopySchema",
+      "comment": "Creates a CachedRowSet object that is an empty copy of this CachedRowSet object. The copy must not contain any contents but only represent the table structure of the original CachedRowSet object. In addition, primary or foreign key constraints set in the originating CachedRowSet object must be equally enforced in the new empty CachedRowSet object. In contrast to the RowSet object generated from a createShared method call, updates made to a copy of this CachedRowSet object with the createCopySchema method must not be visible to it. Applications can form a WebRowSet object from the CachedRowSet object returned by this method in order to export the RowSet schema definition to XML for future use.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createShared()\"\u003e\u003ccode\u003ecreateShared()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createCopySchema()\"\u003e\u003ccode\u003ecreateCopySchema()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createCopyNoConstraints()\"\u003e\u003ccode\u003ecreateCopyNoConstraints()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetEvent.html\" title\u003d\"class in javax.sql\"\u003e\u003ccode\u003eRowSetEvent\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetListener.html\" title\u003d\"interface in javax.sql\"\u003e\u003ccode\u003eRowSetListener\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs in cloning the structure of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ],
+        "return": [
+          "An empty copy of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.CachedRowSet",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createCopyNoConstraints",
+      "comment": "Creates a CachedRowSet object that is a deep copy of this CachedRowSet object\u0027s data but is independent of it. In contrast to the RowSet object generated from a createShared method call, updates made to a copy of this CachedRowSet object must not be visible to it. Also, any event listeners that are registered with this CachedRowSet object must not have scope over the new RowSet object. In addition, any constraint restrictions established for this CachedRowSet object must not be maintained in the copy.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createCopy()\"\u003e\u003ccode\u003ecreateCopy()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createShared()\"\u003e\u003ccode\u003ecreateShared()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#createCopySchema()\"\u003e\u003ccode\u003ecreateCopySchema()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetEvent.html\" title\u003d\"class in javax.sql\"\u003e\u003ccode\u003eRowSetEvent\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/javax/sql/RowSetListener.html\" title\u003d\"interface in javax.sql\"\u003e\u003ccode\u003eRowSetListener\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs in generating the copy of the of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ],
+        "return": [
+          "a new \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object that is a deep copy of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object and is completely independent of this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.RowSetWarning",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRowSetWarnings",
+      "comment": "Retrieves the first warning reported by calls on this RowSet object. Subsequent warnings on this RowSet object will be chained to the RowSetWarning object that this method returns. The warning chain is automatically cleared each time a new row is read. This method may not be called on a RowSet object that has been closed; doing so will cause a SQLException to be thrown.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/RowSetWarning.html\" title\u003d\"class in javax.sql.rowset\"\u003e\u003ccode\u003eRowSetWarning\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if this method is called on a closed RowSet"
+        ],
+        "return": [
+          "RowSetWarning the first \n\u003ccode\u003eRowSetWarning\u003c/code\u003e object reported or null if there are none"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getShowDeleted",
+      "comment": "Retrieves a boolean indicating whether rows marked for deletion appear in the set of current rows. If true is returned, deleted rows are visible with the current rows. If false is returned, rows are not visible with the set of current rows. The default value is false. Standard rowset implementations may choose to restrict this behavior due to security considerations or to better fit certain deployment scenarios. This is left as implementation defined and does not represent standard behavior. Note: Allowing deleted rows to remain visible complicates the behavior of some standard JDBC RowSet Implementations methods. However, most rowset users can simply ignore this extra detail because only very specialized applications will likely want to take advantage of this feature.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#setShowDeleted(boolean)\"\u003e\u003ccode\u003esetShowDeleted(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a rowset implementation is unable to to determine whether rows marked for deletion are visible"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if deleted rows are visible; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "b",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setShowDeleted",
+      "comment": "Sets the property showDeleted to the given boolean value, which determines whether rows marked for deletion appear in the set of current rows. If the value is set to true, deleted rows are immediately visible with the set of current rows. If the value is set to false, the deleted rows are set as invisible with the current set of rows. Standard rowset implementations may choose to restrict this behavior due to security considerations or to better fit certain deployment scenarios. This is left as implementations defined and does not represent standard behavior.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#getShowDeleted()\"\u003e\u003ccode\u003egetShowDeleted()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if deleted rows should be shown; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a rowset implementation is unable to to reset whether deleted rows should be visible"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "commit",
+      "comment": "Each CachedRowSet object\u0027s SyncProvider contains a Connection object from the ResultSet or JDBC properties passed to it\u0027s constructors. This method wraps the Connection commit method to allow flexible auto commit or non auto commit transactional control support. Makes all changes that are performed by the acceptChanges() method since the previous commit/rollback permanent. This method should be used only when auto-commit mode has been disabled.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/Connection.html#setAutoCommit(boolean)\"\u003e\u003ccode\u003eConnection.setAutoCommit(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or this Connection object within this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e is in auto-commit mode"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "rollback",
+      "comment": "Each CachedRowSet object\u0027s SyncProvider contains a Connection object from the original ResultSet or JDBC properties passed to it. Undoes all changes made in the current transaction. This method should be used only when auto-commit mode has been disabled.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or this Connection object within this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e is in auto-commit mode."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.Savepoint",
+            "type": "Class"
+          },
+          "name": "s",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "rollback",
+      "comment": "Each CachedRowSet object\u0027s SyncProvider contains a Connection object from the original ResultSet or JDBC properties passed to it. Undoes all changes made in the current transaction back to the last Savepoint transaction marker. This method should be used only when auto-commit mode has been disabled.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003es\u003c/code\u003e - A \n\u003ccode\u003eSavepoint\u003c/code\u003e transaction marker"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or this Connection object within this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e is in auto-commit mode."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.sql.RowSetEvent",
+            "type": "Class"
+          },
+          "name": "event",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "numRows",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "rowSetPopulated",
+      "comment": "Notifies registered listeners that a RowSet object in the given RowSetEvent object has populated a number of additional rows. The numRows parameter ensures that this event will only be fired every numRow. The source of the event can be retrieved with the method event.getSource.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - a \n\u003ccode\u003eRowSetEvent\u003c/code\u003e object that contains the \n\u003ccode\u003eRowSet\u003c/code\u003e object that is the source of the events",
+          "\u003ccode\u003enumRows\u003c/code\u003e - when populating, the number of rows interval on which the \n\u003ccode\u003eCachedRowSet\u003c/code\u003e populated should fire; the default value is zero; cannot be less than \n\u003ccode\u003efetchSize\u003c/code\u003e or zero"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - \n\u003ccode\u003enumRows \u0026lt; 0 or numRows \u0026lt; getFetchSize() \u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.ResultSet",
+            "type": "Class"
+          },
+          "name": "rs",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "startRow",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "populate",
+      "comment": "Populates this CachedRowSet object with data from the given ResultSet object. While related to the populate(ResultSet) method, an additional parameter is provided to allow starting position within the ResultSet from where to populate the CachedRowSet instance. This method can be used as an alternative to the execute method when an application has a connection to an open ResultSet object. Using the method populate can be more efficient than using the version of the execute method that takes no parameters because it does not open a new connection and re-execute this CachedRowSet object\u0027s command. Using the populate method is more a matter of convenience when compared to using the version of execute that takes a ResultSet object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#execute(java.sql.Connection)\"\u003e\u003ccode\u003eexecute(java.sql.Connection)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/CachedRowSet.html#populate(java.sql.ResultSet)\"\u003e\u003ccode\u003epopulate(ResultSet)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSet.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eResultSet\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/ResultSetMetaData.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eResultSetMetaData\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estartRow\u003c/code\u003e - the position in the \n\u003ccode\u003eResultSet\u003c/code\u003e from where to start populating the records in this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e",
+          "\u003ccode\u003ers\u003c/code\u003e - the \n\u003ccode\u003eResultSet\u003c/code\u003e object containing the data to be read into this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a null \n\u003ccode\u003eResultSet\u003c/code\u003e object is supplied or this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object cannot retrieve the associated \n\u003ccode\u003eResultSetMetaData\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "size",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setPageSize",
+      "comment": "Sets the CachedRowSet object\u0027s page-size. A CachedRowSet may be configured to populate itself in page-size sized batches of rows. When either populate() or execute() are called, the CachedRowSet fetches an additional page according to the original SQL query used to populate the RowSet.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - the page-size of the \n\u003ccode\u003eCachedRowSet\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs setting the \n\u003ccode\u003eCachedRowSet\u003c/code\u003e page size or if the page size is less than 0."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPageSize",
+      "comment": "Returns the page-size for the CachedRowSet object",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "an \n\u003ccode\u003eint\u003c/code\u003e page size"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "nextPage",
+      "comment": "Increments the current page of the CachedRowSet. This causes the CachedRowSet implementation to fetch the next page-size rows and populate the RowSet, if remaining rows remain within scope of the original SQL query used to populated the RowSet.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs fetching the next page, or if this method is called prematurely before populate or execute."
+        ],
+        "return": [
+          "true if more pages exist; false if this is the last page"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "previousPage",
+      "comment": "Decrements the current page of the CachedRowSet. This causes the CachedRowSet implementation to fetch the previous page-size rows and populate the RowSet. The amount of rows returned in the previous page must always remain within scope of the original SQL query used to populate the RowSet.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if an error occurs fetching the previous page, or if this method is called prematurely before populate or execute."
+        ],
+        "return": [
+          "true if the previous page is successfully retrieved; false if this is the first page."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.sql.rowset.CachedRowSet",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

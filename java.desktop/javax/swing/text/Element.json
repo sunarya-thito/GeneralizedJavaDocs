@@ -1,0 +1,229 @@
+{
+  "packageName": "javax.swing.text",
+  "simpleName": "Element",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.swing.text.Document",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDocument",
+      "comment": "Fetches the document associated with this element.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the document"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.Element",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getParentElement",
+      "comment": "Fetches the parent element. If the element is a root level element returns null.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the parent element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Fetches the name of the element. If the element is used to represent some type of structure, this would be the type name.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the element name"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttributes",
+      "comment": "Fetches the collection of attributes this element contains.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the attributes for the element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getStartOffset",
+      "comment": "Fetches the offset from the beginning of the document that this element begins at. If this element has children, this will be the offset of the first child. As a document position, there is an implied forward bias.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/Document.html\" title\u003d\"interface in javax.swing.text\"\u003e\u003ccode\u003eDocument\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.html\" title\u003d\"class in javax.swing.text\"\u003e\u003ccode\u003eAbstractDocument\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the starting offset \u0026gt;\u003d 0 and \u0026lt; getEndOffset();"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getEndOffset",
+      "comment": "Fetches the offset from the beginning of the document that this element ends at. If this element has children, this will be the end offset of the last child. As a document position, there is an implied backward bias. All the default Document implementations descend from AbstractDocument. AbstractDocument models an implied break at the end of the document. As a result of this, it is possible for this to return a value greater than the length of the document.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/Document.html\" title\u003d\"interface in javax.swing.text\"\u003e\u003ccode\u003eDocument\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.html\" title\u003d\"class in javax.swing.text\"\u003e\u003ccode\u003eAbstractDocument\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the ending offset \u0026gt; getStartOffset() and \u0026lt;\u003d getDocument().getLength() + 1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "offset",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getElementIndex",
+      "comment": "Gets the child element index closest to the given offset. The offset is specified relative to the beginning of the document. Returns -1 if the Element is a leaf, otherwise returns the index of the Element that best represents the given location. Returns 0 if the location is less than the start offset. Returns getElementCount() - 1 if the location is greater than or equal to the end offset.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eoffset\u003c/code\u003e - the specified offset \u0026gt;\u003d 0"
+        ],
+        "return": [
+          "the element index \u0026gt;\u003d 0"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getElementCount",
+      "comment": "Gets the number of child elements contained by this element. If this element is a leaf, a count of zero is returned.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the number of child elements \u0026gt;\u003d 0"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.Element",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "index",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getElement",
+      "comment": "Fetches the child element at the given index.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the specified index \u0026gt;\u003d 0"
+        ],
+        "return": [
+          "the child element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isLeaf",
+      "comment": "Is this element a leaf element? An element that may have children, even if it currently has no children, would return false.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "true if a leaf element else false"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.swing.text.Element",
+  "annotations": [],
+  "tagMap": {}
+}

@@ -1,0 +1,1135 @@
+{
+  "packageName": "javax.lang.model.util",
+  "simpleName": "Elements",
+  "moduleName": "java.compiler",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.PackageElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPackageElement",
+      "comment": "Returns a package given its fully qualified name if the package is uniquely determinable in the environment. If running with modules, packages of the given name are searched in a two-stage process: find non-empty packages with the given name returned by getPackageElement(ModuleElement, CharSequence), where the provided ModuleSymbol is any root module, if the above yields an empty list, search all modules for observable packages with the given name If this process leads to a list with a single element, the single element is returned, otherwise null is returned.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - fully qualified package name, or an empty string for an unnamed package"
+        ],
+        "return": [
+          "the specified package, or \n\u003ccode\u003enull\u003c/code\u003e if no package can be uniquely determined."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.PackageElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ModuleElement",
+            "type": "Class"
+          },
+          "name": "module",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPackageElement",
+      "comment": "Returns a package given its fully qualified name, as seen from the given module.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getAllPackageElements(java.lang.CharSequence)\"\u003e\u003ccode\u003egetAllPackageElements(java.lang.CharSequence)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - fully qualified package name, or an empty string for an unnamed package",
+          "\u003ccode\u003emodule\u003c/code\u003e - module relative to which the lookup should happen"
+        ],
+        "return": [
+          "the specified package, or \n\u003ccode\u003enull\u003c/code\u003e if it cannot be found"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.element.PackageElement",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAllPackageElements",
+      "comment": "Returns all package elements with the given canonical name. There may be more than one package element with the same canonical name if the package elements are in different modules.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getAllModuleElements()\"\u003e\u003ccode\u003egetAllModuleElements\u003c/code\u003e\u003c/a\u003e and stores the result. If the set of modules is empty, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getPackageElement(java.lang.CharSequence)\"\u003e\u003ccode\u003egetPackageElement(name)\u003c/code\u003e\u003c/a\u003e is called passing through the name argument. If \n\u003ccode\u003e getPackageElement(name)\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, an empty set of package elements is returned; otherwise, a single-element set with the found package element is returned. If the set of modules is nonempty, the modules are iterated over and any non-\n\u003ccode\u003enull\u003c/code\u003e results of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getPackageElement(javax.lang.model.element.ModuleElement,java.lang.CharSequence)\"\u003e\u003ccode\u003egetPackageElement(module, name)\u003c/code\u003e\u003c/a\u003e are accumulated into a set. The set is then returned."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getPackageElement(javax.lang.model.element.ModuleElement,java.lang.CharSequence)\"\u003e\u003ccode\u003egetPackageElement(ModuleElement, CharSequence)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the canonical name"
+        ],
+        "return": [
+          "the package elements, or an empty set if no package with the name can be found"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.TypeElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTypeElement",
+      "comment": "Returns a type element given its canonical name if the type element is uniquely determinable in the environment. If running with modules, type elements of the given name are searched in a two-stage process: find type elements with the given name returned by getTypeElement(ModuleElement, CharSequence), where the provided ModuleSymbol is any root module, if the above yields an empty list, search all modules for observable type elements with the given name If this process leads to a list with a single element, the single element is returned, otherwise null is returned.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the canonical name"
+        ],
+        "return": [
+          "the named type element, or \n\u003ccode\u003enull\u003c/code\u003e if no type element can be uniquely determined."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.TypeElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ModuleElement",
+            "type": "Class"
+          },
+          "name": "module",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTypeElement",
+      "comment": "Returns a type element given its canonical name, as seen from the given module.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getAllTypeElements(java.lang.CharSequence)\"\u003e\u003ccode\u003egetAllTypeElements(java.lang.CharSequence)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the canonical name",
+          "\u003ccode\u003emodule\u003c/code\u003e - module relative to which the lookup should happen"
+        ],
+        "return": [
+          "the named type element, or \n\u003ccode\u003enull\u003c/code\u003e if it cannot be found"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.element.TypeElement",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAllTypeElements",
+      "comment": "Returns all type elements with the given canonical name. There may be more than one type element with the same canonical name if the type elements are in different modules.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getAllModuleElements()\"\u003e\u003ccode\u003egetAllModuleElements\u003c/code\u003e\u003c/a\u003e and stores the result. If the set of modules is empty, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getTypeElement(java.lang.CharSequence)\"\u003e\u003ccode\u003egetTypeElement(name)\u003c/code\u003e\u003c/a\u003e is called passing through the name argument. If \n\u003ccode\u003e getTypeElement(name)\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, an empty set of type elements is returned; otherwise, a single-element set with the found type element is returned. If the set of modules is nonempty, the modules are iterated over and any non-\n\u003ccode\u003enull\u003c/code\u003e results of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getTypeElement(javax.lang.model.element.ModuleElement,java.lang.CharSequence)\"\u003e\u003ccode\u003egetTypeElement(module, name)\u003c/code\u003e\u003c/a\u003e are accumulated into a set. The set is then returned."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getTypeElement(javax.lang.model.element.ModuleElement,java.lang.CharSequence)\"\u003e\u003ccode\u003egetTypeElement(ModuleElement, CharSequence)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the canonical name"
+        ],
+        "return": [
+          "the type elements, or an empty set if no type with the name can be found"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.ModuleElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getModuleElement",
+      "comment": "Returns a module element given its fully qualified name. If the requested module cannot be found, null is returned. One situation where a module cannot be found is if the environment does not include modules, such as an annotation processing environment configured for a source version without modules.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getAllModuleElements()\"\u003e\u003ccode\u003egetAllModuleElements()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name, or an empty string for an unnamed module"
+        ],
+        "return": [
+          "the named module element, or \n\u003ccode\u003enull\u003c/code\u003e if it cannot be found"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.element.ModuleElement",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAllModuleElements",
+      "comment": "Returns all module elements in the current environment. If no modules are present, an empty set is returned. One situation where no modules are present occurs when the environment does not include modules, such as an annotation processing environment configured for a source version without modules.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns an empty set."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html#getModuleElement(java.lang.CharSequence)\"\u003e\u003ccode\u003egetModuleElement(CharSequence)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the known module elements, or an empty set if there are no modules"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.element.ExecutableElement",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          },
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.element.AnnotationValue",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.AnnotationMirror",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getElementValuesWithDefaults",
+      "comment": "Returns the values of an annotation\u0027s elements, including defaults.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/element/AnnotationMirror.html#getElementValues()\"\u003e\u003ccode\u003eAnnotationMirror.getElementValues()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - annotation to examine"
+        ],
+        "return": [
+          "the values of an annotation\u0027s elements, including defaults"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDocComment",
+      "comment": "Returns the text of the documentation (\"Javadoc\") comment of an element. A documentation comment of an element is a comment that begins with \"/**\", ends with a separate \"*/\", and immediately precedes the element, ignoring white space. Therefore, a documentation comment contains at least three \"*\" characters. The text returned for the documentation comment is a processed form of the comment as it appears in source code. The leading \"/**\" and trailing \"*/\" are removed. For lines of the comment starting after the initial \"/**\", leading white space characters are discarded as are any consecutive \"*\" characters appearing after the white space or starting the line. The processed lines are then concatenated together (including line terminators) and returned.",
+      "annotations": [],
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-3.html#jls-3.6\"\u003e3.6 White Space\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element being examined"
+        ],
+        "return": [
+          "the documentation comment of the element, or \n\u003ccode\u003enull\u003c/code\u003e if there is none"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isDeprecated",
+      "comment": "Returns true if the element is deprecated, false otherwise.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element being examined"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the element is deprecated, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.util.Elements$Origin",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getOrigin",
+      "comment": "Returns the origin of the given element. Note that if this method returns EXPLICIT and the element was created from a class file, then the element may not, in fact, correspond to an explicitly declared construct in source code. This is due to limitations of the fidelity of the class file format in preserving information from source code. For example, at least some versions of the class file format do not preserve whether a constructor was explicitly declared by the programmer or was implicitly declared as the default constructor.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.Origin.html#EXPLICIT\"\u003e\u003ccode\u003eEXPLICIT\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element being examined"
+        ],
+        "return": [
+          "the \n\u003cem\u003eorigin\u003c/em\u003e of the given element"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.util.Elements$Origin",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.AnnotatedConstruct",
+            "type": "Class"
+          },
+          "name": "c",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.AnnotationMirror",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getOrigin",
+      "comment": "Returns the origin of the given annotation mirror. An annotation mirror is mandated if it is an implicitly declared container annotation used to hold repeated annotations of a repeatable annotation interface. Note that if this method returns EXPLICIT and the annotation mirror was created from a class file, then the element may not, in fact, correspond to an explicitly declared construct in source code. This is due to limitations of the fidelity of the class file format in preserving information from source code. For example, at least some versions of the class file format do not preserve whether an annotation was explicitly declared by the programmer or was implicitly declared as a container annotation.",
+      "annotations": [],
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-9.html#jls-9.6.3\"\u003e9.6.3 Repeatable Annotation Types\u003c/a\u003e\n\u003cbr\u003e\n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-9.html#jls-9.7.5\"\u003e9.7.5 Multiple Annotations of the Same Interface\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.Origin.html#EXPLICIT\"\u003e\u003ccode\u003eEXPLICIT\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - the construct the annotation mirror modifies",
+          "\u003ccode\u003ea\u003c/code\u003e - the annotation mirror being examined"
+        ],
+        "return": [
+          "the \n\u003cem\u003eorigin\u003c/em\u003e of the given annotation mirror"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.util.Elements$Origin",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ModuleElement",
+            "type": "Class"
+          },
+          "name": "m",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ModuleElement$Directive",
+            "type": "Class"
+          },
+          "name": "directive",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getOrigin",
+      "comment": "Returns the origin of the given module directive. Note that if this method returns EXPLICIT and the module directive was created from a class file, then the module directive may not, in fact, correspond to an explicitly declared construct in source code. This is due to limitations of the fidelity of the class file format in preserving information from source code. For example, at least some versions of the class file format do not preserve whether a uses directive was explicitly declared by the programmer or was added as a synthetic construct. Note that an implementation may not be able to reliably determine the origin status of the directive if the directive is created from a class file due to limitations of the fidelity of the class file format in preserving information from source code.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.Origin.html#EXPLICIT\"\u003e\u003ccode\u003eEXPLICIT\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003em\u003c/code\u003e - the module of the directive",
+          "\u003ccode\u003edirective\u003c/code\u003e - the module directive being examined"
+        ],
+        "return": [
+          "the \n\u003cem\u003eorigin\u003c/em\u003e of the given module directive"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ExecutableElement",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isBridge",
+      "comment": "Returns true if the executable element is a bridge method, false otherwise.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ccode\u003efalse\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the executable being examined"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the executable element is a bridge method, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.Name",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.TypeElement",
+            "type": "Class"
+          },
+          "name": "type",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getBinaryName",
+      "comment": "Returns the binary name of a type element.",
+      "annotations": [],
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-13.html#jls-13.1\"\u003e13.1 The Form of a Binary\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/element/TypeElement.html#getQualifiedName()\"\u003e\u003ccode\u003eTypeElement.getQualifiedName()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etype\u003c/code\u003e - the type element being examined"
+        ],
+        "return": [
+          "the \n\u003ci\u003ebinary name\u003c/i\u003e of a type element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.PackageElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPackageOf",
+      "comment": "Returns the package of an element. The package of a package is itself. The package of a module is null. The package of a top-level class or interface is its enclosing package. Otherwise, the package of an element is equal to the package of the enclosing element.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element being examined"
+        ],
+        "return": [
+          "the package of an element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.ModuleElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getModuleOf",
+      "comment": "Returns the module of an element. The module of a module is itself. If a package has a module as its enclosing element, that module is the module of the package. If the enclosing element of a package is null, null is returned for the package\u0027s module. (One situation where a package may have a null module is if the environment does not include modules, such as an annotation processing environment configured for a source version without modules.) Otherwise, the module of an element is equal to the module of the package of the element.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element being examined"
+        ],
+        "return": [
+          "the module of an element"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.element.Element",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.TypeElement",
+            "type": "Class"
+          },
+          "name": "type",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAllMembers",
+      "comment": "Returns all members of a type element, whether inherited or declared directly. For a class the result also includes its constructors, but not local or anonymous classes.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/element/Element.html#getEnclosedElements()\"\u003e\u003ccode\u003eElement.getEnclosedElements()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "Elements of certain kinds can be isolated using methods in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/ElementFilter.html\" title\u003d\"class in javax.lang.model.util\"\u003e\u003ccode\u003eElementFilter\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003etype\u003c/code\u003e - the type being examined"
+        ],
+        "return": [
+          "all members of the type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.element.AnnotationMirror",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAllAnnotationMirrors",
+      "comment": "Returns all annotations present on an element, whether directly present or present via inheritance. Note that any annotations returned by this method are declaration annotations.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/element/Element.html#getAnnotationMirrors()\"\u003e\u003ccode\u003eElement.getAnnotationMirrors()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/AnnotatedConstruct.html\" title\u003d\"interface in javax.lang.model\"\u003e\u003ccode\u003eAnnotatedConstruct\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element being examined"
+        ],
+        "return": [
+          "all annotations of the element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "hider",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "hidden",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hides",
+      "comment": "Tests whether one type, method, or field hides another.",
+      "annotations": [],
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-8.html#jls-8.4.8\"\u003e8.4.8 Inheritance, Overriding, and Hiding\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ehider\u003c/code\u003e - the first element",
+          "\u003ccode\u003ehidden\u003c/code\u003e - the second element"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if the first element hides the second"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ExecutableElement",
+            "type": "Class"
+          },
+          "name": "overrider",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ExecutableElement",
+            "type": "Class"
+          },
+          "name": "overridden",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.TypeElement",
+            "type": "Class"
+          },
+          "name": "type",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "overrides",
+      "comment": "Tests whether one method, as a member of a given class or interface, overrides another method. When a non-abstract method overrides an abstract one, the former is also said to implement the latter. In the simplest and most typical usage, the value of the type parameter will simply be the class or interface directly enclosing overrider (the possibly-overriding method). For example, suppose m1 represents the method String.hashCode and m2 represents Object.hashCode. We can then ask whether m1 overrides m2 within the class String (it does): assert elements.overrides(m1, m2, elements.getTypeElement(\"java.lang.String\")); A more interesting case can be illustrated by the following example in which a method in class A does not override a like-named method in interface B: class A { public void m() {} } interface B { void m(); } ... m1 \u003d ...; // A.m m2 \u003d ...; // B.m assert ! elements.overrides(m1, m2, elements.getTypeElement(\"A\")); When viewed as a member of a third class C, however, the method in A does override the one in B: class C extends A implements B {} ... assert elements.overrides(m1, m2, elements.getTypeElement(\"C\"));",
+      "annotations": [],
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-8.html#jls-8.4.8\"\u003e8.4.8 Inheritance, Overriding, and Hiding\u003c/a\u003e\n\u003cbr\u003e\n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-9.html#jls-9.4.1\"\u003e9.4.1 Inheritance and Overriding\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eoverrider\u003c/code\u003e - the first method, possible overrider",
+          "\u003ccode\u003eoverridden\u003c/code\u003e - the second method, possibly being overridden",
+          "\u003ccode\u003etype\u003c/code\u003e - the class or interface of which the first method is a member"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if the first method overrides the second"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getConstantExpression",
+      "comment": "Returns the text of a constant expression representing a primitive value or a string. The text returned is in a form suitable for representing the value in source code.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/element/VariableElement.html#getConstantValue()\"\u003e\u003ccode\u003eVariableElement.getConstantValue()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003evalue\u003c/code\u003e - a primitive value or string"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the argument is not a primitive value or string"
+        ],
+        "return": [
+          "the text of a constant expression"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.io.Writer",
+            "type": "Class"
+          },
+          "name": "w",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "name": "elements",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "printElements",
+      "comment": "Prints a representation of the elements to the given writer in the specified order. The main purpose of this method is for diagnostics. The exact format of the output is not specified and is subject to change.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ew\u003c/code\u003e - the writer to print the output to",
+          "\u003ccode\u003eelements\u003c/code\u003e - the elements to print"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.Name",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "name": "cs",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Returns a name with the same sequence of characters as the argument.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecs\u003c/code\u003e - the character sequence to return as a name"
+        ],
+        "return": [
+          "a name with the same sequence of characters as the argument"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.TypeElement",
+            "type": "Class"
+          },
+          "name": "type",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isFunctionalInterface",
+      "comment": "Returns true if the type element is a functional interface, false otherwise.",
+      "annotations": [],
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-9.html#jls-9.8\"\u003e9.8 Functional Interfaces\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etype\u003c/code\u003e - the type element being examined"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the type element is a functional interface, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.RecordComponentElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.lang.model.element.ExecutableElement",
+            "type": "Class"
+          },
+          "name": "accessor",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "recordComponentFor",
+      "comment": "Returns the record component for the given accessor. Returns null if the given method is not a record component accessor.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method checks if the element enclosing the accessor has kind \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/element/ElementKind.html#RECORD\"\u003e\u003ccode\u003eRECORD\u003c/code\u003e\u003c/a\u003e if that is the case, then all the record components on the accessor\u0027s enclosing element are retrieved by invoking \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/ElementFilter.html#recordComponentsIn(java.lang.Iterable)\"\u003e\u003ccode\u003eElementFilter.recordComponentsIn(Iterable)\u003c/code\u003e\u003c/a\u003e. If the accessor of at least one of the record components retrieved happen to be equal to the accessor passed as a parameter to this method, then that record component is returned, in any other case \n\u003ccode\u003enull\u003c/code\u003e is returned."
+        ],
+        "param": [
+          "\u003ccode\u003eaccessor\u003c/code\u003e - the method for which the record component should be found."
+        ],
+        "return": [
+          "the record component, or null if the given method is not an record component accessor"
+        ],
+        "since": [
+          "16"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.lang.model.util.Elements$Origin"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.lang.model.util.Elements",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/ProcessingEnvironment.html#getElementUtils()\"\u003e\u003ccode\u003eProcessingEnvironment.getElementUtils()\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

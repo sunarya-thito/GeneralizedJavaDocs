@@ -1,0 +1,1662 @@
+{
+  "packageName": "javax.management",
+  "simpleName": "MBeanServerConnection",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Instantiates and registers an MBean in the MBean server. The MBean server will use its Default Loader Repository to load the class of the MBean. An object name is associated with the MBean. If the object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method. This method is equivalent to createMBean(className, name, (Object[]) null, (String[]) null).",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanRegistration\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeMBeanException.html\" title\u003d\"class in javax.management\"\u003eRuntimeMBeanException\u003c/a\u003e\u003c/code\u003e - If the MBean\u0027s constructor or its \n\u003ccode\u003epreRegister\u003c/code\u003e or \n\u003ccode\u003epostRegister\u003c/code\u003e method threw a \n\u003ccode\u003eRuntimeException\u003c/code\u003e. If the \n\u003ccode\u003epostRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws a \n\u003ccode\u003eRuntimeException\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeErrorException.html\" title\u003d\"class in javax.management\"\u003eRuntimeErrorException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003epostRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws an \n\u003ccode\u003eError\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#getMBeanInfo(javax.management.ObjectName)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "loaderName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Instantiates and registers an MBean in the MBean server. The class loader to be used is identified by its object name. An object name is associated with the MBean. If the object name of the loader is null, the ClassLoader that loaded the MBean server will be used. If the MBean\u0027s object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method. This method is equivalent to createMBean(className, name, loaderName, (Object[]) null, (String[]) null).",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanRegistration\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null.",
+          "\u003ccode\u003eloaderName\u003c/code\u003e - The object name of the class loader to be used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeMBeanException.html\" title\u003d\"class in javax.management\"\u003eRuntimeMBeanException\u003c/a\u003e\u003c/code\u003e - If the MBean\u0027s constructor or its \n\u003ccode\u003epreRegister\u003c/code\u003e or \n\u003ccode\u003epostRegister\u003c/code\u003e method threw a \n\u003ccode\u003eRuntimeException\u003c/code\u003e. If the \n\u003ccode\u003epostRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws a \n\u003ccode\u003eRuntimeException\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeErrorException.html\" title\u003d\"class in javax.management\"\u003eRuntimeErrorException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003epostRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws an \n\u003ccode\u003eError\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The specified class loader is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#getMBeanInfo(javax.management.ObjectName)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "params",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "signature",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Instantiates and registers an MBean in the MBean server. The MBean server will use its Default Loader Repository to load the class of the MBean. An object name is associated with the MBean. If the object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanRegistration\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null.",
+          "\u003ccode\u003eparams\u003c/code\u003e - An array containing the parameters of the constructor to be invoked.",
+          "\u003ccode\u003esignature\u003c/code\u003e - An array containing the signature of the constructor to be invoked."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeMBeanException.html\" title\u003d\"class in javax.management\"\u003eRuntimeMBeanException\u003c/a\u003e\u003c/code\u003e - If the MBean\u0027s constructor or its \n\u003ccode\u003epreRegister\u003c/code\u003e or \n\u003ccode\u003epostRegister\u003c/code\u003e method threw a \n\u003ccode\u003eRuntimeException\u003c/code\u003e. If the \n\u003ccode\u003epostRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws a \n\u003ccode\u003eRuntimeException\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeErrorException.html\" title\u003d\"class in javax.management\"\u003eRuntimeErrorException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003epostRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws an \n\u003ccode\u003eError\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#getMBeanInfo(javax.management.ObjectName)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "loaderName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "params",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "signature",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Instantiates and registers an MBean in the MBean server. The class loader to be used is identified by its object name. An object name is associated with the MBean. If the object name of the loader is not specified, the ClassLoader that loaded the MBean server will be used. If the MBean object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanRegistration\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null.",
+          "\u003ccode\u003eparams\u003c/code\u003e - An array containing the parameters of the constructor to be invoked.",
+          "\u003ccode\u003esignature\u003c/code\u003e - An array containing the signature of the constructor to be invoked.",
+          "\u003ccode\u003eloaderName\u003c/code\u003e - The object name of the class loader to be used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeMBeanException.html\" title\u003d\"class in javax.management\"\u003eRuntimeMBeanException\u003c/a\u003e\u003c/code\u003e - The MBean\u0027s constructor or its \n\u003ccode\u003epreRegister\u003c/code\u003e or \n\u003ccode\u003epostRegister\u003c/code\u003e method threw a \n\u003ccode\u003eRuntimeException\u003c/code\u003e. If the \n\u003ccode\u003epostRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws a \n\u003ccode\u003eRuntimeException\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeErrorException.html\" title\u003d\"class in javax.management\"\u003eRuntimeErrorException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003epostRegister\u003c/code\u003e method (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws an \n\u003ccode\u003eError\u003c/code\u003e, the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e, although the MBean creation and registration succeeded. In such a case, the MBean will be actually registered even though the \n\u003ccode\u003ecreateMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreRegister\u003c/code\u003e, in which case the MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The specified class loader is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#getMBeanInfo(javax.management.ObjectName)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "unregisterMBean",
+      "comment": "Unregisters an MBean from the MBean server. The MBean is identified by its object name. Once the method has been invoked, the MBean may no longer be accessed by its object name.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanRegistration\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean to be unregistered."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The preDeregister ((\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeMBeanException.html\" title\u003d\"class in javax.management\"\u003eRuntimeMBeanException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003epostDeregister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws a \n\u003ccode\u003eRuntimeException\u003c/code\u003e, the \n\u003ccode\u003eunregisterMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e, although the MBean unregistration succeeded. In such a case, the MBean will be actually unregistered even though the \n\u003ccode\u003eunregisterMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreDeregister\u003c/code\u003e, in which case the MBean will remain registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeErrorException.html\" title\u003d\"class in javax.management\"\u003eRuntimeErrorException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003epostDeregister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean throws an \n\u003ccode\u003eError\u003c/code\u003e, the \n\u003ccode\u003eunregisterMBean\u003c/code\u003e method will throw a \n\u003ccode\u003eRuntimeErrorException\u003c/code\u003e, although the MBean unregistration succeeded. In such a case, the MBean will be actually unregistered even though the \n\u003ccode\u003eunregisterMBean\u003c/code\u003e method threw an exception. Note that \n\u003ccode\u003eRuntimeMBeanException\u003c/code\u003e can also be thrown by \n\u003ccode\u003epreDeregister\u003c/code\u003e, in which case the MBean will remain registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or the MBean you are when trying to unregister is the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerDelegate.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eMBeanServerDelegate\u003c/code\u003e\u003c/a\u003e MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getObjectInstance",
+      "comment": "Gets the ObjectInstance for a given MBean registered with the MBean server.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eObjectInstance\u003c/code\u003e associated with the MBean specified by \n\u003cvar\u003ename\u003c/var\u003e. The contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003ename\u003c/code\u003e and the contained class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#getMBeanInfo(javax.management.ObjectName)\"\u003e\u003ccode\u003egetMBeanInfo(name)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "javax.management.ObjectInstance",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.QueryExp",
+            "type": "Class"
+          },
+          "name": "query",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "queryMBeans",
+      "comment": "Gets MBeans controlled by the MBean server. This method allows any of the following to be obtained: All MBeans, a set of MBeans specified by pattern matching on the ObjectName and/or a Query expression, a specific MBean. When the object name is null or no domain and key properties are specified, all objects are to be selected (and filtered if a query is specified). It returns the set of ObjectInstance objects (containing the ObjectName and the Java Class name) for the selected MBeans.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name pattern identifying the MBeans to be retrieved. If null or no domain and key properties are specified, all the MBeans registered will be retrieved.",
+          "\u003ccode\u003equery\u003c/code\u003e - The query expression to be applied for selecting MBeans. If null no query expression will be applied for selecting MBeans."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "A set containing the \n\u003ccode\u003eObjectInstance\u003c/code\u003e objects for the selected MBeans. If no MBean satisfies the query an empty list is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.QueryExp",
+            "type": "Class"
+          },
+          "name": "query",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "queryNames",
+      "comment": "Gets the names of MBeans controlled by the MBean server. This method enables any of the following to be obtained: The names of all MBeans, the names of a set of MBeans specified by pattern matching on the ObjectName and/or a Query expression, a specific MBean name (equivalent to testing whether an MBean is registered). When the object name is null or no domain and key properties are specified, all objects are selected (and filtered if a query is specified). It returns the set of ObjectNames for the MBeans selected.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name pattern identifying the MBean names to be retrieved. If null or no domain and key properties are specified, the name of all registered MBeans will be retrieved.",
+          "\u003ccode\u003equery\u003c/code\u003e - The query expression to be applied for selecting MBeans. If null no query expression will be applied for selecting MBeans."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "A set containing the ObjectNames for the MBeans selected. If no MBean satisfies the query, an empty list is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isRegistered",
+      "comment": "Checks whether an MBean, identified by its object name, is already registered with the MBean server.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean to be checked."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "True if the MBean is already registered in the MBean server, false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Integer",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMBeanCount",
+      "comment": "Returns the number of MBeans registered in the MBean server.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "the number of MBeans registered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.AttributeNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "attribute",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttribute",
+      "comment": "Gets the value of a specific attribute of a named MBean. The MBean is identified by its object name.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#setAttribute(javax.management.ObjectName,javax.management.Attribute)\"\u003e\u003ccode\u003esetAttribute(javax.management.ObjectName, javax.management.Attribute)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean from which the attribute is to be retrieved.",
+          "\u003ccode\u003eattribute\u003c/code\u003e - A String specifying the name of the attribute to be retrieved."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/AttributeNotFoundException.html\" title\u003d\"class in javax.management\"\u003eAttributeNotFoundException\u003c/a\u003e\u003c/code\u003e - The attribute specified is not accessible in the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps an exception thrown by the MBean\u0027s getter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e thrown when trying to invoke the setter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or the attribute in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "The value of the retrieved attribute."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.AttributeList",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "attributes",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttributes",
+      "comment": "Retrieves the values of several attributes of a named MBean. The MBean is identified by its object name. If one or more attributes cannot be retrieved for some reason, they will be omitted from the returned AttributeList. The caller should check that the list is the same size as the attributes array. To discover what problem prevented a given attribute from being retrieved, call getAttribute for that attribute. Here is an example of calling this method and checking that it succeeded in retrieving all the requested attributes:  String[] attrNames \u003d ...;\n AttributeList list \u003d mbeanServerConnection.getAttributes(objectName, attrNames);\n if (list.size() \u003d\u003d attrNames.length)\n     System.out.println(\"All attributes were retrieved successfully\");\n else {\n     List\u003cString\u003e missing \u003d new ArrayList\u003cString\u003e(Arrays.asList(attrNames));\n     for (Attribute a : list.asList())\n         missing.remove(a.getName());\n     System.out.println(\"Did not retrieve: \" + missing);\n }",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#setAttributes(javax.management.ObjectName,javax.management.AttributeList)\"\u003e\u003ccode\u003esetAttributes(javax.management.ObjectName, javax.management.AttributeList)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean from which the attributes are retrieved.",
+          "\u003ccode\u003eattributes\u003c/code\u003e - A list of the attributes to be retrieved."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred when trying to invoke the getAttributes method of a Dynamic MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wrap a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or attributes in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "The list of the retrieved attributes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.AttributeNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InvalidAttributeValueException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.Attribute",
+            "type": "Class"
+          },
+          "name": "attribute",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setAttribute",
+      "comment": "Sets the value of a specific attribute of a named MBean. The MBean is identified by its object name.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#getAttribute(javax.management.ObjectName,java.lang.String)\"\u003e\u003ccode\u003egetAttribute(javax.management.ObjectName, java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean within which the attribute is to be set.",
+          "\u003ccode\u003eattribute\u003c/code\u003e - The identification of the attribute to be set and the value it is to be set to."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/AttributeNotFoundException.html\" title\u003d\"class in javax.management\"\u003eAttributeNotFoundException\u003c/a\u003e\u003c/code\u003e - The attribute specified is not accessible in the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InvalidAttributeValueException.html\" title\u003d\"class in javax.management\"\u003eInvalidAttributeValueException\u003c/a\u003e\u003c/code\u003e - The value specified for the attribute is not valid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps an exception thrown by the MBean\u0027s setter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e thrown when trying to invoke the setter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or the attribute in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.AttributeList",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.AttributeList",
+            "type": "Class"
+          },
+          "name": "attributes",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setAttributes",
+      "comment": "Sets the values of several attributes of a named MBean. The MBean is identified by its object name. If one or more attributes cannot be set for some reason, they will be omitted from the returned AttributeList. The caller should check that the input AttributeList is the same size as the output one. To discover what problem prevented a given attribute from being retrieved, it will usually be possible to call setAttribute for that attribute, although this is not guaranteed to work. (For example, the values of two attributes may have been rejected because they were inconsistent with each other. Setting one of them alone might be allowed.) Here is an example of calling this method and checking that it succeeded in setting all the requested attributes:  AttributeList inputAttrs \u003d ...;\n AttributeList outputAttrs \u003d mbeanServerConnection.setAttributes(objectName, inputAttrs);\n if (inputAttrs.size() \u003d\u003d outputAttrs.size())\n     System.out.println(\"All attributes were set successfully\");\n else {\n     List\u003cString\u003e missing \u003d new ArrayList\u003cString\u003e();\n     for (Attribute a : inputAttrs.asList())\n         missing.add(a.getName());\n     for (Attribute a : outputAttrs.asList())\n         missing.remove(a.getName());\n     System.out.println(\"Did not set: \" + missing);\n }",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#getAttributes(javax.management.ObjectName,java.lang.String%5B%5D)\"\u003e\u003ccode\u003egetAttributes(javax.management.ObjectName, java.lang.String[])\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean within which the attributes are to be set.",
+          "\u003ccode\u003eattributes\u003c/code\u003e - A list of attributes: The identification of the attributes to be set and the values they are to be set to."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred when trying to invoke the getAttributes method of a Dynamic MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or attributes in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "The list of attributes that were set, with their new values."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "operationName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "params",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "signature",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invoke",
+      "comment": "Invokes an operation on an MBean. Because of the need for a signature to differentiate possibly-overloaded operations, it is much simpler to invoke operations through an MBean proxy where possible. For example, suppose you have a Standard MBean interface like this:  public interface FooMBean {\n     public int countMatches(String[] patterns, boolean ignoreCase);\n }\n The countMatches operation can be invoked as follows:  String[] myPatterns \u003d ...;\n int count \u003d (Integer) mbeanServerConnection.invoke(\n         objectName,\n         \"countMatches\",\n         new Object[] {myPatterns, true},\n         new String[] {String[].class.getName(), boolean.class.getName()});\n Alternatively, it can be invoked through a proxy as follows:  String[] myPatterns \u003d ...;\n FooMBean fooProxy \u003d JMX.newMBeanProxy(\n         mbeanServerConnection, objectName, FooMBean.class);\n int count \u003d fooProxy.countMatches(myPatterns, true);",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean on which the method is to be invoked.",
+          "\u003ccode\u003eoperationName\u003c/code\u003e - The name of the operation to be invoked.",
+          "\u003ccode\u003eparams\u003c/code\u003e - An array containing the parameters to be set when the operation is invoked",
+          "\u003ccode\u003esignature\u003c/code\u003e - An array containing the signature of the operation, an array of class names in the format returned by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Class.html#getName()\"\u003e\u003ccode\u003eClass.getName()\u003c/code\u003e\u003c/a\u003e. The class objects will be loaded using the same class loader as the one used for loading the MBean on which the operation was invoked."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps an exception thrown by the MBean\u0027s invoked method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e thrown while trying to invoke the method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "The object returned by the operation, which represents the result of invoking the operation on the MBean specified."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDefaultDomain",
+      "comment": "Returns the default domain used for naming the MBean. The default domain name is used as the domain part in the ObjectName of MBeans if no domain is specified by the user.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "the default domain."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDomains",
+      "comment": "Returns the list of domains in which any MBean is currently registered. A string is in the returned array if and only if there is at least one MBean registered with an ObjectName whose getDomain() is equal to that string. The order of strings within the returned array is not defined.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "the list of domains."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationFilter",
+            "type": "Class"
+          },
+          "name": "filter",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "handback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addNotificationListener",
+      "comment": "Adds a listener to a registered MBean. Notifications emitted by the MBean will be forwarded to the listener.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#removeNotificationListener(javax.management.ObjectName,javax.management.NotificationListener)\"\u003e\u003ccode\u003eremoveNotificationListener(ObjectName, NotificationListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#removeNotificationListener(javax.management.ObjectName,javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eremoveNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be added.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The listener object which will handle the notifications emitted by the registered MBean.",
+          "\u003ccode\u003efilter\u003c/code\u003e - The filter object. If filter is null, no filtering will be performed before handling notifications.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - The context to be sent to the listener when a notification is emitted."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name provided does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationFilter",
+            "type": "Class"
+          },
+          "name": "filter",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "handback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addNotificationListener",
+      "comment": "Adds a listener to a registered MBean. A notification emitted by an MBean will be forwarded by the MBeanServer to the listener. If the source of the notification is a reference to an MBean object, the MBean server will replace it by that MBean\u0027s ObjectName. Otherwise the source is unchanged. The listener object that receives notifications is the one that is registered with the given name at the time this method is called. Even if it is subsequently unregistered, it will continue to receive notifications.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#removeNotificationListener(javax.management.ObjectName,javax.management.ObjectName)\"\u003e\u003ccode\u003eremoveNotificationListener(ObjectName, ObjectName)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#removeNotificationListener(javax.management.ObjectName,javax.management.ObjectName,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eremoveNotificationListener(ObjectName, ObjectName, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be added.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The object name of the listener which will handle the notifications emitted by the registered MBean.",
+          "\u003ccode\u003efilter\u003c/code\u003e - The filter object. If filter is null, no filtering will be performed before handling notifications.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - The context to be sent to the listener when a notification is emitted."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name of the notification listener or of the notification broadcaster does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e. The MBean named by \n\u003ccode\u003elistener\u003c/code\u003e exists but does not implement the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationListener.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eNotificationListener\u003c/code\u003e\u003c/a\u003e interface.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListener",
+      "comment": "Removes a listener from a registered MBean. If the listener is registered more than once, perhaps with different filters or callbacks, this method will remove all those registrations.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#addNotificationListener(javax.management.ObjectName,javax.management.ObjectName,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddNotificationListener(ObjectName, ObjectName, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be removed.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The object name of the listener to be removed."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name provided does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - The listener is not registered in the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationFilter",
+            "type": "Class"
+          },
+          "name": "filter",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "handback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListener",
+      "comment": "Removes a listener from a registered MBean. The MBean must have a listener that exactly matches the given listener, filter, and handback parameters. If there is more than one such listener, only one is removed. The filter and handback parameters may be null if and only if they are null in a listener to be removed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#addNotificationListener(javax.management.ObjectName,javax.management.ObjectName,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddNotificationListener(ObjectName, ObjectName, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be removed.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The object name of the listener to be removed.",
+          "\u003ccode\u003efilter\u003c/code\u003e - The filter that was specified when the listener was added.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - The handback that was specified when the listener was added."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name provided does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - The listener is not registered in the MBean, or it is not registered with the given filter and handback.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListener",
+      "comment": "Removes a listener from a registered MBean. If the listener is registered more than once, perhaps with different filters or callbacks, this method will remove all those registrations.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#addNotificationListener(javax.management.ObjectName,javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be removed.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The listener to be removed."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name provided does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - The listener is not registered in the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationFilter",
+            "type": "Class"
+          },
+          "name": "filter",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "handback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListener",
+      "comment": "Removes a listener from a registered MBean. The MBean must have a listener that exactly matches the given listener, filter, and handback parameters. If there is more than one such listener, only one is removed. The filter and handback parameters may be null if and only if they are null in a listener to be removed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#addNotificationListener(javax.management.ObjectName,javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be removed.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The listener to be removed.",
+          "\u003ccode\u003efilter\u003c/code\u003e - The filter that was specified when the listener was added.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - The handback that was specified when the listener was added."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name provided does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - The listener is not registered in the MBean, or it is not registered with the given filter and handback.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.MBeanInfo",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.IntrospectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMBeanInfo",
+      "comment": "This method discovers the attributes and operations that an MBean exposes for management.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean to analyze"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/IntrospectionException.html\" title\u003d\"class in javax.management\"\u003eIntrospectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred during introspection.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified was not found.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred when trying to invoke the getMBeanInfo of a Dynamic MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "An instance of \n\u003ccode\u003eMBeanInfo\u003c/code\u003e allowing the retrieval of all attributes and operations of this MBean."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isInstanceOf",
+      "comment": "Returns true if the MBean specified is an instance of the specified class, false otherwise. If name does not name an MBean, this method throws InstanceNotFoundException. Otherwise, let X be the MBean named by name, L be the ClassLoader of X, N be the class name in X\u0027s MBeanInfo. If N equals className, the result is true. Otherwise, if L successfully loads className and X is an instance of this class, the result is true. Otherwise, if L successfully loads both N and className, and the second class is assignable from the first, the result is true. Otherwise, the result is false.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Class.html#isInstance(java.lang.Object)\"\u003e\u003ccode\u003eClass.isInstance(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ccode\u003eObjectName\u003c/code\u003e of the MBean.",
+          "\u003ccode\u003eclassName\u003c/code\u003e - The name of the class."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - A communication problem occurred when talking to the MBean server."
+        ],
+        "return": [
+          "true if the MBean specified is an instance of the specified class according to the rules above, false otherwise."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.management.MBeanServerConnection",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

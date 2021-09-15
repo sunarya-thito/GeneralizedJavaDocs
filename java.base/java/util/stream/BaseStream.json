@@ -1,0 +1,228 @@
+{
+  "packageName": "java.util.stream",
+  "simpleName": "BaseStream",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.AutoCloseable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "owner": "java.util.stream.BaseStream",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "iterator",
+      "comment": "Returns an iterator for the elements of this stream. This is a terminal operation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the element iterator for this stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Spliterator",
+        "parameters": [
+          {
+            "owner": "java.util.stream.BaseStream",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "spliterator",
+      "comment": "Returns a spliterator for the elements of this stream. This is a terminal operation. The returned spliterator should report the set of characteristics derived from the stream pipeline (namely the characteristics derived from the stream source spliterator and the intermediate operations). Implementations may report a sub-set of those characteristics. For example, it may be too expensive to compute the entire set for some or all possible stream pipelines.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the element spliterator for this stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isParallel",
+      "comment": "Returns whether this stream, if a terminal operation were to be executed, would execute in parallel. Calling this method after invoking an terminal stream operation method may yield unpredictable results.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this stream would execute in parallel if executed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "owner": "java.util.stream.BaseStream",
+        "name": "S",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sequential",
+      "comment": "Returns an equivalent stream that is sequential. May return itself, either because the stream was already sequential, or because the underlying stream state was modified to be sequential. This is an intermediate operation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a sequential stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "owner": "java.util.stream.BaseStream",
+        "name": "S",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "parallel",
+      "comment": "Returns an equivalent stream that is parallel. May return itself, either because the stream was already parallel, or because the underlying stream state was modified to be parallel. This is an intermediate operation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a parallel stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "owner": "java.util.stream.BaseStream",
+        "name": "S",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "unordered",
+      "comment": "Returns an equivalent stream that is unordered. May return itself, either because the stream was already unordered, or because the underlying stream state was modified to be unordered. This is an intermediate operation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "an unordered stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "owner": "java.util.stream.BaseStream",
+        "name": "S",
+        "type": "Variable"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          },
+          "name": "closeHandler",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onClose",
+      "comment": "Returns an equivalent stream with an additional close handler. Close handlers are run when the close() method is called on the stream, and are executed in the order they were added. All close handlers are run, even if earlier close handlers throw exceptions. If any close handler throws an exception, the first exception thrown will be relayed to the caller of close(), with any remaining exceptions added to that exception as suppressed exceptions (unless one of the remaining exceptions is the same exception as the first exception, since an exception cannot suppress itself.) May return itself. This is an intermediate operation.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecloseHandler\u003c/code\u003e - A task to execute when the stream is closed"
+        ],
+        "return": [
+          "a stream with a handler that is run if the stream is closed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes this stream, causing all close handlers for this stream pipeline to be called.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003e\u003ccode\u003eAutoCloseable.close()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    },
+    {
+      "name": "S",
+      "upperBounds": [
+        {
+          "name": "BaseStream",
+          "parameters": [
+            {
+              "name": "T",
+              "type": "Class"
+            },
+            {
+              "name": "S",
+              "type": "Class"
+            }
+          ],
+          "type": "Class"
+        }
+      ],
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.stream.BaseStream",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/Stream.html\" title\u003d\"interface in java.util.stream\"\u003e\u003ccode\u003eStream\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/IntStream.html\" title\u003d\"interface in java.util.stream\"\u003e\u003ccode\u003eIntStream\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/LongStream.html\" title\u003d\"interface in java.util.stream\"\u003e\u003ccode\u003eLongStream\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/DoubleStream.html\" title\u003d\"interface in java.util.stream\"\u003e\u003ccode\u003eDoubleStream\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/package-summary.html\"\u003ejava.util.stream\u003c/a\u003e"
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

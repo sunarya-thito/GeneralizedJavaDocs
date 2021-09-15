@@ -1,0 +1,115 @@
+{
+  "packageName": "javax.naming.spi",
+  "simpleName": "DirObjectFactory",
+  "moduleName": "java.naming",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "javax.naming.spi.ObjectFactory",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "obj",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.naming.Name",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.naming.Context",
+            "type": "Class"
+          },
+          "name": "nameCtx",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Hashtable",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "environment",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.naming.directory.Attributes",
+            "type": "Class"
+          },
+          "name": "attrs",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getObjectInstance",
+      "comment": "Creates an object using the location or reference information, and attributes specified. Special requirements of this object are supplied using environment. An example of such an environment property is user identity information. DirectoryManager.getObjectInstance() successively loads in object factories. If it encounters a DirObjectFactory, it will invoke DirObjectFactory.getObjectInstance(); otherwise, it invokes ObjectFactory.getObjectInstance(). It does this until a factory produces a non-null answer. When an exception is thrown by an object factory, the exception is passed on to the caller of DirectoryManager.getObjectInstance(). The search for other factories that may produce a non-null answer is halted. An object factory should only throw an exception if it is sure that it is the only intended factory and that no other object factories should be tried. If this factory cannot create an object using the arguments supplied, it should return null. Since DirObjectFactory extends ObjectFactory, it effectively has two getObjectInstance() methods, where one differs from the other by the attributes argument. Given a factory that implements DirObjectFactory, DirectoryManager.getObjectInstance() will only use the method that accepts the attributes argument, while NamingManager.getObjectInstance() will only use the one that does not accept the attributes argument. See ObjectFactory for a description URL context factories and other properties of object factories that apply equally to DirObjectFactory. The name, attrs, and environment parameters are owned by the caller. The implementation will not modify these objects or keep references to them, although it may keep references to clones or copies.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/DirectoryManager.html#getObjectInstance(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable,javax.naming.directory.Attributes)\"\u003e\u003ccode\u003eDirectoryManager.getObjectInstance(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;, javax.naming.directory.Attributes)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getURLContext(java.lang.String,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getURLContext(java.lang.String, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - The possibly null object containing location or reference information that can be used in creating an object.",
+          "\u003ccode\u003ename\u003c/code\u003e - The name of this object relative to \n\u003ccode\u003enameCtx\u003c/code\u003e, or null if no name is specified.",
+          "\u003ccode\u003enameCtx\u003c/code\u003e - The context relative to which the \n\u003ccode\u003ename\u003c/code\u003e parameter is specified, or null if \n\u003ccode\u003ename\u003c/code\u003e is relative to the default initial context.",
+          "\u003ccode\u003eenvironment\u003c/code\u003e - The possibly null environment that is used in creating the object.",
+          "\u003ccode\u003eattrs\u003c/code\u003e - The possibly null attributes containing some of \n\u003ccode\u003eobj\u003c/code\u003e\u0027s attributes. \n\u003ccode\u003eattrs\u003c/code\u003e might not necessarily have all of \n\u003ccode\u003eobj\u003c/code\u003e\u0027s attributes. If the object factory requires more attributes, it needs to get it, either using \n\u003ccode\u003eobj\u003c/code\u003e, or \n\u003ccode\u003ename\u003c/code\u003e and \n\u003ccode\u003enameCtx\u003c/code\u003e. The factory must not modify attrs."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - If this object factory encountered an exception while attempting to create an object, and no other object factories are to be tried."
+        ],
+        "return": [
+          "The object created; null if an object cannot be created."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.naming.spi.DirObjectFactory",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getObjectInstance(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getObjectInstance(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/DirectoryManager.html#getObjectInstance(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable,javax.naming.directory.Attributes)\"\u003e\u003ccode\u003eDirectoryManager.getObjectInstance(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;, javax.naming.directory.Attributes)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/ObjectFactory.html\" title\u003d\"interface in javax.naming.spi\"\u003e\u003ccode\u003eObjectFactory\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

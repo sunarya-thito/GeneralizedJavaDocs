@@ -1,0 +1,270 @@
+{
+  "packageName": "javax.imageio.spi",
+  "simpleName": "ImageInputStreamSpi",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.imageio.spi.IIOServiceProvider",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "inputClass",
+      "comment": "A Class object indicating the legal object type for use by the createInputStreamInstance method.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getInputClass",
+      "comment": "Returns a Class object representing the class or interface type that must be implemented by an input source in order to be \"wrapped\" in an ImageInputStream via the createInputStreamInstance method. Typical return values might include InputStream.class or URL.class, but any class may be used.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageInputStreamSpi.html#createInputStreamInstance(java.lang.Object,boolean,java.io.File)\"\u003e\u003ccode\u003ecreateInputStreamInstance(Object, boolean, File)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eClass\u003c/code\u003e variable."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canUseCacheFile",
+      "comment": "Returns true if the ImageInputStream implementation associated with this service provider can optionally make use of a cache file for improved performance and/or memory footrprint. If false, the value of the useCache argument to createInputStreamInstance will be ignored. The default implementation returns false.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if a cache file can be used by the input streams created by this service provider."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "needsCacheFile",
+      "comment": "Returns true if the ImageInputStream implementation associated with this service provider requires the use of a cache File. If true, the value of the useCache argument to createInputStreamInstance will be ignored. The default implementation returns false.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if a cache file is needed by the input streams created by this service provider."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.stream.ImageInputStream",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "input",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "useCache",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.io.File",
+            "type": "Class"
+          },
+          "name": "cacheDir",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createInputStreamInstance",
+      "comment": "Returns an instance of the ImageInputStream implementation associated with this service provider. If the use of a cache file is optional, the useCache parameter will be consulted. Where a cache is required, or not applicable, the value of useCache will be ignored.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageInputStreamSpi.html#getInputClass()\"\u003e\u003ccode\u003egetInputClass()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageInputStreamSpi.html#canUseCacheFile()\"\u003e\u003ccode\u003ecanUseCacheFile()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageInputStreamSpi.html#needsCacheFile()\"\u003e\u003ccode\u003eneedsCacheFile()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - an object of the class type returned by \n\u003ccode\u003egetInputClass\u003c/code\u003e.",
+          "\u003ccode\u003euseCache\u003c/code\u003e - a \n\u003ccode\u003eboolean\u003c/code\u003e indicating whether a cache file should be used, in cases where it is optional.",
+          "\u003ccode\u003ecacheDir\u003c/code\u003e - a \n\u003ccode\u003eFile\u003c/code\u003e indicating where the cache file should be created, or \n\u003ccode\u003enull\u003c/code\u003e to use the system directory."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003einput\u003c/code\u003e is not an instance of the correct class or is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a cache file is needed but \n\u003ccode\u003ecacheDir\u003c/code\u003e is non-\n\u003ccode\u003enull\u003c/code\u003e and is not a directory.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a cache file is needed but cannot be created."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eImageInputStream\u003c/code\u003e instance."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.stream.ImageInputStream",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "input",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "createInputStreamInstance",
+      "comment": "Returns an instance of the ImageInputStream implementation associated with this service provider. A cache file will be created in the system-dependent default temporary-file directory, if needed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageInputStreamSpi.html#getInputClass()\"\u003e\u003ccode\u003egetInputClass()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - an object of the class type returned by \n\u003ccode\u003egetInputClass\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003einput\u003c/code\u003e is not an instance of the correct class or is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a cache file is needed but cannot be created."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eImageInputStream\u003c/code\u003e instance."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs a blank ImageInputStreamSpi. It is up to the subclass to initialize instance variables and/or override method implementations in order to provide working versions of all methods.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "vendorName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "version",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "inputClass",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs an ImageInputStreamSpi with a given set of values.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evendorName\u003c/code\u003e - the vendor name.",
+          "\u003ccode\u003eversion\u003c/code\u003e - a version identifier.",
+          "\u003ccode\u003einputClass\u003c/code\u003e - a \n\u003ccode\u003eClass\u003c/code\u003e object indicating the legal object type for use by the \n\u003ccode\u003ecreateInputStreamInstance\u003c/code\u003e method."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003evendorName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eversion\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.imageio.spi.ImageInputStreamSpi",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/IIORegistry.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eIIORegistry\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/stream/ImageInputStream.html\" title\u003d\"interface in javax.imageio.stream\"\u003e\u003ccode\u003eImageInputStream\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

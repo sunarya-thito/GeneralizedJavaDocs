@@ -1,0 +1,660 @@
+{
+  "packageName": "java.util.concurrent",
+  "simpleName": "ExecutorService",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.util.concurrent.Executor",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "shutdown",
+      "comment": "Initiates an orderly shutdown in which previously submitted tasks are executed, but no new tasks will be accepted. Invocation has no additional effect if already shut down. This method does not wait for previously submitted tasks to complete execution. Use awaitTermination to do that.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and shutting down this ExecutorService may manipulate threads that the caller is not permitted to modify because it does not hold \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"modifyThread\")\u003c/code\u003e, or the security manager\u0027s \n\u003ccode\u003echeckAccess\u003c/code\u003e method denies access."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "shutdownNow",
+      "comment": "Attempts to stop all actively executing tasks, halts the processing of waiting tasks, and returns a list of the tasks that were awaiting execution. This method does not wait for actively executing tasks to terminate. Use awaitTermination to do that. There are no guarantees beyond best-effort attempts to stop processing actively executing tasks. For example, typical implementations will cancel via Thread.interrupt(), so any task that fails to respond to interrupts may never terminate.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and shutting down this ExecutorService may manipulate threads that the caller is not permitted to modify because it does not hold \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"modifyThread\")\u003c/code\u003e, or the security manager\u0027s \n\u003ccode\u003echeckAccess\u003c/code\u003e method denies access."
+        ],
+        "return": [
+          "list of tasks that never commenced execution"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isShutdown",
+      "comment": "Returns true if this executor has been shut down.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this executor has been shut down"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isTerminated",
+      "comment": "Returns true if all tasks have completed following shut down. Note that isTerminated is never true unless either shutdown or shutdownNow was called first.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if all tasks have completed following shut down"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "timeout",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "name": "unit",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "awaitTermination",
+      "comment": "Blocks until all tasks have completed execution after a shutdown request, or the timeout occurs, or the current thread is interrupted, whichever happens first.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etimeout\u003c/code\u003e - the maximum time to wait",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the timeout argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this executor terminated and \n\u003ccode\u003efalse\u003c/code\u003e if the timeout elapsed before termination"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.Future",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.Callable",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "task",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "submit",
+      "comment": "Submits a value-returning task for execution and returns a Future representing the pending results of the task. The Future\u0027s get method will return the task\u0027s result upon successful completion. If you would like to immediately block waiting for a task, you can use constructions of the form result \u003d exec.submit(aCallable).get(); Note: The Executors class includes a set of methods that can convert some other common closure-like objects, for example, PrivilegedAction to Callable form so they can be submitted.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the task\u0027s result"
+        ],
+        "param": [
+          "\u003ccode\u003etask\u003c/code\u003e - the task to submit"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if the task cannot be scheduled for execution",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the task is null"
+        ],
+        "return": [
+          "a Future representing pending completion of the task"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.Future",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          },
+          "name": "task",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "T",
+            "type": "Class"
+          },
+          "name": "result",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "submit",
+      "comment": "Submits a Runnable task for execution and returns a Future representing that task. The Future\u0027s get method will return the given result upon successful completion.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the result"
+        ],
+        "param": [
+          "\u003ccode\u003etask\u003c/code\u003e - the task to submit",
+          "\u003ccode\u003eresult\u003c/code\u003e - the result to return"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if the task cannot be scheduled for execution",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the task is null"
+        ],
+        "return": [
+          "a Future representing pending completion of the task"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.Future",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          },
+          "name": "task",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "submit",
+      "comment": "Submits a Runnable task for execution and returns a Future representing that task. The Future\u0027s get method will return null upon successful completion.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etask\u003c/code\u003e - the task to submit"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if the task cannot be scheduled for execution",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the task is null"
+        ],
+        "return": [
+          "a Future representing pending completion of the task"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.util.concurrent.Future",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Collection",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.util.concurrent.Callable",
+                    "parameters": [
+                      {
+                        "name": "T",
+                        "type": "Class"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "tasks",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invokeAll",
+      "comment": "Executes the given tasks, returning a list of Futures holding their status and results when all complete. Future.isDone() is true for each element of the returned list. Note that a completed task could have terminated either normally or by throwing an exception. The results of this method are undefined if the given collection is modified while this operation is in progress.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the values returned from the tasks"
+        ],
+        "param": [
+          "\u003ccode\u003etasks\u003c/code\u003e - the collection of tasks"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting, in which case unfinished tasks are cancelled",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if tasks or any of its elements are \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if any task cannot be scheduled for execution"
+        ],
+        "return": [
+          "a list of Futures representing the tasks, in the same sequential order as produced by the iterator for the given task list, each of which has completed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.util.concurrent.Future",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Collection",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.util.concurrent.Callable",
+                    "parameters": [
+                      {
+                        "name": "T",
+                        "type": "Class"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "tasks",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "timeout",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "name": "unit",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invokeAll",
+      "comment": "Executes the given tasks, returning a list of Futures holding their status and results when all complete or the timeout expires, whichever happens first. Future.isDone() is true for each element of the returned list. Upon return, tasks that have not completed are cancelled. Note that a completed task could have terminated either normally or by throwing an exception. The results of this method are undefined if the given collection is modified while this operation is in progress.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the values returned from the tasks"
+        ],
+        "param": [
+          "\u003ccode\u003etasks\u003c/code\u003e - the collection of tasks",
+          "\u003ccode\u003etimeout\u003c/code\u003e - the maximum time to wait",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the timeout argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting, in which case unfinished tasks are cancelled",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if tasks, any of its elements, or unit are \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if any task cannot be scheduled for execution"
+        ],
+        "return": [
+          "a list of Futures representing the tasks, in the same sequential order as produced by the iterator for the given task list. If the operation did not time out, each task will have completed. If it did time out, some of these tasks will not have completed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.ExecutionException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Collection",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.util.concurrent.Callable",
+                    "parameters": [
+                      {
+                        "name": "T",
+                        "type": "Class"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "tasks",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invokeAny",
+      "comment": "Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled. The results of this method are undefined if the given collection is modified while this operation is in progress.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the values returned from the tasks"
+        ],
+        "param": [
+          "\u003ccode\u003etasks\u003c/code\u003e - the collection of tasks"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if tasks or any element task subject to execution is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if tasks is empty",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/ExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eExecutionException\u003c/a\u003e\u003c/code\u003e - if no task successfully completes",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if tasks cannot be scheduled for execution"
+        ],
+        "return": [
+          "the result returned by one of the tasks"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.ExecutionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.TimeoutException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Collection",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.util.concurrent.Callable",
+                    "parameters": [
+                      {
+                        "name": "T",
+                        "type": "Class"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "tasks",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "timeout",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "name": "unit",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invokeAny",
+      "comment": "Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do before the given timeout elapses. Upon normal or exceptional return, tasks that have not completed are cancelled. The results of this method are undefined if the given collection is modified while this operation is in progress.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the values returned from the tasks"
+        ],
+        "param": [
+          "\u003ccode\u003etasks\u003c/code\u003e - the collection of tasks",
+          "\u003ccode\u003etimeout\u003c/code\u003e - the maximum time to wait",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the timeout argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if tasks, or unit, or any element task subject to execution is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/TimeoutException.html\" title\u003d\"class in java.util.concurrent\"\u003eTimeoutException\u003c/a\u003e\u003c/code\u003e - if the given timeout elapses before any task successfully completes",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/ExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eExecutionException\u003c/a\u003e\u003c/code\u003e - if no task successfully completes",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if tasks cannot be scheduled for execution"
+        ],
+        "return": [
+          "the result returned by one of the tasks"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.concurrent.ExecutorService",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "packageName": "javax.swing",
+  "simpleName": "AbstractFormatter",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JFormattedTextField",
+            "type": "Class"
+          },
+          "name": "ftf",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "install",
+      "comment": "Installs the AbstractFormatter onto a particular JFormattedTextField. This will invoke valueToString to convert the current value from the JFormattedTextField to a String. This will then install the Actions from getActions, the DocumentFilter returned from getDocumentFilter and the NavigationFilter returned from getNavigationFilter onto the JFormattedTextField. Subclasses will typically only need to override this if they wish to install additional listeners on the JFormattedTextField. If there is a ParseException in converting the current value to a String, this will set the text to an empty String, and mark the JFormattedTextField as being in an invalid state. While this is a public method, this is typically only useful for subclassers of JFormattedTextField. JFormattedTextField will invoke this method at the appropriate times when the value changes, or its internal state changes. You will only need to invoke this yourself if you are subclassing JFormattedTextField and installing/uninstalling AbstractFormatter at a different time than JFormattedTextField does.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eftf\u003c/code\u003e - JFormattedTextField to format for, may be null indicating uninstall from current JFormattedTextField."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "uninstall",
+      "comment": "Uninstalls any state the AbstractFormatter may have installed on the JFormattedTextField. This resets the DocumentFilter, NavigationFilter and additional Actions installed on the JFormattedTextField.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.text.ParseException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "text",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "stringToValue",
+      "comment": "Parses text returning an arbitrary Object. Some formatters may return null.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etext\u003c/code\u003e - String to convert"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/text/ParseException.html\" title\u003d\"class in java.text\"\u003eParseException\u003c/a\u003e\u003c/code\u003e - if there is an error in the conversion"
+        ],
+        "return": [
+          "Object representation of text"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.text.ParseException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "valueToString",
+      "comment": "Returns the string value to display for value.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evalue\u003c/code\u003e - Value to convert"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/text/ParseException.html\" title\u003d\"class in java.text\"\u003eParseException\u003c/a\u003e\u003c/code\u003e - if there is an error in the conversion"
+        ],
+        "return": [
+          "String representation of value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.JFormattedTextField",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getFormattedTextField",
+      "comment": "Returns the current JFormattedTextField the AbstractFormatter is installed on.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "JFormattedTextField formatting for."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "invalidEdit",
+      "comment": "This should be invoked when the user types an invalid character. This forwards the call to the current JFormattedTextField.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "valid",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "setEditValid",
+      "comment": "Invoke this to update the editValid property of the JFormattedTextField. If you an enforce a policy such that the JFormattedTextField is always in a valid state, you will never need to invoke this.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evalid\u003c/code\u003e - Valid state of the JFormattedTextField"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.Action",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getActions",
+      "comment": "Subclass and override if you wish to provide a custom set of Actions. install will install these on the JFormattedTextField\u0027s ActionMap.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "Array of Actions to install on JFormattedTextField"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.DocumentFilter",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getDocumentFilter",
+      "comment": "Subclass and override if you wish to provide a DocumentFilter to restrict what can be input. install will install the returned value onto the JFormattedTextField.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "DocumentFilter to restrict edits"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.NavigationFilter",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getNavigationFilter",
+      "comment": "Subclass and override if you wish to provide a filter to restrict where the user can navigate to. install will install the returned value onto the JFormattedTextField.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "NavigationFilter to restrict navigation"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.CloneNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "clone",
+      "comment": "Clones the AbstractFormatter. The returned instance is not associated with a JFormattedTextField.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Cloneable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eCloneable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#clone()\"\u003eclone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/CloneNotSupportedException.html\" title\u003d\"class in java.lang\"\u003eCloneNotSupportedException\u003c/a\u003e\u003c/code\u003e - if the object\u0027s class does not support the \n\u003ccode\u003eCloneable\u003c/code\u003e interface. Subclasses that override the \n\u003ccode\u003eclone\u003c/code\u003e method can also throw this exception to indicate that an instance cannot be cloned."
+        ],
+        "return": [
+          "Copy of the AbstractFormatter"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructor for subclasses to call.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1033,
+  "name": "javax.swing.JFormattedTextField$AbstractFormatter",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

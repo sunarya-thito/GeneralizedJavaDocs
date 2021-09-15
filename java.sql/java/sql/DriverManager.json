@@ -1,0 +1,626 @@
+{
+  "packageName": "java.sql",
+  "simpleName": "DriverManager",
+  "moduleName": "java.sql",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.io.PrintWriter",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getLogWriter",
+      "comment": "Retrieves the log writer. The getLogWriter and setLogWriter methods should be used instead of the get/setlogStream methods, which are deprecated.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html#setLogWriter(java.io.PrintWriter)\"\u003e\u003ccode\u003esetLogWriter(java.io.PrintWriter)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003ejava.io.PrintWriter\u003c/code\u003e object"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.io.PrintWriter",
+            "type": "Class"
+          },
+          "name": "out",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setLogWriter",
+      "comment": "Sets the logging/tracing PrintWriter object that is used by the DriverManager and all drivers. If a security manager exists, its checkPermission method is first called with a SQLPermission(\"setLog\") permission to check that the caller is allowed to call setLogWriter.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eSecurityManager.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html#getLogWriter()\"\u003e\u003ccode\u003egetLogWriter()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - the new logging/tracing \n\u003ccode\u003ePrintStream\u003c/code\u003e object; \n\u003ccode\u003enull\u003c/code\u003e to disable logging and tracing"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method denies permission to set the log writer."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.Connection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "url",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Properties",
+            "type": "Class"
+          },
+          "name": "info",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getConnection",
+      "comment": "Attempts to establish a connection to the given database URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers. Note: If a property is specified as part of the url and is also specified in the Properties object, it is implementation-defined as to which value will take precedence. For maximum portability, an application should only specify a property once.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - a database url of the form \n\u003ccode\u003e jdbc:\u003cem\u003esubprotocol\u003c/em\u003e:\u003cem\u003esubname\u003c/em\u003e\u003c/code\u003e",
+          "\u003ccode\u003einfo\u003c/code\u003e - a list of arbitrary string tag/value pairs as connection arguments; normally at least a \"user\" and \"password\" property should be included"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the url is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLTimeoutException.html\" title\u003d\"class in java.sql\"\u003eSQLTimeoutException\u003c/a\u003e\u003c/code\u003e - when the driver has determined that the timeout value specified by the \n\u003ccode\u003esetLoginTimeout\u003c/code\u003e method has been exceeded and has at least tried to cancel the current database connection attempt"
+        ],
+        "return": [
+          "a Connection to the URL"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.Connection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "url",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "user",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "password",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getConnection",
+      "comment": "Attempts to establish a connection to the given database URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers. Note: If the user or password property are also specified as part of the url, it is implementation-defined as to which value will take precedence. For maximum portability, an application should only specify a property once.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - a database url of the form \n\u003ccode\u003ejdbc:\u003cem\u003esubprotocol\u003c/em\u003e:\u003cem\u003esubname\u003c/em\u003e\u003c/code\u003e",
+          "\u003ccode\u003euser\u003c/code\u003e - the database user on whose behalf the connection is being made",
+          "\u003ccode\u003epassword\u003c/code\u003e - the user\u0027s password"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the url is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLTimeoutException.html\" title\u003d\"class in java.sql\"\u003eSQLTimeoutException\u003c/a\u003e\u003c/code\u003e - when the driver has determined that the timeout value specified by the \n\u003ccode\u003esetLoginTimeout\u003c/code\u003e method has been exceeded and has at least tried to cancel the current database connection attempt"
+        ],
+        "return": [
+          "a connection to the URL"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.Connection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "url",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getConnection",
+      "comment": "Attempts to establish a connection to the given database URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - a database url of the form \n\u003ccode\u003e jdbc:\u003cem\u003esubprotocol\u003c/em\u003e:\u003cem\u003esubname\u003c/em\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the url is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLTimeoutException.html\" title\u003d\"class in java.sql\"\u003eSQLTimeoutException\u003c/a\u003e\u003c/code\u003e - when the driver has determined that the timeout value specified by the \n\u003ccode\u003esetLoginTimeout\u003c/code\u003e method has been exceeded and has at least tried to cancel the current database connection attempt"
+        ],
+        "return": [
+          "a connection to the URL"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.Driver",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "url",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getDriver",
+      "comment": "Attempts to locate a driver that understands the given URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - a database URL of the form \n\u003ccode\u003ejdbc:\u003cem\u003esubprotocol\u003c/em\u003e:\u003cem\u003esubname\u003c/em\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eDriver\u003c/code\u003e object representing a driver that can connect to the given URL"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.Driver",
+            "type": "Class"
+          },
+          "name": "driver",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "registerDriver",
+      "comment": "Registers the given driver with the DriverManager. A newly-loaded driver class should call the method registerDriver to make itself known to the DriverManager. If the driver is currently registered, no action is taken.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edriver\u003c/code\u003e - the new JDBC Driver that is to be registered with the \n\u003ccode\u003eDriverManager\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edriver\u003c/code\u003e is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.Driver",
+            "type": "Class"
+          },
+          "name": "driver",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.DriverAction",
+            "type": "Class"
+          },
+          "name": "da",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "registerDriver",
+      "comment": "Registers the given driver with the DriverManager. A newly-loaded driver class should call the method registerDriver to make itself known to the DriverManager. If the driver is currently registered, no action is taken.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edriver\u003c/code\u003e - the new JDBC Driver that is to be registered with the \n\u003ccode\u003eDriverManager\u003c/code\u003e",
+          "\u003ccode\u003eda\u003c/code\u003e - the \n\u003ccode\u003eDriverAction\u003c/code\u003e implementation to be used when \n\u003ccode\u003eDriverManager#deregisterDriver\u003c/code\u003e is called"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edriver\u003c/code\u003e is null"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.sql.Driver",
+            "type": "Class"
+          },
+          "name": "driver",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "deregisterDriver",
+      "comment": "Removes the specified driver from the DriverManager\u0027s list of registered drivers. If a null value is specified for the driver to be removed, then no action is taken. If a security manager exists, its checkPermission method is first called with a SQLPermission(\"deregisterDriver\") permission to check that the caller is allowed to deregister a JDBC Driver. If the specified driver is not found in the list of registered drivers, then no action is taken. If the driver was found, it will be removed from the list of registered drivers. If a DriverAction instance was specified when the JDBC driver was registered, its deregister method will be called prior to the driver being removed from the list of registered drivers.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eSecurityManager.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003edriver\u003c/code\u003e - the JDBC Driver to remove"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method denies permission to deregister a driver."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Enumeration",
+        "parameters": [
+          {
+            "name": "java.sql.Driver",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getDrivers",
+      "comment": "Retrieves an Enumeration with all of the currently loaded JDBC drivers to which the current caller has access. Note: The classname of a driver can be found using d.getClass().getName()",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html#drivers()\"\u003e\u003ccode\u003edrivers()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the list of JDBC Drivers loaded by the caller\u0027s class loader"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.sql.Driver",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "drivers",
+      "comment": "Retrieves a Stream with all of the currently loaded JDBC drivers to which the current caller has access.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the stream of JDBC Drivers loaded by the caller\u0027s class loader"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "seconds",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setLoginTimeout",
+      "comment": "Sets the maximum time in seconds that a driver will wait while attempting to connect to a database once the driver has been identified.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html#getLoginTimeout()\"\u003e\u003ccode\u003egetLoginTimeout()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eseconds\u003c/code\u003e - the login time limit in seconds; zero means there is no limit"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getLoginTimeout",
+      "comment": "Gets the maximum time in seconds that a driver can wait when attempting to log in to a database.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html#setLoginTimeout(int)\"\u003e\u003ccode\u003esetLoginTimeout(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the driver login time limit in seconds"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.io.PrintStream",
+            "type": "Class"
+          },
+          "name": "out",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setLogStream",
+      "comment": "Sets the logging/tracing PrintStream that is used by the DriverManager and all drivers. If a security manager exists, its checkPermission method is first called with a SQLPermission(\"setLog\") permission to check that the caller is allowed to call setLogStream.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "since",
+              "value": "1.2"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eSecurityManager.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html#getLogStream()\"\u003e\u003ccode\u003egetLogStream()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - the new logging/tracing PrintStream; to disable, set to \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method denies permission to set the log stream."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.PrintStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getLogStream",
+      "comment": "Retrieves the logging/tracing PrintStream that is used by the DriverManager and all drivers.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "since",
+              "value": "1.2"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html#setLogStream(java.io.PrintStream)\"\u003e\u003ccode\u003esetLogStream(java.io.PrintStream)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the logging/tracing PrintStream; if disabled, is \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "message",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "println",
+      "comment": "Prints a message to the current JDBC log stream.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emessage\u003c/code\u003e - a log or tracing message"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.sql.DriverManager",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/Driver.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eDriver\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/Connection.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eConnection\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "implNote": [
+      "\u003ccode\u003eDriverManager\u003c/code\u003e initialization is done lazily and looks up service providers using the thread context class loader. The drivers loaded and available to an application will depend on the thread context class loader of the thread that triggers driver initialization by \n\u003ccode\u003eDriverManager\u003c/code\u003e. \n\u003cp\u003eWhen the method \u003ccode\u003egetConnection\u003c/code\u003e is called, the \u003ccode\u003eDriverManager\u003c/code\u003e will attempt to locate a suitable driver from amongst those loaded at initialization and those loaded explicitly using the same class loader as the current application.\u003c/p\u003e"
+    ],
+    "since": [
+      "1.1"
+    ]
+  }
+}

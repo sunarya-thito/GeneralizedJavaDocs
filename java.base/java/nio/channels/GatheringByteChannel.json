@@ -1,0 +1,132 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "GatheringByteChannel",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.nio.channels.WritableByteChannel",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "srcs",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "offset",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "length",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "write",
+      "comment": "Writes a sequence of bytes to this channel from a subsequence of the given buffers. An attempt is made to write up to r bytes to this channel, where r is the total number of bytes remaining in the specified subsequence of the given buffer array, that is,  srcs[offset].remaining()\n     + srcs[offset+1].remaining()\n     + ... + srcs[offset+length-1].remaining() at the moment that this method is invoked. Suppose that a byte sequence of length n is written, where 0 \u003c\u003d n \u003c\u003d r. Up to the first srcs[offset].remaining() bytes of this sequence are written from buffer srcs[offset], up to the next srcs[offset+1].remaining() bytes are written from buffer srcs[offset+1], and so forth, until the entire byte sequence is written. As many bytes as possible are written from each buffer, hence the final position of each updated buffer, except the last updated buffer, is guaranteed to be equal to that buffer\u0027s limit. Unless otherwise specified, a write operation will return only after writing all of the r requested bytes. Some types of channels, depending upon their state, may write only some of the bytes or possibly none at all. A socket channel in non-blocking mode, for example, cannot write any more bytes than are free in the socket\u0027s output buffer. This method may be invoked at any time. If another thread has already initiated a write operation upon this channel, however, then an invocation of this method will block until the first operation is complete.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrcs\u003c/code\u003e - The buffers from which bytes are to be retrieved",
+          "\u003ccode\u003eoffset\u003c/code\u003e - The offset within the buffer array of the first buffer from which bytes are to be retrieved; must be non-negative and no larger than \n\u003ccode\u003esrcs.length\u003c/code\u003e",
+          "\u003ccode\u003elength\u003c/code\u003e - The maximum number of buffers to be accessed; must be non-negative and no larger than \n\u003ccode\u003esrcs.length\u003c/code\u003e\u0026nbsp;-\u0026nbsp;\n\u003ccode\u003eoffset\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If the preconditions on the \n\u003ccode\u003eoffset\u003c/code\u003e and \n\u003ccode\u003elength\u003c/code\u003e parameters do not hold",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/NonWritableChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eNonWritableChannelException\u003c/a\u003e\u003c/code\u003e - If this channel was not opened for writing",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/AsynchronousCloseException.html\" title\u003d\"class in java.nio.channels\"\u003eAsynchronousCloseException\u003c/a\u003e\u003c/code\u003e - If another thread closes this channel while the write operation is in progress",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedByInterruptException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedByInterruptException\u003c/a\u003e\u003c/code\u003e - If another thread interrupts the current thread while the write operation is in progress, thereby closing the channel and setting the current thread\u0027s interrupt status",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If some other I/O error occurs"
+        ],
+        "return": [
+          "The number of bytes written, possibly zero"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "srcs",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "write",
+      "comment": "Writes a sequence of bytes to this channel from the given buffers. An invocation of this method of the form c.write(srcs) behaves in exactly the same manner as the invocation  c.write(srcs, 0, srcs.length);",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrcs\u003c/code\u003e - The buffers from which bytes are to be retrieved"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/NonWritableChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eNonWritableChannelException\u003c/a\u003e\u003c/code\u003e - If this channel was not opened for writing",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/AsynchronousCloseException.html\" title\u003d\"class in java.nio.channels\"\u003eAsynchronousCloseException\u003c/a\u003e\u003c/code\u003e - If another thread closes this channel while the write operation is in progress",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedByInterruptException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedByInterruptException\u003c/a\u003e\u003c/code\u003e - If another thread interrupts the current thread while the write operation is in progress, thereby closing the channel and setting the current thread\u0027s interrupt status",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If some other I/O error occurs"
+        ],
+        "return": [
+          "The number of bytes written, possibly zero"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.channels.GatheringByteChannel",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

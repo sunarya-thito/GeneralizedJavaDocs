@@ -1,0 +1,134 @@
+{
+  "packageName": "javax.print",
+  "simpleName": "Doc",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.print.DocFlavor",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDocFlavor",
+      "comment": "Determines the doc flavor in which this doc object will supply its piece of print data.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "doc flavor"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPrintData",
+      "comment": "Obtains the print data representation object that contains this doc object\u0027s piece of print data in the format corresponding to the supported doc flavor. The getPrintData() method returns an instance of the representation class whose name is given bygetDocFlavor().getRepresentationClassName(), and the return value can be cast from class Object to that representation class.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the representation class is a stream and there was an I/O error while constructing the stream"
+        ],
+        "return": [
+          "print data representation object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.print.attribute.DocAttributeSet",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttributes",
+      "comment": "Obtains the set of printing attributes for this doc object. If the returned attribute set includes an instance of a particular attribute X, the printer must use that attribute value for this doc, overriding any value of attribute X in the job\u0027s attribute set. If the returned attribute set does not include an instance of a particular attribute X or if null is returned, the printer must consult the job\u0027s attribute set to obtain the value for attribute X, and if not found there, the printer must use an implementation-dependent default value. The returned attribute set is unmodifiable.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "unmodifiable set of printing attributes for this doc, or \n\u003ccode\u003enull\u003c/code\u003e to obtain all attribute values from the job\u0027s attribute set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.Reader",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getReaderForText",
+      "comment": "Obtains a reader for extracting character print data from this doc. The Doc implementation is required to support this method if the DocFlavor has one of the following print data representation classes, and return null otherwise: char[] java.lang.String java.io.Reader The doc\u0027s print data representation object is used to construct and return a Reader for reading the print data as a stream of characters from the print data representation object. However, if the print data representation object is itself a Reader, then the print data representation object is simply returned.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if there was an I/O error while creating the reader"
+        ],
+        "return": [
+          "reader for reading the print data characters from this doc. If a reader cannot be provided because this doc does not meet the criteria stated above, \n\u003ccode\u003enull\u003c/code\u003e is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getStreamForBytes",
+      "comment": "Obtains an input stream for extracting byte print data from this doc. The Doc implementation is required to support this method if the DocFlavor has one of the following print data representation classes, and return null otherwise: byte[] java.io.InputStream This doc\u0027s print data representation object is obtained, then an input stream for reading the print data from the print data representation object as a stream of bytes is created and returned. However, if the print data representation object is itself an input stream, then the print data representation object is simply returned.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if there was an I/O error while creating the input stream"
+        ],
+        "return": [
+          "input stream for reading the print data bytes from this doc. If an input stream cannot be provided because this doc does not meet the criteria stated above, \n\u003ccode\u003enull\u003c/code\u003e is returned."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.print.Doc",
+  "annotations": [],
+  "tagMap": {}
+}

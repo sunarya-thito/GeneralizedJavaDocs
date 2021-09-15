@@ -1,0 +1,149 @@
+{
+  "packageName": "jdk.jshell.execution",
+  "simpleName": "FailOverExecutionControlProvider",
+  "moduleName": "jdk.jshell",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "name",
+      "comment": "The unique name of this ExecutionControlProvider.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControlProvider.html#name()\"\u003ename\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControlProvider.html\" title\u003d\"interface in jdk.jshell.spi\"\u003eExecutionControlProvider\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "\"failover\""
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "defaultParameters",
+      "comment": "Create and return the default parameter map for this ExecutionControlProvider. There are ten parameters, \"0\" through \"9\", their values are ExecutionControlProvider specification strings, or empty string.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControlProvider.html#defaultParameters()\"\u003edefaultParameters\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControlProvider.html\" title\u003d\"interface in jdk.jshell.spi\"\u003eExecutionControlProvider\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a default parameter map"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jshell.spi.ExecutionControl",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Throwable",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.jshell.spi.ExecutionEnv",
+            "type": "Class"
+          },
+          "name": "env",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "parameters",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "generate",
+      "comment": "Create and return a locally executing ExecutionControl instance. At least one parameter should have a spec.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControlProvider.html#generate(jdk.jshell.spi.ExecutionEnv,java.util.Map)\"\u003egenerate\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControlProvider.html\" title\u003d\"interface in jdk.jshell.spi\"\u003eExecutionControlProvider\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eenv\u003c/code\u003e - the execution environment, provided by JShell",
+          "\u003ccode\u003eparameters\u003c/code\u003e - the modified parameter map."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html\" title\u003d\"class in java.lang\"\u003eThrowable\u003c/a\u003e\u003c/code\u003e - if all the given providers fail, the exception that occurred on the first attempt to create the execution engine."
+        ],
+        "return": [
+          "the execution engine"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Create an instance. The instance can be used to start and return an ExecutionControl instance by attempting to start a series of ExecutionControl specs, until one is successful.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/execution/FailOverExecutionControlProvider.html#generate(jdk.jshell.spi.ExecutionEnv,java.util.Map)\"\u003e\u003ccode\u003egenerate(jdk.jshell.spi.ExecutionEnv, java.util.Map)\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "jdk.jshell.execution.FailOverExecutionControlProvider",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

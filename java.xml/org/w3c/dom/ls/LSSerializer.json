@@ -1,0 +1,256 @@
+{
+  "packageName": "org.w3c.dom.ls",
+  "simpleName": "LSSerializer",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.w3c.dom.DOMConfiguration",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDomConfig",
+      "comment": "The DOMConfiguration object used by the LSSerializer when serializing a DOM node. In addition to the parameters recognized by the DOMConfiguration interface defined in [DOM Level 3 Core] , the DOMConfiguration objects for LSSerializer adds, or modifies, the following parameters: \"canonical-form\" true [optional] Writes the document according to the rules specified in [Canonical XML]. In addition to the behavior described in \"canonical-form\" [DOM Level 3 Core] , setting this parameter to true will set the parameters \"format-pretty-print\", \"discard-default-content\", and \"xml-declaration \", to false. Setting one of those parameters to true will set this parameter to false. Serializing an XML 1.1 document when \"canonical-form\" is true will generate a fatal error. false [required] (default) Do not canonicalize the output. \"discard-default-content\" true [required] (default) Use the Attr.specified attribute to decide what attributes should be discarded. Note that some implementations might use whatever information available to the implementation (i.e. XML schema, DTD, the Attr.specified attribute, and so on) to determine what attributes and content to discard if this parameter is set to true. false [required]Keep all attributes and all content. \"format-pretty-print\" true [optional] Formatting the output by adding whitespace to produce a pretty-printed, indented, human-readable form. The exact form of the transformations is not specified by this specification. Pretty-printing changes the content of the document and may affect the validity of the document, validating implementations should preserve validity. false [required] (default) Don\u0027t pretty-print the result. \"ignore-unknown-character-denormalizations\" true [required] (default) If, while verifying full normalization when [XML 1.1] is supported, a character is encountered for which the normalization properties cannot be determined, then raise a \"unknown-character-denormalization\" warning (instead of raising an error, if this parameter is not set) and ignore any possible denormalizations caused by these characters. false [optional] Report a fatal error if a character is encountered for which the processor cannot determine the normalization properties. \"normalize-characters\" This parameter is equivalent to the one defined by DOMConfiguration in [DOM Level 3 Core] . Unlike in the Core, the default value for this parameter is true. While DOM implementations are not required to support fully normalizing the characters in the document according to appendix E of [XML 1.1], this parameter must be activated by default if supported. \"xml-declaration\" true [required] (default) If a Document, Element, or Entity node is serialized, the XML declaration, or text declaration, should be included. The version (Document.xmlVersion if the document is a Level 3 document and the version is non-null, otherwise use the value \"1.0\"), and the output encoding (see LSSerializer.write for details on how to find the output encoding) are specified in the serialized XML declaration. false [required] Do not serialize the XML and text declarations. Report a \"xml-declaration-needed\" warning if this will cause problems (i.e. the serialized data is of an XML version other than [XML 1.0], or an encoding would be needed to be able to re-parse the serialized data).",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNewLine",
+      "comment": "The end-of-line sequence of characters to be used in the XML being written out. Any string is supported, but XML treats only a certain set of characters sequence as end-of-line (See section 2.11, \"End-of-Line Handling\" in [XML 1.0], if the serialized content is XML 1.0 or section 2.11, \"End-of-Line Handling\" in [XML 1.1], if the serialized content is XML 1.1). Using other character sequences than the recommended ones can result in a document that is either not serializable or not well-formed). On retrieval, the default value of this attribute is the implementation specific default end-of-line sequence. DOM implementations should choose the default to match the usual convention for text files in the environment being used. Implementations must choose a default sequence that matches one of those allowed by XML 1.0 or XML 1.1, depending on the serialized content. Setting this attribute to null will reset its value to the default value.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "newLine",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setNewLine",
+      "comment": "The end-of-line sequence of characters to be used in the XML being written out. Any string is supported, but XML treats only a certain set of characters sequence as end-of-line (See section 2.11, \"End-of-Line Handling\" in [XML 1.0], if the serialized content is XML 1.0 or section 2.11, \"End-of-Line Handling\" in [XML 1.1], if the serialized content is XML 1.1). Using other character sequences than the recommended ones can result in a document that is either not serializable or not well-formed). On retrieval, the default value of this attribute is the implementation specific default end-of-line sequence. DOM implementations should choose the default to match the usual convention for text files in the environment being used. Implementations must choose a default sequence that matches one of those allowed by XML 1.0 or XML 1.1, depending on the serialized content. Setting this attribute to null will reset its value to the default value.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.ls.LSSerializerFilter",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFilter",
+      "comment": "When the application provides a filter, the serializer will call out to the filter before serializing each Node. The filter implementation can choose to remove the node from the stream or to terminate the serialization early. The filter is invoked after the operations requested by the DOMConfiguration parameters have been applied. For example, CDATA sections won\u0027t be passed to the filter if \"cdata-sections\" is set to false.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.w3c.dom.ls.LSSerializerFilter",
+            "type": "Class"
+          },
+          "name": "filter",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setFilter",
+      "comment": "When the application provides a filter, the serializer will call out to the filter before serializing each Node. The filter implementation can choose to remove the node from the stream or to terminate the serialization early. The filter is invoked after the operations requested by the DOMConfiguration parameters have been applied. For example, CDATA sections won\u0027t be passed to the filter if \"cdata-sections\" is set to false.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.ls.LSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.w3c.dom.Node",
+            "type": "Class"
+          },
+          "name": "nodeArg",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.w3c.dom.ls.LSOutput",
+            "type": "Class"
+          },
+          "name": "destination",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "write",
+      "comment": "Serialize the specified node as described above in the general description of the LSSerializer interface. The output is written to the supplied LSOutput. When writing to a LSOutput, the encoding is found by looking at the encoding information that is reachable through the LSOutput and the item to be written (or its owner document) in this order: LSOutput.encoding, Document.inputEncoding, Document.xmlEncoding. If no encoding is reachable through the above properties, a default encoding of \"UTF-8\" will be used. If the specified encoding is not supported an \"unsupported-encoding\" fatal error is raised. If no output is specified in the LSOutput, a \"no-output-specified\" fatal error is raised. The implementation is responsible of associating the appropriate media type with the serialized data. When writing to a HTTP URI, a HTTP PUT is performed. When writing to other types of URIs, the mechanism for writing the data to the URI is implementation dependent.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enodeArg\u003c/code\u003e - The node to serialize.",
+          "\u003ccode\u003edestination\u003c/code\u003e - The destination for the serialized DOM."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/ls/LSException.html\" title\u003d\"class in org.w3c.dom.ls\"\u003eLSException\u003c/a\u003e\u003c/code\u003e - SERIALIZE_ERR: Raised if the \n\u003ccode\u003eLSSerializer\u003c/code\u003e was unable to serialize the node. DOM applications should attach a \n\u003ccode\u003eDOMErrorHandler\u003c/code\u003e using the parameter \"\n\u003ca href\u003d\"https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#parameter-error-handler\"\u003eerror-handler\u003c/a\u003e\" if they wish to get details on the error."
+        ],
+        "return": [
+          "Returns \n\u003ccode\u003etrue\u003c/code\u003e if \n\u003ccode\u003enode\u003c/code\u003e was successfully serialized. Return \n\u003ccode\u003efalse\u003c/code\u003e in case the normal processing stopped but the implementation kept serializing the document; the result of the serialization being implementation dependent then."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.ls.LSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.w3c.dom.Node",
+            "type": "Class"
+          },
+          "name": "nodeArg",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "uri",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "writeToURI",
+      "comment": "A convenience method that acts as if LSSerializer.write was called with a LSOutput with no encoding specified and LSOutput.systemId set to the uri argument.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enodeArg\u003c/code\u003e - The node to serialize.",
+          "\u003ccode\u003euri\u003c/code\u003e - The URI to write to."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/ls/LSException.html\" title\u003d\"class in org.w3c.dom.ls\"\u003eLSException\u003c/a\u003e\u003c/code\u003e - SERIALIZE_ERR: Raised if the \n\u003ccode\u003eLSSerializer\u003c/code\u003e was unable to serialize the node. DOM applications should attach a \n\u003ccode\u003eDOMErrorHandler\u003c/code\u003e using the parameter \"\n\u003ca href\u003d\"https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#parameter-error-handler\"\u003eerror-handler\u003c/a\u003e\" if they wish to get details on the error."
+        ],
+        "return": [
+          "Returns \n\u003ccode\u003etrue\u003c/code\u003e if \n\u003ccode\u003enode\u003c/code\u003e was successfully serialized. Return \n\u003ccode\u003efalse\u003c/code\u003e in case the normal processing stopped but the implementation kept serializing the document; the result of the serialization being implementation dependent then."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        },
+        {
+          "name": "org.w3c.dom.ls.LSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.w3c.dom.Node",
+            "type": "Class"
+          },
+          "name": "nodeArg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "writeToString",
+      "comment": "Serialize the specified node as described above in the general description of the LSSerializer interface. The output is written to a DOMString that is returned to the caller. The encoding used is the encoding of the DOMString type, i.e. UTF-16. Note that no Byte Order Mark is generated in a DOMString object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enodeArg\u003c/code\u003e - The node to serialize."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - DOMSTRING_SIZE_ERR: Raised if the resulting string is too long to fit in a \n\u003ccode\u003eDOMString\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/ls/LSException.html\" title\u003d\"class in org.w3c.dom.ls\"\u003eLSException\u003c/a\u003e\u003c/code\u003e - SERIALIZE_ERR: Raised if the \n\u003ccode\u003eLSSerializer\u003c/code\u003e was unable to serialize the node. DOM applications should attach a \n\u003ccode\u003eDOMErrorHandler\u003c/code\u003e using the parameter \"\n\u003ca href\u003d\"https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#parameter-error-handler\"\u003eerror-handler\u003c/a\u003e\" if they wish to get details on the error."
+        ],
+        "return": [
+          "Returns the serialized data."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.w3c.dom.ls.LSSerializer",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

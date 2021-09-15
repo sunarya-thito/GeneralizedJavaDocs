@@ -1,0 +1,249 @@
+{
+  "packageName": "java.sql",
+  "simpleName": "Driver",
+  "moduleName": "java.sql",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.sql.Connection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "url",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Properties",
+            "type": "Class"
+          },
+          "name": "info",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "connect",
+      "comment": "Attempts to make a database connection to the given URL. The driver should return \"null\" if it realizes it is the wrong kind of driver to connect to the given URL. This will be common, as when the JDBC driver manager is asked to connect to a given URL it passes the URL to each loaded driver in turn. The driver should throw an SQLException if it is the right driver to connect to the given URL but has trouble connecting to the database. The Properties argument can be used to pass arbitrary string tag/value pairs as connection arguments. Normally at least \"user\" and \"password\" properties should be included in the Properties object. Note: If a property is specified as part of the url and is also specified in the Properties object, it is implementation-defined as to which value will take precedence. For maximum portability, an application should only specify a property once.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - the URL of the database to which to connect",
+          "\u003ccode\u003einfo\u003c/code\u003e - a list of arbitrary string tag/value pairs as connection arguments. Normally at least a \"user\" and \"password\" property should be included."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the url is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eConnection\u003c/code\u003e object that represents a connection to the URL"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "url",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "acceptsURL",
+      "comment": "Retrieves whether the driver thinks that it can open a connection to the given URL. Typically drivers will return true if they understand the sub-protocol specified in the URL and false if they do not.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - the URL of the database"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the url is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this driver understands the given URL; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.DriverPropertyInfo",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "url",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Properties",
+            "type": "Class"
+          },
+          "name": "info",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPropertyInfo",
+      "comment": "Gets information about the possible properties for this driver. The getPropertyInfo method is intended to allow a generic GUI tool to discover what properties it should prompt a human for in order to get enough information to connect to a database. Note that depending on the values the human has supplied so far, additional values may become necessary, so it may be necessary to iterate though several calls to the getPropertyInfo method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - the URL of the database to which to connect",
+          "\u003ccode\u003einfo\u003c/code\u003e - a proposed list of tag/value pairs that will be sent on connect open"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs"
+        ],
+        "return": [
+          "an array of \n\u003ccode\u003eDriverPropertyInfo\u003c/code\u003e objects describing possible properties. This array may be an empty array if no properties are required."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMajorVersion",
+      "comment": "Retrieves the driver\u0027s major version number. Initially this should be 1.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "this driver\u0027s major version number"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMinorVersion",
+      "comment": "Gets the driver\u0027s minor version number. Initially this should be 0.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "this driver\u0027s minor version number"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "jdbcCompliant",
+      "comment": "Reports whether this driver is a genuine JDBC Compliant driver. A driver may only report true here if it passes the JDBC compliance tests; otherwise it is required to return false. JDBC compliance requires full support for the JDBC API and full support for SQL 92 Entry Level. It is expected that JDBC compliant drivers will be available for all the major commercial databases. This method is not intended to encourage the development of non-JDBC compliant drivers, but is a recognition of the fact that some vendors are interested in using the JDBC API and framework for lightweight databases that do not support full database functionality, or for special databases such as document information retrieval where a SQL implementation may not be feasible.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this driver is JDBC Compliant; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.logging.Logger",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLFeatureNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getParentLogger",
+      "comment": "Return the parent Logger of all the Loggers used by this driver. This should be the Logger farthest from the root Logger that is still an ancestor of all of the Loggers used by this driver. Configuring this Logger will affect all of the log messages generated by the driver. In the worst case, this may be the root Logger.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLFeatureNotSupportedException.html\" title\u003d\"class in java.sql\"\u003eSQLFeatureNotSupportedException\u003c/a\u003e\u003c/code\u003e - if the driver does not use \n\u003ccode\u003ejava.util.logging\u003c/code\u003e."
+        ],
+        "return": [
+          "the parent Logger for this driver"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.sql.Driver",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverManager.html\" title\u003d\"class in java.sql\"\u003e\u003ccode\u003eDriverManager\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/Connection.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eConnection\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/DriverAction.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eDriverAction\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.1"
+    ]
+  }
+}

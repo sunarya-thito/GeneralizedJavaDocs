@@ -1,0 +1,147 @@
+{
+  "packageName": "org.w3c.dom",
+  "simpleName": "Attr",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "org.w3c.dom.Node",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Returns the name of this attribute. If Node.localName is different from null, this attribute is a qualified name.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSpecified",
+      "comment": "True if this attribute was explicitly given a value in the instance document, false otherwise. If the application changed the value of this attribute node (even if it ends up having the same value as the default value) then it is set to true. The implementation may handle attributes with default values from other schemas similarly but applications should use Document.normalizeDocument() to guarantee this information is up-to-date.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValue",
+      "comment": "On retrieval, the value of the attribute is returned as a string. Character and general entity references are replaced with their values. See also the method getAttribute on the Element interface. On setting, this creates a Text node with the unparsed contents of the string, i.e. any characters that an XML processor would recognize as markup are instead treated as literal text. See also the method Element.setAttribute(). Some specialized implementations, such as some [SVG 1.1] implementations, may do normalization automatically, even after mutation; in such case, the value on retrieval may differ from the value on setting.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setValue",
+      "comment": "On retrieval, the value of the attribute is returned as a string. Character and general entity references are replaced with their values. See also the method getAttribute on the Element interface. On setting, this creates a Text node with the unparsed contents of the string, i.e. any characters that an XML processor would recognize as markup are instead treated as literal text. See also the method Element.setAttribute(). Some specialized implementations, such as some [SVG 1.1] implementations, may do normalization automatically, even after mutation; in such case, the value on retrieval may differ from the value on setting.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - NO_MODIFICATION_ALLOWED_ERR: Raised when the node is readonly."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Element",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getOwnerElement",
+      "comment": "The Element node this attribute is attached to or null if this attribute is not in use.",
+      "annotations": [],
+      "tagMap": {
+        "since": [
+          "1.4, DOM Level 2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.TypeInfo",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSchemaTypeInfo",
+      "comment": "The type information associated with this attribute. While the type information contained in this attribute is guarantee to be correct after loading the document or invoking Document.normalizeDocument(), schemaTypeInfo may not be reliable if the node was moved.",
+      "annotations": [],
+      "tagMap": {
+        "since": [
+          "1.5, DOM Level 3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isId",
+      "comment": "Returns whether this attribute is known to be of type ID (i.e. to contain an identifier for its owner element) or not. When it is and its value is unique, the ownerElement of this attribute can be retrieved using the method Document.getElementById . The implementation could use several ways to determine if an attribute node is known to contain an identifier: If validation occurred using an XML Schema [XML Schema Part 1] while loading the document or while invoking Document.normalizeDocument(), the post-schema-validation infoset contributions (PSVI contributions) values are used to determine if this attribute is a schema-determined ID attribute using the schema-determined ID definition in [XPointer] . If validation occurred using a DTD while loading the document or while invoking Document.normalizeDocument(), the infoset [type definition] value is used to determine if this attribute is a DTD-determined ID attribute using the DTD-determined ID definition in [XPointer] . from the use of the methods Element.setIdAttribute(), Element.setIdAttributeNS(), or Element.setIdAttributeNode(), i.e. it is an user-determined ID attribute; Note: XPointer framework (see section 3.2 in [XPointer] ) consider the DOM user-determined ID attribute as being part of the XPointer externally-determined ID definition. using mechanisms that are outside the scope of this specification, it is then an externally-determined ID attribute. This includes using schema languages different from XML schema and DTD. If validation occurred while invoking Document.normalizeDocument(), all user-determined ID attributes are reset and all attribute nodes ID information are then reevaluated in accordance to the schema used. As a consequence, if the Attr.schemaTypeInfo attribute contains an ID type, isId will always return true.",
+      "annotations": [],
+      "tagMap": {
+        "since": [
+          "1.5, DOM Level 3"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.w3c.dom.Attr",
+  "annotations": [],
+  "tagMap": {}
+}

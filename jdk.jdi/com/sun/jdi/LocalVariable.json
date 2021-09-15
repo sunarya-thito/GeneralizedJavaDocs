@@ -1,0 +1,254 @@
+{
+  "packageName": "com.sun.jdi",
+  "simpleName": "LocalVariable",
+  "moduleName": "jdk.jdi",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "com.sun.jdi.Mirror",
+      "type": "Class"
+    },
+    {
+      "name": "java.lang.Comparable",
+      "parameters": [
+        {
+          "name": "com.sun.jdi.LocalVariable",
+          "type": "Class"
+        }
+      ],
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Gets the name of the local variable.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a string containing the name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "typeName",
+      "comment": "Returns a text representation of the type of this variable. Where the type is the type specified in the declaration of this local variable. This type name is always available even if the type has not yet been created or loaded.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a String representing the type of this local variable."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.Type",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.ClassNotLoadedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "type",
+      "comment": "Returns the type of this variable. Where the type is the type specified in the declaration of this local variable. Note: if the type of this variable is a reference type (class, interface, or array) and it has not been created or loaded by the class loader of the enclosing class, then ClassNotLoadedException will be thrown. Also, a reference type may have been loaded but not yet prepared, in which case the type will be returned but attempts to perform some operations on the returned type (e.g. fields()) will throw a ClassNotPreparedException. Use ReferenceType.isPrepared() to determine if a reference type is prepared.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Type.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eType\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html#type()\"\u003e\u003ccode\u003eField.type() - for usage examples\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotLoadedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotLoadedException\u003c/a\u003e\u003c/code\u003e - if the type has not yet been loaded through the appropriate class loader."
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Type.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eType\u003c/code\u003e\u003c/a\u003e of this local variable."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "signature",
+      "comment": "Gets the type signature of the local variable.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a string containing the signature."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "genericSignature",
+      "comment": "Gets the generic signature for this variable if there is one. Generic signatures are described in the The Java Virtual Machine Specification.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a string containing the generic signature, or \n\u003ccode\u003enull\u003c/code\u003e if there is no generic signature."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "com.sun.jdi.StackFrame",
+            "type": "Class"
+          },
+          "name": "frame",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isVisible",
+      "comment": "Determines whether this variable can be accessed from the given StackFrame. See StackFrame.visibleVariables() for a complete description variable visibility in this interface.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eframe\u003c/code\u003e - the StackFrame querying visibility"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the stack frame\u0027s method does not match this variable\u0027s method."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this variable is visible; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isArgument",
+      "comment": "Determines if this variable is an argument to its method.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this variable is an argument; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "obj",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "equals",
+      "comment": "Compares the specified Object with this LocalVariable for equality.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the reference object with which to compare."
+        ],
+        "return": [
+          "true if the Object is a LocalVariable, if both LocalVariables are contained in the same method (as determined by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eMethod.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e), and if both LocalVariables mirror the same declaration within that method"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hashCode",
+      "comment": "Returns the hash code value for this LocalVariable.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the integer hash code"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "com.sun.jdi.LocalVariable",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/StackFrame.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eStackFrame\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMethod\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

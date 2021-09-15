@@ -1,0 +1,489 @@
+{
+  "packageName": "javax.imageio.spi",
+  "simpleName": "ImageReaderSpi",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.imageio.spi.ImageReaderWriterSpi",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "STANDARD_INPUT_TYPE",
+      "comment": "A single-element array, initially containing ImageInputStream.class, to be returned from getInputTypes.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "inputTypes",
+      "comment": "An array of Class objects to be returned from getInputTypes, initially null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "writerSpiNames",
+      "comment": "An array of strings to be returned from getImageWriterSpiNames, initially null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getInputTypes",
+      "comment": "Returns an array of Class objects indicating what types of objects may be used as arguments to the reader\u0027s setInput method. For most readers, which only accept input from an ImageInputStream, a single-element array containing ImageInputStream.class should be returned.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a non-\n\u003ccode\u003enull\u003c/code\u003e array of \n\u003ccode\u003eClass\u003c/code\u003e objects of length at least 1."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "source",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "canDecodeInput",
+      "comment": "Returns true if the supplied source object appears to be of the format supported by this reader. Returning true from this method does not guarantee that reading will succeed, only that there appears to be a reasonable chance of success based on a brief inspection of the stream contents. If the source is an ImageInputStream, implementations will commonly check the first several bytes of the stream for a \"magic number\" associated with the format. Once actual reading has commenced, the reader may still indicate failure at any time prior to the completion of decoding. It is important that the state of the object not be disturbed in order that other ImageReaderSpis can properly determine whether they are able to decode the object. In particular, if the source is an ImageInputStream, a mark/reset pair should be used to preserve the stream position. Formats such as \"raw,\" which can potentially attempt to read nearly any stream, should return false in order to avoid being invoked in preference to a closer match. If source is not an instance of one of the classes returned by getInputTypes, the method should simply return false.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esource\u003c/code\u003e - the object (typically an \n\u003ccode\u003eImageInputStream\u003c/code\u003e) to be decoded."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esource\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs while reading the stream."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if it is likely that this stream can be decoded."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.ImageReader",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "createReaderInstance",
+      "comment": "Returns an instance of the ImageReader implementation associated with this service provider. The returned object will initially be in an initial state as if its reset method had been called. The default implementation simply returns createReaderInstance(null).",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during loading, or initialization of the reader class, or during instantiation or initialization of the reader object."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eImageReader\u003c/code\u003e instance."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.ImageReader",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "extension",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createReaderInstance",
+      "comment": "Returns an instance of the ImageReader implementation associated with this service provider. The returned object will initially be in an initial state as if its reset method had been called. An Object may be supplied to the plug-in at construction time. The nature of the object is entirely plug-in specific. Typically, a plug-in will implement this method using code such as return new MyImageReader(this).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eextension\u003c/code\u003e - a plug-in specific extension object, which may be \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the attempt to instantiate the reader fails.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003eImageReader\u003c/code\u003e\u0027s constructor throws an \n\u003ccode\u003eIllegalArgumentException\u003c/code\u003e to indicate that the extension object is unsuitable."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eImageReader\u003c/code\u003e instance."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageReader",
+            "type": "Class"
+          },
+          "name": "reader",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isOwnReader",
+      "comment": "Returns true if the ImageReader object passed in is an instance of the ImageReader associated with this service provider. The default implementation compares the fully-qualified class name of the reader argument with the class name passed into the constructor. This method may be overridden if more sophisticated checking is required.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereader\u003c/code\u003e - an \n\u003ccode\u003eImageReader\u003c/code\u003e instance."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ereader\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if \n\u003ccode\u003ereader\u003c/code\u003e is recognized."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getImageWriterSpiNames",
+      "comment": "Returns an array of Strings containing the fully qualified names of all the ImageWriterSpi classes that can understand the internal metadata representation used by the ImageReader associated with this service provider, or null if there are no such ImageWriters specified. If a non-null value is returned, it must have non-zero length. The first item in the array must be the name of the service provider for the \"preferred\" writer, as it will be used to instantiate the ImageWriter returned by ImageIO.getImageWriter(ImageReader). This mechanism may be used to obtain ImageWriters that will understand the internal structure of non-pixel meta-data (see IIOTreeInfo) generated by an ImageReader. By obtaining this data from the ImageReader and passing it on to one of the ImageWriters obtained with this method, a client program can read an image, modify it in some way, and write it back out while preserving all meta-data, without having to understand anything about the internal structure of the meta-data, or even about the image format.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageIO.html#getImageWriter(javax.imageio.ImageReader)\"\u003e\u003ccode\u003eImageIO.getImageWriter(ImageReader)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an array of \n\u003ccode\u003eString\u003c/code\u003es of length at least 1 containing names of \n\u003ccode\u003eImageWriterSpi\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs a blank ImageReaderSpi. It is up to the subclass to initialize instance variables and/or override method implementations in order to provide working versions of all methods.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "vendorName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "version",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "names",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "suffixes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "MIMETypes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "readerClassName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "inputTypes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "writerSpiNames",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "supportsStandardStreamMetadataFormat",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "nativeStreamMetadataFormatName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "nativeStreamMetadataFormatClassName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "extraStreamMetadataFormatNames",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "extraStreamMetadataFormatClassNames",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "supportsStandardImageMetadataFormat",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "nativeImageMetadataFormatName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "nativeImageMetadataFormatClassName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "extraImageMetadataFormatNames",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "extraImageMetadataFormatClassNames",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs an ImageReaderSpi with a given set of values.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evendorName\u003c/code\u003e - the vendor name, as a non-\n\u003ccode\u003enull\u003c/code\u003e \n\u003ccode\u003eString\u003c/code\u003e.",
+          "\u003ccode\u003eversion\u003c/code\u003e - a version identifier, as a non-\n\u003ccode\u003enull\u003c/code\u003e \n\u003ccode\u003eString\u003c/code\u003e.",
+          "\u003ccode\u003enames\u003c/code\u003e - a non-\n\u003ccode\u003enull\u003c/code\u003e array of \n\u003ccode\u003eString\u003c/code\u003es indicating the format names. At least one entry must be present.",
+          "\u003ccode\u003esuffixes\u003c/code\u003e - an array of \n\u003ccode\u003eString\u003c/code\u003es indicating the common file suffixes. If no suffixes are defined, \n\u003ccode\u003enull\u003c/code\u003e should be supplied. An array of length 0 will be normalized to \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eMIMETypes\u003c/code\u003e - an array of \n\u003ccode\u003eString\u003c/code\u003es indicating the format\u0027s MIME types. If no MIME types are defined, \n\u003ccode\u003enull\u003c/code\u003e should be supplied. An array of length 0 will be normalized to \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003ereaderClassName\u003c/code\u003e - the fully-qualified name of the associated \n\u003ccode\u003eImageReader\u003c/code\u003e class, as a non-\n\u003ccode\u003enull String\u003c/code\u003e.",
+          "\u003ccode\u003einputTypes\u003c/code\u003e - a non-\n\u003ccode\u003enull\u003c/code\u003e array of \n\u003ccode\u003eClass\u003c/code\u003e objects of length at least 1 indicating the legal input types.",
+          "\u003ccode\u003ewriterSpiNames\u003c/code\u003e - an array \n\u003ccode\u003eString\u003c/code\u003es naming the classes of all associated \n\u003ccode\u003eImageWriter\u003c/code\u003es, or \n\u003ccode\u003enull\u003c/code\u003e. An array of length 0 is normalized to \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003esupportsStandardStreamMetadataFormat\u003c/code\u003e - a \n\u003ccode\u003eboolean\u003c/code\u003e that indicates whether a stream metadata object can use trees described by the standard metadata format.",
+          "\u003ccode\u003enativeStreamMetadataFormatName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e, to be returned from \n\u003ccode\u003egetNativeStreamMetadataFormatName\u003c/code\u003e.",
+          "\u003ccode\u003enativeStreamMetadataFormatClassName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e, to be used to instantiate a metadata format object to be returned from \n\u003ccode\u003egetNativeStreamMetadataFormat\u003c/code\u003e.",
+          "\u003ccode\u003eextraStreamMetadataFormatNames\u003c/code\u003e - an array of \n\u003ccode\u003eString\u003c/code\u003es, or \n\u003ccode\u003enull\u003c/code\u003e, to be returned from \n\u003ccode\u003egetExtraStreamMetadataFormatNames\u003c/code\u003e. An array of length 0 is normalized to \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eextraStreamMetadataFormatClassNames\u003c/code\u003e - an array of \n\u003ccode\u003eString\u003c/code\u003es, or \n\u003ccode\u003enull\u003c/code\u003e, to be used to instantiate a metadata format object to be returned from \n\u003ccode\u003egetStreamMetadataFormat\u003c/code\u003e. An array of length 0 is normalized to \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003esupportsStandardImageMetadataFormat\u003c/code\u003e - a \n\u003ccode\u003eboolean\u003c/code\u003e that indicates whether an image metadata object can use trees described by the standard metadata format.",
+          "\u003ccode\u003enativeImageMetadataFormatName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e, to be returned from \n\u003ccode\u003egetNativeImageMetadataFormatName\u003c/code\u003e.",
+          "\u003ccode\u003enativeImageMetadataFormatClassName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e, to be used to instantiate a metadata format object to be returned from \n\u003ccode\u003egetNativeImageMetadataFormat\u003c/code\u003e.",
+          "\u003ccode\u003eextraImageMetadataFormatNames\u003c/code\u003e - an array of \n\u003ccode\u003eString\u003c/code\u003es to be returned from \n\u003ccode\u003egetExtraImageMetadataFormatNames\u003c/code\u003e. An array of length 0 is normalized to \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eextraImageMetadataFormatClassNames\u003c/code\u003e - an array of \n\u003ccode\u003eString\u003c/code\u003es, or \n\u003ccode\u003enull\u003c/code\u003e, to be used to instantiate a metadata format object to be returned from \n\u003ccode\u003egetImageMetadataFormat\u003c/code\u003e. An array of length 0 is normalized to \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003evendorName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eversion\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003enames\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or has length 0.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ereaderClassName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003einputTypes\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or has length 0."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.imageio.spi.ImageReaderSpi",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/IIORegistry.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eIIORegistry\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReader.html\" title\u003d\"class in javax.imageio\"\u003e\u003ccode\u003eImageReader\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

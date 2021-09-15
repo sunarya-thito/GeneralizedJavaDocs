@@ -1,0 +1,160 @@
+{
+  "packageName": "java.lang.reflect",
+  "simpleName": "InvocationHandler",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Throwable",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "proxy",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.reflect.Method",
+            "type": "Class"
+          },
+          "name": "method",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "args",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invoke",
+      "comment": "Processes a method invocation on a proxy instance and returns the result. This method will be invoked on an invocation handler when a method is invoked on a proxy instance that it is associated with.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/UndeclaredThrowableException.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eUndeclaredThrowableException\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eproxy\u003c/code\u003e - the proxy instance that the method was invoked on",
+          "\u003ccode\u003emethod\u003c/code\u003e - the \n\u003ccode\u003eMethod\u003c/code\u003e instance corresponding to the interface method invoked on the proxy instance. The declaring class of the \n\u003ccode\u003eMethod\u003c/code\u003e object will be the interface that the method was declared in, which may be a superinterface of the proxy interface that the proxy class inherits the method through.",
+          "\u003ccode\u003eargs\u003c/code\u003e - an array of objects containing the values of the arguments passed in the method invocation on the proxy instance, or \n\u003ccode\u003enull\u003c/code\u003e if interface method takes no arguments. Arguments of primitive types are wrapped in instances of the appropriate primitive wrapper class, such as \n\u003ccode\u003ejava.lang.Integer\u003c/code\u003e or \n\u003ccode\u003ejava.lang.Boolean\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html\" title\u003d\"class in java.lang\"\u003eThrowable\u003c/a\u003e\u003c/code\u003e - the exception to throw from the method invocation on the proxy instance. The exception\u0027s type must be assignable either to any of the exception types declared in the \n\u003ccode\u003ethrows\u003c/code\u003e clause of the interface method or to the unchecked exception types \n\u003ccode\u003ejava.lang.RuntimeException\u003c/code\u003e or \n\u003ccode\u003ejava.lang.Error\u003c/code\u003e. If a checked exception is thrown by this method that is not assignable to any of the exception types declared in the \n\u003ccode\u003ethrows\u003c/code\u003e clause of the interface method, then an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/UndeclaredThrowableException.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eUndeclaredThrowableException\u003c/code\u003e\u003c/a\u003e containing the exception that was thrown by this method will be thrown by the method invocation on the proxy instance."
+        ],
+        "return": [
+          "the value to return from the method invocation on the proxy instance. If the declared return type of the interface method is a primitive type, then the value returned by this method must be an instance of the corresponding primitive wrapper class; otherwise, it must be a type assignable to the declared return type. If the value returned by this method is \n\u003ccode\u003enull\u003c/code\u003e and the interface method\u0027s return type is primitive, then a \n\u003ccode\u003eNullPointerException\u003c/code\u003e will be thrown by the method invocation on the proxy instance. If the value returned by this method is otherwise not compatible with the interface method\u0027s declared return type as described above, a \n\u003ccode\u003eClassCastException\u003c/code\u003e will be thrown by the method invocation on the proxy instance."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Throwable",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "proxy",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.reflect.Method",
+            "type": "Class"
+          },
+          "name": "method",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "args",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "invokeDefault",
+      "comment": "Invokes the specified default method on the given proxy instance with the given parameters. The given method must be a default method declared in a proxy interface of the proxy\u0027s class or inherited from its superinterface directly or indirectly. Invoking this method behaves as if invokespecial instruction executed from the proxy class, targeting the default method in a proxy interface. This is equivalent to the invocation: X.super.m(A* a) where X is a proxy interface and the call to X.super::m(A*) is resolved to the given method. Examples: interface A and B both declare a default implementation of method m. Interface C extends A and inherits the default method m from its superinterface A. \n interface A {\n     default T m(A a) { return t1; }\n }\n interface B {\n     default T m(A a) { return t2; }\n }\n interface C extends A {}\n The following creates a proxy instance that implements A and invokes the default method A::m. \n Object proxy \u003d Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { A.class },\n         (o, m, params) -\u003e {\n             if (m.isDefault()) {\n                 // if it\u0027s a default method, invoke it\n                 return InvocationHandler.invokeDefault(o, m, params);\n             }\n         });\n If a proxy instance implements both A and B, both of which provides the default implementation of method m, the invocation handler can dispatch the method invocation to A::m or B::m via the invokeDefault method. For example, the following code delegates the method invocation to B::m. \n Object proxy \u003d Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { A.class, B.class },\n         (o, m, params) -\u003e {\n             if (m.getName().equals(\"m\")) {\n                 // invoke B::m instead of A::m\n                 Method bMethod \u003d B.class.getMethod(m.getName(), m.getParameterTypes());\n                 return InvocationHandler.invokeDefault(o, bMethod, params);\n             }\n         });\n If a proxy instance implements C that inherits the default method m from its superinterface A, then the interface method invocation on \"m\" is dispatched to the invocation handler\u0027s invoke method with the Method object argument representing the default method A::m. \n Object proxy \u003d Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { C.class },\n        (o, m, params) -\u003e {\n             if (m.isDefault()) {\n                 // behaves as if calling C.super.m(params)\n                 return InvocationHandler.invokeDefault(o, m, params);\n             }\n        });\n The invocation of method \"m\" on this proxy will behave as if C.super::m is called and that is resolved to invoking A::m. Adding a default method, or changing a method from abstract to default may cause an exception if an existing code attempts to call invokeDefault to invoke a default method. For example, if C is modified to implement a default method m: \n interface C extends A {\n     default T m(A a) { return t3; }\n }\n The code above that creates proxy instance proxy with the modified C will run with no exception and it will result in calling C::m instead of A::m. The following is another example that creates a proxy instance of C and the invocation handler calls the invokeDefault method to invoke A::m: \n C c \u003d (C) Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { C.class },\n         (o, m, params) -\u003e {\n             if (m.getName().equals(\"m\")) {\n                 // IllegalArgumentException thrown as {@code A::m} is not a method\n                 // inherited from its proxy interface C\n                 Method aMethod \u003d A.class.getMethod(m.getName(), m.getParameterTypes());\n                 return InvocationHandler.invokeDefault(o, aMethod params);\n             }\n         });\n c.m(...);\n The above code runs successfully with the old version of C and A::m is invoked. When running with the new version of C, the above code will fail with IllegalArgumentException because C overrides the implementation of the same method and A::m is not accessible by a proxy instance.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "The \n\u003ccode\u003eproxy\u003c/code\u003e parameter is of type \n\u003ccode\u003eObject\u003c/code\u003e rather than \n\u003ccode\u003eProxy\u003c/code\u003e to make it easy for \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/InvocationHandler.html#invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object%5B%5D)\"\u003e\u003ccode\u003eInvocationHandler::invoke\u003c/code\u003e\u003c/a\u003e implementation to call directly without the need of casting."
+        ],
+        "param": [
+          "\u003ccode\u003eproxy\u003c/code\u003e - the \n\u003ccode\u003eProxy\u003c/code\u003e instance on which the default method to be invoked",
+          "\u003ccode\u003emethod\u003c/code\u003e - the \n\u003ccode\u003eMethod\u003c/code\u003e instance corresponding to a default method declared in a proxy interface of the proxy class or inherited from its superinterface directly or indirectly",
+          "\u003ccode\u003eargs\u003c/code\u003e - the parameters used for the method invocation; can be \n\u003ccode\u003enull\u003c/code\u003e if the number of formal parameters required by the method is zero."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any of the following conditions is \n\u003ccode\u003etrue\u003c/code\u003e: \n\u003cul\u003e \n \u003cli\u003e\u003ccode\u003eproxy\u003c/code\u003e is not \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/Proxy.html#isProxyClass(java.lang.Class)\"\u003ea proxy instance\u003c/a\u003e; or\u003c/li\u003e \n \u003cli\u003ethe given \u003ccode\u003emethod\u003c/code\u003e is not a default method declared in a proxy interface of the proxy class and not inherited from any of its superinterfaces; or\u003c/li\u003e \n \u003cli\u003ethe given \u003ccode\u003emethod\u003c/code\u003e is overridden directly or indirectly by the proxy interfaces and the method reference to the named method never resolves to the given \u003ccode\u003emethod\u003c/code\u003e; or\u003c/li\u003e \n \u003cli\u003ethe length of the given \u003ccode\u003eargs\u003c/code\u003e array does not match the number of parameters of the method to be invoked; or\u003c/li\u003e \n \u003cli\u003eany of the \u003ccode\u003eargs\u003c/code\u003e elements fails the unboxing conversion if the corresponding method parameter type is a primitive type; or if, after possible unboxing, any of the \u003ccode\u003eargs\u003c/code\u003e elements cannot be assigned to the corresponding method parameter type.\u003c/li\u003e \n\u003c/ul\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalAccessException.html\" title\u003d\"class in java.lang\"\u003eIllegalAccessException\u003c/a\u003e\u003c/code\u003e - if the declaring class of the specified default method is inaccessible to the caller class",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eproxy\u003c/code\u003e or \n\u003ccode\u003emethod\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html\" title\u003d\"class in java.lang\"\u003eThrowable\u003c/a\u003e\u003c/code\u003e - anything thrown by the default method"
+        ],
+        "See Java Virtual Machine Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-5.html#jls-5.4.3.\"\u003e5.4.3. Method Resolution\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "return": [
+          "the value returned from the method invocation"
+        ],
+        "since": [
+          "16"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.lang.reflect.InvocationHandler",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/Proxy.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eProxy\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

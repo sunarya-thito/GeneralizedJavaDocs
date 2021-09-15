@@ -1,0 +1,154 @@
+{
+  "packageName": "org.xml.sax.ext",
+  "simpleName": "EntityResolver2",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "org.xml.sax.EntityResolver",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.xml.sax.InputSource",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.xml.sax.SAXException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "baseURI",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getExternalSubset",
+      "comment": "Allows applications to provide an external subset for documents that don\u0027t explicitly define one. Documents with DOCTYPE declarations that omit an external subset can thus augment the declarations available for validation, entity processing, and attribute processing (normalization, defaulting, and reporting types including ID). This augmentation is reported through the startDTD() method as if the document text had originally included the external subset; this callback is made before any internal subset data or errors are reported. This method can also be used with documents that have no DOCTYPE declaration. When the root element is encountered, but no DOCTYPE declaration has been seen, this method is invoked. If it returns a value for the external subset, that root element is declared to be the root element, giving the effect of splicing a DOCTYPE declaration at the end the prolog of a document that could not otherwise be valid. The sequence of parser callbacks in that case logically resembles this:  ... comments and PIs from the prolog (as usual)\n startDTD (\"rootName\", source.getPublicId (), source.getSystemId ());\n startEntity (\"[dtd]\");\n ... declarations, comments, and PIs from the external subset\n endEntity (\"[dtd]\");\n endDTD ();\n ... then the rest of the document (as usual)\n startElement (..., \"rootName\", ...);\n Note that the InputSource gets no further resolution. Implementations of this method may wish to invoke resolveEntity() to gain benefits such as use of local caches of DTD entities. Also, this method will never be used by a (non-validating) processor that is not including external parameter entities. Uses for this method include facilitating data validation when interoperating with XML processors that would always require undesirable network accesses for external entities, or which for other reasons adopt a \"no DTDs\" policy. Non-validation motives include forcing documents to include DTDs so that attributes are handled consistently. For example, an XPath processor needs to know which attibutes have type \"ID\" before it can process a widely used type of reference. Warning: Returning an external subset modifies the input document. By providing definitions for general entities, it can make a malformed document appear to be well formed.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - Identifies the document root element. This name comes from a DOCTYPE declaration (where available) or from the actual root element.",
+          "\u003ccode\u003ebaseURI\u003c/code\u003e - The document\u0027s base URI, serving as an additional hint for selecting the external subset. This is always an absolute URI, unless it is null because the XMLReader was given an InputSource without one."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXException\u003c/a\u003e\u003c/code\u003e - Any SAX exception, possibly wrapping another exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - Probably indicating a failure to create a new InputStream or Reader, or an illegal URL."
+        ],
+        "return": [
+          "An InputSource object describing the new external subset to be used by the parser, or null to indicate that no external subset is provided."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.xml.sax.InputSource",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.xml.sax.SAXException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "publicId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "baseURI",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "systemId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolveEntity",
+      "comment": "Allows applications to map references to external entities into input sources, or tell the parser it should use conventional URI resolution. This method is only called for external entities which have been properly declared. This method provides more flexibility than the EntityResolver interface, supporting implementations of more complex catalogue schemes such as the one defined by the OASIS XML Catalogs specification. Parsers configured to use this resolver method will call it to determine the input source to use for any external entity being included because of a reference in the XML text. That excludes the document entity, and any external entity returned by getExternalSubset(). When a (non-validating) processor is configured not to include a class of entities (parameter or general) through use of feature flags, this method is not invoked for such entities. Note that the entity naming scheme used here is the same one used in the LexicalHandler, or in the ContentHandler.skippedEntity() method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - Identifies the external entity being resolved. Either \"[dtd]\" for the external subset, or a name starting with \"%\" to indicate a parameter entity, or else the name of a general entity. This is never null when invoked by a SAX2 parser.",
+          "\u003ccode\u003epublicId\u003c/code\u003e - The public identifier of the external entity being referenced (normalized as required by the XML specification), or null if none was supplied.",
+          "\u003ccode\u003ebaseURI\u003c/code\u003e - The URI with respect to which relative systemIDs are interpreted. This is always an absolute URI, unless it is null (likely because the XMLReader was given an InputSource without one). This URI is defined by the XML specification to be the one associated with the \"\u0026lt;\" starting the relevant declaration.",
+          "\u003ccode\u003esystemId\u003c/code\u003e - The system identifier of the external entity being referenced; either a relative or absolute URI. This is never null when invoked by a SAX2 parser; only declared entities, and any external subset, are resolved by such parsers."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXException\u003c/a\u003e\u003c/code\u003e - Any SAX exception, possibly wrapping another exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - Probably indicating a failure to create a new InputStream or Reader, or an illegal URL."
+        ],
+        "return": [
+          "An InputSource object describing the new input source to be used by the parser. Returning null directs the parser to resolve the system ID against the base URI and open a connection to resulting URI."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.xml.sax.ext.EntityResolver2",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/XMLReader.html#setEntityResolver(org.xml.sax.EntityResolver)\"\u003e\u003ccode\u003eXMLReader.setEntityResolver(org.xml.sax.EntityResolver)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5, SAX 2.0 (extensions 1.1 alpha)"
+    ]
+  }
+}

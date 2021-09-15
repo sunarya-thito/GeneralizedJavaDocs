@@ -1,0 +1,1927 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "ClassLoader",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getName",
+      "comment": "Returns the name of this class loader or null if this class loader is not named.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "This method is non-final for compatibility. If this method is overridden, this method must return the same name as specified when this class loader was instantiated."
+        ],
+        "return": [
+          "name of this class loader; or \n\u003ccode\u003enull\u003c/code\u003e if this class loader is not named."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "loadClass",
+      "comment": "Loads the class with the specified binary name. This method searches for classes in the same manner as the loadClass(String, boolean) method. It is invoked by the Java virtual machine to resolve class references. Invoking this method is equivalent to invoking loadClass(name, false).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - If the class was not found"
+        ],
+        "return": [
+          "The resulting \n\u003ccode\u003eClass\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "resolve",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "loadClass",
+      "comment": "Loads the class with the specified binary name. The default implementation of this method searches for classes in the following order: Invoke findLoadedClass(String) to check if the class has already been loaded. Invoke the loadClass method on the parent class loader. If the parent is null the class loader built into the virtual machine is used, instead. Invoke the findClass(String) method to find the class. If the class was found using the above steps, and the resolve flag is true, this method will then invoke the resolveClass(Class) method on the resulting Class object. Subclasses of ClassLoader are encouraged to override findClass(String), rather than this method. Unless overridden, this method synchronizes on the result of getClassLoadingLock method during the entire class loading process.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class",
+          "\u003ccode\u003eresolve\u003c/code\u003e - If \n\u003ccode\u003etrue\u003c/code\u003e then resolve the class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - If the class could not be found"
+        ],
+        "return": [
+          "The resulting \n\u003ccode\u003eClass\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getClassLoadingLock",
+      "comment": "Returns the lock object for class loading operations. For backward compatibility, the default implementation of this method behaves as follows. If this ClassLoader object is registered as parallel capable, the method returns a dedicated object associated with the specified class name. Otherwise, the method returns this ClassLoader object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#loadClass(java.lang.String,boolean)\"\u003e\u003ccode\u003eloadClass(String, boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The name of the to-be-loaded class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If registered as parallel capable and \n\u003ccode\u003eclassName\u003c/code\u003e is null"
+        ],
+        "return": [
+          "the lock for class loading operations"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "findClass",
+      "comment": "Finds the class with the specified binary name. This method should be overridden by class loader implementations that follow the delegation model for loading classes, and will be invoked by the loadClass method after checking the parent class loader for the requested class.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation throws \n\u003ccode\u003eClassNotFoundException\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - If the class could not be found"
+        ],
+        "return": [
+          "The resulting \n\u003ccode\u003eClass\u003c/code\u003e object"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "moduleName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "findClass",
+      "comment": "Finds the class with the given binary name in a module defined to this class loader. Class loader implementations that support loading from modules should override this method.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation attempts to find the class by invoking \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#findClass(java.lang.String)\"\u003e\u003ccode\u003efindClass(String)\u003c/code\u003e\u003c/a\u003e when the \n\u003ccode\u003emoduleName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e. It otherwise returns \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "apiNote": [
+          "This method returns \n\u003ccode\u003enull\u003c/code\u003e rather than throwing \n\u003ccode\u003eClassNotFoundException\u003c/code\u003e if the class could not be found."
+        ],
+        "param": [
+          "\u003ccode\u003emoduleName\u003c/code\u003e - The module name; or \n\u003ccode\u003enull\u003c/code\u003e to find the class in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getUnnamedModule()\"\u003eunnamed module\u003c/a\u003e for this class loader",
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class"
+        ],
+        "return": [
+          "The resulting \n\u003ccode\u003eClass\u003c/code\u003e object, or \n\u003ccode\u003enull\u003c/code\u003e if the class could not be found."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassFormatError",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "b",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "off",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "len",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "defineClass",
+      "comment": "Converts an array of bytes into an instance of class Class. Before the Class can be used it must be resolved. This method is deprecated in favor of the version that takes a binary name as its first argument, and is more secure.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "since",
+              "value": "1.1"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#loadClass(java.lang.String,boolean)\"\u003e\u003ccode\u003eloadClass(String, boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#resolveClass(java.lang.Class)\"\u003e\u003ccode\u003eresolveClass(Class)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - The bytes that make up the class data. The bytes in positions \n\u003ccode\u003eoff\u003c/code\u003e through \n\u003ccode\u003eoff+len-1\u003c/code\u003e should have the format of a valid class file as defined by \n\u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e.",
+          "\u003ccode\u003eoff\u003c/code\u003e - The start offset in \n\u003ccode\u003eb\u003c/code\u003e of the class data",
+          "\u003ccode\u003elen\u003c/code\u003e - The length of the class data"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassFormatError.html\" title\u003d\"class in java.lang\"\u003eClassFormatError\u003c/a\u003e\u003c/code\u003e - If the data did not contain a valid class",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If either \n\u003ccode\u003eoff\u003c/code\u003e or \n\u003ccode\u003elen\u003c/code\u003e is negative, or if \n\u003ccode\u003eoff+len\u003c/code\u003e is greater than \n\u003ccode\u003eb.length\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If an attempt is made to add this class to a package that contains classes that were signed by a different set of certificates than this class, or if an attempt is made to define a class in a package with a fully-qualified name that starts with \"\n\u003ccode\u003ejava.\u003c/code\u003e\"."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eClass\u003c/code\u003e object that was created from the specified class data"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassFormatError",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "b",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "off",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "len",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "defineClass",
+      "comment": "Converts an array of bytes into an instance of class Class. Before the Class can be used it must be resolved. This method assigns a default ProtectionDomain to the newly defined class. The ProtectionDomain is effectively granted the same set of permissions returned when Policy.getPolicy().getPermissions(new CodeSource(null, null)) is invoked. The default protection domain is created on the first invocation of defineClass, and re-used on subsequent invocations. To assign a specific ProtectionDomain to the class, use the defineClass method that takes a ProtectionDomain as one of its arguments. This method defines a package in this class loader corresponding to the package of the Class (if such a package has not already been defined in this class loader). The name of the defined package is derived from the binary name of the class specified by the byte array b. Other properties of the defined package are as specified by Package.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#loadClass(java.lang.String,boolean)\"\u003e\u003ccode\u003eloadClass(String, boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#resolveClass(java.lang.Class)\"\u003e\u003ccode\u003eresolveClass(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/CodeSource.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eCodeSource\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SecureClassLoader.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eSecureClassLoader\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The expected \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class, or \n\u003ccode\u003enull\u003c/code\u003e if not known",
+          "\u003ccode\u003eb\u003c/code\u003e - The bytes that make up the class data. The bytes in positions \n\u003ccode\u003eoff\u003c/code\u003e through \n\u003ccode\u003eoff+len-1\u003c/code\u003e should have the format of a valid class file as defined by \n\u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e.",
+          "\u003ccode\u003eoff\u003c/code\u003e - The start offset in \n\u003ccode\u003eb\u003c/code\u003e of the class data",
+          "\u003ccode\u003elen\u003c/code\u003e - The length of the class data"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassFormatError.html\" title\u003d\"class in java.lang\"\u003eClassFormatError\u003c/a\u003e\u003c/code\u003e - If the data did not contain a valid class",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If either \n\u003ccode\u003eoff\u003c/code\u003e or \n\u003ccode\u003elen\u003c/code\u003e is negative, or if \n\u003ccode\u003eoff+len\u003c/code\u003e is greater than \n\u003ccode\u003eb.length\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If an attempt is made to add this class to a package that contains classes that were signed by a different set of certificates than this class (which is unsigned), or if \n\u003ccode\u003ename\u003c/code\u003e begins with \"\n\u003ccode\u003ejava.\u003c/code\u003e\"."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eClass\u003c/code\u003e object that was created from the specified class data."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassFormatError",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "b",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "off",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "len",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.ProtectionDomain",
+            "type": "Class"
+          },
+          "name": "protectionDomain",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "defineClass",
+      "comment": "Converts an array of bytes into an instance of class Class, with a given ProtectionDomain. If the given ProtectionDomain is null, then a default protection domain will be assigned to the class as specified in the documentation for defineClass(String, byte[], int, int). Before the class can be used it must be resolved. The first class defined in a package determines the exact set of certificates that all subsequent classes defined in that package must contain. The set of certificates for a class is obtained from the CodeSource within the ProtectionDomain of the class. Any classes added to that package must contain the same set of certificates or a SecurityException will be thrown. Note that if name is null, this check is not performed. You should always pass in the binary name of the class you are defining as well as the bytes. This ensures that the class you are defining is indeed the class you think it is. If the specified name begins with \"java.\", it can only be defined by the platform class loader or its ancestors; otherwise SecurityException will be thrown. If name is not null, it must be equal to the binary name of the class specified by the byte array b, otherwise a NoClassDefFoundError will be thrown. This method defines a package in this class loader corresponding to the package of the Class (if such a package has not already been defined in this class loader). The name of the defined package is derived from the binary name of the class specified by the byte array b. Other properties of the defined package are as specified by Package.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The expected \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class, or \n\u003ccode\u003enull\u003c/code\u003e if not known",
+          "\u003ccode\u003eb\u003c/code\u003e - The bytes that make up the class data. The bytes in positions \n\u003ccode\u003eoff\u003c/code\u003e through \n\u003ccode\u003eoff+len-1\u003c/code\u003e should have the format of a valid class file as defined by \n\u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e.",
+          "\u003ccode\u003eoff\u003c/code\u003e - The start offset in \n\u003ccode\u003eb\u003c/code\u003e of the class data",
+          "\u003ccode\u003elen\u003c/code\u003e - The length of the class data",
+          "\u003ccode\u003eprotectionDomain\u003c/code\u003e - The \n\u003ccode\u003eProtectionDomain\u003c/code\u003e of the class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassFormatError.html\" title\u003d\"class in java.lang\"\u003eClassFormatError\u003c/a\u003e\u003c/code\u003e - If the data did not contain a valid class",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NoClassDefFoundError.html\" title\u003d\"class in java.lang\"\u003eNoClassDefFoundError\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003ename\u003c/code\u003e is not \n\u003ccode\u003enull\u003c/code\u003e and not equal to the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class specified by \n\u003ccode\u003eb\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If either \n\u003ccode\u003eoff\u003c/code\u003e or \n\u003ccode\u003elen\u003c/code\u003e is negative, or if \n\u003ccode\u003eoff+len\u003c/code\u003e is greater than \n\u003ccode\u003eb.length\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If an attempt is made to add this class to a package that contains classes that were signed by a different set of certificates than this class, or if \n\u003ccode\u003ename\u003c/code\u003e begins with \"\n\u003ccode\u003ejava.\u003c/code\u003e\" and this class loader is not the platform class loader or its ancestor."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eClass\u003c/code\u003e object created from the data, and \n\u003ccode\u003eProtectionDomain\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassFormatError",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "name": "b",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.ProtectionDomain",
+            "type": "Class"
+          },
+          "name": "protectionDomain",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "defineClass",
+      "comment": "Converts a ByteBuffer into an instance of class Class, with the given ProtectionDomain. If the given ProtectionDomain is null, then a default protection domain will be assigned to the class as specified in the documentation for defineClass(String, byte[], int, int). Before the class can be used it must be resolved. The rules about the first class defined in a package determining the set of certificates for the package, the restrictions on class names, and the defined package of the class are identical to those specified in the documentation for defineClass(String, byte[], int, int, ProtectionDomain). An invocation of this method of the form cl.defineClass(name, bBuffer, pd) yields exactly the same result as the statements ... byte[] temp \u003d new byte[bBuffer.remaining()]; bBuffer.get(temp); return cl.defineClass(name, temp, 0, temp.length, pd);",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#defineClass(java.lang.String,byte%5B%5D,int,int,java.security.ProtectionDomain)\"\u003e\u003ccode\u003edefineClass(String, byte[], int, int, ProtectionDomain)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The expected \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e. of the class, or \n\u003ccode\u003enull\u003c/code\u003e if not known",
+          "\u003ccode\u003eb\u003c/code\u003e - The bytes that make up the class data. The bytes from positions \n\u003ccode\u003eb.position()\u003c/code\u003e through \n\u003ccode\u003eb.position() + b.limit() -1 \u003c/code\u003e should have the format of a valid class file as defined by \n\u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e.",
+          "\u003ccode\u003eprotectionDomain\u003c/code\u003e - The \n\u003ccode\u003eProtectionDomain\u003c/code\u003e of the class, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassFormatError.html\" title\u003d\"class in java.lang\"\u003eClassFormatError\u003c/a\u003e\u003c/code\u003e - If the data did not contain a valid class.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NoClassDefFoundError.html\" title\u003d\"class in java.lang\"\u003eNoClassDefFoundError\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003ename\u003c/code\u003e is not \n\u003ccode\u003enull\u003c/code\u003e and not equal to the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class specified by \n\u003ccode\u003eb\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If an attempt is made to add this class to a package that contains classes that were signed by a different set of certificates than this class, or if \n\u003ccode\u003ename\u003c/code\u003e begins with \"\n\u003ccode\u003ejava.\u003c/code\u003e\"."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eClass\u003c/code\u003e object created from the data, and \n\u003ccode\u003eProtectionDomain\u003c/code\u003e."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "c",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "resolveClass",
+      "comment": "Links the specified class. This (misleadingly named) method may be used by a class loader to link a class. If the class c has already been linked, then this method simply returns. Otherwise, the class is linked as described in the \"Execution\" chapter of The Java Language Specification.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#defineClass(java.lang.String,byte%5B%5D,int,int)\"\u003e\u003ccode\u003edefineClass(String, byte[], int, int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - The class to link"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003ec\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "findSystemClass",
+      "comment": "Finds a class with the specified binary name, loading it if necessary. This method loads the class through the system class loader (see getSystemClassLoader()). The Class object returned might have more than one ClassLoader associated with it. Subclasses of ClassLoader need not usually invoke this method, because most class loaders need to override just findClass(String).",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#%3Cinit%3E(java.lang.ClassLoader)\"\u003e\u003ccode\u003eClassLoader(ClassLoader)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getParent()\"\u003e\u003ccode\u003egetParent()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - If the class could not be found"
+        ],
+        "return": [
+          "The \n\u003ccode\u003eClass\u003c/code\u003e object for the specified \n\u003ccode\u003ename\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "findLoadedClass",
+      "comment": "Returns the class with the given binary name if this loader has been recorded by the Java virtual machine as an initiating loader of a class with that binary name. Otherwise null is returned.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003ebinary name\u003c/a\u003e of the class"
+        ],
+        "return": [
+          "The \n\u003ccode\u003eClass\u003c/code\u003e object, or \n\u003ccode\u003enull\u003c/code\u003e if the class has not been loaded"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "c",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "signers",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "setSigners",
+      "comment": "Sets the signers of a class. This should be invoked after defining a class.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - The \n\u003ccode\u003eClass\u003c/code\u003e object",
+          "\u003ccode\u003esigners\u003c/code\u003e - The signers for the class"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.URL",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "moduleName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "findResource",
+      "comment": "Returns a URL to a resource in a module defined to this class loader. Class loader implementations that support loading from modules should override this method.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation attempts to find the resource by invoking \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#findResource(java.lang.String)\"\u003e\u003ccode\u003efindResource(String)\u003c/code\u003e\u003c/a\u003e when the \n\u003ccode\u003emoduleName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e. It otherwise returns \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleReader.html#find(java.lang.String)\"\u003e\u003ccode\u003eModuleReader.find(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "This method is the basis for the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Class.html#getResource(java.lang.String)\"\u003e\u003ccode\u003eClass.getResource\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Class.html#getResourceAsStream(java.lang.String)\"\u003e\u003ccode\u003eClass.getResourceAsStream\u003c/code\u003e\u003c/a\u003e, and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#getResourceAsStream(java.lang.String)\"\u003e\u003ccode\u003eModule.getResourceAsStream\u003c/code\u003e\u003c/a\u003e methods. It is not subject to the rules for encapsulation specified by \n\u003ccode\u003eModule.getResourceAsStream\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003emoduleName\u003c/code\u003e - The module name; or \n\u003ccode\u003enull\u003c/code\u003e to find a resource in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getUnnamedModule()\"\u003eunnamed module\u003c/a\u003e for this class loader",
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If I/O errors occur"
+        ],
+        "return": [
+          "A URL to the resource; \n\u003ccode\u003enull\u003c/code\u003e if the resource could not be found, a URL could not be constructed to locate the resource, access to the resource is denied by the security manager, or there isn\u0027t a module of the given name defined to the class loader."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.URL",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getResource",
+      "comment": "Finds the resource with the given name. A resource is some data (images, audio, text, etc) that can be accessed by class code in a way that is independent of the location of the code. The name of a resource is a \u0027/\u0027-separated path name that identifies the resource. Resources in named modules are subject to the encapsulation rules specified by Module.getResourceAsStream. Additionally, and except for the special case where the resource has a name ending with \".class\", this method will only find resources in packages of named modules when the package is opened unconditionally (even if the caller of this method is in the same module as the resource).",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation will first search the parent class loader for the resource; if the parent is \n\u003ccode\u003enull\u003c/code\u003e the path of the class loader built into the virtual machine is searched. If not found, this method will invoke \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#findResource(java.lang.String)\"\u003e\u003ccode\u003efindResource(String)\u003c/code\u003e\u003c/a\u003e to find the resource."
+        ],
+        "apiNote": [
+          "Where several modules are defined to the same class loader, and where more than one module contains a resource with the given name, then the ordering that modules are searched is not specified and may be very unpredictable. When overriding this method it is recommended that an implementation ensures that any delegation is consistent with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getResources(java.lang.String)\"\u003e\u003ccode\u003egetResources(String)\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003eURL\u003c/code\u003e object for reading the resource; \n\u003ccode\u003enull\u003c/code\u003e if the resource could not be found, a \n\u003ccode\u003eURL\u003c/code\u003e could not be constructed to locate the resource, the resource is in a package that is not opened unconditionally, or access to the resource is denied by the security manager."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Enumeration",
+        "parameters": [
+          {
+            "name": "java.net.URL",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getResources",
+      "comment": "Finds all the resources with the given name. A resource is some data (images, audio, text, etc) that can be accessed by class code in a way that is independent of the location of the code. The name of a resource is a /-separated path name that identifies the resource. Resources in named modules are subject to the encapsulation rules specified by Module.getResourceAsStream. Additionally, and except for the special case where the resource has a name ending with \".class\", this method will only find resources in packages of named modules when the package is opened unconditionally (even if the caller of this method is in the same module as the resource).",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation will first search the parent class loader for the resource; if the parent is \n\u003ccode\u003enull\u003c/code\u003e the path of the class loader built into the virtual machine is searched. It then invokes \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#findResources(java.lang.String)\"\u003e\u003ccode\u003efindResources(String)\u003c/code\u003e\u003c/a\u003e to find the resources with the name in this class loader. It returns an enumeration whose elements are the URLs found by searching the parent class loader followed by the elements found with \n\u003ccode\u003efindResources\u003c/code\u003e."
+        ],
+        "apiNote": [
+          "Where several modules are defined to the same class loader, and where more than one module contains a resource with the given name, then the ordering is not specified and may be very unpredictable. When overriding this method it is recommended that an implementation ensures that any delegation is consistent with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getResource(java.lang.String)\"\u003e\u003ccode\u003egetResource(String)\u003c/code\u003e\u003c/a\u003e method. This should ensure that the first element returned by the Enumeration\u0027s \n\u003ccode\u003enextElement\u003c/code\u003e method is the same resource that the \n\u003ccode\u003egetResource(String)\u003c/code\u003e method would return."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If I/O errors occur",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "An enumeration of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURL\u003c/code\u003e\u003c/a\u003e objects for the resource. If no resources could be found, the enumeration will be empty. Resources for which a \n\u003ccode\u003eURL\u003c/code\u003e cannot be constructed, are in a package that is not opened unconditionally, or access to the resource is denied by the security manager, are not returned in the enumeration."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.net.URL",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "resources",
+      "comment": "Returns a stream whose elements are the URLs of all the resources with the given name. A resource is some data (images, audio, text, etc) that can be accessed by class code in a way that is independent of the location of the code. The name of a resource is a /-separated path name that identifies the resource. The resources will be located when the returned stream is evaluated. If the evaluation results in an IOException then the I/O exception is wrapped in an UncheckedIOException that is then thrown. Resources in named modules are subject to the encapsulation rules specified by Module.getResourceAsStream. Additionally, and except for the special case where the resource has a name ending with \".class\", this method will only find resources in packages of named modules when the package is opened unconditionally (even if the caller of this method is in the same module as the resource).",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation invokes \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getResources(java.lang.String)\"\u003e\u003ccode\u003egetResources\u003c/code\u003e\u003c/a\u003e to find all the resources with the given name and returns a stream with the elements in the enumeration as the source."
+        ],
+        "apiNote": [
+          "When overriding this method it is recommended that an implementation ensures that any delegation is consistent with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getResource(java.lang.String)\"\u003e\u003ccode\u003egetResource(String)\u003c/code\u003e\u003c/a\u003e method. This should ensure that the first element returned by the stream is the same resource that the \n\u003ccode\u003egetResource(String)\u003c/code\u003e method would return."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "A stream of resource \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURL\u003c/code\u003e\u003c/a\u003e objects. If no resources could be found, the stream will be empty. Resources for which a \n\u003ccode\u003eURL\u003c/code\u003e cannot be constructed, are in a package that is not opened unconditionally, or access to the resource is denied by the security manager, will not be in the stream."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.URL",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "findResource",
+      "comment": "Finds the resource with the given name. Class loader implementations should override this method. For resources in named modules then the method must implement the rules for encapsulation specified in the Module getResourceAsStream method. Additionally, it must not find non-\".class\" resources in packages of named modules unless the package is opened unconditionally.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation returns \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "return": [
+          "\u003ccode\u003eURL\u003c/code\u003e object for reading the resource; \n\u003ccode\u003enull\u003c/code\u003e if the resource could not be found, a \n\u003ccode\u003eURL\u003c/code\u003e could not be constructed to locate the resource, the resource is in a package that is not opened unconditionally, or access to the resource is denied by the security manager."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Enumeration",
+        "parameters": [
+          {
+            "name": "java.net.URL",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "findResources",
+      "comment": "Returns an enumeration of URL objects representing all the resources with the given name. Class loader implementations should override this method. For resources in named modules then the method must implement the rules for encapsulation specified in the Module getResourceAsStream method. Additionally, it must not find non-\".class\" resources in packages of named modules unless the package is opened unconditionally.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation returns an enumeration that contains no elements."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If I/O errors occur"
+        ],
+        "return": [
+          "An enumeration of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURL\u003c/code\u003e\u003c/a\u003e objects for the resource. If no resources could be found, the enumeration will be empty. Resources for which a \n\u003ccode\u003eURL\u003c/code\u003e cannot be constructed, are in a package that is not opened unconditionally, or access to the resource is denied by the security manager, are not returned in the enumeration."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 12,
+      "name": "registerAsParallelCapable",
+      "comment": "Registers the caller as parallel capable. The registration succeeds if and only if all of the following conditions are met: no instance of the caller has been created all of the super classes (except class Object) of the caller are registered as parallel capable Note that once a class loader is registered as parallel capable, there is no way to change it back.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#isRegisteredAsParallelCapable()\"\u003e\u003ccode\u003eisRegisteredAsParallelCapable()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the caller is successfully registered as parallel capable and \n\u003ccode\u003efalse\u003c/code\u003e if otherwise."
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isRegisteredAsParallelCapable",
+      "comment": "Returns true if this class loader is registered as parallel capable, otherwise false.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#registerAsParallelCapable()\"\u003e\u003ccode\u003eregisterAsParallelCapable()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this class loader is parallel capable, otherwise \n\u003ccode\u003efalse\u003c/code\u003e."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.URL",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSystemResource",
+      "comment": "Find a resource of the specified name from the search path used to load classes. This method locates the resource through the system class loader (see getSystemClassLoader()). Resources in named modules are subject to the encapsulation rules specified by Module.getResourceAsStream. Additionally, and except for the special case where the resource has a name ending with \".class\", this method will only find resources in packages of named modules when the package is opened unconditionally.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "return": [
+          "A \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURL\u003c/code\u003e\u003c/a\u003e to the resource; \n\u003ccode\u003e null\u003c/code\u003e if the resource could not be found, a URL could not be constructed to locate the resource, the resource is in a package that is not opened unconditionally or access to the resource is denied by the security manager."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Enumeration",
+        "parameters": [
+          {
+            "name": "java.net.URL",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSystemResources",
+      "comment": "Finds all resources of the specified name from the search path used to load classes. The resources thus found are returned as an Enumeration of URL objects. The search order is described in the documentation for getSystemResource(String). Resources in named modules are subject to the encapsulation rules specified by Module.getResourceAsStream. Additionally, and except for the special case where the resource has a name ending with \".class\", this method will only find resources in packages of named modules when the package is opened unconditionally.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If I/O errors occur"
+        ],
+        "return": [
+          "An enumeration of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURL\u003c/code\u003e\u003c/a\u003e objects for the resource. If no resources could be found, the enumeration will be empty. Resources for which a \n\u003ccode\u003eURL\u003c/code\u003e cannot be constructed, are in a package that is not opened unconditionally, or access to the resource is denied by the security manager, are not returned in the enumeration."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getResourceAsStream",
+      "comment": "Returns an input stream for reading the specified resource. The search order is described in the documentation for getResource(String). Resources in named modules are subject to the encapsulation rules specified by Module.getResourceAsStream. Additionally, and except for the special case where the resource has a name ending with \".class\", this method will only find resources in packages of named modules when the package is opened unconditionally.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "An input stream for reading the resource; \n\u003ccode\u003enull\u003c/code\u003e if the resource could not be found, the resource is in a package that is not opened unconditionally, or access to the resource is denied by the security manager."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSystemResourceAsStream",
+      "comment": "Open for reading, a resource of the specified name from the search path used to load classes. This method locates the resource through the system class loader (see getSystemClassLoader()). Resources in named modules are subject to the encapsulation rules specified by Module.getResourceAsStream. Additionally, and except for the special case where the resource has a name ending with \".class\", this method will only find resources in packages of named modules when the package is opened unconditionally.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "return": [
+          "An input stream for reading the resource; \n\u003ccode\u003enull\u003c/code\u003e if the resource could not be found, the resource is in a package that is not opened unconditionally, or access to the resource is denied by the security manager."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ClassLoader",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getParent",
+      "comment": "Returns the parent class loader for delegation. Some implementations may use null to represent the bootstrap class loader. This method will return null in such implementations if this class loader\u0027s parent is the bootstrap class loader.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is present, and the caller\u0027s class loader is not \n\u003ccode\u003enull\u003c/code\u003e and is not an ancestor of this class loader, and the caller does not have the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"getClassLoader\")\u003c/code\u003e"
+        ],
+        "return": [
+          "The parent \n\u003ccode\u003eClassLoader\u003c/code\u003e"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Module",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getUnnamedModule",
+      "comment": "Returns the unnamed Module for this class loader.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#isNamed()\"\u003e\u003ccode\u003eModule.isNamed()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "The unnamed Module for this class loader"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ClassLoader",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getPlatformClassLoader",
+      "comment": "Returns the platform class loader. All platform classes are visible to the platform class loader.",
+      "annotations": [],
+      "tagMap": {
+        "implNote": [
+          "The name of the builtin platform class loader is \n\u003ccode\u003e\"platform\"\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is present, and the caller\u0027s class loader is not \n\u003ccode\u003enull\u003c/code\u003e, and the caller\u0027s class loader is not the same as or an ancestor of the platform class loader, and the caller does not have the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"getClassLoader\")\u003c/code\u003e"
+        ],
+        "return": [
+          "The platform \n\u003ccode\u003eClassLoader\u003c/code\u003e."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ClassLoader",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSystemClassLoader",
+      "comment": "Returns the system class loader. This is the default delegation parent for new ClassLoader instances, and is typically the class loader used to start the application. This method is first invoked early in the runtime\u0027s startup sequence, at which point it creates the system class loader. This class loader will be the context class loader for the main application thread (for example, the thread that invokes the main method of the main class). The default system class loader is an implementation-dependent instance of this class. If the system property \"java.system.class.loader\" is defined when this method is first invoked then the value of that property is taken to be the name of a class that will be returned as the system class loader. The class is loaded using the default system class loader and must define a public constructor that takes a single parameter of type ClassLoader which is used as the delegation parent. An instance is then created using this constructor with the default system class loader as the parameter. The resulting class loader is defined to be the system class loader. During construction, the class loader should take great care to avoid calling getSystemClassLoader(). If circular initialization of the system class loader is detected then an IllegalStateException is thrown.",
+      "annotations": [],
+      "tagMap": {
+        "implNote": [
+          "The system property to override the system class loader is not examined until the VM is almost fully initialized. Code that executes this method during startup should take care not to cache the return value until the system is fully initialized. \n\u003cp\u003e The name of the built-in system class loader is \u003ccode\u003e\"app\"\u003c/code\u003e. The system property \"\u003ccode\u003ejava.class.path\u003c/code\u003e\" is read during early initialization of the VM to determine the class path. An empty value of \"\u003ccode\u003ejava.class.path\u003c/code\u003e\" property is interpreted differently depending on whether the initial module (the module containing the main class) is named or unnamed: If named, the built-in system class loader will have no class path and will search for classes and resources using the application module path; otherwise, if unnamed, it will set the class path to the current working directory. \u003c/p\u003e\n\u003cp\u003e JAR files on the class path may contain a \u003ccode\u003eClass-Path\u003c/code\u003e manifest attribute to specify dependent JAR files to be included in the class path. \u003ccode\u003eClass-Path\u003c/code\u003e entries must meet certain conditions for validity (see the \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/jar/jar.html#class-path-attribute\"\u003e JAR File Specification\u003c/a\u003e for details). Invalid \u003ccode\u003eClass-Path\u003c/code\u003e entries are ignored. For debugging purposes, ignored entries can be printed to the console if the \u003ccode\u003e\u003cspan id\u003d\"jdk.net.URLClassPath.showIgnoredClassPathEntries\" class\u003d\"search-tag-result\"\u003ejdk.net.URLClassPath.showIgnoredClassPathEntries\u003c/span\u003e\u003c/code\u003e system property is set to \u003ccode\u003etrue\u003c/code\u003e.\u003c/p\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is present, and the caller\u0027s class loader is not \n\u003ccode\u003enull\u003c/code\u003e and is not the same as or an ancestor of the system class loader, and the caller does not have the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"getClassLoader\")\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If invoked recursively during the construction of the class loader specified by the \"\n\u003ccode\u003ejava.system.class.loader\u003c/code\u003e\" property.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Error.html\" title\u003d\"class in java.lang\"\u003eError\u003c/a\u003e\u003c/code\u003e - If the system property \"\n\u003ccode\u003ejava.system.class.loader\u003c/code\u003e\" is defined but the named class could not be loaded, the provider class does not define the required constructor, or an exception is thrown by that constructor when it is invoked. The underlying cause of the error can be retrieved via the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html#getCause()\"\u003e\u003ccode\u003eThrowable.getCause()\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "return": [
+          "The system \n\u003ccode\u003eClassLoader\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Package",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "specTitle",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "specVersion",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "specVendor",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "implTitle",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "implVersion",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "implVendor",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "name": "sealBase",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "definePackage",
+      "comment": "Defines a package by name in this ClassLoader. Package names must be unique within a class loader and cannot be redefined or changed once created. If a class loader wishes to define a package with specific properties, such as version information, then the class loader should call this definePackage method before calling defineClass. Otherwise, the defineClass method will define a package in this class loader corresponding to the package of the newly defined class; the properties of this defined package are specified by Package.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/jar/jar.html#package-sealing\"\u003e The JAR File Specification: Package Sealing\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "A class loader that wishes to define a package for classes in a JAR typically uses the specification and implementation titles, versions, and vendors from the JAR\u0027s manifest. If the package is specified as \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/jar/Attributes.Name.html#SEALED\"\u003esealed\u003c/a\u003e in the JAR\u0027s manifest, the \n\u003ccode\u003eURL\u003c/code\u003e of the JAR file is typically used as the \n\u003ccode\u003esealBase\u003c/code\u003e. If classes of package \n\u003ccode\u003e\u0027p\u0027\u003c/code\u003e defined by this class loader are loaded from multiple JARs, the \n\u003ccode\u003ePackage\u003c/code\u003e object may contain different information depending on the first class of package \n\u003ccode\u003e\u0027p\u0027\u003c/code\u003e defined and which JAR\u0027s manifest is read first to explicitly define package \n\u003ccode\u003e\u0027p\u0027\u003c/code\u003e. \n\u003cp\u003e It is strongly recommended that a class loader does not call this method to explicitly define packages in \u003cem\u003enamed modules\u003c/em\u003e; instead, the package will be automatically defined when a class is \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#defineClass(java.lang.String,byte%5B%5D,int,int,java.security.ProtectionDomain)\"\u003ebeing defined\u003c/a\u003e. If it is desirable to define \u003ccode\u003ePackage\u003c/code\u003e explicitly, it should ensure that all packages in a named module are defined with the properties specified by \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Package.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003ePackage\u003c/code\u003e\u003c/a\u003e. Otherwise, some \u003ccode\u003ePackage\u003c/code\u003e objects in a named module may be for example sealed with different seal base.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003epackage name\u003c/a\u003e",
+          "\u003ccode\u003especTitle\u003c/code\u003e - The specification title",
+          "\u003ccode\u003especVersion\u003c/code\u003e - The specification version",
+          "\u003ccode\u003especVendor\u003c/code\u003e - The specification vendor",
+          "\u003ccode\u003eimplTitle\u003c/code\u003e - The implementation title",
+          "\u003ccode\u003eimplVersion\u003c/code\u003e - The implementation version",
+          "\u003ccode\u003eimplVendor\u003c/code\u003e - The implementation vendor",
+          "\u003ccode\u003esealBase\u003c/code\u003e - If not \n\u003ccode\u003enull\u003c/code\u003e, then this package is sealed with respect to the given code source \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURL\u003c/code\u003e\u003c/a\u003e object. Otherwise, the package is not sealed."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a package of the given \n\u003ccode\u003ename\u003c/code\u003e is already defined by this class loader"
+        ],
+        "See Java Virtual Machine Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-5.html#jls-5.3\"\u003e5.3 Creation and Loading\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "return": [
+          "The newly defined \n\u003ccode\u003ePackage\u003c/code\u003e object"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Package",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getDefinedPackage",
+      "comment": "Returns a Package of the given name that has been defined by this class loader.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003epackage name\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "See Java Virtual Machine Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-5.html#jls-5.3\"\u003e5.3 Creation and Loading\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "return": [
+          "The \n\u003ccode\u003ePackage\u003c/code\u003e of the given name that has been defined by this class loader, or \n\u003ccode\u003enull\u003c/code\u003e if not found"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Package",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getDefinedPackages",
+      "comment": "Returns all of the Packages that have been defined by this class loader. The returned array has no duplicated Packages of the same name.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "This method returns an array rather than a \n\u003ccode\u003eSet\u003c/code\u003e or \n\u003ccode\u003eStream\u003c/code\u003e for consistency with the existing \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getPackages()\"\u003e\u003ccode\u003egetPackages()\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "See Java Virtual Machine Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-5.html#jls-5.3\"\u003e5.3 Creation and Loading\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "return": [
+          "The array of \n\u003ccode\u003ePackage\u003c/code\u003e objects that have been defined by this class loader; or an zero length array if no package has been defined by this class loader."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Package",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getPackage",
+      "comment": "Finds a package by name in this class loader and its ancestors. If this class loader defines a Package of the given name, the Package is returned. Otherwise, the ancestors of this class loader are searched recursively (parent by parent) for a Package of the given name.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "since",
+              "value": "9"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getDefinedPackage(java.lang.String)\"\u003e\u003ccode\u003egetDefinedPackage(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getPlatformClassLoader()\"\u003e\u003ccode\u003eplatform class loader\u003c/code\u003e\u003c/a\u003e may delegate to the application class loader but the application class loader is not its ancestor. When invoked on the platform class loader, this method will not find packages defined to the application class loader."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#binary-name\"\u003epackage name\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "The \n\u003ccode\u003ePackage\u003c/code\u003e of the given name that has been defined by this class loader or its ancestors, or \n\u003ccode\u003enull\u003c/code\u003e if not found."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Package",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getPackages",
+      "comment": "Returns all of the Packages that have been defined by this class loader and its ancestors. The returned array may contain more than one Package object of the same package name, each defined by a different class loader in the class loader hierarchy.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getDefinedPackages()\"\u003e\u003ccode\u003egetDefinedPackages()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getPlatformClassLoader()\"\u003e\u003ccode\u003eplatform class loader\u003c/code\u003e\u003c/a\u003e may delegate to the application class loader. In other words, packages in modules defined to the application class loader may be visible to the platform class loader. On the other hand, the application class loader is not its ancestor and hence when invoked on the platform class loader, this method will not return any packages defined to the application class loader."
+        ],
+        "return": [
+          "The array of \n\u003ccode\u003ePackage\u003c/code\u003e objects that have been defined by this class loader and its ancestors"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "libname",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "findLibrary",
+      "comment": "Returns the absolute path name of a native library. The VM invokes this method to locate the native libraries that belong to classes loaded with this class loader. If this method returns null, the VM searches the library along the path specified as the \"java.library.path\" property.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#loadLibrary(java.lang.String)\"\u003e\u003ccode\u003eSystem.loadLibrary(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#mapLibraryName(java.lang.String)\"\u003e\u003ccode\u003eSystem.mapLibraryName(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elibname\u003c/code\u003e - The library name"
+        ],
+        "return": [
+          "The absolute path of the native library"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "enabled",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setDefaultAssertionStatus",
+      "comment": "Sets the default assertion status for this class loader. This setting determines whether classes loaded by this class loader and initialized in the future will have assertions enabled or disabled by default. This setting may be overridden on a per-package or per-class basis by invoking setPackageAssertionStatus(String, boolean) or setClassAssertionStatus(String, boolean).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eenabled\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if classes loaded by this class loader will henceforth have assertions enabled by default, \n\u003ccode\u003efalse\u003c/code\u003e if they will have assertions disabled by default."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "packageName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "enabled",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setPackageAssertionStatus",
+      "comment": "Sets the package default assertion status for the named package. The package default assertion status determines the assertion status for classes initialized in the future that belong to the named package or any of its \"subpackages\". A subpackage of a package named p is any package whose name begins with \"p.\". For example, javax.swing.text is a subpackage of javax.swing, and both java.util and java.lang.reflect are subpackages of java. In the event that multiple package defaults apply to a given class, the package default pertaining to the most specific package takes precedence over the others. For example, if javax.lang and javax.lang.reflect both have package defaults associated with them, the latter package default applies to classes in javax.lang.reflect. Package defaults take precedence over the class loader\u0027s default assertion status, and may be overridden on a per-class basis by invoking setClassAssertionStatus(String, boolean).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epackageName\u003c/code\u003e - The name of the package whose package default assertion status is to be set. A \n\u003ccode\u003enull\u003c/code\u003e value indicates the unnamed package that is \"current\" (see section \n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-7.html#jls-7.4.2\"\u003e7.4.2\u003c/a\u003e of \n\u003ccite\u003eThe Java Language Specification\u003c/cite\u003e.)",
+          "\u003ccode\u003eenabled\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if classes loaded by this classloader and belonging to the named package or any of its subpackages will have assertions enabled by default, \n\u003ccode\u003efalse\u003c/code\u003e if they will have assertions disabled by default."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "enabled",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setClassAssertionStatus",
+      "comment": "Sets the desired assertion status for the named top-level class in this class loader and any nested classes contained therein. This setting takes precedence over the class loader\u0027s default assertion status, and over any applicable per-package default. This method has no effect if the named class has already been initialized. (Once a class is initialized, its assertion status cannot change.) If the named class is not a top-level class, this invocation will have no effect on the actual assertion status of any class.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The fully qualified class name of the top-level class whose assertion status is to be set.",
+          "\u003ccode\u003eenabled\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if the named class is to have assertions enabled when (and if) it is initialized, \n\u003ccode\u003efalse\u003c/code\u003e if the class is to have assertions disabled."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clearAssertionStatus",
+      "comment": "Sets the default assertion status for this class loader to false and discards any package defaults or class assertion status settings associated with the class loader. This method is provided so that class loaders can be made to ignore any command line or persistent assertion status settings and \"start with a clean slate.\"",
+      "annotations": [],
+      "tagMap": {
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "name": "parent",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new class loader of the specified name and using the specified parent class loader for delegation.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "If the parent is specified as \n\u003ccode\u003enull\u003c/code\u003e (for the bootstrap class loader) then there is no guarantee that all platform classes are visible."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - class loader name; or \n\u003ccode\u003enull\u003c/code\u003e if not named",
+          "\u003ccode\u003eparent\u003c/code\u003e - the parent class loader"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given name is empty.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager exists and its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkCreateClassLoader()\"\u003e\u003ccode\u003eSecurityManager.checkCreateClassLoader()\u003c/code\u003e\u003c/a\u003e method doesn\u0027t allow creation of a new class loader."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "name": "parent",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new class loader using the specified parent class loader for delegation. If there is a security manager, its checkCreateClassLoader method is invoked. This may result in a security exception.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "If the parent is specified as \n\u003ccode\u003enull\u003c/code\u003e (for the bootstrap class loader) then there is no guarantee that all platform classes are visible."
+        ],
+        "param": [
+          "\u003ccode\u003eparent\u003c/code\u003e - The parent class loader"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager exists and its \n\u003ccode\u003echeckCreateClassLoader\u003c/code\u003e method doesn\u0027t allow creation of a new class loader."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new class loader using the ClassLoader returned by the method getSystemClassLoader() as the parent class loader. If there is a security manager, its checkCreateClassLoader method is invoked. This may result in a security exception.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager exists and its \n\u003ccode\u003echeckCreateClassLoader\u003c/code\u003e method doesn\u0027t allow creation of a new class loader."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.lang.ClassLoader",
+  "annotations": [],
+  "tagMap": {
+    "See Java Language Specification:": [
+      "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-6.html#jls-6.7\"\u003e6.7 Fully Qualified Names\u003c/a\u003e\n\u003cbr\u003e\n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-13.html#jls-13.1\"\u003e13.1 The Form of a Binary\u003c/a\u003e\n\u003cbr\u003e"
+    ],
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#resolveClass(java.lang.Class)\"\u003e\u003ccode\u003eresolveClass(Class)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.0"
+    ]
+  }
+}

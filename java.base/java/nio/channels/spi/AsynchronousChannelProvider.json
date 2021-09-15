@@ -1,0 +1,243 @@
+{
+  "packageName": "java.nio.channels.spi",
+  "simpleName": "AsynchronousChannelProvider",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.nio.channels.spi.AsynchronousChannelProvider",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "provider",
+      "comment": "Returns the system-wide default asynchronous channel provider for this invocation of the Java virtual machine. The first invocation of this method locates the default provider object as follows: If the system property java.nio.channels.spi.AsynchronousChannelProvider is defined then it is taken to be the fully-qualified name of a concrete provider class. The class is loaded and instantiated; if this process fails then an unspecified error is thrown. If a provider class has been installed in a jar file that is visible to the system class loader, and that jar file contains a provider-configuration file named java.nio.channels.spi.AsynchronousChannelProvider in the resource directory META-INF/services, then the first class name specified in that file is taken. The class is loaded and instantiated; if this process fails then an unspecified error is thrown. Finally, if no provider has been specified by any of the above means then the system-default provider class is instantiated and the result is returned. Subsequent invocations of this method return the provider that was returned by the first invocation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The system-wide default AsynchronousChannel provider"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.AsynchronousChannelGroup",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "nThreads",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.ThreadFactory",
+            "type": "Class"
+          },
+          "name": "threadFactory",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "openAsynchronousChannelGroup",
+      "comment": "Constructs a new asynchronous channel group with a fixed thread pool.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/AsynchronousChannelGroup.html#withFixedThreadPool(int,java.util.concurrent.ThreadFactory)\"\u003e\u003ccode\u003eAsynchronousChannelGroup.withFixedThreadPool(int, java.util.concurrent.ThreadFactory)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enThreads\u003c/code\u003e - The number of threads in the pool",
+          "\u003ccode\u003ethreadFactory\u003c/code\u003e - The factory to use when creating new threads"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003enThreads \u0026lt;\u003d 0\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "return": [
+          "A new asynchronous channel group"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.AsynchronousChannelGroup",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.ExecutorService",
+            "type": "Class"
+          },
+          "name": "executor",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "initialSize",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "openAsynchronousChannelGroup",
+      "comment": "Constructs a new asynchronous channel group with the given thread pool.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/AsynchronousChannelGroup.html#withCachedThreadPool(java.util.concurrent.ExecutorService,int)\"\u003e\u003ccode\u003eAsynchronousChannelGroup.withCachedThreadPool(java.util.concurrent.ExecutorService, int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eexecutor\u003c/code\u003e - The thread pool",
+          "\u003ccode\u003einitialSize\u003c/code\u003e - A value \n\u003ccode\u003e\u0026gt;\u003d0\u003c/code\u003e or a negative value for implementation specific default"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "return": [
+          "A new asynchronous channel group"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.AsynchronousServerSocketChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.channels.AsynchronousChannelGroup",
+            "type": "Class"
+          },
+          "name": "group",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "openAsynchronousServerSocketChannel",
+      "comment": "Opens an asynchronous server-socket channel.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003egroup\u003c/code\u003e - The group to which the channel is bound, or \n\u003ccode\u003enull\u003c/code\u003e to bind to the default group"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/IllegalChannelGroupException.html\" title\u003d\"class in java.nio.channels\"\u003eIllegalChannelGroupException\u003c/a\u003e\u003c/code\u003e - If the provider that created the group differs from this provider",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ShutdownChannelGroupException.html\" title\u003d\"class in java.nio.channels\"\u003eShutdownChannelGroupException\u003c/a\u003e\u003c/code\u003e - The group is shutdown",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "return": [
+          "The new channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.AsynchronousSocketChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.channels.AsynchronousChannelGroup",
+            "type": "Class"
+          },
+          "name": "group",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "openAsynchronousSocketChannel",
+      "comment": "Opens an asynchronous socket channel.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003egroup\u003c/code\u003e - The group to which the channel is bound, or \n\u003ccode\u003enull\u003c/code\u003e to bind to the default group"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/IllegalChannelGroupException.html\" title\u003d\"class in java.nio.channels\"\u003eIllegalChannelGroupException\u003c/a\u003e\u003c/code\u003e - If the provider that created the group differs from this provider",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ShutdownChannelGroupException.html\" title\u003d\"class in java.nio.channels\"\u003eShutdownChannelGroupException\u003c/a\u003e\u003c/code\u003e - The group is shutdown",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "return": [
+          "The new channel"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Initializes a new instance of this class.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager has been installed and it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"asynchronousChannelProvider\")\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.nio.channels.spi.AsynchronousChannelProvider",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

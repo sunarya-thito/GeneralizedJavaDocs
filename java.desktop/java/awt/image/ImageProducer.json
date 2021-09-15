@@ -1,0 +1,173 @@
+{
+  "packageName": "java.awt.image",
+  "simpleName": "ImageProducer",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.ImageConsumer",
+            "type": "Class"
+          },
+          "name": "ic",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addConsumer",
+      "comment": "Registers an ImageConsumer with the ImageProducer for access to the image data during a later reconstruction of the Image. The ImageProducer may, at its discretion, start delivering the image data to the consumer using the ImageConsumer interface immediately, or when the next available image reconstruction is triggered by a call to the startProduction method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/image/ImageProducer.html#startProduction(java.awt.image.ImageConsumer)\"\u003e\u003ccode\u003estartProduction(java.awt.image.ImageConsumer)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eic\u003c/code\u003e - the specified \n\u003ccode\u003eImageConsumer\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.ImageConsumer",
+            "type": "Class"
+          },
+          "name": "ic",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isConsumer",
+      "comment": "Determines if a specified ImageConsumer object is currently registered with this ImageProducer as one of its consumers.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eic\u003c/code\u003e - the specified \n\u003ccode\u003eImageConsumer\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the specified \n\u003ccode\u003eImageConsumer\u003c/code\u003e is registered with this \n\u003ccode\u003eImageProducer\u003c/code\u003e; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.ImageConsumer",
+            "type": "Class"
+          },
+          "name": "ic",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeConsumer",
+      "comment": "Removes the specified ImageConsumer object from the list of consumers currently registered to receive image data. It is not considered an error to remove a consumer that is not currently registered. The ImageProducer should stop sending data to this consumer as soon as is feasible.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eic\u003c/code\u003e - the specified \n\u003ccode\u003eImageConsumer\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.ImageConsumer",
+            "type": "Class"
+          },
+          "name": "ic",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "startProduction",
+      "comment": "Registers the specified ImageConsumer object as a consumer and starts an immediate reconstruction of the image data which will then be delivered to this consumer and any other consumer which might have already been registered with the producer. This method differs from the addConsumer method in that a reproduction of the image data should be triggered as soon as possible.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/image/ImageProducer.html#addConsumer(java.awt.image.ImageConsumer)\"\u003e\u003ccode\u003eaddConsumer(java.awt.image.ImageConsumer)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eic\u003c/code\u003e - the specified \n\u003ccode\u003eImageConsumer\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.ImageConsumer",
+            "type": "Class"
+          },
+          "name": "ic",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "requestTopDownLeftRightResend",
+      "comment": "Requests, on behalf of the ImageConsumer, that the ImageProducer attempt to resend the image data one more time in TOPDOWNLEFTRIGHT order so that higher quality conversion algorithms which depend on receiving pixels in order can be used to produce a better output version of the image. The ImageProducer is free to ignore this call if it cannot resend the data in that order. If the data can be resent, the ImageProducer should respond by executing the following minimum set of ImageConsumer method calls: \n  ic.setHints(TOPDOWNLEFTRIGHT | \u003c otherhints \u003e);\n  ic.setPixels(...);      // As many times as needed\n  ic.imageComplete();",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/image/ImageConsumer.html#setHints(int)\"\u003e\u003ccode\u003eImageConsumer.setHints(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eic\u003c/code\u003e - the specified \n\u003ccode\u003eImageConsumer\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.awt.image.ImageProducer",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/image/ImageConsumer.html\" title\u003d\"interface in java.awt.image\"\u003e\u003ccode\u003eImageConsumer\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

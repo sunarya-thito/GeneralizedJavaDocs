@@ -1,0 +1,121 @@
+{
+  "packageName": "java.nio.file.attribute",
+  "simpleName": "AclFileAttributeView",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.nio.file.attribute.FileOwnerAttributeView",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Returns the name of the attribute view. Attribute views of this type have the name \"acl\".",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/attribute/AttributeView.html#name()\"\u003ename\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/attribute/AttributeView.html\" title\u003d\"interface in java.nio.file.attribute\"\u003eAttributeView\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/attribute/FileOwnerAttributeView.html#name()\"\u003ename\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/attribute/FileOwnerAttributeView.html\" title\u003d\"interface in java.nio.file.attribute\"\u003eFileOwnerAttributeView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the name of the attribute view"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.nio.file.attribute.AclEntry",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAcl",
+      "comment": "Reads the access control list. When the file system uses an ACL model that differs from the NFSv4 defined ACL model, then this method returns an ACL that is the translation of the ACL to the NFSv4 ACL model. The returned list is modifiable so as to facilitate changes to the existing ACL. The setAcl method is used to update the file\u0027s ACL attribute.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, a security manager is installed, and it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"accessUserInformation\")\u003c/code\u003e or its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method denies read access to the file."
+        ],
+        "return": [
+          "an ordered list of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/attribute/AclEntry.html\" title\u003d\"class in java.nio.file.attribute\"\u003e\u003ccode\u003eentries\u003c/code\u003e\u003c/a\u003e representing the ACL"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "name": "java.nio.file.attribute.AclEntry",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "acl",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setAcl",
+      "comment": "Updates (replace) the access control list. Where the file system supports Access Control Lists, and it uses an ACL model that differs from the NFSv4 defined ACL model, then this method must translate the ACL to the model supported by the file system. This method should reject (by throwing IOException) any attempt to write an ACL that would appear to make the file more secure than would be the case if the ACL were updated. Where an implementation does not support a mapping of AclEntryType.AUDIT or AclEntryType.ALARM entries, then this method ignores these entries when writing the ACL. If an ACL entry contains a user-principal that is not associated with the same provider as this attribute view then ProviderMismatchException is thrown. Additional validation, if any, is implementation dependent. If the file system supports other security related file attributes (such as a file access-permissions for example), the updating the access control list may also cause these security related attributes to be updated.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eacl\u003c/code\u003e - the new access control list"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs or the ACL is invalid",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, a security manager is installed, it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"accessUserInformation\")\u003c/code\u003e or its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method denies write access to the file."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.file.attribute.AclFileAttributeView",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

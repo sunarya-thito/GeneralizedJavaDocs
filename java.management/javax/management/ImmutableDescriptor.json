@@ -1,0 +1,545 @@
+{
+  "packageName": "javax.management",
+  "simpleName": "ImmutableDescriptor",
+  "moduleName": "java.management",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "javax.management.ImmutableDescriptor",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "EMPTY_DESCRIPTOR",
+      "comment": "An empty descriptor.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ImmutableDescriptor",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.Descriptor",
+            "type": "Class"
+          },
+          "name": "descriptors",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "union",
+      "comment": "Return an ImmutableDescriptor whose contents are the union of the given descriptors. Every field name that appears in any of the descriptors will appear in the result with the value that it has when the method is called. Subsequent changes to any of the descriptors do not affect the ImmutableDescriptor returned here. In the simplest case, there is only one descriptor and the returned ImmutableDescriptor is a copy of its fields at the time this method is called:  Descriptor d \u003d something();\n ImmutableDescriptor copy \u003d ImmutableDescriptor.union(d);",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edescriptors\u003c/code\u003e - the descriptors to be combined. Any of the descriptors can be null, in which case it is skipped."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if two Descriptors contain the same field name with different associated values. Primitive array values are considered the same if they are of the same type with the same elements. Object array values are considered the same if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Arrays.html#deepEquals(java.lang.Object%5B%5D,java.lang.Object%5B%5D)\"\u003e\u003ccode\u003eArrays.deepEquals(Object[],Object[])\u003c/code\u003e\u003c/a\u003e returns true."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eImmutableDescriptor\u003c/code\u003e that is the union of the given descriptors. The returned object may be identical to one of the input descriptors if it is an ImmutableDescriptor that contains all of the required fields."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "fieldName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getFieldValue",
+      "comment": "Description copied from interface: Descriptor",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#getFieldValue(java.lang.String)\"\u003egetFieldValue\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efieldName\u003c/code\u003e - the field name."
+        ],
+        "return": [
+          "the corresponding value, or null if the field is not present."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getFields",
+      "comment": "Description copied from interface: Descriptor",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#setFields(java.lang.String%5B%5D,java.lang.Object%5B%5D)\"\u003e\u003ccode\u003eDescriptor.setFields(java.lang.String[], java.lang.Object[])\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#getFields()\"\u003egetFields\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "String array of fields in the format \n\u003ci\u003efieldName\u003dfieldValue\u003c/i\u003e \n\u003cbr\u003eIf the value of a field is not a String, then the toString() method will be called on it and the returned value, enclosed in parentheses, used as the value for the field in the returned array. If the value of a field is null, then the value of the field in the returned array will be empty. If the descriptor is empty, you will get an empty array."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "fieldNames",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getFieldValues",
+      "comment": "Description copied from interface: Descriptor",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#getFieldValues(java.lang.String...)\"\u003egetFieldValues\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efieldNames\u003c/code\u003e - String array of the names of the fields that the values should be returned for. If the array is empty then an empty array will be returned. If the array is null then all values will be returned, as if the parameter were the array returned by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#getFieldNames()\"\u003e\u003ccode\u003eDescriptor.getFieldNames()\u003c/code\u003e\u003c/a\u003e. If a field name in the array does not exist, including the case where it is null or the empty string, then null is returned for the matching array element being returned."
+        ],
+        "return": [
+          "Object array of field values. If the list of \n\u003ccode\u003efieldNames\u003c/code\u003e is empty, you will get an empty array."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getFieldNames",
+      "comment": "Description copied from interface: Descriptor",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#getFieldNames()\"\u003egetFieldNames\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "String array of field names. If the descriptor is empty, you will get an empty array."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "o",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "equals",
+      "comment": "Compares this descriptor to the given object. The objects are equal if the given object is also a Descriptor, and if the two Descriptors have the same field names (possibly differing in case) and the same associated values. The respective values for a field in the two Descriptors are equal if the following conditions hold: If one value is null then the other must be too. If one value is a primitive array then the other must be a primitive array of the same type with the same elements. If one value is an object array then the other must be too and Arrays.deepEquals(Object[],Object[]) must return true. Otherwise Object.equals(Object) must return true.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eo\u003c/code\u003e - the object to compare with."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the objects are the same; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hashCode",
+      "comment": "Returns the hash code value for this descriptor. The hash code is computed as the sum of the hash codes for each field in the descriptor. The hash code of a field with name n and value v is n.toLowerCase().hashCode() ^ h. Here h is the hash code of v, computed as follows: If v is null then h is 0. If v is a primitive array then h is computed using the appropriate overloading of java.util.Arrays.hashCode. If v is an object array then h is computed using Arrays.deepHashCode(Object[]). Otherwise h is v.hashCode().",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "A hash code value for this object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isValid",
+      "comment": "Returns true if all of the fields have legal values given their names. This method always returns true, but a subclass can override it to return false when appropriate.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#isValid()\"\u003eisValid\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - if the validity checking fails. The method returns false if the descriptor is not valid, but throws this exception if the attempt to determine validity fails."
+        ],
+        "return": [
+          "true if the values are legal."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.Descriptor",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clone",
+      "comment": "Returns a descriptor which is equal to this descriptor. Changes to the returned descriptor will have no effect on this descriptor, and vice versa. This method returns the object on which it is called. A subclass can override it to return another object provided the contract is respected.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Cloneable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eCloneable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#clone()\"\u003eclone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#clone()\"\u003eclone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - for illegal value for field Names or field Values. If the descriptor construction fails for any reason, this exception will be thrown."
+        ],
+        "return": [
+          "a clone of this instance."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.RuntimeOperationsException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "fieldNames",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "fieldValues",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "setFields",
+      "comment": "This operation is unsupported since this class is immutable. If this call would change a mutable descriptor with the same contents, then a RuntimeOperationsException wrapping an UnsupportedOperationException is thrown. Otherwise, the behavior is the same as it would be for a mutable descriptor: either an exception is thrown because of illegal parameters, or there is no effect.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#getFields()\"\u003e\u003ccode\u003eDescriptor.getFields()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#setFields(java.lang.String%5B%5D,java.lang.Object%5B%5D)\"\u003esetFields\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efieldNames\u003c/code\u003e - String array of field names. The array and array elements cannot be null.",
+          "\u003ccode\u003efieldValues\u003c/code\u003e - Object array of the corresponding field values. The array cannot be null. Elements of the array can be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - if the change fails for any reason. Wrapped exception is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e if \n\u003ccode\u003efieldNames\u003c/code\u003e or \n\u003ccode\u003efieldValues\u003c/code\u003e is null, or if the arrays are of different lengths, or if there is an illegal value in one of them. Wrapped exception is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e if the descriptor is immutable, and the call would change its contents."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.RuntimeOperationsException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "fieldName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "fieldValue",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "setField",
+      "comment": "This operation is unsupported since this class is immutable. If this call would change a mutable descriptor with the same contents, then a RuntimeOperationsException wrapping an UnsupportedOperationException is thrown. Otherwise, the behavior is the same as it would be for a mutable descriptor: either an exception is thrown because of illegal parameters, or there is no effect.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#setField(java.lang.String,java.lang.Object)\"\u003esetField\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efieldName\u003c/code\u003e - The field name to be set. Cannot be null or empty.",
+          "\u003ccode\u003efieldValue\u003c/code\u003e - The field value to be set for the field name. Can be null if that is a valid value for the field."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - if the field name or field value is illegal (wrapped exception is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e); or if the descriptor is immutable (wrapped exception is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "fieldName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "removeField",
+      "comment": "Removes a field from the descriptor.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html#removeField(java.lang.String)\"\u003eremoveField\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/Descriptor.html\" title\u003d\"interface in javax.management\"\u003eDescriptor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efieldName\u003c/code\u003e - String name of the field to be removed. If the field name is illegal or the field is not found, no exception is thrown."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - if a field of the given name exists and the descriptor is immutable. The wrapped exception will be an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "fieldNames",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "fieldValues",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Construct a descriptor containing the given fields and values.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efieldNames\u003c/code\u003e - the field names",
+          "\u003ccode\u003efieldValues\u003c/code\u003e - the field values"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either array is null, or if the arrays have different sizes, or if a field name is null or empty, or if the same field name appears more than once."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "fields",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Construct a descriptor containing the given fields. Each String must be of the form fieldName\u003dfieldValue. The field name ends at the first \u003d character; for example if the String is a\u003db\u003dc then the field name is a and its value is b\u003dc.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efields\u003c/code\u003e - the field names"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the parameter is null, or if a field name is empty, or if the same field name appears more than once, or if one of the strings does not contain an \n\u003ccode\u003e\u003d\u003c/code\u003e character."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "fields",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Construct a descriptor where the names and values of the fields are the keys and values of the given Map.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efields\u003c/code\u003e - the field names and values"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the parameter is null, or if a field name is null or empty, or if the same field name appears more than once (which can happen because field names are not case sensitive)."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.management.ImmutableDescriptor",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.management.ImmutableDescriptor\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

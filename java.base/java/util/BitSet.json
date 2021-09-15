@@ -1,0 +1,1177 @@
+{
+  "packageName": "java.util",
+  "simpleName": "BitSet",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.BitSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "longs",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "valueOf",
+      "comment": "Returns a new bit set containing all the bits in the given long array. More precisely, BitSet.valueOf(longs).get(n) \u003d\u003d ((longs[n/64] \u0026 (1L\u003c\u003c(n%64))) !\u003d 0) for all n \u003c 64 * longs.length. This method is equivalent to BitSet.valueOf(LongBuffer.wrap(longs)).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elongs\u003c/code\u003e - a long array containing a little-endian representation of a sequence of bits to be used as the initial bits of the new bit set"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eBitSet\u003c/code\u003e containing all the bits in the long array"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.BitSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.LongBuffer",
+            "type": "Class"
+          },
+          "name": "lb",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "valueOf",
+      "comment": "Returns a new bit set containing all the bits in the given long buffer between its position and limit. More precisely, BitSet.valueOf(lb).get(n) \u003d\u003d ((lb.get(lb.position()+n/64) \u0026 (1L\u003c\u003c(n%64))) !\u003d 0) for all n \u003c 64 * lb.remaining(). The long buffer is not modified by this method, and no reference to the buffer is retained by the bit set.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elb\u003c/code\u003e - a long buffer containing a little-endian representation of a sequence of bits between its position and limit, to be used as the initial bits of the new bit set"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eBitSet\u003c/code\u003e containing all the bits in the buffer in the specified range"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.BitSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "bytes",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "valueOf",
+      "comment": "Returns a new bit set containing all the bits in the given byte array. More precisely, BitSet.valueOf(bytes).get(n) \u003d\u003d ((bytes[n/8] \u0026 (1\u003c\u003c(n%8))) !\u003d 0) for all n \u003c 8 * bytes.length. This method is equivalent to BitSet.valueOf(ByteBuffer.wrap(bytes)).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytes\u003c/code\u003e - a byte array containing a little-endian representation of a sequence of bits to be used as the initial bits of the new bit set"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eBitSet\u003c/code\u003e containing all the bits in the byte array"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.BitSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "name": "bb",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "valueOf",
+      "comment": "Returns a new bit set containing all the bits in the given byte buffer between its position and limit. More precisely, BitSet.valueOf(bb).get(n) \u003d\u003d ((bb.get(bb.position()+n/8) \u0026 (1\u003c\u003c(n%8))) !\u003d 0) for all n \u003c 8 * bb.remaining(). The byte buffer is not modified by this method, and no reference to the buffer is retained by the bit set.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebb\u003c/code\u003e - a byte buffer containing a little-endian representation of a sequence of bits between its position and limit, to be used as the initial bits of the new bit set"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eBitSet\u003c/code\u003e containing all the bits in the buffer in the specified range"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toByteArray",
+      "comment": "Returns a new byte array containing all the bits in this bit set. More precisely, if byte[] bytes \u003d s.toByteArray(); then bytes.length \u003d\u003d (s.length()+7)/8 and s.get(n) \u003d\u003d ((bytes[n/8] \u0026 (1\u003c\u003c(n%8))) !\u003d 0) for all n \u003c 8 * bytes.length.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a byte array containing a little-endian representation of all the bits in this bit set"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toLongArray",
+      "comment": "Returns a new long array containing all the bits in this bit set. More precisely, if long[] longs \u003d s.toLongArray(); then longs.length \u003d\u003d (s.length()+63)/64 and s.get(n) \u003d\u003d ((longs[n/64] \u0026 (1L\u003c\u003c(n%64))) !\u003d 0) for all n \u003c 64 * longs.length.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a long array containing a little-endian representation of all the bits in this bit set"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "bitIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "flip",
+      "comment": "Sets the bit at the specified index to the complement of its current value.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebitIndex\u003c/code\u003e - the index of the bit to flip"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "toIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "flip",
+      "comment": "Sets each bit from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to the complement of its current value.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - index of the first bit to flip",
+          "\u003ccode\u003etoIndex\u003c/code\u003e - index after the last bit to flip"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efromIndex\u003c/code\u003e is negative, or \n\u003ccode\u003etoIndex\u003c/code\u003e is negative, or \n\u003ccode\u003efromIndex\u003c/code\u003e is larger than \n\u003ccode\u003etoIndex\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "bitIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "set",
+      "comment": "Sets the bit at the specified index to true.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebitIndex\u003c/code\u003e - a bit index"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative"
+        ],
+        "since": [
+          "1.0"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "bitIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "set",
+      "comment": "Sets the bit at the specified index to the specified value.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebitIndex\u003c/code\u003e - a bit index",
+          "\u003ccode\u003evalue\u003c/code\u003e - a boolean value to set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "toIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "set",
+      "comment": "Sets the bits from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to true.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - index of the first bit to be set",
+          "\u003ccode\u003etoIndex\u003c/code\u003e - index after the last bit to be set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efromIndex\u003c/code\u003e is negative, or \n\u003ccode\u003etoIndex\u003c/code\u003e is negative, or \n\u003ccode\u003efromIndex\u003c/code\u003e is larger than \n\u003ccode\u003etoIndex\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "toIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "set",
+      "comment": "Sets the bits from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to the specified value.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - index of the first bit to be set",
+          "\u003ccode\u003etoIndex\u003c/code\u003e - index after the last bit to be set",
+          "\u003ccode\u003evalue\u003c/code\u003e - value to set the selected bits to"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efromIndex\u003c/code\u003e is negative, or \n\u003ccode\u003etoIndex\u003c/code\u003e is negative, or \n\u003ccode\u003efromIndex\u003c/code\u003e is larger than \n\u003ccode\u003etoIndex\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "bitIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clear",
+      "comment": "Sets the bit specified by the index to false.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebitIndex\u003c/code\u003e - the index of the bit to be cleared"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative"
+        ],
+        "since": [
+          "1.0"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "toIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clear",
+      "comment": "Sets the bits from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to false.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - index of the first bit to be cleared",
+          "\u003ccode\u003etoIndex\u003c/code\u003e - index after the last bit to be cleared"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efromIndex\u003c/code\u003e is negative, or \n\u003ccode\u003etoIndex\u003c/code\u003e is negative, or \n\u003ccode\u003efromIndex\u003c/code\u003e is larger than \n\u003ccode\u003etoIndex\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clear",
+      "comment": "Sets all of the bits in this BitSet to false.",
+      "annotations": [],
+      "tagMap": {
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "bitIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "get",
+      "comment": "Returns the value of the bit with the specified index. The value is true if the bit with the index bitIndex is currently set in this BitSet; otherwise, the result is false.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebitIndex\u003c/code\u003e - the bit index"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative"
+        ],
+        "return": [
+          "the value of the bit with the specified index"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.BitSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "toIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "get",
+      "comment": "Returns a new BitSet composed of bits from this BitSet from fromIndex (inclusive) to toIndex (exclusive).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - index of the first bit to include",
+          "\u003ccode\u003etoIndex\u003c/code\u003e - index after the last bit to include"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efromIndex\u003c/code\u003e is negative, or \n\u003ccode\u003etoIndex\u003c/code\u003e is negative, or \n\u003ccode\u003efromIndex\u003c/code\u003e is larger than \n\u003ccode\u003etoIndex\u003c/code\u003e"
+        ],
+        "return": [
+          "a new \n\u003ccode\u003eBitSet\u003c/code\u003e from a range of this \n\u003ccode\u003eBitSet\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextSetBit",
+      "comment": "Returns the index of the first bit that is set to true that occurs on or after the specified starting index. If no such bit exists then -1 is returned. To iterate over the true bits in a BitSet, use the following loop:  \n for (int i \u003d bs.nextSetBit(0); i \u003e\u003d 0; i \u003d bs.nextSetBit(i+1)) {\n     // operate on index i here\n     if (i \u003d\u003d Integer.MAX_VALUE) {\n         break; // or (i+1) would overflow\n     }\n }",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - the index to start checking from (inclusive)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative"
+        ],
+        "return": [
+          "the index of the next set bit, or \n\u003ccode\u003e-1\u003c/code\u003e if there is no such bit"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextClearBit",
+      "comment": "Returns the index of the first bit that is set to false that occurs on or after the specified starting index.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - the index to start checking from (inclusive)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative"
+        ],
+        "return": [
+          "the index of the next clear bit"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "previousSetBit",
+      "comment": "Returns the index of the nearest bit that is set to true that occurs on or before the specified starting index. If no such bit exists, or if -1 is given as the starting index, then -1 is returned. To iterate over the true bits in a BitSet, use the following loop:  \n for (int i \u003d bs.length(); (i \u003d bs.previousSetBit(i-1)) \u003e\u003d 0; ) {\n     // operate on index i here\n }",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - the index to start checking from (inclusive)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is less than \n\u003ccode\u003e-1\u003c/code\u003e"
+        ],
+        "return": [
+          "the index of the previous set bit, or \n\u003ccode\u003e-1\u003c/code\u003e if there is no such bit"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "fromIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "previousClearBit",
+      "comment": "Returns the index of the nearest bit that is set to false that occurs on or before the specified starting index. If no such bit exists, or if -1 is given as the starting index, then -1 is returned.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efromIndex\u003c/code\u003e - the index to start checking from (inclusive)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is less than \n\u003ccode\u003e-1\u003c/code\u003e"
+        ],
+        "return": [
+          "the index of the previous clear bit, or \n\u003ccode\u003e-1\u003c/code\u003e if there is no such bit"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "length",
+      "comment": "Returns the \"logical size\" of this BitSet: the index of the highest set bit in the BitSet plus one. Returns zero if the BitSet contains no set bits.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the logical size of this \n\u003ccode\u003eBitSet\u003c/code\u003e"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isEmpty",
+      "comment": "Returns true if this BitSet contains no bits that are set to true.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "boolean indicating whether this \n\u003ccode\u003eBitSet\u003c/code\u003e is empty"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.BitSet",
+            "type": "Class"
+          },
+          "name": "set",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "intersects",
+      "comment": "Returns true if the specified BitSet has any bits set to true that are also set to true in this BitSet.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eset\u003c/code\u003e - \n\u003ccode\u003eBitSet\u003c/code\u003e to intersect with"
+        ],
+        "return": [
+          "boolean indicating whether this \n\u003ccode\u003eBitSet\u003c/code\u003e intersects the specified \n\u003ccode\u003eBitSet\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "cardinality",
+      "comment": "Returns the number of bits set to true in this BitSet.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the number of bits set to \n\u003ccode\u003etrue\u003c/code\u003e in this \n\u003ccode\u003eBitSet\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.BitSet",
+            "type": "Class"
+          },
+          "name": "set",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "and",
+      "comment": "Performs a logical AND of this target bit set with the argument bit set. This bit set is modified so that each bit in it has the value true if and only if it both initially had the value true and the corresponding bit in the bit set argument also had the value true.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eset\u003c/code\u003e - a bit set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.BitSet",
+            "type": "Class"
+          },
+          "name": "set",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "or",
+      "comment": "Performs a logical OR of this bit set with the bit set argument. This bit set is modified so that a bit in it has the value true if and only if it either already had the value true or the corresponding bit in the bit set argument has the value true.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eset\u003c/code\u003e - a bit set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.BitSet",
+            "type": "Class"
+          },
+          "name": "set",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "xor",
+      "comment": "Performs a logical XOR of this bit set with the bit set argument. This bit set is modified so that a bit in it has the value true if and only if one of the following statements holds: The bit initially has the value true, and the corresponding bit in the argument has the value false. The bit initially has the value false, and the corresponding bit in the argument has the value true.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eset\u003c/code\u003e - a bit set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.BitSet",
+            "type": "Class"
+          },
+          "name": "set",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "andNot",
+      "comment": "Clears all of the bits in this BitSet whose corresponding bit is set in the specified BitSet.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eset\u003c/code\u003e - the \n\u003ccode\u003eBitSet\u003c/code\u003e with which to mask this \n\u003ccode\u003eBitSet\u003c/code\u003e"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hashCode",
+      "comment": "Returns the hash code value for this bit set. The hash code depends only on which bits are set within this BitSet. The hash code is defined to be the result of the following calculation:  \n public int hashCode() {\n     long h \u003d 1234;\n     long[] words \u003d toLongArray();\n     for (int i \u003d words.length; --i \u003e\u003d 0; )\n         h ^\u003d words[i] * (i + 1);\n     return (int)((h \u003e\u003e 32) ^ h);\n } Note that the hash code changes if the set of bits is altered.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the hash code value for this bit set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "size",
+      "comment": "Returns the number of bits of space actually in use by this BitSet to represent bit values. The maximum element in the set is the size - 1st element.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the number of bits currently in this bit set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "obj",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "equals",
+      "comment": "Compares this object against the specified object. The result is true if and only if the argument is not null and is a BitSet object that has exactly the same set of bits set to true as this bit set. That is, for every nonnegative int index k, ((BitSet)obj).get(k) \u003d\u003d this.get(k) must be true. The current sizes of the two bit sets are not compared.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/BitSet.html#size()\"\u003e\u003ccode\u003esize()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the object to compare with"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the objects are the same; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clone",
+      "comment": "Cloning this BitSet produces a new BitSet that is equal to it. The clone of the bit set is another bit set that has exactly the same bits set to true as this bit set.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/BitSet.html#size()\"\u003e\u003ccode\u003esize()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#clone()\"\u003eclone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a clone of this bit set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns a string representation of this bit set. For every index for which this BitSet contains a bit in the set state, the decimal representation of that index is included in the result. Such indices are listed in order from lowest to highest, separated by \", \" (a comma and a space) and surrounded by braces, resulting in the usual mathematical notation for a set of integers. Example:  BitSet drPepper \u003d new BitSet(); Now drPepper.toString() returns \"{}\".  drPepper.set(2); Now drPepper.toString() returns \"{2}\".  drPepper.set(4);\n drPepper.set(10); Now drPepper.toString() returns \"{2, 4, 10}\".",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of this bit set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.IntStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "stream",
+      "comment": "Returns a stream of indices for which this BitSet contains a bit in the set state. The indices are returned in order, from lowest to highest. The size of the stream is the number of bits in the set state, equal to the value returned by the cardinality() method. The stream binds to this bit set when the terminal stream operation commences (specifically, the spliterator for the stream is late-binding). If the bit set is modified during that operation then the result is undefined.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a stream of integers representing set indices"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new bit set. All bits are initially false.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "nbits",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a bit set whose initial size is large enough to explicitly represent bits with indices in the range 0 through nbits-1. All bits are initially false.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enbits\u003c/code\u003e - the initial size of the bit set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NegativeArraySizeException.html\" title\u003d\"class in java.lang\"\u003eNegativeArraySizeException\u003c/a\u003e\u003c/code\u003e - if the specified initial size is negative"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.util.BitSet",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.util.BitSet\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.0"
+    ]
+  }
+}

@@ -1,0 +1,835 @@
+{
+  "packageName": "jdk.dynalink.linker",
+  "simpleName": "GuardedInvocation",
+  "moduleName": "jdk.dynalink",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getInvocation",
+      "comment": "Returns the invocation method handle.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the invocation method handle. It will never be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getGuard",
+      "comment": "Returns the guard method handle.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the guard method handle. Can be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.SwitchPoint",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSwitchPoints",
+      "comment": "Returns the switch points that can be used to invalidate the linkage of this invocation handle.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the switch points that can be used to invalidate the linkage of this invocation handle. Can be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "java.lang.Throwable",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getException",
+      "comment": "Returns the exception type that if thrown by the invocation should invalidate the linkage of this guarded invocation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the exception type that if thrown should be used to invalidate the linkage. Can be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hasBeenInvalidated",
+      "comment": "Returns true if and only if this guarded invocation has at least one invalidated switch point.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "true if and only if this guarded invocation has at least one invalidated switch point."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "newInvocation",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "newGuard",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "replaceMethods",
+      "comment": "Creates a new guarded invocation with different methods, preserving the switch point.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewInvocation\u003c/code\u003e - the new invocation",
+          "\u003ccode\u003enewGuard\u003c/code\u003e - the new guard"
+        ],
+        "return": [
+          "a new guarded invocation with the replaced methods and the same switch point as this invocation."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.SwitchPoint",
+            "type": "Class"
+          },
+          "name": "newSwitchPoint",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addSwitchPoint",
+      "comment": "Create a new guarded invocation with an added switch point.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewSwitchPoint\u003c/code\u003e - new switch point. Can be null in which case this method return the current guarded invocation with no changes."
+        ],
+        "return": [
+          "a guarded invocation with the added switch point."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "name": "newType",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "asType",
+      "comment": "Changes the type of the invocation, as if MethodHandle.asType(MethodType) was applied to its invocation and its guard, if it has one (with return type changed to boolean, and parameter count potentially truncated for the guard). If the invocation already is of the required type, returns this object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewType\u003c/code\u003e - the new type of the invocation."
+        ],
+        "return": [
+          "a guarded invocation with the new type applied to it."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.dynalink.linker.LinkerServices",
+            "type": "Class"
+          },
+          "name": "linkerServices",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "name": "newType",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "asType",
+      "comment": "Changes the type of the invocation, as if LinkerServices.asType(MethodHandle, MethodType) was applied to its invocation and its guard, if it has one (with return type changed to boolean, and parameter count potentially truncated for the guard). If the invocation already is of the required type, returns this object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elinkerServices\u003c/code\u003e - the linker services to use for the conversion",
+          "\u003ccode\u003enewType\u003c/code\u003e - the new type of the invocation."
+        ],
+        "return": [
+          "a guarded invocation with the new type applied to it."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.dynalink.linker.LinkerServices",
+            "type": "Class"
+          },
+          "name": "linkerServices",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "name": "newType",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "asTypeSafeReturn",
+      "comment": "Changes the type of the invocation, as if LinkerServices.asTypeLosslessReturn(MethodHandle, MethodType) was applied to its invocation and LinkerServices.asType(MethodHandle, MethodType) applied to its guard, if it has one (with return type changed to boolean, and parameter count potentially truncated for the guard). If the invocation doesn\u0027t change its type, returns this object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elinkerServices\u003c/code\u003e - the linker services to use for the conversion",
+          "\u003ccode\u003enewType\u003c/code\u003e - the new type of the invocation."
+        ],
+        "return": [
+          "a guarded invocation with the new type applied to it."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.dynalink.CallSiteDescriptor",
+            "type": "Class"
+          },
+          "name": "desc",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "asType",
+      "comment": "Changes the type of the invocation, as if MethodHandle.asType(MethodType) was applied to its invocation and its guard, if it has one (with return type changed to boolean for guard). If the invocation already is of the required type, returns this object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edesc\u003c/code\u003e - a call descriptor whose method type is adapted."
+        ],
+        "return": [
+          "a guarded invocation with the new type applied to it."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "pos",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "filters",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "filterArguments",
+      "comment": "Applies argument filters to both the invocation and the guard (if it exists and has at least pos + 1 parameters) with MethodHandles.filterArguments(MethodHandle, int, MethodHandle...).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epos\u003c/code\u003e - the position of the first argument being filtered",
+          "\u003ccode\u003efilters\u003c/code\u003e - the argument filters"
+        ],
+        "return": [
+          "a filtered invocation"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "pos",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "name": "java.lang.Class",
+                "parameters": [
+                  {
+                    "type": "Wildcard"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "valueTypes",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "dropArguments",
+      "comment": "Makes an invocation that drops arguments in both the invocation and the guard (if it exists and has at least pos parameters) with MethodHandles.dropArguments(MethodHandle, int, List).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epos\u003c/code\u003e - the position of the first argument being dropped",
+          "\u003ccode\u003evalueTypes\u003c/code\u003e - the types of the values being dropped"
+        ],
+        "return": [
+          "an invocation that drops arguments"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "pos",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "valueTypes",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "dropArguments",
+      "comment": "Makes an invocation that drops arguments in both the invocation and the guard (if it exists and has at least pos parameters) with MethodHandles.dropArguments(MethodHandle, int, Class...).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epos\u003c/code\u003e - the position of the first argument being dropped",
+          "\u003ccode\u003evalueTypes\u003c/code\u003e - the types of the values being dropped"
+        ],
+        "return": [
+          "an invocation that drops arguments"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "fallback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "compose",
+      "comment": "Composes the invocation, guard, switch points, and the exception into a composite method handle that knows how to fall back when the guard fails or the invocation is invalidated.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efallback\u003c/code\u003e - the fallback method handle for when a switch point is invalidated, a guard returns false, or invalidating exception is thrown."
+        ],
+        "return": [
+          "a composite method handle."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "guardFallback",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "switchpointFallback",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "catchFallback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "compose",
+      "comment": "Composes the invocation, guard, switch points, and the exception into a composite method handle that knows how to fall back when the guard fails or the invocation is invalidated.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eswitchpointFallback\u003c/code\u003e - the fallback method handle in case a switch point is invalidated.",
+          "\u003ccode\u003eguardFallback\u003c/code\u003e - the fallback method handle in case guard returns false.",
+          "\u003ccode\u003ecatchFallback\u003c/code\u003e - the fallback method in case the exception handler triggers."
+        ],
+        "return": [
+          "a composite method handle."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "invocation",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new unconditional guarded invocation. It is unconditional as it has no invalidations.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einvocation\u003c/code\u003e - the method handle representing the invocation. Must not be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if invocation is null."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "invocation",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "guard",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new guarded invocation, with a guard method handle.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einvocation\u003c/code\u003e - the method handle representing the invocation. Must not be null.",
+          "\u003ccode\u003eguard\u003c/code\u003e - the method handle representing the guard. Must have be compatible with the \n\u003ccode\u003einvocation\u003c/code\u003e handle as per \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.html#guardWithTest(java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003eMethodHandles.guardWithTest(MethodHandle, MethodHandle, MethodHandle)\u003c/code\u003e\u003c/a\u003e. For some useful guards, check out the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/support/Guards.html\" title\u003d\"class in jdk.dynalink.linker.support\"\u003e\u003ccode\u003eGuards\u003c/code\u003e\u003c/a\u003e class. It can be null to represent an unconditional invocation."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if invocation is null."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "invocation",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.SwitchPoint",
+            "type": "Class"
+          },
+          "name": "switchPoint",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new guarded invocation that can be invalidated by a switch point.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einvocation\u003c/code\u003e - the method handle representing the invocation. Must not be null.",
+          "\u003ccode\u003eswitchPoint\u003c/code\u003e - the optional switch point that can be used to invalidate this linkage. It can be null. If it is null, this represents an unconditional invocation."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if invocation is null."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "invocation",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "guard",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.SwitchPoint",
+            "type": "Class"
+          },
+          "name": "switchPoint",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new guarded invocation, with both a guard method handle and a switch point that can be used to invalidate it.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einvocation\u003c/code\u003e - the method handle representing the invocation. Must not be null.",
+          "\u003ccode\u003eguard\u003c/code\u003e - the method handle representing the guard. Must have be compatible with the \n\u003ccode\u003einvocation\u003c/code\u003e handle as per \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.html#guardWithTest(java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003eMethodHandles.guardWithTest(MethodHandle, MethodHandle, MethodHandle)\u003c/code\u003e\u003c/a\u003e. For some useful guards, check out the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/support/Guards.html\" title\u003d\"class in jdk.dynalink.linker.support\"\u003e\u003ccode\u003eGuards\u003c/code\u003e\u003c/a\u003e class. It can be null. If both it and the switch point are null, this represents an unconditional invocation.",
+          "\u003ccode\u003eswitchPoint\u003c/code\u003e - the optional switch point that can be used to invalidate this linkage."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if invocation is null."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "invocation",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "guard",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.SwitchPoint",
+            "type": "Class"
+          },
+          "name": "switchPoint",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.lang.Throwable",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "exception",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new guarded invocation, with a guard method handle, a switch point that can be used to invalidate it, and an exception that if thrown when invoked also invalidates it.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einvocation\u003c/code\u003e - the method handle representing the invocation. Must not be null.",
+          "\u003ccode\u003eguard\u003c/code\u003e - the method handle representing the guard. Must have be compatible with the \n\u003ccode\u003einvocation\u003c/code\u003e handle as per \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.html#guardWithTest(java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003eMethodHandles.guardWithTest(MethodHandle, MethodHandle, MethodHandle)\u003c/code\u003e\u003c/a\u003e. For some useful guards, check out the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/support/Guards.html\" title\u003d\"class in jdk.dynalink.linker.support\"\u003e\u003ccode\u003eGuards\u003c/code\u003e\u003c/a\u003e class. It can be null. If it and the switch point and the exception are all null, this represents an unconditional invocation.",
+          "\u003ccode\u003eswitchPoint\u003c/code\u003e - the optional switch point that can be used to invalidate this linkage.",
+          "\u003ccode\u003eexception\u003c/code\u003e - the optional exception type that is when thrown by the invocation also invalidates it."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if invocation is null."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "invocation",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "guard",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.SwitchPoint",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "switchPoints",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.lang.Throwable",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "exception",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new guarded invocation, with a guard method handle, any number of switch points that can be used to invalidate it, and an exception that if thrown when invoked also invalidates it.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einvocation\u003c/code\u003e - the method handle representing the invocation. Must not be null.",
+          "\u003ccode\u003eguard\u003c/code\u003e - the method handle representing the guard. Must have be compatible with the \n\u003ccode\u003einvocation\u003c/code\u003e handle as per \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.html#guardWithTest(java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003eMethodHandles.guardWithTest(MethodHandle, MethodHandle, MethodHandle)\u003c/code\u003e\u003c/a\u003e. For some useful guards, check out the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/support/Guards.html\" title\u003d\"class in jdk.dynalink.linker.support\"\u003e\u003ccode\u003eGuards\u003c/code\u003e\u003c/a\u003e class. It can be null. If it and the exception are both null, and no switch points were specified, this represents an unconditional invocation.",
+          "\u003ccode\u003eswitchPoints\u003c/code\u003e - optional switch points that can be used to invalidate this linkage.",
+          "\u003ccode\u003eexception\u003c/code\u003e - the optional exception type that is when thrown by the invocation also invalidates it."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if invocation is null."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "jdk.dynalink.linker.GuardedInvocation",
+  "annotations": [],
+  "tagMap": {}
+}

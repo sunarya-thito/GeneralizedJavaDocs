@@ -1,0 +1,168 @@
+{
+  "packageName": "jdk.jshell.execution",
+  "simpleName": "JdiExecutionControl",
+  "moduleName": "jdk.jshell",
+  "type": "CLASS",
+  "superClass": {
+    "name": "jdk.jshell.execution.StreamingExecutionControl",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "com.sun.jdi.VirtualMachine",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "jdk.jshell.spi.ExecutionControl$EngineTerminationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "vm",
+      "comment": "Returns the JDI VirtualMachine instance.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControl.EngineTerminationException.html\" title\u003d\"class in jdk.jshell.spi\"\u003eExecutionControl.EngineTerminationException\u003c/a\u003e\u003c/code\u003e - if the VM is dead/disconnected"
+        ],
+        "return": [
+          "the virtual machine"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "jdk.jshell.spi.ExecutionControl$ClassInstallException",
+          "type": "Class"
+        },
+        {
+          "name": "jdk.jshell.spi.ExecutionControl$EngineTerminationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.jshell.spi.ExecutionControl$ClassBytecodes",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "cbcs",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "redefine",
+      "comment": "Redefine the specified classes. Where \u0027redefine\u0027 is, as in JDI and JVMTI, an in-place replacement of the classes (preserving class identity) -- that is, existing references to the class do not need to be recompiled. This implementation uses JDI VirtualMachine.redefineClasses(java.util.Map). It will be unsuccessful if the signature of the class has changed (see the JDI spec). The JShell-core is designed to adapt to unsuccessful redefine.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControl.html#redefine(jdk.jshell.spi.ExecutionControl.ClassBytecodes%5B%5D)\"\u003eredefine\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControl.html\" title\u003d\"interface in jdk.jshell.spi\"\u003eExecutionControl\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecbcs\u003c/code\u003e - the class name and bytecodes to redefine"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControl.ClassInstallException.html\" title\u003d\"class in jdk.jshell.spi\"\u003eExecutionControl.ClassInstallException\u003c/a\u003e\u003c/code\u003e - exception occurred redefining the classes, some or all were not redefined",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jshell/jdk/jshell/spi/ExecutionControl.EngineTerminationException.html\" title\u003d\"class in jdk.jshell.spi\"\u003eExecutionControl.EngineTerminationException\u003c/a\u003e\u003c/code\u003e - the execution engine has terminated"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ReferenceType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "com.sun.jdi.VirtualMachine",
+            "type": "Class"
+          },
+          "name": "vm",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "referenceType",
+      "comment": "Returns the JDI ReferenceType corresponding to the specified class name.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evm\u003c/code\u003e - the current JDI \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eVirtualMachine\u003c/code\u003e\u003c/a\u003e as returned by \n\u003ccode\u003evm()\u003c/code\u003e",
+          "\u003ccode\u003ename\u003c/code\u003e - the class name to look-up"
+        ],
+        "return": [
+          "the corresponding \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eReferenceType\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.io.ObjectOutput",
+            "type": "Class"
+          },
+          "name": "out",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.io.ObjectInput",
+            "type": "Class"
+          },
+          "name": "in",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Create an instance.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - the output from the remote agent",
+          "\u003ccode\u003ein\u003c/code\u003e - the input to the remote agent"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "jdk.jshell.execution.JdiExecutionControl",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

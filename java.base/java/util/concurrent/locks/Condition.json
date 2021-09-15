@@ -1,0 +1,217 @@
+{
+  "packageName": "java.util.concurrent.locks",
+  "simpleName": "Condition",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "await",
+      "comment": "Causes the current thread to wait until it is signalled or interrupted. The lock associated with this Condition is atomically released and the current thread becomes disabled for thread scheduling purposes and lies dormant until one of four things happens: Some other thread invokes the signal() method for this Condition and the current thread happens to be chosen as the thread to be awakened; or Some other thread invokes the signalAll() method for this Condition; or Some other thread interrupts the current thread, and interruption of thread suspension is supported; or A \"spurious wakeup\" occurs. In all cases, before this method can return the current thread must re-acquire the lock associated with this condition. When the thread returns it is guaranteed to hold this lock. If the current thread: has its interrupted status set on entry to this method; or is interrupted while waiting and interruption of thread suspension is supported, then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. It is not specified, in the first case, whether or not the test for interruption occurs before the lock is released. Implementation Considerations The current thread is assumed to hold the lock associated with this Condition when this method is called. It is up to the implementation to determine if this is the case and if not, how to respond. Typically, an exception will be thrown (such as IllegalMonitorStateException) and the implementation must document that fact. An implementation can favor responding to an interrupt over normal method return in response to a signal. In that case the implementation must ensure that the signal is redirected to another waiting thread, if there is one.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted (and interruption of thread suspension is supported)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "awaitUninterruptibly",
+      "comment": "Causes the current thread to wait until it is signalled. The lock associated with this condition is atomically released and the current thread becomes disabled for thread scheduling purposes and lies dormant until one of three things happens: Some other thread invokes the signal() method for this Condition and the current thread happens to be chosen as the thread to be awakened; or Some other thread invokes the signalAll() method for this Condition; or A \"spurious wakeup\" occurs. In all cases, before this method can return the current thread must re-acquire the lock associated with this condition. When the thread returns it is guaranteed to hold this lock. If the current thread\u0027s interrupted status is set when it enters this method, or it is interrupted while waiting, it will continue to wait until signalled. When it finally returns from this method its interrupted status will still be set. Implementation Considerations The current thread is assumed to hold the lock associated with this Condition when this method is called. It is up to the implementation to determine if this is the case and if not, how to respond. Typically, an exception will be thrown (such as IllegalMonitorStateException) and the implementation must document that fact.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "nanosTimeout",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "awaitNanos",
+      "comment": "Causes the current thread to wait until it is signalled or interrupted, or the specified waiting time elapses. The lock associated with this condition is atomically released and the current thread becomes disabled for thread scheduling purposes and lies dormant until one of five things happens: Some other thread invokes the signal() method for this Condition and the current thread happens to be chosen as the thread to be awakened; or Some other thread invokes the signalAll() method for this Condition; or Some other thread interrupts the current thread, and interruption of thread suspension is supported; or The specified waiting time elapses; or A \"spurious wakeup\" occurs. In all cases, before this method can return the current thread must re-acquire the lock associated with this condition. When the thread returns it is guaranteed to hold this lock. If the current thread: has its interrupted status set on entry to this method; or is interrupted while waiting and interruption of thread suspension is supported, then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. It is not specified, in the first case, whether or not the test for interruption occurs before the lock is released. The method returns an estimate of the number of nanoseconds remaining to wait given the supplied nanosTimeout value upon return, or a value less than or equal to zero if it timed out. This value can be used to determine whether and how long to re-wait in cases where the wait returns but an awaited condition still does not hold. Typical uses of this method take the following form:  \n boolean aMethod(long timeout, TimeUnit unit)\n     throws InterruptedException {\n   long nanosRemaining \u003d unit.toNanos(timeout);\n   lock.lock();\n   try {\n     while (!conditionBeingWaitedFor()) {\n       if (nanosRemaining \u003c\u003d 0L)\n         return false;\n       nanosRemaining \u003d theCondition.awaitNanos(nanosRemaining);\n     }\n     // ...\n     return true;\n   } finally {\n     lock.unlock();\n   }\n } Design note: This method requires a nanosecond argument so as to avoid truncation errors in reporting remaining times. Such precision loss would make it difficult for programmers to ensure that total waiting times are not systematically shorter than specified when re-waits occur. Implementation Considerations The current thread is assumed to hold the lock associated with this Condition when this method is called. It is up to the implementation to determine if this is the case and if not, how to respond. Typically, an exception will be thrown (such as IllegalMonitorStateException) and the implementation must document that fact. An implementation can favor responding to an interrupt over normal method return in response to a signal, or over indicating the elapse of the specified waiting time. In either case the implementation must ensure that the signal is redirected to another waiting thread, if there is one.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enanosTimeout\u003c/code\u003e - the maximum time to wait, in nanoseconds"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted (and interruption of thread suspension is supported)"
+        ],
+        "return": [
+          "an estimate of the \n\u003ccode\u003enanosTimeout\u003c/code\u003e value minus the time spent waiting upon return from this method. A positive value may be used as the argument to a subsequent call to this method to finish waiting out the desired time. A value less than or equal to zero indicates that no time remains."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "time",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "name": "unit",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "await",
+      "comment": "Causes the current thread to wait until it is signalled or interrupted, or the specified waiting time elapses. This method is behaviorally equivalent to:  awaitNanos(unit.toNanos(time)) \u003e 0",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etime\u003c/code\u003e - the maximum time to wait",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the \n\u003ccode\u003etime\u003c/code\u003e argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted (and interruption of thread suspension is supported)"
+        ],
+        "return": [
+          "\u003ccode\u003efalse\u003c/code\u003e if the waiting time detectably elapsed before return from the method, else \n\u003ccode\u003etrue\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Date",
+            "type": "Class"
+          },
+          "name": "deadline",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "awaitUntil",
+      "comment": "Causes the current thread to wait until it is signalled or interrupted, or the specified deadline elapses. The lock associated with this condition is atomically released and the current thread becomes disabled for thread scheduling purposes and lies dormant until one of five things happens: Some other thread invokes the signal() method for this Condition and the current thread happens to be chosen as the thread to be awakened; or Some other thread invokes the signalAll() method for this Condition; or Some other thread interrupts the current thread, and interruption of thread suspension is supported; or The specified deadline elapses; or A \"spurious wakeup\" occurs. In all cases, before this method can return the current thread must re-acquire the lock associated with this condition. When the thread returns it is guaranteed to hold this lock. If the current thread: has its interrupted status set on entry to this method; or is interrupted while waiting and interruption of thread suspension is supported, then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. It is not specified, in the first case, whether or not the test for interruption occurs before the lock is released. The return value indicates whether the deadline has elapsed, which can be used as follows:  \n boolean aMethod(Date deadline)\n     throws InterruptedException {\n   boolean stillWaiting \u003d true;\n   lock.lock();\n   try {\n     while (!conditionBeingWaitedFor()) {\n       if (!stillWaiting)\n         return false;\n       stillWaiting \u003d theCondition.awaitUntil(deadline);\n     }\n     // ...\n     return true;\n   } finally {\n     lock.unlock();\n   }\n } Implementation Considerations The current thread is assumed to hold the lock associated with this Condition when this method is called. It is up to the implementation to determine if this is the case and if not, how to respond. Typically, an exception will be thrown (such as IllegalMonitorStateException) and the implementation must document that fact. An implementation can favor responding to an interrupt over normal method return in response to a signal, or over indicating the passing of the specified deadline. In either case the implementation must ensure that the signal is redirected to another waiting thread, if there is one.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edeadline\u003c/code\u003e - the absolute time to wait until"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted (and interruption of thread suspension is supported)"
+        ],
+        "return": [
+          "\u003ccode\u003efalse\u003c/code\u003e if the deadline has elapsed upon return, else \n\u003ccode\u003etrue\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "signal",
+      "comment": "Wakes up one waiting thread. If any threads are waiting on this condition then one is selected for waking up. That thread must then re-acquire the lock before returning from await. Implementation Considerations An implementation may (and typically does) require that the current thread hold the lock associated with this Condition when this method is called. Implementations must document this precondition and any actions taken if the lock is not held. Typically, an exception such as IllegalMonitorStateException will be thrown.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "signalAll",
+      "comment": "Wakes up all waiting threads. If any threads are waiting on this condition then they are all woken up. Each thread must re-acquire the lock before it can return from await. Implementation Considerations An implementation may (and typically does) require that the current thread hold the lock associated with this Condition when this method is called. Implementations must document this precondition and any actions taken if the lock is not held. Typically, an exception such as IllegalMonitorStateException will be thrown.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.concurrent.locks.Condition",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

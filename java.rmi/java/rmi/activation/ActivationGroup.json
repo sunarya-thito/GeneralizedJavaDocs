@@ -1,0 +1,464 @@
+{
+  "packageName": "java.rmi.activation",
+  "simpleName": "ActivationGroup",
+  "moduleName": "java.rmi",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.rmi.server.UnicastRemoteObject",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.ActivationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.activation.UnknownObjectException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationID",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "inactiveObject",
+      "comment": "The group\u0027s inactiveObject method is called indirectly via a call to the Activatable.inactive method. A remote object implementation must call Activatable\u0027s inactive method when that object deactivates (the object deems that it is no longer active). If the object does not call Activatable.inactive when it deactivates, the object will never be garbage collected since the group keeps strong references to the objects it creates. The group\u0027s inactiveObject method unexports the remote object from the RMI runtime so that the object can no longer receive incoming RMI calls. An object will only be unexported if the object has no pending or executing calls. The subclass of ActivationGroup must override this method and unexport the object. After removing the object from the RMI runtime, the group must inform its ActivationMonitor (via the monitor\u0027s inactiveObject method) that the remote object is not currently active so that the remote object will be re-activated by the activator upon a subsequent activation request. This method simply informs the group\u0027s monitor that the object is inactive. It is up to the concrete subclass of ActivationGroup to fulfill the additional requirement of unexporting the object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the object\u0027s activation identifier"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/UnknownObjectException.html\" title\u003d\"class in java.rmi.activation\"\u003eUnknownObjectException\u003c/a\u003e\u003c/code\u003e - if object is unknown (may already be inactive)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if call informing monitor fails",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationException.html\" title\u003d\"class in java.rmi.activation\"\u003eActivationException\u003c/a\u003e\u003c/code\u003e - if group is inactive"
+        ],
+        "return": [
+          "true if the object was successfully deactivated; otherwise returns false."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.ActivationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.activation.UnknownObjectException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationID",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.Remote",
+            "type": "Class"
+          },
+          "name": "obj",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "activeObject",
+      "comment": "The group\u0027s activeObject method is called when an object is exported (either by Activatable object construction or an explicit call to Activatable.exportObject. The group must inform its ActivationMonitor that the object is active (via the monitor\u0027s activeObject method) if the group hasn\u0027t already done so.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the object\u0027s identifier",
+          "\u003ccode\u003eobj\u003c/code\u003e - the remote object implementation"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/UnknownObjectException.html\" title\u003d\"class in java.rmi.activation\"\u003eUnknownObjectException\u003c/a\u003e\u003c/code\u003e - if object is not registered",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if call informing monitor fails",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationException.html\" title\u003d\"class in java.rmi.activation\"\u003eActivationException\u003c/a\u003e\u003c/code\u003e - if group is inactive"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.rmi.activation.ActivationGroup",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.ActivationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationGroupID",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationGroupDesc",
+            "type": "Class"
+          },
+          "name": "desc",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "incarnation",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "createGroup",
+      "comment": "Create and set the activation group for the current VM. The activation group can only be set if it is not currently set. An activation group is set using the createGroup method when the Activator initiates the re-creation of an activation group in order to carry out incoming activate requests. A group must first be registered with the ActivationSystem before it can be created via this method. The group class specified by the ActivationGroupDesc must be a concrete subclass of ActivationGroup and have a public constructor that takes two arguments: the ActivationGroupID for the group and the MarshalledObject containing the group\u0027s initialization data (obtained from the ActivationGroupDesc. If the group class name specified in the ActivationGroupDesc is null, then this method will behave as if the group descriptor contained the name of the default activation group implementation class. Note that if your application creates its own custom activation group, a security manager must be set for that group. Otherwise objects cannot be activated in the group. SecurityManager is set by default. If a security manager is already set in the group VM, this method first calls the security manager\u0027s checkSetFactory method. This could result in a SecurityException. If your application needs to set a different security manager, you must ensure that the policy file specified by the group\u0027s ActivationGroupDesc grants the group the necessary permissions to set a new security manager. (Note: This will be necessary if your group downloads and sets a security manager). After the group is created, the ActivationSystem is informed that the group is active by calling the activeGroup method which returns the ActivationMonitor for the group. The application need not call activeGroup independently since it is taken care of by this method. Once a group is created, subsequent calls to the currentGroupID method will return the identifier for this group until the group becomes inactive.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkSetFactory()\"\u003e\u003ccode\u003eSecurityManager.checkSetFactory()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the activation group\u0027s identifier",
+          "\u003ccode\u003edesc\u003c/code\u003e - the activation group\u0027s descriptor",
+          "\u003ccode\u003eincarnation\u003c/code\u003e - the group\u0027s incarnation number (zero on group\u0027s initial creation)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationException.html\" title\u003d\"class in java.rmi.activation\"\u003eActivationException\u003c/a\u003e\u003c/code\u003e - if group already exists or if error occurs during group creation",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if permission to create group is denied. (Note: The default implementation of the security manager \n\u003ccode\u003echeckSetFactory\u003c/code\u003e method requires the RuntimePermission \"setFactory\")",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if and only if activation is not supported by this implementation"
+        ],
+        "return": [
+          "the activation group for the VM"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.rmi.activation.ActivationGroupID",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "currentGroupID",
+      "comment": "Returns the current activation group\u0027s identifier. Returns null if no group is currently active for this VM.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if and only if activation is not supported by this implementation"
+        ],
+        "return": [
+          "the activation group\u0027s identifier"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.ActivationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationSystem",
+            "type": "Class"
+          },
+          "name": "system",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setSystem",
+      "comment": "Set the activation system for the VM. The activation system can only be set it if no group is currently active. If the activation system is not set via this call, then the getSystem method attempts to obtain a reference to the ActivationSystem by looking up the name \"java.rmi.activation.ActivationSystem\" in the Activator\u0027s registry. By default, the port number used to look up the activation system is defined by ActivationSystem.SYSTEM_PORT. This port can be overridden by setting the property java.rmi.activation.port. If there is a security manager, this method first calls the security manager\u0027s checkSetFactory method. This could result in a SecurityException.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationGroup.html#getSystem()\"\u003e\u003ccode\u003egetSystem()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkSetFactory()\"\u003e\u003ccode\u003eSecurityManager.checkSetFactory()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esystem\u003c/code\u003e - remote reference to the \n\u003ccode\u003eActivationSystem\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationException.html\" title\u003d\"class in java.rmi.activation\"\u003eActivationException\u003c/a\u003e\u003c/code\u003e - if activation system is already set",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if permission to set the activation system is denied. (Note: The default implementation of the security manager \n\u003ccode\u003echeckSetFactory\u003c/code\u003e method requires the RuntimePermission \"setFactory\")",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if and only if activation is not supported by this implementation"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.rmi.activation.ActivationSystem",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.ActivationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSystem",
+      "comment": "Returns the activation system for the VM. The activation system may be set by the setSystem method. If the activation system is not set via the setSystem method, then the getSystem method attempts to obtain a reference to the ActivationSystem by looking up the name \"java.rmi.activation.ActivationSystem\" in the Activator\u0027s registry. By default, the port number used to look up the activation system is defined by ActivationSystem.SYSTEM_PORT. This port can be overridden by setting the property java.rmi.activation.port.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationGroup.html#setSystem(java.rmi.activation.ActivationSystem)\"\u003e\u003ccode\u003esetSystem(java.rmi.activation.ActivationSystem)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationException.html\" title\u003d\"class in java.rmi.activation\"\u003eActivationException\u003c/a\u003e\u003c/code\u003e - if activation system cannot be obtained or is not bound (means that it is not running)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if and only if activation is not supported by this implementation"
+        ],
+        "return": [
+          "the activation system for the VM/group"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.ActivationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.activation.UnknownObjectException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationID",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.rmi.Remote",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "mobj",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "activeObject",
+      "comment": "This protected method is necessary for subclasses to make the activeObject callback to the group\u0027s monitor. The call is simply forwarded to the group\u0027s ActivationMonitor.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the object\u0027s identifier",
+          "\u003ccode\u003emobj\u003c/code\u003e - a marshalled object containing the remote object\u0027s stub"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/UnknownObjectException.html\" title\u003d\"class in java.rmi.activation\"\u003eUnknownObjectException\u003c/a\u003e\u003c/code\u003e - if object is not registered",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if call informing monitor fails",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationException.html\" title\u003d\"class in java.rmi.activation\"\u003eActivationException\u003c/a\u003e\u003c/code\u003e - if an activation error occurs"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.UnknownGroupException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "inactiveGroup",
+      "comment": "This protected method is necessary for subclasses to make the inactiveGroup callback to the group\u0027s monitor. The call is simply forwarded to the group\u0027s ActivationMonitor. Also, the current group for the VM is set to null.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/UnknownGroupException.html\" title\u003d\"class in java.rmi.activation\"\u003eUnknownGroupException\u003c/a\u003e\u003c/code\u003e - if group is not registered",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if call informing monitor fails"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationGroupID",
+            "type": "Class"
+          },
+          "name": "groupID",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs an activation group with the given activation group identifier. The group is exported as a java.rmi.server.UnicastRemoteObject.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003egroupID\u003c/code\u003e - the group\u0027s identifier"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if this group could not be exported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if and only if activation is not supported by this implementation"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.rmi.activation.ActivationGroup",
+  "annotations": [
+    {
+      "type": {
+        "name": "Deprecated",
+        "type": "Class"
+      },
+      "values": [
+        {
+          "name": "orRemoval",
+          "value": true
+        },
+        {
+          "name": "since",
+          "value": "15"
+        }
+      ]
+    }
+  ],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationInstantiator.html\" title\u003d\"interface in java.rmi.activation\"\u003e\u003ccode\u003eActivationInstantiator\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationGroupDesc.html\" title\u003d\"class in java.rmi.activation\"\u003e\u003ccode\u003eActivationGroupDesc\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationGroupID.html\" title\u003d\"class in java.rmi.activation\"\u003e\u003ccode\u003eActivationGroupID\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.rmi.activation.ActivationGroup\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.2"
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "packageName": "javax.management",
+  "simpleName": "MBeanRegistration",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.management.ObjectName",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.MBeanServer",
+            "type": "Class"
+          },
+          "name": "server",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "preRegister",
+      "comment": "Allows the MBean to perform any operations it needs before being registered in the MBean Server. If the name of the MBean is not specified, the MBean can provide a name for its registration. If any exception is raised, the MBean will not be registered in the MBean Server.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eserver\u003c/code\u003e - The MBean Server in which the MBean will be registered.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. This name is null if the name parameter to one of the \n\u003ccode\u003ecreateMBean\u003c/code\u003e or \n\u003ccode\u003eregisterMBean\u003c/code\u003e methods in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServer.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanServer\u003c/code\u003e\u003c/a\u003e interface is null. In that case, this method must return a non-null ObjectName for the new MBean."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - This exception will be caught by the MBean Server and re-thrown as an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eMBeanRegistrationException\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "return": [
+          "The name under which the MBean is to be registered. This value must not be null. If the \n\u003ccode\u003ename\u003c/code\u003e parameter is not null, it will usually but not necessarily be the returned value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Boolean",
+            "type": "Class"
+          },
+          "name": "registrationDone",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "postRegister",
+      "comment": "Allows the MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postRegister will not change the state of the MBean: if the MBean was already registered (registrationDone is true), the MBean will remain registered. This might be confusing for the code calling createMBean() or registerMBean(), as such code might assume that MBean registration has failed when such an exception is raised. Therefore it is recommended that implementations of postRegister do not throw Runtime Exceptions or Errors if it can be avoided.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eregistrationDone\u003c/code\u003e - Indicates whether or not the MBean has been successfully registered in the MBean server. The value false means that the registration phase has failed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "preDeregister",
+      "comment": "Allows the MBean to perform any operations it needs before being unregistered by the MBean server.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - This exception will be caught by the MBean server and re-thrown as an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eMBeanRegistrationException\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "postDeregister",
+      "comment": "Allows the MBean to perform any operations needed after having been unregistered in the MBean server. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postDeregister will not change the state of the MBean: the MBean was already successfully deregistered and will remain so. This might be confusing for the code calling unregisterMBean(), as it might assume that MBean deregistration has failed. Therefore it is recommended that implementations of postDeregister do not throw Runtime Exceptions or Errors if it can be avoided.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.management.MBeanRegistration",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

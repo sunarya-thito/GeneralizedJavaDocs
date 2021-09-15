@@ -1,0 +1,207 @@
+{
+  "packageName": "java.rmi.activation",
+  "simpleName": "ActivationMonitor",
+  "moduleName": "java.rmi",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.rmi.Remote",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.UnknownObjectException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationID",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "inactiveObject",
+      "comment": "An activation group calls its monitor\u0027s inactiveObject method when an object in its group becomes inactive (deactivates). An activation group discovers that an object (that it participated in activating) in its VM is no longer active, via calls to the activation group\u0027s inactiveObject method. The inactiveObject call informs the ActivationMonitor that the remote object reference it holds for the object with the activation identifier, id, is no longer valid. The monitor considers the reference associated with id as a stale reference. Since the reference is considered stale, a subsequent activate call for the same activation identifier results in re-activating the remote object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the object\u0027s activation identifier"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/UnknownObjectException.html\" title\u003d\"class in java.rmi.activation\"\u003eUnknownObjectException\u003c/a\u003e\u003c/code\u003e - if object is unknown",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if remote call fails"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.UnknownObjectException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationID",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.rmi.Remote",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "obj",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "activeObject",
+      "comment": "Informs that an object is now active. An ActivationGroup informs its monitor if an object in its group becomes active by other means than being activated directly (i.e., the object is registered and \"activated\" itself).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the active object\u0027s id",
+          "\u003ccode\u003eobj\u003c/code\u003e - the marshalled form of the object\u0027s stub"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/UnknownObjectException.html\" title\u003d\"class in java.rmi.activation\"\u003eUnknownObjectException\u003c/a\u003e\u003c/code\u003e - if object is unknown",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if remote call fails"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.activation.UnknownGroupException",
+          "type": "Class"
+        },
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.rmi.activation.ActivationGroupID",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "incarnation",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "inactiveGroup",
+      "comment": "Informs that the group is now inactive. The group will be recreated upon a subsequent request to activate an object within the group. A group becomes inactive when all objects in the group report that they are inactive.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the group\u0027s id",
+          "\u003ccode\u003eincarnation\u003c/code\u003e - the group\u0027s incarnation number"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/UnknownGroupException.html\" title\u003d\"class in java.rmi.activation\"\u003eUnknownGroupException\u003c/a\u003e\u003c/code\u003e - if group is unknown",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if remote call fails"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.rmi.activation.ActivationMonitor",
+  "annotations": [
+    {
+      "type": {
+        "name": "Deprecated",
+        "type": "Class"
+      },
+      "values": [
+        {
+          "name": "orRemoval",
+          "value": true
+        },
+        {
+          "name": "since",
+          "value": "15"
+        }
+      ]
+    }
+  ],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/Activator.html\" title\u003d\"interface in java.rmi.activation\"\u003e\u003ccode\u003eActivator\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationSystem.html\" title\u003d\"interface in java.rmi.activation\"\u003e\u003ccode\u003eActivationSystem\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/activation/ActivationGroup.html\" title\u003d\"class in java.rmi.activation\"\u003e\u003ccode\u003eActivationGroup\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.2"
+    ]
+  }
+}

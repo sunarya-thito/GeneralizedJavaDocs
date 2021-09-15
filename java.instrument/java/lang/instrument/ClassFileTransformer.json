@@ -1,0 +1,217 @@
+{
+  "packageName": "java.lang.instrument",
+  "simpleName": "ClassFileTransformer",
+  "moduleName": "java.instrument",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.instrument.IllegalClassFormatException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "name": "loader",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "classBeingRedefined",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.ProtectionDomain",
+            "type": "Class"
+          },
+          "name": "protectionDomain",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "classfileBuffer",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "transform",
+      "comment": "Transforms the given class file and returns a new replacement class file. This method is invoked when the Module bearing transform is not overridden.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation returns null."
+        ],
+        "param": [
+          "\u003ccode\u003eloader\u003c/code\u003e - the defining loader of the class to be transformed, may be \n\u003ccode\u003enull\u003c/code\u003e if the bootstrap loader",
+          "\u003ccode\u003eclassName\u003c/code\u003e - the name of the class in the internal form of fully qualified class and interface names as defined in \n\u003ci\u003eThe Java Virtual Machine Specification\u003c/i\u003e. For example, \n\u003ccode\u003e\"java/util/List\"\u003c/code\u003e.",
+          "\u003ccode\u003eclassBeingRedefined\u003c/code\u003e - if this is triggered by a redefine or retransform, the class being redefined or retransformed; if this is a class load, \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003eprotectionDomain\u003c/code\u003e - the protection domain of the class being defined or redefined",
+          "\u003ccode\u003eclassfileBuffer\u003c/code\u003e - the input byte buffer in class file format - must not be modified"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/IllegalClassFormatException.html\" title\u003d\"class in java.lang.instrument\"\u003eIllegalClassFormatException\u003c/a\u003e\u003c/code\u003e - if the input does not represent a well-formed class file"
+        ],
+        "return": [
+          "a well-formed class file buffer (the result of the transform), or \n\u003ccode\u003enull\u003c/code\u003e if no transform is performed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.instrument.IllegalClassFormatException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "name": "module",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "name": "loader",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "classBeingRedefined",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.ProtectionDomain",
+            "type": "Class"
+          },
+          "name": "protectionDomain",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "classfileBuffer",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "transform",
+      "comment": "Transforms the given class file and returns a new replacement class file.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method invokes the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html#transform(java.lang.ClassLoader,java.lang.String,java.lang.Class,java.security.ProtectionDomain,byte%5B%5D)\"\u003e\u003ccode\u003etransform\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "param": [
+          "\u003ccode\u003emodule\u003c/code\u003e - the module of the class to be transformed",
+          "\u003ccode\u003eloader\u003c/code\u003e - the defining loader of the class to be transformed, may be \n\u003ccode\u003enull\u003c/code\u003e if the bootstrap loader",
+          "\u003ccode\u003eclassName\u003c/code\u003e - the name of the class in the internal form of fully qualified class and interface names as defined in \n\u003ci\u003eThe Java Virtual Machine Specification\u003c/i\u003e. For example, \n\u003ccode\u003e\"java/util/List\"\u003c/code\u003e.",
+          "\u003ccode\u003eclassBeingRedefined\u003c/code\u003e - if this is triggered by a redefine or retransform, the class being redefined or retransformed; if this is a class load, \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003eprotectionDomain\u003c/code\u003e - the protection domain of the class being defined or redefined",
+          "\u003ccode\u003eclassfileBuffer\u003c/code\u003e - the input byte buffer in class file format - must not be modified"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/IllegalClassFormatException.html\" title\u003d\"class in java.lang.instrument\"\u003eIllegalClassFormatException\u003c/a\u003e\u003c/code\u003e - if the input does not represent a well-formed class file"
+        ],
+        "return": [
+          "a well-formed class file buffer (the result of the transform), or \n\u003ccode\u003enull\u003c/code\u003e if no transform is performed"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.lang.instrument.ClassFileTransformer",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html\" title\u003d\"interface in java.lang.instrument\"\u003e\u003ccode\u003eInstrumentation\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

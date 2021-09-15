@@ -1,0 +1,1467 @@
+{
+  "packageName": "javax.swing",
+  "simpleName": "JViewport",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.swing.JComponent",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "isViewSizeSet",
+      "comment": "True when the viewport dimensions have been determined. The default is false.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.awt.Point",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "lastPaintPosition",
+      "comment": "The last viewPosition that we\u0027ve painted, so we know how much of the backing store image is valid.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "backingStore",
+      "comment": "True when this viewport is maintaining an offscreen image of its contents, so that some scrolling can take place using fast \"bit-blit\" operations instead of by accessing the view object to construct the display. The default is false.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setScrollMode(int)\"\u003e\u003ccode\u003esetScrollMode(int)\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "java.awt.Image",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "backingStoreImage",
+      "comment": "The view image used for a backing store.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "scrollUnderway",
+      "comment": "The scrollUnderway flag is used for components like JList. When the downarrow key is pressed on a JList and the selected cell is the last in the list, the scrollpane autoscrolls. Here, the old selected cell needs repainting and so we need a flag to make the viewport do the optimized painting only when there is an explicit call to setViewPosition(Point). When setBounds is called through other routes, the flag is off and the view repaints normally. Another approach would be to remove this from the JViewport class and have the JList manage this case by using setBackingStoreEnabled. The default is false.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "BLIT_SCROLL_MODE",
+      "comment": "Use graphics.copyArea to implement scrolling. This is the fastest for most applications.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setScrollMode(int)\"\u003e\u003ccode\u003esetScrollMode(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.swing.JViewport.BLIT_SCROLL_MODE\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "BACKINGSTORE_SCROLL_MODE",
+      "comment": "Draws viewport contents into an offscreen image. This was previously the default mode for JTable. This mode may offer advantages over \"blit mode\" in some cases, but it requires a large chunk of extra RAM.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setScrollMode(int)\"\u003e\u003ccode\u003esetScrollMode(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.swing.JViewport.BACKINGSTORE_SCROLL_MODE\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "SIMPLE_SCROLL_MODE",
+      "comment": "This mode uses the very simple method of redrawing the entire contents of the scrollpane each time it is scrolled. This was the default behavior in Swing 1.0 and Swing 1.1. Either of the other two options will provide better performance in most cases.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setScrollMode(int)\"\u003e\u003ccode\u003esetScrollMode(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.swing.JViewport.SIMPLE_SCROLL_MODE\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.plaf.ViewportUI",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getUI",
+      "comment": "Returns the L\u0026F object that renders this component.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#getUI()\"\u003egetUI\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eViewportUI\u003c/code\u003e object"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.plaf.ViewportUI",
+            "type": "Class"
+          },
+          "name": "ui",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setUI",
+      "comment": "Sets the L\u0026F object that renders this component.",
+      "annotations": [
+        {
+          "type": {
+            "name": "BeanProperty",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "hidden",
+              "value": true
+            },
+            {
+              "name": "visualUpdate",
+              "value": true
+            },
+            {
+              "name": "escription",
+              "value": "The UI object that implements the Component\u0027s LookAndFeel."
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/UIDefaults.html#getUI(javax.swing.JComponent)\"\u003e\u003ccode\u003eUIDefaults.getUI(javax.swing.JComponent)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eui\u003c/code\u003e - the \n\u003ccode\u003eViewportUI\u003c/code\u003e L\u0026amp;F object"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "updateUI",
+      "comment": "Resets the UI property to a value from the current look and feel.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#updateUI()\"\u003e\u003ccode\u003eJComponent.updateUI()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#updateUI()\"\u003eupdateUI\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getUIClassID",
+      "comment": "Returns a string that specifies the name of the L\u0026F class that renders this component.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#getUIClassID()\"\u003e\u003ccode\u003eJComponent.getUIClassID()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/UIDefaults.html#getUI(javax.swing.JComponent)\"\u003e\u003ccode\u003eUIDefaults.getUI(javax.swing.JComponent)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#getUIClassID()\"\u003egetUIClassID\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the string \"ViewportUI\""
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Component",
+            "type": "Class"
+          },
+          "name": "child",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "constraints",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "index",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "addImpl",
+      "comment": "Sets the JViewport\u0027s one lightweight child, which can be null. (Since there is only one child which occupies the entire viewport, the constraints and index arguments are ignored.)",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setView(java.awt.Component)\"\u003e\u003ccode\u003esetView(java.awt.Component)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Container.html#addImpl(java.awt.Component,java.lang.Object,int)\"\u003eaddImpl\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Container.html\" title\u003d\"class in java.awt\"\u003eContainer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003echild\u003c/code\u003e - the lightweight \n\u003ccode\u003echild\u003c/code\u003e of the viewport",
+          "\u003ccode\u003econstraints\u003c/code\u003e - the \n\u003ccode\u003econstraints\u003c/code\u003e to be respected",
+          "\u003ccode\u003eindex\u003c/code\u003e - the index"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Component",
+            "type": "Class"
+          },
+          "name": "child",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "remove",
+      "comment": "Removes the Viewports one lightweight child.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setView(java.awt.Component)\"\u003e\u003ccode\u003esetView(java.awt.Component)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Container.html#remove(java.awt.Component)\"\u003eremove\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Container.html\" title\u003d\"class in java.awt\"\u003eContainer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003echild\u003c/code\u003e - the component to be removed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Rectangle",
+            "type": "Class"
+          },
+          "name": "contentRect",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "scrollRectToVisible",
+      "comment": "Scrolls the view so that Rectangle within the view becomes visible. This attempts to validate the view before scrolling if the view is currently not valid - isValid returns false. To avoid excessive validation when the containment hierarchy is being created this will not validate if one of the ancestors does not have a peer, or there is no validate root ancestor, or one of the ancestors is not a Window or Applet. Note that this method will not scroll outside of the valid viewport; for example, if contentRect is larger than the viewport, scrolling will be confined to the viewport\u0027s bounds.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#isValidateRoot()\"\u003e\u003ccode\u003eJComponent.isValidateRoot()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Component.html#isValid()\"\u003e\u003ccode\u003eComponent.isValid()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#scrollRectToVisible(java.awt.Rectangle)\"\u003escrollRectToVisible\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003econtentRect\u003c/code\u003e - the \n\u003ccode\u003eRectangle\u003c/code\u003e to display"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.border.Border",
+            "type": "Class"
+          },
+          "name": "border",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "setBorder",
+      "comment": "The viewport \"scrolls\" its child (called the \"view\") by the normal parent/child clipping (typically the view is moved in the opposite direction of the scroll). A non-null border, or non-zero insets, isn\u0027t supported, to prevent the geometry of this component from becoming complex enough to inhibit subclassing. To create a JViewport with a border, add it to a JPanel that has a border. Note: If border is non-null, this method will throw an exception as borders are not supported on a JViewPort.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/border/Border.html\" title\u003d\"interface in javax.swing.border\"\u003e\u003ccode\u003eBorder\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/border/CompoundBorder.html\" title\u003d\"class in javax.swing.border\"\u003e\u003ccode\u003eCompoundBorder\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#setBorder(javax.swing.border.Border)\"\u003esetBorder\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eborder\u003c/code\u003e - the \n\u003ccode\u003eBorder\u003c/code\u003e to set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - this method is not implemented"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Insets",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getInsets",
+      "comment": "Returns the insets (border) dimensions as (0,0,0,0), since borders are not supported on a JViewport.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setBorder(javax.swing.border.Border)\"\u003e\u003ccode\u003esetBorder(javax.swing.border.Border)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#getInsets()\"\u003egetInsets\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eRectangle\u003c/code\u003e of zero dimension and zero origin"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Insets",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Insets",
+            "type": "Class"
+          },
+          "name": "insets",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getInsets",
+      "comment": "Returns an Insets object containing this JViewports inset values. The passed-in Insets object will be reinitialized, and all existing values within this object are overwritten.",
+      "annotations": [
+        {
+          "type": {
+            "name": "BeanProperty",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "expert",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#getInsets()\"\u003e\u003ccode\u003egetInsets()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#getInsets(java.awt.Insets)\"\u003egetInsets\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003einsets\u003c/code\u003e - the \n\u003ccode\u003eInsets\u003c/code\u003e object which can be reused"
+        ],
+        "return": [
+          "this viewports inset values"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isOptimizedDrawingEnabled",
+      "comment": "The JViewport overrides the default implementation of this method (in JComponent) to return false. This ensures that the drawing machinery will call the Viewport\u0027s paint implementation rather than messaging the JViewport\u0027s children directly.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#isOptimizedDrawingEnabled()\"\u003eisOptimizedDrawingEnabled\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "false"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "isPaintingOrigin",
+      "comment": "Returns true if scroll mode is a BACKINGSTORE_SCROLL_MODE to cause painting to originate from JViewport, or one of its ancestors. Otherwise returns false.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#isPaintingOrigin()\"\u003e\u003ccode\u003eJComponent.isPaintingOrigin()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#isPaintingOrigin()\"\u003eisPaintingOrigin\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "true if scroll mode is a \n\u003ccode\u003eBACKINGSTORE_SCROLL_MODE\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Graphics",
+            "type": "Class"
+          },
+          "name": "g",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "paint",
+      "comment": "Depending on whether the backingStore is enabled, either paint the image through the backing store or paint just the recently exposed part, using the backing store to \"blit\" the remainder. The term \"blit\" is the pronounced version of the PDP-10 BLT (BLock Transfer) instruction, which copied a block of bits. (In case you were curious.)",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#paintComponent(java.awt.Graphics)\"\u003e\u003ccode\u003eJComponent.paintComponent(java.awt.Graphics)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#paintBorder(java.awt.Graphics)\"\u003e\u003ccode\u003eJComponent.paintBorder(java.awt.Graphics)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#paintChildren(java.awt.Graphics)\"\u003e\u003ccode\u003eJComponent.paintChildren(java.awt.Graphics)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#getComponentGraphics(java.awt.Graphics)\"\u003e\u003ccode\u003eJComponent.getComponentGraphics(java.awt.Graphics)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#repaint(long,int,int,int,int)\"\u003e\u003ccode\u003eJComponent.repaint(long, int, int, int, int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#paint(java.awt.Graphics)\"\u003epaint\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eg\u003c/code\u003e - the \n\u003ccode\u003eGraphics\u003c/code\u003e context within which to paint"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "x",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "y",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "w",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "h",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "reshape",
+      "comment": "Sets the bounds of this viewport. If the viewport\u0027s width or height has changed, fire a StateChanged event.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#reshape(int,int,int,int)\"\u003e\u003ccode\u003eJComponent.reshape(int, int, int, int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#reshape(int,int,int,int)\"\u003ereshape\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ex\u003c/code\u003e - left edge of the origin",
+          "\u003ccode\u003ey\u003c/code\u003e - top edge of the origin",
+          "\u003ccode\u003ew\u003c/code\u003e - width in pixels",
+          "\u003ccode\u003eh\u003c/code\u003e - height in pixels"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "mode",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setScrollMode",
+      "comment": "Used to control the method of scrolling the viewport contents. You may want to change this mode to get maximum performance for your use case.",
+      "annotations": [
+        {
+          "type": {
+            "name": "BeanProperty",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "bound",
+              "value": true
+            },
+            {
+              "name": "enumerationValues",
+              "value": [
+                "JViewport.BLIT_SCROLL_MODE",
+                "JViewport.BACKINGSTORE_SCROLL_MODE",
+                "JViewport.SIMPLE_SCROLL_MODE"
+              ]
+            },
+            {
+              "name": "escription",
+              "value": "Method of moving contents for incremental scrolls."
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#BLIT_SCROLL_MODE\"\u003e\u003ccode\u003eBLIT_SCROLL_MODE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#BACKINGSTORE_SCROLL_MODE\"\u003e\u003ccode\u003eBACKINGSTORE_SCROLL_MODE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#SIMPLE_SCROLL_MODE\"\u003e\u003ccode\u003eSIMPLE_SCROLL_MODE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emode\u003c/code\u003e - one of the following values: \n\u003cul\u003e \n \u003cli\u003e JViewport.BLIT_SCROLL_MODE \u003c/li\u003e\n \u003cli\u003e JViewport.BACKINGSTORE_SCROLL_MODE \u003c/li\u003e\n \u003cli\u003e JViewport.SIMPLE_SCROLL_MODE \u003c/li\u003e\n\u003c/ul\u003e"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getScrollMode",
+      "comment": "Returns the current scrolling mode.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setScrollMode(int)\"\u003e\u003ccode\u003esetScrollMode(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the \n\u003ccode\u003escrollMode\u003c/code\u003e property"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isBackingStoreEnabled",
+      "comment": "Returns true if this viewport is maintaining an offscreen image of its contents.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if \n\u003ccode\u003escrollMode\u003c/code\u003e is \n\u003ccode\u003eBACKINGSTORE_SCROLL_MODE\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "enabled",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setBackingStoreEnabled",
+      "comment": "If true if this viewport will maintain an offscreen image of its contents. The image is used to reduce the cost of small one dimensional changes to the viewPosition. Rather than repainting the entire viewport we use Graphics.copyArea to effect some of the scroll.",
+      "annotations": [
+        {
+          "type": {
+            "name": "Deprecated",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eenabled\u003c/code\u003e - if true, maintain an offscreen backing store"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Component",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getView",
+      "comment": "Returns the JViewport\u0027s one child or null.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setView(java.awt.Component)\"\u003e\u003ccode\u003esetView(java.awt.Component)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the viewports child, or \n\u003ccode\u003enull\u003c/code\u003e if none exists"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Component",
+            "type": "Class"
+          },
+          "name": "view",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setView",
+      "comment": "Sets the JViewport\u0027s one lightweight child (view), which can be null.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#getView()\"\u003e\u003ccode\u003egetView()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eview\u003c/code\u003e - the viewport\u0027s new lightweight child"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Dimension",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getViewSize",
+      "comment": "If the view\u0027s size hasn\u0027t been explicitly set, return the preferred size, otherwise return the view\u0027s current size. If there is no view, return 0,0.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003eDimension\u003c/code\u003e object specifying the size of the view"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Dimension",
+            "type": "Class"
+          },
+          "name": "newSize",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setViewSize",
+      "comment": "Sets the size of the view. A state changed event will be fired.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewSize\u003c/code\u003e - a \n\u003ccode\u003eDimension\u003c/code\u003e object specifying the new size of the view"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Point",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getViewPosition",
+      "comment": "Returns the view coordinates that appear in the upper left hand corner of the viewport, or 0,0 if there\u0027s no view.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003ePoint\u003c/code\u003e object giving the upper left coordinates"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Point",
+            "type": "Class"
+          },
+          "name": "p",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setViewPosition",
+      "comment": "Sets the view coordinates that appear in the upper left hand corner of the viewport, does nothing if there\u0027s no view.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ep\u003c/code\u003e - a \n\u003ccode\u003ePoint\u003c/code\u003e object giving the upper left coordinates"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Rectangle",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getViewRect",
+      "comment": "Returns a rectangle whose origin is getViewPosition and size is getExtentSize. This is the visible part of the view, in view coordinates.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003eRectangle\u003c/code\u003e giving the visible part of the view using view coordinates."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "dx",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "dy",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Point",
+            "type": "Class"
+          },
+          "name": "blitFrom",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Point",
+            "type": "Class"
+          },
+          "name": "blitTo",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Dimension",
+            "type": "Class"
+          },
+          "name": "blitSize",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Rectangle",
+            "type": "Class"
+          },
+          "name": "blitPaint",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "computeBlit",
+      "comment": "Computes the parameters for a blit where the backing store image currently contains oldLoc in the upper left hand corner and we\u0027re scrolling to newLoc. The parameters are modified to return the values required for the blit.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edx\u003c/code\u003e - the horizontal delta",
+          "\u003ccode\u003edy\u003c/code\u003e - the vertical delta",
+          "\u003ccode\u003eblitFrom\u003c/code\u003e - the \n\u003ccode\u003ePoint\u003c/code\u003e we\u0027re blitting from",
+          "\u003ccode\u003eblitTo\u003c/code\u003e - the \n\u003ccode\u003ePoint\u003c/code\u003e we\u0027re blitting to",
+          "\u003ccode\u003eblitSize\u003c/code\u003e - the \n\u003ccode\u003eDimension\u003c/code\u003e of the area to blit",
+          "\u003ccode\u003eblitPaint\u003c/code\u003e - the area to blit"
+        ],
+        "return": [
+          "true if the parameters are modified and we\u0027re ready to blit; false otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Dimension",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getExtentSize",
+      "comment": "Returns the size of the visible part of the view in view coordinates.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003eDimension\u003c/code\u003e object giving the size of the view"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Dimension",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Dimension",
+            "type": "Class"
+          },
+          "name": "size",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toViewCoordinates",
+      "comment": "Converts a size in pixel coordinates to view coordinates. Subclasses of viewport that support \"logical coordinates\" will override this method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - a \n\u003ccode\u003eDimension\u003c/code\u003e object using pixel coordinates"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eDimension\u003c/code\u003e object converted to view coordinates"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Point",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Point",
+            "type": "Class"
+          },
+          "name": "p",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toViewCoordinates",
+      "comment": "Converts a point in pixel coordinates to view coordinates. Subclasses of viewport that support \"logical coordinates\" will override this method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ep\u003c/code\u003e - a \n\u003ccode\u003ePoint\u003c/code\u003e object using pixel coordinates"
+        ],
+        "return": [
+          "a \n\u003ccode\u003ePoint\u003c/code\u003e object converted to view coordinates"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Dimension",
+            "type": "Class"
+          },
+          "name": "newExtent",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setExtentSize",
+      "comment": "Sets the size of the visible part of the view using view coordinates.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewExtent\u003c/code\u003e - a \n\u003ccode\u003eDimension\u003c/code\u003e object specifying the size of the view"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.JViewport$ViewListener",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "createViewListener",
+      "comment": "Creates a listener for the view.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003eViewListener\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.LayoutManager",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "createLayoutManager",
+      "comment": "Subclassers can override this to install a different layout manager (or null) in the constructor. Returns the LayoutManager to install on the JViewport.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003eLayoutManager\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.ChangeListener",
+            "type": "Class"
+          },
+          "name": "l",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addChangeListener",
+      "comment": "Adds a ChangeListener to the list that is notified each time the view\u0027s size, position, or the viewport\u0027s extent size has changed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#removeChangeListener(javax.swing.event.ChangeListener)\"\u003e\u003ccode\u003eremoveChangeListener(javax.swing.event.ChangeListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setViewPosition(java.awt.Point)\"\u003e\u003ccode\u003esetViewPosition(java.awt.Point)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setViewSize(java.awt.Dimension)\"\u003e\u003ccode\u003esetViewSize(java.awt.Dimension)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#setExtentSize(java.awt.Dimension)\"\u003e\u003ccode\u003esetExtentSize(java.awt.Dimension)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003el\u003c/code\u003e - the \n\u003ccode\u003eChangeListener\u003c/code\u003e to add"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.ChangeListener",
+            "type": "Class"
+          },
+          "name": "l",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeChangeListener",
+      "comment": "Removes a ChangeListener from the list that\u0027s notified each time the views size, position, or the viewports extent size has changed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#addChangeListener(javax.swing.event.ChangeListener)\"\u003e\u003ccode\u003eaddChangeListener(javax.swing.event.ChangeListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003el\u003c/code\u003e - the \n\u003ccode\u003eChangeListener\u003c/code\u003e to remove"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.event.ChangeListener",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getChangeListeners",
+      "comment": "Returns an array of all the ChangeListeners added to this JViewport with addChangeListener().",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "all of the \n\u003ccode\u003eChangeListener\u003c/code\u003es added or an empty array if no listeners have been added"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "fireStateChanged",
+      "comment": "Notifies all ChangeListeners when the views size, position, or the viewports extent size has changed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#addChangeListener(javax.swing.event.ChangeListener)\"\u003e\u003ccode\u003eaddChangeListener(javax.swing.event.ChangeListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JViewport.html#removeChangeListener(javax.swing.event.ChangeListener)\"\u003e\u003ccode\u003eremoveChangeListener(javax.swing.event.ChangeListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/event/EventListenerList.html\" title\u003d\"class in javax.swing.event\"\u003e\u003ccode\u003eEventListenerList\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "tm",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "x",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "y",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "w",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "h",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "repaint",
+      "comment": "Always repaint in the parents coordinate system to make sure only one paint is performed by the RepaintManager.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Component.html#update(java.awt.Graphics)\"\u003e\u003ccode\u003eComponent.update(java.awt.Graphics)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#repaint(long,int,int,int,int)\"\u003erepaint\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etm\u003c/code\u003e - maximum time in milliseconds before update",
+          "\u003ccode\u003ex\u003c/code\u003e - the \n\u003ccode\u003ex\u003c/code\u003e coordinate (pixels over from left)",
+          "\u003ccode\u003ey\u003c/code\u003e - the \n\u003ccode\u003ey\u003c/code\u003e coordinate (pixels down from top)",
+          "\u003ccode\u003ew\u003c/code\u003e - the width",
+          "\u003ccode\u003eh\u003c/code\u003e - the height"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "paramString",
+      "comment": "Returns a string representation of this JViewport. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html#paramString()\"\u003eparamString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of this \n\u003ccode\u003eJViewport\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "propertyName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "oldValue",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "newValue",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "firePropertyChange",
+      "comment": "Notifies listeners of a property change. This is subclassed to update the windowBlit property. (The putClientProperty property is final).",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Component.html#firePropertyChange(java.lang.String,java.lang.Object,java.lang.Object)\"\u003efirePropertyChange\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Component.html\" title\u003d\"class in java.awt\"\u003eComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epropertyName\u003c/code\u003e - a string containing the property name",
+          "\u003ccode\u003eoldValue\u003c/code\u003e - the old value of the property",
+          "\u003ccode\u003enewValue\u003c/code\u003e - the new value of the property"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.accessibility.AccessibleContext",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAccessibleContext",
+      "comment": "Gets the AccessibleContext associated with this JViewport. For viewports, the AccessibleContext takes the form of an AccessibleJViewport. A new AccessibleJViewport instance is created if necessary.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Component.html#getAccessibleContext()\"\u003egetAccessibleContext\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Component.html\" title\u003d\"class in java.awt\"\u003eComponent\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/accessibility/Accessible.html#getAccessibleContext()\"\u003egetAccessibleContext\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/accessibility/Accessible.html\" title\u003d\"interface in javax.accessibility\"\u003eAccessible\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "an AccessibleJViewport that serves as the AccessibleContext of this JViewport"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a JViewport.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "innerClasses": [
+    "javax.swing.JViewport$ViewListener",
+    "javax.swing.JViewport$AccessibleJViewport"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.swing.JViewport",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JScrollPane.html\" title\u003d\"class in javax.swing\"\u003e\u003ccode\u003eJScrollPane\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.2"
+    ]
+  }
+}

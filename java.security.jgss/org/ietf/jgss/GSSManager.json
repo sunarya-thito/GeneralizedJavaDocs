@@ -1,0 +1,827 @@
+{
+  "packageName": "org.ietf.jgss",
+  "simpleName": "GSSManager",
+  "moduleName": "java.security.jgss",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSManager",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getInstance",
+      "comment": "Returns the default GSSManager implementation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a GSSManager implementation"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.Oid",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getMechs",
+      "comment": "Returns a list of mechanisms that are available to GSS-API callers through this GSSManager. The default GSSManager obtained from the getInstance() method includes the Oid \"1.2.840.113554.1.2.2\" in its list. This Oid identifies the Kerberos v5 GSS-API mechanism that is defined in RFC 1964.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "an array of Oid objects corresponding to the mechanisms that are available. A \n\u003ccode\u003enull\u003c/code\u003e value is returned when no mechanism are available (an example of this would be when mechanism are dynamically configured, and currently no mechanisms are installed)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.Oid",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "mech",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getNamesForMech",
+      "comment": "Returns then name types supported by the indicated mechanism. The default GSSManager instance includes support for the Kerberos v5 mechanism. When this mechanism (\"1.2.840.113554.1.2.2\") is indicated, the returned list will contain at least the following nametypes: GSSName.NT_HOSTBASED_SERVICE, GSSName.NT_EXPORT_NAME, and the Kerberos v5 specific Oid \"1.2.840.113554.1.2.2.1\". The namespace for the Oid \"1.2.840.113554.1.2.2.1\" is defined in RFC 1964.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSManager.html#getMechsForName(org.ietf.jgss.Oid)\"\u003e\u003ccode\u003egetMechsForName(Oid)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emech\u003c/code\u003e - the Oid of the mechanism to query"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an array of Oid objects corresponding to the name types that the mechanism supports."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.Oid",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "nameType",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getMechsForName",
+      "comment": "Returns a list of mechanisms that support the indicated name type. The Kerberos v5 mechanism (\"1.2.840.113554.1.2.2\") will always be returned in this list when the indicated nametype is one of GSSName.NT_HOSTBASED_SERVICE, GSSName.NT_EXPORT_NAME, or \"1.2.840.113554.1.2.2.1\".",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSManager.html#getNamesForMech(org.ietf.jgss.Oid)\"\u003e\u003ccode\u003egetNamesForMech(Oid)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enameType\u003c/code\u003e - the Oid of the name type to look for"
+        ],
+        "return": [
+          "an array of Oid objects corresponding to the mechanisms that support the specified name type. \n\u003ccode\u003enull\u003c/code\u003e is returned when no mechanisms are found to support the specified name type."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSName",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "nameStr",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "nameType",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createName",
+      "comment": "Factory method to convert a string name from the specified namespace to a GSSName object. In general, the GSSName object created will contain multiple representations of the name, one for each mechanism that is supported; two examples that are exceptions to this are when the namespace type parameter indicates NT_EXPORT_NAME or when the GSS-API implementation is not multi-mechanism. It is not recommended to use this method with a NT_EXPORT_NAME type because representing a previously exported name consisting of arbitrary bytes as a String might cause problems with character encoding schemes. In such cases it is recommended that the bytes be passed in directly to the overloaded form of this method createName.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSName\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#NT_EXPORT_NAME\"\u003e\u003ccode\u003eGSSName.NT_EXPORT_NAME\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enameStr\u003c/code\u003e - the string representing a printable form of the name to create.",
+          "\u003ccode\u003enameType\u003c/code\u003e - the Oid specifying the namespace of the printable name supplied. \n\u003ccode\u003enull\u003c/code\u003e can be used to specify that a mechanism specific default printable syntax should be assumed by each mechanism that examines nameStr. It is not advisable to use the nametype NT_EXPORT_NAME with this method."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAME\"\u003e\u003ccode\u003eGSSException.BAD_NAME\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a GSSName representing the indicated principal"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSName",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "nameType",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createName",
+      "comment": "Factory method to convert a byte array containing a name from the specified namespace to a GSSName object. In general, the GSSName object created will contain multiple representations of the name, one for each mechanism that is supported; two examples that are exceptions to this are when the namespace type parameter indicates NT_EXPORT_NAME or when the GSS-API implementation is not multi-mechanism. The bytes that are passed in are interpreted by each underlying mechanism according to some encoding scheme of its choice for the given nametype.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSName\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#NT_EXPORT_NAME\"\u003e\u003ccode\u003eGSSName.NT_EXPORT_NAME\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the byte array containing the name to create",
+          "\u003ccode\u003enameType\u003c/code\u003e - the Oid specifying the namespace of the name supplied in the byte array. \n\u003ccode\u003enull\u003c/code\u003e can be used to specify that a mechanism specific default syntax should be assumed by each mechanism that examines the byte array."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAME\"\u003e\u003ccode\u003eGSSException.BAD_NAME\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a GSSName representing the indicated principal"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSName",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "nameStr",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "nameType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "mech",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createName",
+      "comment": "Factory method to convert a string name from the specified namespace to a GSSName object and canonicalize it at the same time for a mechanism. In other words, this method is a utility that does the equivalent of two steps: the createName and then also the GSSName.canonicalize.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#canonicalize(org.ietf.jgss.Oid)\"\u003e\u003ccode\u003eGSSName.canonicalize(Oid)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#NT_EXPORT_NAME\"\u003e\u003ccode\u003eGSSName.NT_EXPORT_NAME\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enameStr\u003c/code\u003e - the string representing a printable form of the name to create.",
+          "\u003ccode\u003enameType\u003c/code\u003e - the Oid specifying the namespace of the printable name supplied. \n\u003ccode\u003enull\u003c/code\u003e can be used to specify that a mechanism specific default printable syntax should be assumed by each mechanism that examines nameStr. It is not advisable to use the nametype NT_EXPORT_NAME with this method.",
+          "\u003ccode\u003emech\u003c/code\u003e - Oid specifying the mechanism for which the name should be canonicalized"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAME\"\u003e\u003ccode\u003eGSSException.BAD_NAME\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a GSSName representing the indicated principal"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSName",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "nameType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "mech",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createName",
+      "comment": "Factory method to convert a byte array containing a name from the specified namespace to a GSSName object and canonicalize it at the same time for a mechanism. In other words, this method is a utility that does the equivalent of two steps: the createName and then also GSSName.canonicalize.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#canonicalize(org.ietf.jgss.Oid)\"\u003e\u003ccode\u003eGSSName.canonicalize(Oid)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#NT_EXPORT_NAME\"\u003e\u003ccode\u003eGSSName.NT_EXPORT_NAME\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the byte array containing the name to create",
+          "\u003ccode\u003enameType\u003c/code\u003e - the Oid specifying the namespace of the name supplied in the byte array. \n\u003ccode\u003enull\u003c/code\u003e can be used to specify that a mechanism specific default syntax should be assumed by each mechanism that examines the byte array.",
+          "\u003ccode\u003emech\u003c/code\u003e - Oid specifying the mechanism for which the name should be canonicalized"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAME\"\u003e\u003ccode\u003eGSSException.BAD_NAME\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a GSSName representing the indicated principal"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSCredential",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "usage",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createCredential",
+      "comment": "Factory method for acquiring default credentials. This will cause the GSS-API to use system specific defaults for the set of mechanisms, name, and lifetime. GSS-API mechanism providers must impose a local access-control policy on callers to prevent unauthorized callers from acquiring credentials to which they are not entitled. The kinds of permissions needed by different mechanism providers will be documented on a per-mechanism basis. A failed permission check might cause a SecurityException to be thrown from this method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSCredential\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eusage\u003c/code\u003e - The intended usage for this credential object. The value of this parameter must be one of: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INITIATE_AND_ACCEPT\"\u003e\u003ccode\u003eGSSCredential.INITIATE_AND_ACCEPT\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#ACCEPT_ONLY\"\u003e\u003ccode\u003eGSSCredential.ACCEPT_ONLY\u003c/code\u003e\u003c/a\u003e, and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INITIATE_ONLY\"\u003e\u003ccode\u003eGSSCredential.INITIATE_ONLY\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAME\"\u003e\u003ccode\u003eGSSException.BAD_NAME\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#CREDENTIALS_EXPIRED\"\u003e\u003ccode\u003eGSSException.CREDENTIALS_EXPIRED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#NO_CRED\"\u003e\u003ccode\u003eGSSException.NO_CRED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a GSSCredential of the requested type."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSCredential",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.GSSName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "lifetime",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "mech",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "usage",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createCredential",
+      "comment": "Factory method for acquiring a single mechanism credential. GSS-API mechanism providers must impose a local access-control policy on callers to prevent unauthorized callers from acquiring credentials to which they are not entitled. The kinds of permissions needed by different mechanism providers will be documented on a per-mechanism basis. A failed permission check might cause a SecurityException to be thrown from this method. Non-default values for lifetime cannot always be honored by the underlying mechanisms, thus applications should be prepared to call getRemainingLifetime on the returned credential.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSCredential\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the principal for whom this credential is to be acquired. Use \n\u003ccode\u003enull\u003c/code\u003e to specify the default principal.",
+          "\u003ccode\u003elifetime\u003c/code\u003e - The number of seconds that credentials should remain valid. Use \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INDEFINITE_LIFETIME\"\u003e\u003ccode\u003eGSSCredential.INDEFINITE_LIFETIME\u003c/code\u003e\u003c/a\u003e to request that the credentials have the maximum permitted lifetime. Use \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#DEFAULT_LIFETIME\"\u003e\u003ccode\u003eGSSCredential.DEFAULT_LIFETIME\u003c/code\u003e\u003c/a\u003e to request default credential lifetime.",
+          "\u003ccode\u003emech\u003c/code\u003e - the Oid of the desired mechanism. Use \n\u003ccode\u003e(Oid) null \u003c/code\u003e to request the default mechanism.",
+          "\u003ccode\u003eusage\u003c/code\u003e - The intended usage for this credential object. The value of this parameter must be one of: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INITIATE_AND_ACCEPT\"\u003e\u003ccode\u003eGSSCredential.INITIATE_AND_ACCEPT\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#ACCEPT_ONLY\"\u003e\u003ccode\u003eGSSCredential.ACCEPT_ONLY\u003c/code\u003e\u003c/a\u003e, and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INITIATE_ONLY\"\u003e\u003ccode\u003eGSSCredential.INITIATE_ONLY\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAME\"\u003e\u003ccode\u003eGSSException.BAD_NAME\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#CREDENTIALS_EXPIRED\"\u003e\u003ccode\u003eGSSException.CREDENTIALS_EXPIRED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#NO_CRED\"\u003e\u003ccode\u003eGSSException.NO_CRED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a GSSCredential of the requested type."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSCredential",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.GSSName",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "lifetime",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "mechs",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "usage",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createCredential",
+      "comment": "Factory method for acquiring credentials over a set of mechanisms. This method attempts to acquire credentials for each of the mechanisms specified in the array called mechs. To determine the list of mechanisms for which the acquisition of credentials succeeded, the caller should use the GSSCredential.getMechs method. GSS-API mechanism providers must impose a local access-control policy on callers to prevent unauthorized callers from acquiring credentials to which they are not entitled. The kinds of permissions needed by different mechanism providers will be documented on a per-mechanism basis. A failed permission check might cause a SecurityException to be thrown from this method. Non-default values for lifetime cannot always be honored by the underlying mechanisms, thus applications should be prepared to call getRemainingLifetime on the returned credential.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSCredential\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the principal for whom this credential is to be acquired. Use \n\u003ccode\u003enull\u003c/code\u003e to specify the default principal.",
+          "\u003ccode\u003elifetime\u003c/code\u003e - The number of seconds that credentials should remain valid. Use \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INDEFINITE_LIFETIME\"\u003e\u003ccode\u003eGSSCredential.INDEFINITE_LIFETIME\u003c/code\u003e\u003c/a\u003e to request that the credentials have the maximum permitted lifetime. Use \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#DEFAULT_LIFETIME\"\u003e\u003ccode\u003eGSSCredential.DEFAULT_LIFETIME\u003c/code\u003e\u003c/a\u003e to request default credential lifetime.",
+          "\u003ccode\u003emechs\u003c/code\u003e - an array of Oid\u0027s indicating the mechanisms over which the credential is to be acquired. Use \n\u003ccode\u003e(Oid[]) null\u003c/code\u003e for requesting a system specific default set of mechanisms.",
+          "\u003ccode\u003eusage\u003c/code\u003e - The intended usage for this credential object. The value of this parameter must be one of: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INITIATE_AND_ACCEPT\"\u003e\u003ccode\u003eGSSCredential.INITIATE_AND_ACCEPT\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#ACCEPT_ONLY\"\u003e\u003ccode\u003eGSSCredential.ACCEPT_ONLY\u003c/code\u003e\u003c/a\u003e, and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html#INITIATE_ONLY\"\u003e\u003ccode\u003eGSSCredential.INITIATE_ONLY\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAME\"\u003e\u003ccode\u003eGSSException.BAD_NAME\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#CREDENTIALS_EXPIRED\"\u003e\u003ccode\u003eGSSException.CREDENTIALS_EXPIRED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#NO_CRED\"\u003e\u003ccode\u003eGSSException.NO_CRED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a GSSCredential of the requested type."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSContext",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.GSSName",
+            "type": "Class"
+          },
+          "name": "peer",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "mech",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.GSSCredential",
+            "type": "Class"
+          },
+          "name": "myCred",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "lifetime",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createContext",
+      "comment": "Factory method for creating a context on the initiator\u0027s side. Some mechanism providers might require that the caller be granted permission to initiate a security context. A failed permission check might cause a SecurityException to be thrown from this method. Non-default values for lifetime cannot always be honored by the underlying mechanism, thus applications should be prepared to call getLifetime on the returned context.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSContext.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSContext\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epeer\u003c/code\u003e - the name of the target peer.",
+          "\u003ccode\u003emech\u003c/code\u003e - the Oid of the desired mechanism. Use \n\u003ccode\u003enull\u003c/code\u003e to request the default mechanism.",
+          "\u003ccode\u003emyCred\u003c/code\u003e - the credentials of the initiator. Use \n\u003ccode\u003enull\u003c/code\u003e to act as the default initiator principal.",
+          "\u003ccode\u003elifetime\u003c/code\u003e - the lifetime, in seconds, requested for the context. Use \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSContext.html#INDEFINITE_LIFETIME\"\u003e\u003ccode\u003eGSSContext.INDEFINITE_LIFETIME\u003c/code\u003e\u003c/a\u003e to request that the context have the maximum permitted lifetime. Use \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSContext.html#DEFAULT_LIFETIME\"\u003e\u003ccode\u003eGSSContext.DEFAULT_LIFETIME\u003c/code\u003e\u003c/a\u003e to request a default lifetime for the context."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#NO_CRED\"\u003e\u003ccode\u003eGSSException.NO_CRED\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#CREDENTIALS_EXPIRED\"\u003e\u003ccode\u003eGSSException.CREDENTIALS_EXPIRED\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_NAMETYPE\"\u003e\u003ccode\u003eGSSException.BAD_NAMETYPE\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an unestablished GSSContext"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSContext",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.GSSCredential",
+            "type": "Class"
+          },
+          "name": "myCred",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createContext",
+      "comment": "Factory method for creating a context on the acceptor\u0027 side. The context\u0027s properties will be determined from the input token supplied to the accept method. Some mechanism providers might require that the caller be granted permission to accept a security context. A failed permission check might cause a SecurityException to be thrown from this method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSContext.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSContext\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emyCred\u003c/code\u003e - the credentials for the acceptor. Use \n\u003ccode\u003enull\u003c/code\u003e to act as a default acceptor principal."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#NO_CRED\"\u003e\u003ccode\u003eGSSException.NO_CRED\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#CREDENTIALS_EXPIRED\"\u003e\u003ccode\u003eGSSException.CREDENTIALS_EXPIRED\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#BAD_MECH\"\u003e\u003ccode\u003eGSSException.BAD_MECH\u003c/code\u003e\u003c/a\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an unestablished GSSContext"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.ietf.jgss.GSSContext",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "interProcessToken",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createContext",
+      "comment": "Factory method for creating a previously exported context. The context properties will be determined from the input token and cannot be modified through the set methods. Implementations are not required to support the inter-process transfer of security contexts. Before exporting a context, calling the GSSContext.isTransferable will indicate if the context is transferable. Calling this method in an implementation that does not support it will result in a GSSException with the error code GSSException.UNAVAILABLE. Some mechanism providers might require that the caller be granted permission to initiate or accept a security context. A failed permission check might cause a SecurityException to be thrown from this method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSContext.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSContext\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003einterProcessToken\u003c/code\u003e - the token previously emitted from the export method."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#NO_CONTEXT\"\u003e\u003ccode\u003eGSSException.NO_CONTEXT\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#DEFECTIVE_TOKEN\"\u003e\u003ccode\u003eGSSException.DEFECTIVE_TOKEN\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#UNAVAILABLE\"\u003e\u003ccode\u003eGSSException.UNAVAILABLE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#UNAUTHORIZED\"\u003e\u003ccode\u003eGSSException.UNAUTHORIZED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the previously established GSSContext"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.Provider",
+            "type": "Class"
+          },
+          "name": "p",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "mech",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "addProviderAtFront",
+      "comment": "This method is used to indicate to the GSSManager that the application would like a particular provider to be used ahead of all others when support is desired for the given mechanism. When a value of null is used instead of an Oid for the mechanism, the GSSManager must use the indicated provider ahead of all others no matter what the mechanism is. Only when the indicated provider does not support the needed mechanism should the GSSManager move on to a different provider. Calling this method repeatedly preserves the older settings but lowers them in preference thus forming an ordered list of provider and Oid pairs that grows at the top. Calling addProviderAtFront with a null Oid will remove all previous preferences that were set for this provider in the GSSManager instance. Calling addProviderAtFront with a non-null Oid will remove any previous preference that was set using this mechanism and this provider together. If the GSSManager implementation does not support an SPI with a pluggable provider architecture it should throw a GSSException with the status code GSSException.UNAVAILABLE to indicate that the operation is unavailable. Suppose an application desired that the provider A always be checked first when any mechanism is needed, it would call:          GSSManager mgr \u003d GSSManager.getInstance();\n         // mgr may at this point have its own pre-configured list\n         // of provider preferences. The following will prepend to\n         // any such list:\n\n         mgr.addProviderAtFront(A, null);\n Now if it also desired that the mechanism of Oid m1 always be obtained from the provider B before the previously set A was checked, it would call:          mgr.addProviderAtFront(B, m1);\n The GSSManager would then first check with B if m1 was needed. In case B did not provide support for m1, the GSSManager would continue on to check with A. If any mechanism m2 is needed where m2 is different from m1 then the GSSManager would skip B and check with A directly. Suppose at a later time the following call is made to the same GSSManager instance:          mgr.addProviderAtFront(B, null)\n then the previous setting with the pair (B, m1) is subsumed by this and should be removed. Effectively the list of preferences now becomes {(B, null), (A, null), ... //followed by the pre-configured list. Please note, however, that the following call:          mgr.addProviderAtFront(A, m3)\n does not subsume the previous setting of (A, null) and the list will effectively become {(A, m3), (B, null), (A, null), ...}",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ep\u003c/code\u003e - the provider instance that should be used whenever support is needed for mech.",
+          "\u003ccode\u003emech\u003c/code\u003e - the mechanism for which the provider is being set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#UNAVAILABLE\"\u003e\u003ccode\u003eGSSException.UNAVAILABLE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.ietf.jgss.GSSException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.Provider",
+            "type": "Class"
+          },
+          "name": "p",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "org.ietf.jgss.Oid",
+            "type": "Class"
+          },
+          "name": "mech",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "addProviderAtEnd",
+      "comment": "This method is used to indicate to the GSSManager that the application would like a particular provider to be used if no other provider can be found that supports the given mechanism. When a value of null is used instead of an Oid for the mechanism, the GSSManager must use the indicated provider for any mechanism. Calling this method repeatedly preserves the older settings but raises them above newer ones in preference thus forming an ordered list of providers and Oid pairs that grows at the bottom. Thus the older provider settings will be utilized first before this one is. If there are any previously existing preferences that conflict with the preference being set here, then the GSSManager should ignore this request. If the GSSManager implementation does not support an SPI with a pluggable provider architecture it should throw a GSSException with the status code GSSException.UNAVAILABLE to indicate that the operation is unavailable. Suppose an application desired that when a mechanism of Oid m1 is needed the system default providers always be checked first, and only when they do not support m1 should a provider A be checked. It would then make the call:          GSSManager mgr \u003d GSSManager.getInstance();\n         mgr.addProviderAtEnd(A, m1);\n Now, if it also desired that for all mechanisms the provider B be checked after all configured providers have been checked, it would then call:          mgr.addProviderAtEnd(B, null);\n Effectively the list of preferences now becomes {..., (A, m1), (B, null)}. Suppose at a later time the following call is made to the same GSSManager instance:          mgr.addProviderAtEnd(B, m2)\n then the previous setting with the pair (B, null) subsumes this and therefore this request should be ignored. The same would happen if a request is made for the already existing pairs of (A, m1) or (B, null). Please note, however, that the following call:          mgr.addProviderAtEnd(A, null)\n is not subsumed by the previous setting of (A, m1) and the list will effectively become {..., (A, m1), (B, null), (A, null)}",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ep\u003c/code\u003e - the provider instance that should be used whenever support is needed for mech.",
+          "\u003ccode\u003emech\u003c/code\u003e - the mechanism for which the provider is being set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003eGSSException\u003c/a\u003e\u003c/code\u003e - containing the following major error codes: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#UNAVAILABLE\"\u003e\u003ccode\u003eGSSException.UNAVAILABLE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSException.html#FAILURE\"\u003e\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructor for subclasses to call.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "org.ietf.jgss.GSSManager",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSName\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSCredential.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSCredential\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSContext.html\" title\u003d\"interface in org.ietf.jgss\"\u003e\u003ccode\u003eGSSContext\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

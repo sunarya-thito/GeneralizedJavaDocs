@@ -1,0 +1,304 @@
+{
+  "packageName": "javax.swing.text",
+  "simpleName": "ChildLocator",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "javax.swing.text.AsyncBoxView$ChildState",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "lastValidOffset",
+      "comment": "The location of the last offset calculation that is valid.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.awt.Rectangle",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "lastAlloc",
+      "comment": "The last seen allocation (for repainting when changes are flushed upward).",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.awt.Rectangle",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "childAlloc",
+      "comment": "A shape to use for the child allocation to avoid creating a lot of garbage.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.text.AsyncBoxView$ChildState",
+            "type": "Class"
+          },
+          "name": "cs",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "childChanged",
+      "comment": "Notification that a child changed. This can effect whether or not new offset calculations are needed. This is called by a ChildState object that has changed it\u0027s major span. This can therefore be called by multiple threads.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecs\u003c/code\u003e - the child state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Graphics",
+            "type": "Class"
+          },
+          "name": "g",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "paintChildren",
+      "comment": "Paint the children that intersect the clip area.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eg\u003c/code\u003e - the rendering surface to use"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Shape",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "index",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Shape",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getChildAllocation",
+      "comment": "Fetch the allocation to use for a child view. This will update the offsets for all children not yet updated before the given index.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the child index",
+          "\u003ccode\u003ea\u003c/code\u003e - the allocation"
+        ],
+        "return": [
+          "the allocation to use for a child view"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "x",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "y",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Shape",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getViewIndexAtPoint",
+      "comment": "Fetches the child view index at the given point. This is called by the various View methods that need to calculate which child to forward a message to. This should be called by a block synchronized on this object, and would typically be followed with one or more calls to getChildAllocation that should also be in the synchronized block.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ex\u003c/code\u003e - the X coordinate \u0026gt;\u003d 0",
+          "\u003ccode\u003ey\u003c/code\u003e - the Y coordinate \u0026gt;\u003d 0",
+          "\u003ccode\u003ea\u003c/code\u003e - the allocation to the View"
+        ],
+        "return": [
+          "the nearest child index"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Shape",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "index",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getChildAllocation",
+      "comment": "Fetch the allocation to use for a child view. This does not update the offsets in the ChildState records.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the index"
+        ],
+        "return": [
+          "the allocation to use for a child view"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Shape",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "setAllocation",
+      "comment": "Copy the currently allocated shape into the Rectangle used to store the current allocation. This would be a floating point rectangle in a Java2D-specific implementation.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - the allocation"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "targetOffset",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getViewIndexAtVisualOffset",
+      "comment": "Locate the view responsible for an offset into the box along the major axis. Make sure that offsets are set on the ChildState objects up to the given target span past the desired offset.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etargetOffset\u003c/code\u003e - the target offset"
+        ],
+        "return": [
+          "index of the view representing the given visual location (targetOffset), or -1 if no view represents that location"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "construct a child locator.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.swing.text.AsyncBoxView$ChildLocator",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.3"
+    ]
+  }
+}

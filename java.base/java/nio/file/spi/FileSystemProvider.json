@@ -1,0 +1,1599 @@
+{
+  "packageName": "java.nio.file.spi",
+  "simpleName": "FileSystemProvider",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.nio.file.spi.FileSystemProvider",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "installedProviders",
+      "comment": "Returns a list of the installed file system providers. The first invocation of this method causes the default provider to be initialized (if not already initialized) and loads any other installed providers as described by the FileSystems class.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003eServiceConfigurationError\u003c/a\u003e\u003c/code\u003e - When an error occurs while loading a service provider"
+        ],
+        "return": [
+          "An unmodifiable list of the installed file system providers. The list contains at least one element, that is the default file system provider"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getScheme",
+      "comment": "Returns the URI scheme that identifies this provider.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The URI scheme"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.FileSystem",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.net.URI",
+            "type": "Class"
+          },
+          "name": "uri",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "env",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "newFileSystem",
+      "comment": "Constructs a new FileSystem object identified by a URI. This method is invoked by the FileSystems.newFileSystem(URI,Map) method to open a new file system identified by a URI. The uri parameter is an absolute, hierarchical URI, with a scheme equal (without regard to case) to the scheme supported by this provider. The exact form of the URI is highly provider dependent. The env parameter is a map of provider specific properties to configure the file system. This method throws FileSystemAlreadyExistsException if the file system already exists because it was previously created by an invocation of this method. Once a file system is closed it is provider-dependent if the provider allows a new file system to be created with the same URI as a file system it previously created.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - URI reference",
+          "\u003ccode\u003eenv\u003c/code\u003e - A map of provider specific properties to configure the file system; may be empty"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the pre-conditions for the \n\u003ccode\u003euri\u003c/code\u003e parameter aren\u0027t met, or the \n\u003ccode\u003eenv\u003c/code\u003e parameter does not contain properties required by the provider, or a property value is invalid",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - An I/O error occurs creating the file system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is installed and it denies an unspecified permission required by the file system provider implementation",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystemAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileSystemAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - If the file system has already been created"
+        ],
+        "return": [
+          "A new file system"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.FileSystem",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.net.URI",
+            "type": "Class"
+          },
+          "name": "uri",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getFileSystem",
+      "comment": "Returns an existing FileSystem created by this provider. This method returns a reference to a FileSystem that was created by invoking the newFileSystem(URI,Map) method. File systems created the newFileSystem(Path,Map) method are not returned by this method. The file system is identified by its URI. Its exact form is highly provider dependent. In the case of the default provider the URI\u0027s path component is \"/\" and the authority, query and fragment components are undefined (Undefined components are represented by null). Once a file system created by this provider is closed it is provider-dependent if this method returns a reference to the closed file system or throws FileSystemNotFoundException. If the provider allows a new file system to be created with the same URI as a file system it previously created then this method throws the exception if invoked after the file system is closed (and before a new instance is created by the newFileSystem method). If a security manager is installed then a provider implementation may require to check a permission before returning a reference to an existing file system. In the case of the default file system, no permission check is required.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - URI reference"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the pre-conditions for the \n\u003ccode\u003euri\u003c/code\u003e parameter aren\u0027t met",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystemNotFoundException.html\" title\u003d\"class in java.nio.file\"\u003eFileSystemNotFoundException\u003c/a\u003e\u003c/code\u003e - If the file system does not exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is installed and it denies an unspecified permission."
+        ],
+        "return": [
+          "The file system"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.net.URI",
+            "type": "Class"
+          },
+          "name": "uri",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getPath",
+      "comment": "Return a Path object by converting the given URI. The resulting Path is associated with a FileSystem that already exists or is constructed automatically. The exact form of the URI is file system provider dependent. In the case of the default provider, the URI scheme is \"file\" and the given URI has a non-empty path component, and undefined query, and fragment components. The resulting Path is associated with the default default FileSystem. If a security manager is installed then a provider implementation may require to check a permission. In the case of the default file system, no permission check is required.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - The URI to convert"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the URI scheme does not identify this provider or other preconditions on the uri parameter do not hold",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystemNotFoundException.html\" title\u003d\"class in java.nio.file\"\u003eFileSystemNotFoundException\u003c/a\u003e\u003c/code\u003e - The file system, identified by the URI, does not exist and cannot be created automatically",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is installed and it denies an unspecified permission."
+        ],
+        "return": [
+          "The resulting \n\u003ccode\u003ePath\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.FileSystem",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "env",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "newFileSystem",
+      "comment": "Constructs a new FileSystem to access the contents of a file as a file system. This method is intended for specialized providers of pseudo file systems where the contents of one or more files is treated as a file system. The env parameter is a map of provider specific properties to configure the file system. If this provider does not support the creation of such file systems or if the provider does not recognize the file type of the given file then it throws UnsupportedOperationException. The default implementation of this method throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - The path to the file",
+          "\u003ccode\u003eenv\u003c/code\u003e - A map of provider specific properties to configure the file system; may be empty"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - If this provider does not support access to the contents as a file system or it does not recognize the file type of the given file",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eenv\u003c/code\u003e parameter does not contain properties required by the provider, or a property value is invalid",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is installed and it denies an unspecified permission."
+        ],
+        "return": [
+          "A new file system"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.OpenOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "newInputStream",
+      "comment": "Opens a file, returning an input stream to read from the file. This method works in exactly the manner specified by the Files.newInputStream(java.nio.file.Path, java.nio.file.OpenOption...) method. The default implementation of this method opens a channel to the file as if by invoking the newByteChannel(java.nio.file.Path, java.util.Set\u003c? extends java.nio.file.OpenOption\u003e, java.nio.file.attribute.FileAttribute\u003c?\u003e...) method and constructs a stream that reads bytes from the channel. This method should be overridden where appropriate.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to open",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the file is opened"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if an invalid combination of options is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if an unsupported option is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the file."
+        ],
+        "return": [
+          "a new input stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.OutputStream",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.OpenOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "newOutputStream",
+      "comment": "Opens or creates a file, returning an output stream that may be used to write bytes to the file. This method works in exactly the manner specified by the Files.newOutputStream(java.nio.file.Path, java.nio.file.OpenOption...) method. The default implementation of this method opens a channel to the file as if by invoking the newByteChannel(java.nio.file.Path, java.util.Set\u003c? extends java.nio.file.OpenOption\u003e, java.nio.file.attribute.FileAttribute\u003c?\u003e...) method and constructs a stream that writes bytes to the channel. This method should be overridden where appropriate.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to open or create",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the file is opened"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoptions\u003c/code\u003e contains an invalid combination of options",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if an unsupported option is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method is invoked to check write access to the file. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkDelete(java.lang.String)\"\u003e\u003ccode\u003echeckDelete\u003c/code\u003e\u003c/a\u003e method is invoked to check delete access if the file is opened with the \n\u003ccode\u003eDELETE_ON_CLOSE\u003c/code\u003e option."
+        ],
+        "return": [
+          "a new output stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.FileChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.OpenOption",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.attribute.FileAttribute",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "attrs",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "newFileChannel",
+      "comment": "Opens or creates a file for reading and/or writing, returning a file channel to access the file. This method works in exactly the manner specified by the FileChannel.open method. A provider that does not support all the features required to construct a file channel throws UnsupportedOperationException. The default provider is required to support the creation of file channels. When not overridden, the default implementation throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path of the file to open or create",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the file is opened",
+          "\u003ccode\u003eattrs\u003c/code\u003e - an optional list of file attributes to set atomically when creating the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the set contains an invalid combination of options",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - If this provider that does not support creating file channels, or an unsupported open option or file attribute is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default file system, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkRead(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check read access if the file is opened for reading. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkWrite(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check write access if the file is opened for writing"
+        ],
+        "return": [
+          "a new file channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.AsynchronousFileChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.OpenOption",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.ExecutorService",
+            "type": "Class"
+          },
+          "name": "executor",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.attribute.FileAttribute",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "attrs",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "newAsynchronousFileChannel",
+      "comment": "Opens or creates a file for reading and/or writing, returning an asynchronous file channel to access the file. This method works in exactly the manner specified by the AsynchronousFileChannel.open method. A provider that does not support all the features required to construct an asynchronous file channel throws UnsupportedOperationException. The default provider is required to support the creation of asynchronous file channels. When not overridden, the default implementation of this method throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path of the file to open or create",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the file is opened",
+          "\u003ccode\u003eexecutor\u003c/code\u003e - the thread pool or \n\u003ccode\u003enull\u003c/code\u003e to associate the channel with the default thread pool",
+          "\u003ccode\u003eattrs\u003c/code\u003e - an optional list of file attributes to set atomically when creating the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the set contains an invalid combination of options",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - If this provider that does not support creating asynchronous file channels, or an unsupported open option or file attribute is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default file system, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkRead(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check read access if the file is opened for reading. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkWrite(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check write access if the file is opened for writing"
+        ],
+        "return": [
+          "a new asynchronous file channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SeekableByteChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.OpenOption",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.attribute.FileAttribute",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "attrs",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "newByteChannel",
+      "comment": "Opens or creates a file, returning a seekable byte channel to access the file. This method works in exactly the manner specified by the Files.newByteChannel(Path,Set,FileAttribute[]) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to open or create",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the file is opened",
+          "\u003ccode\u003eattrs\u003c/code\u003e - an optional list of file attributes to set atomically when creating the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the set contains an invalid combination of options",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if an unsupported open option is specified or the array contains attributes that cannot be set atomically when creating the file",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if a file of that name already exists and the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/StandardOpenOption.html#CREATE_NEW\"\u003e\u003ccode\u003eCREATE_NEW\u003c/code\u003e\u003c/a\u003e option is specified \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the path if the file is opened for reading. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method is invoked to check write access to the path if the file is opened for writing. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkDelete(java.lang.String)\"\u003e\u003ccode\u003echeckDelete\u003c/code\u003e\u003c/a\u003e method is invoked to check delete access if the file is opened with the \n\u003ccode\u003eDELETE_ON_CLOSE\u003c/code\u003e option."
+        ],
+        "return": [
+          "a new seekable byte channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.DirectoryStream",
+        "parameters": [
+          {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "dir",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.DirectoryStream$Filter",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "java.nio.file.Path",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "filter",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "newDirectoryStream",
+      "comment": "Opens a directory, returning a DirectoryStream to iterate over the entries in the directory. This method works in exactly the manner specified by the Files.newDirectoryStream(java.nio.file.Path, java.nio.file.DirectoryStream.Filter) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edir\u003c/code\u003e - the path to the directory",
+          "\u003ccode\u003efilter\u003c/code\u003e - the directory stream filter"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NotDirectoryException.html\" title\u003d\"class in java.nio.file\"\u003eNotDirectoryException\u003c/a\u003e\u003c/code\u003e - if the file could not otherwise be opened because it is not a directory \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the directory."
+        ],
+        "return": [
+          "a new and open \n\u003ccode\u003eDirectoryStream\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "dir",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.attribute.FileAttribute",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "attrs",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "createDirectory",
+      "comment": "Creates a new directory. This method works in exactly the manner specified by the Files.createDirectory(java.nio.file.Path, java.nio.file.attribute.FileAttribute\u003c?\u003e...) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edir\u003c/code\u003e - the directory to create",
+          "\u003ccode\u003eattrs\u003c/code\u003e - an optional list of file attributes to set atomically when creating the directory"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the array contains an attribute that cannot be set atomically when creating the directory",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if a directory could not otherwise be created because a file of that name already exists \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs or the parent directory does not exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method is invoked to check write access to the new directory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "link",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "target",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.attribute.FileAttribute",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "attrs",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "createSymbolicLink",
+      "comment": "Creates a symbolic link to a target. This method works in exactly the manner specified by the Files.createSymbolicLink(java.nio.file.Path, java.nio.file.Path, java.nio.file.attribute.FileAttribute\u003c?\u003e...) method. The default implementation of this method throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elink\u003c/code\u003e - the path of the symbolic link to create",
+          "\u003ccode\u003etarget\u003c/code\u003e - the target of the symbolic link",
+          "\u003ccode\u003eattrs\u003c/code\u003e - the array of attributes to set atomically when creating the symbolic link"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the implementation does not support symbolic links or the array contains an attribute that cannot be set atomically when creating the symbolic link",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if a file with the name already exists \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/LinkPermission.html\" title\u003d\"class in java.nio.file\"\u003e\u003ccode\u003eLinkPermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"symbolic\")\u003c/code\u003e or its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method denies write access to the path of the symbolic link."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "link",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "existing",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "createLink",
+      "comment": "Creates a new link (directory entry) for an existing file. This method works in exactly the manner specified by the Files.createLink(java.nio.file.Path, java.nio.file.Path) method. The default implementation of this method throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elink\u003c/code\u003e - the link (directory entry) to create",
+          "\u003ccode\u003eexisting\u003c/code\u003e - a path to an existing file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the implementation does not support adding an existing file to a directory",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if the entry could not otherwise be created because a file of that name already exists \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/LinkPermission.html\" title\u003d\"class in java.nio.file\"\u003e\u003ccode\u003eLinkPermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"hard\")\u003c/code\u003e or its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method denies write access to either the link or the existing file."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "delete",
+      "comment": "Deletes a file. This method works in exactly the manner specified by the Files.delete(java.nio.file.Path) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to delete"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NoSuchFileException.html\" title\u003d\"class in java.nio.file\"\u003eNoSuchFileException\u003c/a\u003e\u003c/code\u003e - if the file does not exist \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/DirectoryNotEmptyException.html\" title\u003d\"class in java.nio.file\"\u003eDirectoryNotEmptyException\u003c/a\u003e\u003c/code\u003e - if the file is a directory and could not otherwise be deleted because the directory is not empty \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkDelete(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkDelete(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check delete access to the file"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "deleteIfExists",
+      "comment": "Deletes a file if it exists. This method works in exactly the manner specified by the Files.deleteIfExists(java.nio.file.Path) method. The default implementation of this method simply invokes delete(java.nio.file.Path) ignoring the NoSuchFileException when the file does not exist. It may be overridden where appropriate.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to delete"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/DirectoryNotEmptyException.html\" title\u003d\"class in java.nio.file\"\u003eDirectoryNotEmptyException\u003c/a\u003e\u003c/code\u003e - if the file is a directory and could not otherwise be deleted because the directory is not empty \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkDelete(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkDelete(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check delete access to the file"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the file was deleted by this method; \n\u003ccode\u003e false\u003c/code\u003e if the file could not be deleted because it did not exist"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "link",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "readSymbolicLink",
+      "comment": "Reads the target of a symbolic link. This method works in exactly the manner specified by the Files.readSymbolicLink(java.nio.file.Path) method. The default implementation of this method throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elink\u003c/code\u003e - the path to the symbolic link"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the implementation does not support symbolic links",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NotLinkException.html\" title\u003d\"class in java.nio.file\"\u003eNotLinkException\u003c/a\u003e\u003c/code\u003e - if the target could otherwise not be read because the file is not a symbolic link \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, it checks that \n\u003ccode\u003eFilePermission\u003c/code\u003e has been granted with the \"\n\u003ccode\u003ereadlink\u003c/code\u003e\" action to read the link."
+        ],
+        "return": [
+          "The target of the symbolic link"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "source",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "target",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.CopyOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "copy",
+      "comment": "Copy a file to a target file. This method works in exactly the manner specified by the Files.copy(Path,Path,CopyOption[]) method except that both the source and target paths must be associated with this provider.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esource\u003c/code\u003e - the path to the file to copy",
+          "\u003ccode\u003etarget\u003c/code\u003e - the path to the target file",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the copy should be done"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the array contains a copy option that is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if the target file exists but cannot be replaced because the \n\u003ccode\u003eREPLACE_EXISTING\u003c/code\u003e option is not specified \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/DirectoryNotEmptyException.html\" title\u003d\"class in java.nio.file\"\u003eDirectoryNotEmptyException\u003c/a\u003e\u003c/code\u003e - the \n\u003ccode\u003eREPLACE_EXISTING\u003c/code\u003e option is specified but the file cannot be replaced because it is a non-empty directory \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the source file, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e is invoked to check write access to the target file. If a symbolic link is copied the security manager is invoked to check \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/LinkPermission.html\" title\u003d\"class in java.nio.file\"\u003e\u003ccode\u003eLinkPermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"symbolic\")\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "source",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "target",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.CopyOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "move",
+      "comment": "Move or rename a file to a target file. This method works in exactly the manner specified by the Files.move(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...) method except that both the source and target paths must be associated with this provider.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esource\u003c/code\u003e - the path to the file to move",
+          "\u003ccode\u003etarget\u003c/code\u003e - the path to the target file",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the move should be done"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the array contains a copy option that is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if the target file exists but cannot be replaced because the \n\u003ccode\u003eREPLACE_EXISTING\u003c/code\u003e option is not specified \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/DirectoryNotEmptyException.html\" title\u003d\"class in java.nio.file\"\u003eDirectoryNotEmptyException\u003c/a\u003e\u003c/code\u003e - the \n\u003ccode\u003eREPLACE_EXISTING\u003c/code\u003e option is specified but the file cannot be replaced because it is a non-empty directory \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/AtomicMoveNotSupportedException.html\" title\u003d\"class in java.nio.file\"\u003eAtomicMoveNotSupportedException\u003c/a\u003e\u003c/code\u003e - if the options array contains the \n\u003ccode\u003eATOMIC_MOVE\u003c/code\u003e option but the file cannot be moved as an atomic file system operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method is invoked to check write access to both the source and target file."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path2",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isSameFile",
+      "comment": "Tests if two paths locate the same file. This method works in exactly the manner specified by the Files.isSameFile(java.nio.file.Path, java.nio.file.Path) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - one path to the file",
+          "\u003ccode\u003epath2\u003c/code\u003e - the other path"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to both files."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, the two paths locate the same file"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isHidden",
+      "comment": "Tells whether or not a file is considered hidden. This method works in exactly the manner specified by the Files.isHidden(java.nio.file.Path) method. This method is invoked by the isHidden method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to test"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the file."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the file is considered hidden"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.FileStore",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getFileStore",
+      "comment": "Returns the FileStore representing the file store where a file is located. This method works in exactly the manner specified by the Files.getFileStore(java.nio.file.Path) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the file, and in addition it checks \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"getFileStoreAttributes\")\u003c/code\u003e"
+        ],
+        "return": [
+          "the file store where the file is stored"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.AccessMode",
+            "type": "Class"
+          },
+          "name": "modes",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "checkAccess",
+      "comment": "Checks the existence, and optionally the accessibility, of a file. This method may be used by the isReadable, isWritable and isExecutable methods to check the accessibility of a file. This method checks the existence of a file and that this Java virtual machine has appropriate privileges that would allow it access the file according to all of access modes specified in the modes parameter as follows: Access Modes Value Description READ Checks that the file exists and that the Java virtual machine has permission to read the file. WRITE Checks that the file exists and that the Java virtual machine has permission to write to the file, EXECUTE Checks that the file exists and that the Java virtual machine has permission to execute the file. The semantics may differ when checking access to a directory. For example, on UNIX systems, checking for EXECUTE access checks that the Java virtual machine has permission to search the directory in order to access file or subdirectories. If the modes parameter is of length zero, then the existence of the file is checked. This method follows symbolic links if the file referenced by this object is a symbolic link. Depending on the implementation, this method may require to read file permissions, access control lists, or other file attributes in order to check the effective access to the file. To determine the effective access to a file may require access to several attributes and so in some implementations this method may not be atomic with respect to other file system operations.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to check",
+          "\u003ccode\u003emodes\u003c/code\u003e - The access modes to check; may have zero elements"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - an implementation is required to support checking for \n\u003ccode\u003eREAD\u003c/code\u003e, \n\u003ccode\u003eWRITE\u003c/code\u003e, and \n\u003ccode\u003eEXECUTE\u003c/code\u003e access. This exception is specified to allow for the \n\u003ccode\u003eAccess\u003c/code\u003e enum to be extended in future releases.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NoSuchFileException.html\" title\u003d\"class in java.nio.file\"\u003eNoSuchFileException\u003c/a\u003e\u003c/code\u003e - if a file does not exist \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/AccessDeniedException.html\" title\u003d\"class in java.nio.file\"\u003eAccessDeniedException\u003c/a\u003e\u003c/code\u003e - the requested access would be denied or the access cannot be determined because the Java virtual machine has insufficient privileges or other reasons. \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e is invoked when checking read access to the file or only the existence of the file, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e is invoked when checking write access to the file, and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkExec(java.lang.String)\"\u003e\u003ccode\u003echeckExec\u003c/code\u003e\u003c/a\u003e is invoked when checking execute access."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "V",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "V",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "type",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.LinkOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "V",
+          "upperBounds": [
+            {
+              "name": "java.nio.file.attribute.FileAttributeView",
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getFileAttributeView",
+      "comment": "Returns a file attribute view of a given type. This method works in exactly the manner specified by the Files.getFileAttributeView(java.nio.file.Path, java.lang.Class\u003cV\u003e, java.nio.file.LinkOption...) method.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eV\u003c/code\u003e - The \n\u003ccode\u003eFileAttributeView\u003c/code\u003e type"
+        ],
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file",
+          "\u003ccode\u003etype\u003c/code\u003e - the \n\u003ccode\u003eClass\u003c/code\u003e object corresponding to the file attribute view",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options indicating how symbolic links are handled"
+        ],
+        "return": [
+          "a file attribute view of the specified type, or \n\u003ccode\u003enull\u003c/code\u003e if the attribute view type is not available"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "A",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "A",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "type",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.LinkOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "A",
+          "upperBounds": [
+            {
+              "name": "java.nio.file.attribute.BasicFileAttributes",
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "readAttributes",
+      "comment": "Reads a file\u0027s attributes as a bulk operation. This method works in exactly the manner specified by the Files.readAttributes(Path,Class,LinkOption[]) method.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eA\u003c/code\u003e - The \n\u003ccode\u003eBasicFileAttributes\u003c/code\u003e type"
+        ],
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file",
+          "\u003ccode\u003etype\u003c/code\u003e - the \n\u003ccode\u003eClass\u003c/code\u003e of the file attributes required to read",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options indicating how symbolic links are handled"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if an attributes of the given type are not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, a security manager is installed, its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the file"
+        ],
+        "return": [
+          "the file attributes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          {
+            "name": "java.lang.Object",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "attributes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.LinkOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "readAttributes",
+      "comment": "Reads a set of file attributes as a bulk operation. This method works in exactly the manner specified by the Files.readAttributes(Path,String,LinkOption[]) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file",
+          "\u003ccode\u003eattributes\u003c/code\u003e - the attributes to read",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options indicating how symbolic links are handled"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the attribute view is not available",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no attributes are specified or an unrecognized attributes is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method denies read access to the file. If this method is invoked to read security sensitive attributes then the security manager may be invoke to check for additional permissions."
+        ],
+        "return": [
+          "a map of the attributes returned; may be empty. The map\u0027s keys are the attribute names, its values are the attribute values"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "path",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "attribute",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.LinkOption",
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setAttribute",
+      "comment": "Sets the value of a file attribute. This method works in exactly the manner specified by the Files.setAttribute(java.nio.file.Path, java.lang.String, java.lang.Object, java.nio.file.LinkOption...) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file",
+          "\u003ccode\u003eattribute\u003c/code\u003e - the attribute to set",
+          "\u003ccode\u003evalue\u003c/code\u003e - the attribute value",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options indicating how symbolic links are handled"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the attribute view is not available",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the attribute name is not specified, or is not recognized, or the attribute value is of the correct type but has an inappropriate value",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - If the attribute value is not of the expected type or is a collection containing elements that are not of the expected type",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method denies write access to the file. If this method is invoked to set security sensitive attributes then the security manager may be invoked to check for additional permissions."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Initializes a new instance of this class. During construction a provider may safely access files associated with the default provider but care needs to be taken to avoid circular loading of other installed providers. If circular loading of installed providers is detected then an unspecified error is thrown.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager has been installed and it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e\n\u003ccode\u003e(\"fileSystemProvider\")\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.nio.file.spi.FileSystemProvider",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

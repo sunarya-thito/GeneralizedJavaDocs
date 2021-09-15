@@ -1,0 +1,444 @@
+{
+  "packageName": "javax.crypto",
+  "simpleName": "EncryptedPrivateKeyInfo",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAlgName",
+      "comment": "Returns the encryption algorithm. Note: Standard name is returned instead of the specified one in the constructor when such mapping is available. See the Java Security Standard Algorithm Names document for information about standard Cipher algorithm names.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the encryption algorithm name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.AlgorithmParameters",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAlgParameters",
+      "comment": "Returns the algorithm parameters used by the encryption algorithm.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the algorithm parameters."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getEncryptedData",
+      "comment": "Returns the encrypted data.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the encrypted data. Returns a new array each time this method is called."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.spec.PKCS8EncodedKeySpec",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.spec.InvalidKeySpecException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.crypto.Cipher",
+            "type": "Class"
+          },
+          "name": "cipher",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getKeySpec",
+      "comment": "Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it. Note: In order to successfully retrieve the enclosed PKCS8EncodedKeySpec object, cipher needs to be initialized to either Cipher.DECRYPT_MODE or Cipher.UNWRAP_MODE, with the same key and parameters used for generating the encrypted data.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecipher\u003c/code\u003e - the initialized cipher object which will be used for decrypting the encrypted data."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecipher\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/spec/InvalidKeySpecException.html\" title\u003d\"class in java.security.spec\"\u003eInvalidKeySpecException\u003c/a\u003e\u003c/code\u003e - if the given cipher is inappropriate for the encrypted data or the encrypted data is corrupted and cannot be decrypted."
+        ],
+        "return": [
+          "the PKCS8EncodedKeySpec object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.spec.PKCS8EncodedKeySpec",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.Key",
+            "type": "Class"
+          },
+          "name": "decryptKey",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getKeySpec",
+      "comment": "Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edecryptKey\u003c/code\u003e - key used for decrypting the encrypted data."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edecryptKey\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if cannot find appropriate cipher to decrypt the encrypted data.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edecryptKey\u003c/code\u003e cannot be used to decrypt the encrypted data or the decryption result is not a valid PKCS8KeySpec."
+        ],
+        "return": [
+          "the PKCS8EncodedKeySpec object."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.spec.PKCS8EncodedKeySpec",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchProviderException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.Key",
+            "type": "Class"
+          },
+          "name": "decryptKey",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "providerName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getKeySpec",
+      "comment": "Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edecryptKey\u003c/code\u003e - key used for decrypting the encrypted data.",
+          "\u003ccode\u003eproviderName\u003c/code\u003e - the name of provider whose Cipher implementation will be used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edecryptKey\u003c/code\u003e or \n\u003ccode\u003eproviderName\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchProviderException.html\" title\u003d\"class in java.security\"\u003eNoSuchProviderException\u003c/a\u003e\u003c/code\u003e - if no provider \n\u003ccode\u003eproviderName\u003c/code\u003e is registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if cannot find appropriate cipher to decrypt the encrypted data.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edecryptKey\u003c/code\u003e cannot be used to decrypt the encrypted data or the decryption result is not a valid PKCS8KeySpec."
+        ],
+        "return": [
+          "the PKCS8EncodedKeySpec object."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.spec.PKCS8EncodedKeySpec",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.Key",
+            "type": "Class"
+          },
+          "name": "decryptKey",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.Provider",
+            "type": "Class"
+          },
+          "name": "provider",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getKeySpec",
+      "comment": "Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edecryptKey\u003c/code\u003e - key used for decrypting the encrypted data.",
+          "\u003ccode\u003eprovider\u003c/code\u003e - the name of provider whose Cipher implementation will be used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edecryptKey\u003c/code\u003e or \n\u003ccode\u003eprovider\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if cannot find appropriate cipher to decrypt the encrypted data in \n\u003ccode\u003eprovider\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edecryptKey\u003c/code\u003e cannot be used to decrypt the encrypted data or the decryption result is not a valid PKCS8KeySpec."
+        ],
+        "return": [
+          "the PKCS8EncodedKeySpec object."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getEncoded",
+      "comment": "Returns the ASN.1 encoding of this object.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if error occurs when constructing its ASN.1 encoding."
+        ],
+        "return": [
+          "the ASN.1 encoding. Returns a new array each time this method is called."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "encoded",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs (i.e., parses) an EncryptedPrivateKeyInfo from its ASN.1 encoding.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eencoded\u003c/code\u003e - the ASN.1 encoding of this object. The contents of the array are copied to protect against subsequent modification."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003eencoded\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if error occurs when parsing the ASN.1 encoding."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "algName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "encryptedData",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs an EncryptedPrivateKeyInfo from the encryption algorithm name and the encrypted data. Note: This constructor will use null as the value of the algorithm parameters. If the encryption algorithm has parameters whose value is not null, a different constructor, e.g. EncryptedPrivateKeyInfo(AlgorithmParameters, byte[]), should be used.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ealgName\u003c/code\u003e - encryption algorithm name. See the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/security/standard-names.html\"\u003e Java Security Standard Algorithm Names\u003c/a\u003e document for information about standard Cipher algorithm names.",
+          "\u003ccode\u003eencryptedData\u003c/code\u003e - encrypted data. The contents of \n\u003ccode\u003eencrypedData\u003c/code\u003e are copied to protect against subsequent modification when constructing this object."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ealgName\u003c/code\u003e or \n\u003ccode\u003eencryptedData\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eencryptedData\u003c/code\u003e is empty, i.e. 0-length.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if the specified algName is not supported."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.security.AlgorithmParameters",
+            "type": "Class"
+          },
+          "name": "algParams",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "encryptedData",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs an EncryptedPrivateKeyInfo from the encryption algorithm parameters and the encrypted data.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ealgParams\u003c/code\u003e - the algorithm parameters for the encryption algorithm. \n\u003ccode\u003ealgParams.getEncoded()\u003c/code\u003e should return the ASN.1 encoded bytes of the \n\u003ccode\u003eparameters\u003c/code\u003e field of the \n\u003ccode\u003eAlgorithmIdentifer\u003c/code\u003e component of the \n\u003ccode\u003eEncryptedPrivateKeyInfo\u003c/code\u003e type.",
+          "\u003ccode\u003eencryptedData\u003c/code\u003e - encrypted data. The contents of \n\u003ccode\u003eencrypedData\u003c/code\u003e are copied to protect against subsequent modification when constructing this object."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ealgParams\u003c/code\u003e or \n\u003ccode\u003eencryptedData\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eencryptedData\u003c/code\u003e is empty, i.e. 0-length.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if the specified algName of the specified \n\u003ccode\u003ealgParams\u003c/code\u003e parameter is not supported."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.crypto.EncryptedPrivateKeyInfo",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/spec/PKCS8EncodedKeySpec.html\" title\u003d\"class in java.security.spec\"\u003e\u003ccode\u003ePKCS8EncodedKeySpec\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

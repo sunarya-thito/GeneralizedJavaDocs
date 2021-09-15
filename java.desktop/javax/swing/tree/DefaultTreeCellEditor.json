@@ -1,0 +1,992 @@
+{
+  "packageName": "javax.swing.tree",
+  "simpleName": "DefaultTreeCellEditor",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "javax.swing.tree.TreeCellEditor",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "realEditor",
+      "comment": "Editor handling the editing.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.swing.tree.DefaultTreeCellRenderer",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "renderer",
+      "comment": "Renderer, used to get border and offsets from.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.awt.Container",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "editingContainer",
+      "comment": "Editing container, will contain the editorComponent.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.awt.Component",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "editingComponent",
+      "comment": "Component used in editing, obtained from the editingContainer.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "canEdit",
+      "comment": "As of Java 2 platform v1.4 this field should no longer be used. If you wish to provide similar behavior you should directly override isCellEditable.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "offset",
+      "comment": "Used in editing. Indicates x position to place editingComponent.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.swing.JTree",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "tree",
+      "comment": "JTree instance listening too.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.swing.tree.TreePath",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "lastPath",
+      "comment": "Last path that was selected.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.swing.Timer",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "timer",
+      "comment": "Used before starting the editing session.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "lastRow",
+      "comment": "Row that was last passed into getTreeCellEditorComponent.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "borderSelectionColor",
+      "comment": "True if the border selection color should be drawn.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.swing.Icon",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 132,
+      "name": "editingIcon",
+      "comment": "Icon to use when editing.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.awt.Font",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "font",
+      "comment": "Font to paint with, null indicates font of renderer is to be used.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Color",
+            "type": "Class"
+          },
+          "name": "newColor",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setBorderSelectionColor",
+      "comment": "Sets the color to use for the border.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewColor\u003c/code\u003e - the new border color"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getBorderSelectionColor",
+      "comment": "Returns the color the border is drawn.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the border selection color"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Font",
+            "type": "Class"
+          },
+          "name": "font",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setFont",
+      "comment": "Sets the font to edit with. null indicates the renderers font should be used. This will NOT override any font you have set in the editor the receiver was instantiated with. If null for an editor was passed in a default editor will be created that will pick up this font.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/tree/DefaultTreeCellEditor.html#getFont()\"\u003e\u003ccode\u003egetFont()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efont\u003c/code\u003e - the editing \n\u003ccode\u003eFont\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Font",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFont",
+      "comment": "Gets the font used for editing.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/tree/DefaultTreeCellEditor.html#setFont(java.awt.Font)\"\u003e\u003ccode\u003esetFont(java.awt.Font)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the editing \n\u003ccode\u003eFont\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Component",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JTree",
+            "type": "Class"
+          },
+          "name": "tree",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "isSelected",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "expanded",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "leaf",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "row",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getTreeCellEditorComponent",
+      "comment": "Configures the editor. Passed onto the realEditor.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/tree/TreeCellEditor.html#getTreeCellEditorComponent(javax.swing.JTree,java.lang.Object,boolean,boolean,boolean,int)\"\u003egetTreeCellEditorComponent\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/tree/TreeCellEditor.html\" title\u003d\"interface in javax.swing.tree\"\u003eTreeCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etree\u003c/code\u003e - the JTree that is asking the editor to edit; this parameter can be null",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value of the cell to be edited",
+          "\u003ccode\u003eisSelected\u003c/code\u003e - true if the cell is to be rendered with selection highlighting",
+          "\u003ccode\u003eexpanded\u003c/code\u003e - true if the node is expanded",
+          "\u003ccode\u003eleaf\u003c/code\u003e - true if the node is a leaf node",
+          "\u003ccode\u003erow\u003c/code\u003e - the row index of the node being edited"
+        ],
+        "return": [
+          "the component for editing"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getCellEditorValue",
+      "comment": "Returns the value currently being edited.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#getCellEditorValue()\"\u003egetCellEditorValue\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html\" title\u003d\"interface in javax.swing\"\u003eCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the value currently being edited"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.EventObject",
+            "type": "Class"
+          },
+          "name": "event",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isCellEditable",
+      "comment": "If the realEditor returns true to this message, prepareForEditing is messaged and true is returned.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#shouldSelectCell(java.util.EventObject)\"\u003e\u003ccode\u003eCellEditor.shouldSelectCell(java.util.EventObject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#isCellEditable(java.util.EventObject)\"\u003eisCellEditable\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html\" title\u003d\"interface in javax.swing\"\u003eCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - the event the editor should use to consider whether to begin editing or not"
+        ],
+        "return": [
+          "true if editing can be started"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.EventObject",
+            "type": "Class"
+          },
+          "name": "event",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "shouldSelectCell",
+      "comment": "Messages the realEditor for the return value.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#isCellEditable(java.util.EventObject)\"\u003e\u003ccode\u003eCellEditor.isCellEditable(java.util.EventObject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#shouldSelectCell(java.util.EventObject)\"\u003eshouldSelectCell\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html\" title\u003d\"interface in javax.swing\"\u003eCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - the event the editor should use to start editing"
+        ],
+        "return": [
+          "true if the editor would like the editing cell to be selected; otherwise returns false"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "stopCellEditing",
+      "comment": "If the realEditor will allow editing to stop, the realEditor is removed and true is returned, otherwise false is returned.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#stopCellEditing()\"\u003estopCellEditing\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html\" title\u003d\"interface in javax.swing\"\u003eCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "true if editing was stopped; false otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "cancelCellEditing",
+      "comment": "Messages cancelCellEditing to the realEditor and removes it from this instance.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#cancelCellEditing()\"\u003ecancelCellEditing\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html\" title\u003d\"interface in javax.swing\"\u003eCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.CellEditorListener",
+            "type": "Class"
+          },
+          "name": "l",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addCellEditorListener",
+      "comment": "Adds the CellEditorListener.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#addCellEditorListener(javax.swing.event.CellEditorListener)\"\u003eaddCellEditorListener\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html\" title\u003d\"interface in javax.swing\"\u003eCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003el\u003c/code\u003e - the listener to be added"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.CellEditorListener",
+            "type": "Class"
+          },
+          "name": "l",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeCellEditorListener",
+      "comment": "Removes the previously added CellEditorListener.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html#removeCellEditorListener(javax.swing.event.CellEditorListener)\"\u003eremoveCellEditorListener\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/CellEditor.html\" title\u003d\"interface in javax.swing\"\u003eCellEditor\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003el\u003c/code\u003e - the listener to be removed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.event.CellEditorListener",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getCellEditorListeners",
+      "comment": "Returns an array of all the CellEditorListeners added to this DefaultTreeCellEditor with addCellEditorListener().",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "all of the \n\u003ccode\u003eCellEditorListener\u003c/code\u003es added or an empty array if no listeners have been added"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.TreeSelectionEvent",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "valueChanged",
+      "comment": "Resets lastPath.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/event/TreeSelectionListener.html#valueChanged(javax.swing.event.TreeSelectionEvent)\"\u003evalueChanged\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/event/TreeSelectionListener.html\" title\u003d\"interface in javax.swing.event\"\u003eTreeSelectionListener\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the event that characterizes the change."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.event.ActionEvent",
+            "type": "Class"
+          },
+          "name": "e",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "actionPerformed",
+      "comment": "Messaged when the timer fires, this will start the editing session.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/event/ActionListener.html#actionPerformed(java.awt.event.ActionEvent)\"\u003eactionPerformed\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/event/ActionListener.html\" title\u003d\"interface in java.awt.event\"\u003eActionListener\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the event to be processed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JTree",
+            "type": "Class"
+          },
+          "name": "newTree",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "setTree",
+      "comment": "Sets the tree currently editing for. This is needed to add a selection listener.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewTree\u003c/code\u003e - the new tree to be edited"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.EventObject",
+            "type": "Class"
+          },
+          "name": "event",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "shouldStartEditingTimer",
+      "comment": "Returns true if event is a MouseEvent and the click count is 1.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - the event being studied"
+        ],
+        "return": [
+          "whether \n\u003ccode\u003eevent\u003c/code\u003e should starts the editing timer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "startEditingTimer",
+      "comment": "Starts the editing timer.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.EventObject",
+            "type": "Class"
+          },
+          "name": "event",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "canEditImmediately",
+      "comment": "Returns true if event is null, or it is a MouseEvent with a click count \u003e 2 and inHitRegion returns true.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - the event being studied"
+        ],
+        "return": [
+          "whether editing can be started for the given \n\u003ccode\u003eevent\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "x",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "y",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "inHitRegion",
+      "comment": "Returns true if the passed in location is a valid mouse location to start editing from. This is implemented to return false if x is \u003c\u003d the width of the icon and icon gap displayed by the renderer. In other words this returns true if the user clicks over the text part displayed by the renderer, and false otherwise.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ex\u003c/code\u003e - the x-coordinate of the point",
+          "\u003ccode\u003ey\u003c/code\u003e - the y-coordinate of the point"
+        ],
+        "return": [
+          "true if the passed in location is a valid mouse location"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JTree",
+            "type": "Class"
+          },
+          "name": "tree",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "isSelected",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "expanded",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "leaf",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "row",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "determineOffset",
+      "comment": "Determine the offset.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etree\u003c/code\u003e - a \n\u003ccode\u003eJTree\u003c/code\u003e object",
+          "\u003ccode\u003evalue\u003c/code\u003e - a value",
+          "\u003ccode\u003eisSelected\u003c/code\u003e - selection status",
+          "\u003ccode\u003eexpanded\u003c/code\u003e - expansion status",
+          "\u003ccode\u003eleaf\u003c/code\u003e - leaf status",
+          "\u003ccode\u003erow\u003c/code\u003e - current row"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "prepareForEditing",
+      "comment": "Invoked just before editing is to start. Will add the editingComponent to the editingContainer.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Container",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "createContainer",
+      "comment": "Creates the container to manage placement of editingComponent.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "new Container object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.tree.TreeCellEditor",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "createTreeCellEditor",
+      "comment": "This is invoked if a TreeCellEditor is not supplied in the constructor. It returns a TextField editor.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a new \n\u003ccode\u003eTextField\u003c/code\u003e editor"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JTree",
+            "type": "Class"
+          },
+          "name": "tree",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.tree.DefaultTreeCellRenderer",
+            "type": "Class"
+          },
+          "name": "renderer",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a DefaultTreeCellEditor object for a JTree using the specified renderer and a default editor. (Use this constructor for normal editing.)",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etree\u003c/code\u003e - a \n\u003ccode\u003eJTree\u003c/code\u003e object",
+          "\u003ccode\u003erenderer\u003c/code\u003e - a \n\u003ccode\u003eDefaultTreeCellRenderer\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JTree",
+            "type": "Class"
+          },
+          "name": "tree",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.tree.DefaultTreeCellRenderer",
+            "type": "Class"
+          },
+          "name": "renderer",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.tree.TreeCellEditor",
+            "type": "Class"
+          },
+          "name": "editor",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a DefaultTreeCellEditor object for a JTree using the specified renderer and the specified editor. (Use this constructor for specialized editing.)",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etree\u003c/code\u003e - a \n\u003ccode\u003eJTree\u003c/code\u003e object",
+          "\u003ccode\u003erenderer\u003c/code\u003e - a \n\u003ccode\u003eDefaultTreeCellRenderer\u003c/code\u003e object",
+          "\u003ccode\u003eeditor\u003c/code\u003e - a \n\u003ccode\u003eTreeCellEditor\u003c/code\u003e object"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.swing.tree.DefaultTreeCellEditor$DefaultTextField",
+    "javax.swing.tree.DefaultTreeCellEditor$EditorContainer"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.swing.tree.DefaultTreeCellEditor",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JTree.html\" title\u003d\"class in javax.swing\"\u003e\u003ccode\u003eJTree\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

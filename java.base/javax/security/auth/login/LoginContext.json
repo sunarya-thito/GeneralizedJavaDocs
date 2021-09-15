@@ -1,0 +1,328 @@
+{
+  "packageName": "javax.security.auth.login",
+  "simpleName": "LoginContext",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.security.auth.login.LoginException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "login",
+      "comment": "Perform the authentication. This method invokes the login method for each LoginModule configured for the name specified to the LoginContext constructor, as determined by the login Configuration. Each LoginModule then performs its respective type of authentication (username/password, smart card pin verification, etc.). This method completes a 2-phase authentication process by calling each configured LoginModule\u0027s commit method if the overall authentication succeeded (the relevant REQUIRED, REQUISITE, SUFFICIENT, and OPTIONAL LoginModules succeeded), or by calling each configured LoginModule\u0027s abort method if the overall authentication failed. If authentication succeeded, each successful LoginModule\u0027s commit method associates the relevant Principals and Credentials with the Subject. If authentication failed, each LoginModule\u0027s abort method removes/destroys any previously stored state. If the commit phase of the authentication process fails, then the overall authentication fails and this method invokes the abort method for each configured LoginModule. If the abort phase fails for any reason, then this method propagates the original exception thrown either during the login phase or the commit phase. In either case, the overall authentication fails. In the case where multiple LoginModules fail, this method propagates the exception raised by the first LoginModule which failed. Note that if this method enters the abort phase (either the login or commit phase failed), this method invokes all LoginModules configured for the application regardless of their respective Configuration flag parameters. Essentially this means that Requisite and Sufficient semantics are ignored during the abort phase. This guarantees that proper cleanup and state restoration can take place.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/LoginException.html\" title\u003d\"class in javax.security.auth.login\"\u003eLoginException\u003c/a\u003e\u003c/code\u003e - if the authentication fails."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.security.auth.login.LoginException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "logout",
+      "comment": "Logout the Subject. This method invokes the logout method for each LoginModule configured for this LoginContext. Each LoginModule performs its respective logout procedure which may include removing/destroying Principal and Credential information from the Subject and state cleanup. Note that this method invokes all LoginModules configured for the application regardless of their respective Configuration flag parameters. Essentially this means that Requisite and Sufficient semantics are ignored for this method. This guarantees that proper cleanup and state restoration can take place.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/LoginException.html\" title\u003d\"class in javax.security.auth.login\"\u003eLoginException\u003c/a\u003e\u003c/code\u003e - if the logout fails."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.security.auth.Subject",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSubject",
+      "comment": "Return the authenticated Subject.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the authenticated Subject. If the caller specified a Subject to this LoginContext\u0027s constructor, this method returns the caller-specified Subject. If a Subject was not specified and authentication succeeds, this method returns the Subject instantiated and used for authentication by this LoginContext. If a Subject was not specified, and authentication fails or has not been attempted, this method returns null."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "javax.security.auth.login.LoginException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Instantiate a new LoginContext object with a name.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name used as the index into the \n\u003ccode\u003eConfiguration\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/LoginException.html\" title\u003d\"class in javax.security.auth.login\"\u003eLoginException\u003c/a\u003e\u003c/code\u003e - if the caller-specified \n\u003ccode\u003ename\u003c/code\u003e does not appear in the \n\u003ccode\u003eConfiguration\u003c/code\u003e and there is no \n\u003ccode\u003eConfiguration\u003c/code\u003e entry for \"\n\u003ccode\u003eother\u003c/code\u003e\", or if the \n\u003ccode\u003eauth.login.defaultCallbackHandler\u003c/code\u003e security property was set, but the implementation class could not be loaded.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager is set and the caller does not have AuthPermission(\"createLoginContext.\n\u003ci\u003ename\u003c/i\u003e\"), or if a configuration entry for \n\u003ccode\u003ename\u003c/code\u003e does not exist and the caller does not additionally have AuthPermission(\"createLoginContext.other\")"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "javax.security.auth.login.LoginException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "name": "subject",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Instantiate a new LoginContext object with a name and a Subject object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name used as the index into the \n\u003ccode\u003eConfiguration\u003c/code\u003e.",
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e to authenticate."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/LoginException.html\" title\u003d\"class in javax.security.auth.login\"\u003eLoginException\u003c/a\u003e\u003c/code\u003e - if the caller-specified \n\u003ccode\u003ename\u003c/code\u003e does not appear in the \n\u003ccode\u003eConfiguration\u003c/code\u003e and there is no \n\u003ccode\u003eConfiguration\u003c/code\u003e entry for \"\n\u003ci\u003eother\u003c/i\u003e\", if the caller-specified \n\u003ccode\u003esubject\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or if the \n\u003ci\u003eauth.login.defaultCallbackHandler\u003c/i\u003e security property was set, but the implementation class could not be loaded.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager is set and the caller does not have AuthPermission(\"createLoginContext.\n\u003ci\u003ename\u003c/i\u003e\"), or if a configuration entry for \n\u003ci\u003ename\u003c/i\u003e does not exist and the caller does not additionally have AuthPermission(\"createLoginContext.other\")"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "javax.security.auth.login.LoginException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.callback.CallbackHandler",
+            "type": "Class"
+          },
+          "name": "callbackHandler",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Instantiate a new LoginContext object with a name and a CallbackHandler object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name used as the index into the \n\u003ccode\u003eConfiguration\u003c/code\u003e.",
+          "\u003ccode\u003ecallbackHandler\u003c/code\u003e - the \n\u003ccode\u003eCallbackHandler\u003c/code\u003e object used by LoginModules to communicate with the user."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/LoginException.html\" title\u003d\"class in javax.security.auth.login\"\u003eLoginException\u003c/a\u003e\u003c/code\u003e - if the caller-specified \n\u003ccode\u003ename\u003c/code\u003e does not appear in the \n\u003ccode\u003eConfiguration\u003c/code\u003e and there is no \n\u003ccode\u003eConfiguration\u003c/code\u003e entry for \"\n\u003ccode\u003eother\u003c/code\u003e\", or if the caller-specified \n\u003ccode\u003ecallbackHandler\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager is set and the caller does not have AuthPermission(\"createLoginContext.\n\u003ci\u003ename\u003c/i\u003e\"), or if a configuration entry for \n\u003ci\u003ename\u003c/i\u003e does not exist and the caller does not additionally have AuthPermission(\"createLoginContext.other\")"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "javax.security.auth.login.LoginException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "name": "subject",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.callback.CallbackHandler",
+            "type": "Class"
+          },
+          "name": "callbackHandler",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Instantiate a new LoginContext object with a name, a Subject to be authenticated, and a CallbackHandler object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name used as the index into the \n\u003ccode\u003eConfiguration\u003c/code\u003e.",
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e to authenticate.",
+          "\u003ccode\u003ecallbackHandler\u003c/code\u003e - the \n\u003ccode\u003eCallbackHandler\u003c/code\u003e object used by LoginModules to communicate with the user."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/LoginException.html\" title\u003d\"class in javax.security.auth.login\"\u003eLoginException\u003c/a\u003e\u003c/code\u003e - if the caller-specified \n\u003ccode\u003ename\u003c/code\u003e does not appear in the \n\u003ccode\u003eConfiguration\u003c/code\u003e and there is no \n\u003ccode\u003eConfiguration\u003c/code\u003e entry for \"\n\u003ci\u003eother\u003c/i\u003e\", or if the caller-specified \n\u003ccode\u003esubject\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or if the caller-specified \n\u003ccode\u003ecallbackHandler\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager is set and the caller does not have AuthPermission(\"createLoginContext.\n\u003ci\u003ename\u003c/i\u003e\"), or if a configuration entry for \n\u003ci\u003ename\u003c/i\u003e does not exist and the caller does not additionally have AuthPermission(\"createLoginContext.other\")"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "javax.security.auth.login.LoginException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "name",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "name": "subject",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.callback.CallbackHandler",
+            "type": "Class"
+          },
+          "name": "callbackHandler",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.login.Configuration",
+            "type": "Class"
+          },
+          "name": "config",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Instantiate a new LoginContext object with a name, a Subject to be authenticated, a CallbackHandler object, and a login Configuration.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name used as the index into the caller-specified \n\u003ccode\u003eConfiguration\u003c/code\u003e.",
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e to authenticate, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003ecallbackHandler\u003c/code\u003e - the \n\u003ccode\u003eCallbackHandler\u003c/code\u003e object used by LoginModules to communicate with the user, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003econfig\u003c/code\u003e - the \n\u003ccode\u003eConfiguration\u003c/code\u003e that lists the login modules to be called to perform the authentication, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/LoginException.html\" title\u003d\"class in javax.security.auth.login\"\u003eLoginException\u003c/a\u003e\u003c/code\u003e - if the caller-specified \n\u003ccode\u003ename\u003c/code\u003e does not appear in the \n\u003ccode\u003eConfiguration\u003c/code\u003e and there is no \n\u003ccode\u003eConfiguration\u003c/code\u003e entry for \"\n\u003ci\u003eother\u003c/i\u003e\".",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager is set, \n\u003ci\u003econfig\u003c/i\u003e is \n\u003ccode\u003enull\u003c/code\u003e, and either the caller does not have AuthPermission(\"createLoginContext.\n\u003ci\u003ename\u003c/i\u003e\"), or if a configuration entry for \n\u003ci\u003ename\u003c/i\u003e does not exist and the caller does not additionally have AuthPermission(\"createLoginContext.other\")"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.security.auth.login.LoginContext",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Security.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eSecurity\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/AuthPermission.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eAuthPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/Subject.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eSubject\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/callback/CallbackHandler.html\" title\u003d\"interface in javax.security.auth.callback\"\u003e\u003ccode\u003eCallbackHandler\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/login/Configuration.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/spi/LoginModule.html\" title\u003d\"interface in javax.security.auth.spi\"\u003e\u003ccode\u003eLoginModule\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Security.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003esecurity properties\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

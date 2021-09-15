@@ -1,0 +1,276 @@
+{
+  "packageName": "javax.xml.catalog",
+  "simpleName": "CatalogResolver",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "org.xml.sax.EntityResolver",
+      "type": "Class"
+    },
+    {
+      "name": "javax.xml.stream.XMLResolver",
+      "type": "Class"
+    },
+    {
+      "name": "javax.xml.transform.URIResolver",
+      "type": "Class"
+    },
+    {
+      "name": "org.w3c.dom.ls.LSResourceResolver",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "org.xml.sax.InputSource",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "publicId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "systemId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolveEntity",
+      "comment": "Implements EntityResolver. The method searches through the catalog entries in the main and alternative catalogs to attempt to find a match with the specified publicId or systemId.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/InputSource.html\" title\u003d\"class in org.xml.sax\"\u003e\u003ccode\u003eInputSource\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/EntityResolver.html#resolveEntity(java.lang.String,java.lang.String)\"\u003eresolveEntity\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/EntityResolver.html\" title\u003d\"interface in org.xml.sax\"\u003eEntityResolver\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epublicId\u003c/code\u003e - the public identifier of the external entity being referenced, or null if none was supplied",
+          "\u003ccode\u003esystemId\u003c/code\u003e - the system identifier of the external entity being referenced. A system identifier is required on all external entities. XML requires a system identifier on all external entities, so this value is always specified."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/catalog/CatalogException.html\" title\u003d\"class in javax.xml.catalog\"\u003eCatalogException\u003c/a\u003e\u003c/code\u003e - if no mapping is found and \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e is specified as \n\u003ccode\u003estrict\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/InputSource.html\" title\u003d\"class in org.xml.sax\"\u003e\u003ccode\u003eInputSource\u003c/code\u003e\u003c/a\u003e object if a mapping is found. If no mapping is found, returns a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/InputSource.html\" title\u003d\"class in org.xml.sax\"\u003e\u003ccode\u003eInputSource\u003c/code\u003e\u003c/a\u003e object containing an empty \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Reader.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eReader\u003c/code\u003e\u003c/a\u003e if the \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e property is set to \n\u003ccode\u003eignore\u003c/code\u003e; returns null if the \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e property is set to \n\u003ccode\u003econtinue\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.transform.Source",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "href",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "base",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolve",
+      "comment": "Implements URIResolver. The method searches through the catalog entries in the main and alternative catalogs to attempt to find a match with the specified href attribute. The href attribute will be used literally, with no attempt to be made absolute to the base. If the value is a URN, the href attribute is recognized as a publicId, and used to search public entries. If the value is a URI, it is taken as a systemId, and used to search both system and uri entries.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/transform/URIResolver.html#resolve(java.lang.String,java.lang.String)\"\u003eresolve\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/transform/URIResolver.html\" title\u003d\"interface in javax.xml.transform\"\u003eURIResolver\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ehref\u003c/code\u003e - the href attribute that specifies the URI of a style sheet, which may be relative or absolute",
+          "\u003ccode\u003ebase\u003c/code\u003e - The base URI against which the href attribute will be made absolute if the absolute URI is required"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/catalog/CatalogException.html\" title\u003d\"class in javax.xml.catalog\"\u003eCatalogException\u003c/a\u003e\u003c/code\u003e - if no mapping is found and \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e is specified as \n\u003ccode\u003estrict\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/transform/Source.html\" title\u003d\"interface in javax.xml.transform\"\u003e\u003ccode\u003eSource\u003c/code\u003e\u003c/a\u003e object if a mapping is found. If no mapping is found, returns an empty \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/transform/Source.html\" title\u003d\"interface in javax.xml.transform\"\u003e\u003ccode\u003eSource\u003c/code\u003e\u003c/a\u003e object if the \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e property is set to \n\u003ccode\u003eignore\u003c/code\u003e; returns a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/transform/Source.html\" title\u003d\"interface in javax.xml.transform\"\u003e\u003ccode\u003eSource\u003c/code\u003e\u003c/a\u003e object with the original URI (href, or href resolved with base if base is not null) if the \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e property is set to \n\u003ccode\u003econtinue\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "publicId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "systemId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "baseUri",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "namespace",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolveEntity",
+      "comment": "Implements XMLResolver. For the purpose of resolving publicId and systemId, this method is equivalent to resolveEntity(java.lang.String, java.lang.String). The systemId will be used literally, with no attempt to be made absolute to the baseUri. The baseUri and namespace are not used in the search for a match in a catalog. However, a relative systemId in an xml source may have been made absolute by the parser with the baseURI, thus making it unable to find a system entry. In such a case, a systemSuffix entry is recommended over a system entry.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLResolver.html#resolveEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.String)\"\u003eresolveEntity\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLResolver.html\" title\u003d\"interface in javax.xml.stream\"\u003eXMLResolver\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epublicId\u003c/code\u003e - the public identifier of the external entity being referenced, or null if none was supplied",
+          "\u003ccode\u003esystemId\u003c/code\u003e - the system identifier of the external entity being referenced. A system identifier is required on all external entities. XML requires a system identifier on all external entities, so this value is always specified.",
+          "\u003ccode\u003ebaseUri\u003c/code\u003e - the absolute base URI, not used by the CatalogResolver",
+          "\u003ccode\u003enamespace\u003c/code\u003e - the namespace of the entity to resolve, not used by the CatalogResolver."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/catalog/CatalogException.html\" title\u003d\"class in javax.xml.catalog\"\u003eCatalogException\u003c/a\u003e\u003c/code\u003e - if no mapping is found and \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e is specified as \n\u003ccode\u003estrict\u003c/code\u003e"
+        ],
+        "return": [
+          "an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eInputStream\u003c/code\u003e\u003c/a\u003e object if a mapping is found; null if no mapping is found and the \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e property is set to \n\u003ccode\u003econtinue\u003c/code\u003e or \n\u003ccode\u003eignore\u003c/code\u003e. Note that for XMLResolver, it is not possible to ignore a reference, \n\u003ccode\u003eignore\u003c/code\u003e is therefore treated the same as \n\u003ccode\u003econtinue\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.ls.LSInput",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "type",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "namespaceUri",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "publicId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "systemId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "baseUri",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolveResource",
+      "comment": "Implements LSResourceResolver. For the purpose of resolving publicId and systemId, this method is equivalent to resolveEntity(java.lang.String, java.lang.String). The systemId will be used literally, with no attempt to be made absolute to the baseUri. The baseUri, namespaceUri and type are not used in the search for a match in a catalog. However, a relative systemId in a source may have been made absolute by the parser with the baseURI, thus making it unable to find a system entry. In such a case, a systemSuffix entry is recommended over a system entry.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/ls/LSResourceResolver.html#resolveResource(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)\"\u003eresolveResource\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/ls/LSResourceResolver.html\" title\u003d\"interface in org.w3c.dom.ls\"\u003eLSResourceResolver\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etype\u003c/code\u003e - the type of the resource being resolved, not used by the CatalogResolver",
+          "\u003ccode\u003enamespaceUri\u003c/code\u003e - the namespace of the resource being resolved, not used by the CatalogResolver",
+          "\u003ccode\u003epublicId\u003c/code\u003e - the public identifier of the external entity being referenced, or \n\u003ccode\u003enull\u003c/code\u003e if no public identifier was supplied or if the resource is not an entity.",
+          "\u003ccode\u003esystemId\u003c/code\u003e - the system identifier, a URI reference of the external resource being referenced",
+          "\u003ccode\u003ebaseUri\u003c/code\u003e - the absolute base URI, not used by the CatalogResolver"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/catalog/CatalogException.html\" title\u003d\"class in javax.xml.catalog\"\u003eCatalogException\u003c/a\u003e\u003c/code\u003e - if no mapping is found and \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e is specified as \n\u003ccode\u003estrict\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/ls/LSInput.html\" title\u003d\"interface in org.w3c.dom.ls\"\u003e\u003ccode\u003eLSInput\u003c/code\u003e\u003c/a\u003e object if a mapping is found; null if no mapping is found and the \n\u003ccode\u003ejavax.xml.catalog.resolve\u003c/code\u003e property is set to \n\u003ccode\u003econtinue\u003c/code\u003e or \n\u003ccode\u003eignore\u003c/code\u003e. Note that for \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/ls/LSResourceResolver.html\" title\u003d\"interface in org.w3c.dom.ls\"\u003e\u003ccode\u003eLSResourceResolver\u003c/code\u003e\u003c/a\u003e, it is not possible to ignore a reference, \n\u003ccode\u003eignore\u003c/code\u003e is therefore treated the same as \n\u003ccode\u003econtinue\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.xml.catalog.CatalogResolver",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "packageName": "javax.tools",
+  "simpleName": "JavaCompiler",
+  "moduleName": "java.compiler",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "javax.tools.Tool",
+      "type": "Class"
+    },
+    {
+      "name": "javax.tools.OptionChecker",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.tools.JavaCompiler$CompilationTask",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.io.Writer",
+            "type": "Class"
+          },
+          "name": "out",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager",
+            "type": "Class"
+          },
+          "name": "fileManager",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.DiagnosticListener",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "javax.tools.JavaFileObject",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "diagnosticListener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Iterable",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Iterable",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "classes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Iterable",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "javax.tools.JavaFileObject",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "compilationUnits",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTask",
+      "comment": "Creates a future for a compilation task with the given components and arguments. The compilation might not have completed as described in the CompilationTask interface. If a file manager is provided, it must be able to handle all locations defined in StandardLocation. Note that annotation processing can process both the compilation units of source code to be compiled, passed with the compilationUnits parameter, as well as class files, whose names are passed with the classes parameter.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - a Writer for additional output from the compiler; use \n\u003ccode\u003eSystem.err\u003c/code\u003e if \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003efileManager\u003c/code\u003e - a file manager; if \n\u003ccode\u003enull\u003c/code\u003e use the compiler\u0027s standard file manager",
+          "\u003ccode\u003ediagnosticListener\u003c/code\u003e - a diagnostic listener; if \n\u003ccode\u003e null\u003c/code\u003e use the compiler\u0027s default method for reporting diagnostics",
+          "\u003ccode\u003eoptions\u003c/code\u003e - compiler options, \n\u003ccode\u003enull\u003c/code\u003e means no options",
+          "\u003ccode\u003eclasses\u003c/code\u003e - names of classes to be processed by annotation processing, \n\u003ccode\u003enull\u003c/code\u003e means no class names",
+          "\u003ccode\u003ecompilationUnits\u003c/code\u003e - the compilation units to compile, \n\u003ccode\u003e null\u003c/code\u003e means no compilation units"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimeException.html\" title\u003d\"class in java.lang\"\u003eRuntimeException\u003c/a\u003e\u003c/code\u003e - if an unrecoverable error occurred in a user supplied component. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html#getCause()\"\u003ecause\u003c/a\u003e will be the error in user code.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any of the options are invalid, or if any of the given compilation units are of other kind than \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileObject.Kind.html#SOURCE\"\u003esource\u003c/a\u003e"
+        ],
+        "return": [
+          "an object representing the compilation"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.tools.StandardJavaFileManager",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.DiagnosticListener",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "javax.tools.JavaFileObject",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "diagnosticListener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "name": "locale",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.charset.Charset",
+            "type": "Class"
+          },
+          "name": "charset",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getStandardFileManager",
+      "comment": "Returns a new instance of the standard file manager implementation for this tool. The file manager will use the given diagnostic listener for producing any non-fatal diagnostics. Fatal errors will be signaled with the appropriate exceptions. The standard file manager will be automatically reopened if it is accessed after calls to flush or close. The standard file manager must be usable with other tools.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ediagnosticListener\u003c/code\u003e - a diagnostic listener for non-fatal diagnostics; if \n\u003ccode\u003enull\u003c/code\u003e use the compiler\u0027s default method for reporting diagnostics",
+          "\u003ccode\u003elocale\u003c/code\u003e - the locale to apply when formatting diagnostics; \n\u003ccode\u003enull\u003c/code\u003e means the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.html#getDefault()\"\u003edefault locale\u003c/a\u003e.",
+          "\u003ccode\u003echarset\u003c/code\u003e - the character set used for decoding bytes; if \n\u003ccode\u003enull\u003c/code\u003e use the platform default"
+        ],
+        "return": [
+          "the standard file manager"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.tools.JavaCompiler$CompilationTask"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.tools.JavaCompiler",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/DiagnosticListener.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eDiagnosticListener\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/Diagnostic.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eDiagnostic\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eJavaFileManager\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

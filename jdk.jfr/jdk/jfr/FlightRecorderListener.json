@@ -1,0 +1,95 @@
+{
+  "packageName": "jdk.jfr",
+  "simpleName": "FlightRecorderListener",
+  "moduleName": "jdk.jfr",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.jfr.FlightRecorder",
+            "type": "Class"
+          },
+          "name": "recorder",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "recorderInitialized",
+      "comment": "Receives notification when Flight Recorder is initialized. This method is also be invoked when a listener is added to an already initialized Flight Recorder. This method allows clients to implement their own initialization mechanism that is executed before a FlightRecorder instance is returned by FlightRecorder.getFlightRecorder().",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method is empty."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/FlightRecorder.html#addListener(jdk.jfr.FlightRecorderListener)\"\u003e\u003ccode\u003eFlightRecorder.addListener(FlightRecorderListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecorder\u003c/code\u003e - Flight Recorder instance, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "implNote": [
+          "This method should return as soon as possible, to avoid blocking initialization of Flight Recorder. To avoid deadlocks or unexpected behavior, this method should not call \n\u003ccode\u003eFlightRecorder.getFlightRecorder()\u003c/code\u003e or start new recordings."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.jfr.Recording",
+            "type": "Class"
+          },
+          "name": "recording",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "recordingStateChanged",
+      "comment": "Receives notification when the state of a recording changes. Callback is invoked when a recording reaches the RUNNING, STOPPED and CLOSED state.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method is empty."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/FlightRecorder.html#addListener(jdk.jfr.FlightRecorderListener)\"\u003e\u003ccode\u003eFlightRecorder.addListener(FlightRecorderListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/RecordingState.html\" title\u003d\"enum class in jdk.jfr\"\u003e\u003ccode\u003eRecordingState\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecording\u003c/code\u003e - the recording where the state change occurred, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "implNote": [
+          "The implementation of this method should return as soon as possible to avoid blocking normal operation of Flight Recorder."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.jfr.FlightRecorderListener",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

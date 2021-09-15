@@ -1,0 +1,424 @@
+{
+  "packageName": "java.util",
+  "simpleName": "LanguageRange",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "double",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "MAX_WEIGHT",
+      "comment": "A constant holding the maximum value of weight, 1.0, which indicates that the language range is a good fit for the user.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Locale.LanguageRange.MAX_WEIGHT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "double",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "MIN_WEIGHT",
+      "comment": "A constant holding the minimum value of weight, 0.0, which indicates that the language range is not a good fit for the user.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Locale.LanguageRange.MIN_WEIGHT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getRange",
+      "comment": "Returns the language range of this LanguageRange.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the language range."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "double",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getWeight",
+      "comment": "Returns the weight of this LanguageRange.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the weight value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.util.Locale$LanguageRange",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "ranges",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "parse",
+      "comment": "Parses the given ranges to generate a Language Priority List. This method performs a syntactic check for each language range in the given ranges but doesn\u0027t do validation using the IANA Language Subtag Registry. The ranges to be given can take one of the following forms:    \"Accept-Language: ja,en;q\u003d0.4\"  (weighted list with Accept-Language prefix)\n   \"ja,en;q\u003d0.4\"                   (weighted list)\n   \"ja,en\"                         (prioritized list)\n In a weighted list, each language range is given a weight value. The weight value is identical to the \"quality value\" in RFC 2616, and it expresses how much the user prefers the language. A weight value is specified after a corresponding language range followed by \";q\u003d\", and the default weight value is MAX_WEIGHT when it is omitted. Unlike a weighted list, language ranges in a prioritized list are sorted in the descending order based on its priority. The first language range has the highest priority and meets the user\u0027s preference most. In either case, language ranges are sorted in descending order in the Language Priority List based on priority or weight. If a language range appears in the given ranges more than once, only the first one is included on the Language Priority List. The returned list consists of language ranges from the given ranges and their equivalents found in the IANA Language Subtag Registry. For example, if the given ranges is \"Accept-Language: iw,en-us;q\u003d0.7,en;q\u003d0.3\", the elements in the list to be returned are:   Range                                   Weight\n    \"iw\" (older tag for Hebrew)             1.0\n    \"he\" (new preferred code for Hebrew)    1.0\n    \"en-us\" (English, United States)        0.7\n    \"en\" (English)                          0.3\n Two language ranges, \"iw\" and \"he\", have the same highest priority in the list. By adding \"he\" to the user\u0027s Language Priority List, locale-matching method can find Hebrew as a matching locale (or language tag) even if the application or system offers only \"he\" as a supported locale (or language tag).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eranges\u003c/code\u003e - a list of comma-separated language ranges or a list of language ranges in the form of the \"Accept-Language\" header defined in \n\u003ca href\u003d\"http://tools.ietf.org/html/rfc2616\"\u003eRFC 2616\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eranges\u003c/code\u003e is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a language range or a weight found in the given \n\u003ccode\u003eranges\u003c/code\u003e is ill-formed"
+        ],
+        "return": [
+          "a Language Priority List consisting of language ranges included in the given \n\u003ccode\u003eranges\u003c/code\u003e and their equivalent language ranges if available. The list is modifiable."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.util.Locale$LanguageRange",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "ranges",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.util.List",
+                "parameters": [
+                  {
+                    "name": "java.lang.String",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "map",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "parse",
+      "comment": "Parses the given ranges to generate a Language Priority List, and then customizes the list using the given map. This method is equivalent to mapEquivalents(parse(ranges), map).",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.LanguageRange.html#parse(java.lang.String)\"\u003e\u003ccode\u003eparse(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.LanguageRange.html#mapEquivalents(java.util.List,java.util.Map)\"\u003e\u003ccode\u003emapEquivalents(java.util.List\u0026lt;java.util.Locale.LanguageRange\u0026gt;, java.util.Map\u0026lt;java.lang.String, java.util.List\u0026lt;java.lang.String\u0026gt;\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eranges\u003c/code\u003e - a list of comma-separated language ranges or a list of language ranges in the form of the \"Accept-Language\" header defined in \n\u003ca href\u003d\"http://tools.ietf.org/html/rfc2616\"\u003eRFC 2616\u003c/a\u003e",
+          "\u003ccode\u003emap\u003c/code\u003e - a map containing information to customize language ranges"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eranges\u003c/code\u003e is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a language range or a weight found in the given \n\u003ccode\u003eranges\u003c/code\u003e is ill-formed"
+        ],
+        "return": [
+          "a Language Priority List with customization. The list is modifiable."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.util.Locale$LanguageRange",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "name": "java.util.Locale$LanguageRange",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "priorityList",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.util.List",
+                "parameters": [
+                  {
+                    "name": "java.lang.String",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "map",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "mapEquivalents",
+      "comment": "Generates a new customized Language Priority List using the given priorityList and map. If the given map is empty, this method returns a copy of the given priorityList. In the map, a key represents a language range whereas a value is a list of equivalents of it. \u0027*\u0027 cannot be used in the map. Each equivalent language range has the same weight value as its original language range.   An example of map:\n    Key                            Value\n      \"zh\" (Chinese)                 \"zh\",\n                                     \"zh-Hans\"(Simplified Chinese)\n      \"zh-HK\" (Chinese, Hong Kong)   \"zh-HK\"\n      \"zh-TW\" (Chinese, Taiwan)      \"zh-TW\"\n The customization is performed after modification using the IANA Language Subtag Registry. For example, if a user\u0027s Language Priority List consists of five language ranges (\"zh\", \"zh-CN\", \"en\", \"zh-TW\", and \"zh-HK\"), the newly generated Language Priority List which is customized using the above map example will consists of \"zh\", \"zh-Hans\", \"zh-CN\", \"zh-Hans-CN\", \"en\", \"zh-TW\", and \"zh-HK\". \"zh-HK\" and \"zh-TW\" aren\u0027t converted to \"zh-Hans-HK\" nor \"zh-Hans-TW\" even if they are included in the Language Priority List. In this example, mapping is used to clearly distinguish Simplified Chinese and Traditional Chinese. If the \"zh\"-to-\"zh\" mapping isn\u0027t included in the map, a simple replacement will be performed and the customized list won\u0027t include \"zh\" and \"zh-CN\".",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.LanguageRange.html#parse(java.lang.String,java.util.Map)\"\u003e\u003ccode\u003eparse(String, Map)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epriorityList\u003c/code\u003e - user\u0027s Language Priority List",
+          "\u003ccode\u003emap\u003c/code\u003e - a map containing information to customize language ranges"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epriorityList\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a new Language Priority List with customization. The list is modifiable."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hashCode",
+      "comment": "Returns a hash code value for the object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a hash code value for this object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "obj",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "equals",
+      "comment": "Compares this object to the specified object. The result is true if and only if the argument is not null and is a LanguageRange object that contains the same range and weight values as this object.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the object to compare with"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this object\u0027s \n\u003ccode\u003erange\u003c/code\u003e and \n\u003ccode\u003eweight\u003c/code\u003e are the same as the \n\u003ccode\u003eobj\u003c/code\u003e\u0027s; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns an informative string representation of this LanguageRange object, consisting of language range and weight if the range is weighted and the weight is less than the max weight.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of this \n\u003ccode\u003eLanguageRange\u003c/code\u003e object."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "range",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a LanguageRange using the given range. Note that no validation is done against the IANA Language Subtag Registry at time of construction. This is equivalent to LanguageRange(range, MAX_WEIGHT).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erange\u003c/code\u003e - a language range"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the given \n\u003ccode\u003erange\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given \n\u003ccode\u003erange\u003c/code\u003e does not comply with the syntax of the language range mentioned in RFC 4647"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "range",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "name": "weight",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a LanguageRange using the given range and weight. Note that no validation is done against the IANA Language Subtag Registry at time of construction.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erange\u003c/code\u003e - a language range",
+          "\u003ccode\u003eweight\u003c/code\u003e - a weight value between \n\u003ccode\u003eMIN_WEIGHT\u003c/code\u003e and \n\u003ccode\u003eMAX_WEIGHT\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the given \n\u003ccode\u003erange\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given \n\u003ccode\u003erange\u003c/code\u003e does not comply with the syntax of the language range mentioned in RFC 4647 or if the given \n\u003ccode\u003eweight\u003c/code\u003e is less than \n\u003ccode\u003eMIN_WEIGHT\u003c/code\u003e or greater than \n\u003ccode\u003eMAX_WEIGHT\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 25,
+  "name": "java.util.Locale$LanguageRange",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.html#filter(java.util.List,java.util.Collection,java.util.Locale.FilteringMode)\"\u003e\u003ccode\u003eLocale.filter(java.util.List\u0026lt;java.util.Locale.LanguageRange\u0026gt;, java.util.Collection\u0026lt;java.util.Locale\u0026gt;, java.util.Locale.FilteringMode)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.html#filterTags(java.util.List,java.util.Collection,java.util.Locale.FilteringMode)\"\u003e\u003ccode\u003eLocale.filterTags(java.util.List\u0026lt;java.util.Locale.LanguageRange\u0026gt;, java.util.Collection\u0026lt;java.lang.String\u0026gt;, java.util.Locale.FilteringMode)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.html#lookup(java.util.List,java.util.Collection)\"\u003e\u003ccode\u003eLocale.lookup(java.util.List\u0026lt;java.util.Locale.LanguageRange\u0026gt;, java.util.Collection\u0026lt;java.util.Locale\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Locale.html#lookupTag(java.util.List,java.util.Collection)\"\u003e\u003ccode\u003eLocale.lookupTag(java.util.List\u0026lt;java.util.Locale.LanguageRange\u0026gt;, java.util.Collection\u0026lt;java.lang.String\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

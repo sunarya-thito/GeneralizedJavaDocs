@@ -1,0 +1,234 @@
+{
+  "packageName": "javax.print",
+  "simpleName": "DocPrintJob",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.print.PrintService",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPrintService",
+      "comment": "Determines the PrintService object to which this print job object is bound.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003ePrintService\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.print.attribute.PrintJobAttributeSet",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttributes",
+      "comment": "Obtains this Print Job\u0027s set of printing attributes. The returned attribute set object is unmodifiable. The returned attribute set object is a \"snapshot\" of this Print Job\u0027s attribute set at the time of the getAttributes() method call; that is, the returned attribute set\u0027s object\u0027s contents will not be updated if this Print Job\u0027s attribute set\u0027s contents change in the future. To detect changes in attribute values, call getAttributes() again and compare the new attribute set to the previous attribute set; alternatively, register a listener for print job events. The returned value may be an empty set but should not be null.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the print job attributes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.print.event.PrintJobListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addPrintJobListener",
+      "comment": "Registers a listener for event occurring during this print job. If listener is null, no exception is thrown and no action is performed. If listener is already registered, it will be registered again.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/print/DocPrintJob.html#removePrintJobListener(javax.print.event.PrintJobListener)\"\u003e\u003ccode\u003eremovePrintJobListener(javax.print.event.PrintJobListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - the object implementing the listener interface"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.print.event.PrintJobListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removePrintJobListener",
+      "comment": "Removes a listener from this print job. This method performs no function, nor does it throw an exception, if the listener specified by the argument was not previously added to this print job. If listener is null, no exception is thrown and no action is performed. If a listener was registered more than once only one of the registrations will be removed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/print/DocPrintJob.html#addPrintJobListener(javax.print.event.PrintJobListener)\"\u003e\u003ccode\u003eaddPrintJobListener(javax.print.event.PrintJobListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - the object implementing the listener interface"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.print.event.PrintJobAttributeListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.print.attribute.PrintJobAttributeSet",
+            "type": "Class"
+          },
+          "name": "attributes",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addPrintJobAttributeListener",
+      "comment": "Registers a listener for changes in the specified attributes. If listener is null, no exception is thrown and no action is performed. To determine the attribute updates that may be reported by this job, a client can call getAttributes() and identify the subset that are interesting and likely to be reported to the listener. Clients expecting to be updated about changes in a specific job attribute should verify it is in that set, but updates about an attribute will be made only if it changes and this is detected by the job. Also updates may be subject to batching by the job. To minimize overhead in print job processing it is recommended to listen on only that subset of attributes which are likely to change. If the specified set is empty no attribute updates will be reported to the listener. If the attribute set is null, then this means to listen on all dynamic attributes that the job supports. This may result in no update notifications if a job can not report any attribute updates. If listener is already registered, it will be registered again.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/print/DocPrintJob.html#removePrintJobAttributeListener(javax.print.event.PrintJobAttributeListener)\"\u003e\u003ccode\u003eremovePrintJobAttributeListener(javax.print.event.PrintJobAttributeListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - the object implementing the listener interface",
+          "\u003ccode\u003eattributes\u003c/code\u003e - the attributes to listen on, or \n\u003ccode\u003enull\u003c/code\u003e to mean all attributes that can change, as determined by the job"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.print.event.PrintJobAttributeListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removePrintJobAttributeListener",
+      "comment": "Removes an attribute listener from this print job. This method performs no function, nor does it throw an exception, if the listener specified by the argument was not previously added to this print job. If the listener is null, no exception is thrown and no action is performed. If a listener is registered more than once, even for a different set of attributes, no guarantee is made which listener is removed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/print/DocPrintJob.html#addPrintJobAttributeListener(javax.print.event.PrintJobAttributeListener,javax.print.attribute.PrintJobAttributeSet)\"\u003e\u003ccode\u003eaddPrintJobAttributeListener(javax.print.event.PrintJobAttributeListener, javax.print.attribute.PrintJobAttributeSet)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - the object implementing the listener interface"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.print.PrintException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.print.Doc",
+            "type": "Class"
+          },
+          "name": "doc",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.print.attribute.PrintRequestAttributeSet",
+            "type": "Class"
+          },
+          "name": "attributes",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "print",
+      "comment": "Prints a document with the specified job attributes. This method should only be called once for a given print job. Calling it again will not result in a new job being spooled to the printer. The service implementation will define policy for service interruption and recovery. When the print method returns, printing may not yet have completed as printing may happen asynchronously, perhaps in a different thread. Application clients which want to monitor the success or failure should register a PrintJobListener. Print service implementors should close any print data streams (ie Reader or InputStream implementations) that they obtain from the client doc. Robust clients may still wish to verify this. An exception is always generated if a DocFlavor cannot be printed.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edoc\u003c/code\u003e - the document to be printed. It must be a flavor supported by this PrintJob.",
+          "\u003ccode\u003eattributes\u003c/code\u003e - the job attributes to be applied to this print job. If this parameter is \n\u003ccode\u003enull\u003c/code\u003e then the default attributes are used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/print/PrintException.html\" title\u003d\"class in javax.print\"\u003ePrintException\u003c/a\u003e\u003c/code\u003e - the exception additionally may implement an interface that more precisely describes the cause of the exception \n\u003cul\u003e \n \u003cli\u003e\u003ccode\u003eFlavorException\u003c/code\u003e. If the document has a flavor not supported by this print job. \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eAttributeException\u003c/code\u003e. If one or more of the attributes are not valid for this print job. \u003c/li\u003e\n\u003c/ul\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.print.DocPrintJob",
+  "annotations": [],
+  "tagMap": {}
+}

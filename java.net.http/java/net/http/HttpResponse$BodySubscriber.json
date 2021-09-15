@@ -1,0 +1,73 @@
+{
+  "packageName": "java.net.http",
+  "simpleName": "BodySubscriber",
+  "moduleName": "java.net.http",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.util.concurrent.Flow$Subscriber",
+    "parameters": [
+      {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletionStage",
+        "parameters": [
+          {
+            "owner": "java.net.http.HttpResponse$BodySubscriber",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getBody",
+      "comment": "Returns a CompletionStage which when completed will return the response body object. This method can be called at any time relative to the other Flow.Subscriber methods and is invoked using the client\u0027s executor.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a CompletionStage for the response body"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "java.net.http.HttpResponse$BodySubscriber",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/HttpResponse.BodySubscribers.html\" title\u003d\"class in java.net.http\"\u003e\u003ccode\u003eHttpResponse.BodySubscribers\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "apiNote": [
+      "To ensure that all resources associated with the corresponding HTTP exchange are properly released, an implementation of \n\u003ccode\u003e BodySubscriber\u003c/code\u003e should ensure to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.Subscription.html#request(long)\"\u003erequest\u003c/a\u003e more data until one of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.Subscriber.html#onComplete()\"\u003e\u003ccode\u003eonComplete\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.Subscriber.html#onError(java.lang.Throwable)\"\u003e\u003ccode\u003eonError\u003c/code\u003e\u003c/a\u003e are signalled, or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.Subscription.html#request(long)\"\u003e\u003ccode\u003ecancel\u003c/code\u003e\u003c/a\u003e its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.Subscriber.html#onSubscribe(java.util.concurrent.Flow.Subscription)\"\u003esubscription\u003c/a\u003e if unable or unwilling to do so. Calling \n\u003ccode\u003ecancel\u003c/code\u003e before exhausting the response body data may cause the underlying HTTP connection to be closed and prevent it from being reused for subsequent operations."
+    ],
+    "implNote": [
+      "The flow of data containing the response body is immutable. Specifically, it is a flow of unmodifiable lists of read-only ByteBuffers."
+    ],
+    "since": [
+      "11"
+    ]
+  }
+}

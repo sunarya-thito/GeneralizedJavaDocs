@@ -1,0 +1,208 @@
+{
+  "packageName": "java.util.zip",
+  "simpleName": "Checksum",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "b",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "update",
+      "comment": "Updates the current checksum with the specified byte.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the byte to update the checksum with"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "b",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "update",
+      "comment": "Updates the current checksum with the specified array of bytes.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "This default implementation is equal to calling \n\u003ccode\u003eupdate(b, 0, b.length)\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the array of bytes to update the checksum with"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eb\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "b",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "off",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "len",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "update",
+      "comment": "Updates the current checksum with the specified array of bytes.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the byte array to update the checksum with",
+          "\u003ccode\u003eoff\u003c/code\u003e - the start offset of the data",
+          "\u003ccode\u003elen\u003c/code\u003e - the number of bytes to use for the update"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "name": "buffer",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "update",
+      "comment": "Updates the current checksum with the bytes from the specified buffer. The checksum is updated with the remaining bytes in the buffer, starting at the buffer\u0027s position. Upon return, the buffer\u0027s position will be updated to its limit; its limit will not have been changed.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation has the following behavior.\n\u003cbr\u003e For ByteBuffers backed by an accessible byte array. \n\u003cpre\u003e\u003ccode\u003e\n update(buffer.array(),\n        buffer.position() + buffer.arrayOffset(),\n        buffer.remaining());\n \u003c/code\u003e\u003c/pre\u003e For ByteBuffers not backed by an accessible byte array. \n\u003cpre\u003e\u003ccode\u003e\n byte[] b \u003d new byte[Math.min(buffer.remaining(), 4096)];\n while (buffer.hasRemaining()) {\n     int length \u003d Math.min(buffer.remaining(), b.length);\n     buffer.get(b, 0, length);\n     update(b, 0, length);\n }\n \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "apiNote": [
+          "For best performance with DirectByteBuffer and other ByteBuffer implementations without a backing array implementers of this interface should override this method."
+        ],
+        "param": [
+          "\u003ccode\u003ebuffer\u003c/code\u003e - the ByteBuffer to update the checksum with"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebuffer\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValue",
+      "comment": "Returns the current checksum value.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the current checksum value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "reset",
+      "comment": "Resets the checksum to its initial value.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.zip.Checksum",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.1"
+    ]
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "packageName": "java.util.concurrent.locks",
+  "simpleName": "LockSupport",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "blocker",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setCurrentBlocker",
+      "comment": "Sets the object to be returned by invocations of getBlocker for the current thread. This method may be used before invoking the no-argument version of park() from non-public objects, allowing more helpful diagnostics, or retaining compatibility with previous implementations of blocking methods. Previous values of the blocker are not automatically restored after blocking. To obtain the effects of park(b}, use setCurrentBlocker(b); park(); setCurrentBlocker(null);",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eblocker\u003c/code\u003e - the blocker object"
+        ],
+        "since": [
+          "14"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          },
+          "name": "thread",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "unpark",
+      "comment": "Makes available the permit for the given thread, if it was not already available. If the thread was blocked on park then it will unblock. Otherwise, its next call to park is guaranteed not to block. This operation is not guaranteed to have any effect at all if the given thread has not been started.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ethread\u003c/code\u003e - the thread to unpark, or \n\u003ccode\u003enull\u003c/code\u003e, in which case this operation has no effect"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "blocker",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "park",
+      "comment": "Disables the current thread for thread scheduling purposes unless the permit is available. If the permit is available then it is consumed and the call returns immediately; otherwise the current thread becomes disabled for thread scheduling purposes and lies dormant until one of three things happens: Some other thread invokes unpark with the current thread as the target; or Some other thread interrupts the current thread; or The call spuriously (that is, for no reason) returns. This method does not report which of these caused the method to return. Callers should re-check the conditions which caused the thread to park in the first place. Callers may also determine, for example, the interrupt status of the thread upon return.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eblocker\u003c/code\u003e - the synchronization object responsible for this thread parking"
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "blocker",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "nanos",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "parkNanos",
+      "comment": "Disables the current thread for thread scheduling purposes, for up to the specified waiting time, unless the permit is available. If the specified waiting time is zero or negative, the method does nothing. Otherwise, if the permit is available then it is consumed and the call returns immediately; otherwise the current thread becomes disabled for thread scheduling purposes and lies dormant until one of four things happens: Some other thread invokes unpark with the current thread as the target; or Some other thread interrupts the current thread; or The specified waiting time elapses; or The call spuriously (that is, for no reason) returns. This method does not report which of these caused the method to return. Callers should re-check the conditions which caused the thread to park in the first place. Callers may also determine, for example, the interrupt status of the thread, or the elapsed time upon return.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eblocker\u003c/code\u003e - the synchronization object responsible for this thread parking",
+          "\u003ccode\u003enanos\u003c/code\u003e - the maximum number of nanoseconds to wait"
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "blocker",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "deadline",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "parkUntil",
+      "comment": "Disables the current thread for thread scheduling purposes, until the specified deadline, unless the permit is available. If the permit is available then it is consumed and the call returns immediately; otherwise the current thread becomes disabled for thread scheduling purposes and lies dormant until one of four things happens: Some other thread invokes unpark with the current thread as the target; or Some other thread interrupts the current thread; or The specified deadline passes; or The call spuriously (that is, for no reason) returns. This method does not report which of these caused the method to return. Callers should re-check the conditions which caused the thread to park in the first place. Callers may also determine, for example, the interrupt status of the thread, or the current time upon return.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eblocker\u003c/code\u003e - the synchronization object responsible for this thread parking",
+          "\u003ccode\u003edeadline\u003c/code\u003e - the absolute time, in milliseconds from the Epoch, to wait until"
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          },
+          "name": "t",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getBlocker",
+      "comment": "Returns the blocker object supplied to the most recent invocation of a park method that has not yet unblocked, or null if not blocked. The value returned is just a momentary snapshot -- the thread may have since unblocked or blocked on a different blocker object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the thread"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if argument is null"
+        ],
+        "return": [
+          "the blocker"
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "park",
+      "comment": "Disables the current thread for thread scheduling purposes unless the permit is available. If the permit is available then it is consumed and the call returns immediately; otherwise the current thread becomes disabled for thread scheduling purposes and lies dormant until one of three things happens: Some other thread invokes unpark with the current thread as the target; or Some other thread interrupts the current thread; or The call spuriously (that is, for no reason) returns. This method does not report which of these caused the method to return. Callers should re-check the conditions which caused the thread to park in the first place. Callers may also determine, for example, the interrupt status of the thread upon return.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "nanos",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "parkNanos",
+      "comment": "Disables the current thread for thread scheduling purposes, for up to the specified waiting time, unless the permit is available. If the specified waiting time is zero or negative, the method does nothing. Otherwise, if the permit is available then it is consumed and the call returns immediately; otherwise the current thread becomes disabled for thread scheduling purposes and lies dormant until one of four things happens: Some other thread invokes unpark with the current thread as the target; or Some other thread interrupts the current thread; or The specified waiting time elapses; or The call spuriously (that is, for no reason) returns. This method does not report which of these caused the method to return. Callers should re-check the conditions which caused the thread to park in the first place. Callers may also determine, for example, the interrupt status of the thread, or the elapsed time upon return.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enanos\u003c/code\u003e - the maximum number of nanoseconds to wait"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "deadline",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "parkUntil",
+      "comment": "Disables the current thread for thread scheduling purposes, until the specified deadline, unless the permit is available. If the permit is available then it is consumed and the call returns immediately; otherwise the current thread becomes disabled for thread scheduling purposes and lies dormant until one of four things happens: Some other thread invokes unpark with the current thread as the target; or Some other thread interrupts the current thread; or The specified deadline passes; or The call spuriously (that is, for no reason) returns. This method does not report which of these caused the method to return. Callers should re-check the conditions which caused the thread to park in the first place. Callers may also determine, for example, the interrupt status of the thread, or the current time upon return.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edeadline\u003c/code\u003e - the absolute time, in milliseconds from the Epoch, to wait until"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.util.concurrent.locks.LockSupport",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

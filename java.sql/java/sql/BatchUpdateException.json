@@ -1,0 +1,583 @@
+{
+  "packageName": "java.sql",
+  "simpleName": "BatchUpdateException",
+  "moduleName": "java.sql",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.sql.SQLException",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getUpdateCounts",
+      "comment": "Retrieves the update count for each update statement in the batch update that executed successfully before this exception occurred. A driver that implements batch updates may or may not continue to process the remaining commands in a batch when one of the commands fails to execute properly. If the driver continues processing commands, the array returned by this method will have as many elements as there are commands in the batch; otherwise, it will contain an update count for each command that executed successfully before the BatchUpdateException was thrown. The possible return values for this method were modified for the Java 2 SDK, Standard Edition, version 1.3. This was done to accommodate the new option of continuing to process commands in a batch update after a BatchUpdateException object has been thrown.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#getLargeUpdateCounts()\"\u003e\u003ccode\u003egetLargeUpdateCounts()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an array of \n\u003ccode\u003eint\u003c/code\u003e containing the update counts for the updates that were executed successfully before this error occurred. Or, if the driver continues to process commands after an error, one of the following for every command in the batch: \n\u003col\u003e \n \u003cli\u003ean update count \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e to indicate that the command executed successfully but the number of rows affected is unknown \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e to indicate that the command failed to execute successfully \u003c/li\u003e\n\u003c/ol\u003e"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getLargeUpdateCounts",
+      "comment": "Retrieves the update count for each update statement in the batch update that executed successfully before this exception occurred. A driver that implements batch updates may or may not continue to process the remaining commands in a batch when one of the commands fails to execute properly. If the driver continues processing commands, the array returned by this method will have as many elements as there are commands in the batch; otherwise, it will contain an update count for each command that executed successfully before the BatchUpdateException was thrown. This method should be used when Statement.executeLargeBatch is invoked and the returned update count may exceed Integer.MAX_VALUE.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "an array of \n\u003ccode\u003elong\u003c/code\u003e containing the update counts for the updates that were executed successfully before this error occurred. Or, if the driver continues to process commands after an error, one of the following for every command in the batch: \n\u003col\u003e \n \u003cli\u003ean update count \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e to indicate that the command executed successfully but the number of rows affected is unknown \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e to indicate that the command failed to execute successfully \u003c/li\u003e\n\u003c/ol\u003e"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "reason",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "SQLState",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "vendorCode",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given reason, SQLState, vendorCode and updateCounts. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method. Note: There is no validation of updateCounts for overflow and because of this it is recommended that you use the constructor BatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) .",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ereason\u003c/code\u003e - a description of the error",
+          "\u003ccode\u003eSQLState\u003c/code\u003e - an XOPEN or SQL:2003 code identifying the exception",
+          "\u003ccode\u003evendorCode\u003c/code\u003e - an exception code used by a particular database vendor",
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "reason",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "SQLState",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given reason, SQLState and updateCounts. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method. The vendor code is initialized to 0. Note: There is no validation of updateCounts for overflow and because of this it is recommended that you use the constructor BatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) .",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ereason\u003c/code\u003e - a description of the exception",
+          "\u003ccode\u003eSQLState\u003c/code\u003e - an XOPEN or SQL:2003 code identifying the exception",
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "reason",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given reason and updateCounts. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method. The SQLState is initialized to null and the vendor code is initialized to 0. Note: There is no validation of updateCounts for overflow and because of this it is recommended that you use the constructor BatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) .",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ereason\u003c/code\u003e - a description of the exception",
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given updateCounts. initialized by a call to the Throwable.initCause(java.lang.Throwable) method. The reason and SQLState are initialized to null and the vendor code is initialized to 0. Note: There is no validation of updateCounts for overflow and because of this it is recommended that you use the constructor BatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) .",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object. The reason, SQLState and updateCounts are initialized to null and the vendor code is initialized to 0. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "name": "cause",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given cause. The SQLState and updateCounts are initialized to null and the vendor code is initialized to 0. The reason is initialized to null if cause\u003d\u003dnull or to cause.toString() if cause!\u003dnull.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecause\u003c/code\u003e - the underlying reason for this \n\u003ccode\u003eSQLException\u003c/code\u003e (which is saved for later retrieval by the \n\u003ccode\u003egetCause()\u003c/code\u003e method); may be null indicating the cause is non-existent or unknown."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "name": "cause",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given cause and updateCounts. The SQLState is initialized to null and the vendor code is initialized to 0. The reason is initialized to null if cause\u003d\u003dnull or to cause.toString() if cause!\u003dnull. Note: There is no validation of updateCounts for overflow and because of this it is recommended that you use the constructor BatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) .",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure",
+          "\u003ccode\u003ecause\u003c/code\u003e - the underlying reason for this \n\u003ccode\u003eSQLException\u003c/code\u003e (which is saved for later retrieval by the \n\u003ccode\u003egetCause()\u003c/code\u003e method); may be null indicating the cause is non-existent or unknown."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "reason",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "name": "cause",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given reason, cause and updateCounts. The SQLState is initialized to null and the vendor code is initialized to 0. Note: There is no validation of updateCounts for overflow and because of this it is recommended that you use the constructor BatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) .",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ereason\u003c/code\u003e - a description of the exception",
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure",
+          "\u003ccode\u003ecause\u003c/code\u003e - the underlying reason for this \n\u003ccode\u003eSQLException\u003c/code\u003e (which is saved for later retrieval by the \n\u003ccode\u003egetCause()\u003c/code\u003e method); may be null indicating the cause is non-existent or unknown."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "reason",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "SQLState",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "name": "cause",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given reason, SQLState,cause, and updateCounts. The vendor code is initialized to 0.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ereason\u003c/code\u003e - a description of the exception",
+          "\u003ccode\u003eSQLState\u003c/code\u003e - an XOPEN or SQL:2003 code identifying the exception",
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure \n\u003cp\u003e \u003cstrong\u003eNote:\u003c/strong\u003e There is no validation of \u003ccode\u003eupdateCounts\u003c/code\u003e for overflow and because of this it is recommended that you use the constructor \u003ccode\u003eBatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) \u003c/code\u003e. \u003c/p\u003e",
+          "\u003ccode\u003ecause\u003c/code\u003e - the underlying reason for this \n\u003ccode\u003eSQLException\u003c/code\u003e (which is saved for later retrieval by the \n\u003ccode\u003egetCause()\u003c/code\u003e method); may be null indicating the cause is non-existent or unknown."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "reason",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "SQLState",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "vendorCode",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "name": "cause",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given reason, SQLState, vendorCode cause and updateCounts.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/BatchUpdateException.html#%3Cinit%3E(java.lang.String,java.lang.String,int,long%5B%5D,java.lang.Throwable)\"\u003e\u003ccode\u003eBatchUpdateException(java.lang.String, java.lang.String, int, long[], java.lang.Throwable)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ereason\u003c/code\u003e - a description of the error",
+          "\u003ccode\u003eSQLState\u003c/code\u003e - an XOPEN or SQL:2003 code identifying the exception",
+          "\u003ccode\u003evendorCode\u003c/code\u003e - an exception code used by a particular database vendor",
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003eint\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure \n\u003cp\u003e \u003cstrong\u003eNote:\u003c/strong\u003e There is no validation of \u003ccode\u003eupdateCounts\u003c/code\u003e for overflow and because of this it is recommended that you use the constructor \u003ccode\u003eBatchUpdateException(String reason, String SQLState, int vendorCode, long []updateCounts,Throwable cause) \u003c/code\u003e. \u003c/p\u003e",
+          "\u003ccode\u003ecause\u003c/code\u003e - the underlying reason for this \n\u003ccode\u003eSQLException\u003c/code\u003e (which is saved for later retrieval by the \n\u003ccode\u003egetCause()\u003c/code\u003e method); may be null indicating the cause is non-existent or unknown."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "reason",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "SQLState",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "vendorCode",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "updateCounts",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "name": "cause",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a BatchUpdateException object initialized with a given reason, SQLState, vendorCode cause and updateCounts. This constructor should be used when the returned update count may exceed Integer.MAX_VALUE.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereason\u003c/code\u003e - a description of the error",
+          "\u003ccode\u003eSQLState\u003c/code\u003e - an XOPEN or SQL:2003 code identifying the exception",
+          "\u003ccode\u003evendorCode\u003c/code\u003e - an exception code used by a particular database vendor",
+          "\u003ccode\u003eupdateCounts\u003c/code\u003e - an array of \n\u003ccode\u003elong\u003c/code\u003e, with each element indicating the update count, \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e or \n\u003ccode\u003eStatement.EXECUTE_FAILED\u003c/code\u003e for each SQL command in the batch for JDBC drivers that continue processing after a command failure; an update count or \n\u003ccode\u003eStatement.SUCCESS_NO_INFO\u003c/code\u003e for each SQL command in the batch prior to the failure for JDBC drivers that stop processing after a command failure",
+          "\u003ccode\u003ecause\u003c/code\u003e - the underlying reason for this \n\u003ccode\u003eSQLException\u003c/code\u003e (which is saved for later retrieval by the \n\u003ccode\u003egetCause()\u003c/code\u003e method); may be null indicating the cause is non-existent or unknown."
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.sql.BatchUpdateException",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.sql.BatchUpdateException\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.2"
+    ]
+  }
+}

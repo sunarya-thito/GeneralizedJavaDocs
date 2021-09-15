@@ -1,0 +1,411 @@
+{
+  "packageName": "java.beans.beancontext",
+  "simpleName": "BeanContextServices",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "java.beans.beancontext.BeanContext",
+      "type": "Class"
+    },
+    {
+      "name": "java.beans.beancontext.BeanContextServicesListener",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "serviceClass",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.beans.beancontext.BeanContextServiceProvider",
+            "type": "Class"
+          },
+          "name": "serviceProvider",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addService",
+      "comment": "Adds a service to this BeanContext. BeanContextServiceProviders call this method to register a particular service with this context. If the service has not previously been added, the BeanContextServices associates the service with the BeanContextServiceProvider and fires a BeanContextServiceAvailableEvent to all currently registered BeanContextServicesListeners. The method then returns true, indicating that the addition of the service was successful. If the given service has already been added, this method simply returns false.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eserviceClass\u003c/code\u003e - the service to add",
+          "\u003ccode\u003eserviceProvider\u003c/code\u003e - the \n\u003ccode\u003eBeanContextServiceProvider\u003c/code\u003e associated with the service"
+        ],
+        "return": [
+          "true if the service was successful added, false otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "serviceClass",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.beans.beancontext.BeanContextServiceProvider",
+            "type": "Class"
+          },
+          "name": "serviceProvider",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "revokeCurrentServicesNow",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "revokeService",
+      "comment": "BeanContextServiceProviders wishing to remove a currently registered service from this context may do so via invocation of this method. Upon revocation of the service, the BeanContextServices fires a BeanContextServiceRevokedEvent to its list of currently registered BeanContextServiceRevokedListeners and BeanContextServicesListeners.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eserviceClass\u003c/code\u003e - the service to revoke from this BeanContextServices",
+          "\u003ccode\u003eserviceProvider\u003c/code\u003e - the BeanContextServiceProvider associated with this particular service that is being revoked",
+          "\u003ccode\u003erevokeCurrentServicesNow\u003c/code\u003e - a value of \n\u003ccode\u003etrue\u003c/code\u003e indicates an exceptional circumstance where the \n\u003ccode\u003eBeanContextServiceProvider\u003c/code\u003e or \n\u003ccode\u003eBeanContextServices\u003c/code\u003e wishes to immediately terminate service to all currently outstanding references to the specified service."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "serviceClass",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasService",
+      "comment": "Reports whether or not a given service is currently available from this context.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eserviceClass\u003c/code\u003e - the service in question"
+        ],
+        "return": [
+          "true if the service is available"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.TooManyListenersException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.beans.beancontext.BeanContextChild",
+            "type": "Class"
+          },
+          "name": "child",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "requestor",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "serviceClass",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "serviceSelector",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.beans.beancontext.BeanContextServiceRevokedListener",
+            "type": "Class"
+          },
+          "name": "bcsrl",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getService",
+      "comment": "A BeanContextChild, or any arbitrary object associated with a BeanContextChild, may obtain a reference to a currently registered service from its nesting BeanContextServices via invocation of this method. When invoked, this method gets the service by calling the getService() method on the underlying BeanContextServiceProvider.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echild\u003c/code\u003e - the \n\u003ccode\u003eBeanContextChild\u003c/code\u003e associated with this request",
+          "\u003ccode\u003erequestor\u003c/code\u003e - the object requesting the service",
+          "\u003ccode\u003eserviceClass\u003c/code\u003e - class of the requested service",
+          "\u003ccode\u003eserviceSelector\u003c/code\u003e - the service dependent parameter",
+          "\u003ccode\u003ebcsrl\u003c/code\u003e - the \n\u003ccode\u003eBeanContextServiceRevokedListener\u003c/code\u003e to notify if the service should later become revoked"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/TooManyListenersException.html\" title\u003d\"class in java.util\"\u003eTooManyListenersException\u003c/a\u003e\u003c/code\u003e - if there are too many listeners"
+        ],
+        "return": [
+          "a reference to this context\u0027s named Service as requested or \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.beans.beancontext.BeanContextChild",
+            "type": "Class"
+          },
+          "name": "child",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "requestor",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "service",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "releaseService",
+      "comment": "Releases a BeanContextChild\u0027s (or any arbitrary object associated with a BeanContextChild) reference to the specified service by calling releaseService() on the underlying BeanContextServiceProvider.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echild\u003c/code\u003e - the \n\u003ccode\u003eBeanContextChild\u003c/code\u003e",
+          "\u003ccode\u003erequestor\u003c/code\u003e - the requestor",
+          "\u003ccode\u003eservice\u003c/code\u003e - the service"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCurrentServiceClasses",
+      "comment": "Gets the currently available services for this context.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "an \n\u003ccode\u003eIterator\u003c/code\u003e consisting of the currently available services"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "serviceClass",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCurrentServiceSelectors",
+      "comment": "Gets the list of service dependent service parameters (Service Selectors) for the specified service, by calling getCurrentServiceSelectors() on the underlying BeanContextServiceProvider.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eserviceClass\u003c/code\u003e - the specified service"
+        ],
+        "return": [
+          "the currently available service selectors for the named serviceClass"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.beans.beancontext.BeanContextServicesListener",
+            "type": "Class"
+          },
+          "name": "bcsl",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addBeanContextServicesListener",
+      "comment": "Adds a BeanContextServicesListener to this BeanContext",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebcsl\u003c/code\u003e - the \n\u003ccode\u003eBeanContextServicesListener\u003c/code\u003e to add"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.beans.beancontext.BeanContextServicesListener",
+            "type": "Class"
+          },
+          "name": "bcsl",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeBeanContextServicesListener",
+      "comment": "Removes a BeanContextServicesListener from this BeanContext",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebcsl\u003c/code\u003e - the \n\u003ccode\u003eBeanContextServicesListener\u003c/code\u003e to remove from this context"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.beans.beancontext.BeanContextServices",
+  "annotations": [],
+  "tagMap": {}
+}

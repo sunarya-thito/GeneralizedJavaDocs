@@ -1,0 +1,218 @@
+{
+  "packageName": "java.awt.im.spi",
+  "simpleName": "InputMethodContext",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.awt.im.InputMethodRequests",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "id",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.text.AttributedCharacterIterator",
+            "type": "Class"
+          },
+          "name": "text",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "committedCharacterCount",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.font.TextHitInfo",
+            "type": "Class"
+          },
+          "name": "caret",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.font.TextHitInfo",
+            "type": "Class"
+          },
+          "name": "visiblePosition",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "dispatchInputMethodEvent",
+      "comment": "Creates an input method event from the arguments given and dispatches it to the client component. For arguments, see InputMethodEvent(java.awt.Component, int, java.awt.font.TextHitInfo, java.awt.font.TextHitInfo).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the event type",
+          "\u003ccode\u003etext\u003c/code\u003e - the combined committed and composed text",
+          "\u003ccode\u003ecommittedCharacterCount\u003c/code\u003e - the number of committed characters in the text",
+          "\u003ccode\u003ecaret\u003c/code\u003e - the caret (a.k.a. insertion point); null if there\u0027s no caret within current composed text",
+          "\u003ccode\u003evisiblePosition\u003c/code\u003e - the position that\u0027s most important to be visible; null if there\u0027s no recommendation for a visible position within current composed text"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Window",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "title",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "attachToInputContext",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createInputMethodWindow",
+      "comment": "Creates a top-level window for use by the input method. The intended behavior of this window is: it floats above all document windows and dialogs it and all components that it contains do not receive the focus it has lightweight decorations, such as a reduced drag region without title However, the actual behavior with respect to these three items is platform dependent. The title may or may not be displayed, depending on the actual type of window created. If attachToInputContext is true, the new window will share the input context that corresponds to this input method context, so that events for components in the window are automatically dispatched to the input method. Also, when the window is opened using setVisible(true), the input context will prevent deactivate and activate calls to the input method that might otherwise be caused. Input methods must call Window.dispose on the returned input method window when it is no longer needed.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etitle\u003c/code\u003e - the title to be displayed in the window\u0027s title bar, if there is such a title bar. A \n\u003ccode\u003enull\u003c/code\u003e value is treated as an empty string, \"\".",
+          "\u003ccode\u003eattachToInputContext\u003c/code\u003e - whether this window should share the input context that corresponds to this input method context"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/HeadlessException.html\" title\u003d\"class in java.awt\"\u003eHeadlessException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eGraphicsEnvironment.isHeadless\u003c/code\u003e returns \n\u003ccode\u003etrue\u003c/code\u003e"
+        ],
+        "return": [
+          "a window with special characteristics for use by input methods"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.JFrame",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "title",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "attachToInputContext",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createInputMethodJFrame",
+      "comment": "Creates a top-level Swing JFrame for use by the input method. The intended behavior of this window is: it floats above all document windows and dialogs it and all components that it contains do not receive the focus it has lightweight decorations, such as a reduced drag region without title However, the actual behavior with respect to these three items is platform dependent. The title may or may not be displayed, depending on the actual type of window created. If attachToInputContext is true, the new window will share the input context that corresponds to this input method context, so that events for components in the window are automatically dispatched to the input method. Also, when the window is opened using setVisible(true), the input context will prevent deactivate and activate calls to the input method that might otherwise be caused. Input methods must call Window.dispose on the returned input method window when it is no longer needed.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etitle\u003c/code\u003e - the title to be displayed in the window\u0027s title bar, if there is such a title bar. A \n\u003ccode\u003enull\u003c/code\u003e value is treated as an empty string, \"\".",
+          "\u003ccode\u003eattachToInputContext\u003c/code\u003e - whether this window should share the input context that corresponds to this input method context"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/HeadlessException.html\" title\u003d\"class in java.awt\"\u003eHeadlessException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eGraphicsEnvironment.isHeadless\u003c/code\u003e returns \n\u003ccode\u003etrue\u003c/code\u003e"
+        ],
+        "return": [
+          "a JFrame with special characteristics for use by input methods"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.im.spi.InputMethod",
+            "type": "Class"
+          },
+          "name": "inputMethod",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "enable",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "enableClientWindowNotification",
+      "comment": "Enables or disables notification of the current client window\u0027s location and state for the specified input method. When notification is enabled, the input method\u0027s notifyClientWindowChange method is called as described in that method\u0027s specification. Notification is automatically disabled when the input method is disposed.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einputMethod\u003c/code\u003e - the input method for which notifications are enabled or disabled",
+          "\u003ccode\u003eenable\u003c/code\u003e - true to enable, false to disable"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.awt.im.spi.InputMethodContext",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.3"
+    ]
+  }
+}

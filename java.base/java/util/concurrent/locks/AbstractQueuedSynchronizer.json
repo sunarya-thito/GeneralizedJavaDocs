@@ -1,0 +1,944 @@
+{
+  "packageName": "java.util.concurrent.locks",
+  "simpleName": "AbstractQueuedSynchronizer",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.util.concurrent.locks.AbstractOwnableSynchronizer",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "getState",
+      "comment": "Returns the current value of synchronization state. This operation has memory semantics of a volatile read.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "current state value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "newState",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "setState",
+      "comment": "Sets the value of synchronization state. This operation has memory semantics of a volatile write.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewState\u003c/code\u003e - the new state value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "expect",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "update",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "compareAndSetState",
+      "comment": "Atomically sets synchronization state to the given updated value if the current state value equals the expected value. This operation has memory semantics of a volatile read and write.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eexpect\u003c/code\u003e - the expected value",
+          "\u003ccode\u003eupdate\u003c/code\u003e - the new value"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if successful. False return indicates that the actual value was not equal to the expected value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "tryAcquire",
+      "comment": "Attempts to acquire in exclusive mode. This method should query if the state of the object permits it to be acquired in the exclusive mode, and if so to acquire it. This method is always invoked by the thread performing acquire. If this method reports failure, the acquire method may queue the thread, if it is not already queued, until it is signalled by a release from some other thread. This can be used to implement method Lock.tryLock(). The default implementation throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is always the one passed to an acquire method, or is the value saved on entry to a condition wait. The value is otherwise uninterpreted and can represent anything you like."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if acquiring would place this synchronizer in an illegal state. This exception must be thrown in a consistent fashion for synchronization to work correctly.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if exclusive mode is not supported"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if successful. Upon success, this object has been acquired."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "tryRelease",
+      "comment": "Attempts to set the state to reflect a release in exclusive mode. This method is always invoked by the thread performing release. The default implementation throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the release argument. This value is always the one passed to a release method, or the current state value upon entry to a condition wait. The value is otherwise uninterpreted and can represent anything you like."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if releasing would place this synchronizer in an illegal state. This exception must be thrown in a consistent fashion for synchronization to work correctly.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if exclusive mode is not supported"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this object is now in a fully released state, so that any waiting threads may attempt to acquire; and \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "tryAcquireShared",
+      "comment": "Attempts to acquire in shared mode. This method should query if the state of the object permits it to be acquired in the shared mode, and if so to acquire it. This method is always invoked by the thread performing acquire. If this method reports failure, the acquire method may queue the thread, if it is not already queued, until it is signalled by a release from some other thread. The default implementation throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is always the one passed to an acquire method, or is the value saved on entry to a condition wait. The value is otherwise uninterpreted and can represent anything you like."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if acquiring would place this synchronizer in an illegal state. This exception must be thrown in a consistent fashion for synchronization to work correctly.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if shared mode is not supported"
+        ],
+        "return": [
+          "a negative value on failure; zero if acquisition in shared mode succeeded but no subsequent shared-mode acquire can succeed; and a positive value if acquisition in shared mode succeeded and subsequent shared-mode acquires might also succeed, in which case a subsequent waiting thread must check availability. (Support for three different return values enables this method to be used in contexts where acquires only sometimes act exclusively.) Upon success, this object has been acquired."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "tryReleaseShared",
+      "comment": "Attempts to set the state to reflect a release in shared mode. This method is always invoked by the thread performing release. The default implementation throws UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the release argument. This value is always the one passed to a release method, or the current state value upon entry to a condition wait. The value is otherwise uninterpreted and can represent anything you like."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if releasing would place this synchronizer in an illegal state. This exception must be thrown in a consistent fashion for synchronization to work correctly.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if shared mode is not supported"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this release of shared mode may permit a waiting acquire (shared or exclusive) to succeed; and \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "isHeldExclusively",
+      "comment": "Returns true if synchronization is held exclusively with respect to the current (calling) thread. This method is invoked upon each call to a AbstractQueuedSynchronizer.ConditionObject method. The default implementation throws UnsupportedOperationException. This method is invoked internally only within AbstractQueuedSynchronizer.ConditionObject methods, so need not be defined if conditions are not used.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if conditions are not supported"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if synchronization is held exclusively; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "acquire",
+      "comment": "Acquires in exclusive mode, ignoring interrupts. Implemented by invoking at least once tryAcquire(int), returning on success. Otherwise the thread is queued, possibly repeatedly blocking and unblocking, invoking tryAcquire(int) until success. This method can be used to implement method Lock.lock().",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryAcquire(int)\"\u003e\u003ccode\u003etryAcquire(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "acquireInterruptibly",
+      "comment": "Acquires in exclusive mode, aborting if interrupted. Implemented by first checking interrupt status, then invoking at least once tryAcquire(int), returning on success. Otherwise the thread is queued, possibly repeatedly blocking and unblocking, invoking tryAcquire(int) until success or the thread is interrupted. This method can be used to implement method Lock.lockInterruptibly().",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryAcquire(int)\"\u003e\u003ccode\u003etryAcquire(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "nanosTimeout",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "tryAcquireNanos",
+      "comment": "Attempts to acquire in exclusive mode, aborting if interrupted, and failing if the given timeout elapses. Implemented by first checking interrupt status, then invoking at least once tryAcquire(int), returning on success. Otherwise, the thread is queued, possibly repeatedly blocking and unblocking, invoking tryAcquire(int) until success or the thread is interrupted or the timeout elapses. This method can be used to implement method Lock.tryLock(long, TimeUnit).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryAcquire(int)\"\u003e\u003ccode\u003etryAcquire(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like.",
+          "\u003ccode\u003enanosTimeout\u003c/code\u003e - the maximum number of nanoseconds to wait"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if acquired; \n\u003ccode\u003efalse\u003c/code\u003e if timed out"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "release",
+      "comment": "Releases in exclusive mode. Implemented by unblocking one or more threads if tryRelease(int) returns true. This method can be used to implement method Lock.unlock().",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the release argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryRelease(int)\"\u003e\u003ccode\u003etryRelease(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like."
+        ],
+        "return": [
+          "the value returned from \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryRelease(int)\"\u003e\u003ccode\u003etryRelease(int)\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "acquireShared",
+      "comment": "Acquires in shared mode, ignoring interrupts. Implemented by first invoking at least once tryAcquireShared(int), returning on success. Otherwise the thread is queued, possibly repeatedly blocking and unblocking, invoking tryAcquireShared(int) until success.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryAcquireShared(int)\"\u003e\u003ccode\u003etryAcquireShared(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "acquireSharedInterruptibly",
+      "comment": "Acquires in shared mode, aborting if interrupted. Implemented by first checking interrupt status, then invoking at least once tryAcquireShared(int), returning on success. Otherwise the thread is queued, possibly repeatedly blocking and unblocking, invoking tryAcquireShared(int) until success or the thread is interrupted.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryAcquireShared(int)\"\u003e\u003ccode\u003etryAcquireShared(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "nanosTimeout",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "tryAcquireSharedNanos",
+      "comment": "Attempts to acquire in shared mode, aborting if interrupted, and failing if the given timeout elapses. Implemented by first checking interrupt status, then invoking at least once tryAcquireShared(int), returning on success. Otherwise, the thread is queued, possibly repeatedly blocking and unblocking, invoking tryAcquireShared(int) until success or the thread is interrupted or the timeout elapses.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the acquire argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryAcquireShared(int)\"\u003e\u003ccode\u003etryAcquireShared(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like.",
+          "\u003ccode\u003enanosTimeout\u003c/code\u003e - the maximum number of nanoseconds to wait"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if acquired; \n\u003ccode\u003efalse\u003c/code\u003e if timed out"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "arg",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "releaseShared",
+      "comment": "Releases in shared mode. Implemented by unblocking one or more threads if tryReleaseShared(int) returns true.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earg\u003c/code\u003e - the release argument. This value is conveyed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryReleaseShared(int)\"\u003e\u003ccode\u003etryReleaseShared(int)\u003c/code\u003e\u003c/a\u003e but is otherwise uninterpreted and can represent anything you like."
+        ],
+        "return": [
+          "the value returned from \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html#tryReleaseShared(int)\"\u003e\u003ccode\u003etryReleaseShared(int)\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hasQueuedThreads",
+      "comment": "Queries whether any threads are waiting to acquire. Note that because cancellations due to interrupts and timeouts may occur at any time, a true return does not guarantee that any other thread will ever acquire.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if there may be other threads waiting to acquire"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hasContended",
+      "comment": "Queries whether any threads have ever contended to acquire this synchronizer; that is, if an acquire method has ever blocked. In this implementation, this operation returns in constant time.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if there has ever been contention"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Thread",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getFirstQueuedThread",
+      "comment": "Returns the first (longest-waiting) thread in the queue, or null if no threads are currently queued. In this implementation, this operation normally returns in constant time, but may iterate upon contention if other threads are concurrently modifying the queue.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the first (longest-waiting) thread in the queue, or \n\u003ccode\u003enull\u003c/code\u003e if no threads are currently queued"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          },
+          "name": "thread",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isQueued",
+      "comment": "Returns true if the given thread is currently queued. This implementation traverses the queue to determine presence of the given thread.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ethread\u003c/code\u003e - the thread"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the thread is null"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the given thread is on the queue"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hasQueuedPredecessors",
+      "comment": "Queries whether any threads have been waiting to acquire longer than the current thread. An invocation of this method is equivalent to (but may be more efficient than):  \n getFirstQueuedThread() !\u003d Thread.currentThread()\n   \u0026\u0026 hasQueuedThreads() Note that because cancellations due to interrupts and timeouts may occur at any time, a true return does not guarantee that some other thread will acquire before the current thread. Likewise, it is possible for another thread to win a race to enqueue after this method has returned false, due to the queue being empty. This method is designed to be used by a fair synchronizer to avoid barging. Such a synchronizer\u0027s tryAcquire(int) method should return false, and its tryAcquireShared(int) method should return a negative value, if this method returns true (unless this is a reentrant acquire). For example, the tryAcquire method for a fair, reentrant, exclusive mode synchronizer might look like this:  \n protected boolean tryAcquire(int arg) {\n   if (isHeldExclusively()) {\n     // A reentrant acquire; increment hold count\n     return true;\n   } else if (hasQueuedPredecessors()) {\n     return false;\n   } else {\n     // try to acquire normally\n   }\n }",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if there is a queued thread preceding the current thread, and \n\u003ccode\u003efalse\u003c/code\u003e if the current thread is at the head of the queue or the queue is empty"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getQueueLength",
+      "comment": "Returns an estimate of the number of threads waiting to acquire. The value is only an estimate because the number of threads may change dynamically while this method traverses internal data structures. This method is designed for use in monitoring system state, not for synchronization control.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the estimated number of threads waiting to acquire"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getQueuedThreads",
+      "comment": "Returns a collection containing threads that may be waiting to acquire. Because the actual set of threads may change dynamically while constructing this result, the returned collection is only a best-effort estimate. The elements of the returned collection are in no particular order. This method is designed to facilitate construction of subclasses that provide more extensive monitoring facilities.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the collection of threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getExclusiveQueuedThreads",
+      "comment": "Returns a collection containing threads that may be waiting to acquire in exclusive mode. This has the same properties as getQueuedThreads() except that it only returns those threads waiting due to an exclusive acquire.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the collection of threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getSharedQueuedThreads",
+      "comment": "Returns a collection containing threads that may be waiting to acquire in shared mode. This has the same properties as getQueuedThreads() except that it only returns those threads waiting due to a shared acquire.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the collection of threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns a string identifying this synchronizer, as well as its state. The state, in brackets, includes the String \"State \u003d\" followed by the current value of getState(), and either \"nonempty\" or \"empty\" depending on whether the queue is empty.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string identifying this synchronizer, as well as its state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject",
+            "type": "Class"
+          },
+          "name": "condition",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "owns",
+      "comment": "Queries whether the given ConditionObject uses this synchronizer as its lock.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econdition\u003c/code\u003e - the condition"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the condition is null"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if owned"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject",
+            "type": "Class"
+          },
+          "name": "condition",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hasWaiters",
+      "comment": "Queries whether any threads are waiting on the given condition associated with this synchronizer. Note that because timeouts and interrupts may occur at any time, a true return does not guarantee that a future signal will awaken any threads. This method is designed primarily for use in monitoring of the system state.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econdition\u003c/code\u003e - the condition"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if exclusive synchronization is not held",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given condition is not associated with this synchronizer",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the condition is null"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if there are any waiting threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject",
+            "type": "Class"
+          },
+          "name": "condition",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getWaitQueueLength",
+      "comment": "Returns an estimate of the number of threads waiting on the given condition associated with this synchronizer. Note that because timeouts and interrupts may occur at any time, the estimate serves only as an upper bound on the actual number of waiters. This method is designed for use in monitoring system state, not for synchronization control.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econdition\u003c/code\u003e - the condition"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if exclusive synchronization is not held",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given condition is not associated with this synchronizer",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the condition is null"
+        ],
+        "return": [
+          "the estimated number of waiting threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject",
+            "type": "Class"
+          },
+          "name": "condition",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getWaitingThreads",
+      "comment": "Returns a collection containing those threads that may be waiting on the given condition associated with this synchronizer. Because the actual set of threads may change dynamically while constructing this result, the returned collection is only a best-effort estimate. The elements of the returned collection are in no particular order.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econdition\u003c/code\u003e - the condition"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if exclusive synchronization is not held",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given condition is not associated with this synchronizer",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the condition is null"
+        ],
+        "return": [
+          "the collection of threads"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new AbstractQueuedSynchronizer instance with initial synchronization state of zero.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "innerClasses": [
+    "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.util.concurrent.locks.AbstractQueuedSynchronizer",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.util.concurrent.locks.AbstractQueuedSynchronizer\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

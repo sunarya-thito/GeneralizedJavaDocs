@@ -1,0 +1,199 @@
+{
+  "packageName": "java.net.http",
+  "simpleName": "PushPromiseHandler",
+  "moduleName": "java.net.http",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.net.http.HttpRequest",
+            "type": "Class"
+          },
+          "name": "initiatingRequest",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.net.http.HttpRequest",
+            "type": "Class"
+          },
+          "name": "pushPromiseRequest",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Function",
+            "parameters": [
+              {
+                "name": "java.net.http.HttpResponse$BodyHandler",
+                "parameters": [
+                  {
+                    "owner": "java.net.http.HttpResponse$PushPromiseHandler",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Class"
+              },
+              {
+                "name": "java.util.concurrent.CompletableFuture",
+                "parameters": [
+                  {
+                    "name": "java.net.http.HttpResponse",
+                    "parameters": [
+                      {
+                        "owner": "java.net.http.HttpResponse$PushPromiseHandler",
+                        "name": "T",
+                        "type": "Variable"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "acceptor",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "applyPushPromise",
+      "comment": "Notification of an incoming push promise. This method is invoked once for each push promise received, up to the point where the response body of the initiating client-sent request has been fully received. A push promise is accepted by invoking the given acceptor function. The acceptor function must be passed a non-null BodyHandler, that is to be used to handle the promise\u0027s response body. The acceptor function will return a CompletableFuture that completes with the promise\u0027s response. If the acceptor function is not successfully invoked, then the push promise is rejected. The acceptor function will throw an IllegalStateException if invoked more than once.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einitiatingRequest\u003c/code\u003e - the initiating client-send request",
+          "\u003ccode\u003epushPromiseRequest\u003c/code\u003e - the synthetic push request",
+          "\u003ccode\u003eacceptor\u003c/code\u003e - the acceptor function that must be successfully invoked to accept the push promise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$PushPromiseHandler",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Function",
+            "parameters": [
+              {
+                "name": "java.net.http.HttpRequest",
+                "type": "Class"
+              },
+              {
+                "name": "java.net.http.HttpResponse$BodyHandler",
+                "parameters": [
+                  {
+                    "name": "T",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "pushPromiseHandler",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.ConcurrentMap",
+            "parameters": [
+              {
+                "name": "java.net.http.HttpRequest",
+                "type": "Class"
+              },
+              {
+                "name": "java.util.concurrent.CompletableFuture",
+                "parameters": [
+                  {
+                    "name": "java.net.http.HttpResponse",
+                    "parameters": [
+                      {
+                        "name": "T",
+                        "type": "Class"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "pushPromisesMap",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "of",
+      "comment": "Returns a push promise handler that accumulates push promises, and their responses, into the given map. Entries are added to the given map for each push promise accepted. The entry\u0027s key is the push request, and the entry\u0027s value is a CompletableFuture that completes with the response corresponding to the key\u0027s push request. A push request is rejected / cancelled if there is already an entry in the map whose key is equal to it. A push request is rejected / cancelled if it does not have the same origin as its initiating request. Entries are added to the given map as soon as practically possible when a push promise is received and accepted. That way code, using such a map like a cache, can determine if a push promise has been issued by the server and avoid making, possibly, unnecessary requests. The delivery of a push promise response is not coordinated with the delivery of the response to the initiating client-sent request. However, when the response body for the initiating client-sent request has been fully received, the map is guaranteed to be fully populated, that is, no more entries will be added. The individual CompletableFutures contained in the map may or may not already be completed at this point.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the push promise response body type"
+        ],
+        "param": [
+          "\u003ccode\u003epushPromiseHandler\u003c/code\u003e - t he body handler to use for push promises",
+          "\u003ccode\u003epushPromisesMap\u003c/code\u003e - a map to accumulate push promises into"
+        ],
+        "return": [
+          "a push promise handler"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "java.net.http.HttpResponse$PushPromiseHandler",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "11"
+    ]
+  }
+}

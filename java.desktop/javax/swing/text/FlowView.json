@@ -1,0 +1,518 @@
+{
+  "packageName": "javax.swing.text",
+  "simpleName": "FlowView",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.swing.text.BoxView",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "layoutSpan",
+      "comment": "Default constraint against which the flow is created against.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.swing.text.View",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "layoutPool",
+      "comment": "These are the views that represent the child elements of the element this view represents (The logical view to translate to a physical view). These are not directly children of this view. These are either placed into the rows directly or used for the purpose of breaking into smaller chunks, to form the physical view.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.swing.text.FlowView$FlowStrategy",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "strategy",
+      "comment": "The behavior for keeping the flow updated. By default this is a singleton shared by all instances of FlowView (FlowStrategy is stateless). Subclasses can create an alternative strategy, which might keep state.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFlowAxis",
+      "comment": "Fetches the axis along which views should be flowed. By default, this will be the axis orthogonal to the axis along which the flow rows are tiled (the axis of the default flow rows themselves). This is typically used by the FlowStrategy.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the axis along which views should be flowed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "index",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFlowSpan",
+      "comment": "Fetch the constraining span to flow against for the given child index. This is called by the FlowStrategy while it is updating the flow. A flow can be shaped by providing different values for the row constraints. By default, the entire span inside of the insets along the flow axis is returned.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/FlowView.html#getFlowStart(int)\"\u003e\u003ccode\u003egetFlowStart(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the index of the row being updated. This should be a value \u0026gt;\u003d 0 and \u0026lt; getViewCount()."
+        ],
+        "return": [
+          "the constraining span to flow against for the given child index"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "index",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFlowStart",
+      "comment": "Fetch the location along the flow axis that the flow span will start at. This is called by the FlowStrategy while it is updating the flow. A flow can be shaped by providing different values for the row constraints.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/FlowView.html#getFlowSpan(int)\"\u003e\u003ccode\u003egetFlowSpan(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the index of the row being updated. This should be a value \u0026gt;\u003d 0 and \u0026lt; getViewCount()."
+        ],
+        "return": [
+          "the location along the flow axis that the flow span will start at"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.View",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "createRow",
+      "comment": "Create a View that should be used to hold a a rows worth of children in a flow. This is called by the FlowStrategy when new children are added or removed (i.e. rows are added or removed) in the process of updating the flow.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a View that should be used to hold a a rows worth of children in a flow"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.text.ViewFactory",
+            "type": "Class"
+          },
+          "name": "f",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "loadChildren",
+      "comment": "Loads all of the children to initialize the view. This is called by the setParent method. This is reimplemented to not load any children directly (as they are created in the process of formatting). If the layoutPool variable is null, an instance of LogicalView is created to represent the logical view that is used in the process of formatting.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/CompositeView.html#setParent(javax.swing.text.View)\"\u003e\u003ccode\u003eCompositeView.setParent(javax.swing.text.View)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/CompositeView.html#loadChildren(javax.swing.text.ViewFactory)\"\u003eloadChildren\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/CompositeView.html\" title\u003d\"class in javax.swing.text\"\u003eCompositeView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ef\u003c/code\u003e - the view factory"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "pos",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getViewIndexAtPosition",
+      "comment": "Fetches the child view index representing the given position in the model.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/CompositeView.html#getViewIndexAtPosition(int)\"\u003egetViewIndexAtPosition\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/CompositeView.html\" title\u003d\"class in javax.swing.text\"\u003eCompositeView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epos\u003c/code\u003e - the position \u0026gt;\u003d 0"
+        ],
+        "return": [
+          "index of the view representing the given position, or -1 if no view represents that position"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "width",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "height",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "layout",
+      "comment": "Lays out the children. If the span along the flow axis has changed, layout is marked as invalid which which will cause the superclass behavior to recalculate the layout along the box axis. The FlowStrategy.layout method will be called to rebuild the flow rows as appropriate. If the height of this view changes (determined by the preferred size along the box axis), a preferenceChanged is called. Following all of that, the normal box layout of the superclass is performed.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/BoxView.html#layout(int,int)\"\u003elayout\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/BoxView.html\" title\u003d\"class in javax.swing.text\"\u003eBoxView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewidth\u003c/code\u003e - the width to lay out against \u0026gt;\u003d 0. This is the width inside of the inset area.",
+          "\u003ccode\u003eheight\u003c/code\u003e - the height to lay out against \u0026gt;\u003d 0 This is the height inside of the inset area."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.SizeRequirements",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "axis",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.SizeRequirements",
+            "type": "Class"
+          },
+          "name": "r",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "calculateMinorAxisRequirements",
+      "comment": "Calculate requirements along the minor axis. This is implemented to forward the request to the logical view by calling getMinimumSpan, getPreferredSpan, and getMaximumSpan on it.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SizeRequirements.html\" title\u003d\"class in javax.swing\"\u003e\u003ccode\u003eSizeRequirements\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/BoxView.html#calculateMinorAxisRequirements(int,javax.swing.SizeRequirements)\"\u003ecalculateMinorAxisRequirements\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/BoxView.html\" title\u003d\"class in javax.swing.text\"\u003eBoxView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eaxis\u003c/code\u003e - the axis being studied",
+          "\u003ccode\u003er\u003c/code\u003e - the \n\u003ccode\u003eSizeRequirements\u003c/code\u003e object; if \n\u003ccode\u003enull\u003c/code\u003e one will be created"
+        ],
+        "return": [
+          "the newly initialized \n\u003ccode\u003eSizeRequirements\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.DocumentEvent",
+            "type": "Class"
+          },
+          "name": "changes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Shape",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.text.ViewFactory",
+            "type": "Class"
+          },
+          "name": "f",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "insertUpdate",
+      "comment": "Gives notification that something was inserted into the document in a location that this view is responsible for.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html#insertUpdate(javax.swing.event.DocumentEvent,java.awt.Shape,javax.swing.text.ViewFactory)\"\u003e\u003ccode\u003eView.insertUpdate(javax.swing.event.DocumentEvent, java.awt.Shape, javax.swing.text.ViewFactory)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html#insertUpdate(javax.swing.event.DocumentEvent,java.awt.Shape,javax.swing.text.ViewFactory)\"\u003einsertUpdate\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html\" title\u003d\"class in javax.swing.text\"\u003eView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003echanges\u003c/code\u003e - the change information from the associated document",
+          "\u003ccode\u003ea\u003c/code\u003e - the current allocation of the view",
+          "\u003ccode\u003ef\u003c/code\u003e - the factory to use to rebuild if the view has children"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.DocumentEvent",
+            "type": "Class"
+          },
+          "name": "changes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Shape",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.text.ViewFactory",
+            "type": "Class"
+          },
+          "name": "f",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeUpdate",
+      "comment": "Gives notification that something was removed from the document in a location that this view is responsible for.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html#removeUpdate(javax.swing.event.DocumentEvent,java.awt.Shape,javax.swing.text.ViewFactory)\"\u003e\u003ccode\u003eView.removeUpdate(javax.swing.event.DocumentEvent, java.awt.Shape, javax.swing.text.ViewFactory)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html#removeUpdate(javax.swing.event.DocumentEvent,java.awt.Shape,javax.swing.text.ViewFactory)\"\u003eremoveUpdate\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html\" title\u003d\"class in javax.swing.text\"\u003eView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003echanges\u003c/code\u003e - the change information from the associated document",
+          "\u003ccode\u003ea\u003c/code\u003e - the current allocation of the view",
+          "\u003ccode\u003ef\u003c/code\u003e - the factory to use to rebuild if the view has children"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.event.DocumentEvent",
+            "type": "Class"
+          },
+          "name": "changes",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Shape",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.text.ViewFactory",
+            "type": "Class"
+          },
+          "name": "f",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "changedUpdate",
+      "comment": "Gives notification from the document that attributes were changed in a location that this view is responsible for.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html#changedUpdate(javax.swing.event.DocumentEvent,java.awt.Shape,javax.swing.text.ViewFactory)\"\u003e\u003ccode\u003eView.changedUpdate(javax.swing.event.DocumentEvent, java.awt.Shape, javax.swing.text.ViewFactory)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html#changedUpdate(javax.swing.event.DocumentEvent,java.awt.Shape,javax.swing.text.ViewFactory)\"\u003echangedUpdate\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html\" title\u003d\"class in javax.swing.text\"\u003eView\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003echanges\u003c/code\u003e - the change information from the associated document",
+          "\u003ccode\u003ea\u003c/code\u003e - the current allocation of the view",
+          "\u003ccode\u003ef\u003c/code\u003e - the factory to use to rebuild if the view has children"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.text.Element",
+            "type": "Class"
+          },
+          "name": "elem",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "axis",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a FlowView for the given element.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelem\u003c/code\u003e - the element that this view is responsible for",
+          "\u003ccode\u003eaxis\u003c/code\u003e - may be either View.X_AXIS or View.Y_AXIS"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.swing.text.FlowView$FlowStrategy"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.swing.text.FlowView",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/View.html\" title\u003d\"class in javax.swing.text\"\u003e\u003ccode\u003eView\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "packageName": "java.util.stream",
+  "simpleName": "Collector",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.function.Supplier",
+        "parameters": [
+          {
+            "owner": "java.util.stream.Collector",
+            "name": "A",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "supplier",
+      "comment": "A function that creates and returns a new mutable result container.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a function which returns a new, mutable result container"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.function.BiConsumer",
+        "parameters": [
+          {
+            "owner": "java.util.stream.Collector",
+            "name": "A",
+            "type": "Variable"
+          },
+          {
+            "owner": "java.util.stream.Collector",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "accumulator",
+      "comment": "A function that folds a value into a mutable result container.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a function which folds a value into a mutable result container"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.function.BinaryOperator",
+        "parameters": [
+          {
+            "owner": "java.util.stream.Collector",
+            "name": "A",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "combiner",
+      "comment": "A function that accepts two partial results and merges them. The combiner function may fold state from one argument into the other and return that, or may return a new result container.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a function which combines two partial results into a combined result"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.function.Function",
+        "parameters": [
+          {
+            "owner": "java.util.stream.Collector",
+            "name": "A",
+            "type": "Variable"
+          },
+          {
+            "owner": "java.util.stream.Collector",
+            "name": "R",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "finisher",
+      "comment": "Perform the final transformation from the intermediate accumulation type A to the final result type R. If the characteristic IDENTITY_FINISH is set, this function may be presumed to be an identity transform with an unchecked cast from A to R.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a function which transforms the intermediate result to the final result"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.util.stream.Collector$Characteristics",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "characteristics",
+      "comment": "Returns a Set of Collector.Characteristics indicating the characteristics of this Collector. This set should be immutable.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "an immutable set of collector characteristics"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Collector",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          },
+          {
+            "name": "R",
+            "type": "Class"
+          },
+          {
+            "name": "R",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Supplier",
+            "parameters": [
+              {
+                "name": "R",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "supplier",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.BiConsumer",
+            "parameters": [
+              {
+                "name": "R",
+                "type": "Class"
+              },
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "accumulator",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.BinaryOperator",
+            "parameters": [
+              {
+                "name": "R",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "combiner",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.stream.Collector$Characteristics",
+            "type": "Class"
+          },
+          "name": "characteristics",
+          "varargs": true
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        },
+        {
+          "name": "R",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "of",
+      "comment": "Returns a new Collector described by the given supplier, accumulator, and combiner functions. The resulting Collector has the Collector.Characteristics.IDENTITY_FINISH characteristic.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - The type of input elements for the new collector",
+          "\u003ccode\u003eR\u003c/code\u003e - The type of intermediate accumulation result, and final result, for the new collector"
+        ],
+        "param": [
+          "\u003ccode\u003esupplier\u003c/code\u003e - The supplier function for the new collector",
+          "\u003ccode\u003eaccumulator\u003c/code\u003e - The accumulator function for the new collector",
+          "\u003ccode\u003ecombiner\u003c/code\u003e - The combiner function for the new collector",
+          "\u003ccode\u003echaracteristics\u003c/code\u003e - The collector characteristics for the new collector"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if any argument is null"
+        ],
+        "return": [
+          "the new \n\u003ccode\u003eCollector\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Collector",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          },
+          {
+            "name": "A",
+            "type": "Class"
+          },
+          {
+            "name": "R",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Supplier",
+            "parameters": [
+              {
+                "name": "A",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "supplier",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.BiConsumer",
+            "parameters": [
+              {
+                "name": "A",
+                "type": "Class"
+              },
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "accumulator",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.BinaryOperator",
+            "parameters": [
+              {
+                "name": "A",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "combiner",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Function",
+            "parameters": [
+              {
+                "name": "A",
+                "type": "Class"
+              },
+              {
+                "name": "R",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "finisher",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.stream.Collector$Characteristics",
+            "type": "Class"
+          },
+          "name": "characteristics",
+          "varargs": true
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        },
+        {
+          "name": "A",
+          "type": "Variable"
+        },
+        {
+          "name": "R",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "of",
+      "comment": "Returns a new Collector described by the given supplier, accumulator, combiner, and finisher functions.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - The type of input elements for the new collector",
+          "\u003ccode\u003eA\u003c/code\u003e - The intermediate accumulation type of the new collector",
+          "\u003ccode\u003eR\u003c/code\u003e - The final result type of the new collector"
+        ],
+        "param": [
+          "\u003ccode\u003esupplier\u003c/code\u003e - The supplier function for the new collector",
+          "\u003ccode\u003eaccumulator\u003c/code\u003e - The accumulator function for the new collector",
+          "\u003ccode\u003ecombiner\u003c/code\u003e - The combiner function for the new collector",
+          "\u003ccode\u003efinisher\u003c/code\u003e - The finisher function for the new collector",
+          "\u003ccode\u003echaracteristics\u003c/code\u003e - The collector characteristics for the new collector"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if any argument is null"
+        ],
+        "return": [
+          "the new \n\u003ccode\u003eCollector\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "java.util.stream.Collector$Characteristics"
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    },
+    {
+      "name": "A",
+      "type": "Variable"
+    },
+    {
+      "name": "R",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.stream.Collector",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/Stream.html#collect(java.util.stream.Collector)\"\u003e\u003ccode\u003eStream.collect(Collector)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/Collectors.html\" title\u003d\"class in java.util.stream\"\u003e\u003ccode\u003eCollectors\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "apiNote": [
+      "Performing a reduction operation with a \n\u003ccode\u003eCollector\u003c/code\u003e should produce a result equivalent to: \n\u003cpre\u003e\u003ccode\u003e\n     A container \u003d collector.supplier().get();\n     for (T t : data)\n         collector.accumulator().accept(container, t);\n     return collector.finisher().apply(container);\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003eHowever, the library is free to partition the input, perform the reduction on the partitions, and then use the combiner function to combine the partial results to achieve a parallel reduction. (Depending on the specific reduction operation, this may perform better or worse, depending on the relative cost of the accumulator and combiner functions.) \u003c/p\u003e\n\u003cp\u003eCollectors are designed to be \u003cem\u003ecomposed\u003c/em\u003e; many of the methods in \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/Collectors.html\" title\u003d\"class in java.util.stream\"\u003e\u003ccode\u003eCollectors\u003c/code\u003e\u003c/a\u003e are functions that take a collector and produce a new collector. For example, given the following collector that computes the sum of the salaries of a stream of employees: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n     Collector\u0026lt;Employee, ?, Integer\u0026gt; summingSalaries\n         \u003d Collectors.summingInt(Employee::getSalary))\n \u003c/code\u003e\u003c/pre\u003e If we wanted to create a collector to tabulate the sum of salaries by department, we could reuse the \"sum of salaries\" logic using \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/Collectors.html#groupingBy(java.util.function.Function,java.util.stream.Collector)\"\u003e\u003ccode\u003eCollectors.groupingBy(Function, Collector)\u003c/code\u003e\u003c/a\u003e: \n\u003cpre\u003e\u003ccode\u003e\n     Collector\u0026lt;Employee, ?, Map\u0026lt;Department, Integer\u0026gt;\u0026gt; summingSalariesByDept\n         \u003d Collectors.groupingBy(Employee::getDepartment, summingSalaries);\n \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

@@ -1,0 +1,386 @@
+{
+  "packageName": "javax.management.remote",
+  "simpleName": "JMXConnector",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.io.Closeable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "CREDENTIALS",
+      "comment": "Name of the attribute that specifies the credentials to send to the connector server during connection. The value associated with this attribute, if any, is a serializable object of an appropriate type for the server\u0027s JMXAuthenticator.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.management.remote.JMXConnector.CREDENTIALS\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "connect",
+      "comment": "Establishes the connection to the connector server. This method is equivalent to connect(null).",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the connection could not be made because of a communication problem.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the connection could not be made for security reasons."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "env",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "connect",
+      "comment": "Establishes the connection to the connector server. If connect has already been called successfully on this object, calling it again has no effect. If, however, close() was called after connect, the new connect will throw an IOException. Otherwise, either connect has never been called on this object, or it has been called but produced an exception. Then calling connect will attempt to establish a connection to the connector server.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eenv\u003c/code\u003e - the properties of the connection. Properties in this map override properties in the map specified when the \n\u003ccode\u003eJMXConnector\u003c/code\u003e was created, if any. This parameter can be null, which is equivalent to an empty map."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the connection could not be made because of a communication problem.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the connection could not be made for security reasons."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.MBeanServerConnection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMBeanServerConnection",
+      "comment": "Returns an MBeanServerConnection object representing a remote MBean server. For a given JMXConnector, two successful calls to this method will usually return the same MBeanServerConnection object, though this is not required. For each method in the returned MBeanServerConnection, calling the method causes the corresponding method to be called in the remote MBean server. The value returned by the MBean server method is the value returned to the client. If the MBean server method produces an Exception, the same Exception is seen by the client. If the MBean server method, or the attempt to call it, produces an Error, the Error is wrapped in a JMXServerErrorException, which is seen by the client. Calling this method is equivalent to calling getMBeanServerConnection(null) meaning that no delegation subject is specified and that all the operations called on the MBeanServerConnection must use the authenticated subject, if any.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a valid \n\u003ccode\u003eMBeanServerConnection\u003c/code\u003e cannot be created, for instance because the connection to the remote MBean server has not yet been established (with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnector.html#connect(java.util.Map)\"\u003e\u003ccode\u003econnect\u003c/code\u003e\u003c/a\u003e method), or it has been closed, or it has broken."
+        ],
+        "return": [
+          "an object that implements the \n\u003ccode\u003eMBeanServerConnection\u003c/code\u003e interface by forwarding its methods to the remote MBean server."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.MBeanServerConnection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "name": "delegationSubject",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMBeanServerConnection",
+      "comment": "Returns an MBeanServerConnection object representing a remote MBean server on which operations are performed on behalf of the supplied delegation subject. For a given JMXConnector and Subject, two successful calls to this method will usually return the same MBeanServerConnection object, though this is not required. For each method in the returned MBeanServerConnection, calling the method causes the corresponding method to be called in the remote MBean server on behalf of the given delegation subject instead of the authenticated subject. The value returned by the MBean server method is the value returned to the client. If the MBean server method produces an Exception, the same Exception is seen by the client. If the MBean server method, or the attempt to call it, produces an Error, the Error is wrapped in a JMXServerErrorException, which is seen by the client.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e on behalf of which requests will be performed. Can be null, in which case requests will be performed on behalf of the authenticated Subject, if any."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a valid \n\u003ccode\u003eMBeanServerConnection\u003c/code\u003e cannot be created, for instance because the connection to the remote MBean server has not yet been established (with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnector.html#connect(java.util.Map)\"\u003e\u003ccode\u003econnect\u003c/code\u003e\u003c/a\u003e method), or it has been closed, or it has broken."
+        ],
+        "return": [
+          "an object that implements the \n\u003ccode\u003eMBeanServerConnection\u003c/code\u003e interface by forwarding its methods to the remote MBean server on behalf of a given delegation subject."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes the client connection to its server. Any ongoing or new request using the MBeanServerConnection returned by getMBeanServerConnection() will get an IOException. If close has already been called successfully on this object, calling it again has no effect. If close has never been called, or if it was called but produced an exception, an attempt will be made to close the connection. This attempt can succeed, in which case close will return normally, or it can generate an exception. Closing a connection is a potentially slow operation. For example, if the server has crashed, the close operation might have to wait for a network protocol timeout. Callers that do not want to block in a close operation should do it in a separate thread.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the connection cannot be closed cleanly. If this exception is thrown, it is not known whether the server end of the connection has been cleanly closed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationFilter",
+            "type": "Class"
+          },
+          "name": "filter",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "handback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addConnectionNotificationListener",
+      "comment": "Adds a listener to be informed of changes in connection status. The listener will receive notifications of type JMXConnectionNotification. An implementation can send other types of notifications too. Any number of listeners can be added with this method. The same listener can be added more than once with the same or different values for the filter and handback. There is no special treatment of a duplicate entry. For example, if a listener is registered twice with no filter, then its handleNotification method will be called twice for each notification.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnector.html#removeConnectionNotificationListener(javax.management.NotificationListener)\"\u003e\u003ccode\u003eremoveConnectionNotificationListener(javax.management.NotificationListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationBroadcaster.html#addNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eNotificationBroadcaster.addNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - a listener to receive connection status notifications.",
+          "\u003ccode\u003efilter\u003c/code\u003e - a filter to select which notifications are to be delivered to the listener, or null if all notifications are to be delivered.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - an object to be given to the listener along with each notification. Can be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elistener\u003c/code\u003e is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeConnectionNotificationListener",
+      "comment": "Removes a listener from the list to be informed of changes in status. The listener must previously have been added. If there is more than one matching listener, all are removed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnector.html#removeConnectionNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eremoveConnectionNotificationListener(NotificationListener, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnector.html#addConnectionNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddConnectionNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationEmitter.html#removeNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eNotificationEmitter.removeNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - a listener to receive connection status notifications."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elistener\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - if the listener is not registered with this \n\u003ccode\u003eJMXConnector\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "name": "l",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.NotificationFilter",
+            "type": "Class"
+          },
+          "name": "f",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "handback",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeConnectionNotificationListener",
+      "comment": "Removes a listener from the list to be informed of changes in status. The listener must previously have been added with the same three parameters. If there is more than one matching listener, only one is removed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnector.html#removeConnectionNotificationListener(javax.management.NotificationListener)\"\u003e\u003ccode\u003eremoveConnectionNotificationListener(NotificationListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnector.html#addConnectionNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddConnectionNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationEmitter.html#removeNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eNotificationEmitter.removeNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003el\u003c/code\u003e - a listener to receive connection status notifications.",
+          "\u003ccode\u003ef\u003c/code\u003e - a filter to select which notifications are to be delivered to the listener. Can be null.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - an object to be given to the listener along with each notification. Can be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - if the listener is not registered with this \n\u003ccode\u003eJMXConnector\u003c/code\u003e, or is not registered with the given filter and handback."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getConnectionId",
+      "comment": "Gets this connection\u0027s ID from the connector server. For a given connector server, every connection will have a unique id which does not change during the lifetime of the connection.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the connection ID cannot be obtained, for instance because the connection is closed or broken."
+        ],
+        "return": [
+          "the unique ID of this connection. This is the same as the ID that the connector server includes in its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXConnectionNotification.html\" title\u003d\"class in javax.management.remote\"\u003e\u003ccode\u003eJMXConnectionNotification\u003c/code\u003e\u003c/a\u003es. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/package-summary.html\"\u003e\u003ccode\u003epackage description\u003c/code\u003e\u003c/a\u003e describes the conventions for connection IDs."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.management.remote.JMXConnector",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

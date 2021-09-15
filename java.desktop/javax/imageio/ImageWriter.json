@@ -1,0 +1,2220 @@
+{
+  "packageName": "javax.imageio",
+  "simpleName": "ImageWriter",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "javax.imageio.spi.ImageWriterSpi",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "originatingProvider",
+      "comment": "The ImageWriterSpi that instantiated this object, or null if its identity is not known or none exists. By default it is initialized to null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "output",
+      "comment": "The ImageOutputStream or other Object set by setOutput and retrieved by getOutput. By default it is initialized to null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.util.Locale",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "availableLocales",
+      "comment": "An array of Locales that may be used to localize warning messages and compression setting values, or null if localization is not supported. By default it is initialized to null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.util.Locale",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "locale",
+      "comment": "The current Locale to be used for localization, or null if none has been set. By default it is initialized to null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "javax.imageio.event.IIOWriteWarningListener",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "warningListeners",
+      "comment": "A List of currently registered IIOWriteWarningListeners, initialized by default to null, which is synonymous with an empty List.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.util.Locale",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "warningLocales",
+      "comment": "A List of Locales, one for each element of warningListeners, initialized by default null, which is synonymous with an empty List.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "javax.imageio.event.IIOWriteProgressListener",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "progressListeners",
+      "comment": "A List of currently registered IIOWriteProgressListeners, initialized by default null, which is synonymous with an empty List.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.spi.ImageWriterSpi",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getOriginatingProvider",
+      "comment": "Returns the ImageWriterSpi object that created this ImageWriter, or null if this object was not created through the IIORegistry. The default implementation returns the value of the originatingProvider instance variable.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageWriterSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageWriterSpi\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an \n\u003ccode\u003eImageWriterSpi\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "output",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setOutput",
+      "comment": "Sets the destination to the given ImageOutputStream or other Object. The destination is assumed to be ready to accept data, and will not be closed at the end of each write. This allows distributed imaging applications to transmit a series of images over a single network connection. If output is null, any currently set output will be removed. If output is an ImageOutputStream, calls to the write, writeToSequence, and prepareWriteEmpty/endWriteEmpty methods will preserve the existing contents of the stream. Other write methods, such as writeInsert, replaceStreamMetadata, replaceImageMetadata, replacePixels, prepareInsertEmpty/endInsertEmpty, and endWriteSequence, require the full contents of the stream to be readable and writable, and may alter any portion of the stream. Use of a general Object other than an ImageOutputStream is intended for writers that interact directly with an output device or imaging protocol. The set of legal classes is advertised by the writer\u0027s service provider\u0027s getOutputTypes method; most writers will return a single-element array containing only ImageOutputStream.class to indicate that they accept only an ImageOutputStream. The default implementation sets the output instance variable to the value of output after checking output against the set of classes advertised by the originating provider, if there is one.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#getOutput()\"\u003e\u003ccode\u003egetOutput()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eoutput\u003c/code\u003e - the \n\u003ccode\u003eImageOutputStream\u003c/code\u003e or other \n\u003ccode\u003eObject\u003c/code\u003e to use for future writing."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoutput\u003c/code\u003e is not an instance of one of the classes returned by the originating service provider\u0027s \n\u003ccode\u003egetOutputTypes\u003c/code\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getOutput",
+      "comment": "Returns the ImageOutputStream or other Object set by the most recent call to the setOutput method. If no destination has been set, null is returned. The default implementation returns the value of the output instance variable.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#setOutput(java.lang.Object)\"\u003e\u003ccode\u003esetOutput(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the \n\u003ccode\u003eObject\u003c/code\u003e that was specified using \n\u003ccode\u003esetOutput\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Locale",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAvailableLocales",
+      "comment": "Returns an array of Locales that may be used to localize warning listeners and compression settings. A return value of null indicates that localization is not supported. The default implementation returns a clone of the availableLocales instance variable if it is non-null, or else returns null.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "an array of \n\u003ccode\u003eLocale\u003c/code\u003es that may be used as arguments to \n\u003ccode\u003esetLocale\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "name": "locale",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setLocale",
+      "comment": "Sets the current Locale of this ImageWriter to the given value. A value of null removes any previous setting, and indicates that the writer should localize as it sees fit. The default implementation checks locale against the values returned by getAvailableLocales, and sets the locale instance variable if it is found. If locale is null, the instance variable is set to null without any checking.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#getLocale()\"\u003e\u003ccode\u003egetLocale()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elocale\u003c/code\u003e - the desired \n\u003ccode\u003eLocale\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elocale\u003c/code\u003e is non-\n\u003ccode\u003enull\u003c/code\u003e but is not one of the values returned by \n\u003ccode\u003egetAvailableLocales\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Locale",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getLocale",
+      "comment": "Returns the currently set Locale, or null if none has been set. The default implementation returns the value of the locale instance variable.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#setLocale(java.util.Locale)\"\u003e\u003ccode\u003esetLocale(java.util.Locale)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the current \n\u003ccode\u003eLocale\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.ImageWriteParam",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDefaultWriteParam",
+      "comment": "Returns a new ImageWriteParam object of the appropriate type for this file format containing default values, that is, those values that would be used if no ImageWriteParam object were specified. This is useful as a starting point for tweaking just a few parameters and otherwise leaving the default settings alone. The default implementation constructs and returns a new ImageWriteParam object that does not allow tiling, progressive encoding, or compression, and that will be localized for the current Locale (i.e., what you would get by calling new ImageWriteParam(getLocale()). Individual plug-ins may return an instance of ImageWriteParam with additional optional features enabled, or they may return an instance of a plug-in specific subclass of ImageWriteParam.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a new \n\u003ccode\u003eImageWriteParam\u003c/code\u003e object containing default values."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.metadata.IIOMetadata",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getDefaultStreamMetadata",
+      "comment": "Returns an IIOMetadata object containing default values for encoding a stream of images. The contents of the object may be manipulated using either the XML tree structure returned by the IIOMetadata.getAsTree method, an IIOMetadataController object, or via plug-in specific interfaces, and the resulting data supplied to one of the write methods that take a stream metadata parameter. An optional ImageWriteParam may be supplied for cases where it may affect the structure of the stream metadata. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. Writers that do not make use of stream metadata (e.g., writers for single-image formats) should return null.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e that will be used to encode the image, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.imageio.metadata.IIOMetadata",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageTypeSpecifier",
+            "type": "Class"
+          },
+          "name": "imageType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getDefaultImageMetadata",
+      "comment": "Returns an IIOMetadata object containing default values for encoding an image of the given type. The contents of the object may be manipulated using either the XML tree structure returned by the IIOMetadata.getAsTree method, an IIOMetadataController object, or via plug-in specific interfaces, and the resulting data supplied to one of the write methods that take a stream metadata parameter. An optional ImageWriteParam may be supplied for cases where it may affect the structure of the image metadata. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageType\u003c/code\u003e - an \n\u003ccode\u003eImageTypeSpecifier\u003c/code\u003e indicating the format of the image to be written later.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e that will be used to encode the image, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageTypeSpecifier",
+            "type": "Class"
+          },
+          "name": "imageType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "streamMetadata",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "imageMetadata",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getNumThumbnailsSupported",
+      "comment": "Returns the number of thumbnails supported by the format being written, given the image type and any additional write parameters and metadata objects that will be used during encoding. A return value of -1 indicates that insufficient information is available. An ImageWriteParam may optionally be supplied for cases where it may affect thumbnail handling. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. The default implementation returns 0.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageType\u003c/code\u003e - an \n\u003ccode\u003eImageTypeSpecifier\u003c/code\u003e indicating the type of image to be written, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eparam\u003c/code\u003e - the \n\u003ccode\u003eImageWriteParam\u003c/code\u003e that will be used for writing, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003estreamMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object that will be used for writing, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eimageMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object that will be used for writing, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "the number of thumbnails that may be written given the supplied parameters, or \n\u003ccode\u003e-1\u003c/code\u003e if insufficient information is available."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Dimension",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageTypeSpecifier",
+            "type": "Class"
+          },
+          "name": "imageType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "streamMetadata",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "imageMetadata",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPreferredThumbnailSizes",
+      "comment": "Returns an array of Dimensions indicating the legal size ranges for thumbnail images as they will be encoded in the output file or stream. This information is merely advisory; the writer will resize any supplied thumbnails as necessary. The information is returned as a set of pairs; the first element of a pair contains an (inclusive) minimum width and height, and the second element contains an (inclusive) maximum width and height. Together, each pair defines a valid range of sizes. To specify a fixed size, the same width and height will appear for both elements. A return value of null indicates that the size is arbitrary or unknown. An ImageWriteParam may optionally be supplied for cases where it may affect thumbnail handling. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. The default implementation returns null.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageType\u003c/code\u003e - an \n\u003ccode\u003eImageTypeSpecifier\u003c/code\u003e indicating the type of image to be written, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eparam\u003c/code\u003e - the \n\u003ccode\u003eImageWriteParam\u003c/code\u003e that will be used for writing, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003estreamMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object that will be used for writing, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eimageMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object that will be used for writing, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "an array of \n\u003ccode\u003eDimension\u003c/code\u003es with an even length of at least two, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canWriteRasters",
+      "comment": "Returns true if the methods that take an IIOImage parameter are capable of dealing with a Raster (as opposed to RenderedImage) source image. If this method returns false, then those methods will throw an UnsupportedOperationException if supplied with an IIOImage containing a Raster. The default implementation returns false.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if \n\u003ccode\u003eRaster\u003c/code\u003e sources are supported."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "streamMetadata",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.IIOImage",
+            "type": "Class"
+          },
+          "name": "image",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "write",
+      "comment": "Appends a complete image stream containing a single image and associated stream and image metadata and thumbnails to the output. Any necessary header information is included. If the output is an ImageOutputStream, its existing contents prior to the current seek position are not affected, and need not be readable or writable. The output must have been set beforehand using the setOutput method. Stream metadata may optionally be supplied; if it is null, default stream metadata will be used. If canWriteRasters returns true, the IIOImage may contain a Raster source. Otherwise, it must contain a RenderedImage source. The supplied thumbnails will be resized if needed, and any thumbnails in excess of the supported number will be ignored. If the format requires additional thumbnails that are not provided, the writer should generate them internally. An ImageWriteParam may optionally be supplied to control the writing process. If param is null, a default write param will be used. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object representing stream metadata, or \n\u003ccode\u003enull\u003c/code\u003e to use default values.",
+          "\u003ccode\u003eimage\u003c/code\u003e - an \n\u003ccode\u003eIIOImage\u003c/code\u003e object containing an image, thumbnails, and metadata to be written.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e to use a default \n\u003ccode\u003eImageWriteParam\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e contains a \n\u003ccode\u003eRaster\u003c/code\u003e and \n\u003ccode\u003ecanWriteRasters\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.IIOImage",
+            "type": "Class"
+          },
+          "name": "image",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "write",
+      "comment": "Appends a complete image stream containing a single image with default metadata and thumbnails to the output. This method is a shorthand for write(null, image, null).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimage\u003c/code\u003e - an \n\u003ccode\u003eIIOImage\u003c/code\u003e object containing an image, thumbnails, and metadata to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e contains a \n\u003ccode\u003eRaster\u003c/code\u003e and \n\u003ccode\u003ecanWriteRasters\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.RenderedImage",
+            "type": "Class"
+          },
+          "name": "image",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "write",
+      "comment": "Appends a complete image stream consisting of a single image with default metadata and thumbnails to the output. This method is a shorthand for write(null, new IIOImage(image, null, null), null).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimage\u003c/code\u003e - a \n\u003ccode\u003eRenderedImage\u003c/code\u003e to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canWriteSequence",
+      "comment": "Returns true if the writer is able to append an image to an image stream that already contains header information and possibly prior images. If canWriteSequence returns false, writeToSequence and endWriteSequence will throw an UnsupportedOperationException. The default implementation returns false.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if images may be appended sequentially."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "streamMetadata",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "prepareWriteSequence",
+      "comment": "Prepares a stream to accept a series of subsequent writeToSequence calls, using the provided stream metadata object. The metadata will be written to the stream if it should precede the image data. If the argument is null, default stream metadata is used. If the output is an ImageOutputStream, the existing contents of the output prior to the current seek position are flushed, and need not be readable or writable. If the format requires that endWriteSequence be able to rewind to patch up the header information, such as for a sequence of images in a single TIFF file, then the metadata written by this method must remain in a writable portion of the stream. Other formats may flush the stream after this method and after each image. If canWriteSequence returns false, this method will throw an UnsupportedOperationException. The output must have been set beforehand using either the setOutput method. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamMetadata\u003c/code\u003e - A stream metadata object, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanWriteSequence\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs writing the stream metadata."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.IIOImage",
+            "type": "Class"
+          },
+          "name": "image",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "writeToSequence",
+      "comment": "Appends a single image and possibly associated metadata and thumbnails, to the output. If the output is an ImageOutputStream, the existing contents of the output prior to the current seek position may be flushed, and need not be readable or writable, unless the plug-in needs to be able to patch up the header information when endWriteSequence is called (e.g. TIFF). If canWriteSequence returns false, this method will throw an UnsupportedOperationException. The output must have been set beforehand using the setOutput method. prepareWriteSequence must have been called beforehand, or an IllegalStateException is thrown. If canWriteRasters returns true, the IIOImage may contain a Raster source. Otherwise, it must contain a RenderedImage source. The supplied thumbnails will be resized if needed, and any thumbnails in excess of the supported number will be ignored. If the format requires additional thumbnails that are not provided, the writer will generate them internally. An ImageWriteParam may optionally be supplied to control the writing process. If param is null, a default write param will be used. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimage\u003c/code\u003e - an \n\u003ccode\u003eIIOImage\u003c/code\u003e object containing an image, thumbnails, and metadata to be written.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e to use a default \n\u003ccode\u003eImageWriteParam\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set, or \n\u003ccode\u003eprepareWriteSequence\u003c/code\u003e has not been called.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanWriteSequence\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e contains a \n\u003ccode\u003eRaster\u003c/code\u003e and \n\u003ccode\u003ecanWriteRasters\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "endWriteSequence",
+      "comment": "Completes the writing of a sequence of images begun with prepareWriteSequence. Any stream metadata that should come at the end of the sequence of images is written out, and any header information at the beginning of the sequence is patched up if necessary. If the output is an ImageOutputStream, data through the stream metadata at the end of the sequence are flushed and need not be readable or writable. If canWriteSequence returns false, this method will throw an UnsupportedOperationException. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set, or \n\u003ccode\u003eprepareWriteSequence\u003c/code\u003e has not been called.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanWriteSequence\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canReplaceStreamMetadata",
+      "comment": "Returns true if it is possible to replace the stream metadata already present in the output. The default implementation throws an IllegalStateException if the output is null, and otherwise returns false.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the query."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if replacement of stream metadata is allowed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "streamMetadata",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "replaceStreamMetadata",
+      "comment": "Replaces the stream metadata in the output with new information. If the output is an ImageOutputStream, the prior contents of the stream are examined and possibly edited to make room for the new data. All of the prior contents of the output must be available for reading and writing. If canReplaceStreamMetadata returns false, an UnsupportedOperationException will be thrown. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object representing stream metadata, or \n\u003ccode\u003enull\u003c/code\u003e to use default values."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ecanReplaceStreamMetadata\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e. modes do not include",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canReplaceImageMetadata",
+      "comment": "Returns true if it is possible to replace the image metadata associated with an existing image with index imageIndex. If this method returns false, a call to replaceImageMetadata(imageIndex) will throw an UnsupportedOperationException. A writer that does not support any image metadata replacement may return false without performing bounds checking on the index. The default implementation throws an IllegalStateException if the output is null, and otherwise returns false without checking the value of imageIndex.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image whose metadata is to be replaced."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the writer supports image metadata replacement in general, but \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than 0 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the query."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the image metadata of the given image can be replaced."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "imageMetadata",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "replaceImageMetadata",
+      "comment": "Replaces the image metadata associated with an existing image. If canReplaceImageMetadata(imageIndex) returns false, an UnsupportedOperationException will be thrown. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image whose metadata is to be replaced.",
+          "\u003ccode\u003eimageMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object representing image metadata, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanReplaceImageMetadata\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than 0 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canInsertImage",
+      "comment": "Returns true if the writer supports the insertion of a new image at the given index. Existing images with indices greater than or equal to the insertion index will have their indices increased by 1. A value for imageIndex of -1 may be used to signify an index one larger than the current largest index. A writer that does not support any image insertion may return false without performing bounds checking on the index. The default implementation throws an IllegalStateException if the output is null, and otherwise returns false without checking the value of imageIndex.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index at which the image is to be inserted."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the writer supports image insertion in general, but \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than -1 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the query."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if an image may be inserted at the given index."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.IIOImage",
+            "type": "Class"
+          },
+          "name": "image",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "writeInsert",
+      "comment": "Inserts a new image into an existing image stream. Existing images with an index greater than imageIndex are preserved, and their indices are each increased by 1. A value for imageIndex of -1 may be used to signify an index one larger than the previous largest index; that is, it will cause the image to be logically appended to the end of the sequence. If the output is an ImageOutputStream, the entirety of the stream must be both readable and writeable. If canInsertImage(imageIndex) returns false, an UnsupportedOperationException will be thrown. An ImageWriteParam may optionally be supplied to control the writing process. If param is null, a default write param will be used. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index at which to write the image.",
+          "\u003ccode\u003eimage\u003c/code\u003e - an \n\u003ccode\u003eIIOImage\u003c/code\u003e object containing an image, thumbnails, and metadata to be written.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e to use a default \n\u003ccode\u003eImageWriteParam\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanInsertImage(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than -1 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimage\u003c/code\u003e contains a \n\u003ccode\u003eRaster\u003c/code\u003e and \n\u003ccode\u003ecanWriteRasters\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canRemoveImage",
+      "comment": "Returns true if the writer supports the removal of an existing image at the given index. Existing images with indices greater than the insertion index will have their indices decreased by 1. A writer that does not support any image removal may return false without performing bounds checking on the index. The default implementation throws an IllegalStateException if the output is null, and otherwise returns false without checking the value of imageIndex.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image to be removed."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the writer supports image removal in general, but \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than 0 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the query."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if it is possible to remove the given image."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeImage",
+      "comment": "Removes an image from the stream. If canRemoveImage(imageIndex) returns false, an UnsupportedOperationException will be thrown. The removal may or may not cause a reduction in the actual file size. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image to be removed."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanRemoveImage(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than 0 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the removal."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canWriteEmpty",
+      "comment": "Returns true if the writer supports the writing of a complete image stream consisting of a single image with undefined pixel values and associated metadata and thumbnails to the output. The pixel values may be defined by future calls to the replacePixels methods. If the output is an ImageOutputStream, its existing contents prior to the current seek position are not affected, and need not be readable or writable. The default implementation throws an IllegalStateException if the output is null, and otherwise returns false.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the query."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the writing of complete image stream with contents to be defined later is supported."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "streamMetadata",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageTypeSpecifier",
+            "type": "Class"
+          },
+          "name": "imageType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "width",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "height",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "imageMetadata",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.awt.image.BufferedImage",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "thumbnails",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "prepareWriteEmpty",
+      "comment": "Begins the writing of a complete image stream, consisting of a single image with undefined pixel values and associated metadata and thumbnails, to the output. The pixel values will be defined by future calls to the replacePixels methods. If the output is an ImageOutputStream, its existing contents prior to the current seek position are not affected, and need not be readable or writable. The writing is not complete until a call to endWriteEmpty occurs. Calls to prepareReplacePixels, replacePixels, and endReplacePixels may occur between calls to prepareWriteEmpty and endWriteEmpty. However, calls to prepareWriteEmpty cannot be nested, and calls to prepareWriteEmpty and prepareInsertEmpty may not be interspersed. If canWriteEmpty returns false, an UnsupportedOperationException will be thrown. An ImageWriteParam may optionally be supplied to control the writing process. If param is null, a default write param will be used. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object representing stream metadata, or \n\u003ccode\u003enull\u003c/code\u003e to use default values.",
+          "\u003ccode\u003eimageType\u003c/code\u003e - an \n\u003ccode\u003eImageTypeSpecifier\u003c/code\u003e describing the layout of the image.",
+          "\u003ccode\u003ewidth\u003c/code\u003e - the width of the image.",
+          "\u003ccode\u003eheight\u003c/code\u003e - the height of the image.",
+          "\u003ccode\u003eimageMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object representing image metadata, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003ethumbnails\u003c/code\u003e - a \n\u003ccode\u003eList\u003c/code\u003e of \n\u003ccode\u003eBufferedImage\u003c/code\u003e thumbnails for this image, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e to use a default \n\u003ccode\u003eImageWriteParam\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanWriteEmpty\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareWriteEmpty\u003c/code\u003e has been made without a corresponding call to \n\u003ccode\u003eendWriteEmpty\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareInsertEmpty\u003c/code\u003e has been made without a corresponding call to \n\u003ccode\u003eendInsertEmpty\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimageType\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or \n\u003ccode\u003ethumbnails\u003c/code\u003e contains \n\u003ccode\u003enull\u003c/code\u003e references or objects other than \n\u003ccode\u003eBufferedImage\u003c/code\u003es.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if width or height are less than 1.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "endWriteEmpty",
+      "comment": "Completes the writing of a new image that was begun with a prior call to prepareWriteEmpty. If canWriteEmpty() returns false, an UnsupportedOperationException will be thrown. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanWriteEmpty(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareWriteEmpty\u003c/code\u003e without a corresponding call to \n\u003ccode\u003eendWriteEmpty\u003c/code\u003e has not been made.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareInsertEmpty\u003c/code\u003e without a corresponding call to \n\u003ccode\u003eendInsertEmpty\u003c/code\u003e has been made.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a call to \n\u003ccode\u003eprepareReiplacePixels\u003c/code\u003e has been made without a matching call to \n\u003ccode\u003eendReplacePixels\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canInsertEmpty",
+      "comment": "Returns true if the writer supports the insertion of a new, empty image at the given index. The pixel values of the image are undefined, and may be specified in pieces using the replacePixels methods. Existing images with indices greater than or equal to the insertion index will have their indices increased by 1. A value for imageIndex of -1 may be used to signify an index one larger than the current largest index. A writer that does not support insertion of empty images may return false without performing bounds checking on the index. The default implementation throws an IllegalStateException if the output is null, and otherwise returns false without checking the value of imageIndex.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index at which the image is to be inserted."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the writer supports empty image insertion in general, but \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than -1 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the query."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if an empty image may be inserted at the given index."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageTypeSpecifier",
+            "type": "Class"
+          },
+          "name": "imageType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "width",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "height",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.metadata.IIOMetadata",
+            "type": "Class"
+          },
+          "name": "imageMetadata",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.awt.image.BufferedImage",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "thumbnails",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "prepareInsertEmpty",
+      "comment": "Begins the insertion of a new image with undefined pixel values into an existing image stream. Existing images with an index greater than imageIndex are preserved, and their indices are each increased by 1. A value for imageIndex of -1 may be used to signify an index one larger than the previous largest index; that is, it will cause the image to be logically appended to the end of the sequence. If the output is an ImageOutputStream, the entirety of the stream must be both readable and writeable. The image contents may be supplied later using the replacePixels method. The insertion is not complete until a call to endInsertEmpty occurs. Calls to prepareReplacePixels, replacePixels, and endReplacePixels may occur between calls to prepareInsertEmpty and endInsertEmpty. However, calls to prepareInsertEmpty cannot be nested, and calls to prepareWriteEmpty and prepareInsertEmpty may not be interspersed. If canInsertEmpty(imageIndex) returns false, an UnsupportedOperationException will be thrown. An ImageWriteParam may optionally be supplied to control the writing process. If param is null, a default write param will be used. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index at which to write the image.",
+          "\u003ccode\u003eimageType\u003c/code\u003e - an \n\u003ccode\u003eImageTypeSpecifier\u003c/code\u003e describing the layout of the image.",
+          "\u003ccode\u003ewidth\u003c/code\u003e - the width of the image.",
+          "\u003ccode\u003eheight\u003c/code\u003e - the height of the image.",
+          "\u003ccode\u003eimageMetadata\u003c/code\u003e - an \n\u003ccode\u003eIIOMetadata\u003c/code\u003e object representing image metadata, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003ethumbnails\u003c/code\u003e - a \n\u003ccode\u003eList\u003c/code\u003e of \n\u003ccode\u003eBufferedImage\u003c/code\u003e thumbnails for this image, or \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e to use a default \n\u003ccode\u003eImageWriteParam\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanInsertEmpty(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than -1 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareInsertEmpty\u003c/code\u003e has been made without a corresponding call to \n\u003ccode\u003eendInsertEmpty\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareWriteEmpty\u003c/code\u003e has been made without a corresponding call to \n\u003ccode\u003eendWriteEmpty\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimageType\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or \n\u003ccode\u003ethumbnails\u003c/code\u003e contains \n\u003ccode\u003enull\u003c/code\u003e references or objects other than \n\u003ccode\u003eBufferedImage\u003c/code\u003es.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if width or height are less than 1.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "endInsertEmpty",
+      "comment": "Completes the insertion of a new image that was begun with a prior call to prepareInsertEmpty. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanInsertEmpty(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareInsertEmpty\u003c/code\u003e without a corresponding call to \n\u003ccode\u003eendInsertEmpty\u003c/code\u003e has not been made.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a previous call to \n\u003ccode\u003eprepareWriteEmpty\u003c/code\u003e without a corresponding call to \n\u003ccode\u003eendWriteEmpty\u003c/code\u003e has been made.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if a call to \n\u003ccode\u003eprepareReplacePixels\u003c/code\u003e has been made without a matching call to \n\u003ccode\u003eendReplacePixels\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canReplacePixels",
+      "comment": "Returns true if the writer allows pixels of the given image to be replaced using the replacePixels methods. A writer that does not support any pixel replacement may return false without performing bounds checking on the index. The default implementation throws an IllegalStateException if the output is null, and otherwise returns false without checking the value of imageIndex.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image whose pixels are to be replaced."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the writer supports pixel replacement in general, but \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than 0 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the query."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the pixels of the given image can be replaced."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Rectangle",
+            "type": "Class"
+          },
+          "name": "region",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "prepareReplacePixels",
+      "comment": "Prepares the writer to handle a series of calls to the replacePixels methods. The affected pixel area will be clipped against the supplied If canReplacePixels returns false, and UnsupportedOperationException will be thrown. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image whose pixels are to be replaced.",
+          "\u003ccode\u003eregion\u003c/code\u003e - a \n\u003ccode\u003eRectangle\u003c/code\u003e that will be used to clip future pixel regions."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanReplacePixels(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eimageIndex\u003c/code\u003e is less than 0 or greater than the largest available index.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if there is a previous call to \n\u003ccode\u003eprepareReplacePixels\u003c/code\u003e without a matching call to \n\u003ccode\u003eendReplacePixels\u003c/code\u003e (\n\u003ci\u003ei.e.\u003c/i\u003e, nesting is not allowed).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eregion\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or has a width or height less than 1.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during the preparation."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.RenderedImage",
+            "type": "Class"
+          },
+          "name": "image",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "replacePixels",
+      "comment": "Replaces a portion of an image already present in the output with a portion of the given image. The image data must match, or be convertible to, the image layout of the existing image. The destination region is specified in the param argument, and will be clipped to the image boundaries and the region supplied to prepareReplacePixels. At least one pixel of the source must not be clipped, or an exception is thrown. An ImageWriteParam may optionally be supplied to control the writing process. If param is null, a default write param will be used. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. This method may only be called after a call to prepareReplacePixels, or else an IllegalStateException will be thrown. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimage\u003c/code\u003e - a \n\u003ccode\u003eRenderedImage\u003c/code\u003e containing source pixels.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e to use a default \n\u003ccode\u003eImageWriteParam\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanReplacePixels(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if there is no previous call to \n\u003ccode\u003eprepareReplacePixels\u003c/code\u003e without a matching call to \n\u003ccode\u003eendReplacePixels\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any of the following are true: \n\u003cul\u003e \n \u003cli\u003e \u003ccode\u003eimage\u003c/code\u003e is \u003ccode\u003enull\u003c/code\u003e. \u003c/li\u003e\n \u003cli\u003e the intersected region does not contain at least one pixel. \u003c/li\u003e\n \u003cli\u003e the layout of \u003ccode\u003eimage\u003c/code\u003e does not match, or this writer cannot convert it to, the existing image layout. \u003c/li\u003e\n\u003c/ul\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.image.Raster",
+            "type": "Class"
+          },
+          "name": "raster",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.ImageWriteParam",
+            "type": "Class"
+          },
+          "name": "param",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "replacePixels",
+      "comment": "Replaces a portion of an image already present in the output with a portion of the given Raster. The image data must match, or be convertible to, the image layout of the existing image. An ImageWriteParam may optionally be supplied to control the writing process. If param is null, a default write param will be used. The destination region is specified in the param argument, and will be clipped to the image boundaries and the region supplied to prepareReplacePixels. At least one pixel of the source must not be clipped, or an exception is thrown. If the supplied ImageWriteParam contains optional setting values not supported by this writer (e.g. progressive encoding or any format-specific settings), they will be ignored. This method may only be called after a call to prepareReplacePixels, or else an IllegalStateException will be thrown. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eraster\u003c/code\u003e - a \n\u003ccode\u003eRaster\u003c/code\u003e containing source pixels.",
+          "\u003ccode\u003eparam\u003c/code\u003e - an \n\u003ccode\u003eImageWriteParam\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e to use a default \n\u003ccode\u003eImageWriteParam\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanReplacePixels(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if there is no previous call to \n\u003ccode\u003eprepareReplacePixels\u003c/code\u003e without a matching call to \n\u003ccode\u003eendReplacePixels\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanWriteRasters\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any of the following are true: \n\u003cul\u003e \n \u003cli\u003e \u003ccode\u003eraster\u003c/code\u003e is \u003ccode\u003enull\u003c/code\u003e. \u003c/li\u003e\n \u003cli\u003e the intersected region does not contain at least one pixel. \u003c/li\u003e\n \u003cli\u003e the layout of \u003ccode\u003eraster\u003c/code\u003e does not match, or this writer cannot convert it to, the existing image layout. \u003c/li\u003e\n\u003c/ul\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "endReplacePixels",
+      "comment": "Terminates a sequence of calls to replacePixels. If canReplacePixels returns false, and UnsupportedOperationException will be thrown. The default implementation throws an IllegalStateException if the output is null, and otherwise throws an UnsupportedOperationException.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the output has not been set.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecanReplacePixels(imageIndex)\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if there is no previous call to \n\u003ccode\u003eprepareReplacePixels\u003c/code\u003e without a matching call to \n\u003ccode\u003eendReplacePixels\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs during writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "abort",
+      "comment": "Requests that any current write operation be aborted. The contents of the output following the abort will be undefined. Writers should call clearAbortRequest at the beginning of each write operation, and poll the value of abortRequested regularly during the write.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "abortRequested",
+      "comment": "Returns true if a request to abort the current write operation has been made since the writer was instantiated or clearAbortRequest was called.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#abort()\"\u003e\u003ccode\u003eabort()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#clearAbortRequest()\"\u003e\u003ccode\u003eclearAbortRequest()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the current write operation should be aborted."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "clearAbortRequest",
+      "comment": "Clears any previous abort request. After this method has been called, abortRequested will return false.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#abort()\"\u003e\u003ccode\u003eabort()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#abortRequested()\"\u003e\u003ccode\u003eabortRequested()\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.event.IIOWriteWarningListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addIIOWriteWarningListener",
+      "comment": "Adds an IIOWriteWarningListener to the list of registered warning listeners. If listener is null, no exception will be thrown and no action will be taken. Messages sent to the given listener will be localized, if possible, to match the current Locale. If no Locale has been set, warning messages may be localized as the writer sees fit.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#removeIIOWriteWarningListener(javax.imageio.event.IIOWriteWarningListener)\"\u003e\u003ccode\u003eremoveIIOWriteWarningListener(javax.imageio.event.IIOWriteWarningListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - an \n\u003ccode\u003eIIOWriteWarningListener\u003c/code\u003e to be registered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.event.IIOWriteWarningListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeIIOWriteWarningListener",
+      "comment": "Removes an IIOWriteWarningListener from the list of registered warning listeners. If the listener was not previously registered, or if listener is null, no exception will be thrown and no action will be taken.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#addIIOWriteWarningListener(javax.imageio.event.IIOWriteWarningListener)\"\u003e\u003ccode\u003eaddIIOWriteWarningListener(javax.imageio.event.IIOWriteWarningListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - an \n\u003ccode\u003eIIOWriteWarningListener\u003c/code\u003e to be deregistered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeAllIIOWriteWarningListeners",
+      "comment": "Removes all currently registered IIOWriteWarningListener objects. The default implementation sets the warningListeners and warningLocales instance variables to null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.event.IIOWriteProgressListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addIIOWriteProgressListener",
+      "comment": "Adds an IIOWriteProgressListener to the list of registered progress listeners. If listener is null, no exception will be thrown and no action will be taken.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#removeIIOWriteProgressListener(javax.imageio.event.IIOWriteProgressListener)\"\u003e\u003ccode\u003eremoveIIOWriteProgressListener(javax.imageio.event.IIOWriteProgressListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - an \n\u003ccode\u003eIIOWriteProgressListener\u003c/code\u003e to be registered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.event.IIOWriteProgressListener",
+            "type": "Class"
+          },
+          "name": "listener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeIIOWriteProgressListener",
+      "comment": "Removes an IIOWriteProgressListener from the list of registered progress listeners. If the listener was not previously registered, or if listener is null, no exception will be thrown and no action will be taken.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html#addIIOWriteProgressListener(javax.imageio.event.IIOWriteProgressListener)\"\u003e\u003ccode\u003eaddIIOWriteProgressListener(javax.imageio.event.IIOWriteProgressListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - an \n\u003ccode\u003eIIOWriteProgressListener\u003c/code\u003e to be deregistered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeAllIIOWriteProgressListeners",
+      "comment": "Removes all currently registered IIOWriteProgressListener objects. The default implementation sets the progressListeners instance variable to null.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processImageStarted",
+      "comment": "Broadcasts the start of an image write to all registered IIOWriteProgressListeners by calling their imageStarted method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image about to be written."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "percentageDone",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processImageProgress",
+      "comment": "Broadcasts the current percentage of image completion to all registered IIOWriteProgressListeners by calling their imageProgress method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epercentageDone\u003c/code\u003e - the current percentage of completion, as a \n\u003ccode\u003efloat\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processImageComplete",
+      "comment": "Broadcasts the completion of an image write to all registered IIOWriteProgressListeners by calling their imageComplete method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "thumbnailIndex",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processThumbnailStarted",
+      "comment": "Broadcasts the start of a thumbnail write to all registered IIOWriteProgressListeners by calling their thumbnailStarted method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image associated with the thumbnail.",
+          "\u003ccode\u003ethumbnailIndex\u003c/code\u003e - the index of the thumbnail."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "percentageDone",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processThumbnailProgress",
+      "comment": "Broadcasts the current percentage of thumbnail completion to all registered IIOWriteProgressListeners by calling their thumbnailProgress method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epercentageDone\u003c/code\u003e - the current percentage of completion, as a \n\u003ccode\u003efloat\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processThumbnailComplete",
+      "comment": "Broadcasts the completion of a thumbnail write to all registered IIOWriteProgressListeners by calling their thumbnailComplete method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processWriteAborted",
+      "comment": "Broadcasts that the write has been aborted to all registered IIOWriteProgressListeners by calling their writeAborted method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "warning",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processWarningOccurred",
+      "comment": "Broadcasts a warning message to all registered IIOWriteWarningListeners by calling their warningOccurred method. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image on which the warning occurred.",
+          "\u003ccode\u003ewarning\u003c/code\u003e - the warning message."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ewarning\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "imageIndex",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "baseName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "keyword",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "processWarningOccurred",
+      "comment": "Broadcasts a localized warning message to all registered IIOWriteWarningListeners by calling their warningOccurred method with a string taken from a ResourceBundle. Subclasses may use this method as a convenience.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eimageIndex\u003c/code\u003e - the index of the image on which the warning occurred.",
+          "\u003ccode\u003ebaseName\u003c/code\u003e - the base name of a set of \n\u003ccode\u003eResourceBundle\u003c/code\u003es containing localized warning messages.",
+          "\u003ccode\u003ekeyword\u003c/code\u003e - the keyword used to index the warning message within the set of \n\u003ccode\u003eResourceBundle\u003c/code\u003es."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebaseName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekeyword\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no appropriate \n\u003ccode\u003eResourceBundle\u003c/code\u003e may be located.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the named resource is not found in the located \n\u003ccode\u003eResourceBundle\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the object retrieved from the \n\u003ccode\u003eResourceBundle\u003c/code\u003e is not a \n\u003ccode\u003eString\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "reset",
+      "comment": "Restores the ImageWriter to its initial state. The default implementation calls setOutput(null), setLocale(null), removeAllIIOWriteWarningListeners(), removeAllIIOWriteProgressListeners(), and clearAbortRequest.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "dispose",
+      "comment": "Allows any resources held by this object to be released. The result of calling any other method (other than finalize) subsequent to a call to this method is undefined. It is important for applications to call this method when they know they will no longer be using this ImageWriter. Otherwise, the writer may continue to hold on to resources indefinitely. The default implementation of this method in the superclass does nothing. Subclass implementations should ensure that all resources, especially native resources, are released.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.imageio.spi.ImageWriterSpi",
+            "type": "Class"
+          },
+          "name": "originatingProvider",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs an ImageWriter and sets its originatingProvider instance variable to the supplied value. Subclasses that make use of extensions should provide a constructor with signature (ImageWriterSpi, Object) in order to retrieve the extension object. If the extension object is unsuitable, an IllegalArgumentException should be thrown.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eoriginatingProvider\u003c/code\u003e - the \n\u003ccode\u003eImageWriterSpi\u003c/code\u003e that is constructing this object, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.imageio.ImageWriter",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReader.html\" title\u003d\"class in javax.imageio\"\u003e\u003ccode\u003eImageReader\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriteParam.html\" title\u003d\"class in javax.imageio\"\u003e\u003ccode\u003eImageWriteParam\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/IIORegistry.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eIIORegistry\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageWriterSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageWriterSpi\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

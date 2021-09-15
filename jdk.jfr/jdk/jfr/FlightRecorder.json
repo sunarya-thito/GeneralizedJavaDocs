@@ -1,0 +1,412 @@
+{
+  "packageName": "jdk.jfr",
+  "simpleName": "FlightRecorder",
+  "moduleName": "jdk.jfr",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.jfr.Recording",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getRecordings",
+      "comment": "Returns an immutable list of the available recordings. A recording becomes available when it is created. It becomes unavailable when it is in the CLOSED state, typically after a call to Recording.close().",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a list of recordings, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.Recording",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "takeSnapshot",
+      "comment": "Creates a snapshot of all available recorded data. A snapshot is a synthesized recording in a STOPPED state. If no data is available, a recording with size 0 is returned. A snapshot provides stable access to data for later operations (for example, operations to change the interval or to reduce the data size). The following example shows how to create a snapshot and write a subset of the data to a file.  try (Recording snapshot \u003d FlightRecorder.getFlightRecorder().takeSnapshot()) {\n   if (snapshot.getSize() \u003e 0) {\n     snapshot.setMaxSize(100_000_000);\n     snapshot.setMaxAge(Duration.ofMinutes(5));\n     snapshot.dump(Paths.get(\"snapshot.jfr\"));\n   }\n }\n The caller must close the recording when access to the data is no longer needed.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a snapshot of all available recording data, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "jdk.jfr.Event",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "eventClass",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "register",
+      "comment": "Registers an event class. If the event class is already registered, then the invocation of this method is ignored.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eeventClass\u003c/code\u003e - the event class to register, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if class is abstract or not a subclass of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Event.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEvent\u003c/code\u003e\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eFlightRecorderPermission(\"registerEvent\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "jdk.jfr.Event",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "eventClass",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "unregister",
+      "comment": "Unregisters an event class. If the event class is not registered, then the invocation of this method is ignored.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eeventClass\u003c/code\u003e - the event class to unregistered, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a class is abstract or not a subclass of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Event.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEvent\u003c/code\u003e\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eFlightRecorderPermission(\"registerEvent\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.FlightRecorder",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalStateException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getFlightRecorder",
+      "comment": "Returns the Flight Recorder for the platform.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if Flight Recorder can\u0027t be created (for example, if the Java Virtual Machine (JVM) lacks Flight Recorder support, or if the file repository can\u0027t be created or accessed)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eFlightRecorderPermission(\"accessFlightRecorder\")\u003c/code\u003e"
+        ],
+        "return": [
+          "a Flight Recorder instance, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "jdk.jfr.Event",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "eventClass",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          },
+          "name": "hook",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "addPeriodicEvent",
+      "comment": "Adds a hook for a periodic event. The implementation of the hook should return as soon as possible, to avoid blocking other Flight Recorder operations. The hook should emit one or more events of the specified type. When a hook is added, the interval at which the call is invoked is configurable using the \"period\" setting.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eeventClass\u003c/code\u003e - the class that the hook should run for, not \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003ehook\u003c/code\u003e - the hook, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a class is not a subclass of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Event.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEvent\u003c/code\u003e\u003c/a\u003e, is abstract, or the hook is already added",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the event class has the \n\u003ccode\u003eRegistered(false)\u003c/code\u003e annotation and is not registered manually",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eFlightRecorderPermission(\"registerEvent\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          },
+          "name": "hook",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "removePeriodicEvent",
+      "comment": "Removes a hook for a periodic event.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ehook\u003c/code\u003e - the hook to remove, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eFlightRecorderPermission(\"registerEvent\")\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if hook is removed, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.jfr.EventType",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getEventTypes",
+      "comment": "Returns an immutable list that contains all currently registered events. By default, events are registered when they are first used, typically when an event object is allocated. To ensure an event is visible early, registration can be triggered by invoking the register(Class) method.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "list of events, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.jfr.FlightRecorderListener",
+            "type": "Class"
+          },
+          "name": "changeListener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "addListener",
+      "comment": "Adds a recorder listener and captures the AccessControlContext to use when invoking the listener. If Flight Recorder is already initialized when the listener is added, then the method FlightRecorderListener.recorderInitialized(FlightRecorder) method is invoked before returning from this method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echangeListener\u003c/code\u003e - the listener to add, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eFlightRecorderPermission(\"accessFlightRecorder\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "jdk.jfr.FlightRecorderListener",
+            "type": "Class"
+          },
+          "name": "changeListener",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "removeListener",
+      "comment": "Removes a recorder listener. If the same listener is added multiple times, only one instance is removed.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echangeListener\u003c/code\u003e - listener to remove, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eFlightRecorderPermission(\"accessFlightRecorder\")\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e, if the listener could be removed, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isAvailable",
+      "comment": "Returns true if the Java Virtual Machine (JVM) has Flight Recorder capabilities. This method can quickly check whether Flight Recorder can be initialized, without actually doing the initialization work. The value may change during runtime and it is not safe to cache it.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/FlightRecorderListener.html\" title\u003d\"interface in jdk.jfr\"\u003e\u003ccode\u003efor callback when Flight Recorder is initialized\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e, if Flight Recorder is available, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isInitialized",
+      "comment": "Returns true if Flight Recorder is initialized.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/FlightRecorderListener.html\" title\u003d\"interface in jdk.jfr\"\u003e\u003ccode\u003efor callback when Flight Recorder is initialized\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e, if Flight Recorder is initialized, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "jdk.jfr.FlightRecorder",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

@@ -1,0 +1,862 @@
+{
+  "packageName": "java.net.http",
+  "simpleName": "BodyHandlers",
+  "moduleName": "java.net.http",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.lang.Void",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.Flow$Subscriber",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "java.util.List",
+                    "parameters": [
+                      {
+                        "name": "java.nio.ByteBuffer",
+                        "type": "Class"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "subscriber",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromSubscriber",
+      "comment": "Returns a response body handler that returns a BodySubscriber\u003cVoid\u003e obtained from HttpResponse.BodySubscribers.fromSubscriber(Subscriber), with the given subscriber. The response body is not available through this, or the HttpResponse API, but instead all response body is forwarded to the given subscriber, which should make it available, if appropriate, through some other mechanism, e.g. an entry in a database, etc.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "This method can be used as an adapter between \n\u003ccode\u003e BodySubscriber\u003c/code\u003e and \n\u003ccode\u003eFlow.Subscriber\u003c/code\u003e. \n\u003cp\u003e For example: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e TextSubscriber subscriber \u003d new TextSubscriber();\n  HttpResponse\u0026lt;Void\u0026gt; response \u003d client.sendAsync(request,\n      BodyHandlers.fromSubscriber(subscriber)).join();\n  System.out.println(response.statusCode()); \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubscriber\u003c/code\u003e - the subscriber"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "S",
+            "type": "Class"
+          },
+          "name": "subscriber",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Function",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "S",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              },
+              {
+                "upperBounds": [
+                  {
+                    "name": "T",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "finisher",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "upperBounds": [
+            {
+              "name": "java.util.concurrent.Flow$Subscriber",
+              "parameters": [
+                {
+                  "lowerBounds": [
+                    {
+                      "name": "java.util.List",
+                      "parameters": [
+                        {
+                          "name": "java.nio.ByteBuffer",
+                          "type": "Class"
+                        }
+                      ],
+                      "type": "Class"
+                    }
+                  ],
+                  "type": "Wildcard"
+                }
+              ],
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        },
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromSubscriber",
+      "comment": "Returns a response body handler that returns a BodySubscriber\u003cT\u003e obtained from HttpResponse.BodySubscribers.fromSubscriber(Subscriber, Function), with the given subscriber and finisher function. The given finisher function is applied after the given subscriber\u0027s onComplete has been invoked. The finisher function is invoked with the given subscriber, and returns a value that is set as the response\u0027s body.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the type of the Subscriber",
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the response body"
+        ],
+        "apiNote": [
+          "This method can be used as an adapter between \n\u003ccode\u003e BodySubscriber\u003c/code\u003e and \n\u003ccode\u003eFlow.Subscriber\u003c/code\u003e. \n\u003cp\u003e For example: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e TextSubscriber subscriber \u003d ...;  // accumulates bytes and transforms them into a String\n  HttpResponse\u0026lt;String\u0026gt; response \u003d client.sendAsync(request,\n      BodyHandlers.fromSubscriber(subscriber, TextSubscriber::getTextResult)).join();\n  String text \u003d response.body(); \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubscriber\u003c/code\u003e - the subscriber",
+          "\u003ccode\u003efinisher\u003c/code\u003e - a function to be applied after the subscriber has completed"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.lang.Void",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.Flow$Subscriber",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "java.lang.String",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "subscriber",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromLineSubscriber",
+      "comment": "Returns a response body handler that returns a BodySubscriber\u003cVoid\u003e obtained from BodySubscribers.fromLineSubscriber(subscriber, s -\u003e null, charset, null), with the given subscriber. The charset used to decode the response body bytes is obtained from the HTTP response headers as specified by ofString(), and lines are delimited in the manner of BufferedReader.readLine(). The response body is not available through this, or the HttpResponse API, but instead all response body is forwarded to the given subscriber, which should make it available, if appropriate, through some other mechanism, e.g. an entry in a database, etc.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "This method can be used as an adapter between a \n\u003ccode\u003e BodySubscriber\u003c/code\u003e and a text based \n\u003ccode\u003eFlow.Subscriber\u003c/code\u003e that parses text line by line. \n\u003cp\u003e For example: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e // A PrintSubscriber that implements Flow.Subscriber\u0026lt;String\u0026gt;\n  // and print lines received by onNext() on System.out\n  PrintSubscriber subscriber \u003d new PrintSubscriber(System.out);\n  client.sendAsync(request, BodyHandlers.fromLineSubscriber(subscriber))\n      .thenApply(HttpResponse::statusCode)\n      .thenAccept((status) -\u0026gt; {\n          if (status !\u003d 200) {\n              System.err.printf(\"ERROR: %d status received%n\", status);\n          }\n      }); \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubscriber\u003c/code\u003e - the subscriber"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "S",
+            "type": "Class"
+          },
+          "name": "subscriber",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Function",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "S",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              },
+              {
+                "upperBounds": [
+                  {
+                    "name": "T",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "finisher",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "lineSeparator",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "upperBounds": [
+            {
+              "name": "java.util.concurrent.Flow$Subscriber",
+              "parameters": [
+                {
+                  "lowerBounds": [
+                    {
+                      "name": "java.lang.String",
+                      "type": "Class"
+                    }
+                  ],
+                  "type": "Wildcard"
+                }
+              ],
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        },
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromLineSubscriber",
+      "comment": "Returns a response body handler that returns a BodySubscriber\u003cT\u003e obtained from BodySubscribers.fromLineSubscriber(subscriber, finisher, charset, lineSeparator), with the given subscriber, finisher function, and line separator. The charset used to decode the response body bytes is obtained from the HTTP response headers as specified by ofString(). The given finisher function is applied after the given subscriber\u0027s onComplete has been invoked. The finisher function is invoked with the given subscriber, and returns a value that is set as the response\u0027s body.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the type of the Subscriber",
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the response body"
+        ],
+        "apiNote": [
+          "This method can be used as an adapter between a \n\u003ccode\u003e BodySubscriber\u003c/code\u003e and a text based \n\u003ccode\u003eFlow.Subscriber\u003c/code\u003e that parses text line by line. \n\u003cp\u003e For example: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e // A LineParserSubscriber that implements Flow.Subscriber\u0026lt;String\u0026gt;\n  // and accumulates lines that match a particular pattern\n  Pattern pattern \u003d ...;\n  LineParserSubscriber subscriber \u003d new LineParserSubscriber(pattern);\n  HttpResponse\u0026lt;List\u0026lt;String\u0026gt;\u0026gt; response \u003d client.send(request,\n      BodyHandlers.fromLineSubscriber(subscriber, s -\u0026gt; s.getMatchingLines(), \"\\n\"));\n  if (response.statusCode() !\u003d 200) {\n      System.err.printf(\"ERROR: %d status received%n\", response.statusCode());\n  } \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubscriber\u003c/code\u003e - the subscriber",
+          "\u003ccode\u003efinisher\u003c/code\u003e - a function to be applied after the subscriber has completed",
+          "\u003ccode\u003elineSeparator\u003c/code\u003e - an optional line separator: can be \n\u003ccode\u003enull\u003c/code\u003e, in which case lines will be delimited in the manner of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/BufferedReader.html#readLine()\"\u003e\u003ccode\u003eBufferedReader.readLine()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the supplied \n\u003ccode\u003elineSeparator\u003c/code\u003e is the empty string"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.lang.Void",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "discarding",
+      "comment": "Returns a response body handler that discards the response body.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "U",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "U",
+            "type": "Class"
+          },
+          "name": "value",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "U",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "replacing",
+      "comment": "Returns a response body handler that returns the given replacement value, after discarding the response body.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eU\u003c/code\u003e - the response body type"
+        ],
+        "param": [
+          "\u003ccode\u003evalue\u003c/code\u003e - the value of U to return as the body, may be \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.charset.Charset",
+            "type": "Class"
+          },
+          "name": "charset",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofString",
+      "comment": "Returns a BodyHandler\u003cString\u003e that returns a BodySubscriber\u003cString\u003e obtained from BodySubscribers.ofString(Charset). The body is decoded using the given character set.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echarset\u003c/code\u003e - the character set to convert the body with"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "file",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.OpenOption",
+            "type": "Class"
+          },
+          "name": "openOptions",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofFile",
+      "comment": "Returns a BodyHandler\u003cPath\u003e that returns a BodySubscriber\u003cPath\u003e obtained from BodySubscribers.ofFile(Path,OpenOption...). When the HttpResponse object is returned, the body has been completely written to the file, and HttpResponse.body() returns a reference to its Path. In the case of the default file system provider, security manager permission checks are performed in this factory method, when the BodyHandler is created. Otherwise, permission checks may be performed asynchronously against the caller\u0027s context at file access time. Care must be taken that the BodyHandler is not shared with untrusted code.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the file to store the body in",
+          "\u003ccode\u003eopenOptions\u003c/code\u003e - any options to use when opening/creating the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if an invalid set of open options are specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - in the case of the default file system provider, and a security manager is installed, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e is invoked to check write access to the given file"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "file",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofFile",
+      "comment": "Returns a BodyHandler\u003cPath\u003e that returns a BodySubscriber\u003cPath\u003e. Equivalent to: ofFile(file, CREATE, WRITE) In the case of the default file system provider, security manager permission checks are performed in this factory method, when the BodyHandler is created. Otherwise, permission checks may be performed asynchronously against the caller\u0027s context at file access time. Care must be taken that the BodyHandler is not shared with untrusted code.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the file to store the body in"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - in the case of the default file system provider, and a security manager is installed, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e is invoked to check write access to the given file"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "name": "directory",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.file.OpenOption",
+            "type": "Class"
+          },
+          "name": "openOptions",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofFileDownload",
+      "comment": "Returns a BodyHandler\u003cPath\u003e that returns a BodySubscriber\u003cPath\u003e where the download directory is specified, but the filename is obtained from the Content-Disposition response header. The Content-Disposition header must specify the attachment type and must also contain a filename parameter. If the filename specifies multiple path components only the final component is used as the filename (with the given directory name). When the HttpResponse object is returned, the body has been completely written to the file and HttpResponse.body() returns a Path object for the file. The returned Path is the combination of the supplied directory name and the file name supplied by the server. If the destination directory does not exist or cannot be written to, then the response will fail with an IOException. Security manager permission checks are performed in this factory method, when the BodyHandler is created. Care must be taken that the BodyHandler is not shared with untrusted code.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edirectory\u003c/code\u003e - the directory to store the file in",
+          "\u003ccode\u003eopenOptions\u003c/code\u003e - open options used when opening the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given path does not exist, is not of the default file system, is not a directory, is not writable, or if an invalid set of open options are specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - in the case of the default file system provider and a security manager has been installed, and it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003eread access\u003c/a\u003e to the directory, or it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003ewrite access\u003c/a\u003e to the directory, or it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003ewrite access\u003c/a\u003e to the files within the directory."
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofInputStream",
+      "comment": "Returns a BodyHandler\u003cInputStream\u003e that returns a BodySubscriber\u003cInputStream\u003e obtained from BodySubscribers.ofInputStream. When the HttpResponse object is returned, the response headers will have been completely read, but the body may not have been fully received yet. The HttpResponse.body() method returns an InputStream from which the body can be read as it is received.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "See \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/HttpResponse.BodySubscribers.html#ofInputStream()\"\u003e\u003ccode\u003eHttpResponse.BodySubscribers.ofInputStream()\u003c/code\u003e\u003c/a\u003e for more information."
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.util.stream.Stream",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofLines",
+      "comment": "Returns a BodyHandler\u003cStream\u003cString\u003e\u003e that returns a BodySubscriber\u003cStream\u003cString\u003e\u003e obtained from BodySubscribers.ofLines(charset). The charset used to decode the response body bytes is obtained from the HTTP response headers as specified by ofString(), and lines are delimited in the manner of BufferedReader.readLine(). When the HttpResponse object is returned, the body may not have been completely received.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.lang.Void",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Consumer",
+            "parameters": [
+              {
+                "name": "java.util.Optional",
+                "parameters": [
+                  {
+                    "name": "byte",
+                    "type": "Class",
+                    "arrayDimensions": 1
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "consumer",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofByteArrayConsumer",
+      "comment": "Returns a BodyHandler\u003cVoid\u003e that returns a BodySubscriber\u003cVoid\u003e obtained from BodySubscribers.ofByteArrayConsumer(Consumer). When the HttpResponse object is returned, the body has been completely written to the consumer.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "The subscriber returned by this handler is not flow controlled. Therefore, the supplied consumer must be able to process whatever amount of data is delivered in a timely fashion."
+        ],
+        "param": [
+          "\u003ccode\u003econsumer\u003c/code\u003e - a Consumer to accept the response body"
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofByteArray",
+      "comment": "Returns a BodyHandler\u003cbyte[]\u003e that returns a BodySubscriber\u003cbyte[]\u003e obtained from BodySubscribers.ofByteArray(). When the HttpResponse object is returned, the body has been completely written to the byte array.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofString",
+      "comment": "Returns a BodyHandler\u003cString\u003e that returns a BodySubscriber\u003cString\u003e obtained from BodySubscribers.ofString(Charset). The body is decoded using the character set specified in the Content-Type response header. If there is no such header, or the character set is not supported, then UTF_8 is used. When the HttpResponse object is returned, the body has been completely written to the string.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "java.util.concurrent.Flow$Publisher",
+            "parameters": [
+              {
+                "name": "java.util.List",
+                "parameters": [
+                  {
+                    "name": "java.nio.ByteBuffer",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofPublisher",
+      "comment": "Returns a BodyHandler\u003cPublisher\u003cList\u003cByteBuffer\u003e\u003e\u003e that creates a BodySubscriber\u003cPublisher\u003cList\u003cByteBuffer\u003e\u003e\u003e obtained from BodySubscribers.ofPublisher(). When the HttpResponse object is returned, the response headers will have been completely read, but the body may not have been fully received yet. The HttpResponse.body() method returns a Publisher\u003cList\u003cByteBuffer\u003e\u003e from which the body response bytes can be obtained as they are received. The publisher can and must be subscribed to only once.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "See \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/HttpResponse.BodySubscribers.html#ofPublisher()\"\u003e\u003ccode\u003eHttpResponse.BodySubscribers.ofPublisher()\u003c/code\u003e\u003c/a\u003e for more information."
+        ],
+        "return": [
+          "a response body handler"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.http.HttpResponse$BodyHandler",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.net.http.HttpResponse$BodyHandler",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "downstreamHandler",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "bufferSize",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "buffering",
+      "comment": "Returns a BodyHandler which, when invoked, returns a buffering BodySubscriber that buffers data before delivering it to the downstream subscriber. These BodySubscriber instances are created by calling BodySubscribers.buffering with a subscriber obtained from the given downstream handler and the bufferSize parameter.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the response body type"
+        ],
+        "param": [
+          "\u003ccode\u003edownstreamHandler\u003c/code\u003e - the downstream handler",
+          "\u003ccode\u003ebufferSize\u003c/code\u003e - the buffer size parameter passed to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/HttpResponse.BodySubscribers.html#buffering(java.net.http.HttpResponse.BodySubscriber,int)\"\u003e\u003ccode\u003eBodySubscribers.buffering\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebufferSize \u0026lt;\u003d 0\u003c/code\u003e"
+        ],
+        "return": [
+          "a body handler"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 9,
+  "name": "java.net.http.HttpResponse$BodyHandlers",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "11"
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "packageName": "jdk.dynalink.linker",
+  "simpleName": "GuardingTypeConverterFactory",
+  "moduleName": "jdk.dynalink",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "jdk.dynalink.linker.GuardedInvocation",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "sourceType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "targetType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.function.Supplier",
+            "parameters": [
+              {
+                "name": "java.lang.invoke.MethodHandles$Lookup",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "lookupSupplier",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "convertToType",
+      "comment": "Returns a guarded type conversion that receives a value of the specified source type and returns a value converted to the specified target type. Value types can be either primitives or reference types, including interfaces, so you can even provide converters for converting your language\u0027s objects to Java interfaces and classes by generating adapters for them. The type of the invocation is (sourceType)→targetType, while the type of the guard is (sourceType)→boolean. You are allowed to return unconditional invocations (with no guard) if the source type is specific to your runtime and your runtime only. Note that this method will never be invoked for method invocation conversions as those can be automatically applied by MethodHandle.asType(MethodType). An implementation can assume it is never requested to produce a converter for those conversions. If a language runtime needs to customize method invocation conversions, it should set an autoconversion strategy in the dynamic linker factory instead. Dynalink is at liberty to either cache some of the returned converters or to repeatedly request the converter factory to create the same conversion.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/LinkerServices.html#getWithLookup(java.util.function.Supplier,jdk.dynalink.SecureLookupSupplier)\"\u003e\u003ccode\u003eLinkerServices.getWithLookup(Supplier, SecureLookupSupplier)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esourceType\u003c/code\u003e - source type",
+          "\u003ccode\u003etargetType\u003c/code\u003e - the target type.",
+          "\u003ccode\u003elookupSupplier\u003c/code\u003e - a supplier for retrieving the lookup of the class on whose behalf a type converter is requested. When a converter is requested as part of linking an \n\u003ccode\u003einvokedynamic\u003c/code\u003e instruction the supplier will return the lookup passed to the bootstrap method, otherwise if the method is invoked from within a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/LinkerServices.html#getWithLookup(java.util.function.Supplier,jdk.dynalink.SecureLookupSupplier)\"\u003e\u003ccode\u003eLinkerServices.getWithLookup(Supplier, jdk.dynalink.SecureLookupSupplier)\u003c/code\u003e\u003c/a\u003e it will delegate to the secure lookup supplier. In any other case, it will return the public lookup. A typical case where the lookup might be needed is when the converter creates a Java adapter class on the fly (e.g. to convert some object from the dynamic language into a Java interface for interoperability). Invoking the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Supplier.html#get()\"\u003e\u003ccode\u003eSupplier.get()\u003c/code\u003e\u003c/a\u003e method on the passed supplier will be subject to the same security checks as \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/SecureLookupSupplier.html#getLookup()\"\u003e\u003ccode\u003eSecureLookupSupplier.getLookup()\u003c/code\u003e\u003c/a\u003e. An implementation should avoid retrieving the lookup if it is not needed so as to avoid the expense of \n\u003ccode\u003eAccessController.doPrivileged\u003c/code\u003e call."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if there was an error during creation of the converter"
+        ],
+        "return": [
+          "a guarded invocation that can take an object (if it passes guard) and return another object that is its representation coerced into the target type. In case the factory is certain it is unable to handle a conversion, it can return null. In case the factory is certain that it can always handle the conversion, it can return an unconditional invocation (one whose guard is null)."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.dynalink.linker.GuardingTypeConverterFactory",
+  "annotations": [],
+  "tagMap": {}
+}

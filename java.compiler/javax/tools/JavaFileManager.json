@@ -1,0 +1,1016 @@
+{
+  "packageName": "javax.tools",
+  "simpleName": "JavaFileManager",
+  "moduleName": "java.compiler",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "java.io.Closeable",
+      "type": "Class"
+    },
+    {
+      "name": "java.io.Flushable",
+      "type": "Class"
+    },
+    {
+      "name": "javax.tools.OptionChecker",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.ClassLoader",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getClassLoader",
+      "comment": "Returns a class loader for loading plug-ins from the given package-oriented location. For example, to load annotation processors, a compiler will request a class loader for the ANNOTATION_PROCESSOR_PATH location.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a class loader can not be created in the current security context",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is a module-oriented location"
+        ],
+        "return": [
+          "a class loader for the given location; or \n\u003ccode\u003enull\u003c/code\u003e if loading plug-ins from the given location is disabled or if the location is not known"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "name": "javax.tools.JavaFileObject",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "packageName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "name": "javax.tools.JavaFileObject$Kind",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "kinds",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "recurse",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "list",
+      "comment": "Lists all file objects matching the given criteria in the given package-oriented location. List file objects in \"subpackages\" if recurse is true. Note: even if the given location is unknown to this file manager, it may not return null. Also, an unknown location may not cause an exception.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location",
+          "\u003ccode\u003epackageName\u003c/code\u003e - a package name",
+          "\u003ccode\u003ekinds\u003c/code\u003e - return objects only of these kinds",
+          "\u003ccode\u003erecurse\u003c/code\u003e - if true include \"subpackages\""
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred, or if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is a module-oriented location",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened"
+        ],
+        "return": [
+          "an Iterable of file objects matching the given criteria"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileObject",
+            "type": "Class"
+          },
+          "name": "file",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "inferBinaryName",
+      "comment": "Infers a binary name of a file object based on a package-oriented location. The binary name returned might not be a valid binary name according to The Java Language Specification.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location",
+          "\u003ccode\u003efile\u003c/code\u003e - a file object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is a module-oriented location",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened"
+        ],
+        "return": [
+          "a binary name or \n\u003ccode\u003enull\u003c/code\u003e the file object is not found in the given location"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "name": "a",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "name": "b",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSameFile",
+      "comment": "Compares two file objects and return true if they represent the same underlying object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - a file object",
+          "\u003ccode\u003eb\u003c/code\u003e - a file object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either of the arguments were created with another file manager and this file manager does not support foreign file objects"
+        ],
+        "return": [
+          "true if the given file objects represent the same underlying object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "current",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Iterator",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "remaining",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "handleOption",
+      "comment": "Handles one option. If current is an option to this file manager it will consume any arguments to that option from remaining and return true, otherwise return false.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecurrent\u003c/code\u003e - current option",
+          "\u003ccode\u003eremaining\u003c/code\u003e - remaining options"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if this option to this file manager is used incorrectly",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened"
+        ],
+        "return": [
+          "true if this option was handled by this file manager, false otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasLocation",
+      "comment": "Determines if a location is known to this file manager.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location"
+        ],
+        "return": [
+          "true if the location is known"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.tools.JavaFileObject",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileObject$Kind",
+            "type": "Class"
+          },
+          "name": "kind",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileForInput",
+      "comment": "Returns a file object for input representing the specified class of the specified kind in the given package-oriented location.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location",
+          "\u003ccode\u003eclassName\u003c/code\u003e - the name of a class",
+          "\u003ccode\u003ekind\u003c/code\u003e - the kind of file, must be one of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileObject.Kind.html#SOURCE\"\u003e\u003ccode\u003eSOURCE\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileObject.Kind.html#CLASS\"\u003e\u003ccode\u003eCLASS\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is not known to this file manager and the file manager does not support unknown locations, or if the kind is not valid, or if the location is a module-oriented location",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred, or if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened"
+        ],
+        "return": [
+          "a file object, might return \n\u003ccode\u003enull\u003c/code\u003e if the file does not exist"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.tools.JavaFileObject",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileObject$Kind",
+            "type": "Class"
+          },
+          "name": "kind",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "name": "sibling",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileForOutput",
+      "comment": "Returns a file object for output representing the specified class of the specified kind in the given package-oriented location. Optionally, this file manager might consider the sibling as a hint for where to place the output. The exact semantics of this hint is unspecified. The JDK compiler, javac, for example, will place class files in the same directories as originating source files unless a class file output directory is provided. To facilitate this behavior, javac might provide the originating source file as sibling when calling this method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a package-oriented location",
+          "\u003ccode\u003eclassName\u003c/code\u003e - the name of a class",
+          "\u003ccode\u003ekind\u003c/code\u003e - the kind of file, must be one of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileObject.Kind.html#SOURCE\"\u003e\u003ccode\u003eSOURCE\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileObject.Kind.html#CLASS\"\u003e\u003ccode\u003eCLASS\u003c/code\u003e\u003c/a\u003e",
+          "\u003ccode\u003esibling\u003c/code\u003e - a file object to be used as hint for placement; might be \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if sibling is not known to this file manager, or if the location is not known to this file manager and the file manager does not support unknown locations, or if the kind is not valid, or if the location is not an output location",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred, or if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened"
+        ],
+        "return": [
+          "a file object for output"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.tools.FileObject",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "packageName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "relativeName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFileForInput",
+      "comment": "Returns a file object for input representing the specified relative name in the specified package in the given package-oriented location. If the returned object represents a source or class file, it must be an instance of JavaFileObject. Informally, the file object returned by this method is located in the concatenation of the location, package name, and relative name. For example, to locate the properties file \"resources/compiler.properties\" in the package \"com.sun.tools.javac\" in the SOURCE_PATH location, this method might be called like so: getFileForInput(SOURCE_PATH, \"com.sun.tools.javac\", \"resources/compiler.properties\"); If the call was executed on Windows, with SOURCE_PATH set to \"C:\\Documents and Settings\\UncleBob\\src\\share\\classes\", a valid result would be a file object representing the file \"C:\\Documents and Settings\\UncleBob\\src\\share\\classes\\com\\sun\\tools\\javac\\resources\\compiler.properties\".",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a package-oriented location",
+          "\u003ccode\u003epackageName\u003c/code\u003e - a package name",
+          "\u003ccode\u003erelativeName\u003c/code\u003e - a relative name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is not known to this file manager and the file manager does not support unknown locations, or if \n\u003ccode\u003erelativeName\u003c/code\u003e is not valid, or if the location is a module-oriented location",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred, or if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened"
+        ],
+        "return": [
+          "a file object, might return \n\u003ccode\u003enull\u003c/code\u003e if the file does not exist"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.tools.FileObject",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "packageName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "relativeName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "name": "sibling",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFileForOutput",
+      "comment": "Returns a file object for output representing the specified relative name in the specified package in the given location. Optionally, this file manager might consider the sibling as a hint for where to place the output. The exact semantics of this hint is unspecified. The JDK compiler, javac, for example, will place class files in the same directories as originating source files unless a class file output directory is provided. To facilitate this behavior, javac might provide the originating source file as sibling when calling this method. If the returned object represents a source or class file, it must be an instance of JavaFileObject. Informally, the file object returned by this method is located in the concatenation of the location, package name, and relative name or next to the sibling argument. See getFileForInput for an example.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - an output location",
+          "\u003ccode\u003epackageName\u003c/code\u003e - a package name",
+          "\u003ccode\u003erelativeName\u003c/code\u003e - a relative name",
+          "\u003ccode\u003esibling\u003c/code\u003e - a file object to be used as hint for placement; might be \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if sibling is not known to this file manager, or if the location is not known to this file manager and the file manager does not support unknown locations, or if \n\u003ccode\u003erelativeName\u003c/code\u003e is not valid, or if the location is not an output location",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred, or if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e has been called and this file manager cannot be reopened"
+        ],
+        "return": [
+          "a file object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "flush",
+      "comment": "Flushes any resources opened for output by this file manager directly or indirectly. Flushing a closed file manager has no effect.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Flushable.html#flush()\"\u003eflush\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Flushable.html\" title\u003d\"interface in java.io\"\u003eFlushable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Releases any resources opened by this file manager directly or indirectly. This might render this file manager useless and the effect of subsequent calls to methods on this object or any objects obtained through this object is undefined unless explicitly allowed. However, closing a file manager which has already been closed has no effect.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#flush()\"\u003e\u003ccode\u003eflush()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.tools.JavaFileManager$Location",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "moduleName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLocationForModule",
+      "comment": "Gets a location for a named module within a location, which may be either a module-oriented location or an output location. The result will be an output location if the given location is an output location, or it will be a package-oriented location.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "This implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - the module-oriented location",
+          "\u003ccode\u003emoduleName\u003c/code\u003e - the name of the module to be found"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this operation if not supported by this file manager",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is neither an output location nor a module-oriented location"
+        ],
+        "return": [
+          "the location for the named module"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.tools.JavaFileManager$Location",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileObject",
+            "type": "Class"
+          },
+          "name": "fo",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLocationForModule",
+      "comment": "Gets a location for the module containing a specific file to be found within a location, which may be either a module-oriented location or an output location. The result will be an output location if the given location is an output location, or it will be a package-oriented location.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "This implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - the module-oriented location",
+          "\u003ccode\u003efo\u003c/code\u003e - the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this operation if not supported by this file manager",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is neither an output location nor a module-oriented location"
+        ],
+        "return": [
+          "the module containing the file"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ServiceLoader",
+        "parameters": [
+          {
+            "name": "S",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "S",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "service",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getServiceLoader",
+      "comment": "Get a service loader for a specific service class from a given location. If the location is a module-oriented location, the service loader will use the service declarations in the modules found in that location. Otherwise, a service loader is created using the package-oriented location, in which case, the services are determined using the provider-configuration files in META-INF/services.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the service class"
+        ],
+        "implSpec": [
+          "This implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - the module-oriented location",
+          "\u003ccode\u003eservice\u003c/code\u003e - the \n\u003ccode\u003eClass\u003c/code\u003e object of the service class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this operation if not supported by this file manager"
+        ],
+        "return": [
+          "a service loader for the given service class"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "inferModuleName",
+      "comment": "Infer the name of the module from its location, as returned by getLocationForModule or listModuleLocations.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "This implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a package-oriented location representing a module"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this operation if not supported by this file manager",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is not one known to this file manager"
+        ],
+        "return": [
+          "the name of the module"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "name": "javax.tools.JavaFileManager$Location",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "listLocationsForModules",
+      "comment": "Lists the locations for all the modules in a module-oriented location or an output location. The locations that are returned will be output locations if the given location is an output, or it will be a package-oriented locations.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "This implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - the module-oriented location for which to list the modules"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this operation if not supported by this file manager",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the location is not a module-oriented location"
+        ],
+        "return": [
+          "a series of sets of locations containing modules"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "name": "location",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "name": "fo",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "contains",
+      "comment": "Determines whether or not a given file object is \"contained in\" a specified location. For a package-oriented location, a file object is contained in the location if there exist values for packageName and relativeName such that either of the following calls would return the same file object:      getFileForInput(location, packageName, relativeName)\n     getFileForOutput(location, packageName, relativeName, null)\n For a module-oriented location, a file object is contained in the location if there exists a module that may be obtained by the call:      getLocationForModule(location, moduleName)\n such that the file object is contained in the (package-oriented) location for that module.",
+      "annotations": [],
+      "tagMap": {
+        "implSpec": [
+          "This implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - the location",
+          "\u003ccode\u003efo\u003c/code\u003e - the file object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if there is a problem determining the result",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the method is not supported"
+        ],
+        "return": [
+          "whether or not the file is contained in the location"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.tools.JavaFileManager$Location"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.tools.JavaFileManager",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileObject.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eJavaFileObject\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/FileObject.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eFileObject\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "packageName": "java.lang.invoke",
+  "simpleName": "LambdaMetafactory",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "FLAG_SERIALIZABLE",
+      "comment": "Flag for alternate metafactories indicating the lambda object must be serializable",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.lang.invoke.LambdaMetafactory.FLAG_SERIALIZABLE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "FLAG_MARKERS",
+      "comment": "Flag for alternate metafactories indicating the lambda object implements other marker interfaces besides Serializable",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.lang.invoke.LambdaMetafactory.FLAG_MARKERS\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "FLAG_BRIDGES",
+      "comment": "Flag for alternate metafactories indicating the lambda object requires additional bridge methods",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.lang.invoke.LambdaMetafactory.FLAG_BRIDGES\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.CallSite",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.invoke.LambdaConversionException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandles$Lookup",
+            "type": "Class"
+          },
+          "name": "caller",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "invokedName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "name": "invokedType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "name": "samMethodType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "name": "implMethod",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "name": "instantiatedMethodType",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "metafactory",
+      "comment": "Facilitates the creation of simple \"function objects\" that implement one or more interfaces by delegation to a provided MethodHandle, after appropriate type adaptation and partial evaluation of arguments. Typically used as a bootstrap method for invokedynamic call sites, to support the lambda expression and method reference expression features of the Java Programming Language. This is the standard, streamlined metafactory; additional flexibility is provided by altMetafactory(MethodHandles.Lookup, String, MethodType, Object...). A general description of the behavior of this method is provided above. When the target of the CallSite returned from this method is invoked, the resulting function objects are instances of a class which implements the interface named by the return type of invokedType, declares a method with the name given by invokedName and the signature given by samMethodType. It may also override additional methods from Object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecaller\u003c/code\u003e - Represents a lookup context with the accessibility privileges of the caller. Specifically, the lookup context must have \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.Lookup.html#hasFullPrivilegeAccess()\"\u003efull privilege access\u003c/a\u003e. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is stacked automatically by the VM.",
+          "\u003ccode\u003einvokedName\u003c/code\u003e - The name of the method to implement. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003eNameAndType\u003c/code\u003e of the \n\u003ccode\u003eInvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM.",
+          "\u003ccode\u003einvokedType\u003c/code\u003e - The expected signature of the \n\u003ccode\u003eCallSite\u003c/code\u003e. The parameter types represent the types of capture variables; the return type is the interface to implement. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003eNameAndType\u003c/code\u003e of the \n\u003ccode\u003eInvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM. In the event that the implementation method is an instance method and this signature has any parameters, the first parameter in the invocation signature must correspond to the receiver.",
+          "\u003ccode\u003esamMethodType\u003c/code\u003e - Signature and return type of method to be implemented by the function object.",
+          "\u003ccode\u003eimplMethod\u003c/code\u003e - A direct method handle describing the implementation method which should be called (with suitable adaptation of argument types, return types, and with captured arguments prepended to the invocation arguments) at invocation time.",
+          "\u003ccode\u003einstantiatedMethodType\u003c/code\u003e - The signature and return type that should be enforced dynamically at invocation time. This may be the same as \n\u003ccode\u003esamMethodType\u003c/code\u003e, or may be a specialization of it."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/LambdaConversionException.html\" title\u003d\"class in java.lang.invoke\"\u003eLambdaConversionException\u003c/a\u003e\u003c/code\u003e - If any of the linkage invariants described \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/LambdaMetafactory.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eabove\u003c/code\u003e\u003c/a\u003e are violated, or the lookup context does not have private access privileges."
+        ],
+        "return": [
+          "a CallSite whose target can be used to perform capture, generating instances of the interface named by \n\u003ccode\u003einvokedType\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.CallSite",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.invoke.LambdaConversionException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodHandles$Lookup",
+            "type": "Class"
+          },
+          "name": "caller",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "invokedName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "name": "invokedType",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "args",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "altMetafactory",
+      "comment": "Facilitates the creation of simple \"function objects\" that implement one or more interfaces by delegation to a provided MethodHandle, after appropriate type adaptation and partial evaluation of arguments. Typically used as a bootstrap method for invokedynamic call sites, to support the lambda expression and method reference expression features of the Java Programming Language. This is the general, more flexible metafactory; a streamlined version is provided by metafactory(java.lang.invoke.MethodHandles.Lookup, String, MethodType, MethodType, MethodHandle, MethodType). A general description of the behavior of this method is provided above. The argument list for this method includes three fixed parameters, corresponding to the parameters automatically stacked by the VM for the bootstrap method in an invokedynamic invocation, and an Object[] parameter that contains additional parameters. The declared argument list for this method is: \n  CallSite altMetafactory(MethodHandles.Lookup caller,\n                          String invokedName,\n                          MethodType invokedType,\n                          Object... args)\n but it behaves as if the argument list is as follows: \n  CallSite altMetafactory(MethodHandles.Lookup caller,\n                          String invokedName,\n                          MethodType invokedType,\n                          MethodType samMethodType,\n                          MethodHandle implMethod,\n                          MethodType instantiatedMethodType,\n                          int flags,\n                          int markerInterfaceCount,  // IF flags has MARKERS set\n                          Class... markerInterfaces, // IF flags has MARKERS set\n                          int bridgeCount,           // IF flags has BRIDGES set\n                          MethodType... bridges      // IF flags has BRIDGES set\n                          )\n Arguments that appear in the argument list for metafactory(MethodHandles.Lookup, String, MethodType, MethodType, MethodHandle, MethodType) have the same specification as in that method. The additional arguments are interpreted as follows: flags indicates additional options; this is a bitwise OR of desired flags. Defined flags are FLAG_BRIDGES, FLAG_MARKERS, and FLAG_SERIALIZABLE. markerInterfaceCount is the number of additional interfaces the function object should implement, and is present if and only if the FLAG_MARKERS flag is set. markerInterfaces is a variable-length list of additional interfaces to implement, whose length equals markerInterfaceCount, and is present if and only if the FLAG_MARKERS flag is set. bridgeCount is the number of additional method signatures the function object should implement, and is present if and only if the FLAG_BRIDGES flag is set. bridges is a variable-length list of additional methods signatures to implement, whose length equals bridgeCount, and is present if and only if the FLAG_BRIDGES flag is set. Each class named by markerInterfaces is subject to the same restrictions as Rd, the return type of invokedType, as described above. Each MethodType named by bridges is subject to the same restrictions as samMethodType, as described above. When FLAG_SERIALIZABLE is set in flags, the function objects will implement Serializable, and will have a writeReplace method that returns an appropriate SerializedLambda. The caller class must have an appropriate $deserializeLambda$ method, as described in SerializedLambda. When the target of the CallSite returned from this method is invoked, the resulting function objects are instances of a class with the following properties: The class implements the interface named by the return type of invokedType and any interfaces named by markerInterfaces The class declares methods with the name given by invokedName, and the signature given by samMethodType and additional signatures given by bridges The class may override methods from Object, and may implement methods related to serialization.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecaller\u003c/code\u003e - Represents a lookup context with the accessibility privileges of the caller. Specifically, the lookup context must have \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.Lookup.html#hasFullPrivilegeAccess()\"\u003efull privilege access\u003c/a\u003e. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is stacked automatically by the VM.",
+          "\u003ccode\u003einvokedName\u003c/code\u003e - The name of the method to implement. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003eNameAndType\u003c/code\u003e of the \n\u003ccode\u003eInvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM.",
+          "\u003ccode\u003einvokedType\u003c/code\u003e - The expected signature of the \n\u003ccode\u003eCallSite\u003c/code\u003e. The parameter types represent the types of capture variables; the return type is the interface to implement. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003eNameAndType\u003c/code\u003e of the \n\u003ccode\u003eInvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM. In the event that the implementation method is an instance method and this signature has any parameters, the first parameter in the invocation signature must correspond to the receiver.",
+          "\u003ccode\u003eargs\u003c/code\u003e - An \n\u003ccode\u003eObject[]\u003c/code\u003e array containing the required arguments \n\u003ccode\u003esamMethodType\u003c/code\u003e, \n\u003ccode\u003eimplMethod\u003c/code\u003e, \n\u003ccode\u003einstantiatedMethodType\u003c/code\u003e, \n\u003ccode\u003eflags\u003c/code\u003e, and any optional arguments, as described \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/LambdaMetafactory.html#altMetafactory(java.lang.invoke.MethodHandles.Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.Object...)\"\u003e\u003ccode\u003ealtMetafactory(MethodHandles.Lookup, String, MethodType, Object...)\u003c/code\u003e\u003c/a\u003e above}"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/LambdaConversionException.html\" title\u003d\"class in java.lang.invoke\"\u003eLambdaConversionException\u003c/a\u003e\u003c/code\u003e - If any of the linkage invariants described \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/LambdaMetafactory.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eabove\u003c/code\u003e\u003c/a\u003e are violated, or the lookup context does not have private access privileges."
+        ],
+        "return": [
+          "a CallSite whose target can be used to perform capture, generating instances of the interface named by \n\u003ccode\u003einvokedType\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "java.lang.invoke.LambdaMetafactory",
+  "annotations": [],
+  "tagMap": {
+    "apiNote": [
+      "These linkage methods are designed to support the evaluation of \n\u003cem\u003elambda expressions\u003c/em\u003e and \n\u003cem\u003emethod references\u003c/em\u003e in the Java Language. For every lambda expressions or method reference in the source code, there is a target type which is a functional interface. Evaluating a lambda expression produces an object of its target type. The recommended mechanism for evaluating lambda expressions is to desugar the lambda body to a method, invoke an invokedynamic call site whose static argument list describes the sole method of the functional interface and the desugared implementation method, and returns an object (the lambda object) that implements the target type. (For method references, the implementation method is simply the referenced method; no desugaring is needed.) \n\u003cp\u003eThe argument list of the implementation method and the argument list of the interface method(s) may differ in several ways. The implementation methods may have additional arguments to accommodate arguments captured by the lambda expression; there may also be differences resulting from permitted adaptations of arguments, such as casting, boxing, unboxing, and primitive widening. (Varargs adaptations are not handled by the metafactories; these are expected to be handled by the caller.) \u003c/p\u003e\n\u003cp\u003eInvokedynamic call sites have two argument lists: a static argument list and a dynamic argument list. The static argument list is stored in the constant pool; the dynamic argument is pushed on the operand stack at capture time. The bootstrap method has access to the entire static argument list (which in this case, includes information describing the implementation method, the target interface, and the target interface method(s)), as well as a method signature describing the number and static types (but not the values) of the dynamic arguments and the static return type of the invokedynamic site.\u003c/p\u003e"
+    ],
+    "implNote": [
+      "The implementation method is described with a method handle. In theory, any method handle could be used. Currently supported are direct method handles representing invocation of virtual, interface, constructor and static methods."
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

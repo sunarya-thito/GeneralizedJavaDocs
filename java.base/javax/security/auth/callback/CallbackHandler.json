@@ -1,0 +1,67 @@
+{
+  "packageName": "javax.security.auth.callback",
+  "simpleName": "CallbackHandler",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.security.auth.callback.UnsupportedCallbackException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.security.auth.callback.Callback",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "callbacks",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "handle",
+      "comment": "Retrieve or display the information requested in the provided Callbacks. The handle method implementation checks the instance(s) of the Callback object(s) passed in to retrieve or display the requested information. The following example is provided to help demonstrate what an handle method implementation might look like. This example code is for guidance only. Many details, including proper error handling, are left out for simplicity. \n public void handle(Callback[] callbacks)\n throws IOException, UnsupportedCallbackException {\n\n   for (int i \u003d 0; i \u003c callbacks.length; i++) {\n      if (callbacks[i] instanceof TextOutputCallback) {\n\n          // display the message according to the specified type\n          TextOutputCallback toc \u003d (TextOutputCallback)callbacks[i];\n          switch (toc.getMessageType()) {\n          case TextOutputCallback.INFORMATION:\n              System.out.println(toc.getMessage());\n              break;\n          case TextOutputCallback.ERROR:\n              System.out.println(\"ERROR: \" + toc.getMessage());\n              break;\n          case TextOutputCallback.WARNING:\n              System.out.println(\"WARNING: \" + toc.getMessage());\n              break;\n          default:\n              throw new IOException(\"Unsupported message type: \" +\n                                  toc.getMessageType());\n          }\n\n      } else if (callbacks[i] instanceof NameCallback) {\n\n          // prompt the user for a username\n          NameCallback nc \u003d (NameCallback)callbacks[i];\n\n          // ignore the provided defaultName\n          System.err.print(nc.getPrompt());\n          System.err.flush();\n          nc.setName((new BufferedReader\n                  (new InputStreamReader(System.in))).readLine());\n\n      } else if (callbacks[i] instanceof PasswordCallback) {\n\n          // prompt the user for sensitive information\n          PasswordCallback pc \u003d (PasswordCallback)callbacks[i];\n          System.err.print(pc.getPrompt());\n          System.err.flush();\n          pc.setPassword(readPassword(System.in));\n\n      } else {\n          throw new UnsupportedCallbackException\n                  (callbacks[i], \"Unrecognized Callback\");\n      }\n   }\n }\n\n // Reads user password from given input stream.\n private char[] readPassword(InputStream in) throws IOException {\n    // insert code to read a user password from the input stream\n }",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecallbacks\u003c/code\u003e - an array of \n\u003ccode\u003eCallback\u003c/code\u003e objects provided by an underlying security service which contains the information requested to be retrieved or displayed."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an input or output error occurs.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/callback/UnsupportedCallbackException.html\" title\u003d\"class in javax.security.auth.callback\"\u003eUnsupportedCallbackException\u003c/a\u003e\u003c/code\u003e - if the implementation of this method does not support one or more of the Callbacks specified in the \n\u003ccode\u003ecallbacks\u003c/code\u003e parameter."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.security.auth.callback.CallbackHandler",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Security.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003esecurity properties\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

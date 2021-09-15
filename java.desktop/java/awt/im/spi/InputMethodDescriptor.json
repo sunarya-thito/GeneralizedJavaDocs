@@ -1,0 +1,166 @@
+{
+  "packageName": "java.awt.im.spi",
+  "simpleName": "InputMethodDescriptor",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.Locale",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.AWTException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAvailableLocales",
+      "comment": "Returns the locales supported by the corresponding input method. The locale may describe just the language, or may also include country and variant information if needed. The information is used to select input methods by locale (InputContext.selectInputMethod(Locale)). It may also be used to sort input methods by locale in a user-visible list of input methods. Only the input method\u0027s primary locales should be returned. For example, if a Japanese input method also has a pass-through mode for Roman characters, typically still only Japanese would be returned. Thus, the list of locales returned is typically a subset of the locales for which the corresponding input method\u0027s implementation of InputMethod.setLocale(java.util.Locale) returns true. If hasDynamicLocaleList() returns true, this method is called each time the information is needed. This gives input methods that depend on network resources the chance to add or remove locales as resources become available or unavailable.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/AWTException.html\" title\u003d\"class in java.awt\"\u003eAWTException\u003c/a\u003e\u003c/code\u003e - if it can be determined that the input method is inoperable, for example, because of incomplete installation."
+        ],
+        "return": [
+          "the locales supported by the input method"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasDynamicLocaleList",
+      "comment": "Returns whether the list of available locales can change at runtime. This may be the case, for example, for adapters that access real input methods over the network.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "whether the list of available locales can change at runtime"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "name": "inputLocale",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "name": "displayLanguage",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getInputMethodDisplayName",
+      "comment": "Returns the user-visible name of the corresponding input method for the given input locale in the language in which the name will be displayed. The inputLocale parameter specifies the locale for which text is input. This parameter can only take values obtained from this descriptor\u0027s getAvailableLocales() method or null. If it is null, an input locale independent name for the input method should be returned. If a name for the desired display language is not available, the method may fall back to some other language.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einputLocale\u003c/code\u003e - the locale for which text input is supported, or null",
+          "\u003ccode\u003edisplayLanguage\u003c/code\u003e - the language in which the name will be displayed"
+        ],
+        "return": [
+          "the user-visible name of the corresponding input method for the given input locale in the language in which the name will be displayed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Image",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "name": "inputLocale",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getInputMethodIcon",
+      "comment": "Returns an icon for the corresponding input method. The icon may be used by a user interface for selecting input methods. The inputLocale parameter specifies the locale for which text is input. This parameter can only take values obtained from this descriptor\u0027s getAvailableLocales() method or null. If it is null, an input locale independent icon for the input method should be returned. The icon\u0027s size should be 16×16 pixels.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einputLocale\u003c/code\u003e - the locale for which text input is supported, or null"
+        ],
+        "return": [
+          "an icon for the corresponding input method, or null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.im.spi.InputMethod",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createInputMethod",
+      "comment": "Creates a new instance of the corresponding input method.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - any exception that may occur while creating the input method instance"
+        ],
+        "return": [
+          "a new instance of the corresponding input method"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.awt.im.spi.InputMethodDescriptor",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.3"
+    ]
+  }
+}

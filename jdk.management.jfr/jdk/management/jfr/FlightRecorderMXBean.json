@@ -1,0 +1,915 @@
+{
+  "packageName": "jdk.management.jfr",
+  "simpleName": "FlightRecorderMXBean",
+  "moduleName": "jdk.management.jfr",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.management.PlatformManagedObject",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "MXBEAN_NAME",
+      "comment": "String representation of the ObjectName for the FlightRecorderMXBean.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.management.jfr.FlightRecorderMXBean.MXBEAN_NAME\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalStateException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "newRecording",
+      "comment": "Creates a recording, but doesn\u0027t start it.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eRecording\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if Flight Recorder can\u0027t be created (for example, if the Java Virtual Machine (JVM) lacks Flight Recorder support, or if the file repository can\u0027t be created or accessed)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ],
+        "return": [
+          "a unique ID that can be used to start, stop, close and configure the recording"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "takeSnapshot",
+      "comment": "Creates a snapshot recording of all available recorded data. A snapshot is a synthesized recording in a stopped state. If no data is available, a recording with size 0 is returned. A snapshot provides stable access to data for later operations (for example, operations to change the time interval or to reduce the data size). The caller must close the recording when access to the data is no longer needed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eRecording\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ],
+        "return": [
+          "a unique ID that can be used for reading recording data"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "stop",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "cloneRecording",
+      "comment": "Creates a copy of an existing recording, useful for extracting parts of a recording. The cloned recording contains the same recording data as the original, but it has a new ID and a name prefixed with \"Clone of recording\". If the original recording is running, then the clone is also running.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eRecording\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - the recording ID of the recording to create a clone from",
+          "\u003ccode\u003estop\u003c/code\u003e - if the newly created clone is stopped before returning."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a recording with the specified ID doesn\u0027t exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ],
+        "return": [
+          "a unique ID that can be used to start, stop, close and configure the recording"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalStateException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "startRecording",
+      "comment": "Starts the recording with the specified ID. A recording that is stopped can\u0027t be restarted.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eRecording\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - ID of the recording to start"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a recording with the specified ID doesn\u0027t exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.IllegalStateException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "stopRecording",
+      "comment": "Stops the running recording with the specified ID.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.management.jfr/jdk/management/jfr/FlightRecorderMXBean.html#newRecording()\"\u003e\u003ccode\u003enewRecording()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - the ID of the recording to stop"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a recording with the specified ID doesn\u0027t exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the recording is not running",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the recording is stopped, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "closeRecording",
+      "comment": "Closes the recording with the specified ID and releases any system resources that are associated with the recording. If the recording is already closed, invoking this method has no effect.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.management.jfr/jdk/management/jfr/FlightRecorderMXBean.html#newRecording()\"\u003e\u003ccode\u003enewRecording()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - the ID of the recording to close"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a recording with the specified ID doesn\u0027t exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "streamOptions",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "openStream",
+      "comment": "Opens a data stream for the recording with the specified ID, or 0 to get data irrespective of recording. Recording stream options Name Descripion Default value Format Example values startTime Specifies the point in time to start a recording stream. Due to how data is stored, some events that start or end prior to the start time may be included. Instant.MIN_VALUE.toString() ISO-8601. See Instant.toString() or milliseconds since epoch \"2015-11-03T00:00\", \"1446508800000\" endTime Specifies the point in time to end a recording stream. Due to how data is stored, some events that start or end after the end time may be included. Instant.MAX_VALUE.toString() ISO-8601. See Instant.toString() or milliseconds since epoch \"2015-11-03T01:00\", \"1446512400000\" blockSize Specifies the maximum number of bytes to read with a call to readStream \"50000\" A positive long value. Setting blockSize to a very high value may result in OutOfMemoryError or an IllegalArgumentException, if the Java Virtual Machine (JVM) deems the value too large to handle. \"50000\", \"1000000\", streamVersion Specifies format to use when reading data from a running recording \"1.0\" A version number with a major and minor. To be able to read from a running recording the value must be set \"1.0\" If an option is omitted from the map the default value is used. The recording with the specified ID must be stopped before a stream can be opened, unless the option \"streamVersion\" is specified.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - ID of the recording to open the stream for",
+          "\u003ccode\u003estreamOptions\u003c/code\u003e - a map that contains the options that controls the amount of data and how it is read, or \n\u003ccode\u003enull\u003c/code\u003e to get all data for the recording with the default block size"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a recording with the iD doesn\u0027t exist, or if \n\u003ccode\u003eoptions\u003c/code\u003e contains invalid values",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the recording is closed, an I/O error occurs, or no data is available for the specified recording or interval",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ],
+        "return": [
+          "a unique ID for the stream."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "streamId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "closeStream",
+      "comment": "Closes the recording stream with the specified ID and releases any system resources that are associated with the stream. If the stream is already closed, invoking this method has no effect.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.management.jfr/jdk/management/jfr/FlightRecorderMXBean.html#openStream(long,java.util.Map)\"\u003e\u003ccode\u003eopenStream(long, Map)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estreamId\u003c/code\u003e - the ID of the stream"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a stream with the specified ID doesn\u0027t exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs while trying to close the stream",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "streamId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "readStream",
+      "comment": "Reads a portion of data from the stream with the specified ID, or returns null if no more data is available. To read all data for a recording, invoke this method repeatedly until null is returned.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamId\u003c/code\u003e - the ID of the stream"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the stream is closed, or an I/O error occurred while trying to read the stream",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no recording with the stream ID exists",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"monitor\")\u003c/code\u003e"
+        ],
+        "return": [
+          "byte array that contains recording data, or \n\u003ccode\u003enull\u003c/code\u003e when no more data is available"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRecordingOptions",
+      "comment": "Returns a map that contains the options for the recording with the specified ID (for example, the destination file or time span to keep recorded data). See FlightRecorderMXBean for available option names.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - the ID of the recording to get options for"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no recording with the specified ID exists",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"monitor\")\u003c/code\u003e"
+        ],
+        "return": [
+          "a map describing the recording options, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRecordingSettings",
+      "comment": "Returns a Map that contains the settings for the recording with the specified ID, (for example, the event thresholds) If multiple recordings are running at the same time, more data could be recorded than what is specified in the Map object. The name in the Map is the event name and the setting name separated by \"#\" (for example, \"jdk.VMInfo#period\"). The value is a textual representation of the settings value (for example, \"60 s\").",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - the ID of the recordings to get settings for"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no recording with the specified ID exists",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"monitor\")\u003c/code\u003e"
+        ],
+        "return": [
+          "a map that describes the recording settings, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "contents",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setConfiguration",
+      "comment": "Sets a configuration as a string representation for the recording with the specified ID.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Configuration.html#getContents()\"\u003e\u003ccode\u003eConfiguration.getContents()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - ID of the recording",
+          "\u003ccode\u003econtents\u003c/code\u003e - a string representation of the configuration file to use, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no recording with the specified ID exists or if the configuration could not be parsed.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "configurationName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setPredefinedConfiguration",
+      "comment": "Sets a predefined configuration for the recording with the specified ID.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.management.jfr/jdk/management/jfr/FlightRecorderMXBean.html#getConfigurations()\"\u003e\u003ccode\u003egetConfigurations()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - ID of the recording to set the configuration for",
+          "\u003ccode\u003econfigurationName\u003c/code\u003e - the name of the configuration (for example, \n\u003ccode\u003e\"profile\"\u003c/code\u003e or \n\u003ccode\u003e\"default\"\u003c/code\u003e), not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no recording with the specified ID exists",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "settings",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setRecordingSettings",
+      "comment": "Sets and replaces all previous settings for the specified recording. A setting consists of a name/value pair, where name specifies the event and setting to configure, and the value specifies what to set it to. The name can be formed in the following ways: \u003cevent-name\u003e + \"#\" + \u003csetting-name\u003e or \u003cevent-id\u003e + \"#\" + \u003csetting-name\u003e For example, to set the sample interval of the CPU Load event to once every second, use the name \"jdk.CPULoad#period\" and the value \"1 s\". If multiple events use the same name, for example if an event class is loaded in multiple class loaders, and differentiation is needed between them, then the name is \"56#period\". The ID for an event is obtained by invoking EventType.getId() method and is valid for the Java Virtual Machine (JVM) instance that the event is registered in. A list of available event names is retrieved by invoking FlightRecorder.getEventTypes() and EventType.getName(). A list of available settings for an event type is obtained by invoking EventType.getSettingDescriptors() and ValueDescriptor.getName().",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html#getId()\"\u003e\u003ccode\u003eRecording.getId()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - ID of the recording",
+          "\u003ccode\u003esettings\u003c/code\u003e - name value map of the settings to set, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no recording with the specified ID exists",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "options",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setRecordingOptions",
+      "comment": "Configures the recording options (for example, destination file and time span to keep data). See FlightRecorderMXBean for a description of the options and values that can be used. Setting a value to null restores the value to the default value.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html#getId()\"\u003e\u003ccode\u003eRecording.getId()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - the ID of the recording to set options for",
+          "\u003ccode\u003eoptions\u003c/code\u003e - name/value map of the settings to set, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no recording with the specified ID exists",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists, and the caller does not have \n\u003ccode\u003eManagementPermission(\"control\")\u003c/code\u003e or an option contains a file that the caller does not have permission to operate on."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.management.jfr.RecordingInfo",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRecordings",
+      "comment": "Returns the list of the available recordings, not necessarily running. MBeanServer access: The mapped type of RecordingInfo is CompositeData with attributes as specified in the RecordingInfo.from method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.management.jfr/jdk/management/jfr/RecordingInfo.html\" title\u003d\"class in jdk.management.jfr\"\u003e\u003ccode\u003eRecordingInfo\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eRecording\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003e ManagementPermission(\"monitor\")\u003c/code\u003e"
+        ],
+        "return": [
+          "list of recordings, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.management.jfr.ConfigurationInfo",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getConfigurations",
+      "comment": "Returns the list of predefined configurations for this Java Virtual Machine (JVM). MBeanServer access: The mapped type of ConfigurationInfo is CompositeData with attributes as specified in the ConfigurationInfo.from method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.management.jfr/jdk/management/jfr/ConfigurationInfo.html\" title\u003d\"class in jdk.management.jfr\"\u003e\u003ccode\u003eConfigurationInfo\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Configuration.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"monitor\")\u003c/code\u003e"
+        ],
+        "return": [
+          "the list of predefined configurations, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.management.jfr.EventTypeInfo",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getEventTypes",
+      "comment": "Returns the list of currently registered event types. MBeanServer access: The mapped type of EventTypeInfo is CompositeData with attributes as specified in the EventTypeInfo.from method.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.management.jfr/jdk/management/jfr/EventTypeInfo.html\" title\u003d\"class in jdk.management.jfr\"\u003e\u003ccode\u003eEventTypeInfo\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/EventType.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEventType\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have \n\u003ccode\u003eManagementPermission(\"monitor\")\u003c/code\u003e"
+        ],
+        "return": [
+          "the list of registered event types, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.SecurityException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "recordingId",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "outputFile",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "copyTo",
+      "comment": "Writes recording data to the specified file. If this method is invoked remotely from another process, the data is written to a file named outputFile on the machine where the target Java Virtual Machine (JVM) is running. If the file location is a relative path, it is relative to the working directory where the target JVM was started.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#toString()\"\u003e\u003ccode\u003ePath.toString()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html#dump(java.nio.file.Path)\"\u003e\u003ccode\u003eRecording.dump(java.nio.file.Path)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003erecordingId\u003c/code\u003e - the ID of the recording to dump data for",
+          "\u003ccode\u003eoutputFile\u003c/code\u003e - the system-dependent file name where data is written, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the recording can\u0027t be dumped due to an I/O error (for example, an invalid path)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a recording with the specified ID doesn\u0027t exist",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the recording is not yet started or if it is already closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003eSecurityManager.checkWrite(java.lang.String)\u003c/code\u003e method denies write access to the named file or the caller does not have \n\u003ccode\u003eManagmentPermission(\"control\")\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.management.jfr.FlightRecorderMXBean",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

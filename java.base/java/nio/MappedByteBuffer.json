@@ -1,0 +1,295 @@
+{
+  "packageName": "java.nio",
+  "simpleName": "MappedByteBuffer",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.nio.ByteBuffer",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isLoaded",
+      "comment": "Tells whether or not this buffer\u0027s content is resident in physical memory. A return value of true implies that it is highly likely that all of the data in this buffer is resident in physical memory and may therefore be accessed without incurring any virtual-memory page faults or I/O operations. A return value of false does not necessarily imply that the buffer\u0027s content is not resident in physical memory. The returned value is a hint, rather than a guarantee, because the underlying operating system may have paged out some of the buffer\u0027s data by the time that an invocation of this method returns.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if it is likely that this buffer\u0027s content is resident in physical memory"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "load",
+      "comment": "Loads this buffer\u0027s content into physical memory. This method makes a best effort to ensure that, when it returns, this buffer\u0027s content is resident in physical memory. Invoking this method may cause some number of page faults and I/O operations to occur.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "force",
+      "comment": "Forces any changes made to this buffer\u0027s content to be written to the storage device containing the mapped file. If the file mapped into this buffer resides on a local storage device then when this method returns it is guaranteed that all changes made to the buffer since it was created, or since this method was last invoked, will have been written to that device. If the file does not reside on a local device then no such guarantee is made. If this buffer was not mapped in read/write mode (FileChannel.MapMode.READ_WRITE) then invoking this method may have no effect. In particular, the method has no effect for buffers mapped in read-only or private mapping modes. This method may or may not have an effect for implementation-specific mapping modes.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "index",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "length",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "force",
+      "comment": "Forces any changes made to a region of this buffer\u0027s content to be written to the storage device containing the mapped file. The region starts at the given index in this buffer and is length bytes. If the file mapped into this buffer resides on a local storage device then when this method returns it is guaranteed that all changes made to the selected region buffer since it was created, or since this method was last invoked, will have been written to that device. The force operation is free to write bytes that lie outside the specified region, for example to ensure that data blocks of some device-specific granularity are transferred in their entirety. If the file does not reside on a local device then no such guarantee is made. If this buffer was not mapped in read/write mode (FileChannel.MapMode.READ_WRITE) then invoking this method may have no effect. In particular, the method has no effect for buffers mapped in read-only or private mapping modes. This method may or may not have an effect for implementation-specific mapping modes.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index of the first byte in the buffer region that is to be written back to storage; must be non-negative and less than limit()",
+          "\u003ccode\u003elength\u003c/code\u003e - The length of the region in bytes; must be non-negative and no larger than limit() - index"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the preconditions on the index and length do not hold."
+        ],
+        "return": [
+          "This buffer"
+        ],
+        "since": [
+          "13"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "newPosition",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "position",
+      "comment": "Sets this buffer\u0027s position. If the mark is defined and larger than the new position then it is discarded.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html#position(int)\"\u003eposition\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html\" title\u003d\"class in java.nio\"\u003eBuffer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enewPosition\u003c/code\u003e - The new position value; must be non-negative and no larger than the current limit"
+        ],
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "newLimit",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "limit",
+      "comment": "Sets this buffer\u0027s limit. If the position is larger than the new limit then it is set to the new limit. If the mark is defined and larger than the new limit then it is discarded.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html#limit(int)\"\u003elimit\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html\" title\u003d\"class in java.nio\"\u003eBuffer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enewLimit\u003c/code\u003e - The new limit value; must be non-negative and no larger than this buffer\u0027s capacity"
+        ],
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "mark",
+      "comment": "Sets this buffer\u0027s mark at its position.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html#mark()\"\u003emark\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html\" title\u003d\"class in java.nio\"\u003eBuffer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "reset",
+      "comment": "Resets this buffer\u0027s position to the previously-marked position. Invoking this method neither changes nor discards the mark\u0027s value.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html#reset()\"\u003ereset\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html\" title\u003d\"class in java.nio\"\u003eBuffer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "clear",
+      "comment": "Clears this buffer. The position is set to zero, the limit is set to the capacity, and the mark is discarded. Invoke this method before using a sequence of channel-read or put operations to fill this buffer. For example:  buf.clear();     // Prepare buffer for reading\n in.read(buf);    // Read data This method does not actually erase the data in the buffer, but it is named as if it did because it will most often be used in situations in which that might as well be the case.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html#clear()\"\u003eclear\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html\" title\u003d\"class in java.nio\"\u003eBuffer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "flip",
+      "comment": "Flips this buffer. The limit is set to the current position and then the position is set to zero. If the mark is defined then it is discarded. After a sequence of channel-read or put operations, invoke this method to prepare for a sequence of channel-write or relative get operations. For example:  buf.put(magic);    // Prepend header\n in.read(buf);      // Read data into rest of buffer\n buf.flip();        // Flip buffer\n out.write(buf);    // Write header + data to channel This method is often used in conjunction with the compact method when transferring data from one place to another.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html#flip()\"\u003eflip\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html\" title\u003d\"class in java.nio\"\u003eBuffer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "This buffer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.MappedByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "rewind",
+      "comment": "Rewinds this buffer. The position is set to zero and the mark is discarded. Invoke this method before a sequence of channel-write or get operations, assuming that the limit has already been set appropriately. For example:  out.write(buf);    // Write remaining data\n buf.rewind();      // Rewind buffer\n buf.get(array);    // Copy data into array",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html#rewind()\"\u003erewind\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/Buffer.html\" title\u003d\"class in java.nio\"\u003eBuffer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "This buffer"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.nio.MappedByteBuffer",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

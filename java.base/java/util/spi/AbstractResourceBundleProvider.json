@@ -1,0 +1,158 @@
+{
+  "packageName": "java.util.spi",
+  "simpleName": "AbstractResourceBundleProvider",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "baseName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "name": "locale",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "toBundleName",
+      "comment": "Returns the bundle name for the given baseName and locale that this provider provides.",
+      "annotations": [],
+      "tagMap": {
+        "apiNote": [
+          "A resource bundle provider may package its resource bundles in the same package as the base name of the resource bundle if the package is not split among other named modules. If there are more than one bundle providers providing the resource bundle of a given base name, the resource bundles can be packaged with per-language grouping or per-region grouping to eliminate the split packages. \n\u003cp\u003eFor example, if \u003ccode\u003ebaseName\u003c/code\u003e is \u003ccode\u003e\"p.resources.Bundle\"\u003c/code\u003e then the resource bundle name of \u003ccode\u003e\"p.resources.Bundle\"\u003c/code\u003e of \u003ccode style\u003d\"white-space:nowrap\"\u003eLocale(\"ja\", \"\", \"XX\")\u003c/code\u003e and \u003ccode\u003eLocale(\"en\")\u003c/code\u003e could be \u003ccode style\u003d\"white-space:nowrap\"\u003e \"p.resources.ja.Bundle_ja_ _XX\"\u003c/code\u003e and \u003ccode\u003e\"p.resources.Bundle_en\"\u003c/code\u003e respectively. \u003c/p\u003e\n\u003cp\u003e This method is called from the default implementation of the \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/spi/AbstractResourceBundleProvider.html#getBundle(java.lang.String,java.util.Locale)\"\u003e\u003ccode\u003egetBundle(String, Locale)\u003c/code\u003e\u003c/a\u003e method.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ebaseName\u003c/code\u003e - the base name of the resource bundle, a fully qualified class name",
+          "\u003ccode\u003elocale\u003c/code\u003e - the locale for which a resource bundle should be loaded"
+        ],
+        "implNote": [
+          "The default implementation of this method is the same as the implementation of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ResourceBundle.Control.html#toBundleName(java.lang.String,java.util.Locale)\"\u003e\u003ccode\u003eResourceBundle.Control.toBundleName(String, Locale)\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "return": [
+          "the bundle name for the resource bundle"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ResourceBundle",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "baseName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "name": "locale",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getBundle",
+      "comment": "Returns a ResourceBundle for the given baseName and locale.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/spi/ResourceBundleProvider.html#getBundle(java.lang.String,java.util.Locale)\"\u003egetBundle\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/spi/ResourceBundleProvider.html\" title\u003d\"interface in java.util.spi\"\u003eResourceBundleProvider\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ebaseName\u003c/code\u003e - the base bundle name of the resource bundle, a fully qualified class name.",
+          "\u003ccode\u003elocale\u003c/code\u003e - the locale for which the resource bundle should be instantiated"
+        ],
+        "implNote": [
+          "The default implementation of this method calls the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/spi/AbstractResourceBundleProvider.html#toBundleName(java.lang.String,java.util.Locale)\"\u003e\u003ccode\u003etoBundleName\u003c/code\u003e\u003c/a\u003e method to get the bundle name for the \n\u003ccode\u003ebaseName\u003c/code\u003e and \n\u003ccode\u003elocale\u003c/code\u003e and finds the resource bundle of the bundle name local in the module of this provider. It will only search the formats specified when this provider was constructed."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebaseName\u003c/code\u003e or \n\u003ccode\u003elocale\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/UncheckedIOException.html\" title\u003d\"class in java.io\"\u003eUncheckedIOException\u003c/a\u003e\u003c/code\u003e - if any IO exception occurred during resource bundle loading"
+        ],
+        "return": [
+          "\u003ccode\u003eResourceBundle\u003c/code\u003e of the given \n\u003ccode\u003ebaseName\u003c/code\u003e and \n\u003ccode\u003elocale\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e if no resource bundle is found"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs an AbstractResourceBundleProvider with the \"java.properties\" format. This constructor is equivalent to AbstractResourceBundleProvider(\"java.properties\").",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "formats",
+          "varargs": true
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs an AbstractResourceBundleProvider with the specified formats. The getBundle(String, Locale) method looks up resource bundles for the given formats. formats must be \"java.class\" or \"java.properties\".",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eformats\u003c/code\u003e - the formats to be used for loading resource bundles"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the given \n\u003ccode\u003eformats\u003c/code\u003e is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given \n\u003ccode\u003eformats\u003c/code\u003e is not \"java.class\" or \"java.properties\"."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.util.spi.AbstractResourceBundleProvider",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ResourceBundle.html#resource-bundle-modules\"\u003e Resource Bundles and Named Modules\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

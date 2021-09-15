@@ -1,0 +1,179 @@
+{
+  "packageName": "javax.management.loading",
+  "simpleName": "ClassLoaderRepository",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "loadClass",
+      "comment": "Load the given class name through the list of class loaders. Each ClassLoader in turn from the ClassLoaderRepository is asked to load the class via its ClassLoader.loadClass(String) method. If it successfully returns a Class object, that is the result of this method. If it throws a ClassNotFoundException, the search continues with the next ClassLoader. If it throws another exception, the exception is propagated from this method. If the end of the list is reached, a ClassNotFoundException is thrown.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The name of the class to be loaded."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - The specified class could not be found."
+        ],
+        "return": [
+          "the loaded class."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "name": "exclude",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "loadClassWithout",
+      "comment": "Load the given class name through the list of class loaders, excluding the given one. Each ClassLoader in turn from the ClassLoaderRepository, except exclude, is asked to load the class via its ClassLoader.loadClass(String) method. If it successfully returns a Class object, that is the result of this method. If it throws a ClassNotFoundException, the search continues with the next ClassLoader. If it throws another exception, the exception is propagated from this method. If the end of the list is reached, a ClassNotFoundException is thrown. Be aware that if a ClassLoader in the ClassLoaderRepository calls this method from its loadClass method, it exposes itself to a deadlock if another ClassLoader in the ClassLoaderRepository does the same thing at the same time. The loadClassBefore(java.lang.ClassLoader, java.lang.String) method is recommended to avoid the risk of deadlock.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The name of the class to be loaded.",
+          "\u003ccode\u003eexclude\u003c/code\u003e - The class loader to be excluded. May be null, in which case this method is equivalent to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/loading/ClassLoaderRepository.html#loadClass(java.lang.String)\"\u003e\u003ccode\u003eloadClass(className)\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - The specified class could not be found."
+        ],
+        "return": [
+          "the loaded class."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "name": "stop",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "className",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "loadClassBefore",
+      "comment": "Load the given class name through the list of class loaders, stopping at the given one. Each ClassLoader in turn from the ClassLoaderRepository is asked to load the class via its ClassLoader.loadClass(String) method. If it successfully returns a Class object, that is the result of this method. If it throws a ClassNotFoundException, the search continues with the next ClassLoader. If it throws another exception, the exception is propagated from this method. If the search reaches stop or the end of the list, a ClassNotFoundException is thrown. Typically this method is called from the loadClass method of stop, to consult loaders that appear before it in the ClassLoaderRepository. By stopping the search as soon as stop is reached, a potential deadlock with concurrent class loading is avoided.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The name of the class to be loaded.",
+          "\u003ccode\u003estop\u003c/code\u003e - The class loader at which to stop. May be null, in which case this method is equivalent to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/loading/ClassLoaderRepository.html#loadClass(java.lang.String)\"\u003e\u003ccode\u003eloadClass(className)\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - The specified class could not be found."
+        ],
+        "return": [
+          "the loaded class."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.management.loading.ClassLoaderRepository",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerFactory.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eMBeanServerFactory\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

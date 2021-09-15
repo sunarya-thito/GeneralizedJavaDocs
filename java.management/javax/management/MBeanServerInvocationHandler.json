@@ -1,0 +1,309 @@
+{
+  "packageName": "javax.management",
+  "simpleName": "MBeanServerInvocationHandler",
+  "moduleName": "java.management",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.management.MBeanServerConnection",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMBeanServerConnection",
+      "comment": "The MBean server connection through which the methods of a proxy using this handler are forwarded.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the MBean server connection."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectName",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getObjectName",
+      "comment": "The name of the MBean within the MBean server to which methods are forwarded.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the object name."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isMXBean",
+      "comment": "If true, the proxy is for an MXBean, and appropriate mappings are applied to method parameters and return values.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "whether the proxy is for an MXBean."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.MBeanServerConnection",
+            "type": "Class"
+          },
+          "name": "connection",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "objectName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "name": "interfaceClass",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "notificationBroadcaster",
+          "varargs": false
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "newProxyInstance",
+      "comment": "Return a proxy that implements the given interface by forwarding its methods through the given MBean server to the named MBean. As of 1.6, the methods JMX.newMBeanProxy(MBeanServerConnection, ObjectName, Class) and JMX.newMBeanProxy(MBeanServerConnection, ObjectName, Class, boolean) are preferred to this method. This method is equivalent to Proxy.newProxyInstance(interfaceClass.getClassLoader(), interfaces, handler). Here handler is the result of new MBeanServerInvocationHandler(connection, objectName), and interfaces is an array that has one element if notificationBroadcaster is false and two if it is true. The first element of interfaces is interfaceClass and the second, if present, is NotificationEmitter.class.",
+      "annotations": [],
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - allows the compiler to know that if the \n\u003ccode\u003e interfaceClass\u003c/code\u003e parameter is \n\u003ccode\u003eMyMBean.class\u003c/code\u003e, for example, then the return type is \n\u003ccode\u003eMyMBean\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/JMX.html#newMBeanProxy(javax.management.MBeanServerConnection,javax.management.ObjectName,java.lang.Class,boolean)\"\u003e\u003ccode\u003eJMX.newMBeanProxy(MBeanServerConnection, ObjectName, Class, boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003econnection\u003c/code\u003e - the MBean server to forward to.",
+          "\u003ccode\u003eobjectName\u003c/code\u003e - the name of the MBean within \n\u003ccode\u003econnection\u003c/code\u003e to forward to.",
+          "\u003ccode\u003einterfaceClass\u003c/code\u003e - the management interface that the MBean exports, which will also be implemented by the returned proxy.",
+          "\u003ccode\u003enotificationBroadcaster\u003c/code\u003e - make the returned proxy implement \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationEmitter.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eNotificationEmitter\u003c/code\u003e\u003c/a\u003e by forwarding its methods via \n\u003ccode\u003econnection\u003c/code\u003e. A call to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationBroadcaster.html#addNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eNotificationBroadcaster.addNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e on the proxy will result in a call to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerConnection.html#addNotificationListener(javax.management.ObjectName,javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eMBeanServerConnection.addNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object)\u003c/code\u003e\u003c/a\u003e, and likewise for the other methods of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationBroadcaster.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eNotificationBroadcaster\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationEmitter.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eNotificationEmitter\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "return": [
+          "the new proxy instance."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Throwable",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "name": "proxy",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.reflect.Method",
+            "type": "Class"
+          },
+          "name": "method",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "args",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "invoke",
+      "comment": "Description copied from interface: InvocationHandler",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/UndeclaredThrowableException.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eUndeclaredThrowableException\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/InvocationHandler.html#invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object%5B%5D)\"\u003einvoke\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/InvocationHandler.html\" title\u003d\"interface in java.lang.reflect\"\u003eInvocationHandler\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eproxy\u003c/code\u003e - the proxy instance that the method was invoked on",
+          "\u003ccode\u003emethod\u003c/code\u003e - the \n\u003ccode\u003eMethod\u003c/code\u003e instance corresponding to the interface method invoked on the proxy instance. The declaring class of the \n\u003ccode\u003eMethod\u003c/code\u003e object will be the interface that the method was declared in, which may be a superinterface of the proxy interface that the proxy class inherits the method through.",
+          "\u003ccode\u003eargs\u003c/code\u003e - an array of objects containing the values of the arguments passed in the method invocation on the proxy instance, or \n\u003ccode\u003enull\u003c/code\u003e if interface method takes no arguments. Arguments of primitive types are wrapped in instances of the appropriate primitive wrapper class, such as \n\u003ccode\u003ejava.lang.Integer\u003c/code\u003e or \n\u003ccode\u003ejava.lang.Boolean\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html\" title\u003d\"class in java.lang\"\u003eThrowable\u003c/a\u003e\u003c/code\u003e - the exception to throw from the method invocation on the proxy instance. The exception\u0027s type must be assignable either to any of the exception types declared in the \n\u003ccode\u003ethrows\u003c/code\u003e clause of the interface method or to the unchecked exception types \n\u003ccode\u003ejava.lang.RuntimeException\u003c/code\u003e or \n\u003ccode\u003ejava.lang.Error\u003c/code\u003e. If a checked exception is thrown by this method that is not assignable to any of the exception types declared in the \n\u003ccode\u003ethrows\u003c/code\u003e clause of the interface method, then an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/UndeclaredThrowableException.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eUndeclaredThrowableException\u003c/code\u003e\u003c/a\u003e containing the exception that was thrown by this method will be thrown by the method invocation on the proxy instance."
+        ],
+        "return": [
+          "the value to return from the method invocation on the proxy instance. If the declared return type of the interface method is a primitive type, then the value returned by this method must be an instance of the corresponding primitive wrapper class; otherwise, it must be a type assignable to the declared return type. If the value returned by this method is \n\u003ccode\u003enull\u003c/code\u003e and the interface method\u0027s return type is primitive, then a \n\u003ccode\u003eNullPointerException\u003c/code\u003e will be thrown by the method invocation on the proxy instance. If the value returned by this method is otherwise not compatible with the interface method\u0027s declared return type as described above, a \n\u003ccode\u003eClassCastException\u003c/code\u003e will be thrown by the method invocation on the proxy instance."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.MBeanServerConnection",
+            "type": "Class"
+          },
+          "name": "connection",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "objectName",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Invocation handler that forwards methods through an MBean server to a Standard MBean. This constructor may be called instead of relying on JMX.newMBeanProxy, for instance if you need to supply a different ClassLoader to Proxy.newProxyInstance. This constructor is not appropriate for an MXBean. Use MBeanServerInvocationHandler(MBeanServerConnection, ObjectName, boolean) for that. This constructor is equivalent to new MBeanServerInvocationHandler(connection, objectName, false).",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econnection\u003c/code\u003e - the MBean server connection through which all methods of a proxy using this handler will be forwarded.",
+          "\u003ccode\u003eobjectName\u003c/code\u003e - the name of the MBean within the MBean server to which methods will be forwarded."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.MBeanServerConnection",
+            "type": "Class"
+          },
+          "name": "connection",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "name": "objectName",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "isMXBean",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Invocation handler that can forward methods through an MBean server to a Standard MBean or MXBean. This constructor may be called instead of relying on JMX.newMXBeanProxy, for instance if you need to supply a different ClassLoader to Proxy.newProxyInstance.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econnection\u003c/code\u003e - the MBean server connection through which all methods of a proxy using this handler will be forwarded.",
+          "\u003ccode\u003eobjectName\u003c/code\u003e - the name of the MBean within the MBean server to which methods will be forwarded.",
+          "\u003ccode\u003eisMXBean\u003c/code\u003e - if true, the proxy is for an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MXBean.html\" title\u003d\"annotation in javax.management\"\u003e\u003ccode\u003eMXBean\u003c/code\u003e\u003c/a\u003e, and appropriate mappings will be applied to method parameters and return values."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.management.MBeanServerInvocationHandler",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

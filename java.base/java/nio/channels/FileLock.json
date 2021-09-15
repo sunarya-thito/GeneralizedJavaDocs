@@ -1,0 +1,364 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "FileLock",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.nio.channels.FileChannel",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "channel",
+      "comment": "Returns the file channel upon whose file this lock was acquired. This method has been superseded by the acquiredBy method.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The file channel, or \n\u003ccode\u003enull\u003c/code\u003e if the file lock was not acquired by a file channel."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.Channel",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "acquiredBy",
+      "comment": "Returns the channel upon whose file this lock was acquired.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The channel upon whose file this lock was acquired."
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "position",
+      "comment": "Returns the position within the file of the first byte of the locked region. A locked region need not be contained within, or even overlap, the actual underlying file, so the value returned by this method may exceed the file\u0027s current size.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The position"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "size",
+      "comment": "Returns the size of the locked region in bytes. A locked region need not be contained within, or even overlap, the actual underlying file, so the value returned by this method may exceed the file\u0027s current size.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The size of the locked region"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isShared",
+      "comment": "Tells whether this lock is shared.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if lock is shared, \n\u003ccode\u003efalse\u003c/code\u003e if it is exclusive"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "position",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "size",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "overlaps",
+      "comment": "Tells whether or not this lock overlaps the given lock range.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eposition\u003c/code\u003e - The starting position of the lock range",
+          "\u003ccode\u003esize\u003c/code\u003e - The size of the lock range"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, this lock and the given lock range overlap by at least one byte"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isValid",
+      "comment": "Tells whether or not this lock is valid. A lock object remains valid until it is released or the associated file channel is closed, whichever comes first.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, this lock is valid"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "release",
+      "comment": "Releases this lock. If this lock object is valid then invoking this method releases the lock and renders the object invalid. If this lock object is invalid then invoking this method has no effect.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If the channel that was used to acquire this lock is no longer open",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "close",
+      "comment": "This method invokes the release() method. It was added to the class so that it could be used in conjunction with the automatic resource management block construct.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "toString",
+      "comment": "Returns a string describing the range, type, and validity of this lock.",
+      "annotations": [],
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "A descriptive string"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.channels.FileChannel",
+            "type": "Class"
+          },
+          "name": "channel",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "position",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "size",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "shared",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Initializes a new instance of this class.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echannel\u003c/code\u003e - The file channel upon whose file this lock is held",
+          "\u003ccode\u003eposition\u003c/code\u003e - The position within the file at which the locked region starts; must be non-negative",
+          "\u003ccode\u003esize\u003c/code\u003e - The size of the locked region; must be non-negative, and the sum \n\u003ccode\u003eposition\u003c/code\u003e\u0026nbsp;+\u0026nbsp;\n\u003ccode\u003esize\u003c/code\u003e must be non-negative",
+          "\u003ccode\u003eshared\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if this lock is shared, \n\u003ccode\u003efalse\u003c/code\u003e if it is exclusive"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the preconditions on the parameters do not hold"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.nio.channels.AsynchronousFileChannel",
+            "type": "Class"
+          },
+          "name": "channel",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "position",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "size",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "shared",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Initializes a new instance of this class.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echannel\u003c/code\u003e - The channel upon whose file this lock is held",
+          "\u003ccode\u003eposition\u003c/code\u003e - The position within the file at which the locked region starts; must be non-negative",
+          "\u003ccode\u003esize\u003c/code\u003e - The size of the locked region; must be non-negative, and the sum \n\u003ccode\u003eposition\u003c/code\u003e\u0026nbsp;+\u0026nbsp;\n\u003ccode\u003esize\u003c/code\u003e must be non-negative",
+          "\u003ccode\u003eshared\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if this lock is shared, \n\u003ccode\u003efalse\u003c/code\u003e if it is exclusive"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the preconditions on the parameters do not hold"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.nio.channels.FileLock",
+  "annotations": [],
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

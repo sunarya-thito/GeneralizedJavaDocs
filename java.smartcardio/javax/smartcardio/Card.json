@@ -1,0 +1,265 @@
+{
+  "packageName": "javax.smartcardio",
+  "simpleName": "Card",
+  "moduleName": "java.smartcardio",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.smartcardio.ATR",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getATR",
+      "comment": "Returns the ATR of this card.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the ATR of this card."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getProtocol",
+      "comment": "Returns the protocol in use for this card.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the protocol in use for this card, for example \"T\u003d0\" or \"T\u003d1\""
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.smartcardio.CardChannel",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getBasicChannel",
+      "comment": "Returns the CardChannel for the basic logical channel. The basic logical channel has a channel number of 0.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager exists and the caller does not have the required \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardPermission.html\" title\u003d\"class in javax.smartcardio\"\u003epermission\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this card object has been disposed of via the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/Card.html#disconnect(boolean)\"\u003edisconnect()\u003c/a\u003e method"
+        ],
+        "return": [
+          "the CardChannel for the basic logical channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.smartcardio.CardChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.smartcardio.CardException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "openLogicalChannel",
+      "comment": "Opens a new logical channel to the card and returns it. The channel is opened by issuing a MANAGE CHANNEL command that should use the format [00 70 00 00 01].",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager exists and the caller does not have the required \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardPermission.html\" title\u003d\"class in javax.smartcardio\"\u003epermission\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardException.html\" title\u003d\"class in javax.smartcardio\"\u003eCardException\u003c/a\u003e\u003c/code\u003e - is a new logical channel could not be opened",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this card object has been disposed of via the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/Card.html#disconnect(boolean)\"\u003edisconnect()\u003c/a\u003e method"
+        ],
+        "return": [
+          "the logical channel which has been opened"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.smartcardio.CardException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "beginExclusive",
+      "comment": "Requests exclusive access to this card. Once a thread has invoked beginExclusive, only this thread is allowed to communicate with this card until it calls endExclusive. Other threads attempting communication will receive a CardException. Applications have to ensure that exclusive access is correctly released. This can be achieved by executing the beginExclusive() and endExclusive calls in a try ... finally block.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager exists and the caller does not have the required \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardPermission.html\" title\u003d\"class in javax.smartcardio\"\u003epermission\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardException.html\" title\u003d\"class in javax.smartcardio\"\u003eCardException\u003c/a\u003e\u003c/code\u003e - if exclusive access has already been set or if exclusive access could not be established",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this card object has been disposed of via the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/Card.html#disconnect(boolean)\"\u003edisconnect()\u003c/a\u003e method"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.smartcardio.CardException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "endExclusive",
+      "comment": "Releases the exclusive access previously established using beginExclusive.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager exists and the caller does not have the required \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardPermission.html\" title\u003d\"class in javax.smartcardio\"\u003epermission\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the active Thread does not currently have exclusive access to this card or if this card object has been disposed of via the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/Card.html#disconnect(boolean)\"\u003edisconnect()\u003c/a\u003e method",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardException.html\" title\u003d\"class in javax.smartcardio\"\u003eCardException\u003c/a\u003e\u003c/code\u003e - if the operation failed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.smartcardio.CardException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "controlCode",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "command",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "transmitControlCommand",
+      "comment": "Transmits a control command to the terminal device. This can be used to, for example, control terminal functions like a built-in PIN pad or biometrics.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econtrolCode\u003c/code\u003e - the control code of the command",
+          "\u003ccode\u003ecommand\u003c/code\u003e - the command data"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager exists and the caller does not have the required \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardPermission.html\" title\u003d\"class in javax.smartcardio\"\u003epermission\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if command is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardException.html\" title\u003d\"class in javax.smartcardio\"\u003eCardException\u003c/a\u003e\u003c/code\u003e - if the card operation failed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this card object has been disposed of via the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/Card.html#disconnect(boolean)\"\u003edisconnect()\u003c/a\u003e method"
+        ],
+        "return": [
+          "the response from the terminal device"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.smartcardio.CardException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "name": "reset",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "disconnect",
+      "comment": "Disconnects the connection with this card. After this method returns, calling methods on this object or in CardChannels associated with this object that require interaction with the card will raise an IllegalStateException.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereset\u003c/code\u003e - whether to reset the card after disconnecting."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardException.html\" title\u003d\"class in javax.smartcardio\"\u003eCardException\u003c/a\u003e\u003c/code\u003e - if the card operation failed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a SecurityManager exists and the caller does not have the required \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardPermission.html\" title\u003d\"class in javax.smartcardio\"\u003epermission\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs a new Card object. This constructor is called by subclasses only. Application should call the CardTerminal.connect() method to obtain a Card object.",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.smartcardio.Card",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardTerminal.html\" title\u003d\"class in javax.smartcardio\"\u003e\u003ccode\u003eCardTerminal\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

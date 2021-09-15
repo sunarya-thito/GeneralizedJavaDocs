@@ -1,0 +1,246 @@
+{
+  "packageName": "java.util.concurrent",
+  "simpleName": "CyclicBarrier",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getParties",
+      "comment": "Returns the number of parties required to trip this barrier.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the number of parties required to trip this barrier"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.BrokenBarrierException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "await",
+      "comment": "Waits until all parties have invoked await on this barrier. If the current thread is not the last to arrive then it is disabled for thread scheduling purposes and lies dormant until one of the following things happens: The last thread arrives; or Some other thread interrupts the current thread; or Some other thread interrupts one of the other waiting threads; or Some other thread times out while waiting for barrier; or Some other thread invokes reset() on this barrier. If the current thread: has its interrupted status set on entry to this method; or is interrupted while waiting then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. If the barrier is reset() while any thread is waiting, or if the barrier is broken when await is invoked, or while any thread is waiting, then BrokenBarrierException is thrown. If any thread is interrupted while waiting, then all other waiting threads will throw BrokenBarrierException and the barrier is placed in the broken state. If the current thread is the last thread to arrive, and a non-null barrier action was supplied in the constructor, then the current thread runs the action before allowing the other threads to continue. If an exception occurs during the barrier action then that exception will be propagated in the current thread and the barrier is placed in the broken state.",
+      "annotations": [],
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread was interrupted while waiting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/BrokenBarrierException.html\" title\u003d\"class in java.util.concurrent\"\u003eBrokenBarrierException\u003c/a\u003e\u003c/code\u003e - if \n\u003cem\u003eanother\u003c/em\u003e thread was interrupted or timed out while the current thread was waiting, or the barrier was reset, or the barrier was broken when \n\u003ccode\u003eawait\u003c/code\u003e was called, or the barrier action (if present) failed due to an exception"
+        ],
+        "return": [
+          "the arrival index of the current thread, where index \n\u003ccode\u003egetParties() - 1\u003c/code\u003e indicates the first to arrive and zero indicates the last to arrive"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.BrokenBarrierException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.TimeoutException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "name": "timeout",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "name": "unit",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "await",
+      "comment": "Waits until all parties have invoked await on this barrier, or the specified waiting time elapses. If the current thread is not the last to arrive then it is disabled for thread scheduling purposes and lies dormant until one of the following things happens: The last thread arrives; or The specified timeout elapses; or Some other thread interrupts the current thread; or Some other thread interrupts one of the other waiting threads; or Some other thread times out while waiting for barrier; or Some other thread invokes reset() on this barrier. If the current thread: has its interrupted status set on entry to this method; or is interrupted while waiting then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. If the specified waiting time elapses then TimeoutException is thrown. If the time is less than or equal to zero, the method will not wait at all. If the barrier is reset() while any thread is waiting, or if the barrier is broken when await is invoked, or while any thread is waiting, then BrokenBarrierException is thrown. If any thread is interrupted while waiting, then all other waiting threads will throw BrokenBarrierException and the barrier is placed in the broken state. If the current thread is the last thread to arrive, and a non-null barrier action was supplied in the constructor, then the current thread runs the action before allowing the other threads to continue. If an exception occurs during the barrier action then that exception will be propagated in the current thread and the barrier is placed in the broken state.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etimeout\u003c/code\u003e - the time to wait for the barrier",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the timeout parameter"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread was interrupted while waiting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/TimeoutException.html\" title\u003d\"class in java.util.concurrent\"\u003eTimeoutException\u003c/a\u003e\u003c/code\u003e - if the specified timeout elapses. In this case the barrier will be broken.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/BrokenBarrierException.html\" title\u003d\"class in java.util.concurrent\"\u003eBrokenBarrierException\u003c/a\u003e\u003c/code\u003e - if \n\u003cem\u003eanother\u003c/em\u003e thread was interrupted or timed out while the current thread was waiting, or the barrier was reset, or the barrier was broken when \n\u003ccode\u003eawait\u003c/code\u003e was called, or the barrier action (if present) failed due to an exception"
+        ],
+        "return": [
+          "the arrival index of the current thread, where index \n\u003ccode\u003egetParties() - 1\u003c/code\u003e indicates the first to arrive and zero indicates the last to arrive"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isBroken",
+      "comment": "Queries if this barrier is in a broken state.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if one or more parties broke out of this barrier due to interruption or timeout since construction or the last reset, or a barrier action failed due to an exception; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "reset",
+      "comment": "Resets the barrier to its initial state. If any parties are currently waiting at the barrier, they will return with a BrokenBarrierException. Note that resets after a breakage has occurred for other reasons can be complicated to carry out; threads need to re-synchronize in some other way, and choose one to perform the reset. It may be preferable to instead create a new barrier for subsequent use.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getNumberWaiting",
+      "comment": "Returns the number of parties currently waiting at the barrier. This method is primarily useful for debugging and assertions.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the number of parties currently blocked in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CyclicBarrier.html#await()\"\u003e\u003ccode\u003eawait()\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "parties",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          },
+          "name": "barrierAction",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new CyclicBarrier that will trip when the given number of parties (threads) are waiting upon it, and which will execute the given barrier action when the barrier is tripped, performed by the last thread entering the barrier.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eparties\u003c/code\u003e - the number of threads that must invoke \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CyclicBarrier.html#await()\"\u003e\u003ccode\u003eawait()\u003c/code\u003e\u003c/a\u003e before the barrier is tripped",
+          "\u003ccode\u003ebarrierAction\u003c/code\u003e - the command to execute when the barrier is tripped, or \n\u003ccode\u003enull\u003c/code\u003e if there is no action"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eparties\u003c/code\u003e is less than 1"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "parties",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new CyclicBarrier that will trip when the given number of parties (threads) are waiting upon it, and does not perform a predefined action when the barrier is tripped.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eparties\u003c/code\u003e - the number of threads that must invoke \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CyclicBarrier.html#await()\"\u003e\u003ccode\u003eawait()\u003c/code\u003e\u003c/a\u003e before the barrier is tripped"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eparties\u003c/code\u003e is less than 1"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.util.concurrent.CyclicBarrier",
+  "annotations": [],
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CountDownLatch.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCountDownLatch\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Phaser.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003ePhaser\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

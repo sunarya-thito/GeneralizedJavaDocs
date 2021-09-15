@@ -1,0 +1,760 @@
+{
+  "packageName": "javax.swing.plaf.nimbus",
+  "simpleName": "AbstractRegionPainter",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Graphics2D",
+            "type": "Class"
+          },
+          "name": "g",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JComponent",
+            "type": "Class"
+          },
+          "name": "c",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "w",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "h",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "paint",
+      "comment": "Renders to the given Graphics2D object. Implementations of this method may modify state on the Graphics2D, and are not required to restore that state upon completion. In most cases, it is recommended that the caller pass in a scratch graphics object. The Graphics2D must never be null. State on the graphics object may be honored by the paint method, but may not be. For instance, setting the antialiasing rendering hint on the graphics may or may not be respected by the Painter implementation. The supplied object parameter acts as an optional configuration argument. For example, it could be of type Component. A Painter that expected it could then read state from that Component and use the state for painting. For example, an implementation may read the backgroundColor and use that. Generally, to enhance reusability, most standard Painters ignore this parameter. They can thus be reused in any context. The object may be null. Implementations must not throw a NullPointerException if the object parameter is null. Finally, the width and height arguments specify the width and height that the Painter should paint into. More specifically, the specified width and height instruct the painter that it should paint fully within this width and height. Any specified clip on the g param will further constrain the region. For example, suppose I have a Painter implementation that draws a gradient. The gradient goes from white to black. It \"stretches\" to fill the painted region. Thus, if I use this Painter to paint a 500 x 500 region, the far left would be black, the far right would be white, and a smooth gradient would be painted between. I could then, without modification, reuse the Painter to paint a region that is 20x20 in size. This region would also be black on the left, white on the right, and a smooth gradient painted between.",
+      "annotations": [],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/Painter.html#paint(java.awt.Graphics2D,T,int,int)\"\u003epaint\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/Painter.html\" title\u003d\"interface in javax.swing\"\u003ePainter\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/JComponent.html\" title\u003d\"class in javax.swing\"\u003eJComponent\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eg\u003c/code\u003e - The Graphics2D to render to. This must not be null.",
+          "\u003ccode\u003ec\u003c/code\u003e - an optional configuration parameter. This may be null.",
+          "\u003ccode\u003ew\u003c/code\u003e - width of the area to paint.",
+          "\u003ccode\u003eh\u003c/code\u003e - height of the area to paint."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JComponent",
+            "type": "Class"
+          },
+          "name": "c",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getExtendedCacheKeys",
+      "comment": "Get any extra attributes which the painter implementation would like to include in the image cache lookups. This is checked for every call of the paint(g, c, w, h) method.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - The component on the current paint call"
+        ],
+        "return": [
+          "Array of extra objects to be included in the cache key"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.plaf.nimbus.AbstractRegionPainter$PaintContext",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "getPaintContext",
+      "comment": "Gets the PaintContext for this painting operation. This method is called on every paint, and so should be fast and produce no garbage. The PaintContext contains information such as cache hints. It also contains data necessary for decoding points at runtime, such as the stretching insets, the canvas size at which the encoded points were defined, and whether the stretching insets are inverted. This method allows for subclasses to package the painting of different states with possibly different canvas sizes, etc, into one AbstractRegionPainter implementation.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "a PaintContext associated with this paint operation."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Graphics2D",
+            "type": "Class"
+          },
+          "name": "g",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "configureGraphics",
+      "comment": "Configures the given Graphics2D. Often, rendering hints or compositing rules are applied to a Graphics2D object prior to painting, which should affect all of the subsequent painting operations. This method provides a convenient hook for configuring the Graphics object prior to rendering, regardless of whether the render operation is performed to an intermediate buffer or directly to the display.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eg\u003c/code\u003e - The Graphics2D object to configure. Will not be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Graphics2D",
+            "type": "Class"
+          },
+          "name": "g",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JComponent",
+            "type": "Class"
+          },
+          "name": "c",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "width",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "height",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "extendedCacheKeys",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "doPaint",
+      "comment": "Actually performs the painting operation. Subclasses must implement this method. The graphics object passed may represent the actual surface being rendered to, or it may be an intermediate buffer. It has also been pre-translated. Simply render the component as if it were located at 0, 0 and had a width of width and a height of height. For performance reasons, you may want to read the clip from the Graphics2D object and only render within that space.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eg\u003c/code\u003e - The Graphics2D surface to paint to",
+          "\u003ccode\u003ec\u003c/code\u003e - The JComponent related to the drawing event. For example, if the region being rendered is Button, then \n\u003ccode\u003ec\u003c/code\u003e will be a JButton. If the region being drawn is ScrollBarSlider, then the component will be JScrollBar. This value may be null.",
+          "\u003ccode\u003ewidth\u003c/code\u003e - The width of the region to paint. Note that in the case of painting the foreground, this value may differ from c.getWidth().",
+          "\u003ccode\u003eheight\u003c/code\u003e - The height of the region to paint. Note that in the case of painting the foreground, this value may differ from c.getHeight().",
+          "\u003ccode\u003eextendedCacheKeys\u003c/code\u003e - The result of the call to getExtendedCacheKeys()"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "x",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeX",
+      "comment": "Decodes and returns a float value representing the actual pixel location for the given encoded X value.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ex\u003c/code\u003e - an encoded x value (0...1, or 1...2, or 2...3)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ex \u0026lt; 0\u003c/code\u003e or \n\u003ccode\u003ex \u0026gt; 3\u003c/code\u003e"
+        ],
+        "return": [
+          "the decoded x value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "y",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeY",
+      "comment": "Decodes and returns a float value representing the actual pixel location for the given encoded y value.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ey\u003c/code\u003e - an encoded y value (0...1, or 1...2, or 2...3)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ey \u0026lt; 0\u003c/code\u003e or \n\u003ccode\u003ey \u0026gt; 3\u003c/code\u003e"
+        ],
+        "return": [
+          "the decoded y value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "x",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "dx",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeAnchorX",
+      "comment": "Decodes and returns a float value representing the actual pixel location for the anchor point given the encoded X value of the control point, and the offset distance to the anchor from that control point.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ex\u003c/code\u003e - an encoded x value of the bezier control point (0...1, or 1...2, or 2...3)",
+          "\u003ccode\u003edx\u003c/code\u003e - the offset distance to the anchor from the control point x"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ex \u0026lt; 0\u003c/code\u003e or \n\u003ccode\u003ex \u0026gt; 3\u003c/code\u003e"
+        ],
+        "return": [
+          "the decoded x location of the control point"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "y",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "dy",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeAnchorY",
+      "comment": "Decodes and returns a float value representing the actual pixel location for the anchor point given the encoded Y value of the control point, and the offset distance to the anchor from that control point.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ey\u003c/code\u003e - an encoded y value of the bezier control point (0...1, or 1...2, or 2...3)",
+          "\u003ccode\u003edy\u003c/code\u003e - the offset distance to the anchor from the control point y"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ey \u0026lt; 0\u003c/code\u003e or \n\u003ccode\u003ey \u0026gt; 3\u003c/code\u003e"
+        ],
+        "return": [
+          "the decoded y position of the control point"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "key",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "hOffset",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "sOffset",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "bOffset",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "aOffset",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeColor",
+      "comment": "Decodes and returns a color, which is derived from a base color in UI defaults.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - A key corresponding to the value in the UI Defaults table of UIManager where the base color is defined",
+          "\u003ccode\u003ehOffset\u003c/code\u003e - The hue offset used for derivation.",
+          "\u003ccode\u003esOffset\u003c/code\u003e - The saturation offset used for derivation.",
+          "\u003ccode\u003ebOffset\u003c/code\u003e - The brightness offset used for derivation.",
+          "\u003ccode\u003eaOffset\u003c/code\u003e - The alpha offset used for derivation. Between 0...255"
+        ],
+        "return": [
+          "The derived color, whose color value will change if the parent uiDefault color changes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Color",
+            "type": "Class"
+          },
+          "name": "color1",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Color",
+            "type": "Class"
+          },
+          "name": "color2",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "midPoint",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeColor",
+      "comment": "Decodes and returns a color, which is derived from a offset between two other colors.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecolor1\u003c/code\u003e - The first color",
+          "\u003ccode\u003ecolor2\u003c/code\u003e - The second color",
+          "\u003ccode\u003emidPoint\u003c/code\u003e - The offset between color 1 and color 2, a value of 0.0 is color 1 and 1.0 is color 2;"
+        ],
+        "return": [
+          "The derived color"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.LinearGradientPaint",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "x1",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "y1",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "x2",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "y2",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "midpoints",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Color",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "colors",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeGradient",
+      "comment": "Given parameters for creating a LinearGradientPaint, this method will create and return a linear gradient paint. One primary purpose for this method is to avoid creating a LinearGradientPaint where the start and end points are equal. In such a case, the end y point is slightly increased to avoid the overlap.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ex1\u003c/code\u003e - x1",
+          "\u003ccode\u003ey1\u003c/code\u003e - y1",
+          "\u003ccode\u003ex2\u003c/code\u003e - x2",
+          "\u003ccode\u003ey2\u003c/code\u003e - y2",
+          "\u003ccode\u003emidpoints\u003c/code\u003e - the midpoints",
+          "\u003ccode\u003ecolors\u003c/code\u003e - the colors"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emidpoints\u003c/code\u003e array is null, or \n\u003ccode\u003ecolors\u003c/code\u003e array is null,",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if start and end points are the same points, or \n\u003ccode\u003emidpoints.length !\u003d colors.length\u003c/code\u003e, or \n\u003ccode\u003ecolors\u003c/code\u003e is less than 2 in size, or a \n\u003ccode\u003emidpoints\u003c/code\u003e value is less than 0.0 or greater than 1.0, or the \n\u003ccode\u003emidpoints\u003c/code\u003e are not provided in strictly increasing order"
+        ],
+        "return": [
+          "a valid LinearGradientPaint. This method never returns null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.RadialGradientPaint",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "x",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "y",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "r",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "midpoints",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Color",
+            "type": "Class",
+            "arrayDimensions": 1
+          },
+          "name": "colors",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "decodeRadialGradient",
+      "comment": "Given parameters for creating a RadialGradientPaint, this method will create and return a radial gradient paint. One primary purpose for this method is to avoid creating a RadialGradientPaint where the radius is non-positive. In such a case, the radius is just slightly increased to avoid 0.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ex\u003c/code\u003e - x-coordinate",
+          "\u003ccode\u003ey\u003c/code\u003e - y-coordinate",
+          "\u003ccode\u003er\u003c/code\u003e - radius",
+          "\u003ccode\u003emidpoints\u003c/code\u003e - the midpoints",
+          "\u003ccode\u003ecolors\u003c/code\u003e - the colors"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emidpoints\u003c/code\u003e array is null, or \n\u003ccode\u003ecolors\u003c/code\u003e array is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003er\u003c/code\u003e is non-positive, or \n\u003ccode\u003emidpoints.length !\u003d colors.length\u003c/code\u003e, or \n\u003ccode\u003ecolors\u003c/code\u003e is less than 2 in size, or a \n\u003ccode\u003emidpoints\u003c/code\u003e value is less than 0.0 or greater than 1.0, or the \n\u003ccode\u003emidpoints\u003c/code\u003e are not provided in strictly increasing order"
+        ],
+        "return": [
+          "a valid RadialGradientPaint. This method never returns null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "annotations": [],
+          "type": {
+            "name": "javax.swing.JComponent",
+            "type": "Class"
+          },
+          "name": "c",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "name": "property",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "java.awt.Color",
+            "type": "Class"
+          },
+          "name": "defaultColor",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "saturationOffset",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "name": "brightnessOffset",
+          "varargs": false
+        },
+        {
+          "annotations": [],
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "name": "alphaOffset",
+          "varargs": false
+        }
+      ],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "getComponentColor",
+      "comment": "Get a color property from the given JComponent. First checks for a getXXX() method and if that fails checks for a client property with key property. If that still fails to return a Color then defaultColor is returned.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - The component to get the color property from",
+          "\u003ccode\u003eproperty\u003c/code\u003e - The name of a bean style property or client property",
+          "\u003ccode\u003edefaultColor\u003c/code\u003e - The color to return if no color was obtained from the component.",
+          "\u003ccode\u003esaturationOffset\u003c/code\u003e - additively modifies the HSB saturation component of the color returned (ignored if default color is returned).",
+          "\u003ccode\u003ebrightnessOffset\u003c/code\u003e - additively modifies the HSB brightness component of the color returned (ignored if default color is returned).",
+          "\u003ccode\u003ealphaOffset\u003c/code\u003e - additively modifies the ARGB alpha component of the color returned (ignored if default color is returned)."
+        ],
+        "return": [
+          "The color that was obtained from the component or defaultColor"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Create a new AbstractRegionPainter",
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "innerClasses": [
+    "javax.swing.plaf.nimbus.AbstractRegionPainter$PaintContext"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.swing.plaf.nimbus.AbstractRegionPainter",
+  "annotations": [],
+  "tagMap": {}
+}
