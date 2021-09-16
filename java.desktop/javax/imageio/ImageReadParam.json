@@ -17,7 +17,6 @@
       "modifiers": 4,
       "name": "canSetSourceRenderSize",
       "comment": "true if this ImageReadParam allows the source rendering dimensions to be set. By default, the value is false. Subclasses must set this value manually. ImageReaders that do not support setting of the source render size should set this value to false.",
-      "annotations": [],
       "tagMap": {}
     },
     {
@@ -29,7 +28,6 @@
       "modifiers": 4,
       "name": "sourceRenderSize",
       "comment": "The desired rendering width and height of the source, if canSetSourceRenderSize is true, or null. ImageReaders that do not support setting of the source render size may ignore this value.",
-      "annotations": [],
       "tagMap": {}
     },
     {
@@ -41,20 +39,20 @@
       "modifiers": 4,
       "name": "destination",
       "comment": "The current destination BufferedImage, or null if none has been set. By default, the value is null.",
-      "annotations": [],
       "tagMap": {}
     },
     {
       "type": {
         "name": "int",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "memberType": "JavaField",
       "modifiers": 4,
       "name": "destinationBands",
       "comment": "The set of destination bands to be used, as an array of ints. By default, the value is null, indicating all destination bands should be written in order.",
-      "annotations": [],
       "tagMap": {}
     },
     {
@@ -66,7 +64,6 @@
       "modifiers": 4,
       "name": "minProgressivePass",
       "comment": "The minimum index of a progressive pass to read from the source. By default, the value is set to 0, which indicates that passes starting with the first available pass should be decoded. Subclasses should ensure that this value is non-negative.",
-      "annotations": [],
       "tagMap": {}
     },
     {
@@ -78,7 +75,6 @@
       "modifiers": 4,
       "name": "numProgressivePasses",
       "comment": "The maximum number of progressive passes to read from the source. By default, the value is set to Integer.MAX_VALUE, which indicates that passes up to and including the last available pass should be decoded. Subclasses should ensure that this value is positive. Additionally, if the value is not Integer.MAX_VALUE, then minProgressivePass + numProgressivePasses - 1 should not exceed Integer.MAX_VALUE.",
-      "annotations": [],
       "tagMap": {}
     },
     {
@@ -88,21 +84,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.awt.image.BufferedImage",
             "type": "Class"
           },
-          "name": "destination",
-          "varargs": false
+          "field": {
+            "name": "destination"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "setDestination",
       "comment": "Supplies a BufferedImage to be used as the destination for decoded pixel data. The currently set image will be written to by the read, readAll, and readRaster methods, and a reference to it will be returned by those methods. Pixel data from the aforementioned methods will be written starting at the offset specified by getDestinationOffset. If destination is null, a newly-created BufferedImage will be returned by those methods. At the time of reading, the image is checked to verify that its ColorModel and SampleModel correspond to one of the ImageTypeSpecifiers returned from the ImageReader\u0027s getImageTypes method. If it does not, the reader will throw an IIOException.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#getDestination()\"\u003e\u003ccode\u003egetDestination()\u003c/code\u003e\u003c/a\u003e"
@@ -118,12 +112,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getDestination",
       "comment": "Returns the BufferedImage currently set by the setDestination method, or null if none is set.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#setDestination(java.awt.image.BufferedImage)\"\u003e\u003ccode\u003esetDestination(java.awt.image.BufferedImage)\u003c/code\u003e\u003c/a\u003e"
@@ -140,22 +132,22 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "int",
             "type": "Class",
-            "arrayDimensions": 1
+            "arrayDimensions": [
+              {}
+            ]
           },
-          "name": "destinationBands",
-          "varargs": false
+          "field": {
+            "name": "destinationBands"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "setDestinationBands",
       "comment": "Sets the indices of the destination bands where data will be placed. Duplicate indices are not allowed. A null value indicates that all destination bands will be used. Choosing a destination band subset will not affect the number of bands in the output image of a read if no destination image is specified; the created destination image will still have the same number of bands as if this method had never been called. If a different number of bands in the destination image is desired, an image must be supplied using the ImageReadParam.setDestination method. At the time of reading or writing, an IllegalArgumentException will be thrown by the reader or writer if a value larger than the largest destination band index has been specified, or if the number of source bands and destination bands to be used differ. The ImageReader.checkReadParamBandSettings method may be used to automate this test.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#getDestinationBands()\"\u003e\u003ccode\u003egetDestinationBands()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/IIOParam.html#getSourceBands()\"\u003e\u003ccode\u003eIIOParam.getSourceBands()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReader.html#checkReadParamBandSettings(javax.imageio.ImageReadParam,int,int)\"\u003e\u003ccode\u003eImageReader.checkReadParamBandSettings(javax.imageio.ImageReadParam, int, int)\u003c/code\u003e\u003c/a\u003e"
@@ -172,15 +164,15 @@
       "returnType": {
         "name": "int",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getDestinationBands",
       "comment": "Returns the set of band indices where data will be placed. If no value has been set, null is returned to indicate that all destination bands will be used.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#setDestinationBands(int%5B%5D)\"\u003e\u003ccode\u003esetDestinationBands(int[])\u003c/code\u003e\u003c/a\u003e"
@@ -196,12 +188,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "canSetSourceRenderSize",
       "comment": "Returns true if this reader allows the source image to be rendered at an arbitrary size as part of the decoding process, by means of the setSourceRenderSize method. If this method returns false, calls to setSourceRenderSize will throw an UnsupportedOperationException.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#setSourceRenderSize(java.awt.Dimension)\"\u003e\u003ccode\u003esetSourceRenderSize(java.awt.Dimension)\u003c/code\u003e\u003c/a\u003e"
@@ -224,21 +214,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.awt.Dimension",
             "type": "Class"
           },
-          "name": "size",
-          "varargs": false
+          "field": {
+            "name": "size"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "setSourceRenderSize",
       "comment": "If the image is able to be rendered at an arbitrary size, sets the source width and height to the supplied values. Note that the values returned from the getWidth and getHeight methods on ImageReader are not affected by this method; they will continue to return the default size for the image. Similarly, if the image is also tiled the tile width and height are given in terms of the default size. Typically, the width and height should be chosen such that the ratio of width to height closely approximates the aspect ratio of the image, as returned from ImageReader.getAspectRatio. If this plug-in does not allow the rendering size to be set, an UnsupportedOperationException will be thrown. To remove the render size setting, pass in a value of null for size.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#getSourceRenderSize()\"\u003e\u003ccode\u003egetSourceRenderSize()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReader.html#getWidth(int)\"\u003e\u003ccode\u003eImageReader.getWidth(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReader.html#getHeight(int)\"\u003e\u003ccode\u003eImageReader.getHeight(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReader.html#getAspectRatio(int)\"\u003e\u003ccode\u003eImageReader.getAspectRatio(int)\u003c/code\u003e\u003c/a\u003e"
@@ -258,12 +246,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getSourceRenderSize",
       "comment": "Returns the width and height of the source image as it will be rendered during decoding, if they have been set via the setSourceRenderSize method. A null value indicates that no setting has been made.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#setSourceRenderSize(java.awt.Dimension)\"\u003e\u003ccode\u003esetSourceRenderSize(java.awt.Dimension)\u003c/code\u003e\u003c/a\u003e"
@@ -280,30 +266,28 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "int",
             "type": "Class"
           },
-          "name": "minPass",
-          "varargs": false
+          "field": {
+            "name": "minPass"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "int",
             "type": "Class"
           },
-          "name": "numPasses",
-          "varargs": false
+          "field": {
+            "name": "numPasses"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "setSourceProgressivePasses",
       "comment": "Sets the range of progressive passes that will be decoded. Passes outside of this range will be ignored. A progressive pass is a re-encoding of the entire image, generally at progressively higher effective resolutions, but requiring greater transmission bandwidth. The most common use of progressive encoding is found in the JPEG format, where successive passes include more detailed representations of the high-frequency image content. The actual number of passes to be decoded is determined during decoding, based on the number of actual passes available in the stream. Thus if minPass + numPasses - 1 is larger than the index of the last available passes, decoding will end with that pass. A value of numPasses of Integer.MAX_VALUE indicates that all passes from minPass forward should be read. Otherwise, the index of the last pass (i.e., minPass + numPasses - 1) must not exceed Integer.MAX_VALUE. There is no unsetSourceProgressivePasses method; the same effect may be obtained by calling setSourceProgressivePasses(0, Integer.MAX_VALUE).",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#getSourceMinProgressivePass()\"\u003e\u003ccode\u003egetSourceMinProgressivePass()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#getSourceMaxProgressivePass()\"\u003e\u003ccode\u003egetSourceMaxProgressivePass()\u003c/code\u003e\u003c/a\u003e"
@@ -323,12 +307,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getSourceMinProgressivePass",
       "comment": "Returns the index of the first progressive pass that will be decoded. If no value has been set, 0 will be returned (which is the correct value).",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#setSourceProgressivePasses(int,int)\"\u003e\u003ccode\u003esetSourceProgressivePasses(int, int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#getSourceNumProgressivePasses()\"\u003e\u003ccode\u003egetSourceNumProgressivePasses()\u003c/code\u003e\u003c/a\u003e"
@@ -344,12 +326,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getSourceMaxProgressivePass",
       "comment": "If getSourceNumProgressivePasses is equal to Integer.MAX_VALUE, returns Integer.MAX_VALUE. Otherwise, returns getSourceMinProgressivePass() + getSourceNumProgressivePasses() - 1.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "the index of the last pass to be read, or \n\u003ccode\u003eInteger.MAX_VALUE\u003c/code\u003e."
@@ -362,12 +342,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getSourceNumProgressivePasses",
       "comment": "Returns the number of the progressive passes that will be decoded. If no value has been set, Integer.MAX_VALUE will be returned (which is the correct value).",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#setSourceProgressivePasses(int,int)\"\u003e\u003ccode\u003esetSourceProgressivePasses(int, int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReadParam.html#getSourceMinProgressivePass()\"\u003e\u003ccode\u003egetSourceMinProgressivePass()\u003c/code\u003e\u003c/a\u003e"
@@ -379,11 +357,9 @@
     },
     {
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "comment": "Constructs an ImageReadParam.",
-      "annotations": [],
       "tagMap": {}
     }
   ],

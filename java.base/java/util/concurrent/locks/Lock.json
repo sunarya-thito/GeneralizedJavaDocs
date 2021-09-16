@@ -14,12 +14,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "lock",
       "comment": "Acquires the lock. If the lock is not available then the current thread becomes disabled for thread scheduling purposes and lies dormant until the lock has been acquired. Implementation Considerations A Lock implementation may be able to detect erroneous use of the lock, such as an invocation that would cause deadlock, and may throw an (unchecked) exception in such circumstances. The circumstances and the exception type must be documented by that Lock implementation.",
-      "annotations": [],
       "tagMap": {}
     },
     {
@@ -34,12 +32,10 @@
         }
       ],
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "lockInterruptibly",
       "comment": "Acquires the lock unless the current thread is interrupted. Acquires the lock if it is available and returns immediately. If the lock is not available then the current thread becomes disabled for thread scheduling purposes and lies dormant until one of two things happens: The lock is acquired by the current thread; or Some other thread interrupts the current thread, and interruption of lock acquisition is supported. If the current thread: has its interrupted status set on entry to this method; or is interrupted while acquiring the lock, and interruption of lock acquisition is supported, then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. Implementation Considerations The ability to interrupt a lock acquisition in some implementations may not be possible, and if possible may be an expensive operation. The programmer should be aware that this may be the case. An implementation should document when this is the case. An implementation can favor responding to an interrupt over normal method return. A Lock implementation may be able to detect erroneous use of the lock, such as an invocation that would cause deadlock, and may throw an (unchecked) exception in such circumstances. The circumstances and the exception type must be documented by that Lock implementation.",
-      "annotations": [],
       "tagMap": {
         "throws": [
           "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted while acquiring the lock (and interruption of lock acquisition is supported)"
@@ -52,12 +48,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "tryLock",
       "comment": "Acquires the lock only if it is free at the time of invocation. Acquires the lock if it is available and returns immediately with the value true. If the lock is not available then this method will return immediately with the value false. A typical usage idiom for this method would be:  \n Lock lock \u003d ...;\n if (lock.tryLock()) {\n   try {\n     // manipulate protected state\n   } finally {\n     lock.unlock();\n   }\n } else {\n   // perform alternative actions\n } This usage ensures that the lock is unlocked if it was acquired, and doesn\u0027t try to unlock if the lock was not acquired.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "\u003ccode\u003etrue\u003c/code\u003e if the lock was acquired and \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
@@ -77,30 +71,28 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "long",
             "type": "Class"
           },
-          "name": "time",
-          "varargs": false
+          "field": {
+            "name": "time"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.concurrent.TimeUnit",
             "type": "Class"
           },
-          "name": "unit",
-          "varargs": false
+          "field": {
+            "name": "unit"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "tryLock",
       "comment": "Acquires the lock if it is free within the given waiting time and the current thread has not been interrupted. If the lock is available this method returns immediately with the value true. If the lock is not available then the current thread becomes disabled for thread scheduling purposes and lies dormant until one of three things happens: The lock is acquired by the current thread; or Some other thread interrupts the current thread, and interruption of lock acquisition is supported; or The specified waiting time elapses If the lock is acquired then the value true is returned. If the current thread: has its interrupted status set on entry to this method; or is interrupted while acquiring the lock, and interruption of lock acquisition is supported, then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. If the specified waiting time elapses then the value false is returned. If the time is less than or equal to zero, the method will not wait at all. Implementation Considerations The ability to interrupt a lock acquisition in some implementations may not be possible, and if possible may be an expensive operation. The programmer should be aware that this may be the case. An implementation should document when this is the case. An implementation can favor responding to an interrupt over normal method return, or reporting a timeout. A Lock implementation may be able to detect erroneous use of the lock, such as an invocation that would cause deadlock, and may throw an (unchecked) exception in such circumstances. The circumstances and the exception type must be documented by that Lock implementation.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003etime\u003c/code\u003e - the maximum time to wait for the lock",
@@ -120,12 +112,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "unlock",
       "comment": "Releases the lock. Implementation Considerations A Lock implementation will usually impose restrictions on which thread can release a lock (typically only the holder of the lock can release it) and may throw an (unchecked) exception if the restriction is violated. Any restrictions and the exception type must be documented by that Lock implementation.",
-      "annotations": [],
       "tagMap": {}
     },
     {
@@ -134,12 +124,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "newCondition",
       "comment": "Returns a new Condition instance that is bound to this Lock instance. Before waiting on the condition the lock must be held by the current thread. A call to Condition.await() will atomically release the lock before waiting and re-acquire the lock before the wait returns. Implementation Considerations The exact operation of the Condition instance depends on the Lock implementation and must be documented by that implementation.",
-      "annotations": [],
       "tagMap": {
         "throws": [
           "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eLock\u003c/code\u003e implementation does not support conditions"

@@ -21,40 +21,40 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "proxy",
-          "varargs": false
+          "field": {
+            "name": "proxy"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.reflect.Method",
             "type": "Class"
           },
-          "name": "method",
-          "varargs": false
+          "field": {
+            "name": "method"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class",
-            "arrayDimensions": 1
+            "arrayDimensions": [
+              {}
+            ]
           },
-          "name": "args",
-          "varargs": false
+          "field": {
+            "name": "args"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "invoke",
       "comment": "Processes a method invocation on a proxy instance and returns the result. This method will be invoked on an invocation handler when a method is invoked on a proxy instance that it is associated with.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/UndeclaredThrowableException.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eUndeclaredThrowableException\u003c/code\u003e\u003c/a\u003e"
@@ -85,39 +85,38 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "proxy",
-          "varargs": false
+          "field": {
+            "name": "proxy"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.reflect.Method",
             "type": "Class"
           },
-          "name": "method",
-          "varargs": false
+          "field": {
+            "name": "method"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "args",
-          "varargs": true
+          "field": {
+            "name": "args"
+          },
+          "varArgs": {}
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 8,
       "name": "invokeDefault",
       "comment": "Invokes the specified default method on the given proxy instance with the given parameters. The given method must be a default method declared in a proxy interface of the proxy\u0027s class or inherited from its superinterface directly or indirectly. Invoking this method behaves as if invokespecial instruction executed from the proxy class, targeting the default method in a proxy interface. This is equivalent to the invocation: X.super.m(A* a) where X is a proxy interface and the call to X.super::m(A*) is resolved to the given method. Examples: interface A and B both declare a default implementation of method m. Interface C extends A and inherits the default method m from its superinterface A. \n interface A {\n     default T m(A a) { return t1; }\n }\n interface B {\n     default T m(A a) { return t2; }\n }\n interface C extends A {}\n The following creates a proxy instance that implements A and invokes the default method A::m. \n Object proxy \u003d Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { A.class },\n         (o, m, params) -\u003e {\n             if (m.isDefault()) {\n                 // if it\u0027s a default method, invoke it\n                 return InvocationHandler.invokeDefault(o, m, params);\n             }\n         });\n If a proxy instance implements both A and B, both of which provides the default implementation of method m, the invocation handler can dispatch the method invocation to A::m or B::m via the invokeDefault method. For example, the following code delegates the method invocation to B::m. \n Object proxy \u003d Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { A.class, B.class },\n         (o, m, params) -\u003e {\n             if (m.getName().equals(\"m\")) {\n                 // invoke B::m instead of A::m\n                 Method bMethod \u003d B.class.getMethod(m.getName(), m.getParameterTypes());\n                 return InvocationHandler.invokeDefault(o, bMethod, params);\n             }\n         });\n If a proxy instance implements C that inherits the default method m from its superinterface A, then the interface method invocation on \"m\" is dispatched to the invocation handler\u0027s invoke method with the Method object argument representing the default method A::m. \n Object proxy \u003d Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { C.class },\n        (o, m, params) -\u003e {\n             if (m.isDefault()) {\n                 // behaves as if calling C.super.m(params)\n                 return InvocationHandler.invokeDefault(o, m, params);\n             }\n        });\n The invocation of method \"m\" on this proxy will behave as if C.super::m is called and that is resolved to invoking A::m. Adding a default method, or changing a method from abstract to default may cause an exception if an existing code attempts to call invokeDefault to invoke a default method. For example, if C is modified to implement a default method m: \n interface C extends A {\n     default T m(A a) { return t3; }\n }\n The code above that creates proxy instance proxy with the modified C will run with no exception and it will result in calling C::m instead of A::m. The following is another example that creates a proxy instance of C and the invocation handler calls the invokeDefault method to invoke A::m: \n C c \u003d (C) Proxy.newProxyInstance(loader, new Class\u003c?\u003e[] { C.class },\n         (o, m, params) -\u003e {\n             if (m.getName().equals(\"m\")) {\n                 // IllegalArgumentException thrown as {@code A::m} is not a method\n                 // inherited from its proxy interface C\n                 Method aMethod \u003d A.class.getMethod(m.getName(), m.getParameterTypes());\n                 return InvocationHandler.invokeDefault(o, aMethod params);\n             }\n         });\n c.m(...);\n The above code runs successfully with the old version of C and A::m is invoked. When running with the new version of C, the above code will fail with IllegalArgumentException because C overrides the implementation of the same method and A::m is not accessible by a proxy instance.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "The \n\u003ccode\u003eproxy\u003c/code\u003e parameter is of type \n\u003ccode\u003eObject\u003c/code\u003e rather than \n\u003ccode\u003eProxy\u003c/code\u003e to make it easy for \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/InvocationHandler.html#invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object%5B%5D)\"\u003e\u003ccode\u003eInvocationHandler::invoke\u003c/code\u003e\u003c/a\u003e implementation to call directly without the need of casting."

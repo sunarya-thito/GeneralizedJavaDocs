@@ -17,7 +17,6 @@
       "modifiers": 25,
       "name": "LOGGING_MXBEAN_NAME",
       "comment": "String representation of the ObjectName for the management interface for the logging facility.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/PlatformLoggingMXBean.html\" title\u003d\"interface in java.lang.management\"\u003e\u003ccode\u003ePlatformLoggingMXBean\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.logging.LogManager.LOGGING_MXBEAN_NAME\"\u003eConstant Field Values\u003c/a\u003e"
@@ -33,12 +32,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getLogManager",
       "comment": "Returns the global LogManager object.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "the global LogManager object"
@@ -52,21 +49,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.util.logging.Logger",
             "type": "Class"
           },
-          "name": "logger",
-          "varargs": false
+          "field": {
+            "name": "logger"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "addLogger",
       "comment": "Add a named logger. This does nothing and returns false if a logger with the same name is already registered. The Logger factory methods call this method to register each newly created Logger. The application should retain its own reference to the Logger object to avoid it being garbage collected. The LogManager may only retain a weak reference.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003elogger\u003c/code\u003e - the new logger."
@@ -86,21 +81,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "name",
-          "varargs": false
+          "field": {
+            "name": "name"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getLogger",
       "comment": "Method to find a named logger. Note that since untrusted code may create loggers with arbitrary names this method should not be relied on to find Loggers for security sensitive logging. It is also important to note that the Logger associated with the String name may be garbage collected at any time if there is no strong reference to the Logger. The caller of this method must check the return value for null in order to properly handle the case where the Logger has been garbage collected.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ename\u003c/code\u003e - name of the logger"
@@ -122,12 +115,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getLoggerNames",
       "comment": "Get an enumeration of known logger names. Note: Loggers may be added dynamically as new classes are loaded. This method only reports on the loggers that are currently registered. It is also important to note that this method only returns the name of a Logger, not a strong reference to the Logger itself. The returned String does nothing to prevent the Logger from being garbage collected. In particular, if the returned name is passed to LogManager.getLogger(), then the caller must check the return value from LogManager.getLogger() for null to properly handle the case where the Logger has been garbage collected in the time since its name was returned by this method.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "enumeration of logger name strings"
@@ -150,12 +141,10 @@
         }
       ],
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "readConfiguration",
       "comment": "Reads and initializes the logging configuration. If the \"java.util.logging.config.class\" system property is set, then the property value is treated as a class name. The given class will be loaded, an object will be instantiated, and that object\u0027s constructor is responsible for reading in the initial configuration. (That object may use other system properties to control its configuration.) The alternate configuration class can use readConfiguration(InputStream) to define properties in the LogManager. If \"java.util.logging.config.class\" system property is not set, then this method will read the initial configuration from a properties file and calls the readConfiguration(InputStream) method to initialize the configuration. The \"java.util.logging.config.file\" system property can be used to specify the properties file that will be read as the initial configuration; if not set, then the LogManager default configuration is used. The default configuration is typically loaded from the properties file \"conf/logging.properties\" in the Java installation directory. Any registered configuration listener will be invoked after the properties are read.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "This \n\u003ccode\u003ereadConfiguration\u003c/code\u003e method should only be used for initializing the configuration during LogManager initialization or used with the \"java.util.logging.config.class\" property. When this method is called after loggers have been created, and the \"java.util.logging.config.class\" system property is not set, all existing loggers will be \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#reset()\"\u003ereset\u003c/a\u003e. Then any existing loggers that have a level property specified in the new configuration stream will be \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/Logger.html#setLevel(java.util.logging.Level)\"\u003eset\u003c/a\u003e to the specified log level. \n\u003cp\u003e To properly update the logging configuration, use the \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#updateConfiguration(java.util.function.Function)\"\u003e\u003ccode\u003eupdateConfiguration(java.util.function.Function)\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#updateConfiguration(java.io.InputStream,java.util.function.Function)\"\u003e\u003ccode\u003eupdateConfiguration(java.io.InputStream, java.util.function.Function)\u003c/code\u003e\u003c/a\u003e methods instead.\u003c/p\u003e"
@@ -178,12 +167,10 @@
         }
       ],
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "reset",
       "comment": "Reset the logging configuration. For all named loggers, the reset operation removes and closes all Handlers and (except for the root logger) sets the level to null. The root logger\u0027s level is set to Level.INFO.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "Calling this method also clears the LogManager \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#getProperty(java.lang.String)\"\u003eproperties\u003c/a\u003e. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#updateConfiguration(java.util.function.Function)\"\u003e\u003ccode\u003eupdateConfiguration(Function)\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#updateConfiguration(java.io.InputStream,java.util.function.Function)\"\u003e\u003ccode\u003eupdateConfiguration(InputStream, Function)\u003c/code\u003e\u003c/a\u003e method can be used to properly update to a new configuration."
@@ -210,21 +197,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.io.InputStream",
             "type": "Class"
           },
-          "name": "ins",
-          "varargs": false
+          "field": {
+            "name": "ins"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "readConfiguration",
       "comment": "Reads and initializes the logging configuration from the given input stream. Any registered configuration listener will be invoked after the properties are read.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "This \n\u003ccode\u003ereadConfiguration\u003c/code\u003e method should only be used for initializing the configuration during LogManager initialization or used with the \"java.util.logging.config.class\" property. When this method is called after loggers have been created, all existing loggers will be \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#reset()\"\u003ereset\u003c/a\u003e. Then any existing loggers that have a level property specified in the given input stream will be \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/Logger.html#setLevel(java.util.logging.Level)\"\u003eset\u003c/a\u003e to the specified log level. \n\u003cp\u003e To properly update the logging configuration, use the \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#updateConfiguration(java.util.function.Function)\"\u003e\u003ccode\u003eupdateConfiguration(java.util.function.Function)\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#updateConfiguration(java.io.InputStream,java.util.function.Function)\"\u003e\u003ccode\u003eupdateConfiguration(java.io.InputStream, java.util.function.Function)\u003c/code\u003e\u003c/a\u003e method instead.\u003c/p\u003e"
@@ -251,7 +236,6 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.util.function.Function",
             "parameters": [
@@ -280,16 +264,15 @@
             ],
             "type": "Class"
           },
-          "name": "mapper",
-          "varargs": false
+          "field": {
+            "name": "mapper"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "updateConfiguration",
       "comment": "Updates the logging configuration. If the \"java.util.logging.config.file\" system property is set, then the property value specifies the properties file to be read as the new configuration. Otherwise, the LogManager default configuration is used. The default configuration is typically loaded from the properties file \"conf/logging.properties\" in the Java installation directory. This method reads the new configuration and calls the updateConfiguration(ins, mapper) method to update the configuration.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LogManager.html#updateConfiguration(java.io.InputStream,java.util.function.Function)\"\u003e\u003ccode\u003eupdateConfiguration(java.io.InputStream, java.util.function.Function)\u003c/code\u003e\u003c/a\u003e"
@@ -323,16 +306,15 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.io.InputStream",
             "type": "Class"
           },
-          "name": "ins",
-          "varargs": false
+          "field": {
+            "name": "ins"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.function.Function",
             "parameters": [
@@ -361,16 +343,15 @@
             ],
             "type": "Class"
           },
-          "name": "mapper",
-          "varargs": false
+          "field": {
+            "name": "mapper"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "updateConfiguration",
       "comment": "Updates the logging configuration. For each configuration key in the existing configuration and the given input stream configuration, the given mapper function is invoked to map from the configuration key to a function, f(o,n), that takes the old value and new value and returns the resulting value to be applied in the resulting configuration, as specified in the table below. Let k be a configuration key in the old or new configuration, o be the old value (i.e. the value associated with k in the old configuration), n be the new value (i.e. the value associated with k in the new configuration), and f be the function returned by mapper.apply(k): then v \u003d f(o,n) is the resulting value. If v is not null, then a property k with value v will be added to the resulting configuration. Otherwise, it will be omitted. A null value may be passed to function f to indicate that the corresponding configuration has no configuration key k. The function f may return null to indicate that there will be no value associated with k in the resulting configuration. If mapper is null, then v will be set to n. LogManager properties are updated with the resulting value in the resulting configuration. The registered configuration listeners will be invoked after the configuration is successfully updated. Updating configuration properties Property Resulting Behavior \u003clogger\u003e.level If the resulting configuration defines a level for a logger and if the resulting level is different than the level specified in the the old configuration, or not specified in the old configuration, then if the logger exists or if children for that logger exist, the level for that logger will be updated, and the change propagated to any existing logger children. This may cause the logger to be created, if necessary. If the old configuration defined a level for a logger, and the resulting configuration doesn\u0027t, then this change will not be propagated to existing loggers, if any. To completely replace a configuration - the caller should therefore call reset to empty the current configuration, before calling updateConfiguration. \u003clogger\u003e.useParentHandlers If either the resulting or the old value for the useParentHandlers property is not null, then if the logger exists or if children for that logger exist, that logger will be updated to the resulting value. The value of the useParentHandlers property is the value specified in the configuration; if not specified, the default is true. \u003clogger\u003e.handlers If the resulting configuration defines a list of handlers for a logger, and if the resulting list is different than the list specified in the old configuration for that logger (that could be empty), then if the logger exists or its children exist, the handlers associated with that logger are closed and removed and the new handlers will be created per the resulting configuration and added to that logger, creating that logger if necessary. If the old configuration defined some handlers for a logger, and the resulting configuration doesn\u0027t, if that logger exists, its handlers will be removed and closed. Changing the list of handlers on an existing logger will cause all its previous handlers to be removed and closed, regardless of whether they had been created from the configuration or programmatically. The old handlers will be replaced by new handlers, if any. \u003chandler-name\u003e.* Properties configured/changed on handler classes will only affect newly created handlers. If a node is configured with the same list of handlers in the old and the resulting configuration, then these handlers will remain unchanged. config and any other property The resulting value for these property will be stored in the LogManager properties, but updateConfiguration will not parse or process their values. Example mapper functions: Replace all logging properties with the new configuration: (k) -\u003e ((o, n) -\u003e n): this is equivalent to passing a null mapper parameter. Merge the new configuration and old configuration and use the new value if k exists in the new configuration: (k) -\u003e ((o, n) -\u003e n \u003d\u003d null ? o : n): as if merging two collections as follows: result.putAll(oldc); result.putAll(newc). Merge the new configuration and old configuration and use the old value if k exists in the old configuration: (k) -\u003e ((o, n) -\u003e o \u003d\u003d null ? n : o): as if merging two collections as follows: result.putAll(newc); result.putAll(oldc). Replace all properties with the new configuration except the handler property to configure Logger\u0027s handler that is not root logger: (k) -\u003e k.endsWith(\".handlers\")\n          ? ((o, n) -\u003e (o \u003d\u003d null ? n : o))\n          : ((o, n) -\u003e n) To completely reinitialize a configuration, an application can first call reset to fully remove the old configuration, followed by updateConfiguration to initialize the new configuration.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eins\u003c/code\u003e - a stream to read properties from",
@@ -393,21 +374,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "name",
-          "varargs": false
+          "field": {
+            "name": "name"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getProperty",
       "comment": "Get the value of a logging property. The method returns null if the property is not found.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ename\u003c/code\u003e - property name"
@@ -429,12 +408,10 @@
         }
       ],
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "checkAccess",
       "comment": "Check that the current context is trusted to modify the logging configuration. This requires LoggingPermission(\"control\"). If the check fails we throw a SecurityException, otherwise we return normally.",
-      "annotations": [],
       "tagMap": {
         "throws": [
           "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and if the caller does not have LoggingPermission(\"control\")."
@@ -447,17 +424,13 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getLoggingMXBean",
       "comment": "Returns LoggingMXBean for managing loggers.",
       "annotations": [
         {
-          "type": {
-            "name": "Deprecated",
-            "type": "Class"
-          },
+          "type": "Deprecated",
           "values": [
             {
               "name": "since",
@@ -485,21 +458,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Runnable",
             "type": "Class"
           },
-          "name": "listener",
-          "varargs": false
+          "field": {
+            "name": "listener"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "addConfigurationListener",
       "comment": "Adds a configuration listener to be invoked each time the logging configuration is read. If the listener is already registered the method does nothing. The listener is invoked with privileges that are restricted by the calling context of this method. The order in which the listeners are invoked is unspecified. It is recommended that listeners do not throw errors or exceptions. If a listener terminates with an uncaught error or exception then the first exception will be propagated to the caller of readConfiguration() (or readConfiguration(java.io.InputStream)) after all listeners have been invoked.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003elistener\u003c/code\u003e - A configuration listener that will be invoked after the configuration changed."
@@ -526,21 +497,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Runnable",
             "type": "Class"
           },
-          "name": "listener",
-          "varargs": false
+          "field": {
+            "name": "listener"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "removeConfigurationListener",
       "comment": "Removes a previously registered configuration listener. Returns silently if the listener is not found.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003elistener\u003c/code\u003e - the configuration listener to remove."
@@ -556,11 +525,9 @@
     },
     {
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
       "comment": "Protected constructor. This is protected so that container applications (such as J2EE containers) can subclass the object. It is non-public as it is intended that there only be one LogManager object, whose value is retrieved by calling LogManager.getLogManager.",
-      "annotations": [],
       "tagMap": {}
     }
   ],

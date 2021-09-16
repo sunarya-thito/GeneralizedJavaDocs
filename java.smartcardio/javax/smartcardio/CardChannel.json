@@ -14,12 +14,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
       "name": "getCard",
       "comment": "Returns the Card this channel is associated with.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "the Card this channel is associated with"
@@ -32,12 +30,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
       "name": "getChannelNumber",
       "comment": "Returns the channel number of this CardChannel. A channel number of 0 indicates the basic logical channel.",
-      "annotations": [],
       "tagMap": {
         "throws": [
           "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this channel has been \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardChannel.html#close()\"\u003eclosed\u003c/a\u003e or if the corresponding Card has been \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/Card.html#disconnect(boolean)\"\u003edisconnected\u003c/a\u003e."
@@ -60,21 +56,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.smartcardio.CommandAPDU",
             "type": "Class"
           },
-          "name": "command",
-          "varargs": false
+          "field": {
+            "name": "command"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
       "name": "transmit",
       "comment": "Transmits the specified command APDU to the Smart Card and returns the response APDU. The CLA byte of the command APDU is automatically adjusted to match the channel number of this CardChannel. Note that this method cannot be used to transmit MANAGE CHANNEL APDUs. Logical channels should be managed using the Card.openLogicalChannel() and CardChannel.close() methods. Implementations should transparently handle artifacts of the transmission protocol. For example, when using the T\u003d0 protocol, the following processing should occur as described in ISO/IEC 7816-4: if the response APDU has an SW1 of 61, the implementation should issue a GET RESPONSE command using SW2 as the Lefield. This process is repeated as long as an SW1 of 61 is received. The response body of these exchanges is concatenated to form the final response body. if the response APDU is 6C XX, the implementation should reissue the command using XX as the Le field. The ResponseAPDU returned by this method is the result after this processing has been performed.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ecommand\u003c/code\u003e - the command APDU"
@@ -103,30 +97,28 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.ByteBuffer",
             "type": "Class"
           },
-          "name": "command",
-          "varargs": false
+          "field": {
+            "name": "command"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.ByteBuffer",
             "type": "Class"
           },
-          "name": "response",
-          "varargs": false
+          "field": {
+            "name": "response"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
       "name": "transmit",
       "comment": "Transmits the command APDU stored in the command ByteBuffer and receives the response APDU in the response ByteBuffer. The command buffer must contain valid command APDU data starting at command.position() and the APDU must be command.remaining() bytes long. Upon return, the command buffer\u0027s position will be equal to its limit; its limit will not have changed. The output buffer will have received the response APDU bytes. Its position will have advanced by the number of bytes received, which is also the return value of this method. The CLA byte of the command APDU is automatically adjusted to match the channel number of this CardChannel. Note that this method cannot be used to transmit MANAGE CHANNEL APDUs. Logical channels should be managed using the Card.openLogicalChannel() and CardChannel.close() methods. See transmit() for a discussion of the handling of response APDUs with the SW1 values 61 or 6C.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ecommand\u003c/code\u003e - the buffer containing the command APDU",
@@ -156,12 +148,10 @@
         }
       ],
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
       "name": "close",
       "comment": "Closes this CardChannel. The logical channel is closed by issuing a MANAGE CHANNEL command that should use the format [xx 70 80 0n] where n is the channel number of this channel and xx is the CLA byte that encodes this logical channel and has all other bits set to 0. After this method returns, calling other methods in this class will raise an IllegalStateException. Note that the basic logical channel cannot be closed using this method. It can be closed by calling Card.disconnect(boolean).",
-      "annotations": [],
       "tagMap": {
         "throws": [
           "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.smartcardio/javax/smartcardio/CardException.html\" title\u003d\"class in javax.smartcardio\"\u003eCardException\u003c/a\u003e\u003c/code\u003e - if the card operation failed",
@@ -171,11 +161,9 @@
     },
     {
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
       "comment": "Constructs a new CardChannel object. This constructor is called by subclasses only. Application should call the Card.getBasicChannel() and Card.openLogicalChannel() methods to obtain a CardChannel object.",
-      "annotations": [],
       "tagMap": {}
     }
   ],

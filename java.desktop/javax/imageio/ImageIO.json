@@ -14,12 +14,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "scanForPlugins",
       "comment": "Scans for plug-ins on the application class path, loads their service provider classes, and registers a service provider instance for each one found with the IIORegistry. This method is needed because the application class path can theoretically change, or additional plug-ins may become available. Rather than re-scanning the classpath on every invocation of the API, the class path is scanned automatically only on the first invocation. Clients can call this method to prompt a re-scan. Thus this method need only be invoked by sophisticated applications which dynamically make new plug-ins available at runtime. The getResources method of the context ClassLoader is used locate JAR files containing files named META-INF/services/javax.imageio.spi.classname, where classname is one of ImageReaderSpi, ImageWriterSpi, ImageTranscoderSpi, ImageInputStreamSpi, or ImageOutputStreamSpi, along the application class path. The contents of the located files indicate the names of actual implementation classes which implement the aforementioned service provider interfaces; the default class loader is then used to load each of these classes and to instantiate an instance of each class, which is then placed into the registry for later retrieval. The exact set of locations searched depends on the implementation of the Java runtime environment.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getResources(java.lang.String)\"\u003e\u003ccode\u003eClassLoader.getResources(java.lang.String)\u003c/code\u003e\u003c/a\u003e"
@@ -33,21 +31,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "boolean",
             "type": "Class"
           },
-          "name": "useCache",
-          "varargs": false
+          "field": {
+            "name": "useCache"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "setUseCache",
       "comment": "Sets a flag indicating whether a disk-based cache file should be used when creating ImageInputStreams and ImageOutputStreams. When reading from a standard InputStream, it may be necessary to save previously read information in a cache since the underlying stream does not allow data to be re-read. Similarly, when writing to a standard OutputStream, a cache may be used to allow a previously written value to be changed before flushing it to the final destination. The cache may reside in main memory or on disk. Setting this flag to false disallows the use of disk for future streams, which may be advantageous when working with small images, as the overhead of creating and destroying files is removed. On startup, the value is set to true.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageIO.html#getUseCache()\"\u003e\u003ccode\u003egetUseCache()\u003c/code\u003e\u003c/a\u003e"
@@ -63,12 +59,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getUseCache",
       "comment": "Returns the current value set by setUseCache, or true if no explicit setting has been made.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageIO.html#setUseCache(boolean)\"\u003e\u003ccode\u003esetUseCache(boolean)\u003c/code\u003e\u003c/a\u003e"
@@ -85,21 +79,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.io.File",
             "type": "Class"
           },
-          "name": "cacheDirectory",
-          "varargs": false
+          "field": {
+            "name": "cacheDirectory"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "setCacheDirectory",
       "comment": "Sets the directory where cache files are to be created. A value of null indicates that the system-dependent default temporary-file directory is to be used. If getUseCache returns false, this value is ignored.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/File.html#createTempFile(java.lang.String,java.lang.String,java.io.File)\"\u003e\u003ccode\u003eFile.createTempFile(String, String, File)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageIO.html#getCacheDirectory()\"\u003e\u003ccode\u003egetCacheDirectory()\u003c/code\u003e\u003c/a\u003e"
@@ -119,12 +111,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getCacheDirectory",
       "comment": "Returns the current value set by setCacheDirectory, or null if no explicit setting has been made.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageIO.html#setCacheDirectory(java.io.File)\"\u003e\u003ccode\u003esetCacheDirectory(java.io.File)\u003c/code\u003e\u003c/a\u003e"
@@ -147,21 +137,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "input",
-          "varargs": false
+          "field": {
+            "name": "input"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "createImageInputStream",
       "comment": "Returns an ImageInputStream that will take its input from the given Object. The set of ImageInputStreamSpis registered with the IIORegistry class is queried and the first one that is able to take input from the supplied object is used to create the returned ImageInputStream. If no suitable ImageInputStreamSpi exists, null is returned. The current cache settings from getUseCache and getCacheDirectory will be used to control caching.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageInputStreamSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageInputStreamSpi\u003c/code\u003e\u003c/a\u003e"
@@ -191,21 +179,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "output",
-          "varargs": false
+          "field": {
+            "name": "output"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "createImageOutputStream",
       "comment": "Returns an ImageOutputStream that will send its output to the given Object. The set of ImageOutputStreamSpis registered with the IIORegistry class is queried and the first one that is able to send output from the supplied object is used to create the returned ImageOutputStream. If no suitable ImageOutputStreamSpi exists, null is returned. The current cache settings from getUseCache and getCacheDirectory will be used to control caching.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageOutputStreamSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageOutputStreamSpi\u003c/code\u003e\u003c/a\u003e"
@@ -226,15 +212,15 @@
       "returnType": {
         "name": "java.lang.String",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getReaderFormatNames",
       "comment": "Returns an array of Strings listing all of the informal format names understood by the current set of registered readers.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "an array of \n\u003ccode\u003eString\u003c/code\u003es."
@@ -245,15 +231,15 @@
       "returnType": {
         "name": "java.lang.String",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getReaderMIMETypes",
       "comment": "Returns an array of Strings listing all of the MIME types understood by the current set of registered readers.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "an array of \n\u003ccode\u003eString\u003c/code\u003es."
@@ -264,15 +250,15 @@
       "returnType": {
         "name": "java.lang.String",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getReaderFileSuffixes",
       "comment": "Returns an array of Strings listing all of the file suffixes associated with the formats understood by the current set of registered readers.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "an array of \n\u003ccode\u003eString\u003c/code\u003es."
@@ -295,21 +281,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "input",
-          "varargs": false
+          "field": {
+            "name": "input"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageReaders",
       "comment": "Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode the supplied Object, typically an ImageInputStream. The stream position is left at its prior position upon exit from this method.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderSpi.html#canDecodeInput(java.lang.Object)\"\u003e\u003ccode\u003eImageReaderSpi.canDecodeInput(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
@@ -338,21 +322,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "formatName",
-          "varargs": false
+          "field": {
+            "name": "formatName"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageReadersByFormatName",
       "comment": "Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode the named format.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderWriterSpi.html#getFormatNames()\"\u003e\u003ccode\u003eImageReaderWriterSpi.getFormatNames()\u003c/code\u003e\u003c/a\u003e"
@@ -381,21 +363,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "fileSuffix",
-          "varargs": false
+          "field": {
+            "name": "fileSuffix"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageReadersBySuffix",
       "comment": "Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode files with the given suffix.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderWriterSpi.html#getFileSuffixes()\"\u003e\u003ccode\u003eImageReaderWriterSpi.getFileSuffixes()\u003c/code\u003e\u003c/a\u003e"
@@ -424,21 +404,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "MIMEType",
-          "varargs": false
+          "field": {
+            "name": "MIMEType"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageReadersByMIMEType",
       "comment": "Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode files with the given MIME type.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderWriterSpi.html#getMIMETypes()\"\u003e\u003ccode\u003eImageReaderWriterSpi.getMIMETypes()\u003c/code\u003e\u003c/a\u003e"
@@ -458,15 +436,15 @@
       "returnType": {
         "name": "java.lang.String",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getWriterFormatNames",
       "comment": "Returns an array of Strings listing all of the informal format names understood by the current set of registered writers.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "an array of \n\u003ccode\u003eString\u003c/code\u003es."
@@ -477,15 +455,15 @@
       "returnType": {
         "name": "java.lang.String",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getWriterMIMETypes",
       "comment": "Returns an array of Strings listing all of the MIME types understood by the current set of registered writers.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "an array of \n\u003ccode\u003eString\u003c/code\u003es."
@@ -496,15 +474,15 @@
       "returnType": {
         "name": "java.lang.String",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getWriterFileSuffixes",
       "comment": "Returns an array of Strings listing all of the file suffixes associated with the formats understood by the current set of registered writers.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "an array of \n\u003ccode\u003eString\u003c/code\u003es."
@@ -527,21 +505,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "formatName",
-          "varargs": false
+          "field": {
+            "name": "formatName"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageWritersByFormatName",
       "comment": "Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode the named format.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderWriterSpi.html#getFormatNames()\"\u003e\u003ccode\u003eImageReaderWriterSpi.getFormatNames()\u003c/code\u003e\u003c/a\u003e"
@@ -570,21 +546,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "fileSuffix",
-          "varargs": false
+          "field": {
+            "name": "fileSuffix"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageWritersBySuffix",
       "comment": "Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode files with the given suffix.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderWriterSpi.html#getFileSuffixes()\"\u003e\u003ccode\u003eImageReaderWriterSpi.getFileSuffixes()\u003c/code\u003e\u003c/a\u003e"
@@ -613,21 +587,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "MIMEType",
-          "varargs": false
+          "field": {
+            "name": "MIMEType"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageWritersByMIMEType",
       "comment": "Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode files with the given MIME type.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderWriterSpi.html#getMIMETypes()\"\u003e\u003ccode\u003eImageReaderWriterSpi.getMIMETypes()\u003c/code\u003e\u003c/a\u003e"
@@ -650,21 +622,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.imageio.ImageReader",
             "type": "Class"
           },
-          "name": "reader",
-          "varargs": false
+          "field": {
+            "name": "reader"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageWriter",
       "comment": "Returns an ImageWriter corresponding to the given ImageReader, if there is one, or null if the plug-in for this ImageReader does not specify a corresponding ImageWriter, or if the given ImageReader is not registered. This mechanism may be used to obtain an ImageWriter that will understand the internal structure of non-pixel metadata (as encoded by IIOMetadata objects) generated by the ImageReader. By obtaining this data from the ImageReader and passing it on to the ImageWriter obtained with this method, a client program can read an image, modify it in some way, and write it back out preserving all metadata, without having to understand anything about the structure of the metadata, or even about the image format. Note that this method returns the \"preferred\" writer, which is the first in the list returned by javax.imageio.spi.ImageReaderSpi.getImageWriterSpiNames().",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageIO.html#getImageReader(javax.imageio.ImageWriter)\"\u003e\u003ccode\u003egetImageReader(ImageWriter)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageReaderSpi.html#getImageWriterSpiNames()\"\u003e\u003ccode\u003eImageReaderSpi.getImageWriterSpiNames()\u003c/code\u003e\u003c/a\u003e"
@@ -687,21 +657,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.imageio.ImageWriter",
             "type": "Class"
           },
-          "name": "writer",
-          "varargs": false
+          "field": {
+            "name": "writer"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageReader",
       "comment": "Returns an ImageReader corresponding to the given ImageWriter, if there is one, or null if the plug-in for this ImageWriter does not specify a corresponding ImageReader, or if the given ImageWriter is not registered. This method is provided principally for symmetry with getImageWriter(ImageReader). Note that this method returns the \"preferred\" reader, which is the first in the list returned by javax.imageio.spi.ImageWriterSpi.getImageReaderSpiNames().",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageIO.html#getImageWriter(javax.imageio.ImageReader)\"\u003e\u003ccode\u003egetImageWriter(ImageReader)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageWriterSpi.html#getImageReaderSpiNames()\"\u003e\u003ccode\u003eImageWriterSpi.getImageReaderSpiNames()\u003c/code\u003e\u003c/a\u003e"
@@ -730,30 +698,28 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.imageio.ImageTypeSpecifier",
             "type": "Class"
           },
-          "name": "type",
-          "varargs": false
+          "field": {
+            "name": "type"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "formatName",
-          "varargs": false
+          "field": {
+            "name": "formatName"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageWriters",
       "comment": "Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode images of the given layout (specified using an ImageTypeSpecifier) in the given format.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/ImageWriterSpi.html#canEncodeImage(javax.imageio.ImageTypeSpecifier)\"\u003e\u003ccode\u003eImageWriterSpi.canEncodeImage(ImageTypeSpecifier)\u003c/code\u003e\u003c/a\u003e"
@@ -783,30 +749,28 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.imageio.ImageReader",
             "type": "Class"
           },
-          "name": "reader",
-          "varargs": false
+          "field": {
+            "name": "reader"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "javax.imageio.ImageWriter",
             "type": "Class"
           },
-          "name": "writer",
-          "varargs": false
+          "field": {
+            "name": "writer"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "getImageTranscoders",
       "comment": "Returns an Iterator containing all currently registered ImageTranscoders that claim to be able to transcode between the metadata of the given ImageReader and ImageWriter.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ereader\u003c/code\u003e - an \n\u003ccode\u003eImageReader\u003c/code\u003e.",
@@ -833,21 +797,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.io.File",
             "type": "Class"
           },
-          "name": "input",
-          "varargs": false
+          "field": {
+            "name": "input"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "read",
       "comment": "Returns a BufferedImage as the result of decoding a supplied File with an ImageReader chosen automatically from among those currently registered. The File is wrapped in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. The current cache settings from getUseCache and getCacheDirectory will be used to control caching in the ImageInputStream that is created. Note that there is no read method that takes a filename as a String; use this method instead after creating a File from the filename. This method does not attempt to locate ImageReaders that can read directly from a File; that may be accomplished using IIORegistry and ImageReaderSpi.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003einput\u003c/code\u003e - a \n\u003ccode\u003eFile\u003c/code\u003e to read from."
@@ -874,21 +836,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.io.InputStream",
             "type": "Class"
           },
-          "name": "input",
-          "varargs": false
+          "field": {
+            "name": "input"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "read",
       "comment": "Returns a BufferedImage as the result of decoding a supplied InputStream with an ImageReader chosen automatically from among those currently registered. The InputStream is wrapped in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. The current cache settings from getUseCache and getCacheDirectory will be used to control caching in the ImageInputStream that is created. This method does not attempt to locate ImageReaders that can read directly from an InputStream; that may be accomplished using IIORegistry and ImageReaderSpi. This method does not close the provided InputStream after the read operation has completed; it is the responsibility of the caller to close the stream, if desired.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003einput\u003c/code\u003e - an \n\u003ccode\u003eInputStream\u003c/code\u003e to read from."
@@ -915,21 +875,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.net.URL",
             "type": "Class"
           },
-          "name": "input",
-          "varargs": false
+          "field": {
+            "name": "input"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "read",
       "comment": "Returns a BufferedImage as the result of decoding a supplied URL with an ImageReader chosen automatically from among those currently registered. An InputStream is obtained from the URL, which is wrapped in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. The current cache settings from getUseCache and getCacheDirectory will be used to control caching in the ImageInputStream that is created. This method does not attempt to locate ImageReaders that can read directly from a URL; that may be accomplished using IIORegistry and ImageReaderSpi.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003einput\u003c/code\u003e - a \n\u003ccode\u003eURL\u003c/code\u003e to read from."
@@ -956,21 +914,19 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.imageio.stream.ImageInputStream",
             "type": "Class"
           },
-          "name": "stream",
-          "varargs": false
+          "field": {
+            "name": "stream"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "read",
       "comment": "Returns a BufferedImage as the result of decoding a supplied ImageInputStream with an ImageReader chosen automatically from among those currently registered. If no registered ImageReader claims to be able to read the stream, null is returned. Unlike most other methods in this class, this method does close the provided ImageInputStream after the read operation has completed, unless null is returned, in which case this method does not close the stream.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003estream\u003c/code\u003e - an \n\u003ccode\u003eImageInputStream\u003c/code\u003e to read from."
@@ -997,39 +953,37 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.awt.image.RenderedImage",
             "type": "Class"
           },
-          "name": "im",
-          "varargs": false
+          "field": {
+            "name": "im"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "formatName",
-          "varargs": false
+          "field": {
+            "name": "formatName"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "javax.imageio.stream.ImageOutputStream",
             "type": "Class"
           },
-          "name": "output",
-          "varargs": false
+          "field": {
+            "name": "output"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "write",
       "comment": "Writes an image using the an arbitrary ImageWriter that supports the given format to an ImageOutputStream. The image is written to the ImageOutputStream starting at the current stream pointer, overwriting existing stream data from that point forward, if present. This method does not close the provided ImageOutputStream after the write operation has completed; it is the responsibility of the caller to close the stream, if desired.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eim\u003c/code\u003e - a \n\u003ccode\u003eRenderedImage\u003c/code\u003e to be written.",
@@ -1058,39 +1012,37 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.awt.image.RenderedImage",
             "type": "Class"
           },
-          "name": "im",
-          "varargs": false
+          "field": {
+            "name": "im"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "formatName",
-          "varargs": false
+          "field": {
+            "name": "formatName"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.io.File",
             "type": "Class"
           },
-          "name": "output",
-          "varargs": false
+          "field": {
+            "name": "output"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "write",
       "comment": "Writes an image using an arbitrary ImageWriter that supports the given format to a File. If there is already a File present, its contents are discarded.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eim\u003c/code\u003e - a \n\u003ccode\u003eRenderedImage\u003c/code\u003e to be written.",
@@ -1119,39 +1071,37 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.awt.image.RenderedImage",
             "type": "Class"
           },
-          "name": "im",
-          "varargs": false
+          "field": {
+            "name": "im"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "formatName",
-          "varargs": false
+          "field": {
+            "name": "formatName"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.io.OutputStream",
             "type": "Class"
           },
-          "name": "output",
-          "varargs": false
+          "field": {
+            "name": "output"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "write",
       "comment": "Writes an image using an arbitrary ImageWriter that supports the given format to an OutputStream. This method does not close the provided OutputStream after the write operation has completed; it is the responsibility of the caller to close the stream, if desired. The current cache settings from getUseCache and getCacheDirectory will be used to control caching.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eim\u003c/code\u003e - a \n\u003ccode\u003eRenderedImage\u003c/code\u003e to be written.",

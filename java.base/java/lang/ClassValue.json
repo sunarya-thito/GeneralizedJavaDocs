@@ -16,7 +16,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Class",
             "parameters": [
@@ -26,16 +25,15 @@
             ],
             "type": "Class"
           },
-          "name": "type",
-          "varargs": false
+          "field": {
+            "name": "type"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1028,
       "name": "computeValue",
       "comment": "Computes the given class\u0027s derived value for this ClassValue. This method will be invoked within the first thread that accesses the value with the get method. Normally, this method is invoked at most once per class, but it may be invoked again if there has been a call to remove. If this method throws an exception, the corresponding call to get will terminate abnormally with that exception, and no class value will be recorded.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassValue.html#get(java.lang.Class)\"\u003e\u003ccode\u003eget(java.lang.Class\u0026lt;?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassValue.html#remove(java.lang.Class)\"\u003e\u003ccode\u003eremove(java.lang.Class\u0026lt;?\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
@@ -56,7 +54,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Class",
             "parameters": [
@@ -66,16 +63,15 @@
             ],
             "type": "Class"
           },
-          "name": "type",
-          "varargs": false
+          "field": {
+            "name": "type"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "get",
       "comment": "Returns the value for the given class. If no value has yet been computed, it is obtained by an invocation of the computeValue method. The actual installation of the value on the class is performed atomically. At that point, if several racing threads have computed values, one is chosen, and returned to all the racing threads. The type parameter is typically a class, but it may be any type, such as an interface, a primitive type (like int.class), or void.class. In the absence of remove calls, a class value has a simple state diagram: uninitialized and initialized. When remove calls are made, the rules for value observation are more complex. See the documentation for remove for more information.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassValue.html#remove(java.lang.Class)\"\u003e\u003ccode\u003eremove(java.lang.Class\u0026lt;?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassValue.html#computeValue(java.lang.Class)\"\u003e\u003ccode\u003ecomputeValue(java.lang.Class\u0026lt;?\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
@@ -98,7 +94,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Class",
             "parameters": [
@@ -108,16 +103,15 @@
             ],
             "type": "Class"
           },
-          "name": "type",
-          "varargs": false
+          "field": {
+            "name": "type"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "remove",
       "comment": "Removes the associated value for the given class. If this value is subsequently read for the same class, its value will be reinitialized by invoking its computeValue method. This may result in an additional invocation of the computeValue method for the given class. In order to explain the interaction between get and remove calls, we must model the state transitions of a class value to take into account the alternation between uninitialized and initialized states. To do this, number these states sequentially from zero, and note that uninitialized (or removed) states are numbered with even numbers, while initialized (or re-initialized) states have odd numbers. When a thread T removes a class value in state 2N, nothing happens, since the class value is already uninitialized. Otherwise, the state is advanced atomically to 2N+1. When a thread T queries a class value in state 2N, the thread first attempts to initialize the class value to state 2N+1 by invoking computeValue and installing the resulting value. When T attempts to install the newly computed value, if the state is still at 2N, the class value will be initialized with the computed value, advancing it to state 2N+1. Otherwise, whether the new state is even or odd, T will discard the newly computed value and retry the get operation. Discarding and retrying is an important proviso, since otherwise T could potentially install a disastrously stale value. For example: T calls CV.get(C) and sees state 2N T quickly computes a time-dependent value V0 and gets ready to install it T is hit by an unlucky paging or scheduling event, and goes to sleep for a long time ...meanwhile, T2 also calls CV.get(C) and sees state 2N T2 quickly computes a similar time-dependent value V1 and installs it on CV.get(C) T2 (or a third thread) then calls CV.remove(C), undoing T2\u0027s work the previous actions of T2 are repeated several times also, the relevant computed values change over time: V1, V2, ... ...meanwhile, T wakes up and attempts to install V0; this must fail We can assume in the above scenario that CV.computeValue uses locks to properly observe the time-dependent states as it computes V1, etc. This does not remove the threat of a stale value, since there is a window of time between the return of computeValue in T and the installation of the new value. No user synchronization is possible during this time.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003etype\u003c/code\u003e - the type whose class value must be removed"
@@ -129,11 +123,9 @@
     },
     {
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
       "comment": "Sole constructor. (For invocation by subclass constructors, typically implicit.)",
-      "annotations": [],
       "tagMap": {}
     }
   ],

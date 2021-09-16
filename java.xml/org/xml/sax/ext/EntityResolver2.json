@@ -25,30 +25,28 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "name",
-          "varargs": false
+          "field": {
+            "name": "name"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "baseURI",
-          "varargs": false
+          "field": {
+            "name": "baseURI"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "getExternalSubset",
       "comment": "Allows applications to provide an external subset for documents that don\u0027t explicitly define one. Documents with DOCTYPE declarations that omit an external subset can thus augment the declarations available for validation, entity processing, and attribute processing (normalization, defaulting, and reporting types including ID). This augmentation is reported through the startDTD() method as if the document text had originally included the external subset; this callback is made before any internal subset data or errors are reported. This method can also be used with documents that have no DOCTYPE declaration. When the root element is encountered, but no DOCTYPE declaration has been seen, this method is invoked. If it returns a value for the external subset, that root element is declared to be the root element, giving the effect of splicing a DOCTYPE declaration at the end the prolog of a document that could not otherwise be valid. The sequence of parser callbacks in that case logically resembles this:  ... comments and PIs from the prolog (as usual)\n startDTD (\"rootName\", source.getPublicId (), source.getSystemId ());\n startEntity (\"[dtd]\");\n ... declarations, comments, and PIs from the external subset\n endEntity (\"[dtd]\");\n endDTD ();\n ... then the rest of the document (as usual)\n startElement (..., \"rootName\", ...);\n Note that the InputSource gets no further resolution. Implementations of this method may wish to invoke resolveEntity() to gain benefits such as use of local caches of DTD entities. Also, this method will never be used by a (non-validating) processor that is not including external parameter entities. Uses for this method include facilitating data validation when interoperating with XML processors that would always require undesirable network accesses for external entities, or which for other reasons adopt a \"no DTDs\" policy. Non-validation motives include forcing documents to include DTDs so that attributes are handled consistently. For example, an XPath processor needs to know which attibutes have type \"ID\" before it can process a widely used type of reference. Warning: Returning an external subset modifies the input document. By providing definitions for general entities, it can make a malformed document appear to be well formed.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ename\u003c/code\u003e - Identifies the document root element. This name comes from a DOCTYPE declaration (where available) or from the actual root element.",
@@ -80,48 +78,46 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "name",
-          "varargs": false
+          "field": {
+            "name": "name"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "publicId",
-          "varargs": false
+          "field": {
+            "name": "publicId"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "baseURI",
-          "varargs": false
+          "field": {
+            "name": "baseURI"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "systemId",
-          "varargs": false
+          "field": {
+            "name": "systemId"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "resolveEntity",
       "comment": "Allows applications to map references to external entities into input sources, or tell the parser it should use conventional URI resolution. This method is only called for external entities which have been properly declared. This method provides more flexibility than the EntityResolver interface, supporting implementations of more complex catalogue schemes such as the one defined by the OASIS XML Catalogs specification. Parsers configured to use this resolver method will call it to determine the input source to use for any external entity being included because of a reference in the XML text. That excludes the document entity, and any external entity returned by getExternalSubset(). When a (non-validating) processor is configured not to include a class of entities (parameter or general) through use of feature flags, this method is not invoked for such entities. Note that the entity naming scheme used here is the same one used in the LexicalHandler, or in the ContentHandler.skippedEntity() method.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ename\u003c/code\u003e - Identifies the external entity being resolved. Either \"[dtd]\" for the external subset, or a name starting with \"%\" to indicate a parameter entity, or else the name of a general entity. This is never null when invoked by a SAX2 parser.",

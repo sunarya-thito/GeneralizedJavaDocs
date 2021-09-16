@@ -21,7 +21,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.util.concurrent.Flow$Subscriber",
             "parameters": [
@@ -43,16 +42,15 @@
             ],
             "type": "Class"
           },
-          "name": "subscriber",
-          "varargs": false
+          "field": {
+            "name": "subscriber"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "fromSubscriber",
       "comment": "Returns a response body handler that returns a BodySubscriber\u003cVoid\u003e obtained from HttpResponse.BodySubscribers.fromSubscriber(Subscriber), with the given subscriber. The response body is not available through this, or the HttpResponse API, but instead all response body is forwarded to the given subscriber, which should make it available, if appropriate, through some other mechanism, e.g. an entry in a database, etc.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "This method can be used as an adapter between \n\u003ccode\u003e BodySubscriber\u003c/code\u003e and \n\u003ccode\u003eFlow.Subscriber\u003c/code\u003e. \n\u003cp\u003e For example: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e TextSubscriber subscriber \u003d new TextSubscriber();\n  HttpResponse\u0026lt;Void\u0026gt; response \u003d client.sendAsync(request,\n      BodyHandlers.fromSubscriber(subscriber)).join();\n  System.out.println(response.statusCode()); \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
@@ -78,16 +76,15 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "S",
             "type": "Class"
           },
-          "name": "subscriber",
-          "varargs": false
+          "field": {
+            "name": "subscriber"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.function.Function",
             "parameters": [
@@ -112,8 +109,9 @@
             ],
             "type": "Class"
           },
-          "name": "finisher",
-          "varargs": false
+          "field": {
+            "name": "finisher"
+          }
         }
       ],
       "genericParameters": [
@@ -149,12 +147,10 @@
           "type": "Variable"
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "fromSubscriber",
       "comment": "Returns a response body handler that returns a BodySubscriber\u003cT\u003e obtained from HttpResponse.BodySubscribers.fromSubscriber(Subscriber, Function), with the given subscriber and finisher function. The given finisher function is applied after the given subscriber\u0027s onComplete has been invoked. The finisher function is invoked with the given subscriber, and returns a value that is set as the response\u0027s body.",
-      "annotations": [],
       "tagMap": {
         "Type Parameters:": [
           "\u003ccode\u003eS\u003c/code\u003e - the type of the Subscriber",
@@ -185,7 +181,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.util.concurrent.Flow$Subscriber",
             "parameters": [
@@ -201,16 +196,15 @@
             ],
             "type": "Class"
           },
-          "name": "subscriber",
-          "varargs": false
+          "field": {
+            "name": "subscriber"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "fromLineSubscriber",
       "comment": "Returns a response body handler that returns a BodySubscriber\u003cVoid\u003e obtained from BodySubscribers.fromLineSubscriber(subscriber, s -\u003e null, charset, null), with the given subscriber. The charset used to decode the response body bytes is obtained from the HTTP response headers as specified by ofString(), and lines are delimited in the manner of BufferedReader.readLine(). The response body is not available through this, or the HttpResponse API, but instead all response body is forwarded to the given subscriber, which should make it available, if appropriate, through some other mechanism, e.g. an entry in a database, etc.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "This method can be used as an adapter between a \n\u003ccode\u003e BodySubscriber\u003c/code\u003e and a text based \n\u003ccode\u003eFlow.Subscriber\u003c/code\u003e that parses text line by line. \n\u003cp\u003e For example: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e // A PrintSubscriber that implements Flow.Subscriber\u0026lt;String\u0026gt;\n  // and print lines received by onNext() on System.out\n  PrintSubscriber subscriber \u003d new PrintSubscriber(System.out);\n  client.sendAsync(request, BodyHandlers.fromLineSubscriber(subscriber))\n      .thenApply(HttpResponse::statusCode)\n      .thenAccept((status) -\u0026gt; {\n          if (status !\u003d 200) {\n              System.err.printf(\"ERROR: %d status received%n\", status);\n          }\n      }); \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
@@ -236,16 +230,15 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "S",
             "type": "Class"
           },
-          "name": "subscriber",
-          "varargs": false
+          "field": {
+            "name": "subscriber"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.function.Function",
             "parameters": [
@@ -270,17 +263,18 @@
             ],
             "type": "Class"
           },
-          "name": "finisher",
-          "varargs": false
+          "field": {
+            "name": "finisher"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "lineSeparator",
-          "varargs": false
+          "field": {
+            "name": "lineSeparator"
+          }
         }
       ],
       "genericParameters": [
@@ -310,12 +304,10 @@
           "type": "Variable"
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "fromLineSubscriber",
       "comment": "Returns a response body handler that returns a BodySubscriber\u003cT\u003e obtained from BodySubscribers.fromLineSubscriber(subscriber, finisher, charset, lineSeparator), with the given subscriber, finisher function, and line separator. The charset used to decode the response body bytes is obtained from the HTTP response headers as specified by ofString(). The given finisher function is applied after the given subscriber\u0027s onComplete has been invoked. The finisher function is invoked with the given subscriber, and returns a value that is set as the response\u0027s body.",
-      "annotations": [],
       "tagMap": {
         "Type Parameters:": [
           "\u003ccode\u003eS\u003c/code\u003e - the type of the Subscriber",
@@ -349,12 +341,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "discarding",
       "comment": "Returns a response body handler that discards the response body.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "a response body handler"
@@ -374,13 +364,13 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "U",
             "type": "Class"
           },
-          "name": "value",
-          "varargs": false
+          "field": {
+            "name": "value"
+          }
         }
       ],
       "genericParameters": [
@@ -389,12 +379,10 @@
           "type": "Variable"
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "replacing",
       "comment": "Returns a response body handler that returns the given replacement value, after discarding the response body.",
-      "annotations": [],
       "tagMap": {
         "Type Parameters:": [
           "\u003ccode\u003eU\u003c/code\u003e - the response body type"
@@ -420,21 +408,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.charset.Charset",
             "type": "Class"
           },
-          "name": "charset",
-          "varargs": false
+          "field": {
+            "name": "charset"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofString",
       "comment": "Returns a BodyHandler\u003cString\u003e that returns a BodySubscriber\u003cString\u003e obtained from BodySubscribers.ofString(Charset). The body is decoded using the given character set.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003echarset\u003c/code\u003e - the character set to convert the body with"
@@ -457,30 +443,29 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.file.Path",
             "type": "Class"
           },
-          "name": "file",
-          "varargs": false
+          "field": {
+            "name": "file"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.file.OpenOption",
             "type": "Class"
           },
-          "name": "openOptions",
-          "varargs": true
+          "field": {
+            "name": "openOptions"
+          },
+          "varArgs": {}
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofFile",
       "comment": "Returns a BodyHandler\u003cPath\u003e that returns a BodySubscriber\u003cPath\u003e obtained from BodySubscribers.ofFile(Path,OpenOption...). When the HttpResponse object is returned, the body has been completely written to the file, and HttpResponse.body() returns a reference to its Path. In the case of the default file system provider, security manager permission checks are performed in this factory method, when the BodyHandler is created. Otherwise, permission checks may be performed asynchronously against the caller\u0027s context at file access time. Care must be taken that the BodyHandler is not shared with untrusted code.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003efile\u003c/code\u003e - the file to store the body in",
@@ -508,21 +493,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.file.Path",
             "type": "Class"
           },
-          "name": "file",
-          "varargs": false
+          "field": {
+            "name": "file"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofFile",
       "comment": "Returns a BodyHandler\u003cPath\u003e that returns a BodySubscriber\u003cPath\u003e. Equivalent to: ofFile(file, CREATE, WRITE) In the case of the default file system provider, security manager permission checks are performed in this factory method, when the BodyHandler is created. Otherwise, permission checks may be performed asynchronously against the caller\u0027s context at file access time. Care must be taken that the BodyHandler is not shared with untrusted code.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003efile\u003c/code\u003e - the file to store the body in"
@@ -548,30 +531,29 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.file.Path",
             "type": "Class"
           },
-          "name": "directory",
-          "varargs": false
+          "field": {
+            "name": "directory"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.nio.file.OpenOption",
             "type": "Class"
           },
-          "name": "openOptions",
-          "varargs": true
+          "field": {
+            "name": "openOptions"
+          },
+          "varArgs": {}
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofFileDownload",
       "comment": "Returns a BodyHandler\u003cPath\u003e that returns a BodySubscriber\u003cPath\u003e where the download directory is specified, but the filename is obtained from the Content-Disposition response header. The Content-Disposition header must specify the attachment type and must also contain a filename parameter. If the filename specifies multiple path components only the final component is used as the filename (with the given directory name). When the HttpResponse object is returned, the body has been completely written to the file and HttpResponse.body() returns a Path object for the file. The returned Path is the combination of the supplied directory name and the file name supplied by the server. If the destination directory does not exist or cannot be written to, then the response will fail with an IOException. Security manager permission checks are performed in this factory method, when the BodyHandler is created. Care must be taken that the BodyHandler is not shared with untrusted code.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003edirectory\u003c/code\u003e - the directory to store the file in",
@@ -598,12 +580,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofInputStream",
       "comment": "Returns a BodyHandler\u003cInputStream\u003e that returns a BodySubscriber\u003cInputStream\u003e obtained from BodySubscribers.ofInputStream. When the HttpResponse object is returned, the response headers will have been completely read, but the body may not have been fully received yet. The HttpResponse.body() method returns an InputStream from which the body can be read as it is received.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "See \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/HttpResponse.BodySubscribers.html#ofInputStream()\"\u003e\u003ccode\u003eHttpResponse.BodySubscribers.ofInputStream()\u003c/code\u003e\u003c/a\u003e for more information."
@@ -631,12 +611,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofLines",
       "comment": "Returns a BodyHandler\u003cStream\u003cString\u003e\u003e that returns a BodySubscriber\u003cStream\u003cString\u003e\u003e obtained from BodySubscribers.ofLines(charset). The charset used to decode the response body bytes is obtained from the HTTP response headers as specified by ofString(), and lines are delimited in the manner of BufferedReader.readLine(). When the HttpResponse object is returned, the body may not have been completely received.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "a response body handler"
@@ -656,7 +634,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.util.function.Consumer",
             "parameters": [
@@ -666,7 +643,9 @@
                   {
                     "name": "byte",
                     "type": "Class",
-                    "arrayDimensions": 1
+                    "arrayDimensions": [
+                      {}
+                    ]
                   }
                 ],
                 "type": "Class"
@@ -674,16 +653,15 @@
             ],
             "type": "Class"
           },
-          "name": "consumer",
-          "varargs": false
+          "field": {
+            "name": "consumer"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofByteArrayConsumer",
       "comment": "Returns a BodyHandler\u003cVoid\u003e that returns a BodySubscriber\u003cVoid\u003e obtained from BodySubscribers.ofByteArrayConsumer(Consumer). When the HttpResponse object is returned, the body has been completely written to the consumer.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "The subscriber returned by this handler is not flow controlled. Therefore, the supplied consumer must be able to process whatever amount of data is delivered in a timely fashion."
@@ -703,18 +681,18 @@
           {
             "name": "byte",
             "type": "Class",
-            "arrayDimensions": 1
+            "arrayDimensions": [
+              {}
+            ]
           }
         ],
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofByteArray",
       "comment": "Returns a BodyHandler\u003cbyte[]\u003e that returns a BodySubscriber\u003cbyte[]\u003e obtained from BodySubscribers.ofByteArray(). When the HttpResponse object is returned, the body has been completely written to the byte array.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "a response body handler"
@@ -733,12 +711,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofString",
       "comment": "Returns a BodyHandler\u003cString\u003e that returns a BodySubscriber\u003cString\u003e obtained from BodySubscribers.ofString(Charset). The body is decoded using the character set specified in the Content-Type response header. If there is no such header, or the character set is not supported, then UTF_8 is used. When the HttpResponse object is returned, the body has been completely written to the string.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "a response body handler"
@@ -769,12 +745,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "ofPublisher",
       "comment": "Returns a BodyHandler\u003cPublisher\u003cList\u003cByteBuffer\u003e\u003e\u003e that creates a BodySubscriber\u003cPublisher\u003cList\u003cByteBuffer\u003e\u003e\u003e obtained from BodySubscribers.ofPublisher(). When the HttpResponse object is returned, the response headers will have been completely read, but the body may not have been fully received yet. The HttpResponse.body() method returns a Publisher\u003cList\u003cByteBuffer\u003e\u003e from which the body response bytes can be obtained as they are received. The publisher can and must be subscribed to only once.",
-      "annotations": [],
       "tagMap": {
         "apiNote": [
           "See \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/HttpResponse.BodySubscribers.html#ofPublisher()\"\u003e\u003ccode\u003eHttpResponse.BodySubscribers.ofPublisher()\u003c/code\u003e\u003c/a\u003e for more information."
@@ -797,7 +771,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.net.http.HttpResponse$BodyHandler",
             "parameters": [
@@ -808,17 +781,18 @@
             ],
             "type": "Class"
           },
-          "name": "downstreamHandler",
-          "varargs": false
+          "field": {
+            "name": "downstreamHandler"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "int",
             "type": "Class"
           },
-          "name": "bufferSize",
-          "varargs": false
+          "field": {
+            "name": "bufferSize"
+          }
         }
       ],
       "genericParameters": [
@@ -827,12 +801,10 @@
           "type": "Variable"
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "buffering",
       "comment": "Returns a BodyHandler which, when invoked, returns a buffering BodySubscriber that buffers data before delivering it to the downstream subscriber. These BodySubscriber instances are created by calling BodySubscribers.buffering with a subscriber obtained from the given downstream handler and the bufferSize parameter.",
-      "annotations": [],
       "tagMap": {
         "Type Parameters:": [
           "\u003ccode\u003eT\u003c/code\u003e - the response body type"

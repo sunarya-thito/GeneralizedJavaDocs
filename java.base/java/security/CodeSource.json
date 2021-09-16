@@ -14,12 +14,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "hashCode",
       "comment": "Returns the hash code value for this object.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
@@ -39,21 +37,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "obj",
-          "varargs": false
+          "field": {
+            "name": "obj"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "equals",
       "comment": "Tests for equality between the specified object and this object. Two CodeSource objects are considered equal if their locations are of identical value and if their signer certificate chains are of identical value. It is not required that the certificate chains be in the same order.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
@@ -75,12 +71,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
       "name": "getLocation",
       "comment": "Returns the location associated with this CodeSource.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "the location (URL), or \n\u003ccode\u003enull\u003c/code\u003e if no URL was supplied during construction."
@@ -91,15 +85,15 @@
       "returnType": {
         "name": "java.security.cert.Certificate",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
       "name": "getCertificates",
       "comment": "Returns the certificates associated with this CodeSource. If this CodeSource object was created using the CodeSource(URL url, CodeSigner[] signers) constructor then its certificate chains are extracted and used to create an array of Certificate objects. Each signer certificate is followed by its supporting certificate chain (which may be empty). Each signer certificate and its supporting certificate chain is ordered bottom-to-top (i.e., with the signer certificate first and the (root) certificate authority last).",
-      "annotations": [],
       "tagMap": {
         "return": [
           "a copy of the certificate array, or \n\u003ccode\u003enull\u003c/code\u003e if there is none."
@@ -110,15 +104,15 @@
       "returnType": {
         "name": "java.security.CodeSigner",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
       "name": "getCodeSigners",
       "comment": "Returns the code signers associated with this CodeSource. If this CodeSource object was created using the CodeSource(URL url, java.security.cert.Certificate[] certs) constructor then its certificate chains are extracted and used to create an array of CodeSigner objects. Note that only X.509 certificates are examined - all other certificate types are ignored.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "a copy of the code signer array, or \n\u003ccode\u003enull\u003c/code\u003e if there is none."
@@ -135,21 +129,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.security.CodeSource",
             "type": "Class"
           },
-          "name": "codesource",
-          "varargs": false
+          "field": {
+            "name": "codesource"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "implies",
       "comment": "Returns true if this CodeSource object \"implies\" the specified CodeSource. More specifically, this method makes the following checks. If any fail, it returns false. If they all succeed, it returns true. codesource must not be null. If this object\u0027s certificates are not null, then all of this object\u0027s certificates must be present in codesource\u0027s certificates. If this object\u0027s location (getLocation()) is not null, then the following checks are made against this object\u0027s location and codesource\u0027s: codesource\u0027s location must not be null. If this object\u0027s location equals codesource\u0027s location, then return true. This object\u0027s protocol (getLocation().getProtocol()) must be equal to codesource\u0027s protocol, ignoring case. If this object\u0027s host (getLocation().getHost()) is not null, then the SocketPermission constructed with this object\u0027s host must imply the SocketPermission constructed with codesource\u0027s host. If this object\u0027s port (getLocation().getPort()) is not equal to -1 (that is, if a port is specified), it must equal codesource\u0027s port or default port (codesource.getLocation().getDefaultPort()). If this object\u0027s file (getLocation().getFile()) doesn\u0027t equal codesource\u0027s file, then the following checks are made: If this object\u0027s file ends with \"/-\", then codesource\u0027s file must start with this object\u0027s file (exclusive the trailing \"-\"). If this object\u0027s file ends with a \"/*\", then codesource\u0027s file must start with this object\u0027s file and must not have any further \"/\" separators. If this object\u0027s file doesn\u0027t end with a \"/\", then codesource\u0027s file must match this object\u0027s file with a \u0027/\u0027 appended. If this object\u0027s reference (getLocation().getRef()) is not null, it must equal codesource\u0027s reference. For example, the codesource objects with the following locations and null certificates all imply the codesource with the location \"http://www.example.com/classes/foo.jar\" and null certificates:      http:\n     http://*.example.com/classes/*\n     http://www.example.com/classes/-\n     http://www.example.com/classes/foo.jar\n Note that if this CodeSource has a null location and a null certificate chain, then it implies every other CodeSource.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003ecodesource\u003c/code\u003e - CodeSource to compare against."
@@ -165,12 +157,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "toString",
       "comment": "Returns a string describing this CodeSource, telling its URL and certificates.",
-      "annotations": [],
       "tagMap": {
         "Overrides:": [
           "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
@@ -183,30 +173,30 @@
     {
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.net.URL",
             "type": "Class"
           },
-          "name": "url",
-          "varargs": false
+          "field": {
+            "name": "url"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.security.cert.Certificate",
             "type": "Class",
-            "arrayDimensions": 1
+            "arrayDimensions": [
+              {}
+            ]
           },
-          "name": "certs",
-          "varargs": false
+          "field": {
+            "name": "certs"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "comment": "Constructs a CodeSource and associates it with the specified location and set of certificates.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eurl\u003c/code\u003e - the location (URL). It may be \n\u003ccode\u003enull\u003c/code\u003e.",
@@ -217,30 +207,30 @@
     {
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.net.URL",
             "type": "Class"
           },
-          "name": "url",
-          "varargs": false
+          "field": {
+            "name": "url"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.security.CodeSigner",
             "type": "Class",
-            "arrayDimensions": 1
+            "arrayDimensions": [
+              {}
+            ]
           },
-          "name": "signers",
-          "varargs": false
+          "field": {
+            "name": "signers"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "comment": "Constructs a CodeSource and associates it with the specified location and set of code signers.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eurl\u003c/code\u003e - the location (URL). It may be \n\u003ccode\u003enull\u003c/code\u003e.",

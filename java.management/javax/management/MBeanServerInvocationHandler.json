@@ -14,12 +14,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getMBeanServerConnection",
       "comment": "The MBean server connection through which the methods of a proxy using this handler are forwarded.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "the MBean server connection."
@@ -35,12 +33,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "getObjectName",
       "comment": "The name of the MBean within the MBean server to which methods are forwarded.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "the object name."
@@ -56,12 +52,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "isMXBean",
       "comment": "If true, the proxy is for an MXBean, and appropriate mappings are applied to method parameters and return values.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "whether the proxy is for an MXBean."
@@ -78,25 +72,24 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.management.MBeanServerConnection",
             "type": "Class"
           },
-          "name": "connection",
-          "varargs": false
+          "field": {
+            "name": "connection"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "javax.management.ObjectName",
             "type": "Class"
           },
-          "name": "objectName",
-          "varargs": false
+          "field": {
+            "name": "objectName"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Class",
             "parameters": [
@@ -107,17 +100,18 @@
             ],
             "type": "Class"
           },
-          "name": "interfaceClass",
-          "varargs": false
+          "field": {
+            "name": "interfaceClass"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "boolean",
             "type": "Class"
           },
-          "name": "notificationBroadcaster",
-          "varargs": false
+          "field": {
+            "name": "notificationBroadcaster"
+          }
         }
       ],
       "genericParameters": [
@@ -126,12 +120,10 @@
           "type": "Variable"
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
       "name": "newProxyInstance",
       "comment": "Return a proxy that implements the given interface by forwarding its methods through the given MBean server to the named MBean. As of 1.6, the methods JMX.newMBeanProxy(MBeanServerConnection, ObjectName, Class) and JMX.newMBeanProxy(MBeanServerConnection, ObjectName, Class, boolean) are preferred to this method. This method is equivalent to Proxy.newProxyInstance(interfaceClass.getClassLoader(), interfaces, handler). Here handler is the result of new MBeanServerInvocationHandler(connection, objectName), and interfaces is an array that has one element if notificationBroadcaster is false and two if it is true. The first element of interfaces is interfaceClass and the second, if present, is NotificationEmitter.class.",
-      "annotations": [],
       "tagMap": {
         "Type Parameters:": [
           "\u003ccode\u003eT\u003c/code\u003e - allows the compiler to know that if the \n\u003ccode\u003e interfaceClass\u003c/code\u003e parameter is \n\u003ccode\u003eMyMBean.class\u003c/code\u003e, for example, then the return type is \n\u003ccode\u003eMyMBean\u003c/code\u003e."
@@ -163,40 +155,40 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "proxy",
-          "varargs": false
+          "field": {
+            "name": "proxy"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.reflect.Method",
             "type": "Class"
           },
-          "name": "method",
-          "varargs": false
+          "field": {
+            "name": "method"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class",
-            "arrayDimensions": 1
+            "arrayDimensions": [
+              {}
+            ]
           },
-          "name": "args",
-          "varargs": false
+          "field": {
+            "name": "args"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "name": "invoke",
       "comment": "Description copied from interface: InvocationHandler",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/UndeclaredThrowableException.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eUndeclaredThrowableException\u003c/code\u003e\u003c/a\u003e"
@@ -220,29 +212,27 @@
     {
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.management.MBeanServerConnection",
             "type": "Class"
           },
-          "name": "connection",
-          "varargs": false
+          "field": {
+            "name": "connection"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "javax.management.ObjectName",
             "type": "Class"
           },
-          "name": "objectName",
-          "varargs": false
+          "field": {
+            "name": "objectName"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "comment": "Invocation handler that forwards methods through an MBean server to a Standard MBean. This constructor may be called instead of relying on JMX.newMBeanProxy, for instance if you need to supply a different ClassLoader to Proxy.newProxyInstance. This constructor is not appropriate for an MXBean. Use MBeanServerInvocationHandler(MBeanServerConnection, ObjectName, boolean) for that. This constructor is equivalent to new MBeanServerInvocationHandler(connection, objectName, false).",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003econnection\u003c/code\u003e - the MBean server connection through which all methods of a proxy using this handler will be forwarded.",
@@ -253,38 +243,36 @@
     {
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "javax.management.MBeanServerConnection",
             "type": "Class"
           },
-          "name": "connection",
-          "varargs": false
+          "field": {
+            "name": "connection"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "javax.management.ObjectName",
             "type": "Class"
           },
-          "name": "objectName",
-          "varargs": false
+          "field": {
+            "name": "objectName"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "boolean",
             "type": "Class"
           },
-          "name": "isMXBean",
-          "varargs": false
+          "field": {
+            "name": "isMXBean"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
       "comment": "Invocation handler that can forward methods through an MBean server to a Standard MBean or MXBean. This constructor may be called instead of relying on JMX.newMXBeanProxy, for instance if you need to supply a different ClassLoader to Proxy.newProxyInstance.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003econnection\u003c/code\u003e - the MBean server connection through which all methods of a proxy using this handler will be forwarded.",

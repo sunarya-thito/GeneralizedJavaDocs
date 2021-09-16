@@ -15,30 +15,28 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.instrument.ClassFileTransformer",
             "type": "Class"
           },
-          "name": "transformer",
-          "varargs": false
+          "field": {
+            "name": "transformer"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "boolean",
             "type": "Class"
           },
-          "name": "canRetransform",
-          "varargs": false
+          "field": {
+            "name": "canRetransform"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "addTransformer",
       "comment": "Registers the supplied transformer. All future class definitions will be seen by the transformer, except definitions of classes upon which any registered transformer is dependent. The transformer is called when classes are loaded, when they are redefined. and if canRetransform is true, when they are retransformed. ClassFileTransformer defines the order of transform calls. If a transformer throws an exception during execution, the JVM will still call the other registered transformers in order. The same transformer may be added more than once, but it is strongly discouraged -- avoid this by creating a new instance of transformer class. This method is intended for use in instrumentation, as described in the class specification.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003etransformer\u003c/code\u003e - the transformer to register",
@@ -60,21 +58,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.instrument.ClassFileTransformer",
             "type": "Class"
           },
-          "name": "transformer",
-          "varargs": false
+          "field": {
+            "name": "transformer"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "addTransformer",
       "comment": "Registers the supplied transformer. Same as addTransformer(transformer, false).",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#addTransformer(java.lang.instrument.ClassFileTransformer,boolean)\"\u003e\u003ccode\u003eaddTransformer(ClassFileTransformer,boolean)\u003c/code\u003e\u003c/a\u003e"
@@ -94,21 +90,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.instrument.ClassFileTransformer",
             "type": "Class"
           },
-          "name": "transformer",
-          "varargs": false
+          "field": {
+            "name": "transformer"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "removeTransformer",
       "comment": "Unregisters the supplied transformer. Future class definitions will not be shown to the transformer. Removes the most-recently-added matching instance of the transformer. Due to the multi-threaded nature of class loading, it is possible for a transformer to receive calls after it has been removed. Transformers should be written defensively to expect this situation.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003etransformer\u003c/code\u003e - the transformer to unregister"
@@ -127,12 +121,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "isRetransformClassesSupported",
       "comment": "Returns whether or not the current JVM configuration supports retransformation of classes. The ability to retransform an already loaded class is an optional capability of a JVM. Retransformation will only be supported if the Can-Retransform-Classes manifest attribute is set to true in the agent JAR file (as described in the package specification) and the JVM supports this capability. During a single instantiation of a single JVM, multiple calls to this method will always return the same answer.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#retransformClasses(java.lang.Class...)\"\u003e\u003ccode\u003eretransformClasses(java.lang.Class\u0026lt;?\u0026gt;...)\u003c/code\u003e\u003c/a\u003e"
@@ -158,7 +150,6 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Class",
             "parameters": [
@@ -168,16 +159,16 @@
             ],
             "type": "Class"
           },
-          "name": "classes",
-          "varargs": true
+          "field": {
+            "name": "classes"
+          },
+          "varArgs": {}
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "retransformClasses",
       "comment": "Retransform the supplied set of classes. This function facilitates the instrumentation of already loaded classes. When classes are initially loaded or when they are redefined, the initial class file bytes can be transformed with the ClassFileTransformer. This function reruns the transformation process (whether or not a transformation has previously occurred). This retransformation follows these steps: starting from the initial class file bytes for each transformer that was added with canRetransform false, the bytes returned by transform during the last class load or redefine are reused as the output of the transformation; note that this is equivalent to reapplying the previous transformation, unaltered; except that transform method is not called. for each transformer that was added with canRetransform true, the transform method is called in these transformers the transformed class file bytes are installed as the new definition of the class The order of transformation is described in ClassFileTransformer. This same order is used in the automatic reapplication of retransformation incapable transforms. The initial class file bytes represent the bytes passed to ClassLoader.defineClass or redefineClasses (before any transformations were applied), however they might not exactly match them. The constant pool might not have the same layout or contents. The constant pool may have more or fewer entries. Constant pool entries may be in a different order; however, constant pool indices in the bytecodes of methods will correspond. Some attributes may not be present. Where order is not meaningful, for example the order of methods, order might not be preserved. This method operates on a set in order to allow interdependent changes to more than one class at the same time (a retransformation of class A can require a retransformation of class B). If a retransformed method has active stack frames, those active frames continue to run the bytecodes of the original method. The retransformed method will be used on new invokes. This method does not cause any initialization except that which would occur under the customary JVM semantics. In other words, redefining a class does not cause its initializers to be run. The values of static variables will remain as they were prior to the call. Instances of the retransformed class are not affected. The supported class file changes are described in JVM TI RetransformClasses. The class file bytes are not checked, verified and installed until after the transformations have been applied, if the resultant bytes are in error this method will throw an exception. If this method throws an exception, no classes have been retransformed. This method is intended for use in instrumentation, as described in the class specification.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#isRetransformClassesSupported()\"\u003e\u003ccode\u003eisRetransformClassesSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#addTransformer(java.lang.instrument.ClassFileTransformer,boolean)\"\u003e\u003ccode\u003eaddTransformer(java.lang.instrument.ClassFileTransformer, boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html\" title\u003d\"interface in java.lang.instrument\"\u003e\u003ccode\u003eClassFileTransformer\u003c/code\u003e\u003c/a\u003e"
@@ -206,12 +197,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "isRedefineClassesSupported",
       "comment": "Returns whether or not the current JVM configuration supports redefinition of classes. The ability to redefine an already loaded class is an optional capability of a JVM. Redefinition will only be supported if the Can-Redefine-Classes manifest attribute is set to true in the agent JAR file (as described in the package specification) and the JVM supports this capability. During a single instantiation of a single JVM, multiple calls to this method will always return the same answer.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#redefineClasses(java.lang.instrument.ClassDefinition...)\"\u003e\u003ccode\u003eredefineClasses(java.lang.instrument.ClassDefinition...)\u003c/code\u003e\u003c/a\u003e"
@@ -238,21 +227,20 @@
       ],
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.instrument.ClassDefinition",
             "type": "Class"
           },
-          "name": "definitions",
-          "varargs": true
+          "field": {
+            "name": "definitions"
+          },
+          "varArgs": {}
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "redefineClasses",
       "comment": "Redefine the supplied set of classes using the supplied class files. This method is used to replace the definition of a class without reference to the existing class file bytes, as one might do when recompiling from source for fix-and-continue debugging. Where the existing class file bytes are to be transformed (for example in bytecode instrumentation) retransformClasses should be used. This method operates on a set in order to allow interdependent changes to more than one class at the same time (a redefinition of class A can require a redefinition of class B). If a redefined method has active stack frames, those active frames continue to run the bytecodes of the original method. The redefined method will be used on new invokes. This method does not cause any initialization except that which would occur under the customary JVM semantics. In other words, redefining a class does not cause its initializers to be run. The values of static variables will remain as they were prior to the call. Instances of the redefined class are not affected. The supported class file changes are described in JVM TI RedefineClasses. The class file bytes are not checked, verified and installed until after the transformations have been applied, if the resultant bytes are in error this method will throw an exception. If this method throws an exception, no classes have been redefined. This method is intended for use in instrumentation, as described in the class specification.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#isRedefineClassesSupported()\"\u003e\u003ccode\u003eisRedefineClassesSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#addTransformer(java.lang.instrument.ClassFileTransformer,boolean)\"\u003e\u003ccode\u003eaddTransformer(java.lang.instrument.ClassFileTransformer, boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html\" title\u003d\"interface in java.lang.instrument\"\u003e\u003ccode\u003eClassFileTransformer\u003c/code\u003e\u003c/a\u003e"
@@ -280,7 +268,6 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Class",
             "parameters": [
@@ -290,16 +277,15 @@
             ],
             "type": "Class"
           },
-          "name": "theClass",
-          "varargs": false
+          "field": {
+            "name": "theClass"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "isModifiableClass",
       "comment": "Tests whether a class is modifiable by retransformation or redefinition. If a class is modifiable then this method returns true. If a class is not modifiable then this method returns false. For a class to be retransformed, isRetransformClassesSupported() must also be true. But the value of isRetransformClassesSupported() does not influence the value returned by this function. For a class to be redefined, isRedefineClassesSupported() must also be true. But the value of isRedefineClassesSupported() does not influence the value returned by this function. Primitive classes (for example, java.lang.Integer.TYPE) and array classes are never modifiable.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#retransformClasses(java.lang.Class...)\"\u003e\u003ccode\u003eretransformClasses(java.lang.Class\u0026lt;?\u0026gt;...)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#isRetransformClassesSupported()\"\u003e\u003ccode\u003eisRetransformClassesSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#redefineClasses(java.lang.instrument.ClassDefinition...)\"\u003e\u003ccode\u003eredefineClasses(java.lang.instrument.ClassDefinition...)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#isRedefineClassesSupported()\"\u003e\u003ccode\u003eisRedefineClassesSupported()\u003c/code\u003e\u003c/a\u003e"
@@ -322,15 +308,15 @@
       "returnType": {
         "name": "java.lang.Class",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "getAllLoadedClasses",
       "comment": "Returns an array of all classes currently loaded by the JVM. The returned array includes all classes and interfaces, including hidden classes or interfaces, and array classes of all types.",
-      "annotations": [],
       "tagMap": {
         "return": [
           "an array containing all the classes loaded by the JVM, zero-length if there are none"
@@ -341,25 +327,25 @@
       "returnType": {
         "name": "java.lang.Class",
         "type": "Class",
-        "arrayDimensions": 1
+        "arrayDimensions": [
+          {}
+        ]
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.ClassLoader",
             "type": "Class"
           },
-          "name": "loader",
-          "varargs": false
+          "field": {
+            "name": "loader"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "getInitiatedClasses",
       "comment": "Returns an array of all classes which loader can find by name via ClassLoader::loadClass, Class::forName and bytecode linkage. That is, all classes for which loader has been recorded as an initiating loader. If the supplied loader is null, classes that the bootstrap class loader can find by name are returned. The returned array does not include hidden classes or interfaces or array classes whose element type is a hidden class or interface. as they cannot be discovered by any class loader.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eloader\u003c/code\u003e - the loader whose initiated class list will be returned"
@@ -376,21 +362,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Object",
             "type": "Class"
           },
-          "name": "objectToSize",
-          "varargs": false
+          "field": {
+            "name": "objectToSize"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "getObjectSize",
       "comment": "Returns an implementation-specific approximation of the amount of storage consumed by the specified object. The result may include some or all of the object\u0027s overhead, and thus is useful for comparison within an implementation but not between implementations. The estimate may change during a single invocation of the JVM.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003eobjectToSize\u003c/code\u003e - the object to size"
@@ -410,21 +394,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.util.jar.JarFile",
             "type": "Class"
           },
-          "name": "jarfile",
-          "varargs": false
+          "field": {
+            "name": "jarfile"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "appendToBootstrapClassLoaderSearch",
       "comment": "Specifies a JAR file with instrumentation classes to be defined by the bootstrap class loader. When the virtual machine\u0027s built-in class loader, known as the \"bootstrap class loader\", unsuccessfully searches for a class, the entries in the JAR file will be searched as well. This method may be used multiple times to add multiple JAR files to be searched in the order that this method was invoked. The agent should take care to ensure that the JAR does not contain any classes or resources other than those to be defined by the bootstrap class loader for the purpose of instrumentation. Failure to observe this warning could result in unexpected behavior that is difficult to diagnose. For example, suppose there is a loader L, and L\u0027s parent for delegation is the bootstrap class loader. Furthermore, a method in class C, a class defined by L, makes reference to a non-public accessor class C$1. If the JAR file contains a class C$1 then the delegation to the bootstrap class loader will cause C$1 to be defined by the bootstrap class loader. In this example an IllegalAccessError will be thrown that may cause the application to fail. One approach to avoiding these types of issues, is to use a unique package name for the instrumentation classes. The Java Virtual Machine Specification specifies that a subsequent attempt to resolve a symbolic reference that the Java virtual machine has previously unsuccessfully attempted to resolve always fails with the same error that was thrown as a result of the initial resolution attempt. Consequently, if the JAR file contains an entry that corresponds to a class for which the Java virtual machine has unsuccessfully attempted to resolve a reference, then subsequent attempts to resolve that reference will fail with the same error as the initial attempt.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#appendToSystemClassLoaderSearch(java.util.jar.JarFile)\"\u003e\u003ccode\u003eappendToSystemClassLoaderSearch(java.util.jar.JarFile)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClassLoader\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/jar/JarFile.html\" title\u003d\"class in java.util.jar\"\u003e\u003ccode\u003eJarFile\u003c/code\u003e\u003c/a\u003e"
@@ -447,21 +429,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.util.jar.JarFile",
             "type": "Class"
           },
-          "name": "jarfile",
-          "varargs": false
+          "field": {
+            "name": "jarfile"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "appendToSystemClassLoaderSearch",
       "comment": "Specifies a JAR file with instrumentation classes to be defined by the system class loader. When the system class loader for delegation (see getSystemClassLoader()) unsuccessfully searches for a class, the entries in the JarFile will be searched as well. This method may be used multiple times to add multiple JAR files to be searched in the order that this method was invoked. The agent should take care to ensure that the JAR does not contain any classes or resources other than those to be defined by the system class loader for the purpose of instrumentation. Failure to observe this warning could result in unexpected behavior that is difficult to diagnose (see appendToBootstrapClassLoaderSearch). The system class loader supports adding a JAR file to be searched if it implements a method named appendToClassPathForInstrumentation which takes a single parameter of type java.lang.String. The method is not required to have public access. The name of the JAR file is obtained by invoking the getName() method on the jarfile and this is provided as the parameter to the appendToClassPathForInstrumentation method. The Java Virtual Machine Specification specifies that a subsequent attempt to resolve a symbolic reference that the Java virtual machine has previously unsuccessfully attempted to resolve always fails with the same error that was thrown as a result of the initial resolution attempt. Consequently, if the JAR file contains an entry that corresponds to a class for which the Java virtual machine has unsuccessfully attempted to resolve a reference, then subsequent attempts to resolve that reference will fail with the same error as the initial attempt. This method does not change the value of java.class.path system property.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#appendToBootstrapClassLoaderSearch(java.util.jar.JarFile)\"\u003e\u003ccode\u003eappendToBootstrapClassLoaderSearch(java.util.jar.JarFile)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getSystemClassLoader()\"\u003e\u003ccode\u003eClassLoader.getSystemClassLoader()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/jar/JarFile.html\" title\u003d\"class in java.util.jar\"\u003e\u003ccode\u003eJarFile\u003c/code\u003e\u003c/a\u003e"
@@ -484,12 +464,10 @@
         "type": "Class"
       },
       "parameters": [],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "isNativeMethodPrefixSupported",
       "comment": "Returns whether the current JVM configuration supports setting a native method prefix. The ability to set a native method prefix is an optional capability of a JVM. Setting a native method prefix will only be supported if the Can-Set-Native-Method-Prefix manifest attribute is set to true in the agent JAR file (as described in the package specification) and the JVM supports this capability. During a single instantiation of a single JVM, multiple calls to this method will always return the same answer.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#setNativeMethodPrefix(java.lang.instrument.ClassFileTransformer,java.lang.String)\"\u003e\u003ccode\u003esetNativeMethodPrefix(java.lang.instrument.ClassFileTransformer, java.lang.String)\u003c/code\u003e\u003c/a\u003e"
@@ -509,30 +487,28 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.instrument.ClassFileTransformer",
             "type": "Class"
           },
-          "name": "transformer",
-          "varargs": false
+          "field": {
+            "name": "transformer"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.String",
             "type": "Class"
           },
-          "name": "prefix",
-          "varargs": false
+          "field": {
+            "name": "prefix"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "setNativeMethodPrefix",
       "comment": "This method modifies the failure handling of native method resolution by allowing retry with a prefix applied to the name. When used with the ClassFileTransformer, it enables native methods to be instrumented. Since native methods cannot be directly instrumented (they have no bytecodes), they must be wrapped with a non-native method which can be instrumented. For example, if we had:    native boolean foo(int x); We could transform the class file (with the ClassFileTransformer during the initial definition of the class) so that this becomes:    boolean foo(int x) {\n     ... record entry to foo ...\n     return wrapped_foo(x);\n   }\n\n   native boolean wrapped_foo(int x); Where foo becomes a wrapper for the actual native method with the appended prefix \"wrapped_\". Note that \"wrapped_\" would be a poor choice of prefix since it might conceivably form the name of an existing method thus something like \"$$$MyAgentWrapped$$$_\" would be better but would make these examples less readable. The wrapper will allow data to be collected on the native method call, but now the problem becomes linking up the wrapped method with the native implementation. That is, the method wrapped_foo needs to be resolved to the native implementation of foo, which might be:    Java_somePackage_someClass_foo(JNIEnv* env, jint x) This function allows the prefix to be specified and the proper resolution to occur. Specifically, when the standard resolution fails, the resolution is retried taking the prefix into consideration. There are two ways that resolution occurs, explicit resolution with the JNI function RegisterNatives and the normal automatic resolution. For RegisterNatives, the JVM will attempt this association: \n   method(foo) -\u003e nativeImplementation(foo)\n When this fails, the resolution will be retried with the specified prefix prepended to the method name, yielding the correct resolution: \n   method(wrapped_foo) -\u003e nativeImplementation(foo)\n For automatic resolution, the JVM will attempt: \n   method(wrapped_foo) -\u003e nativeImplementation(wrapped_foo)\n When this fails, the resolution will be retried with the specified prefix deleted from the implementation name, yielding the correct resolution: \n   method(wrapped_foo) -\u003e nativeImplementation(foo)\n Note that since the prefix is only used when standard resolution fails, native methods can be wrapped selectively. Since each ClassFileTransformer can do its own transformation of the bytecodes, more than one layer of wrappers may be applied. Thus each transformer needs its own prefix. Since transformations are applied in order, the prefixes, if applied, will be applied in the same order (see addTransformer). Thus if three transformers applied wrappers, foo might become $trans3_$trans2_$trans1_foo. But if, say, the second transformer did not apply a wrapper to foo it would be just $trans3_$trans1_foo. To be able to efficiently determine the sequence of prefixes, an intermediate prefix is only applied if its non-native wrapper exists. Thus, in the last example, even though $trans1_foo is not a native method, the $trans1_ prefix is applied since $trans1_foo exists.",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003etransformer\u003c/code\u003e - The ClassFileTransformer which wraps using this prefix.",
@@ -555,16 +531,15 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Module",
             "type": "Class"
           },
-          "name": "module",
-          "varargs": false
+          "field": {
+            "name": "module"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.Set",
             "parameters": [
@@ -575,11 +550,11 @@
             ],
             "type": "Class"
           },
-          "name": "extraReads",
-          "varargs": false
+          "field": {
+            "name": "extraReads"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.Map",
             "parameters": [
@@ -600,11 +575,11 @@
             ],
             "type": "Class"
           },
-          "name": "extraExports",
-          "varargs": false
+          "field": {
+            "name": "extraExports"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.Map",
             "parameters": [
@@ -625,11 +600,11 @@
             ],
             "type": "Class"
           },
-          "name": "extraOpens",
-          "varargs": false
+          "field": {
+            "name": "extraOpens"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.Set",
             "parameters": [
@@ -645,11 +620,11 @@
             ],
             "type": "Class"
           },
-          "name": "extraUses",
-          "varargs": false
+          "field": {
+            "name": "extraUses"
+          }
         },
         {
-          "annotations": [],
           "type": {
             "name": "java.util.Map",
             "parameters": [
@@ -680,16 +655,15 @@
             ],
             "type": "Class"
           },
-          "name": "extraProvides",
-          "varargs": false
+          "field": {
+            "name": "extraProvides"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "redefineModule",
       "comment": "Redefine a module to expand the set of modules that it reads, the set of packages that it exports or opens, or the services that it uses or provides. This method facilitates the instrumentation of code in named modules where that instrumentation requires changes to the set of modules that are read, the packages that are exported or open, or the services that are used or provided. This method cannot reduce the set of modules that a module reads, nor reduce the set of packages that it exports or opens, nor reduce the set of services that it uses or provides. This method is a no-op when invoked to redefine an unnamed module. When expanding the services that a module uses or provides then the onus is on the agent to ensure that the service type will be accessible at each instrumentation site where the service type is used. This method does not check if the service type is a member of the module or in a package exported to the module by another module that it reads. The extraExports parameter is the map of additional packages to export. The extraOpens parameter is the map of additional packages to open. In both cases, the map key is the fully-qualified name of the package as defined in section 6.5.3 of The Java Language Specification , for example, \"java.lang\". The map value is the non-empty set of modules that the package should be exported or opened to. The extraProvides parameter is the additional service providers for the module to provide. The map key is the service type. The map value is the non-empty list of implementation types, each of which is a member of the module and an implementation of the service. This method is safe for concurrent use and so allows multiple agents to instrument and update the same module at around the same time.",
-      "annotations": [],
       "tagMap": {
         "see": [
           "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html#isModifiableModule(java.lang.Module)\"\u003e\u003ccode\u003eisModifiableModule(Module)\u003c/code\u003e\u003c/a\u003e"
@@ -719,21 +693,19 @@
       },
       "parameters": [
         {
-          "annotations": [],
           "type": {
             "name": "java.lang.Module",
             "type": "Class"
           },
-          "name": "module",
-          "varargs": false
+          "field": {
+            "name": "module"
+          }
         }
       ],
-      "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
       "name": "isModifiableModule",
       "comment": "Tests whether a module can be modified with redefineModule. If a module is modifiable then this method returns true. If a module is not modifiable then this method returns false. This method always returns true when the module is an unnamed module (as redefining an unnamed module is a no-op).",
-      "annotations": [],
       "tagMap": {
         "param": [
           "\u003ccode\u003emodule\u003c/code\u003e - the module to test if it can be modified"
