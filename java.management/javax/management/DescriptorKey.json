@@ -2,53 +2,15 @@
   "packageName": "javax.management",
   "simpleName": "DescriptorKey",
   "moduleName": "java.management",
-  "type": "INTERFACE",
   "superClass": {
     "name": "java.lang.Object",
     "type": "Class"
   },
   "members": [],
   "memberType": "JavaClass",
-  "modifiers": 513,
+  "modifiers": 1,
   "name": "javax.management.DescriptorKey",
-  "annotations": [
-    {
-      "type": {
-        "name": "Documented",
-        "type": "Class"
-      }
-    },
-    {
-      "type": {
-        "name": "Retention",
-        "type": "Class"
-      },
-      "values": [
-        {
-          "name": "value",
-          "value": {
-            "type": "Unknown",
-            "object": "RUNTIME"
-          }
-        }
-      ]
-    },
-    {
-      "type": {
-        "name": "Target",
-        "type": "Class"
-      },
-      "values": [
-        {
-          "name": "value",
-          "value": {
-            "type": "Unknown",
-            "object": "METHOD"
-          }
-        }
-      ]
-    }
-  ],
+  "comment": "\u003cp\u003eMeta-annotation that describes how an annotation element relates to a field in a \u003ca href\u003d\"Descriptor.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eDescriptor\u003c/code\u003e\u003c/a\u003e. This can be the Descriptor for an MBean, or for an attribute, operation, or constructor in an MBean, or for a parameter of an operation or constructor.\u003c/p\u003e \n\u003cp\u003eConsider this annotation for example:\u003c/p\u003e \n\u003cpre\u003e @Documented\n @Target(ElementType.METHOD)\n @Retention(RetentionPolicy.RUNTIME)\n public @interface Units {\n     \u003cb\u003e@DescriptorKey(\"units\")\u003c/b\u003e\n     String value();\n }\n \u003c/pre\u003e \n\u003cp\u003eand this use of the annotation:\u003c/p\u003e \n\u003cpre\u003e public interface CacheControlMBean {\n     \u003cb\u003e@Units(\"bytes\")\u003c/b\u003e\n     public long getCacheSize();\n }\n \u003c/pre\u003e \n\u003cp\u003eWhen a Standard MBean is made from the \u003ccode\u003eCacheControlMBean\u003c/code\u003e, the usual rules mean that it will have an attribute called \u003ccode\u003eCacheSize\u003c/code\u003e of type \u003ccode\u003elong\u003c/code\u003e. The \u003ccode\u003e@Units\u003c/code\u003e annotation, given the above definition, will ensure that the \u003ca href\u003d\"MBeanAttributeInfo.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eMBeanAttributeInfo\u003c/code\u003e\u003c/a\u003e for this attribute will have a \u003ccode\u003eDescriptor\u003c/code\u003e that has a field called \u003ccode\u003eunits\u003c/code\u003e with corresponding value \u003ccode\u003ebytes\u003c/code\u003e.\u003c/p\u003e \n\u003cp\u003eSimilarly, if the annotation looks like this:\u003c/p\u003e \n\u003cpre\u003e @Documented\n @Target(ElementType.METHOD)\n @Retention(RetentionPolicy.RUNTIME)\n public @interface Units {\n     \u003cb\u003e@DescriptorKey(\"units\")\u003c/b\u003e\n     String value();\n\n     \u003cb\u003e@DescriptorKey(\"descriptionResourceKey\")\u003c/b\u003e\n     String resourceKey() default \"\";\n\n     \u003cb\u003e@DescriptorKey(\"descriptionResourceBundleBaseName\")\u003c/b\u003e\n     String resourceBundleBaseName() default \"\";\n }\n \u003c/pre\u003e \n\u003cp\u003eand it is used like this:\u003c/p\u003e \n\u003cpre\u003e public interface CacheControlMBean {\n     \u003cb\u003e@Units(\"bytes\",\n            resourceKey\u003d\"bytes.key\",\n            resourceBundleBaseName\u003d\"com.example.foo.MBeanResources\")\u003c/b\u003e\n     public long getCacheSize();\n }\n \u003c/pre\u003e \n\u003cp\u003ethen the resulting \u003ccode\u003eDescriptor\u003c/code\u003e will contain the following fields:\u003c/p\u003e \n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption style\u003d\"display:none\"\u003e\n  Descriptor Fields\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"col\"\u003eName\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eValue\u003c/th\u003e\n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody style\u003d\"text-align:left\"\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003eunits\u003c/th\u003e\n   \u003ctd\u003e\"bytes\"\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003edescriptionResourceKey\u003c/th\u003e\n   \u003ctd\u003e\"bytes.key\"\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003edescriptionResourceBundleBaseName\u003c/th\u003e \n   \u003ctd\u003e\"com.example.foo.MBeanResources\"\u003c/td\u003e\n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e \n\u003cp\u003eAn annotation such as \u003ccode\u003e@Units\u003c/code\u003e can be applied to:\u003c/p\u003e \n\u003cul\u003e \n \u003cli\u003ea Standard MBean or MXBean interface; \u003c/li\u003e\n \u003cli\u003ea method in such an interface; \u003c/li\u003e\n \u003cli\u003ea parameter of a method in a Standard MBean or MXBean interface when that method is an operation (not a getter or setter for an attribute); \u003c/li\u003e\n \u003cli\u003ea public constructor in the class that implements a Standard MBean or MXBean; \u003c/li\u003e\n \u003cli\u003ea parameter in such a constructor. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003eOther uses of the annotation are ignored.\u003c/p\u003e \n\u003cp\u003eInterface annotations are checked only on the exact interface that defines the management interface of a Standard MBean or an MXBean, not on its parent interfaces. Method annotations are checked only in the most specific interface in which the method appears; in other words, if a child interface overrides a method from a parent interface, only \u003ccode\u003e@DescriptorKey\u003c/code\u003e annotations in the method in the child interface are considered. \u003c/p\u003e\n\u003cp\u003eThe Descriptor fields contributed in this way by different annotations on the same program element must be consistent. That is, two different annotations, or two members of the same annotation, must not define a different value for the same Descriptor field. Fields from annotations on a getter method must also be consistent with fields from annotations on the corresponding setter method.\u003c/p\u003e \n\u003cp\u003eThe Descriptor resulting from these annotations will be merged with any Descriptor fields provided by the implementation, such as the \u003ca href\u003d\"Descriptor.html#immutableInfo\"\u003e\u003ccode\u003e immutableInfo\u003c/code\u003e\u003c/a\u003e field for an MBean. The fields from the annotations must be consistent with these fields provided by the implementation.\u003c/p\u003e \n\u003cp\u003eAn annotation element to be converted into a descriptor field can be of any type allowed by the Java language, except an annotation or an array of annotations. The value of the field is derived from the value of the annotation element as follows:\u003c/p\u003e \n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption style\u003d\"display:none\"\u003e\n  Descriptor Field Types\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"col\"\u003eAnnotation element\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eDescriptor field\u003c/th\u003e\n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody style\u003d\"text-align:left\"\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003ePrimitive value (\u003ccode\u003e5\u003c/code\u003e, \u003ccode\u003efalse\u003c/code\u003e, etc)\u003c/th\u003e \n   \u003ctd\u003eWrapped value (\u003ccode\u003eInteger.valueOf(5)\u003c/code\u003e, \u003ccode\u003eBoolean.FALSE\u003c/code\u003e, etc)\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003eClass constant (e.g. \u003ccode\u003eThread.class\u003c/code\u003e)\u003c/th\u003e \n   \u003ctd\u003eClass name from \u003ca href\u003d\"../../../java.base/java/lang/Class.html#getName()\"\u003e\u003ccode\u003eClass.getName()\u003c/code\u003e\u003c/a\u003e (e.g. \u003ccode\u003e\"java.lang.Thread\"\u003c/code\u003e)\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003eEnum constant (e.g. \u003ca href\u003d\"../../../java.base/java/lang/annotation/ElementType.html#FIELD\"\u003e\u003ccode\u003eElementType.FIELD\u003c/code\u003e\u003c/a\u003e)\u003c/th\u003e \n   \u003ctd\u003eConstant name from \u003ca href\u003d\"../../../java.base/java/lang/Enum.html#name()\"\u003e\u003ccode\u003eEnum.name()\u003c/code\u003e\u003c/a\u003e (e.g. \u003ccode\u003e\"FIELD\"\u003c/code\u003e)\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003eArray of class constants or enum constants\u003c/th\u003e \n   \u003ctd\u003eString array derived by applying these rules to each element\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003eValue of any other type\u003cbr\u003e (\u003ccode\u003eString\u003c/code\u003e, \u003ccode\u003eString[]\u003c/code\u003e, \u003ccode\u003eint[]\u003c/code\u003e, etc)\u003c/th\u003e \n   \u003ctd\u003eThe same value\u003c/td\u003e\n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e",
   "tagMap": {
     "since": [
       "1.6"

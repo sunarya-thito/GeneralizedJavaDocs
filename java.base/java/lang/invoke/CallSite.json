@@ -13,7 +13,6 @@
         "name": "java.lang.invoke.MethodType",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -31,7 +30,6 @@
         "name": "java.lang.invoke.MethodHandle",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -52,17 +50,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodHandle",
-            "type": "Class"
-          },
-          "name": "newTarget",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -87,7 +74,6 @@
         "name": "java.lang.invoke.MethodHandle",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -104,7 +90,7 @@
   "memberType": "JavaClass",
   "modifiers": 1025,
   "name": "java.lang.invoke.CallSite",
-  "annotations": [],
+  "comment": "A \n\u003ccode\u003eCallSite\u003c/code\u003e is a holder for a variable \n\u003ca href\u003d\"MethodHandle.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eMethodHandle\u003c/code\u003e\u003c/a\u003e, which is called its \n\u003ccode\u003etarget\u003c/code\u003e. An \n\u003ccode\u003einvokedynamic\u003c/code\u003e instruction linked to a \n\u003ccode\u003eCallSite\u003c/code\u003e delegates all calls to the site\u0027s current target. A \n\u003ccode\u003eCallSite\u003c/code\u003e may be associated with several \n\u003ccode\u003einvokedynamic\u003c/code\u003e instructions, or it may be \"free floating\", associated with none. In any case, it may be invoked through an associated method handle called its \n\u003ca href\u003d\"#dynamicInvoker()\"\u003edynamic invoker\u003c/a\u003e. \n\u003cp\u003e \u003ccode\u003eCallSite\u003c/code\u003e is an abstract class which does not allow direct subclassing by users. It has three immediate, concrete subclasses that may be either instantiated or subclassed. \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eIf a mutable target is not required, an \u003ccode\u003einvokedynamic\u003c/code\u003e instruction may be permanently bound by means of a \u003ca href\u003d\"ConstantCallSite.html\" title\u003d\"class in java.lang.invoke\"\u003econstant call site\u003c/a\u003e. \u003c/li\u003e\n \u003cli\u003eIf a mutable target is required which has volatile variable semantics, because updates to the target must be immediately and reliably witnessed by other threads, a \u003ca href\u003d\"VolatileCallSite.html\" title\u003d\"class in java.lang.invoke\"\u003evolatile call site\u003c/a\u003e may be used. \u003c/li\u003e\n \u003cli\u003eOtherwise, if a mutable target is required, a \u003ca href\u003d\"MutableCallSite.html\" title\u003d\"class in java.lang.invoke\"\u003emutable call site\u003c/a\u003e may be used. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A non-constant call site may be \u003cem\u003erelinked\u003c/em\u003e by changing its target. The new target must have the same \u003ca href\u003d\"MethodHandle.html#type()\"\u003etype\u003c/a\u003e as the previous target. Thus, though a call site can be relinked to a series of successive targets, it cannot change its type. \u003c/p\u003e\n\u003cp\u003e Here is a sample use of call sites and bootstrap methods which links every dynamic call site to print its arguments: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nstatic void test() throws Throwable {\n    // THE FOLLOWING LINE IS PSEUDOCODE FOR A JVM INSTRUCTION\n    InvokeDynamic[#bootstrapDynamic].baz(\"baz arg\", 2, 3.14);\n}\nprivate static void printArgs(Object... args) {\n  System.out.println(java.util.Arrays.deepToString(args));\n}\nprivate static final MethodHandle printArgs;\nstatic {\n  MethodHandles.Lookup lookup \u003d MethodHandles.lookup();\n  Class thisClass \u003d lookup.lookupClass();  // (who am I?)\n  printArgs \u003d lookup.findStatic(thisClass,\n      \"printArgs\", MethodType.methodType(void.class, Object[].class));\n}\nprivate static CallSite bootstrapDynamic(MethodHandles.Lookup caller, String name, MethodType type) {\n  // ignore caller and name, but match the type:\n  return new ConstantCallSite(printArgs.asType(type));\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.7"

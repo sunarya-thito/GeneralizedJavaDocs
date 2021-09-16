@@ -13,17 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "blocker",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -44,17 +33,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Thread",
-            "type": "Class"
-          },
-          "name": "thread",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -72,17 +50,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "blocker",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -103,26 +70,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "blocker",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "nanos",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -144,26 +91,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "blocker",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "deadline",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -185,17 +112,6 @@
         "name": "java.lang.Object",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Thread",
-            "type": "Class"
-          },
-          "name": "t",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -222,7 +138,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -236,17 +151,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "nanos",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -264,17 +168,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "deadline",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -291,7 +184,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.util.concurrent.locks.LockSupport",
-  "annotations": [],
+  "comment": "Basic thread blocking primitives for creating locks and other synchronization classes. \n\u003cp\u003eThis class associates, with each thread that uses it, a permit (in the sense of the \u003ca href\u003d\"../Semaphore.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eSemaphore\u003c/code\u003e\u003c/a\u003e class). A call to \u003ccode\u003epark\u003c/code\u003e will return immediately if the permit is available, consuming it in the process; otherwise it \u003cem\u003emay\u003c/em\u003e block. A call to \u003ccode\u003eunpark\u003c/code\u003e makes the permit available, if it was not already available. (Unlike with Semaphores though, permits do not accumulate. There is at most one.) Reliable usage requires the use of volatile (or atomic) variables to control when to park or unpark. Orderings of calls to these methods are maintained with respect to volatile variable accesses, but not necessarily non-volatile variable accesses. \u003c/p\u003e\n\u003cp\u003eMethods \u003ccode\u003epark\u003c/code\u003e and \u003ccode\u003eunpark\u003c/code\u003e provide efficient means of blocking and unblocking threads that do not encounter the problems that cause the deprecated methods \u003ccode\u003eThread.suspend\u003c/code\u003e and \u003ccode\u003eThread.resume\u003c/code\u003e to be unusable for such purposes: Races between one thread invoking \u003ccode\u003epark\u003c/code\u003e and another thread trying to \u003ccode\u003eunpark\u003c/code\u003e it will preserve liveness, due to the permit. Additionally, \u003ccode\u003epark\u003c/code\u003e will return if the caller\u0027s thread was interrupted, and timeout versions are supported. The \u003ccode\u003epark\u003c/code\u003e method may also return at any other time, for \"no reason\", so in general must be invoked within a loop that rechecks conditions upon return. In this sense \u003ccode\u003epark\u003c/code\u003e serves as an optimization of a \"busy wait\" that does not waste as much time spinning, but must be paired with an \u003ccode\u003eunpark\u003c/code\u003e to be effective. \u003c/p\u003e\n\u003cp\u003eThe three forms of \u003ccode\u003epark\u003c/code\u003e each also support a \u003ccode\u003eblocker\u003c/code\u003e object parameter. This object is recorded while the thread is blocked to permit monitoring and diagnostic tools to identify the reasons that threads are blocked. (Such tools may access blockers using method \u003ca href\u003d\"#getBlocker(java.lang.Thread)\"\u003e\u003ccode\u003egetBlocker(Thread)\u003c/code\u003e\u003c/a\u003e.) The use of these forms rather than the original forms without this parameter is strongly encouraged. The normal argument to supply as a \u003ccode\u003eblocker\u003c/code\u003e within a lock implementation is \u003ccode\u003ethis\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003eThese methods are designed to be used as tools for creating higher-level synchronization utilities, and are not in themselves useful for most concurrency control applications. The \u003ccode\u003epark\u003c/code\u003e method is designed for use only in constructions of the form: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n while (!canProceed()) {\n   // ensure request to unpark is visible to other threads\n   ...\n   LockSupport.park(this);\n }\u003c/code\u003e\u003c/pre\u003e where no actions by the thread publishing a request to unpark, prior to the call to \n\u003ccode\u003epark\u003c/code\u003e, entail locking or blocking. Because only one permit is associated with each thread, any intermediary uses of \n\u003ccode\u003epark\u003c/code\u003e, including implicitly via class loading, could lead to an unresponsive thread (a \"lost unpark\"). \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e\u003cb\u003eSample Usage.\u003c/b\u003e Here is a sketch of a first-in-first-out non-reentrant lock class: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class FIFOMutex {\n   private final AtomicBoolean locked \u003d new AtomicBoolean(false);\n   private final Queue\u0026lt;Thread\u0026gt; waiters\n     \u003d new ConcurrentLinkedQueue\u0026lt;\u0026gt;();\n\n   public void lock() {\n     boolean wasInterrupted \u003d false;\n     // publish current thread for unparkers\n     waiters.add(Thread.currentThread());\n\n     // Block while not first in queue or cannot acquire lock\n     while (waiters.peek() !\u003d Thread.currentThread() ||\n            !locked.compareAndSet(false, true)) {\n       LockSupport.park(this);\n       // ignore interrupts while waiting\n       if (Thread.interrupted())\n         wasInterrupted \u003d true;\n     }\n\n     waiters.remove();\n     // ensure correct interrupt status on return\n     if (wasInterrupted)\n       Thread.currentThread().interrupt();\n   }\n\n   public void unlock() {\n     locked.set(false);\n     LockSupport.unpark(waiters.peek());\n   }\n\n   static {\n     // Reduce the risk of \"lost unpark\" due to classloading\n     Class\u0026lt;?\u0026gt; ensureLoaded \u003d LockSupport.class;\n   }\n }\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

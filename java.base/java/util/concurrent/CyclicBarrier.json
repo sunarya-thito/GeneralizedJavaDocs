@@ -13,7 +13,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -31,17 +30,6 @@
         "name": "int",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        },
-        {
-          "name": "java.util.concurrent.BrokenBarrierException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -63,40 +51,6 @@
         "name": "int",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        },
-        {
-          "name": "java.util.concurrent.BrokenBarrierException",
-          "type": "Class"
-        },
-        {
-          "name": "java.util.concurrent.TimeoutException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "timeout",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.concurrent.TimeUnit",
-            "type": "Class"
-          },
-          "name": "unit",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -123,7 +77,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -141,7 +94,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -155,7 +107,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -234,7 +185,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.util.concurrent.CyclicBarrier",
-  "annotations": [],
+  "comment": "A synchronization aid that allows a set of threads to all wait for each other to reach a common barrier point. CyclicBarriers are useful in programs involving a fixed sized party of threads that must occasionally wait for each other. The barrier is called \n\u003cem\u003ecyclic\u003c/em\u003e because it can be re-used after the waiting threads are released. \n\u003cp\u003eA \u003ccode\u003eCyclicBarrier\u003c/code\u003e supports an optional \u003ca href\u003d\"../../lang/Runnable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eRunnable\u003c/code\u003e\u003c/a\u003e command that is run once per barrier point, after the last thread in the party arrives, but before any threads are released. This \u003cem\u003ebarrier action\u003c/em\u003e is useful for updating shared-state before any of the parties continue. \u003c/p\u003e\n\u003cp\u003e\u003cb\u003eSample usage:\u003c/b\u003e Here is an example of using a barrier in a parallel decomposition design: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class Solver {\n   final int N;\n   final float[][] data;\n   final CyclicBarrier barrier;\n\n   class Worker implements Runnable {\n     int myRow;\n     Worker(int row) { myRow \u003d row; }\n     public void run() {\n       while (!done()) {\n         processRow(myRow);\n\n         try {\n           barrier.await();\n         } catch (InterruptedException ex) {\n           return;\n         } catch (BrokenBarrierException ex) {\n           return;\n         }\n       }\n     }\n   }\n\n   public Solver(float[][] matrix) {\n     data \u003d matrix;\n     N \u003d matrix.length;\n     Runnable barrierAction \u003d () -\u0026gt; mergeRows(...);\n     barrier \u003d new CyclicBarrier(N, barrierAction);\n\n     List\u0026lt;Thread\u0026gt; threads \u003d new ArrayList\u0026lt;\u0026gt;(N);\n     for (int i \u003d 0; i \u0026lt; N; i++) {\n       Thread thread \u003d new Thread(new Worker(i));\n       threads.add(thread);\n       thread.start();\n     }\n\n     // wait until done\n     for (Thread thread : threads)\n       thread.join();\n   }\n }\u003c/code\u003e\u003c/pre\u003e Here, each worker thread processes a row of the matrix, then waits at the barrier until all rows have been processed. When all rows are processed the supplied \n\u003ca href\u003d\"../../lang/Runnable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eRunnable\u003c/code\u003e\u003c/a\u003e barrier action is executed and merges the rows. If the merger determines that a solution has been found then \n\u003ccode\u003edone()\u003c/code\u003e will return \n\u003ccode\u003etrue\u003c/code\u003e and each worker will terminate. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eIf the barrier action does not rely on the parties being suspended when it is executed, then any of the threads in the party could execute that action when it is released. To facilitate this, each invocation of \u003ca href\u003d\"#await()\"\u003e\u003ccode\u003eawait()\u003c/code\u003e\u003c/a\u003e returns the arrival index of that thread at the barrier. You can then choose which thread should execute the barrier action, for example: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n if (barrier.await() \u003d\u003d 0) {\n   // log the completion of this iteration\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eCyclicBarrier\u003c/code\u003e uses an all-or-none breakage model for failed synchronization attempts: If a thread leaves a barrier point prematurely because of interruption, failure, or timeout, all other threads waiting at that barrier point will also leave abnormally via \u003ca href\u003d\"BrokenBarrierException.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eBrokenBarrierException\u003c/code\u003e\u003c/a\u003e (or \u003ca href\u003d\"../../lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eInterruptedException\u003c/code\u003e\u003c/a\u003e if they too were interrupted at about the same time). \u003c/p\u003e\n\u003cp\u003eMemory consistency effects: Actions in a thread prior to calling \u003ccode\u003eawait()\u003c/code\u003e \u003ca href\u003d\"package-summary.html#MemoryVisibility\"\u003e\u003ci\u003ehappen-before\u003c/i\u003e\u003c/a\u003e actions that are part of the barrier action, which in turn \u003ci\u003ehappen-before\u003c/i\u003e actions following a successful return from the corresponding \u003ccode\u003eawait()\u003c/code\u003e in other threads.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CountDownLatch.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCountDownLatch\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Phaser.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003ePhaser\u003c/code\u003e\u003c/a\u003e"

@@ -13,7 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -37,7 +36,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -61,7 +59,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -79,38 +76,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.plugins.jpeg.JPEGQTable",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "qTables",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.plugins.jpeg.JPEGHuffmanTable",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "DCHuffmanTables",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.plugins.jpeg.JPEGHuffmanTable",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "ACHuffmanTables",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -136,7 +101,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -155,7 +119,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -177,7 +140,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -199,7 +161,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -220,17 +181,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "boolean",
-            "type": "Class"
-          },
-          "name": "optimize",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -251,7 +201,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -294,6 +243,6 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.imageio.plugins.jpeg.JPEGImageWriteParam",
-  "annotations": [],
+  "comment": "This class adds the ability to set JPEG quantization and Huffman tables when using the built-in JPEG writer plug-in, and to request that optimized Huffman tables be computed for an image. An instance of this class will be returned from the \n\u003ccode\u003egetDefaultImageWriteParam\u003c/code\u003e methods of the built-in JPEG \n\u003ccode\u003eImageWriter\u003c/code\u003e. \n\u003cp\u003e The principal purpose of these additions is to allow the specification of tables to use in encoding abbreviated streams. The built-in JPEG writer will also accept an ordinary \u003ccode\u003eImageWriteParam\u003c/code\u003e, in which case the writer will construct the necessary tables internally. \u003c/p\u003e\n\u003cp\u003e In either case, the quality setting in an \u003ccode\u003eImageWriteParam\u003c/code\u003e has the same meaning as for the underlying library: 1.00 means a quantization table of all 1\u0027s, 0.75 means the \"standard\", visually lossless quantization table, and 0.00 means aquantization table of all 255\u0027s. \u003c/p\u003e\n\u003cp\u003e While tables for abbreviated streams are often specified by first writing an abbreviated stream containing only the tables, in some applications the tables are fixed ahead of time. This class allows the tables to be specified directly from client code. \u003c/p\u003e\n\u003cp\u003e Normally, the tables are specified in the \u003ccode\u003eIIOMetadata\u003c/code\u003e objects passed in to the writer, and any tables included in these objects are written to the stream. If no tables are specified in the metadata, then an abbreviated stream is written. If no tables are included in the metadata and no tables are specified in a \u003ccode\u003eJPEGImageWriteParam\u003c/code\u003e, then an abbreviated stream is encoded using the \"standard\" visually lossless tables. This class is necessary for specifying tables when an abbreviated stream must be written without writing any tables to a stream first. In order to use this class, the metadata object passed into the writer must contain no tables, and no stream metadata must be provided. See \u003ca href\u003d\"JPEGQTable.html\" title\u003d\"class in javax.imageio.plugins.jpeg\"\u003e\u003ccode\u003eJPEGQTable\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"JPEGHuffmanTable.html\" title\u003d\"class in javax.imageio.plugins.jpeg\"\u003e\u003ccode\u003eJPEGHuffmanTable\u003c/code\u003e\u003c/a\u003e for more information on the default tables. \u003c/p\u003e\n\u003cp\u003e The default \u003ccode\u003eJPEGImageWriteParam\u003c/code\u003e returned by the \u003ccode\u003egetDefaultWriteParam\u003c/code\u003e method of the writer contains no tables. Default tables are included in the default \u003ccode\u003eIIOMetadata\u003c/code\u003e objects returned by the writer. \u003c/p\u003e\n\u003cp\u003e If the metadata does contain tables, the tables given in a \u003ccode\u003eJPEGImageWriteParam\u003c/code\u003e are ignored. Furthermore, once a set of tables has been written, only tables in the metadata can override them for subsequent writes, whether to the same stream or a different one. In order to specify new tables using this class, the \u003ca href\u003d\"../../ImageWriter.html#reset()\"\u003e\u003ccode\u003ereset\u003c/code\u003e\u003c/a\u003e method of the writer must be called. \u003c/p\u003e\n\u003cp\u003e For more information about the operation of the built-in JPEG plug-ins, see the \u003ca href\u003d\"../../metadata/doc-files/jpeg_metadata.html\"\u003eJPEG metadata format specification and usage notes\u003c/a\u003e.\u003c/p\u003e",
   "tagMap": {}
 }

@@ -13,17 +13,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.IIOParam",
-            "type": "Class"
-          },
-          "name": "param",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -46,7 +35,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.imageio.IIOParamController",
-  "annotations": [],
+  "comment": "An interface to be implemented by objects that can determine the settings of an \n\u003ccode\u003eIIOParam\u003c/code\u003e object, either by putting up a GUI to obtain values from a user, or by other means. This interface merely specifies a generic \n\u003ccode\u003eactivate\u003c/code\u003e method that invokes the controller, without regard for how the controller obtains values (\n\u003ci\u003ei.e.\u003c/i\u003e, whether the controller puts up a GUI or merely computes a set of values is irrelevant to this interface). \n\u003cp\u003e Within the \u003ccode\u003eactivate\u003c/code\u003e method, a controller obtains initial values by querying the \u003ccode\u003eIIOParam\u003c/code\u003e object\u0027s \u003ccode\u003eget\u003c/code\u003e methods, modifies values by whatever means, then invokes the \u003ccode\u003eIIOParam\u003c/code\u003e object\u0027s \u003ccode\u003eset\u003c/code\u003e methods to modify the appropriate settings. Normally, these \u003ccode\u003eset\u003c/code\u003e methods will be invoked all at once at a final commit in order that a cancel operation not disturb existing values. In general, applications may expect that when the \u003ccode\u003eactivate\u003c/code\u003e method returns \u003ccode\u003etrue\u003c/code\u003e, the \u003ccode\u003eIIOParam\u003c/code\u003e object is ready for use in a read or write operation. \u003c/p\u003e\n\u003cp\u003e Vendors may choose to provide GUIs for the \u003ccode\u003eIIOParam\u003c/code\u003e subclasses they define for a particular plug-in. These can be set up as default controllers in the corresponding \u003ccode\u003eIIOParam\u003c/code\u003e subclasses. \u003c/p\u003e\n\u003cp\u003e Applications may override any default GUIs and provide their own controllers embedded in their own framework. All that is required is that the \u003ccode\u003eactivate\u003c/code\u003e method behave modally (not returning until either cancelled or committed), though it need not put up an explicitly modal dialog. Such a non-modal GUI component would be coded roughly as follows: \u003cbr\u003e \u003c/p\u003e\n\u003cpre\u003e class MyGUI extends SomeComponent implements IIOParamController {\n\n    public MyGUI() {\n        // ...\n        setEnabled(false);\n    }\n\n    public boolean activate(IIOParam param) {\n        // disable other components if desired\n        setEnabled(true);\n        // go to sleep until either cancelled or committed\n        boolean ret \u003d false;\n        if (!cancelled) {\n            // set values on param\n            ret \u003d true;\n        }\n        setEnabled(false);\n        // enable any components disabled above\n        return ret;\n    }\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Alternatively, an algorithmic process such as a database lookup or the parsing of a command line could be used as a controller, in which case the \u003ccode\u003eactivate\u003c/code\u003e method would simply look up or compute the settings, call the \u003ccode\u003eIIOParam.setXXX\u003c/code\u003e methods, and return \u003ccode\u003etrue\u003c/code\u003e.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/IIOParam.html#setController(javax.imageio.IIOParamController)\"\u003e\u003ccode\u003eIIOParam.setController(javax.imageio.IIOParamController)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/IIOParam.html#getController()\"\u003e\u003ccode\u003eIIOParam.getController()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/IIOParam.html#getDefaultController()\"\u003e\u003ccode\u003eIIOParam.getDefaultController()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/IIOParam.html#hasController()\"\u003e\u003ccode\u003eIIOParam.hasController()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/IIOParam.html#activateController()\"\u003e\u003ccode\u003eIIOParam.activateController()\u003c/code\u003e\u003c/a\u003e"

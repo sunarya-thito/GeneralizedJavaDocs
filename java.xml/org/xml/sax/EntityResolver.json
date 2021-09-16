@@ -13,36 +13,6 @@
         "name": "org.xml.sax.InputSource",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "org.xml.sax.SAXException",
-          "type": "Class"
-        },
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "publicId",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "systemId",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -70,7 +40,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "org.xml.sax.EntityResolver",
-  "annotations": [],
+  "comment": "Basic interface for resolving entities. \n\u003cp\u003eIf a SAX application needs to implement customized handling for external entities, it must implement this interface and register an instance with the SAX driver using the \u003ca href\u003d\"XMLReader.html#setEntityResolver(org.xml.sax.EntityResolver)\"\u003e\u003ccode\u003esetEntityResolver\u003c/code\u003e\u003c/a\u003e method.\u003c/p\u003e \n\u003cp\u003eThe XML reader will then allow the application to intercept any external entities (including the external DTD subset and external parameter entities, if any) before including them.\u003c/p\u003e \n\u003cp\u003eMany SAX applications will not need to implement this interface, but it will be especially useful for applications that build XML documents from databases or other specialised input sources, or for applications that use URI types other than URLs.\u003c/p\u003e \n\u003cp\u003eThe following resolver would provide the application with a special character stream for the entity with the system identifier \"http://www.myhost.com/today\":\u003c/p\u003e \n\u003cpre\u003e import org.xml.sax.EntityResolver;\n import org.xml.sax.InputSource;\n\n public class MyResolver implements EntityResolver {\n   public InputSource resolveEntity (String publicId, String systemId)\n   {\n     if (systemId.equals(\"http://www.myhost.com/today\")) {\n              // return a special input source\n       MyReader reader \u003d new MyReader();\n       return new InputSource(reader);\n     } else {\n              // use the default behaviour\n       return null;\n     }\n   }\n }\n \u003c/pre\u003e \n\u003cp\u003eThe application can also use this interface to redirect system identifiers to local URIs or to look up replacements in a catalog (possibly by using the public identifier).\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/XMLReader.html#setEntityResolver(org.xml.sax.EntityResolver)\"\u003e\u003ccode\u003eXMLReader.setEntityResolver(org.xml.sax.EntityResolver)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/InputSource.html\" title\u003d\"class in org.xml.sax\"\u003e\u003ccode\u003eInputSource\u003c/code\u003e\u003c/a\u003e"

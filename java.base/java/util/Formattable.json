@@ -13,44 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Formatter",
-            "type": "Class"
-          },
-          "name": "formatter",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "flags",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "width",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "precision",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -73,7 +35,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "java.util.Formattable",
-  "annotations": [],
+  "comment": "The \n\u003ccode\u003eFormattable\u003c/code\u003e interface must be implemented by any class that needs to perform custom formatting using the \n\u003ccode\u003e\u0027s\u0027\u003c/code\u003e conversion specifier of \n\u003ca href\u003d\"Formatter.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eFormatter\u003c/code\u003e\u003c/a\u003e. This interface allows basic control for formatting arbitrary objects. For example, the following class prints out different representations of a stock\u0027s name depending on the flags and length constraints: \n\u003cpre\u003e \u003ccode\u003e\n   import java.nio.CharBuffer;\n   import java.util.Formatter;\n   import java.util.Formattable;\n   import java.util.Locale;\n   import static java.util.FormattableFlags.*;\n\n   ...\n\n   public class StockName implements Formattable {\n       private String symbol, companyName, frenchCompanyName;\n       public StockName(String symbol, String companyName,\n                        String frenchCompanyName) {\n           ...\n       }\n\n       ...\n\n       public void formatTo(Formatter fmt, int f, int width, int precision) {\n           StringBuilder sb \u003d new StringBuilder();\n\n           // decide form of name\n           String name \u003d companyName;\n           if (fmt.locale().equals(Locale.FRANCE))\n               name \u003d frenchCompanyName;\n           boolean alternate \u003d (f \u0026amp; ALTERNATE) \u003d\u003d ALTERNATE;\n           boolean usesymbol \u003d alternate || (precision !\u003d -1 \u0026amp;\u0026amp; precision \u0026lt; 10);\n           String out \u003d (usesymbol ? symbol : name);\n\n           // apply precision\n           if (precision \u003d\u003d -1 || out.length() \u0026lt; precision) {\n               // write it all\n               sb.append(out);\n           } else {\n               sb.append(out.substring(0, precision - 1)).append(\u0027*\u0027);\n           }\n\n           // apply width and justification\n           int len \u003d sb.length();\n           if (len \u0026lt; width)\n               for (int i \u003d 0; i \u0026lt; width - len; i++)\n                   if ((f \u0026amp; LEFT_JUSTIFY) \u003d\u003d LEFT_JUSTIFY)\n                       sb.append(\u0027 \u0027);\n                   else\n                       sb.insert(0, \u0027 \u0027);\n\n           fmt.format(sb.toString());\n       }\n\n       public String toString() {\n           return String.format(\"%s - %s\", symbol, companyName);\n       }\n   }\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e When used in conjunction with the \u003ca href\u003d\"Formatter.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eFormatter\u003c/code\u003e\u003c/a\u003e, the above class produces the following output for various format strings. \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n   Formatter fmt \u003d new Formatter();\n   StockName sn \u003d new StockName(\"HUGE\", \"Huge Fruit, Inc.\",\n                                \"Fruit Titanesque, Inc.\");\n   fmt.format(\"%s\", sn);                   //   -\u0026gt; \"Huge Fruit, Inc.\"\n   fmt.format(\"%s\", sn.toString());        //   -\u0026gt; \"HUGE - Huge Fruit, Inc.\"\n   fmt.format(\"%#s\", sn);                  //   -\u0026gt; \"HUGE\"\n   fmt.format(\"%-10.8s\", sn);              //   -\u0026gt; \"HUGE      \"\n   fmt.format(\"%.12s\", sn);                //   -\u0026gt; \"Huge Fruit,*\"\n   fmt.format(Locale.FRANCE, \"%25s\", sn);  //   -\u0026gt; \"   Fruit Titanesque, Inc.\"\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Formattables are not necessarily safe for multithreaded access. Thread safety is optional and may be enforced by classes that extend and implement this interface. \u003c/p\u003e\n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument to any method in this interface will cause a \u003ca href\u003d\"../lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

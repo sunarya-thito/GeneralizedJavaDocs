@@ -13,23 +13,6 @@
         "name": "java.security.cert.CertPathValidator",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.security.NoSuchAlgorithmException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "algorithm",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -60,36 +43,6 @@
         "name": "java.security.cert.CertPathValidator",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.security.NoSuchAlgorithmException",
-          "type": "Class"
-        },
-        {
-          "name": "java.security.NoSuchProviderException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "algorithm",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "provider",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -120,32 +73,6 @@
         "name": "java.security.cert.CertPathValidator",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.security.NoSuchAlgorithmException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "algorithm",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.Provider",
-            "type": "Class"
-          },
-          "name": "provider",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -175,7 +102,6 @@
         "name": "java.security.Provider",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -193,7 +119,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -211,36 +136,6 @@
         "name": "java.security.cert.CertPathValidatorResult",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.security.cert.CertPathValidatorException",
-          "type": "Class"
-        },
-        {
-          "name": "java.security.InvalidAlgorithmParameterException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.cert.CertPath",
-            "type": "Class"
-          },
-          "name": "certPath",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.cert.CertPathParameters",
-            "type": "Class"
-          },
-          "name": "params",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -266,7 +161,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 25,
@@ -287,7 +181,6 @@
         "name": "java.security.cert.CertPathChecker",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -353,7 +246,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.security.cert.CertPathValidator",
-  "annotations": [],
+  "comment": "A class for validating certification paths (also known as certificate chains). \n\u003cp\u003e This class uses a provider-based architecture. To create a \u003ccode\u003eCertPathValidator\u003c/code\u003e, call one of the static \u003ccode\u003egetInstance\u003c/code\u003e methods, passing in the algorithm name of the \u003ccode\u003eCertPathValidator\u003c/code\u003e desired and optionally the name of the provider desired. \u003c/p\u003e\n\u003cp\u003eOnce a \u003ccode\u003eCertPathValidator\u003c/code\u003e object has been created, it can be used to validate certification paths by calling the \u003ca href\u003d\"#validate(java.security.cert.CertPath,java.security.cert.CertPathParameters)\"\u003e\u003ccode\u003evalidate\u003c/code\u003e\u003c/a\u003e method and passing it the \u003ccode\u003eCertPath\u003c/code\u003e to be validated and an algorithm-specific set of parameters. If successful, the result is returned in an object that implements the \u003ccode\u003eCertPathValidatorResult\u003c/code\u003e interface. \u003c/p\u003e\n\u003cp\u003eThe \u003ca href\u003d\"#getRevocationChecker()\"\u003e\u003ccode\u003egetRevocationChecker()\u003c/code\u003e\u003c/a\u003e method allows an application to specify additional algorithm-specific parameters and options used by the \u003ccode\u003eCertPathValidator\u003c/code\u003e when checking the revocation status of certificates. Here is an example demonstrating how it is used with the PKIX algorithm: \u003c/p\u003e\n\u003cpre\u003e CertPathValidator cpv \u003d CertPathValidator.getInstance(\"PKIX\");\n PKIXRevocationChecker rc \u003d (PKIXRevocationChecker)cpv.getRevocationChecker();\n rc.setOptions(EnumSet.of(Option.SOFT_FAIL));\n params.addCertPathChecker(rc);\n CertPathValidatorResult cpvr \u003d cpv.validate(path, params);\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eEvery implementation of the Java platform is required to support the following standard \u003ccode\u003eCertPathValidator\u003c/code\u003e algorithm: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003ccode\u003ePKIX\u003c/code\u003e\u003c/li\u003e \n\u003c/ul\u003e This algorithm is described in the \n\u003ca href\u003d\"../../../../../specs/security/standard-names.html#certpathvalidator-algorithms\"\u003e CertPathValidator section\u003c/a\u003e of the Java Security Standard Algorithm Names Specification. Consult the release documentation for your implementation to see if any other algorithms are supported. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e \u003cb\u003eConcurrent Access\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003e The static methods of this class are guaranteed to be thread-safe. Multiple threads may concurrently invoke the static methods defined in this class with no ill effects. \u003c/p\u003e\n\u003cp\u003e However, this is not true for the non-static methods defined by this class. Unless otherwise documented by a specific provider, threads that need to access a single \u003ccode\u003eCertPathValidator\u003c/code\u003e instance concurrently should synchronize amongst themselves and provide the necessary locking. Multiple threads each manipulating a different \u003ccode\u003eCertPathValidator\u003c/code\u003e instance need not synchronize.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/cert/CertPath.html\" title\u003d\"class in java.security.cert\"\u003e\u003ccode\u003eCertPath\u003c/code\u003e\u003c/a\u003e"

@@ -13,7 +13,6 @@
         "name": "javax.net.ssl.SSLContext",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -31,17 +30,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "com.sun.net.httpserver.HttpsParameters",
-            "type": "Class"
-          },
-          "name": "params",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -87,7 +75,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "com.sun.net.httpserver.HttpsConfigurator",
-  "annotations": [],
+  "comment": "This class is used to configure the https parameters for each incoming https connection on a \n\u003ca href\u003d\"HttpsServer.html\" title\u003d\"class in com.sun.net.httpserver\"\u003e\u003ccode\u003eHttpsServer\u003c/code\u003e\u003c/a\u003e. Applications need to override the \n\u003ca href\u003d\"#configure(com.sun.net.httpserver.HttpsParameters)\"\u003e\u003ccode\u003econfigure(HttpsParameters)\u003c/code\u003e\u003c/a\u003e method in order to change the default configuration. \n\u003cp\u003e The following \u003ca id\u003d\"example\"\u003eexample\u003c/a\u003e shows how this may be done: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e SSLContext sslContext \u003d SSLContext.getInstance (....);\n HttpsServer server \u003d HttpsServer.create();\n\n server.setHttpsConfigurator (new HttpsConfigurator(sslContext) {\n     public void configure (HttpsParameters params) {\n\n         // get the remote address if needed\n         InetSocketAddress remote \u003d params.getClientAddress();\n\n         SSLContext c \u003d getSSLContext();\n\n         // get the default parameters\n         SSLParameters sslparams \u003d c.getDefaultSSLParameters();\n         if (remote.equals (...) ) {\n             // modify the default set for client x\n         }\n\n         params.setSSLParameters(sslparams);\n     }\n });\n \u003c/pre\u003e\n\u003c/blockquote\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.6"

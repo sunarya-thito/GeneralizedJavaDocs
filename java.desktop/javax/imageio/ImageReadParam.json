@@ -86,17 +86,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.awt.image.BufferedImage",
-            "type": "Class"
-          },
-          "name": "destination",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -117,7 +106,6 @@
         "name": "java.awt.image.BufferedImage",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -138,18 +126,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "destinationBands",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -174,7 +150,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -195,7 +170,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -216,23 +190,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.UnsupportedOperationException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.awt.Dimension",
-            "type": "Class"
-          },
-          "name": "size",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -257,7 +214,6 @@
         "name": "java.awt.Dimension",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -278,26 +234,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "minPass",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "numPasses",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -322,7 +258,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -343,7 +278,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -361,7 +295,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -390,7 +323,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.imageio.ImageReadParam",
-  "annotations": [],
+  "comment": "A class describing how a stream is to be decoded. Instances of this class or its subclasses are used to supply prescriptive \"how-to\" information to instances of \n\u003ccode\u003eImageReader\u003c/code\u003e. \n\u003cp\u003e An image encoded as part of a file or stream may be thought of extending out in multiple dimensions: the spatial dimensions of width and height, a number of bands, and a number of progressive decoding passes. This class allows a contiguous (hyper)rectangular subarea of the image in all of these dimensions to be selected for decoding. Additionally, the spatial dimensions may be subsampled discontinuously. Finally, color and format conversions may be specified by controlling the \u003ccode\u003eColorModel\u003c/code\u003e and \u003ccode\u003eSampleModel\u003c/code\u003e of the destination image, either by providing a \u003ccode\u003eBufferedImage\u003c/code\u003e or by using an \u003ccode\u003eImageTypeSpecifier\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e An \u003ccode\u003eImageReadParam\u003c/code\u003e object is used to specify how an image, or a set of images, will be converted on input from a stream in the context of the Java Image I/O framework. A plug-in for a specific image format will return instances of \u003ccode\u003eImageReadParam\u003c/code\u003e from the \u003ccode\u003egetDefaultReadParam\u003c/code\u003e method of its \u003ccode\u003eImageReader\u003c/code\u003e implementation. \u003c/p\u003e\n\u003cp\u003e The state maintained by an instance of \u003ccode\u003eImageReadParam\u003c/code\u003e is independent of any particular image being decoded. When actual decoding takes place, the values set in the read param are combined with the actual properties of the image being decoded from the stream and the destination \u003ccode\u003eBufferedImage\u003c/code\u003e that will receive the decoded pixel data. For example, the source region set using \u003ccode\u003esetSourceRegion\u003c/code\u003e will first be intersected with the actual valid source area. The result will be translated by the value returned by \u003ccode\u003egetDestinationOffset\u003c/code\u003e, and the resulting rectangle intersected with the actual valid destination area to yield the destination area that will be written. \u003c/p\u003e\n\u003cp\u003e The parameters specified by an \u003ccode\u003eImageReadParam\u003c/code\u003e are applied to an image as follows. First, if a rendering size has been set by \u003ccode\u003esetSourceRenderSize\u003c/code\u003e, the entire decoded image is rendered at the size given by \u003ccode\u003egetSourceRenderSize\u003c/code\u003e. Otherwise, the image has its natural size given by \u003ccode\u003eImageReader.getWidth\u003c/code\u003e and \u003ccode\u003eImageReader.getHeight\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e Next, the image is clipped against the source region specified by \u003ccode\u003egetSourceXOffset\u003c/code\u003e, \u003ccode\u003egetSourceYOffset\u003c/code\u003e, \u003ccode\u003egetSourceWidth\u003c/code\u003e, and \u003ccode\u003egetSourceHeight\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e The resulting region is then subsampled according to the factors given in \u003ca href\u003d\"IIOParam.html#setSourceSubsampling(int,int,int,int)\"\u003e\u003ccode\u003eIIOParam.setSourceSubsampling\u003c/code\u003e\u003c/a\u003e. The first pixel, the number of pixels per row, and the number of rows all depend on the subsampling settings. Call the minimum X and Y coordinates of the resulting rectangle (\u003ccode\u003eminX\u003c/code\u003e, \u003ccode\u003eminY\u003c/code\u003e), its width \u003ccode\u003ew\u003c/code\u003e and its height \u003ccode\u003eh\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e This rectangle is offset by (\u003ccode\u003egetDestinationOffset().x\u003c/code\u003e, \u003ccode\u003egetDestinationOffset().y\u003c/code\u003e) and clipped against the destination bounds. If no destination image has been set, the destination is defined to have a width of \u003ccode\u003egetDestinationOffset().x\u003c/code\u003e + \u003ccode\u003ew\u003c/code\u003e, and a height of \u003ccode\u003egetDestinationOffset().y\u003c/code\u003e + \u003ccode\u003eh\u003c/code\u003e so that all pixels of the source region may be written to the destination. \u003c/p\u003e\n\u003cp\u003e Pixels that land, after subsampling, within the destination image, and that are written in one of the progressive passes specified by \u003ccode\u003egetSourceMinProgressivePass\u003c/code\u003e and \u003ccode\u003egetSourceNumProgressivePasses\u003c/code\u003e are passed along to the next step. \u003c/p\u003e\n\u003cp\u003e Finally, the source samples of each pixel are mapped into destination bands according to the algorithm described in the comment for \u003ccode\u003esetDestinationBands\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e Plug-in writers may extend the functionality of \u003ccode\u003eImageReadParam\u003c/code\u003e by providing a subclass that implements additional, plug-in specific interfaces. It is up to the plug-in to document what interfaces are available and how they are to be used. Readers will silently ignore any extended features of an \u003ccode\u003eImageReadParam\u003c/code\u003e subclass of which they are not aware. Also, they may ignore any optional features that they normally disable when creating their own \u003ccode\u003eImageReadParam\u003c/code\u003e instances via \u003ccode\u003egetDefaultReadParam\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e Note that unless a query method exists for a capability, it must be supported by all \u003ccode\u003eImageReader\u003c/code\u003e implementations (\u003ci\u003ee.g.\u003c/i\u003e source render size is optional, but subsampling must be supported).\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageReader.html\" title\u003d\"class in javax.imageio\"\u003e\u003ccode\u003eImageReader\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriter.html\" title\u003d\"class in javax.imageio\"\u003e\u003ccode\u003eImageWriter\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/ImageWriteParam.html\" title\u003d\"class in javax.imageio\"\u003e\u003ccode\u003eImageWriteParam\u003c/code\u003e\u003c/a\u003e"

@@ -13,38 +13,6 @@
         "name": "jdk.jfr.EventFactory",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.List",
-            "parameters": [
-              {
-                "name": "jdk.jfr.AnnotationElement",
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "annotationElements",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.List",
-            "parameters": [
-              {
-                "name": "jdk.jfr.ValueDescriptor",
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "fields",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -73,7 +41,6 @@
         "name": "jdk.jfr.Event",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -91,7 +58,6 @@
         "name": "jdk.jfr.EventType",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -112,7 +78,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -133,7 +98,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -153,7 +117,7 @@
   "memberType": "JavaClass",
   "modifiers": 17,
   "name": "jdk.jfr.EventFactory",
-  "annotations": [],
+  "comment": "Class for defining an event at runtime. \n\u003cp\u003e It\u0027s highly recommended that the event is defined at compile time, if the field layout is known, so the Java Virtual Machine (JVM) can optimize the code, possibly remove all instrumentation if Flight Recorder is inactive or if the enabled setting for this event is set to \u003ccode\u003efalse\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e To define an event at compile time, see \u003ca href\u003d\"Event.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEvent\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e The following example shows how to implement a dynamic \u003ccode\u003eEvent\u003c/code\u003e class. \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n List\u0026lt;ValueDescriptor\u0026gt; fields \u003d new ArrayList\u0026lt;\u0026gt;();\n List\u0026lt;AnnotationElement\u0026gt; messageAnnotations \u003d Collections.singletonList(new AnnotationElement(Label.class, \"Message\"));\n fields.add(new ValueDescriptor(String.class, \"message\", messageAnnotations));\n List\u0026lt;AnnotationElement\u0026gt; numberAnnotations \u003d Collections.singletonList(new AnnotationElement(Label.class, \"Number\"));\n fields.add(new ValueDescriptor(int.class, \"number\", numberAnnotations));\n\n String[] category \u003d { \"Example\", \"Getting Started\" };\n List\u0026lt;AnnotationElement\u0026gt; eventAnnotations \u003d new ArrayList\u0026lt;\u0026gt;();\n eventAnnotations.add(new AnnotationElement(Name.class, \"com.example.HelloWorld\"));\n eventAnnotations.add(new AnnotationElement(Label.class, \"Hello World\"));\n eventAnnotations.add(new AnnotationElement(Description.class, \"Helps programmer getting started\"));\n eventAnnotations.add(new AnnotationElement(Category.class, category));\n\n EventFactory f \u003d EventFactory.create(eventAnnotations, fields);\n\n Event event \u003d f.newEvent();\n event.set(0, \"hello, world!\");\n event.set(1, 4711);\n event.commit();\n \u003c/code\u003e\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "9"

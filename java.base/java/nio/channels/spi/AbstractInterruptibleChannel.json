@@ -13,13 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -43,13 +36,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1028,
@@ -67,7 +53,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -88,7 +73,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 20,
@@ -102,23 +86,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.nio.channels.AsynchronousCloseException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "boolean",
-            "type": "Class"
-          },
-          "name": "completed",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 20,
@@ -148,7 +115,7 @@
   "memberType": "JavaClass",
   "modifiers": 1025,
   "name": "java.nio.channels.spi.AbstractInterruptibleChannel",
-  "annotations": [],
+  "comment": "Base implementation class for interruptible channels. \n\u003cp\u003e This class encapsulates the low-level machinery required to implement the asynchronous closing and interruption of channels. A concrete channel class must invoke the \u003ca href\u003d\"#begin()\"\u003e\u003ccode\u003ebegin\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#end(boolean)\"\u003e\u003ccode\u003eend\u003c/code\u003e\u003c/a\u003e methods before and after, respectively, invoking an I/O operation that might block indefinitely. In order to ensure that the \u003ca href\u003d\"#end(boolean)\"\u003e\u003ccode\u003eend\u003c/code\u003e\u003c/a\u003e method is always invoked, these methods should be used within a \u003ccode\u003etry\u003c/code\u003e\u0026nbsp;...\u0026nbsp;\u003ccode\u003efinally\u003c/code\u003e block: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre id\u003d\"be\"\u003e boolean completed \u003d false;\n try {\n     begin();\n     completed \u003d ...;    // Perform blocking I/O operation\n     return ...;         // Return result\n } finally {\n     end(completed);\n }\u003c/pre\u003e\n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003ecompleted\u003c/code\u003e argument to the \u003ca href\u003d\"#end(boolean)\"\u003e\u003ccode\u003eend\u003c/code\u003e\u003c/a\u003e method tells whether or not the I/O operation actually completed, that is, whether it had any effect that would be visible to the invoker. In the case of an operation that reads bytes, for example, this argument should be \u003ccode\u003etrue\u003c/code\u003e if, and only if, some bytes were actually transferred into the invoker\u0027s target buffer. \u003c/p\u003e\n\u003cp\u003e A concrete channel class must also implement the \u003ca href\u003d\"#implCloseChannel()\"\u003e\u003ccode\u003eimplCloseChannel\u003c/code\u003e\u003c/a\u003e method in such a way that if it is invoked while another thread is blocked in a native I/O operation upon the channel then that operation will immediately return, either by throwing an exception or by returning normally. If a thread is interrupted or the channel upon which it is blocked is asynchronously closed then the channel\u0027s \u003ca href\u003d\"#end(boolean)\"\u003e\u003ccode\u003eend\u003c/code\u003e\u003c/a\u003e method will throw the appropriate exception. \u003c/p\u003e\n\u003cp\u003e This class performs the synchronization required to implement the \u003ca href\u003d\"../Channel.html\" title\u003d\"interface in java.nio.channels\"\u003e\u003ccode\u003eChannel\u003c/code\u003e\u003c/a\u003e specification. Implementations of the \u003ca href\u003d\"#implCloseChannel()\"\u003e\u003ccode\u003eimplCloseChannel\u003c/code\u003e\u003c/a\u003e method need not synchronize against other threads that might be attempting to close the channel. \u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.4"

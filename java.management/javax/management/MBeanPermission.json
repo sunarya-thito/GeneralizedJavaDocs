@@ -13,7 +13,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -34,7 +33,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -58,17 +56,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.Permission",
-            "type": "Class"
-          },
-          "name": "p",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -92,17 +79,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "obj",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -217,7 +193,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.management.MBeanPermission",
-  "annotations": [],
+  "comment": "\u003cp\u003ePermission controlling access to MBeanServer operations. If a security manager has been set using \u003ca href\u003d\"../../../java.base/java/lang/System.html#setSecurityManager(java.lang.SecurityManager)\"\u003e\u003ccode\u003eSystem.setSecurityManager(java.lang.SecurityManager)\u003c/code\u003e\u003c/a\u003e, most operations on the MBean Server require that the caller\u0027s permissions imply an MBeanPermission appropriate for the operation. This is described in detail in the documentation for the \u003ca href\u003d\"MBeanServer.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanServer\u003c/code\u003e\u003c/a\u003e interface.\u003c/p\u003e \n\u003cp\u003eAs with other \u003ca href\u003d\"../../../java.base/java/security/Permission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermission\u003c/code\u003e\u003c/a\u003e objects, an MBeanPermission can represent either a permission that you \u003cem\u003ehave\u003c/em\u003e or a permission that you \u003cem\u003eneed\u003c/em\u003e. When a sensitive operation is being checked for permission, an MBeanPermission is constructed representing the permission you need. The operation is only allowed if the permissions you have \u003ca href\u003d\"#implies(java.security.Permission)\"\u003eimply\u003c/a\u003e the permission you need.\u003c/p\u003e \n\u003cp\u003eAn MBeanPermission contains four items of information:\u003c/p\u003e \n\u003cul\u003e \n \u003cli\u003e\u003cp\u003eThe \u003cem\u003eaction\u003c/em\u003e. For a permission you need, this is one of the actions in the list \u003ca href\u003d\"#action-list\"\u003ebelow\u003c/a\u003e. For a permission you have, this is a comma-separated list of those actions, or \u003ccode\u003e*\u003c/code\u003e, representing all actions.\u003c/p\u003e \u003cp\u003eThe action is returned by \u003ca href\u003d\"#getActions()\"\u003e\u003ccode\u003egetActions()\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e \u003c/li\u003e\n \u003cli\u003e\u003cp\u003eThe \u003cem\u003eclass name\u003c/em\u003e.\u003c/p\u003e \u003cp\u003eFor a permission you need, this is the class name of an MBean you are accessing, as returned by \u003ca href\u003d\"MBeanServer.html#getMBeanInfo(javax.management.ObjectName)\"\u003e\u003ccode\u003eMBeanServer.getMBeanInfo(name)\u003c/code\u003e\u003c/a\u003e.\u003ca href\u003d\"MBeanInfo.html#getClassName()\"\u003e\u003ccode\u003egetClassName()\u003c/code\u003e\u003c/a\u003e. Certain operations do not reference a class name, in which case the class name is null.\u003c/p\u003e \u003cp\u003eFor a permission you have, this is either empty or a \u003cem\u003eclass name pattern\u003c/em\u003e. A class name pattern is a string following the Java conventions for dot-separated class names. It may end with \"\u003ccode\u003e.*\u003c/code\u003e\" meaning that the permission grants access to any class that begins with the string preceding \"\u003ccode\u003e.*\u003c/code\u003e\". For instance, \"\u003ccode\u003ejavax.management.*\u003c/code\u003e\" grants access to \u003ccode\u003ejavax.management.MBeanServerDelegate\u003c/code\u003e and \u003ccode\u003ejavax.management.timer.Timer\u003c/code\u003e, among other classes.\u003c/p\u003e \u003cp\u003eA class name pattern can also be empty or the single character \"\u003ccode\u003e*\u003c/code\u003e\", both of which grant access to any class.\u003c/p\u003e \u003c/li\u003e\n \u003cli\u003e\u003cp\u003eThe \u003cem\u003emember\u003c/em\u003e.\u003c/p\u003e \u003cp\u003eFor a permission you need, this is the name of the attribute or operation you are accessing. For operations that do not reference an attribute or operation, the member is null.\u003c/p\u003e \u003cp\u003eFor a permission you have, this is either the name of an attribute or operation you can access, or it is empty or the single character \"\u003ccode\u003e*\u003c/code\u003e\", both of which grant access to any member.\u003c/p\u003e \u003c/li\u003e\n \u003cli id\u003d\"MBeanName\"\u003e\u003cp\u003eThe \u003cem\u003eobject name\u003c/em\u003e.\u003c/p\u003e \u003cp\u003eFor a permission you need, this is the \u003ca href\u003d\"ObjectName.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eObjectName\u003c/code\u003e\u003c/a\u003e of the MBean you are accessing. For operations that do not reference a single MBean, it is null. It is never an object name pattern.\u003c/p\u003e \u003cp\u003eFor a permission you have, this is the \u003ca href\u003d\"ObjectName.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eObjectName\u003c/code\u003e\u003c/a\u003e of the MBean or MBeans you can access. It may be an object name pattern to grant access to all MBeans whose names match the pattern. It may also be empty, which grants access to all MBeans whatever their name.\u003c/p\u003e \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003eIf you have an MBeanPermission, it allows operations only if all four of the items match.\u003c/p\u003e \n\u003cp\u003eThe class name, member, and object name can be written together as a single string, which is the \u003cem\u003ename\u003c/em\u003e of this permission. The name of the permission is the string returned by \u003ca href\u003d\"../../../java.base/java/security/Permission.html#getName()\"\u003e\u003ccode\u003egetName()\u003c/code\u003e\u003c/a\u003e. The format of the string is:\u003c/p\u003e \n\u003cblockquote\u003e \n \u003ccode\u003eclassName#member[objectName]\u003c/code\u003e \n\u003c/blockquote\u003e \n\u003cp\u003eThe object name is written using the usual syntax for \u003ca href\u003d\"ObjectName.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eObjectName\u003c/code\u003e\u003c/a\u003e. It may contain any legal characters, including \u003ccode\u003e]\u003c/code\u003e. It is terminated by a \u003ccode\u003e]\u003c/code\u003e character that is the last character in the string.\u003c/p\u003e \n\u003cp\u003eOne or more of the \u003ccode\u003eclassName\u003c/code\u003e, \u003ccode\u003emember\u003c/code\u003e, or \u003ccode\u003eobjectName\u003c/code\u003e may be omitted. If the \u003ccode\u003emember\u003c/code\u003e is omitted, the \u003ccode\u003e#\u003c/code\u003e may be too (but does not have to be). If the \u003ccode\u003eobjectName\u003c/code\u003e is omitted, the \u003ccode\u003e[]\u003c/code\u003e may be too (but does not have to be). It is not legal to omit all three items, that is to have a \u003cem\u003ename\u003c/em\u003e that is the empty string.\u003c/p\u003e \n\u003cp\u003eOne or more of the \u003ccode\u003eclassName\u003c/code\u003e, \u003ccode\u003emember\u003c/code\u003e, or \u003ccode\u003eobjectName\u003c/code\u003e may be the character \"\u003ccode\u003e-\u003c/code\u003e\", which is equivalent to a null value. A null value is implied by any value (including another null value) but does not imply any other value.\u003c/p\u003e \n\u003cp\u003e\u003ca id\u003d\"action-list\"\u003eThe possible actions are these:\u003c/a\u003e\u003c/p\u003e \n\u003cul\u003e \n \u003cli\u003eaddNotificationListener\u003c/li\u003e \n \u003cli\u003egetAttribute\u003c/li\u003e \n \u003cli\u003egetClassLoader\u003c/li\u003e \n \u003cli\u003egetClassLoaderFor\u003c/li\u003e \n \u003cli\u003egetClassLoaderRepository\u003c/li\u003e \n \u003cli\u003egetDomains\u003c/li\u003e \n \u003cli\u003egetMBeanInfo\u003c/li\u003e \n \u003cli\u003egetObjectInstance\u003c/li\u003e \n \u003cli\u003einstantiate\u003c/li\u003e \n \u003cli\u003einvoke\u003c/li\u003e \n \u003cli\u003eisInstanceOf\u003c/li\u003e \n \u003cli\u003equeryMBeans\u003c/li\u003e \n \u003cli\u003equeryNames\u003c/li\u003e \n \u003cli\u003eregisterMBean\u003c/li\u003e \n \u003cli\u003eremoveNotificationListener\u003c/li\u003e \n \u003cli\u003esetAttribute\u003c/li\u003e \n \u003cli\u003eunregisterMBean\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003eIn a comma-separated list of actions, spaces are allowed before and after each action.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.management.MBeanPermission\"\u003eSerialized Form\u003c/a\u003e"

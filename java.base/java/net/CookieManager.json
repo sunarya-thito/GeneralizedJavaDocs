@@ -13,17 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.net.CookiePolicy",
-            "type": "Class"
-          },
-          "name": "cookiePolicy",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -41,7 +30,6 @@
         "name": "java.net.CookieStore",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -75,48 +63,6 @@
         ],
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.net.URI",
-            "type": "Class"
-          },
-          "name": "uri",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Map",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              },
-              {
-                "name": "java.util.List",
-                "parameters": [
-                  {
-                    "name": "java.lang.String",
-                    "type": "Class"
-                  }
-                ],
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "requestHeaders",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -147,48 +93,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.net.URI",
-            "type": "Class"
-          },
-          "name": "uri",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Map",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              },
-              {
-                "name": "java.util.List",
-                "parameters": [
-                  {
-                    "name": "java.lang.String",
-                    "type": "Class"
-                  }
-                ],
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "responseHeaders",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -257,7 +161,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.net.CookieManager",
-  "annotations": [],
+  "comment": "CookieManager provides a concrete implementation of \n\u003ca href\u003d\"CookieHandler.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eCookieHandler\u003c/code\u003e\u003c/a\u003e, which separates the storage of cookies from the policy surrounding accepting and rejecting cookies. A CookieManager is initialized with a \n\u003ca href\u003d\"CookieStore.html\" title\u003d\"interface in java.net\"\u003e\u003ccode\u003eCookieStore\u003c/code\u003e\u003c/a\u003e which manages storage, and a \n\u003ca href\u003d\"CookiePolicy.html\" title\u003d\"interface in java.net\"\u003e\u003ccode\u003eCookiePolicy\u003c/code\u003e\u003c/a\u003e object, which makes policy decisions on cookie acceptance/rejection. \n\u003cp\u003e The HTTP cookie management in java.net package looks like: \u003c/p\u003e\n\u003cblockquote\u003e \n \u003cpre\u003e\u003ccode\u003e\n                  use\n CookieHandler \u0026lt;------- HttpURLConnection\n       ^\n       | impl\n       |         use\n CookieManager -------\u0026gt; CookiePolicy\n             |   use\n             |--------\u0026gt; HttpCookie\n             |              ^\n             |              | use\n             |   use        |\n             |--------\u0026gt; CookieStore\n                            ^\n                            | impl\n                            |\n                  Internal in-memory implementation\n \u003c/code\u003e\u003c/pre\u003e \n \u003cul\u003e \n  \u003cli\u003e CookieHandler is at the core of cookie management. User can call CookieHandler.setDefault to set a concrete CookieHandler implementation to be used. \u003c/li\u003e \n  \u003cli\u003e CookiePolicy.shouldAccept will be called by CookieManager.put to see whether or not one cookie should be accepted and put into cookie store. User can use any of three pre-defined CookiePolicy, namely ACCEPT_ALL, ACCEPT_NONE and ACCEPT_ORIGINAL_SERVER, or user can define his own CookiePolicy implementation and tell CookieManager to use it. \u003c/li\u003e \n  \u003cli\u003e CookieStore is the place where any accepted HTTP cookie is stored in. If not specified when created, a CookieManager instance will use an internal in-memory implementation. Or user can implements one and tell CookieManager to use it. \u003c/li\u003e \n  \u003cli\u003e Currently, only CookieStore.add(URI, HttpCookie) and CookieStore.get(URI) are used by CookieManager. Others are for completeness and might be needed by a more sophisticated CookieStore implementation, e.g. a NetscapeCookieStore. \u003c/li\u003e \n \u003c/ul\u003e \n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eThere\u0027re various ways user can hook up his own HTTP cookie management behavior, e.g. \u003c/p\u003e\n\u003cblockquote\u003e \n \u003cul\u003e \n  \u003cli\u003eUse CookieHandler.setDefault to set a brand new \u003ca href\u003d\"CookieHandler.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eCookieHandler\u003c/code\u003e\u003c/a\u003e implementation \u003c/li\u003e\n  \u003cli\u003eLet CookieManager be the default \u003ca href\u003d\"CookieHandler.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eCookieHandler\u003c/code\u003e\u003c/a\u003e implementation, but implement user\u0027s own \u003ca href\u003d\"CookieStore.html\" title\u003d\"interface in java.net\"\u003e\u003ccode\u003eCookieStore\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"CookiePolicy.html\" title\u003d\"interface in java.net\"\u003e\u003ccode\u003eCookiePolicy\u003c/code\u003e\u003c/a\u003e and tell default CookieManager to use them: \n   \u003cblockquote\u003e\n    \u003cpre\u003e       // this should be done at the beginning of an HTTP session\n       CookieHandler.setDefault(new CookieManager(new MyCookieStore(), new MyCookiePolicy()));\n     \u003c/pre\u003e\n   \u003c/blockquote\u003e \u003c/li\u003e\n  \u003cli\u003eLet CookieManager be the default \u003ca href\u003d\"CookieHandler.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eCookieHandler\u003c/code\u003e\u003c/a\u003e implementation, but use customized \u003ca href\u003d\"CookiePolicy.html\" title\u003d\"interface in java.net\"\u003e\u003ccode\u003eCookiePolicy\u003c/code\u003e\u003c/a\u003e: \n   \u003cblockquote\u003e\n    \u003cpre\u003e       // this should be done at the beginning of an HTTP session\n       CookieHandler.setDefault(new CookieManager());\n       // this can be done at any point of an HTTP session\n       ((CookieManager)CookieHandler.getDefault()).setCookiePolicy(new MyCookiePolicy());\n     \u003c/pre\u003e\n   \u003c/blockquote\u003e \u003c/li\u003e\n \u003c/ul\u003e \n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eThe implementation conforms to \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2965.txt\"\u003eRFC 2965\u003c/a\u003e, section 3.3.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/CookiePolicy.html\" title\u003d\"interface in java.net\"\u003e\u003ccode\u003eCookiePolicy\u003c/code\u003e\u003c/a\u003e"

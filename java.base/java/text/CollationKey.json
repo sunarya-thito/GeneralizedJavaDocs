@@ -13,17 +13,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.text.CollationKey",
-            "type": "Class"
-          },
-          "name": "target",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -50,7 +39,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -69,7 +57,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -115,7 +102,7 @@
   "memberType": "JavaClass",
   "modifiers": 1025,
   "name": "java.text.CollationKey",
-  "annotations": [],
+  "comment": "A \n\u003ccode\u003eCollationKey\u003c/code\u003e represents a \n\u003ccode\u003eString\u003c/code\u003e under the rules of a specific \n\u003ccode\u003eCollator\u003c/code\u003e object. Comparing two \n\u003ccode\u003eCollationKey\u003c/code\u003es returns the relative order of the \n\u003ccode\u003eString\u003c/code\u003es they represent. Using \n\u003ccode\u003eCollationKey\u003c/code\u003es to compare \n\u003ccode\u003eString\u003c/code\u003es is generally faster than using \n\u003ccode\u003eCollator.compare\u003c/code\u003e. Thus, when the \n\u003ccode\u003eString\u003c/code\u003es must be compared multiple times, for example when sorting a list of \n\u003ccode\u003eString\u003c/code\u003es. It\u0027s more efficient to use \n\u003ccode\u003eCollationKey\u003c/code\u003es. \n\u003cp\u003e You can not create \u003ccode\u003eCollationKey\u003c/code\u003es directly. Rather, generate them by calling \u003ccode\u003eCollator.getCollationKey\u003c/code\u003e. You can only compare \u003ccode\u003eCollationKey\u003c/code\u003es generated from the same \u003ccode\u003eCollator\u003c/code\u003e object. \u003c/p\u003e\n\u003cp\u003e Generating a \u003ccode\u003eCollationKey\u003c/code\u003e for a \u003ccode\u003eString\u003c/code\u003e involves examining the entire \u003ccode\u003eString\u003c/code\u003e and converting it to series of bits that can be compared bitwise. This allows fast comparisons once the keys are generated. The cost of generating keys is recouped in faster comparisons when \u003ccode\u003eString\u003c/code\u003es need to be compared many times. On the other hand, the result of a comparison is often determined by the first couple of characters of each \u003ccode\u003eString\u003c/code\u003e. \u003ccode\u003eCollator.compare\u003c/code\u003e examines only as many characters as it needs which allows it to be faster when doing single comparisons. \u003c/p\u003e\n\u003cp\u003e The following example shows how \u003ccode\u003eCollationKey\u003c/code\u003es might be used to sort a list of \u003ccode\u003eString\u003c/code\u003es. \u003c/p\u003e\n\u003cblockquote\u003e \n \u003cpre\u003e\u003ccode\u003e\n // Create an array of CollationKeys for the Strings to be sorted.\n Collator myCollator \u003d Collator.getInstance();\n CollationKey[] keys \u003d new CollationKey[3];\n keys[0] \u003d myCollator.getCollationKey(\"Tom\");\n keys[1] \u003d myCollator.getCollationKey(\"Dick\");\n keys[2] \u003d myCollator.getCollationKey(\"Harry\");\n sort(keys);\n\n //...\n\n // Inside body of sort routine, compare keys this way\n if (keys[i].compareTo(keys[j]) \u0026gt; 0)\n    // swap keys[i] and keys[j]\n\n //...\n\n // Finally, when we\u0027ve returned from sort.\n System.out.println(keys[0].getSourceString());\n System.out.println(keys[1].getSourceString());\n System.out.println(keys[2].getSourceString());\n \u003c/code\u003e\u003c/pre\u003e \n\u003c/blockquote\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/text/Collator.html\" title\u003d\"class in java.text\"\u003e\u003ccode\u003eCollator\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/text/RuleBasedCollator.html\" title\u003d\"class in java.text\"\u003e\u003ccode\u003eRuleBasedCollator\u003c/code\u003e\u003c/a\u003e"

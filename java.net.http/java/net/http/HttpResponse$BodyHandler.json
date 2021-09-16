@@ -20,17 +20,6 @@
         ],
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.net.http.HttpResponse$ResponseInfo",
-            "type": "Class"
-          },
-          "name": "responseInfo",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -56,14 +45,7 @@
   "memberType": "JavaClass",
   "modifiers": 521,
   "name": "java.net.http.HttpResponse$BodyHandler",
-  "annotations": [
-    {
-      "type": {
-        "name": "FunctionalInterface",
-        "type": "Class"
-      }
-    }
-  ],
+  "comment": "A handler for response bodies. The class \n\u003ca href\u003d\"HttpResponse.BodyHandlers.html\" title\u003d\"class in java.net.http\"\u003e\u003ccode\u003eBodyHandlers\u003c/code\u003e\u003c/a\u003e provides implementations of many common body handlers. \n\u003cp\u003e The \u003ccode\u003eBodyHandler\u003c/code\u003e interface allows inspection of the response code and headers, before the actual response body is received, and is responsible for creating the response \u003ca href\u003d\"HttpResponse.BodySubscriber.html\" title\u003d\"interface in java.net.http\"\u003e\u003ccode\u003eBodySubscriber\u003c/code\u003e\u003c/a\u003e. The \u003ccode\u003eBodySubscriber\u003c/code\u003e consumes the actual response body bytes and, typically, converts them into a higher-level Java type. \u003c/p\u003e\n\u003cp\u003e A \u003ccode\u003eBodyHandler\u003c/code\u003e is a function that takes a \u003ca href\u003d\"HttpResponse.ResponseInfo.html\" title\u003d\"interface in java.net.http\"\u003e\u003ccode\u003eResponseInfo\u003c/code\u003e\u003c/a\u003e object; and which returns a \u003ccode\u003eBodySubscriber\u003c/code\u003e. The \u003ccode\u003eBodyHandler\u003c/code\u003e is invoked when the response status code and headers are available, but before the response body bytes are received. \u003c/p\u003e\n\u003cp\u003e The following example uses one of the \u003ca href\u003d\"HttpResponse.BodyHandlers.html\" title\u003d\"class in java.net.http\"\u003epredefined body handlers\u003c/a\u003e that always process the response body in the same way ( streams the response body to a file ). \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e  HttpRequest request \u003d HttpRequest.newBuilder()\n        .uri(URI.create(\"http://www.foo.com/\"))\n        .build();\n  client.sendAsync(request, BodyHandlers.ofFile(Paths.get(\"/tmp/f\")))\n        .thenApply(HttpResponse::body)\n        .thenAccept(System.out::println); \u003c/code\u003e\u003c/pre\u003e Note, that even though the pre-defined handlers do not examine the response code, the response code and headers are always retrievable from the \n\u003ca href\u003d\"HttpResponse.html\" title\u003d\"interface in java.net.http\"\u003e\u003ccode\u003eHttpResponse\u003c/code\u003e\u003c/a\u003e, when it is returned. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e In the second example, the function returns a different subscriber depending on the status code. \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e  HttpRequest request \u003d HttpRequest.newBuilder()\n        .uri(URI.create(\"http://www.foo.com/\"))\n        .build();\n  BodyHandler\u0026lt;Path\u0026gt; bodyHandler \u003d (rspInfo) -\u0026gt; rspInfo.statusCode() \u003d\u003d 200\n                      ? BodySubscribers.ofFile(Paths.get(\"/tmp/f\"))\n                      : BodySubscribers.replacing(Paths.get(\"/NULL\"));\n  client.sendAsync(request, bodyHandler)\n        .thenApply(HttpResponse::body)\n        .thenAccept(System.out::println); \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/HttpResponse.BodyHandlers.html\" title\u003d\"class in java.net.http\"\u003e\u003ccode\u003eHttpResponse.BodyHandlers\u003c/code\u003e\u003c/a\u003e"

@@ -13,62 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.security.auth.Subject",
-            "type": "Class"
-          },
-          "name": "subject",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.security.auth.callback.CallbackHandler",
-            "type": "Class"
-          },
-          "name": "callbackHandler",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Map",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              },
-              {
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "sharedState",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Map",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              },
-              {
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "options",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -92,13 +36,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.security.auth.login.LoginException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -123,13 +60,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.security.auth.login.LoginException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -153,13 +83,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.security.auth.login.LoginException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -183,13 +106,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.security.auth.login.LoginException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -221,7 +137,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "com.sun.security.auth.module.LdapLoginModule",
-  "annotations": [],
+  "comment": "This \n\u003ca href\u003d\"../../../../../../java.base/javax/security/auth/spi/LoginModule.html\" title\u003d\"interface in javax.security.auth.spi\"\u003e\u003ccode\u003eLoginModule\u003c/code\u003e\u003c/a\u003e performs LDAP-based authentication. A username and password is verified against the corresponding user credentials stored in an LDAP directory. This module requires the supplied \n\u003ca href\u003d\"../../../../../../java.base/javax/security/auth/callback/CallbackHandler.html\" title\u003d\"interface in javax.security.auth.callback\"\u003e\u003ccode\u003eCallbackHandler\u003c/code\u003e\u003c/a\u003e to support a \n\u003ca href\u003d\"../../../../../../java.base/javax/security/auth/callback/NameCallback.html\" title\u003d\"class in javax.security.auth.callback\"\u003e\u003ccode\u003eNameCallback\u003c/code\u003e\u003c/a\u003e and a \n\u003ca href\u003d\"../../../../../../java.base/javax/security/auth/callback/PasswordCallback.html\" title\u003d\"class in javax.security.auth.callback\"\u003e\u003ccode\u003ePasswordCallback\u003c/code\u003e\u003c/a\u003e. If authentication is successful then a new \n\u003ca href\u003d\"../LdapPrincipal.html\" title\u003d\"class in com.sun.security.auth\"\u003e\u003ccode\u003eLdapPrincipal\u003c/code\u003e\u003c/a\u003e is created using the user\u0027s distinguished name and a new \n\u003ca href\u003d\"../UserPrincipal.html\" title\u003d\"class in com.sun.security.auth\"\u003e\u003ccode\u003eUserPrincipal\u003c/code\u003e\u003c/a\u003e is created using the user\u0027s username and both are associated with the current \n\u003ca href\u003d\"../../../../../../java.base/javax/security/auth/Subject.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eSubject\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e This module operates in one of three modes: \u003ci\u003esearch-first\u003c/i\u003e, \u003ci\u003eauthentication-first\u003c/i\u003e or \u003ci\u003eauthentication-only\u003c/i\u003e. A mode is selected by specifying a particular set of options. \u003c/p\u003e\n\u003cp\u003e In search-first mode, the LDAP directory is searched to determine the user\u0027s distinguished name and then authentication is attempted. An (anonymous) search is performed using the supplied username in conjunction with a specified search filter. If successful then authentication is attempted using the user\u0027s distinguished name and the supplied password. To enable this mode, set the \u003ccode\u003euserFilter\u003c/code\u003e option and omit the \u003ccode\u003eauthIdentity\u003c/code\u003e option. Use search-first mode when the user\u0027s distinguished name is not known in advance. \u003c/p\u003e\n\u003cp\u003e In authentication-first mode, authentication is attempted using the supplied username and password and then the LDAP directory is searched. If authentication is successful then a search is performed using the supplied username in conjunction with a specified search filter. To enable this mode, set the \u003ccode\u003eauthIdentity\u003c/code\u003e and the \u003ccode\u003euserFilter\u003c/code\u003e options. Use authentication-first mode when accessing an LDAP directory that has been configured to disallow anonymous searches. \u003c/p\u003e\n\u003cp\u003e In authentication-only mode, authentication is attempted using the supplied username and password. The LDAP directory is not searched because the user\u0027s distinguished name is already known. To enable this mode, set the \u003ccode\u003eauthIdentity\u003c/code\u003e option to a valid distinguished name and omit the \u003ccode\u003euserFilter\u003c/code\u003e option. Use authentication-only mode when the user\u0027s distinguished name is known in advance. \u003c/p\u003e\n\u003cp\u003e The following option is mandatory and must be specified in this module\u0027s login \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/login/Configuration.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e: \u003c/p\u003e\n\u003cdl\u003e \n \u003cdt\u003e \n  \u003ccode\u003euserProvider\u003d\u003cb\u003eldap_urls\u003c/b\u003e\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   This option identifies the LDAP directory that stores user entries. \n  \u003cb\u003eldap_urls\u003c/b\u003e is a list of space-separated LDAP URLs (\n  \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2255.txt\"\u003eRFC 2255\u003c/a\u003e) that identifies the LDAP server to use and the position in its directory tree where user entries are located. When several LDAP URLs are specified then each is attempted, in turn, until the first successful connection is established. Spaces in the distinguished name component of the URL must be escaped using the standard mechanism of percent character (\u0027\n  \u003ccode\u003e%\u003c/code\u003e\u0027) followed by two hexadecimal digits (see \n  \u003ca href\u003d\"../../../../../../java.base/java/net/URI.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURI\u003c/code\u003e\u003c/a\u003e). Query components must also be omitted from the URL. \n  \u003cp\u003e Automatic discovery of the LDAP server via DNS (\u003ca href\u003d\"http://www.ietf.org/rfc/rfc2782.txt\"\u003eRFC 2782\u003c/a\u003e) is supported (once DNS has been configured to support such a service). It is enabled by omitting the hostname and port number components from the LDAP URL. \u003c/p\u003e\n \u003c/dd\u003e \n\u003c/dl\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e This module also recognizes the following optional \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/login/Configuration.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e options: \u003c/p\u003e\n\u003cdl\u003e \n \u003cdt\u003e \n  \u003ccode\u003euserFilter\u003d\u003cb\u003eldap_filter\u003c/b\u003e\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   This option specifies the search filter to use to locate a user\u0027s entry in the LDAP directory. It is used to determine a user\u0027s distinguished name. \n  \u003cb\u003e\u003ccode\u003eldap_filter\u003c/code\u003e\u003c/b\u003e is an LDAP filter string (\n  \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2254.txt\"\u003eRFC 2254\u003c/a\u003e). If it contains the special token \"\n  \u003cb\u003e\u003ccode\u003e{USERNAME}\u003c/code\u003e\u003c/b\u003e\" then that token will be replaced with the supplied username value before the filter is used to search the directory. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003eauthIdentity\u003d\u003cb\u003eauth_id\u003c/b\u003e\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   This option specifies the identity to use when authenticating a user to the LDAP directory. \n  \u003cb\u003e\u003ccode\u003eauth_id\u003c/code\u003e\u003c/b\u003e may be an LDAP distinguished name string (\n  \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2253.txt\"\u003eRFC 2253\u003c/a\u003e) or some other string name. It must contain the special token \"\n  \u003cb\u003e\u003ccode\u003e{USERNAME}\u003c/code\u003e\u003c/b\u003e\" which will be replaced with the supplied username value before the name is used for authentication. Note that if this option does not contain a distinguished name then the \n  \u003ccode\u003euserFilter\u003c/code\u003e option must also be specified. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003eauthzIdentity\u003d\u003cb\u003eauthz_id\u003c/b\u003e\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   This option specifies an authorization identity for the user. \n  \u003cb\u003e\u003ccode\u003eauthz_id\u003c/code\u003e\u003c/b\u003e is any string name. If it comprises a single special token with curly braces then that token is treated as a attribute name and will be replaced with a single value of that attribute from the user\u0027s LDAP entry. If the attribute cannot be found then the option is ignored. When this option is supplied and the user has been successfully authenticated then an additional \n  \u003ca href\u003d\"../UserPrincipal.html\" title\u003d\"class in com.sun.security.auth\"\u003e\u003ccode\u003eUserPrincipal\u003c/code\u003e\u003c/a\u003e is created using the authorization identity and it is associated with the current \n  \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/Subject.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eSubject\u003c/code\u003e\u003c/a\u003e. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003euseSSL\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   if \n  \u003ccode\u003efalse\u003c/code\u003e, this module does not establish an SSL connection to the LDAP server before attempting authentication. SSL is used to protect the privacy of the user\u0027s password because it is transmitted in the clear over LDAP. By default, this module uses SSL. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003euseFirstPass\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   if \n  \u003ccode\u003etrue\u003c/code\u003e, this module retrieves the username and password from the module\u0027s shared state, using \"javax.security.auth.login.name\" and \"javax.security.auth.login.password\" as the respective keys. The retrieved values are used for authentication. If authentication fails, no attempt for a retry is made, and the failure is reported back to the calling application.\n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003etryFirstPass\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   if \n  \u003ccode\u003etrue\u003c/code\u003e, this module retrieves the username and password from the module\u0027s shared state, using \"javax.security.auth.login.name\" and \"javax.security.auth.login.password\" as the respective keys. The retrieved values are used for authentication. If authentication fails, the module uses the \n  \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/callback/CallbackHandler.html\" title\u003d\"interface in javax.security.auth.callback\"\u003e\u003ccode\u003eCallbackHandler\u003c/code\u003e\u003c/a\u003e to retrieve a new username and password, and another attempt to authenticate is made. If the authentication fails, the failure is reported back to the calling application.\n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003estorePass\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   if \n  \u003ccode\u003etrue\u003c/code\u003e, this module stores the username and password obtained from the \n  \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/callback/CallbackHandler.html\" title\u003d\"interface in javax.security.auth.callback\"\u003e\u003ccode\u003eCallbackHandler\u003c/code\u003e\u003c/a\u003e in the module\u0027s shared state, using \"javax.security.auth.login.name\" and \"javax.security.auth.login.password\" as the respective keys. This is not performed if existing values already exist for the username and password in the shared state, or if authentication fails.\n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003eclearPass\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   if \n  \u003ccode\u003etrue\u003c/code\u003e, this module clears the username and password stored in the module\u0027s shared state after both phases of authentication (login and commit) have completed.\n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003edebug\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   if \n  \u003ccode\u003etrue\u003c/code\u003e, debug messages are displayed on the standard output stream.\n \u003c/dd\u003e \n\u003c/dl\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Arbitrary \u003ca href\u003d\"https://docs.oracle.com/pls/topic/lookup?ctx\u003djavase16\u0026amp;id\u003djndi_ldap_gl_prop\"\u003e\"JNDI properties\"\u003c/a\u003e may also be specified in the \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/login/Configuration.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e. They are added to the environment and passed to the LDAP provider. Note that the following four JNDI properties are set by this module directly and are ignored if also present in the configuration: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e \u003ccode\u003ejava.naming.provider.url\u003c/code\u003e \u003c/li\u003e\n \u003cli\u003e \u003ccode\u003ejava.naming.security.principal\u003c/code\u003e \u003c/li\u003e\n \u003cli\u003e \u003ccode\u003ejava.naming.security.credentials\u003c/code\u003e \u003c/li\u003e\n \u003cli\u003e \u003ccode\u003ejava.naming.security.protocol\u003c/code\u003e \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Three sample \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/login/Configuration.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003es are shown below. The first one activates search-first mode. It identifies the LDAP server and specifies that users\u0027 entries be located by their \u003ccode\u003euid\u003c/code\u003e and \u003ccode\u003eobjectClass\u003c/code\u003e attributes. It also specifies that an identity based on the user\u0027s \u003ccode\u003eemployeeNumber\u003c/code\u003e attribute should be created. The second one activates authentication-first mode. It requests that the LDAP server be located dynamically, that authentication be performed using the supplied username directly but without the protection of SSL and that users\u0027 entries be located by one of three naming attributes and their \u003ccode\u003eobjectClass\u003c/code\u003e attribute. The third one activates authentication-only mode. It identifies alternative LDAP servers, it specifies the distinguished name to use for authentication and a fixed identity to use for authorization. No directory search is performed. \u003c/p\u003e\n\u003cpre\u003e\n     ExampleApplication {\n         com.sun.security.auth.module.LdapLoginModule REQUIRED\n              userProvider\u003d\"ldap://ldap-svr/ou\u003dpeople,dc\u003dexample,dc\u003dcom\"\n              userFilter\u003d\"(\u0026amp;(uid\u003d{USERNAME})(objectClass\u003dinetOrgPerson))\"\n              authzIdentity\u003d\"{EMPLOYEENUMBER}\"\n              debug\u003dtrue;\n     };\n\n     ExampleApplication {\n         com.sun.security.auth.module.LdapLoginModule REQUIRED\n             userProvider\u003d\"ldap:///cn\u003dusers,dc\u003dexample,dc\u003dcom\"\n             authIdentity\u003d\"{USERNAME}\"\n             userFilter\u003d\"(\u0026amp;(|(samAccountName\u003d{USERNAME})(userPrincipalName\u003d{USERNAME})(cn\u003d{USERNAME}))(objectClass\u003duser))\"\n             useSSL\u003dfalse\n             debug\u003dtrue;\n     };\n\n     ExampleApplication {\n         com.sun.security.auth.module.LdapLoginModule REQUIRED\n             userProvider\u003d\"ldap://ldap-svr1 ldap://ldap-svr2\"\n             authIdentity\u003d\"cn\u003d{USERNAME},ou\u003dpeople,dc\u003dexample,dc\u003dcom\"\n             authzIdentity\u003d\"staff\"\n             debug\u003dtrue;\n     };\n\n \u003c/pre\u003e \n\u003cdl\u003e \n \u003cdt\u003e\n  \u003cb\u003eNote:\u003c/b\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n  When a \n  \u003ca href\u003d\"../../../../../../java.base/java/lang/SecurityManager.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSecurityManager\u003c/code\u003e\u003c/a\u003e is active then an application that creates a \n  \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/login/LoginContext.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eLoginContext\u003c/code\u003e\u003c/a\u003e and uses a \n  \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/spi/LoginModule.html\" title\u003d\"interface in javax.security.auth.spi\"\u003e\u003ccode\u003eLoginModule\u003c/code\u003e\u003c/a\u003e must be granted certain permissions. \n  \u003cp\u003e If the application creates a login context using an \u003cem\u003einstalled\u003c/em\u003e \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/login/Configuration.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e then the application must be granted the \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/AuthPermission.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eAuthPermission\u003c/code\u003e\u003c/a\u003e to create login contexts. For example, the following security policy allows an application in the user\u0027s current directory to instantiate \u003cem\u003eany\u003c/em\u003e login context: \u003c/p\u003e\n  \u003cpre\u003e\n     grant codebase \"file:${user.dir}/\" {\n         permission javax.security.auth.AuthPermission \"createLoginContext.*\";\n     };\n     \u003c/pre\u003e Alternatively, if the application creates a login context using a \n  \u003cem\u003ecaller-specified\u003c/em\u003e \n  \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/login/Configuration.html\" title\u003d\"class in javax.security.auth.login\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e then the application must be granted the permissions required by the \n  \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/spi/LoginModule.html\" title\u003d\"interface in javax.security.auth.spi\"\u003e\u003ccode\u003eLoginModule\u003c/code\u003e\u003c/a\u003e. \n  \u003cem\u003eThis\u003c/em\u003e module requires the following two permissions: \n  \u003cul\u003e \n   \u003cli\u003e The \u003ca href\u003d\"../../../../../../java.base/java/net/SocketPermission.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eSocketPermission\u003c/code\u003e\u003c/a\u003e to connect to an LDAP server. \u003c/li\u003e\n   \u003cli\u003e The \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/AuthPermission.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eAuthPermission\u003c/code\u003e\u003c/a\u003e to modify the set of \u003ca href\u003d\"../../../../../../java.base/java/security/Principal.html\" title\u003d\"interface in java.security\"\u003e\u003ccode\u003ePrincipal\u003c/code\u003e\u003c/a\u003es associated with a \u003ca href\u003d\"../../../../../../java.base/javax/security/auth/Subject.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eSubject\u003c/code\u003e\u003c/a\u003e. \u003c/li\u003e\n  \u003c/ul\u003e \n  \u003cp\u003e\u003c/p\u003e\n  \u003cp\u003e For example, the following security policy grants an application in the user\u0027s current directory all the permissions required by this module: \u003c/p\u003e\n  \u003cpre\u003e\n     grant codebase \"file:${user.dir}/\" {\n         permission java.net.SocketPermission \"*:389\", \"connect\";\n         permission java.net.SocketPermission \"*:636\", \"connect\";\n         permission javax.security.auth.AuthPermission \"modifyPrincipals\";\n     };\n     \u003c/pre\u003e \n  \u003cp\u003e\u003c/p\u003e\n \u003c/dd\u003e \n\u003c/dl\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.6"

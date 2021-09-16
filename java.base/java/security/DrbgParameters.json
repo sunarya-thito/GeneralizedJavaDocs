@@ -13,36 +13,6 @@
         "name": "java.security.DrbgParameters$Instantiation",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "strength",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.DrbgParameters$Capability",
-            "type": "Class"
-          },
-          "name": "capability",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "byte",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "personalizationString",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -69,36 +39,6 @@
         "name": "java.security.DrbgParameters$NextBytes",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "strength",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "boolean",
-            "type": "Class"
-          },
-          "name": "predictionResistance",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "byte",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "additionalInput",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -124,27 +64,6 @@
         "name": "java.security.DrbgParameters$Reseed",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "boolean",
-            "type": "Class"
-          },
-          "name": "predictionResistance",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "byte",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "additionalInput",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -171,7 +90,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.security.DrbgParameters",
-  "annotations": [],
+  "comment": "This class specifies the parameters used by a DRBG (Deterministic Random Bit Generator). \n\u003cp\u003e According to \u003ca href\u003d\"http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\"\u003e NIST Special Publication 800-90A Revision 1, Recommendation for Random Number Generation Using Deterministic Random Bit Generators\u003c/a\u003e (800-90Ar1), \u003c/p\u003e\n\u003cblockquote\u003e\n  A DRBG is based on a DRBG mechanism as specified in this Recommendation and includes a source of randomness. A DRBG mechanism uses an algorithm (i.e., a DRBG algorithm) that produces a sequence of bits from an initial value that is determined by a seed that is determined from the output of the randomness source.\" \n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The 800-90Ar1 specification allows for a variety of DRBG implementation choices, such as: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e an entropy source, \u003c/li\u003e\n \u003cli\u003e a DRBG mechanism (for example, Hash_DRBG), \u003c/li\u003e\n \u003cli\u003e a DRBG algorithm (for example, SHA-256 for Hash_DRBG and AES-256 for CTR_DRBG. Please note that it is not the algorithm used in \u003ca href\u003d\"SecureRandom.html#getInstance(java.lang.String)\"\u003e\u003ccode\u003eSecureRandom.getInstance(java.lang.String)\u003c/code\u003e\u003c/a\u003e, which we will call a \u003cem\u003eSecureRandom algorithm\u003c/em\u003e below), \u003c/li\u003e\n \u003cli\u003e optional features, including prediction resistance and reseeding supports, \u003c/li\u003e\n \u003cli\u003e highest security strength. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e These choices are set in each implementation and are not directly managed by the \u003ccode\u003eSecureRandom\u003c/code\u003e API. Check your DRBG provider\u0027s documentation to find an appropriate implementation for the situation. \u003c/p\u003e\n\u003cp\u003e On the other hand, the 800-90Ar1 specification does have some configurable options, such as: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e required security strength, \u003c/li\u003e\n \u003cli\u003e if prediction resistance is required, \u003c/li\u003e\n \u003cli\u003e personalization string and additional input. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A DRBG instance can be instantiated with parameters from an \u003ca href\u003d\"DrbgParameters.Instantiation.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eDrbgParameters.Instantiation\u003c/code\u003e\u003c/a\u003e object and other information (for example, the nonce, which is not managed by this API). This maps to the \u003ccode\u003eInstantiate_function\u003c/code\u003e defined in NIST SP 800-90Ar1. \u003c/p\u003e\n\u003cp\u003e A DRBG instance can be reseeded with parameters from a \u003ca href\u003d\"DrbgParameters.Reseed.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eDrbgParameters.Reseed\u003c/code\u003e\u003c/a\u003e object. This maps to the \u003ccode\u003eReseed_function\u003c/code\u003e defined in NIST SP 800-90Ar1. Calling \u003ca href\u003d\"SecureRandom.html#reseed()\"\u003e\u003ccode\u003eSecureRandom.reseed()\u003c/code\u003e\u003c/a\u003e is equivalent to calling \u003ca href\u003d\"SecureRandom.html#reseed(java.security.SecureRandomParameters)\"\u003e\u003ccode\u003eSecureRandom.reseed(SecureRandomParameters)\u003c/code\u003e\u003c/a\u003e with the effective instantiated prediction resistance flag (as returned by \u003ca href\u003d\"SecureRandom.html#getParameters()\"\u003e\u003ccode\u003eSecureRandom.getParameters()\u003c/code\u003e\u003c/a\u003e) with no additional input. \u003c/p\u003e\n\u003cp\u003e A DRBG instance generates data with additional parameters from a \u003ca href\u003d\"DrbgParameters.NextBytes.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eDrbgParameters.NextBytes\u003c/code\u003e\u003c/a\u003e object. This maps to the \u003ccode\u003eGenerate_function\u003c/code\u003e defined in NIST SP 800-90Ar1. Calling \u003ca href\u003d\"SecureRandom.html#nextBytes(byte%5B%5D)\"\u003e\u003ccode\u003eSecureRandom.nextBytes(byte[])\u003c/code\u003e\u003c/a\u003e is equivalent to calling \u003ca href\u003d\"SecureRandom.html#nextBytes(byte%5B%5D,java.security.SecureRandomParameters)\"\u003e\u003ccode\u003eSecureRandom.nextBytes(byte[], SecureRandomParameters)\u003c/code\u003e\u003c/a\u003e with the effective instantiated strength and prediction resistance flag (as returned by \u003ca href\u003d\"SecureRandom.html#getParameters()\"\u003e\u003ccode\u003eSecureRandom.getParameters()\u003c/code\u003e\u003c/a\u003e) with no additional input. \u003c/p\u003e\n\u003cp\u003e A DRBG should be implemented as a subclass of \u003ca href\u003d\"SecureRandomSpi.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eSecureRandomSpi\u003c/code\u003e\u003c/a\u003e. It is recommended that the implementation contain the 1-arg \u003ca href\u003d\"SecureRandomSpi.html#%3Cinit%3E(java.security.SecureRandomParameters)\"\u003econstructor\u003c/a\u003e that takes a \u003ccode\u003eDrbgParameters.Instantiation\u003c/code\u003e argument. If implemented this way, this implementation can be chosen by any \u003ccode\u003eSecureRandom.getInstance()\u003c/code\u003e method. If it is chosen by a \u003ccode\u003eSecureRandom.getInstance()\u003c/code\u003e with a \u003ca href\u003d\"SecureRandomParameters.html\" title\u003d\"interface in java.security\"\u003e\u003ccode\u003eSecureRandomParameters\u003c/code\u003e\u003c/a\u003e parameter, the parameter is passed into this constructor. If it is chosen by a \u003ccode\u003eSecureRandom.getInstance()\u003c/code\u003e without a \u003ccode\u003eSecureRandomParameters\u003c/code\u003e parameter, the constructor is called with a \u003ccode\u003enull\u003c/code\u003e argument and the implementation should choose its own parameters. Its \u003ca href\u003d\"SecureRandom.html#getParameters()\"\u003e\u003ccode\u003eSecureRandom.getParameters()\u003c/code\u003e\u003c/a\u003e must always return a non-null effective \u003ccode\u003eDrbgParameters.Instantiation\u003c/code\u003e object that reflects how the DRBG is actually instantiated. A caller can use this information to determine whether a \u003ccode\u003eSecureRandom\u003c/code\u003e object is a DRBG and what features it supports. Please note that the returned value does not necessarily equal to the \u003ccode\u003eDrbgParameters.Instantiation\u003c/code\u003e object passed into the \u003ccode\u003eSecureRandom.getInstance()\u003c/code\u003e call. For example, the requested capability can be \u003ca href\u003d\"DrbgParameters.Capability.html#NONE\"\u003e\u003ccode\u003eDrbgParameters.Capability.NONE\u003c/code\u003e\u003c/a\u003e but the effective value can be \u003ca href\u003d\"DrbgParameters.Capability.html#RESEED_ONLY\"\u003e\u003ccode\u003eDrbgParameters.Capability.RESEED_ONLY\u003c/code\u003e\u003c/a\u003e if the implementation supports reseeding. The implementation must implement the \u003ca href\u003d\"SecureRandomSpi.html#engineNextBytes(byte%5B%5D,java.security.SecureRandomParameters)\"\u003e\u003ccode\u003eSecureRandomSpi.engineNextBytes(byte[], SecureRandomParameters)\u003c/code\u003e\u003c/a\u003e method which takes a \u003ccode\u003eDrbgParameters.NextBytes\u003c/code\u003e parameter. Unless the result of \u003ca href\u003d\"SecureRandom.html#getParameters()\"\u003e\u003ccode\u003eSecureRandom.getParameters()\u003c/code\u003e\u003c/a\u003e has its \u003ca href\u003d\"DrbgParameters.Instantiation.html#getCapability()\"\u003ecapability\u003c/a\u003e being \u003ca href\u003d\"DrbgParameters.Capability.html#NONE\"\u003e\u003ccode\u003eNONE\u003c/code\u003e\u003c/a\u003e, it must implement \u003ca href\u003d\"SecureRandomSpi.html#engineReseed(java.security.SecureRandomParameters)\"\u003e\u003ccode\u003eSecureRandomSpi.engineReseed(SecureRandomParameters)\u003c/code\u003e\u003c/a\u003e which takes a \u003ccode\u003eDrbgParameters.Reseed\u003c/code\u003e parameter. \u003c/p\u003e\n\u003cp\u003e On the other hand, if a DRBG implementation does not contain a constructor that has an \u003ccode\u003eDrbgParameters.Instantiation\u003c/code\u003e argument (not recommended), it can only be chosen by a \u003ccode\u003eSecureRandom.getInstance()\u003c/code\u003e without a \u003ccode\u003eSecureRandomParameters\u003c/code\u003e parameter, but will not be chosen if a \u003ccode\u003egetInstance\u003c/code\u003e method with a \u003ccode\u003eSecureRandomParameters\u003c/code\u003e parameter is called. If implemented this way, its \u003ca href\u003d\"SecureRandom.html#getParameters()\"\u003e\u003ccode\u003eSecureRandom.getParameters()\u003c/code\u003e\u003c/a\u003e must return \u003ccode\u003enull\u003c/code\u003e, and it does not need to implement either \u003ca href\u003d\"SecureRandomSpi.html#engineNextBytes(byte%5B%5D,java.security.SecureRandomParameters)\"\u003e\u003ccode\u003eSecureRandomSpi.engineNextBytes(byte[], SecureRandomParameters)\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"SecureRandomSpi.html#engineReseed(java.security.SecureRandomParameters)\"\u003e\u003ccode\u003eSecureRandomSpi.engineReseed(SecureRandomParameters)\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e A DRBG might reseed itself automatically if the seed period is bigger than the maximum seed life defined by the DRBG mechanism. \u003c/p\u003e\n\u003cp\u003e A DRBG implementation should support serialization and deserialization by retaining the configuration and effective parameters, but the internal state must not be serialized and the deserialized object must be reinstantiated. \u003c/p\u003e\n\u003cp\u003e Examples: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e SecureRandom drbg;\n byte[] buffer \u003d new byte[32];\n\n // Any DRBG is OK\n drbg \u003d SecureRandom.getInstance(\"DRBG\");\n drbg.nextBytes(buffer);\n\n SecureRandomParameters params \u003d drbg.getParameters();\n if (params instanceof DrbgParameters.Instantiation) {\n     DrbgParameters.Instantiation ins \u003d (DrbgParameters.Instantiation) params;\n     if (ins.getCapability().supportsReseeding()) {\n         drbg.reseed();\n     }\n }\n\n // The following call requests a weak DRBG instance. It is only\n // guaranteed to support 112 bits of security strength.\n drbg \u003d SecureRandom.getInstance(\"DRBG\",\n         DrbgParameters.instantiation(112, NONE, null));\n\n // Both the next two calls will likely fail, because drbg could be\n // instantiated with a smaller strength with no prediction resistance\n // support.\n drbg.nextBytes(buffer,\n         DrbgParameters.nextBytes(256, false, \"more\".getBytes()));\n drbg.nextBytes(buffer,\n         DrbgParameters.nextBytes(112, true, \"more\".getBytes()));\n\n // The following call requests a strong DRBG instance, with a\n // personalization string. If it successfully returns an instance,\n // that instance is guaranteed to support 256 bits of security strength\n // with prediction resistance available.\n drbg \u003d SecureRandom.getInstance(\"DRBG\", DrbgParameters.instantiation(\n         256, PR_AND_RESEED, \"hello\".getBytes()));\n\n // Prediction resistance is not requested in this single call,\n // but an additional input is used.\n drbg.nextBytes(buffer,\n         DrbgParameters.nextBytes(-1, false, \"more\".getBytes()));\n\n // Same for this call.\n drbg.reseed(DrbgParameters.reseed(false, \"extra\".getBytes()));\u003c/pre\u003e \n\u003c/blockquote\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "implSpec": [
       "By convention, a provider should name its primary DRBG implementation with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/security/standard-names.html#securerandom-number-generation-algorithms\"\u003e standard \u003ccode\u003eSecureRandom\u003c/code\u003e algorithm name\u003c/a\u003e \"DRBG\"."

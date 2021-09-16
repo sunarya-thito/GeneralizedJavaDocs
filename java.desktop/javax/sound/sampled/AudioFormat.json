@@ -97,7 +97,6 @@
         "name": "javax.sound.sampled.AudioFormat$Encoding",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -118,7 +117,6 @@
         "name": "float",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -139,7 +137,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -160,7 +157,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -181,7 +177,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -202,7 +197,6 @@
         "name": "float",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -223,7 +217,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -251,7 +244,6 @@
         ],
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -275,17 +267,6 @@
         "name": "java.lang.Object",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "key",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -312,17 +293,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.sound.sampled.AudioFormat",
-            "type": "Class"
-          },
-          "name": "format",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -343,7 +313,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -618,7 +587,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.sound.sampled.AudioFormat",
-  "annotations": [],
+  "comment": "\u003ccode\u003eAudioFormat\u003c/code\u003e is the class that specifies a particular arrangement of data in a sound stream. By examining the information stored in the audio format, you can discover how to interpret the bits in the binary sound data. \n\u003cp\u003e Every data line has an audio format associated with its data stream. The audio format of a source (playback) data line indicates what kind of data the data line expects to receive for output. For a target (capture) data line, the audio format specifies the kind of the data that can be read from the line. \u003c/p\u003e\n\u003cp\u003e Sound files also have audio formats, of course. The \u003ca href\u003d\"AudioFileFormat.html\" title\u003d\"class in javax.sound.sampled\"\u003e\u003ccode\u003eAudioFileFormat\u003c/code\u003e\u003c/a\u003e class encapsulates an \u003ccode\u003eAudioFormat\u003c/code\u003e in addition to other, file-specific information. Similarly, an \u003ca href\u003d\"AudioInputStream.html\" title\u003d\"class in javax.sound.sampled\"\u003e\u003ccode\u003eAudioInputStream\u003c/code\u003e\u003c/a\u003e has an \u003ccode\u003eAudioFormat\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003eAudioFormat\u003c/code\u003e class accommodates a number of common sound-file encoding techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law encoding. These encoding techniques are predefined, but service providers can create new encoding types. The encoding that a specific format uses is named by its \u003ccode\u003eencoding\u003c/code\u003e field. \u003c/p\u003e\n\u003cp\u003e In addition to the encoding, the audio format includes other properties that further specify the exact arrangement of the data. These include the number of channels, sample rate, sample size, byte order, frame rate, and frame size. Sounds may have different numbers of audio channels: one for mono, two for stereo. The sample rate measures how many \"snapshots\" (samples) of the sound pressure are taken per second, per channel. (If the sound is stereo rather than mono, two samples are actually measured at each instant of time: one for the left channel, and another for the right channel; however, the sample rate still measures the number per channel, so the rate is the same regardless of the number of channels. This is the standard use of the term.) The sample size indicates how many bits are used to store each snapshot; 8 and 16 are typical values. For 16-bit samples (or any other sample size larger than a byte), byte order is important; the bytes in each sample are arranged in either the \"little-endian\" or \"big-endian\" style. For encodings like PCM, a frame consists of the set of samples for all channels at a given point in time, and so the size of a frame (in bytes) is always equal to the size of a sample (in bytes) times the number of channels. However, with some other sorts of encodings a frame can contain a bundle of compressed data for a whole series of samples, as well as additional, non-sample data. For such encodings, the sample rate and sample size refer to the data after it is decoded into PCM, and so they are completely different from the frame rate and frame size. \u003c/p\u003e\n\u003cp\u003e An \u003ccode\u003eAudioFormat\u003c/code\u003e object can include a set of properties. A property is a pair of key and value: the key is of type \u003ccode\u003eString\u003c/code\u003e, the associated property value is an arbitrary object. Properties specify additional format specifications, like the bit rate for compressed formats. Properties are mainly used as a means to transport additional information of the audio format to and from the service providers. Therefore, properties are ignored in the \u003ca href\u003d\"#matches(javax.sound.sampled.AudioFormat)\"\u003e\u003ccode\u003ematches(AudioFormat)\u003c/code\u003e\u003c/a\u003e method. However, methods which rely on the installed service providers, like \u003ca href\u003d\"AudioSystem.html#isConversionSupported(javax.sound.sampled.AudioFormat.Encoding,javax.sound.sampled.AudioFormat)\"\u003e\u003ccode\u003e(AudioFormat, AudioFormat) isConversionSupported\u003c/code\u003e\u003c/a\u003e may consider properties, depending on the respective service provider implementation. \u003c/p\u003e\n\u003cp\u003e The following table lists some common properties which service providers should use, if applicable: \u003c/p\u003e\n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption\u003e\n  Audio Format Properties\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"col\"\u003eProperty key \u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eValue type \u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eDescription \u003c/th\u003e\n  \u003c/tr\u003e\n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\"bitrate\" \u003c/th\u003e\n   \u003ctd\u003e\u003ca href\u003d\"../../../../java.base/java/lang/Integer.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eInteger\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n   \u003ctd\u003eaverage bit rate in bits per second \u003c/td\u003e\n  \u003c/tr\u003e\n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\"vbr\" \u003c/th\u003e\n   \u003ctd\u003e\u003ca href\u003d\"../../../../java.base/java/lang/Boolean.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eBoolean\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n   \u003ctd\u003e\u003ccode\u003etrue\u003c/code\u003e, if the file is encoded in variable bit rate (VBR) \u003c/td\u003e\n  \u003c/tr\u003e\n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\"quality\" \u003c/th\u003e\n   \u003ctd\u003e\u003ca href\u003d\"../../../../java.base/java/lang/Integer.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eInteger\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n   \u003ctd\u003eencoding/conversion quality, 1..100 \u003c/td\u003e\n  \u003c/tr\u003e\n \u003c/tbody\u003e \n\u003c/table\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Vendors of service providers (plugins) are encouraged to seek information about other already established properties in third party plugins, and follow the same conventions.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/sampled/DataLine.html#getFormat()\"\u003e\u003ccode\u003eDataLine.getFormat()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/sampled/AudioInputStream.html#getFormat()\"\u003e\u003ccode\u003eAudioInputStream.getFormat()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/sampled/AudioFileFormat.html\" title\u003d\"class in javax.sound.sampled\"\u003e\u003ccode\u003eAudioFileFormat\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/sampled/spi/FormatConversionProvider.html\" title\u003d\"class in javax.sound.sampled.spi\"\u003e\u003ccode\u003eFormatConversionProvider\u003c/code\u003e\u003c/a\u003e"

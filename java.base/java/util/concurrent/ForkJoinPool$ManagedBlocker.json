@@ -13,13 +13,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -40,7 +33,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -57,6 +49,6 @@
   "memberType": "JavaClass",
   "modifiers": 521,
   "name": "java.util.concurrent.ForkJoinPool$ManagedBlocker",
-  "annotations": [],
+  "comment": "Interface for extending managed parallelism for tasks running in \n\u003ca href\u003d\"ForkJoinPool.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eForkJoinPool\u003c/code\u003e\u003c/a\u003es. \n\u003cp\u003eA \u003ccode\u003eManagedBlocker\u003c/code\u003e provides two methods. Method \u003ca href\u003d\"#isReleasable()\"\u003e\u003ccode\u003eisReleasable()\u003c/code\u003e\u003c/a\u003e must return \u003ccode\u003etrue\u003c/code\u003e if blocking is not necessary. Method \u003ca href\u003d\"#block()\"\u003e\u003ccode\u003eblock()\u003c/code\u003e\u003c/a\u003e blocks the current thread if necessary (perhaps internally invoking \u003ccode\u003eisReleasable\u003c/code\u003e before actually blocking). These actions are performed by any thread invoking \u003ca href\u003d\"ForkJoinPool.html#managedBlock(java.util.concurrent.ForkJoinPool.ManagedBlocker)\"\u003e\u003ccode\u003eForkJoinPool.managedBlock(ManagedBlocker)\u003c/code\u003e\u003c/a\u003e. The unusual methods in this API accommodate synchronizers that may, but don\u0027t usually, block for long periods. Similarly, they allow more efficient internal handling of cases in which additional workers may be, but usually are not, needed to ensure sufficient parallelism. Toward this end, implementations of method \u003ccode\u003eisReleasable\u003c/code\u003e must be amenable to repeated invocation. \u003c/p\u003e\n\u003cp\u003eFor example, here is a ManagedBlocker based on a ReentrantLock: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class ManagedLocker implements ManagedBlocker {\n   final ReentrantLock lock;\n   boolean hasLock \u003d false;\n   ManagedLocker(ReentrantLock lock) { this.lock \u003d lock; }\n   public boolean block() {\n     if (!hasLock)\n       lock.lock();\n     return true;\n   }\n   public boolean isReleasable() {\n     return hasLock || (hasLock \u003d lock.tryLock());\n   }\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eHere is a class that possibly blocks waiting for an item on a given queue: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class QueueTaker\u0026lt;E\u0026gt; implements ManagedBlocker {\n   final BlockingQueue\u0026lt;E\u0026gt; queue;\n   volatile E item \u003d null;\n   QueueTaker(BlockingQueue\u0026lt;E\u0026gt; q) { this.queue \u003d q; }\n   public boolean block() throws InterruptedException {\n     if (item \u003d\u003d null)\n       item \u003d queue.take();\n     return true;\n   }\n   public boolean isReleasable() {\n     return item !\u003d null || (item \u003d queue.poll()) !\u003d null;\n   }\n   public E getItem() { // call after pool.managedBlock completes\n     return item;\n   }\n }\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {}
 }

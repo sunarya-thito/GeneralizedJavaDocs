@@ -13,26 +13,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "baseName",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Locale",
-            "type": "Class"
-          },
-          "name": "locale",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
@@ -60,26 +40,6 @@
         "name": "java.util.ResourceBundle",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "baseName",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Locale",
-            "type": "Class"
-          },
-          "name": "locale",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -146,7 +106,7 @@
   "memberType": "JavaClass",
   "modifiers": 1025,
   "name": "java.util.spi.AbstractResourceBundleProvider",
-  "annotations": [],
+  "comment": "\u003ccode\u003eAbstractResourceBundleProvider\u003c/code\u003e is an abstract class that provides the basic support for a provider implementation class for \n\u003ca href\u003d\"ResourceBundleProvider.html\" title\u003d\"interface in java.util.spi\"\u003e\u003ccode\u003eResourceBundleProvider\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e Resource bundles can be packaged in one or more named modules, \u003cem\u003eservice provider modules\u003c/em\u003e. The \u003cem\u003econsumer\u003c/em\u003e of the resource bundle is the one calling \u003ca href\u003d\"../ResourceBundle.html#getBundle(java.lang.String)\"\u003e\u003ccode\u003eResourceBundle.getBundle(String)\u003c/code\u003e\u003c/a\u003e. In order for the consumer module to load a resource bundle \"\u003ccode\u003ecom.example.app.MyResources\u003c/code\u003e\" provided by another module, it will use the \u003ca href\u003d\"../ServiceLoader.html\" title\u003d\"class in java.util\"\u003eservice loader\u003c/a\u003e mechanism. A service interface named \"\u003ccode\u003ecom.example.app.spi.MyResourcesProvider\u003c/code\u003e\" must be defined and a \u003cem\u003eservice provider module\u003c/em\u003e will provide an implementation class of \"\u003ccode\u003ecom.example.app.spi.MyResourcesProvider\u003c/code\u003e\" as follows: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e \u003ccode\u003eimport com.example.app.spi.MyResourcesProvider;\n class MyResourcesProviderImpl extends AbstractResourceBundleProvider\n     implements MyResourcesProvider\n {\n     public MyResourcesProviderImpl() {\n         super(\"java.properties\");\n     }\n     // this provider maps the resource bundle to per-language package\n     protected String toBundleName(String baseName, Locale locale) {\n         return \"p.\" + locale.getLanguage() + \".\" + baseName;\n     }\n\n     public ResourceBundle getBundle(String baseName, Locale locale) {\n         // this module only provides bundles in French\n         if (locale.equals(Locale.FRENCH)) {\n              return super.getBundle(baseName, locale);\n         }\n         // otherwise return null\n         return null;\n     }\n }\u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e Refer to \n\u003ca href\u003d\"ResourceBundleProvider.html\" title\u003d\"interface in java.util.spi\"\u003e\u003ccode\u003eResourceBundleProvider\u003c/code\u003e\u003c/a\u003e for details.\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ResourceBundle.html#resource-bundle-modules\"\u003e Resource Bundles and Named Modules\u003c/a\u003e"

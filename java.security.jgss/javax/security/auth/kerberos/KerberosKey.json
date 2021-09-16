@@ -13,7 +13,6 @@
         "name": "javax.security.auth.kerberos.KerberosPrincipal",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -34,7 +33,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -55,7 +53,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -76,7 +73,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -100,7 +96,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -125,7 +120,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -149,13 +143,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.security.auth.DestroyFailedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -176,7 +163,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -197,7 +183,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -218,7 +203,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -245,17 +229,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "other",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -385,7 +358,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.security.auth.kerberos.KerberosKey",
-  "annotations": [],
+  "comment": "This class encapsulates a long term secret key for a Kerberos principal.\n\u003cp\u003e A \u003ccode\u003eKerberosKey\u003c/code\u003e object includes an EncryptionKey, a \u003ca href\u003d\"KerberosPrincipal.html\" title\u003d\"class in javax.security.auth.kerberos\"\u003e\u003ccode\u003eKerberosPrincipal\u003c/code\u003e\u003c/a\u003e as its owner, and the version number of the key.\u003c/p\u003e\n\u003cp\u003e An EncryptionKey is defined in Section 4.2.9 of the Kerberos Protocol Specification (\u003ca href\u003d\"http://www.ietf.org/rfc/rfc4120.txt\"\u003eRFC 4120\u003c/a\u003e) as: \u003c/p\u003e\n\u003cpre\u003e     EncryptionKey   ::\u003d SEQUENCE {\n             keytype         [0] Int32 -- actually encryption type --,\n             keyvalue        [1] OCTET STRING\n     }\n \u003c/pre\u003e The key material of a \n\u003ccode\u003eKerberosKey\u003c/code\u003e is defined as the value of the \n\u003ccode\u003ekeyValue\u003c/code\u003e above.\n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e All Kerberos JAAS login modules that obtain a principal\u0027s password and generate the secret key from it should use this class. Sometimes, such as when authenticating a server in the absence of user-to-user authentication, the login module will store an instance of this class in the private credential set of a \u003ca href\u003d\"../../../../../java.base/javax/security/auth/Subject.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003eSubject\u003c/code\u003e\u003c/a\u003e during the commit phase of the authentication process.\u003c/p\u003e\n\u003cp\u003e A Kerberos service using a keytab to read secret keys should use the \u003ca href\u003d\"KeyTab.html\" title\u003d\"class in javax.security.auth.kerberos\"\u003e\u003ccode\u003eKeyTab\u003c/code\u003e\u003c/a\u003e class, where latest keys can be read when needed.\u003c/p\u003e\n\u003cp\u003e It might be necessary for the application to be granted a \u003ca href\u003d\"../../../../../java.base/javax/security/auth/PrivateCredentialPermission.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003ePrivateCredentialPermission\u003c/code\u003e\u003c/a\u003e if it needs to access the \u003ccode\u003eKerberosKey\u003c/code\u003e instance from a Subject. This permission is not needed when the application depends on the default JGSS Kerberos mechanism to access the \u003ccode\u003eKerberosKey\u003c/code\u003e. In that case, however, the application will need an appropriate \u003ca href\u003d\"ServicePermission.html\" title\u003d\"class in javax.security.auth.kerberos\"\u003e\u003ccode\u003eServicePermission\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003e When creating a \u003ccode\u003eKerberosKey\u003c/code\u003e using the \u003ca href\u003d\"#%3Cinit%3E(javax.security.auth.kerberos.KerberosPrincipal,char%5B%5D,java.lang.String)\"\u003e\u003ccode\u003eKerberosKey(KerberosPrincipal, char[], String)\u003c/code\u003e\u003c/a\u003e constructor, an implementation may accept non-IANA algorithm names (For example, \"ArcFourMac\" for \"rc4-hmac\"), but the \u003ca href\u003d\"#getAlgorithm()\"\u003e\u003ccode\u003egetAlgorithm()\u003c/code\u003e\u003c/a\u003e method must always return the IANA algorithm name.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.security.auth.kerberos.KerberosKey\"\u003eSerialized Form\u003c/a\u003e"

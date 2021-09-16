@@ -85,23 +85,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "org.ietf.jgss.GSSException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "org.ietf.jgss.GSSName",
-            "type": "Class"
-          },
-          "name": "another",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -125,17 +108,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "another",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -162,7 +134,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -186,23 +157,6 @@
         "name": "org.ietf.jgss.GSSName",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "org.ietf.jgss.GSSException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "org.ietf.jgss.Oid",
-            "type": "Class"
-          },
-          "name": "mech",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -227,13 +181,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "org.ietf.jgss.GSSException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -254,7 +201,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -275,13 +221,6 @@
         "name": "org.ietf.jgss.Oid",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "org.ietf.jgss.GSSException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -302,7 +241,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -320,7 +258,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -337,7 +274,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "org.ietf.jgss.GSSName",
-  "annotations": [],
+  "comment": "This interface encapsulates a single GSS-API principal entity. The application obtains an implementation of this interface through one of the \n\u003ccode\u003ecreateName\u003c/code\u003e methods that exist in the \n\u003ca href\u003d\"GSSManager.html\" title\u003d\"class in org.ietf.jgss\"\u003e\u003ccode\u003eGSSManager\u003c/code\u003e\u003c/a\u003e class. Conceptually a GSSName contains many representations of the entity or many primitive name elements, one for each supported underlying mechanism. In GSS terminology, a GSSName that contains an element from just one mechanism is called a Mechanism Name (MN)\n\u003cp\u003e Since different authentication mechanisms may employ different namespaces for identifying their principals, GSS-API\u0027s naming support is necessarily complex in multi-mechanism environments (or even in some single-mechanism environments where the underlying mechanism supports multiple namespaces). Different name formats and their definitions are identified with \u003ca href\u003d\"Oid.html\" title\u003d\"class in org.ietf.jgss\"\u003e\u003ccode\u003eOid\u0027s\u003c/code\u003e\u003c/a\u003e and some standard types are defined in this interface. The format of the names can be derived based on the unique \u003ccode\u003eOid\u003c/code\u003e of its name type.\u003c/p\u003e\n\u003cp\u003e Included below are code examples utilizing the \u003ccode\u003eGSSName\u003c/code\u003e interface. The code below creates a \u003ccode\u003eGSSName\u003c/code\u003e, converts it to an MN, performs a comparison, obtains a printable representation of the name, exports it to a byte array and then re-imports to obtain a new \u003ccode\u003eGSSName\u003c/code\u003e. \u003c/p\u003e\n\u003cpre\u003e      GSSManager manager \u003d GSSManager.getInstance();\n\n      // create a host based service name\n      GSSName name \u003d manager.createName(\"service@host\",\n                   GSSName.NT_HOSTBASED_SERVICE);\n\n      Oid krb5 \u003d new Oid(\"1.2.840.113554.1.2.2\");\n\n      GSSName mechName \u003d name.canonicalize(krb5);\n\n      // the above two steps are equivalent to the following\n      GSSName mechName \u003d manager.createName(\"service@host\",\n                      GSSName.NT_HOSTBASED_SERVICE, krb5);\n\n      // perform name comparison\n      if (name.equals(mechName))\n              print(\"Names are equals.\");\n\n      // obtain textual representation of name and its printable\n      // name type\n      print(mechName.toString() +\n                      mechName.getStringNameType().toString());\n\n      // export and re-import the name\n      byte [] exportName \u003d mechName.export();\n\n      // create a new name object from the exported buffer\n      GSSName newName \u003d manager.createName(exportName,\n                      GSSName.NT_EXPORT_NAME);\n\n \u003c/pre\u003e If a security manager is installed, in order to create a \n\u003ccode\u003eGSSName\u003c/code\u003e that contains a Kerberos name element without providing its realm, a \n\u003ca href\u003d\"../../../javax/security/auth/kerberos/ServicePermission.html\" title\u003d\"class in javax.security.auth.kerberos\"\u003e\u003ccode\u003eServicePermission\u003c/code\u003e\u003c/a\u003e must be granted and the service principal of the permission must minimally be inside the Kerberos name element\u0027s realm. For example, if the result of \n\u003ca href\u003d\"GSSManager.html#createName(java.lang.String,org.ietf.jgss.Oid)\"\u003e\u003ccode\u003ecreateName(\"user\", NT_USER_NAME)\u003c/code\u003e\u003c/a\u003e contains a Kerberos name element \n\u003ccode\u003euser@EXAMPLE.COM\u003c/code\u003e, then a \n\u003ccode\u003eServicePermission\u003c/code\u003e with service principal \n\u003ccode\u003ehost/www.example.com@EXAMPLE.COM\u003c/code\u003e (and any action) must be granted. Otherwise, the creation will throw a \n\u003ca href\u003d\"GSSException.html\" title\u003d\"class in org.ietf.jgss\"\u003e\u003ccode\u003eGSSException\u003c/code\u003e\u003c/a\u003e containing the \n\u003ccode\u003eGSSException.FAILURE\u003c/code\u003e error code.\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#export()\"\u003e\u003ccode\u003eexport()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSName.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eequals(GSSName)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSManager.html#createName(java.lang.String,org.ietf.jgss.Oid)\"\u003e\u003ccode\u003eGSSManager.createName(String, Oid)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSManager.html#createName(java.lang.String,org.ietf.jgss.Oid,org.ietf.jgss.Oid)\"\u003e\u003ccode\u003eGSSManager.createName(String, Oid, Oid)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.jgss/org/ietf/jgss/GSSManager.html#createName(byte%5B%5D,org.ietf.jgss.Oid)\"\u003e\u003ccode\u003eGSSManager.createName(byte[], Oid)\u003c/code\u003e\u003c/a\u003e"

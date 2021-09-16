@@ -13,7 +13,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
@@ -31,26 +30,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "jdk.dynalink.linker.GuardedInvocation",
-            "type": "Class"
-          },
-          "name": "guardedInvocation",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodHandle",
-            "type": "Class"
-          },
-          "name": "relinkAndInvoke",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -69,26 +48,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "jdk.dynalink.linker.GuardedInvocation",
-            "type": "Class"
-          },
-          "name": "guardedInvocation",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodHandle",
-            "type": "Class"
-          },
-          "name": "relinkAndInvoke",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -129,6 +88,6 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "jdk.dynalink.support.ChainedCallSite",
-  "annotations": [],
+  "comment": "A relinkable call site that implements a polymorphic inline caching strategy. It remembers up to 8 \n\u003ca href\u003d\"../linker/GuardedInvocation.html\" title\u003d\"class in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardedInvocation\u003c/code\u003e\u003c/a\u003es it was linked with, and on each relink request builds a cascading chain of method handles of one invocation falling back to the next one. The number of remembered invocations can be customized by overriding \n\u003ca href\u003d\"#getMaxChainLength()\"\u003e\u003ccode\u003egetMaxChainLength()\u003c/code\u003e\u003c/a\u003e in a subclass. When this call site is relinked with a new invocation and the length of the chain is already at the maximum, it will throw away the oldest invocation. Invocations with invalidated switch points and ones for which their invalidating exception triggered are removed eagerly from the chain. The invocations are never reordered; the most recently linked method handle is always at the start of the chain and the least recently linked at its end. The call site can be safely relinked on more than one thread concurrently. Race conditions in linking are resolved by throwing away the \n\u003ca href\u003d\"../linker/GuardedInvocation.html\" title\u003d\"class in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardedInvocation\u003c/code\u003e\u003c/a\u003e produced on the losing thread without incorporating it into the chain, so it can lead to repeated linking for the same arguments.",
   "tagMap": {}
 }

@@ -14,24 +14,6 @@
         "name": "V",
         "type": "Variable"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "owner": "java.util.concurrent.Exchanger",
-            "name": "V",
-            "type": "Variable"
-          },
-          "name": "x",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -56,46 +38,6 @@
         "name": "V",
         "type": "Variable"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        },
-        {
-          "name": "java.util.concurrent.TimeoutException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "owner": "java.util.concurrent.Exchanger",
-            "name": "V",
-            "type": "Variable"
-          },
-          "name": "x",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "timeout",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.concurrent.TimeUnit",
-            "type": "Class"
-          },
-          "name": "unit",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -136,7 +78,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.util.concurrent.Exchanger",
-  "annotations": [],
+  "comment": "A synchronization point at which threads can pair and swap elements within pairs. Each thread presents some object on entry to the \n\u003ca href\u003d\"#exchange(V)\"\u003e\u003ccode\u003eexchange\u003c/code\u003e\u003c/a\u003e method, matches with a partner thread, and receives its partner\u0027s object on return. An Exchanger may be viewed as a bidirectional form of a \n\u003ca href\u003d\"SynchronousQueue.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eSynchronousQueue\u003c/code\u003e\u003c/a\u003e. Exchangers may be useful in applications such as genetic algorithms and pipeline designs. \n\u003cp\u003e\u003cb\u003eSample Usage:\u003c/b\u003e Here are the highlights of a class that uses an \u003ccode\u003eExchanger\u003c/code\u003e to swap buffers between threads so that the thread filling the buffer gets a freshly emptied one when it needs it, handing off the filled one to the thread emptying the buffer. \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class FillAndEmpty {\n   Exchanger\u0026lt;DataBuffer\u0026gt; exchanger \u003d new Exchanger\u0026lt;\u0026gt;();\n   DataBuffer initialEmptyBuffer \u003d ... a made-up type\n   DataBuffer initialFullBuffer \u003d ...\n\n   class FillingLoop implements Runnable {\n     public void run() {\n       DataBuffer currentBuffer \u003d initialEmptyBuffer;\n       try {\n         while (currentBuffer !\u003d null) {\n           addToBuffer(currentBuffer);\n           if (currentBuffer.isFull())\n             currentBuffer \u003d exchanger.exchange(currentBuffer);\n         }\n       } catch (InterruptedException ex) { ... handle ... }\n     }\n   }\n\n   class EmptyingLoop implements Runnable {\n     public void run() {\n       DataBuffer currentBuffer \u003d initialFullBuffer;\n       try {\n         while (currentBuffer !\u003d null) {\n           takeFromBuffer(currentBuffer);\n           if (currentBuffer.isEmpty())\n             currentBuffer \u003d exchanger.exchange(currentBuffer);\n         }\n       } catch (InterruptedException ex) { ... handle ...}\n     }\n   }\n\n   void start() {\n     new Thread(new FillingLoop()).start();\n     new Thread(new EmptyingLoop()).start();\n   }\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eMemory consistency effects: For each pair of threads that successfully exchange objects via an \u003ccode\u003eExchanger\u003c/code\u003e, actions prior to the \u003ccode\u003eexchange()\u003c/code\u003e in each thread \u003ca href\u003d\"package-summary.html#MemoryVisibility\"\u003e\u003ci\u003ehappen-before\u003c/i\u003e\u003c/a\u003e those subsequent to a return from the corresponding \u003ccode\u003eexchange()\u003c/code\u003e in the other thread.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

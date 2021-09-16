@@ -13,7 +13,6 @@
         "name": "javax.print.DocFlavor",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -31,13 +30,6 @@
         "name": "java.lang.Object",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -58,7 +50,6 @@
         "name": "javax.print.attribute.DocAttributeSet",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -76,13 +67,6 @@
         "name": "java.io.Reader",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -103,13 +87,6 @@
         "name": "java.io.InputStream",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -129,6 +106,6 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.print.Doc",
-  "annotations": [],
+  "comment": "Interface \n\u003ccode\u003eDoc\u003c/code\u003e specifies the interface for an object that supplies one piece of print data for a Print Job. \"Doc\" is a short, easy-to-pronounce term that means \"a piece of print data.\" The client passes to the Print Job an object that implements interface \n\u003ccode\u003eDoc\u003c/code\u003e, and the Print Job calls methods on that object to obtain the print data. The \n\u003ccode\u003eDoc\u003c/code\u003e interface lets a Print Job: \n\u003cul\u003e \n \u003cli\u003eDetermine the format, or \"doc flavor\" (class \u003ca href\u003d\"DocFlavor.html\" title\u003d\"class in javax.print\"\u003e\u003ccode\u003eDocFlavor\u003c/code\u003e\u003c/a\u003e), in which the print data is available. A doc flavor designates the print data format (a MIME type) and the representation class of the object from which the print data comes. \u003c/li\u003e\n \u003cli\u003eObtain the print data representation object, which is an instance of the doc flavor\u0027s representation class. The Print Job can then obtain the actual print data from the representation object. \u003c/li\u003e\n \u003cli\u003eObtain the printing attributes that specify additional characteristics of the doc or that specify processing instructions to be applied to the doc. Printing attributes are defined in package \u003ca href\u003d\"attribute/package-summary.html\"\u003e\u003ccode\u003ejavax.print.attribute\u003c/code\u003e\u003c/a\u003e. The doc returns its printing attributes stored in an \u003ca href\u003d\"attribute/DocAttributeSet.html\" title\u003d\"interface in javax.print.attribute\"\u003e\u003ccode\u003ejavax.print.attribute.DocAttributeSet\u003c/code\u003e\u003c/a\u003e. \u003c/li\u003e\n\u003c/ul\u003e Each method in an implementation of interface \n\u003ccode\u003eDoc\u003c/code\u003e is permitted always to return the same object each time the method is called. This has implications for a Print Job or other caller of a doc object whose print data representation object \"consumes\" the print data as the caller obtains the print data, such as a print data representation object which is a stream. Once the Print Job has called \n\u003ca href\u003d\"#getPrintData()\"\u003e\u003ccode\u003egetPrintData()\u003c/code\u003e\u003c/a\u003e and obtained the stream, any further calls to \n\u003ca href\u003d\"#getPrintData()\"\u003e\u003ccode\u003egetPrintData()\u003c/code\u003e\u003c/a\u003e will return the same stream object upon which reading may already be in progress, \n\u003ci\u003enot\u003c/i\u003e a new stream object that will re-read the print data from the beginning. Specifying a doc object to behave this way simplifies the implementation of doc objects, and is justified on the grounds that a particular doc is intended to convey print data only to one Print Job, not to several different Print Jobs. (To convey the same print data to several different Print Jobs, you have to create several different doc objects on top of the same print data source.) \n\u003cp\u003e Interface \u003ccode\u003eDoc\u003c/code\u003e affords considerable implementation flexibility. The print data might already be in existence when the doc object is constructed. In this case the objects returned by the doc\u0027s methods can be supplied to the doc\u0027s constructor, be stored in the doc ahead of time, and simply be returned when called for. Alternatively, the print data might not exist yet when the doc object is constructed. In this case the doc object might provide a \"lazy\" implementation that generates the print data representation object (and/or the print data) only when the Print Job calls for it (when the Print Job calls the \u003ca href\u003d\"#getPrintData()\"\u003e\u003ccode\u003egetPrintData()\u003c/code\u003e\u003c/a\u003e method). \u003c/p\u003e\n\u003cp\u003e There is no restriction on the number of client threads that may be simultaneously accessing the same doc. Therefore, all implementations of interface \u003ccode\u003eDoc\u003c/code\u003e must be designed to be multiple thread safe. \u003c/p\u003e\n\u003cp\u003e However there can only be one consumer of the print data obtained from a \u003ccode\u003eDoc\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e If print data is obtained from the client as a stream, by calling \u003ccode\u003eDoc\u003c/code\u003e\u0027s \u003ccode\u003egetReaderForText()\u003c/code\u003e or \u003ccode\u003egetStreamForBytes()\u003c/code\u003e methods, or because the print data source is already an \u003ccode\u003eInputStream\u003c/code\u003e or \u003ccode\u003eReader\u003c/code\u003e, then the print service should always close these streams for the client on all job completion conditions. With the following caveat. If the print data is itself a stream, the service will always close it. If the print data is otherwise something that can be requested as a stream, the service will only close the stream if it has obtained the stream before terminating. That is, just because a print service might request data as a stream does not mean that it will, with the implications that \u003ccode\u003eDoc\u003c/code\u003e implementors which rely on the service to close them should create such streams only in response to a request from the service.\u003c/p\u003e",
   "tagMap": {}
 }

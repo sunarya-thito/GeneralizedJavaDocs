@@ -13,17 +13,6 @@
         "name": "javax.management.openmbean.CompositeData",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.management.openmbean.CompositeType",
-            "type": "Class"
-          },
-          "name": "ct",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -43,7 +32,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.management.openmbean.CompositeDataView",
-  "annotations": [],
+  "comment": "\u003cp\u003eA Java class can implement this interface to indicate how it is to be converted into a \u003ccode\u003eCompositeData\u003c/code\u003e by the MXBean framework.\u003c/p\u003e \n\u003cp\u003eA typical way to use this class is to add extra items to the \u003ccode\u003eCompositeData\u003c/code\u003e in addition to the ones that are declared in the \u003ccode\u003eCompositeType\u003c/code\u003e supplied by the MXBean framework. To do this, you must create another \u003ccode\u003eCompositeType\u003c/code\u003e that has all the same items, plus your extra items.\u003c/p\u003e \n\u003cp\u003eFor example, suppose you have a class \u003ccode\u003eMeasure\u003c/code\u003e that consists of a String called \u003ccode\u003eunits\u003c/code\u003e and a \u003ccode\u003evalue\u003c/code\u003e that is either a \u003ccode\u003elong\u003c/code\u003e or a \u003ccode\u003edouble\u003c/code\u003e. It might look like this:\u003c/p\u003e \n\u003cpre\u003e public class Measure implements CompositeDataView {\n     private String units;\n     private Number value; // a Long or a Double\n\n     public Measure(String units, Number value) {\n         this.units \u003d units;\n         this.value \u003d value;\n     }\n\n     public static Measure from(CompositeData cd) {\n         return new Measure((String) cd.get(\"units\"),\n                            (Number) cd.get(\"value\"));\n     }\n\n     public String getUnits() {\n         return units;\n     }\n\n     // Can\u0027t be called getValue(), because Number is not a valid type\n     // in an MXBean, so the implied \"value\" property would be rejected.\n     public Number _getValue() {\n         return value;\n     }\n\n     public CompositeData toCompositeData(CompositeType ct) {\n         try {\n             \u003ccode\u003eList\u0026lt;String\u0026gt; itemNames \u003d new ArrayList\u0026lt;String\u0026gt;(ct.keySet());\u003c/code\u003e\n             \u003ccode\u003eList\u0026lt;String\u0026gt; itemDescriptions \u003d new ArrayList\u0026lt;String\u0026gt;();\u003c/code\u003e\n             \u003ccode\u003eList\u0026lt;OpenType\u0026lt;?\u0026gt;\u0026gt; itemTypes \u003d new ArrayList\u0026lt;OpenType\u0026lt;?\u0026gt;\u0026gt;();\u003c/code\u003e\n             for (String item : itemNames) {\n                 itemDescriptions.add(ct.getDescription(item));\n                 itemTypes.add(ct.getType(item));\n             }\n             itemNames.add(\"value\");\n             itemDescriptions.add(\"long or double value of the measure\");\n             itemTypes.add((value instanceof Long) ? SimpleType.LONG :\n                           SimpleType.DOUBLE);\n             CompositeType xct \u003d\n                 new CompositeType(ct.getTypeName(),\n                                   ct.getDescription(),\n                                   itemNames.toArray(new String[0]),\n                                   itemDescriptions.toArray(new String[0]),\n                                   itemTypes.toArray(new OpenType\u0026lt;?\u0026gt;[0]));\n             CompositeData cd \u003d\n                 new CompositeDataSupport(xct,\n                                          new String[] {\"units\", \"value\"},\n                                          new Object[] {units, value});\n             assert ct.isValue(cd);  // check we\u0027ve done it right\n             return cd;\n         } catch (Exception e) {\n             throw new RuntimeException(e);\n         }\n     }\n }\n \u003c/pre\u003e \n\u003cp\u003eThe \u003ccode\u003eCompositeType\u003c/code\u003e that will appear in the \u003ccode\u003eopenType\u003c/code\u003e field of the \u003ca href\u003d\"../Descriptor.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eDescriptor\u003c/code\u003e\u003c/a\u003e for an attribute or operation of this type will show only the \u003ccode\u003eunits\u003c/code\u003e item, but the actual \u003ccode\u003eCompositeData\u003c/code\u003e that is generated will have both \u003ccode\u003eunits\u003c/code\u003e and \u003ccode\u003evalue\u003c/code\u003e.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MXBean.html\" title\u003d\"annotation in javax.management\"\u003e\u003ccode\u003eMXBean\u003c/code\u003e\u003c/a\u003e"

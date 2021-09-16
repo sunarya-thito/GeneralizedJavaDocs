@@ -20,24 +20,6 @@
         ],
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.concurrent.Callable",
-            "parameters": [
-              {
-                "owner": "java.util.concurrent.ExecutorCompletionService",
-                "name": "V",
-                "type": "Variable"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "task",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -72,27 +54,6 @@
         ],
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Runnable",
-            "type": "Class"
-          },
-          "name": "task",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "owner": "java.util.concurrent.ExecutorCompletionService",
-            "name": "V",
-            "type": "Variable"
-          },
-          "name": "result",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -128,13 +89,6 @@
         ],
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -165,7 +119,6 @@
         ],
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -193,32 +146,6 @@
         ],
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "timeout",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.concurrent.TimeUnit",
-            "type": "Class"
-          },
-          "name": "unit",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -326,7 +253,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.util.concurrent.ExecutorCompletionService",
-  "annotations": [],
+  "comment": "A \n\u003ca href\u003d\"CompletionService.html\" title\u003d\"interface in java.util.concurrent\"\u003e\u003ccode\u003eCompletionService\u003c/code\u003e\u003c/a\u003e that uses a supplied \n\u003ca href\u003d\"Executor.html\" title\u003d\"interface in java.util.concurrent\"\u003e\u003ccode\u003eExecutor\u003c/code\u003e\u003c/a\u003e to execute tasks. This class arranges that submitted tasks are, upon completion, placed on a queue accessible using \n\u003ccode\u003etake\u003c/code\u003e. The class is lightweight enough to be suitable for transient use when processing groups of tasks. \n\u003cp\u003e \u003cb\u003eUsage Examples.\u003c/b\u003e Suppose you have a set of solvers for a certain problem, each returning a value of some type \u003ccode\u003eResult\u003c/code\u003e, and would like to run them concurrently, processing the results of each of them that return a non-null value, in some method \u003ccode\u003euse(Result r)\u003c/code\u003e. You could write this as: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n void solve(Executor e,\n            Collection\u0026lt;Callable\u0026lt;Result\u0026gt;\u0026gt; solvers)\n     throws InterruptedException, ExecutionException {\n   CompletionService\u0026lt;Result\u0026gt; cs\n       \u003d new ExecutorCompletionService\u0026lt;\u0026gt;(e);\n   solvers.forEach(cs::submit);\n   for (int i \u003d solvers.size(); i \u0026gt; 0; i--) {\n     Result r \u003d cs.take().get();\n     if (r !\u003d null)\n       use(r);\n   }\n }\u003c/code\u003e\u003c/pre\u003e Suppose instead that you would like to use the first non-null result of the set of tasks, ignoring any that encounter exceptions, and cancelling all other tasks when the first one is ready: \n\u003cpre\u003e \u003ccode\u003e\n void solve(Executor e,\n            Collection\u0026lt;Callable\u0026lt;Result\u0026gt;\u0026gt; solvers)\n     throws InterruptedException {\n   CompletionService\u0026lt;Result\u0026gt; cs\n       \u003d new ExecutorCompletionService\u0026lt;\u0026gt;(e);\n   int n \u003d solvers.size();\n   List\u0026lt;Future\u0026lt;Result\u0026gt;\u0026gt; futures \u003d new ArrayList\u0026lt;\u0026gt;(n);\n   Result result \u003d null;\n   try {\n     solvers.forEach(solver -\u0026gt; futures.add(cs.submit(solver)));\n     for (int i \u003d n; i \u0026gt; 0; i--) {\n       try {\n         Result r \u003d cs.take().get();\n         if (r !\u003d null) {\n           result \u003d r;\n           break;\n         }\n       } catch (ExecutionException ignore) {}\n     }\n   } finally {\n     futures.forEach(future -\u0026gt; future.cancel(true));\n   }\n\n   if (result !\u003d null)\n     use(result);\n }\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

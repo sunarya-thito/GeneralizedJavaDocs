@@ -61,23 +61,6 @@
         "name": "javax.management.remote.JMXConnector",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.management.remote.JMXServiceURL",
-            "type": "Class"
-          },
-          "name": "serviceURL",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -103,41 +86,6 @@
         "name": "javax.management.remote.JMXConnector",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.management.remote.JMXServiceURL",
-            "type": "Class"
-          },
-          "name": "serviceURL",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Map",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              },
-              {
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "environment",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -164,41 +112,6 @@
         "name": "javax.management.remote.JMXConnector",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.management.remote.JMXServiceURL",
-            "type": "Class"
-          },
-          "name": "serviceURL",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Map",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              },
-              {
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "environment",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -225,7 +138,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.management.remote.JMXConnectorFactory",
-  "annotations": [],
+  "comment": "\u003cp\u003eFactory to create JMX API connector clients. There are no instances of this class.\u003c/p\u003e \n\u003cp\u003eConnections are usually made using the \u003ca href\u003d\"#connect(javax.management.remote.JMXServiceURL)\"\u003e\u003ccode\u003econnect\u003c/code\u003e\u003c/a\u003e method of this class. More advanced applications can separate the creation of the connector client, using \u003ca href\u003d\"#newJMXConnector(javax.management.remote.JMXServiceURL,java.util.Map)\"\u003e\u003ccode\u003enewJMXConnector\u003c/code\u003e\u003c/a\u003e and the establishment of the connection itself, using \u003ca href\u003d\"JMXConnector.html#connect(java.util.Map)\"\u003e\u003ccode\u003eJMXConnector.connect(Map)\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e \n\u003cp\u003eEach client is created by an instance of \u003ca href\u003d\"JMXConnectorProvider.html\" title\u003d\"interface in javax.management.remote\"\u003e\u003ccode\u003eJMXConnectorProvider\u003c/code\u003e\u003c/a\u003e. This instance is found as follows. Suppose the given \u003ca href\u003d\"JMXServiceURL.html\" title\u003d\"class in javax.management.remote\"\u003e\u003ccode\u003eJMXServiceURL\u003c/code\u003e\u003c/a\u003e looks like \u003ccode\u003e\"service:jmx:\u003cem\u003eprotocol\u003c/em\u003e:\u003cem\u003eremainder\u003c/em\u003e\"\u003c/code\u003e. Then the factory will attempt to find the appropriate \u003ca href\u003d\"JMXConnectorProvider.html\" title\u003d\"interface in javax.management.remote\"\u003e\u003ccode\u003eJMXConnectorProvider\u003c/code\u003e\u003c/a\u003e for \u003ccode\u003e\u003cem\u003eprotocol\u003c/em\u003e\u003c/code\u003e. Each occurrence of the character \u003ccode\u003e+\u003c/code\u003e or \u003ccode\u003e-\u003c/code\u003e in \u003ccode\u003e\u003cem\u003eprotocol\u003c/em\u003e\u003c/code\u003e is replaced by \u003ccode\u003e.\u003c/code\u003e or \u003ccode\u003e_\u003c/code\u003e, respectively.\u003c/p\u003e \n\u003cp\u003eA \u003cem\u003eprovider package list\u003c/em\u003e is searched for as follows:\u003c/p\u003e \n\u003col\u003e \n \u003cli\u003eIf the \u003ccode\u003eenvironment\u003c/code\u003e parameter to \u003ca href\u003d\"#newJMXConnector(javax.management.remote.JMXServiceURL,java.util.Map)\"\u003e\u003ccode\u003enewJMXConnector\u003c/code\u003e\u003c/a\u003e contains the key \u003ccode\u003ejmx.remote.protocol.provider.pkgs\u003c/code\u003e then the associated value is the provider package list. \u003c/li\u003e\n \u003cli\u003eOtherwise, if the system property \u003ccode\u003ejmx.remote.protocol.provider.pkgs\u003c/code\u003e exists, then its value is the provider package list. \u003c/li\u003e\n \u003cli\u003eOtherwise, there is no provider package list. \u003c/li\u003e\n\u003c/ol\u003e \n\u003cp\u003eThe provider package list is a string that is interpreted as a list of non-empty Java package names separated by vertical bars (\u003ccode\u003e|\u003c/code\u003e). If the string is empty, then so is the provider package list. If the provider package list is not a String, or if it contains an element that is an empty string, a \u003ca href\u003d\"JMXProviderException.html\" title\u003d\"class in javax.management.remote\"\u003e\u003ccode\u003eJMXProviderException\u003c/code\u003e\u003c/a\u003e is thrown.\u003c/p\u003e \n\u003cp\u003eIf the provider package list exists and is not empty, then for each element \u003ccode\u003e\u003cem\u003epkg\u003c/em\u003e\u003c/code\u003e of the list, the factory will attempt to load the class \u003c/p\u003e\n\u003cblockquote\u003e \n \u003ccode\u003e\u003cem\u003epkg\u003c/em\u003e.\u003cem\u003eprotocol\u003c/em\u003e.ClientProvider\u003c/code\u003e \n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eIf the \u003ccode\u003eenvironment\u003c/code\u003e parameter to \u003ca href\u003d\"#newJMXConnector(javax.management.remote.JMXServiceURL,java.util.Map)\"\u003e\u003ccode\u003enewJMXConnector\u003c/code\u003e\u003c/a\u003e contains the key \u003ccode\u003ejmx.remote.protocol.provider.class.loader\u003c/code\u003e then the associated value is the class loader to use to load the provider. If the associated value is not an instance of \u003ca href\u003d\"../../../../java.base/java/lang/ClassLoader.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClassLoader\u003c/code\u003e\u003c/a\u003e, an \u003ca href\u003d\"../../../../java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e is thrown.\u003c/p\u003e \n\u003cp\u003eIf the \u003ccode\u003ejmx.remote.protocol.provider.class.loader\u003c/code\u003e key is not present in the \u003ccode\u003eenvironment\u003c/code\u003e parameter, the calling thread\u0027s context class loader is used.\u003c/p\u003e \n\u003cp\u003eIf the attempt to load this class produces a \u003ca href\u003d\"../../../../java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClassNotFoundException\u003c/code\u003e\u003c/a\u003e, the search for a handler continues with the next element of the list.\u003c/p\u003e \n\u003cp\u003eOtherwise, a problem with the provider found is signalled by a \u003ca href\u003d\"JMXProviderException.html\" title\u003d\"class in javax.management.remote\"\u003e\u003ccode\u003eJMXProviderException\u003c/code\u003e\u003c/a\u003e whose \u003ca href\u003d\"../../../../java.base/java/lang/Throwable.html#getCause()\"\u003e\u003ccode\u003e\u003cem\u003ecause\u003c/em\u003e\u003c/code\u003e\u003c/a\u003e indicates the underlying exception, as follows:\u003c/p\u003e \n\u003cul\u003e \n \u003cli\u003eif the attempt to load the class produces an exception other than \u003ccode\u003eClassNotFoundException\u003c/code\u003e, that is the \u003cem\u003ecause\u003c/em\u003e; \u003c/li\u003e\n \u003cli\u003eif \u003ca href\u003d\"../../../../java.base/java/lang/Class.html#newInstance()\"\u003e\u003ccode\u003eClass.newInstance()\u003c/code\u003e\u003c/a\u003e for the class produces an exception, that is the \u003cem\u003ecause\u003c/em\u003e. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003eIf no provider is found by the above steps, including the default case where there is no provider package list, then the implementation will use its own provider for \u003ccode\u003e\u003cem\u003eprotocol\u003c/em\u003e\u003c/code\u003e, or it will throw a \u003ccode\u003eMalformedURLException\u003c/code\u003e if there is none. An implementation may choose to find providers by other means. For example, it may support \u003ca href\u003d\"../../../../java.base/java/util/ServiceLoader.html#developing-service-providers\"\u003eservice providers\u003c/a\u003e, where the service interface is \u003ccode\u003eJMXConnectorProvider\u003c/code\u003e.\u003c/p\u003e \n\u003cp\u003eEvery implementation must support the RMI connector protocol with the default RMI transport, specified with string \u003ccode\u003ermi\u003c/code\u003e. \u003c/p\u003e \n\u003cp\u003eOnce a provider is found, the result of the \u003ccode\u003enewJMXConnector\u003c/code\u003e method is the result of calling \u003ca href\u003d\"JMXConnectorProvider.html#newJMXConnector(javax.management.remote.JMXServiceURL,java.util.Map)\"\u003e\u003ccode\u003enewJMXConnector\u003c/code\u003e\u003c/a\u003e on the provider.\u003c/p\u003e \n\u003cp\u003eThe \u003ccode\u003eMap\u003c/code\u003e parameter passed to the \u003ccode\u003eJMXConnectorProvider\u003c/code\u003e is a new read-only \u003ccode\u003eMap\u003c/code\u003e that contains all the entries that were in the \u003ccode\u003eenvironment\u003c/code\u003e parameter to \u003ca href\u003d\"#newJMXConnector(javax.management.remote.JMXServiceURL,java.util.Map)\"\u003e\u003ccode\u003eJMXConnectorFactory.newJMXConnector\u003c/code\u003e\u003c/a\u003e, if there was one. Additionally, if the \u003ccode\u003ejmx.remote.protocol.provider.class.loader\u003c/code\u003e key is not present in the \u003ccode\u003eenvironment\u003c/code\u003e parameter, it is added to the new read-only \u003ccode\u003eMap\u003c/code\u003e. The associated value is the calling thread\u0027s context class loader.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

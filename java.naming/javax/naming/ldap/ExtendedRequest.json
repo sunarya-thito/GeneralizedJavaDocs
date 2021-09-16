@@ -13,7 +13,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -32,7 +31,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -53,51 +51,6 @@
         "name": "javax.naming.ldap.ExtendedResponse",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "id",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "byte",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "berValue",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "offset",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "length",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -126,7 +79,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.naming.ldap.ExtendedRequest",
-  "annotations": [],
+  "comment": "This interface represents an LDAPv3 extended operation request as defined in \n\u003ca href\u003d\"http://www.ietf.org/rfc/rfc2251.txt\"\u003eRFC 2251\u003c/a\u003e. \n\u003cpre\u003e     ExtendedRequest ::\u003d [APPLICATION 23] SEQUENCE {\n              requestName      [0] LDAPOID,\n              requestValue     [1] OCTET STRING OPTIONAL }\n \u003c/pre\u003e It comprises an object identifier string and an optional ASN.1 BER encoded value. \n\u003cp\u003e The methods in this class are used by the service provider to construct the bits to send to the LDAP server. Applications typically only deal with the classes that implement this interface, supplying them with any information required for a particular extended operation request. It would then pass such a class as an argument to the \u003ccode\u003eLdapContext.extendedOperation()\u003c/code\u003e method for performing the LDAPv3 extended operation. \u003c/p\u003e\n\u003cp\u003e For example, suppose the LDAP server supported a \u0027get time\u0027 extended operation. It would supply GetTimeRequest and GetTimeResponse classes: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e public class GetTimeRequest implements ExtendedRequest {\n     public GetTimeRequest() {... };\n     public ExtendedResponse createExtendedResponse(String id,\n         byte[] berValue, int offset, int length)\n         throws NamingException {\n         return new GetTimeResponse(id, berValue, offset, length);\n     }\n     ...\n }\n public class GetTimeResponse implements ExtendedResponse {\n     long time;\n     public GetTimeResponse(String id, byte[] berValue, int offset,\n         int length) throws NamingException {\n         time \u003d      ... // decode berValue to get time\n     }\n     public java.util.Date getDate() { return new java.util.Date(time) };\n     public long getTime() { return time };\n     ...\n }\n\u003c/pre\u003e\n\u003c/blockquote\u003e A program would use then these classes as follows: \n\u003cblockquote\u003e\n \u003cpre\u003e GetTimeResponse resp \u003d\n     (GetTimeResponse) ectx.extendedOperation(new GetTimeRequest());\n long time \u003d resp.getTime();\n\u003c/pre\u003e\n\u003c/blockquote\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/ldap/ExtendedResponse.html\" title\u003d\"interface in javax.naming.ldap\"\u003e\u003ccode\u003eExtendedResponse\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/ldap/LdapContext.html#extendedOperation(javax.naming.ldap.ExtendedRequest)\"\u003e\u003ccode\u003eLdapContext.extendedOperation(javax.naming.ldap.ExtendedRequest)\u003c/code\u003e\u003c/a\u003e"

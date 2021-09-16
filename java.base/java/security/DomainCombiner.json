@@ -14,28 +14,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.ProtectionDomain",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "currentDomains",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.ProtectionDomain",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "assignedDomains",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -56,7 +34,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "java.security.DomainCombiner",
-  "annotations": [],
+  "comment": "A \n\u003ccode\u003eDomainCombiner\u003c/code\u003e provides a means to dynamically update the ProtectionDomains associated with the current \n\u003ccode\u003eAccessControlContext\u003c/code\u003e. \n\u003cp\u003e A \u003ccode\u003eDomainCombiner\u003c/code\u003e is passed as a parameter to the appropriate constructor for \u003ccode\u003eAccessControlContext\u003c/code\u003e. The newly constructed context is then passed to the \u003ccode\u003eAccessController.doPrivileged(..., context)\u003c/code\u003e method to bind the provided context (and associated \u003ccode\u003eDomainCombiner\u003c/code\u003e) with the current execution Thread. Subsequent calls to \u003ccode\u003eAccessController.getContext\u003c/code\u003e or \u003ccode\u003eAccessController.checkPermission\u003c/code\u003e cause the \u003ccode\u003eDomainCombiner.combine\u003c/code\u003e to get invoked. \u003c/p\u003e\n\u003cp\u003e The combine method takes two arguments. The first argument represents an array of ProtectionDomains from the current execution Thread, since the most recent call to \u003ccode\u003eAccessController.doPrivileged\u003c/code\u003e. If no call to doPrivileged was made, then the first argument will contain all the ProtectionDomains from the current execution Thread. The second argument represents an array of inherited ProtectionDomains, which may be \u003ccode\u003enull\u003c/code\u003e. ProtectionDomains may be inherited from a parent Thread, or from a privileged context. If no call to doPrivileged was made, then the second argument will contain the ProtectionDomains inherited from the parent Thread. If one or more calls to doPrivileged were made, and the most recent call was to doPrivileged(action, context), then the second argument will contain the ProtectionDomains from the privileged context. If the most recent call was to doPrivileged(action), then there is no privileged context, and the second argument will be \u003ccode\u003enull\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003ecombine\u003c/code\u003e method investigates the two input arrays of ProtectionDomains and returns a single array containing the updated ProtectionDomains. In the simplest case, the \u003ccode\u003ecombine\u003c/code\u003e method merges the two stacks into one. In more complex cases, the \u003ccode\u003ecombine\u003c/code\u003e method returns a modified stack of ProtectionDomains. The modification may have added new ProtectionDomains, removed certain ProtectionDomains, or simply updated existing ProtectionDomains. Re-ordering and other optimizations to the ProtectionDomains are also permitted. Typically the \u003ccode\u003ecombine\u003c/code\u003e method bases its updates on the information encapsulated in the \u003ccode\u003eDomainCombiner\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e After the \u003ccode\u003eAccessController.getContext\u003c/code\u003e method receives the combined stack of ProtectionDomains back from the \u003ccode\u003eDomainCombiner\u003c/code\u003e, it returns a new AccessControlContext that has both the combined ProtectionDomains as well as the \u003ccode\u003eDomainCombiner\u003c/code\u003e.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessController.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eAccessController\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessControlContext.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eAccessControlContext\u003c/code\u003e\u003c/a\u003e"

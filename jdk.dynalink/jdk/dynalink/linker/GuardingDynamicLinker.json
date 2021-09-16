@@ -13,32 +13,6 @@
         "name": "jdk.dynalink.linker.GuardedInvocation",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.Exception",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "jdk.dynalink.linker.LinkRequest",
-            "type": "Class"
-          },
-          "name": "linkRequest",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "jdk.dynalink.linker.LinkerServices",
-            "type": "Class"
-          },
-          "name": "linkerServices",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -62,6 +36,6 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "jdk.dynalink.linker.GuardingDynamicLinker",
-  "annotations": [],
+  "comment": "The base interface for language-specific dynamic linkers. Such linkers always have to produce method handles with guards, as the validity of the method handle for calls at a call site inevitably depends on some condition (at the very least, it depends on the receiver belonging to the language runtime of the linker). Language runtime implementors will normally implement the linking logic for their own language as one or more \n\u003ca href\u003d\"GuardingDynamicLinker.html\" title\u003d\"interface in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardingDynamicLinker\u003c/code\u003e\u003c/a\u003e classes. They will typically set them as \n\u003ca href\u003d\"../DynamicLinkerFactory.html#setPrioritizedLinkers(java.util.List)\"\u003e\u003ccode\u003eprioritized linkers\u003c/code\u003e\u003c/a\u003e in the \n\u003ccode\u003eDynamicLinkerFactory\u003c/code\u003e they configure for themselves, and maybe also set some as \n\u003ca href\u003d\"../DynamicLinkerFactory.html#setFallbackLinkers(java.util.List)\"\u003e\u003ccode\u003efallback linkers\u003c/code\u003e\u003c/a\u003e to handle language-specific \"property not found\" etc. conditions. \n\u003cp\u003e Consider implementing \u003ca href\u003d\"TypeBasedGuardingDynamicLinker.html\" title\u003d\"interface in jdk.dynalink.linker\"\u003e\u003ccode\u003eTypeBasedGuardingDynamicLinker\u003c/code\u003e\u003c/a\u003e interface instead of this interface for those linkers that are based on the Java class of the objects. If you need to implement language-specific type conversions, have your \u003ccode\u003eGuardingDynamicLinker\u003c/code\u003e also implement the \u003ca href\u003d\"GuardingTypeConverterFactory.html\" title\u003d\"interface in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardingTypeConverterFactory\u003c/code\u003e\u003c/a\u003e interface. \u003c/p\u003e\n\u003cp\u003e Languages can export linkers to other language runtimes for \u003ca href\u003d\"../DynamicLinkerFactory.html#setClassLoader(java.lang.ClassLoader)\"\u003e\u003ccode\u003eautomatic discovery\u003c/code\u003e\u003c/a\u003e using a \u003ca href\u003d\"GuardingDynamicLinkerExporter.html\" title\u003d\"class in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardingDynamicLinkerExporter\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e",
   "tagMap": {}
 }

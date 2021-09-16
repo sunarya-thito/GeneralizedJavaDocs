@@ -13,26 +13,6 @@
         "name": "javax.imageio.metadata.IIOMetadata",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.metadata.IIOMetadata",
-            "type": "Class"
-          },
-          "name": "inData",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.ImageWriteParam",
-            "type": "Class"
-          },
-          "name": "param",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -57,35 +37,6 @@
         "name": "javax.imageio.metadata.IIOMetadata",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.metadata.IIOMetadata",
-            "type": "Class"
-          },
-          "name": "inData",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.ImageTypeSpecifier",
-            "type": "Class"
-          },
-          "name": "imageType",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.imageio.ImageWriteParam",
-            "type": "Class"
-          },
-          "name": "param",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -110,6 +61,6 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.imageio.ImageTranscoder",
-  "annotations": [],
+  "comment": "An interface providing metadata transcoding capability. \n\u003cp\u003e Any image may be transcoded (written to a different format than the one it was originally stored in) simply by performing a read operation followed by a write operation. However, loss of data may occur in this process due to format differences. \u003c/p\u003e\n\u003cp\u003e In general, the best results will be achieved when format-specific metadata objects can be created to encapsulate as much information about the image and its associated metadata as possible, in terms that are understood by the specific \u003ccode\u003eImageWriter\u003c/code\u003e used to perform the encoding. \u003c/p\u003e\n\u003cp\u003e An \u003ccode\u003eImageTranscoder\u003c/code\u003e may be used to convert the \u003ccode\u003eIIOMetadata\u003c/code\u003e objects supplied by the \u003ccode\u003eImageReader\u003c/code\u003e (representing per-stream and per-image metadata) into corresponding objects suitable for encoding by a particular \u003ccode\u003eImageWriter\u003c/code\u003e. In the case where the methods of this interface are being called directly on an \u003ccode\u003eImageWriter\u003c/code\u003e, the output will be suitable for that writer. \u003c/p\u003e\n\u003cp\u003e The internal details of converting an \u003ccode\u003eIIOMetadata\u003c/code\u003e object into a writer-specific format will vary according to the context of the operation. Typically, an \u003ccode\u003eImageWriter\u003c/code\u003e will inspect the incoming object to see if it implements additional interfaces with which the writer is familiar. This might be the case, for example, if the object was obtained by means of a read operation on a reader plug-in written by the same vendor as the writer. In this case, the writer may access the incoming object by means of its plug-in specific interfaces. In this case, the re-encoding may be close to lossless if the image file format is kept constant. If the format is changing, the writer may still attempt to preserve as much information as possible. \u003c/p\u003e\n\u003cp\u003e If the incoming object does not implement any additional interfaces known to the writer, the writer has no choice but to access it via the standard \u003ccode\u003eIIOMetadata\u003c/code\u003e interfaces such as the tree view provided by \u003ccode\u003eIIOMetadata.getAsTree\u003c/code\u003e. In this case, there is likely to be significant loss of information. \u003c/p\u003e\n\u003cp\u003e An independent \u003ccode\u003eImageTranscoder\u003c/code\u003e essentially takes on the same role as the writer plug-in in the above examples. It must be familiar with the private interfaces used by both the reader and writer plug-ins, and manually instantiate an object that will be usable by the writer. The resulting metadata objects may be used by the writer directly. \u003c/p\u003e\n\u003cp\u003e No independent implementations of \u003ccode\u003eImageTranscoder\u003c/code\u003e are provided as part of the standard API. Instead, the intention of this interface is to provide a way for implementations to be created and discovered by applications as the need arises.\u003c/p\u003e",
   "tagMap": {}
 }

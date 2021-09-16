@@ -13,13 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -37,7 +30,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -51,23 +43,6 @@
         "name": "long",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "nanosTimeout",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -91,32 +66,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "time",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.concurrent.TimeUnit",
-            "type": "Class"
-          },
-          "name": "unit",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -141,23 +90,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Date",
-            "type": "Class"
-          },
-          "name": "deadline",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -181,7 +113,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -195,7 +126,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -208,7 +138,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "java.util.concurrent.locks.Condition",
-  "annotations": [],
+  "comment": "\u003ccode\u003eCondition\u003c/code\u003e factors out the \n\u003ccode\u003eObject\u003c/code\u003e monitor methods (\n\u003ca href\u003d\"../../../lang/Object.html#wait()\"\u003e\u003ccode\u003ewait\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"../../../lang/Object.html#notify()\"\u003e\u003ccode\u003enotify\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"../../../lang/Object.html#notifyAll()\"\u003e\u003ccode\u003enotifyAll\u003c/code\u003e\u003c/a\u003e) into distinct objects to give the effect of having multiple wait-sets per object, by combining them with the use of arbitrary \n\u003ca href\u003d\"Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003e\u003ccode\u003eLock\u003c/code\u003e\u003c/a\u003e implementations. Where a \n\u003ccode\u003eLock\u003c/code\u003e replaces the use of \n\u003ccode\u003esynchronized\u003c/code\u003e methods and statements, a \n\u003ccode\u003eCondition\u003c/code\u003e replaces the use of the Object monitor methods. \n\u003cp\u003eConditions (also known as \u003cem\u003econdition queues\u003c/em\u003e or \u003cem\u003econdition variables\u003c/em\u003e) provide a means for one thread to suspend execution (to \"wait\") until notified by another thread that some state condition may now be true. Because access to this shared state information occurs in different threads, it must be protected, so a lock of some form is associated with the condition. The key property that waiting for a condition provides is that it \u003cem\u003eatomically\u003c/em\u003e releases the associated lock and suspends the current thread, just like \u003ccode\u003eObject.wait\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003eA \u003ccode\u003eCondition\u003c/code\u003e instance is intrinsically bound to a lock. To obtain a \u003ccode\u003eCondition\u003c/code\u003e instance for a particular \u003ca href\u003d\"Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003e\u003ccode\u003eLock\u003c/code\u003e\u003c/a\u003e instance use its \u003ca href\u003d\"Lock.html#newCondition()\"\u003e\u003ccode\u003enewCondition()\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003eAs an example, suppose we have a bounded buffer which supports \u003ccode\u003eput\u003c/code\u003e and \u003ccode\u003etake\u003c/code\u003e methods. If a \u003ccode\u003etake\u003c/code\u003e is attempted on an empty buffer, then the thread will block until an item becomes available; if a \u003ccode\u003eput\u003c/code\u003e is attempted on a full buffer, then the thread will block until a space becomes available. We would like to keep waiting \u003ccode\u003eput\u003c/code\u003e threads and \u003ccode\u003etake\u003c/code\u003e threads in separate wait-sets so that we can use the optimization of only notifying a single thread at a time when items or spaces become available in the buffer. This can be achieved using two \u003ca href\u003d\"Condition.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003e\u003ccode\u003eCondition\u003c/code\u003e\u003c/a\u003e instances. \u003c/p\u003e\n\u003cpre\u003e class BoundedBuffer\u0026lt;E\u0026gt; {\n   \u003cb\u003efinal Lock lock \u003d new ReentrantLock();\u003c/b\u003e\n   final Condition notFull  \u003d \u003cb\u003elock.newCondition(); \u003c/b\u003e\n   final Condition notEmpty \u003d \u003cb\u003elock.newCondition(); \u003c/b\u003e\n\n   final Object[] items \u003d new Object[100];\n   int putptr, takeptr, count;\n\n   public void put(E x) throws InterruptedException {\n     \u003cb\u003elock.lock();\n     try {\u003c/b\u003e\n       while (count \u003d\u003d items.length)\n         \u003cb\u003enotFull.await();\u003c/b\u003e\n       items[putptr] \u003d x;\n       if (++putptr \u003d\u003d items.length) putptr \u003d 0;\n       ++count;\n       \u003cb\u003enotEmpty.signal();\u003c/b\u003e\n     \u003cb\u003e} finally {\n       lock.unlock();\n     }\u003c/b\u003e\n   }\n\n   public E take() throws InterruptedException {\n     \u003cb\u003elock.lock();\n     try {\u003c/b\u003e\n       while (count \u003d\u003d 0)\n         \u003cb\u003enotEmpty.await();\u003c/b\u003e\n       E x \u003d (E) items[takeptr];\n       if (++takeptr \u003d\u003d items.length) takeptr \u003d 0;\n       --count;\n       \u003cb\u003enotFull.signal();\u003c/b\u003e\n       return x;\n     \u003cb\u003e} finally {\n       lock.unlock();\n     }\u003c/b\u003e\n   }\n }\n \u003c/pre\u003e (The \n\u003ca href\u003d\"../ArrayBlockingQueue.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eArrayBlockingQueue\u003c/code\u003e\u003c/a\u003e class provides this functionality, so there is no reason to implement this sample usage class.) \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eA \u003ccode\u003eCondition\u003c/code\u003e implementation can provide behavior and semantics that is different from that of the \u003ccode\u003eObject\u003c/code\u003e monitor methods, such as guaranteed ordering for notifications, or not requiring a lock to be held when performing notifications. If an implementation provides such specialized semantics then the implementation must document those semantics. \u003c/p\u003e\n\u003cp\u003eNote that \u003ccode\u003eCondition\u003c/code\u003e instances are just normal objects and can themselves be used as the target in a \u003ccode\u003esynchronized\u003c/code\u003e statement, and can have their own monitor \u003ca href\u003d\"../../../lang/Object.html#wait()\"\u003e\u003ccode\u003ewait\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"../../../lang/Object.html#notify()\"\u003e\u003ccode\u003enotify\u003c/code\u003e\u003c/a\u003e methods invoked. Acquiring the monitor lock of a \u003ccode\u003eCondition\u003c/code\u003e instance, or using its monitor methods, has no specified relationship with acquiring the \u003ca href\u003d\"Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003e\u003ccode\u003eLock\u003c/code\u003e\u003c/a\u003e associated with that \u003ccode\u003eCondition\u003c/code\u003e or the use of its \u003ca href\u003d\"#await()\"\u003ewaiting\u003c/a\u003e and \u003ca href\u003d\"#signal()\"\u003esignalling\u003c/a\u003e methods. It is recommended that to avoid confusion you never use \u003ccode\u003eCondition\u003c/code\u003e instances in this way, except perhaps within their own implementation. \u003c/p\u003e\n\u003cp\u003eExcept where noted, passing a \u003ccode\u003enull\u003c/code\u003e value for any parameter will result in a \u003ca href\u003d\"../../../lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e being thrown. \u003c/p\u003e\n\u003ch2\u003eImplementation Considerations\u003c/h2\u003e \n\u003cp\u003eWhen waiting upon a \u003ccode\u003eCondition\u003c/code\u003e, a \"\u003cem\u003espurious wakeup\u003c/em\u003e\" is permitted to occur, in general, as a concession to the underlying platform semantics. This has little practical impact on most application programs as a \u003ccode\u003eCondition\u003c/code\u003e should always be waited upon in a loop, testing the state predicate that is being waited for. An implementation is free to remove the possibility of spurious wakeups but it is recommended that applications programmers always assume that they can occur and so always wait in a loop. \u003c/p\u003e\n\u003cp\u003eThe three forms of condition waiting (interruptible, non-interruptible, and timed) may differ in their ease of implementation on some platforms and in their performance characteristics. In particular, it may be difficult to provide these features and maintain specific semantics such as ordering guarantees. Further, the ability to interrupt the actual suspension of the thread may not always be feasible to implement on all platforms. \u003c/p\u003e\n\u003cp\u003eConsequently, an implementation is not required to define exactly the same guarantees or semantics for all three forms of waiting, nor is it required to support interruption of the actual suspension of the thread. \u003c/p\u003e\n\u003cp\u003eAn implementation is required to clearly document the semantics and guarantees provided by each of the waiting methods, and when an implementation does support interruption of thread suspension then it must obey the interruption semantics as defined in this interface. \u003c/p\u003e\n\u003cp\u003eAs interruption generally implies cancellation, and checks for interruption are often infrequent, an implementation can favor responding to an interrupt over normal method return. This is true even if it can be shown that the interrupt occurred after another action that may have unblocked the thread. An implementation should document this behavior.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

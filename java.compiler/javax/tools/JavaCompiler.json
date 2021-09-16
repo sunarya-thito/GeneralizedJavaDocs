@@ -19,96 +19,6 @@
         "name": "javax.tools.JavaCompiler$CompilationTask",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.io.Writer",
-            "type": "Class"
-          },
-          "name": "out",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.tools.JavaFileManager",
-            "type": "Class"
-          },
-          "name": "fileManager",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.tools.DiagnosticListener",
-            "parameters": [
-              {
-                "lowerBounds": [
-                  {
-                    "name": "javax.tools.JavaFileObject",
-                    "type": "Class"
-                  }
-                ],
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "diagnosticListener",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Iterable",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "options",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Iterable",
-            "parameters": [
-              {
-                "name": "java.lang.String",
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "classes",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Iterable",
-            "parameters": [
-              {
-                "upperBounds": [
-                  {
-                    "name": "javax.tools.JavaFileObject",
-                    "type": "Class"
-                  }
-                ],
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "compilationUnits",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -138,46 +48,6 @@
         "name": "javax.tools.StandardJavaFileManager",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.tools.DiagnosticListener",
-            "parameters": [
-              {
-                "lowerBounds": [
-                  {
-                    "name": "javax.tools.JavaFileObject",
-                    "type": "Class"
-                  }
-                ],
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "diagnosticListener",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.Locale",
-            "type": "Class"
-          },
-          "name": "locale",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.nio.charset.Charset",
-            "type": "Class"
-          },
-          "name": "charset",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -202,7 +72,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.tools.JavaCompiler",
-  "annotations": [],
+  "comment": "Interface to invoke Java programming language compilers from programs. \n\u003cp\u003eThe compiler might generate diagnostics during compilation (for example, error messages). If a diagnostic listener is provided, the diagnostics will be supplied to the listener. If no listener is provided, the diagnostics will be formatted in an unspecified format and written to the default output, which is \u003ccode\u003e System.err\u003c/code\u003e unless otherwise specified. Even if a diagnostic listener is supplied, some diagnostics might not fit in a \u003ccode\u003e Diagnostic\u003c/code\u003e and will be written to the default output. \u003c/p\u003e\n\u003cp\u003eA compiler tool has an associated standard file manager, which is the file manager that is native to the tool (or built-in). The standard file manager can be obtained by calling \u003ca href\u003d\"#getStandardFileManager(javax.tools.DiagnosticListener,java.util.Locale,java.nio.charset.Charset)\"\u003egetStandardFileManager\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003eA compiler tool must function with any file manager as long as any additional requirements as detailed in the methods below are met. If no file manager is provided, the compiler tool will use a standard file manager such as the one returned by \u003ca href\u003d\"#getStandardFileManager(javax.tools.DiagnosticListener,java.util.Locale,java.nio.charset.Charset)\"\u003egetStandardFileManager\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003eAn instance implementing this interface must conform to \u003ccite\u003eThe Java Language Specification\u003c/cite\u003e and generate class files conforming to \u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e. The versions of these specifications are defined in the \u003ca href\u003d\"Tool.html\" title\u003d\"interface in javax.tools\"\u003eTool\u003c/a\u003e interface. Additionally, an instance of this interface supporting \u003ca href\u003d\"../lang/model/SourceVersion.html#RELEASE_6\"\u003e\u003ccode\u003eSourceVersion.RELEASE_6\u003c/code\u003e\u003c/a\u003e or higher must also support \u003ca href\u003d\"../annotation/processing/package-summary.html\"\u003eannotation processing\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003eThe compiler relies on two services: \u003ca href\u003d\"DiagnosticListener.html\" title\u003d\"interface in javax.tools\"\u003ediagnostic listener\u003c/a\u003e and \u003ca href\u003d\"JavaFileManager.html\" title\u003d\"interface in javax.tools\"\u003efile manager\u003c/a\u003e. Although most classes and interfaces in this package defines an API for compilers (and tools in general) the interfaces \u003ca href\u003d\"DiagnosticListener.html\" title\u003d\"interface in javax.tools\"\u003eDiagnosticListener\u003c/a\u003e, \u003ca href\u003d\"JavaFileManager.html\" title\u003d\"interface in javax.tools\"\u003eJavaFileManager\u003c/a\u003e, \u003ca href\u003d\"FileObject.html\" title\u003d\"interface in javax.tools\"\u003eFileObject\u003c/a\u003e, and \u003ca href\u003d\"JavaFileObject.html\" title\u003d\"interface in javax.tools\"\u003eJavaFileObject\u003c/a\u003e are not intended to be used in applications. Instead these interfaces are intended to be implemented and used to provide customized services for a compiler and thus defines an SPI for compilers. \u003c/p\u003e\n\u003cp\u003eThere are a number of classes and interfaces in this package which are designed to ease the implementation of the SPI to customize the behavior of a compiler: \u003c/p\u003e\n\u003cdl\u003e \n \u003cdt\u003e\n  \u003ca href\u003d\"StandardJavaFileManager.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eStandardJavaFileManager\u003c/code\u003e\u003c/a\u003e\n \u003c/dt\u003e \n \u003cdd\u003e\n   Every compiler which implements this interface provides a standard file manager for operating on regular \n  \u003ca href\u003d\"../../../java.base/java/io/File.html\" title\u003d\"class in java.io\"\u003efiles\u003c/a\u003e. The StandardJavaFileManager interface defines additional methods for creating file objects from regular files. \n  \u003cp\u003eThe standard file manager serves two purposes: \u003c/p\u003e\n  \u003cul\u003e \n   \u003cli\u003ebasic building block for customizing how a compiler reads and writes files\u003c/li\u003e \n   \u003cli\u003esharing between multiple compilation tasks\u003c/li\u003e \n  \u003c/ul\u003e \n  \u003cp\u003e\u003c/p\u003e\n  \u003cp\u003eReusing a file manager can potentially reduce overhead of scanning the file system and reading jar files. Although there might be no reduction in overhead, a standard file manager must work with multiple sequential compilations making the following example a recommended coding pattern: \u003c/p\u003e\n  \u003cpre\u003e       File[] files1 \u003d ... ; // input for first compilation task\n       File[] files2 \u003d ... ; // input for second compilation task\n\n       JavaCompiler compiler \u003d ToolProvider.getSystemJavaCompiler();\n       StandardJavaFileManager fileManager \u003d compiler.getStandardFileManager(null, null, null);\n\n       \u003ccode\u003eIterable\u0026lt;? extends JavaFileObject\u0026gt;\u003c/code\u003e compilationUnits1 \u003d\n           fileManager.getJavaFileObjectsFromFiles(\u003ca href\u003d\"../../../java.base/java/util/Arrays.html#asList(T...)\"\u003eArrays.asList\u003c/a\u003e(files1));\n       compiler.getTask(null, fileManager, null, null, null, compilationUnits1).call();\n\n       \u003ccode\u003eIterable\u0026lt;? extends JavaFileObject\u0026gt;\u003c/code\u003e compilationUnits2 \u003d\n           fileManager.getJavaFileObjects(files2); // use alternative method\n       // reuse the same file manager to allow caching of jar files\n       compiler.getTask(null, fileManager, null, null, null, compilationUnits2).call();\n\n       fileManager.close();\u003c/pre\u003e \n  \u003cp\u003e\u003c/p\u003e\n \u003c/dd\u003e \n \u003cdt\u003e\n  \u003ca href\u003d\"DiagnosticCollector.html\" title\u003d\"class in javax.tools\"\u003e\u003ccode\u003eDiagnosticCollector\u003c/code\u003e\u003c/a\u003e\n \u003c/dt\u003e \n \u003cdd\u003e\n   Used to collect diagnostics in a list, for example: \n  \u003cpre\u003e       \u003ccode\u003eIterable\u0026lt;? extends JavaFileObject\u0026gt;\u003c/code\u003e compilationUnits \u003d ...;\n       JavaCompiler compiler \u003d ToolProvider.getSystemJavaCompiler();\n       \u003ccode\u003eDiagnosticCollector\u0026lt;JavaFileObject\u0026gt; diagnostics \u003d new DiagnosticCollector\u0026lt;JavaFileObject\u0026gt;();\u003c/code\u003e\n       StandardJavaFileManager fileManager \u003d compiler.getStandardFileManager(diagnostics, null, null);\n       compiler.getTask(null, fileManager, diagnostics, null, null, compilationUnits).call();\n\n       for (\u003ccode\u003eDiagnostic\u0026lt;? extends JavaFileObject\u0026gt;\u003c/code\u003e diagnostic : diagnostics.getDiagnostics())\n           System.out.format(\"Error on line %d in %s%n\",\n                             diagnostic.getLineNumber(),\n                             diagnostic.getSource().toUri());\n\n       fileManager.close();\u003c/pre\u003e \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ca href\u003d\"ForwardingJavaFileManager.html\" title\u003d\"class in javax.tools\"\u003e\u003ccode\u003eForwardingJavaFileManager\u003c/code\u003e\u003c/a\u003e, \n  \u003ca href\u003d\"ForwardingFileObject.html\" title\u003d\"class in javax.tools\"\u003e\u003ccode\u003eForwardingFileObject\u003c/code\u003e\u003c/a\u003e, and \n  \u003ca href\u003d\"ForwardingJavaFileObject.html\" title\u003d\"class in javax.tools\"\u003e\u003ccode\u003eForwardingJavaFileObject\u003c/code\u003e\u003c/a\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   Subclassing is not available for overriding the behavior of a standard file manager as it is created by calling a method on a compiler, not by invoking a constructor. Instead forwarding (or delegation) should be used. These classes makes it easy to forward most calls to a given file manager or file object while allowing customizing behavior. For example, consider how to log all calls to \n  \u003ca href\u003d\"JavaFileManager.html#flush()\"\u003eJavaFileManager.flush()\u003c/a\u003e: \n  \u003cpre\u003e       final  Logger logger \u003d ...;\n       \u003ccode\u003eIterable\u0026lt;? extends JavaFileObject\u0026gt;\u003c/code\u003e compilationUnits \u003d ...;\n       JavaCompiler compiler \u003d ToolProvider.getSystemJavaCompiler();\n       StandardJavaFileManager stdFileManager \u003d compiler.getStandardFileManager(null, null, null);\n       JavaFileManager fileManager \u003d new ForwardingJavaFileManager(stdFileManager) {\n           public void flush() throws IOException {\n               logger.entering(StandardJavaFileManager.class.getName(), \"flush\");\n               super.flush();\n               logger.exiting(StandardJavaFileManager.class.getName(), \"flush\");\n           }\n       };\n       compiler.getTask(null, fileManager, null, null, null, compilationUnits).call();\u003c/pre\u003e \n \u003c/dd\u003e \n \u003cdt\u003e\n  \u003ca href\u003d\"SimpleJavaFileObject.html\" title\u003d\"class in javax.tools\"\u003e\u003ccode\u003eSimpleJavaFileObject\u003c/code\u003e\u003c/a\u003e\n \u003c/dt\u003e \n \u003cdd\u003e\n   This class provides a basic file object implementation which can be used as building block for creating file objects. For example, here is how to define a file object which represent source code stored in a string: \n  \u003cpre\u003e       /**\n        * A file object used to represent source coming from a string.\n        \u003ccode\u003e*\u003c/code\u003e/\n       public class JavaSourceFromString extends SimpleJavaFileObject {\n           /**\n            * The source code of this \"file\".\n            \u003ccode\u003e*\u003c/code\u003e/\n           final String code;\n\n           /**\n            * Constructs a new JavaSourceFromString.\n            * \u003ccode\u003e@\u003c/code\u003eparam name the name of the compilation unit represented by this file object\n            * \u003ccode\u003e@\u003c/code\u003eparam code the source code for the compilation unit represented by this file object\n            \u003ccode\u003e*\u003c/code\u003e/\n           JavaSourceFromString(String name, String code) {\n               super(\u003ca href\u003d\"../../../java.base/java/net/URI.html#create(java.lang.String)\"\u003eURI.create\u003c/a\u003e(\"string:///\" + name.replace(\u0027.\u0027,\u0027/\u0027) + Kind.SOURCE.extension),\n                     Kind.SOURCE);\n               this.code \u003d code;\n           }\n\n           \u003ccode\u003e@\u003c/code\u003eOverride\n           public CharSequence getCharContent(boolean ignoreEncodingErrors) {\n               return code;\n           }\n       }\u003c/pre\u003e \n \u003c/dd\u003e \n\u003c/dl\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/DiagnosticListener.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eDiagnosticListener\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/Diagnostic.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eDiagnostic\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eJavaFileManager\u003c/code\u003e\u003c/a\u003e"

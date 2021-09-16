@@ -13,7 +13,6 @@
         "name": "java.awt.BufferCapabilities",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -31,7 +30,6 @@
         "name": "java.awt.Graphics",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -49,7 +47,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -70,7 +67,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -91,7 +87,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -105,7 +100,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -134,7 +128,7 @@
   "memberType": "JavaClass",
   "modifiers": 1025,
   "name": "java.awt.image.BufferStrategy",
-  "annotations": [],
+  "comment": "The \n\u003ccode\u003eBufferStrategy\u003c/code\u003e class represents the mechanism with which to organize complex memory on a particular \n\u003ccode\u003eCanvas\u003c/code\u003e or \n\u003ccode\u003eWindow\u003c/code\u003e. Hardware and software limitations determine whether and how a particular buffer strategy can be implemented. These limitations are detectable through the capabilities of the \n\u003ccode\u003eGraphicsConfiguration\u003c/code\u003e used when creating the \n\u003ccode\u003eCanvas\u003c/code\u003e or \n\u003ccode\u003eWindow\u003c/code\u003e. \n\u003cp\u003e It is worth noting that the terms \u003ci\u003ebuffer\u003c/i\u003e and \u003ci\u003esurface\u003c/i\u003e are meant to be synonymous: an area of contiguous memory, either in video device memory or in system memory. \u003c/p\u003e\n\u003cp\u003e There are several types of complex buffer strategies, including sequential ring buffering and blit buffering. Sequential ring buffering (i.e., double or triple buffering) is the most common; an application draws to a single \u003ci\u003eback buffer\u003c/i\u003e and then moves the contents to the front (display) in a single step, either by copying the data or moving the video pointer. Moving the video pointer exchanges the buffers so that the first buffer drawn becomes the \u003ci\u003efront buffer\u003c/i\u003e, or what is currently displayed on the device; this is called \u003ci\u003epage flipping\u003c/i\u003e. \u003c/p\u003e\n\u003cp\u003e Alternatively, the contents of the back buffer can be copied, or \u003ci\u003eblitted\u003c/i\u003e forward in a chain instead of moving the video pointer. \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n Double buffering:\n\n                    ***********         ***********\n                    *         * ------\u0026gt; *         *\n [To display] \u0026lt;---- * Front B *   Show  * Back B. * \u0026lt;---- Rendering\n                    *         * \u0026lt;------ *         *\n                    ***********         ***********\n\n Triple buffering:\n\n [To      ***********         ***********        ***********\n display] *         * --------+---------+------\u0026gt; *         *\n    \u0026lt;---- * Front B *   Show  * Mid. B. *        * Back B. * \u0026lt;---- Rendering\n          *         * \u0026lt;------ *         * \u0026lt;----- *         *\n          ***********         ***********        ***********\n\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Here is an example of how buffer strategies can be created and used: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n\n // Check the capabilities of the GraphicsConfiguration\n ...\n\n // Create our component\n Window w \u003d new Window(gc);\n\n // Show our window\n w.setVisible(true);\n\n // Create a general double-buffering strategy\n w.createBufferStrategy(2);\n BufferStrategy strategy \u003d w.getBufferStrategy();\n\n // Main loop\n while (!done) {\n     // Prepare for rendering the next frame\n     // ...\n\n     // Render single frame\n     do {\n         // The following loop ensures that the contents of the drawing buffer\n         // are consistent in case the underlying surface was recreated\n         do {\n             // Get a new graphics context every time through the loop\n             // to make sure the strategy is validated\n             Graphics graphics \u003d strategy.getDrawGraphics();\n\n             // Render to graphics\n             // ...\n\n             // Dispose the graphics\n             graphics.dispose();\n\n             // Repeat the rendering if the drawing buffer contents\n             // were restored\n         } while (strategy.contentsRestored());\n\n         // Display the buffer\n         strategy.show();\n\n         // Repeat the rendering if the drawing buffer was lost\n     } while (strategy.contentsLost());\n }\n\n // Dispose the window\n w.setVisible(false);\n w.dispose();\n \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Window.html\" title\u003d\"class in java.awt\"\u003e\u003ccode\u003eWindow\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Canvas.html\" title\u003d\"class in java.awt\"\u003e\u003ccode\u003eCanvas\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/GraphicsConfiguration.html\" title\u003d\"class in java.awt\"\u003e\u003ccode\u003eGraphicsConfiguration\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/image/VolatileImage.html\" title\u003d\"class in java.awt.image\"\u003e\u003ccode\u003eVolatileImage\u003c/code\u003e\u003c/a\u003e"

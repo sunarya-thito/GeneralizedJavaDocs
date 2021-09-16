@@ -13,13 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -37,32 +30,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.InterruptedException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "timeout",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.concurrent.TimeUnit",
-            "type": "Class"
-          },
-          "name": "unit",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -87,7 +54,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -101,7 +67,6 @@
         "name": "long",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -119,7 +84,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -165,7 +129,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "java.util.concurrent.CountDownLatch",
-  "annotations": [],
+  "comment": "A synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes. \n\u003cp\u003eA \u003ccode\u003eCountDownLatch\u003c/code\u003e is initialized with a given \u003cem\u003ecount\u003c/em\u003e. The \u003ca href\u003d\"#await()\"\u003e\u003ccode\u003eawait\u003c/code\u003e\u003c/a\u003e methods block until the current count reaches zero due to invocations of the \u003ca href\u003d\"#countDown()\"\u003e\u003ccode\u003ecountDown()\u003c/code\u003e\u003c/a\u003e method, after which all waiting threads are released and any subsequent invocations of \u003ca href\u003d\"#await()\"\u003e\u003ccode\u003eawait\u003c/code\u003e\u003c/a\u003e return immediately. This is a one-shot phenomenon -- the count cannot be reset. If you need a version that resets the count, consider using a \u003ca href\u003d\"CyclicBarrier.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCyclicBarrier\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003eA \u003ccode\u003eCountDownLatch\u003c/code\u003e is a versatile synchronization tool and can be used for a number of purposes. A \u003ccode\u003eCountDownLatch\u003c/code\u003e initialized with a count of one serves as a simple on/off latch, or gate: all threads invoking \u003ca href\u003d\"#await()\"\u003e\u003ccode\u003eawait\u003c/code\u003e\u003c/a\u003e wait at the gate until it is opened by a thread invoking \u003ca href\u003d\"#countDown()\"\u003e\u003ccode\u003ecountDown()\u003c/code\u003e\u003c/a\u003e. A \u003ccode\u003eCountDownLatch\u003c/code\u003e initialized to \u003cem\u003eN\u003c/em\u003e can be used to make one thread wait until \u003cem\u003eN\u003c/em\u003e threads have completed some action, or some action has been completed N times. \u003c/p\u003e\n\u003cp\u003eA useful property of a \u003ccode\u003eCountDownLatch\u003c/code\u003e is that it doesn\u0027t require that threads calling \u003ccode\u003ecountDown\u003c/code\u003e wait for the count to reach zero before proceeding, it simply prevents any thread from proceeding past an \u003ca href\u003d\"#await()\"\u003e\u003ccode\u003eawait\u003c/code\u003e\u003c/a\u003e until all threads could pass. \u003c/p\u003e\n\u003cp\u003e\u003cb\u003eSample usage:\u003c/b\u003e Here is a pair of classes in which a group of worker threads use two countdown latches: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eThe first is a start signal that prevents any worker from proceeding until the driver is ready for them to proceed; \u003c/li\u003e\n \u003cli\u003eThe second is a completion signal that allows the driver to wait until all workers have completed. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cpre\u003e \u003ccode\u003e\n class Driver { // ...\n   void main() throws InterruptedException {\n     CountDownLatch startSignal \u003d new CountDownLatch(1);\n     CountDownLatch doneSignal \u003d new CountDownLatch(N);\n\n     for (int i \u003d 0; i \u0026lt; N; ++i) // create and start threads\n       new Thread(new Worker(startSignal, doneSignal)).start();\n\n     doSomethingElse();            // don\u0027t let run yet\n     startSignal.countDown();      // let all threads proceed\n     doSomethingElse();\n     doneSignal.await();           // wait for all to finish\n   }\n }\n\n class Worker implements Runnable {\n   private final CountDownLatch startSignal;\n   private final CountDownLatch doneSignal;\n   Worker(CountDownLatch startSignal, CountDownLatch doneSignal) {\n     this.startSignal \u003d startSignal;\n     this.doneSignal \u003d doneSignal;\n   }\n   public void run() {\n     try {\n       startSignal.await();\n       doWork();\n       doneSignal.countDown();\n     } catch (InterruptedException ex) {} // return;\n   }\n\n   void doWork() { ... }\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eAnother typical usage would be to divide a problem into N parts, describe each part with a Runnable that executes that portion and counts down on the latch, and queue all the Runnables to an Executor. When all sub-parts are complete, the coordinating thread will be able to pass through await. (When threads must repeatedly count down in this way, instead use a \u003ca href\u003d\"CyclicBarrier.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCyclicBarrier\u003c/code\u003e\u003c/a\u003e.) \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class Driver2 { // ...\n   void main() throws InterruptedException {\n     CountDownLatch doneSignal \u003d new CountDownLatch(N);\n     Executor e \u003d ...\n\n     for (int i \u003d 0; i \u0026lt; N; ++i) // create and start threads\n       e.execute(new WorkerRunnable(doneSignal, i));\n\n     doneSignal.await();           // wait for all to finish\n   }\n }\n\n class WorkerRunnable implements Runnable {\n   private final CountDownLatch doneSignal;\n   private final int i;\n   WorkerRunnable(CountDownLatch doneSignal, int i) {\n     this.doneSignal \u003d doneSignal;\n     this.i \u003d i;\n   }\n   public void run() {\n     try {\n       doWork(i);\n       doneSignal.countDown();\n     } catch (InterruptedException ex) {} // return;\n   }\n\n   void doWork() { ... }\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eMemory consistency effects: Until the count reaches zero, actions in a thread prior to calling \u003ccode\u003ecountDown()\u003c/code\u003e \u003ca href\u003d\"package-summary.html#MemoryVisibility\"\u003e\u003ci\u003ehappen-before\u003c/i\u003e\u003c/a\u003e actions following a successful return from a corresponding \u003ccode\u003eawait()\u003c/code\u003e in another thread.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

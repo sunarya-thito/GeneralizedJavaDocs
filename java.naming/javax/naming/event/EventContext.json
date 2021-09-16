@@ -61,41 +61,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.Name",
-            "type": "Class"
-          },
-          "name": "target",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "scope",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.event.NamingListener",
-            "type": "Class"
-          },
-          "name": "l",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -121,41 +86,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "target",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "int",
-            "type": "Class"
-          },
-          "name": "scope",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.event.NamingListener",
-            "type": "Class"
-          },
-          "name": "l",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -181,23 +111,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.event.NamingListener",
-            "type": "Class"
-          },
-          "name": "l",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -221,13 +134,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -247,7 +153,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.naming.event.EventContext",
-  "annotations": [],
+  "comment": "Contains methods for registering/deregistering listeners to be notified of events fired when objects named in a context changes. \n\u003ch2\u003eTarget\u003c/h2\u003e The name parameter in the \n\u003ccode\u003eaddNamingListener()\u003c/code\u003e methods is referred to as the \n\u003cem\u003etarget\u003c/em\u003e. The target, along with the scope, identify the object(s) that the listener is interested in. It is possible to register interest in a target that does not exist, but there might be limitations in the extent to which this can be supported by the service provider and underlying protocol/service. \n\u003cp\u003e If a service only supports registration for existing targets, an attempt to register for a nonexistent target results in a \u003ccode\u003eNameNotFoundException\u003c/code\u003e being thrown as early as possible, preferably at the time \u003ccode\u003eaddNamingListener()\u003c/code\u003e is called, or if that is not possible, the listener will receive the exception through the \u003ccode\u003eNamingExceptionEvent\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e Also, for service providers that only support registration for existing targets, when the target that a listener has registered for is subsequently removed from the namespace, the listener is notified via a \u003ccode\u003eNamingExceptionEvent\u003c/code\u003e (containing a \u003ccode\u003eNameNotFoundException\u003c/code\u003e). \u003c/p\u003e\n\u003cp\u003e An application can use the method \u003ccode\u003etargetMustExist()\u003c/code\u003e to check whether an \u003ccode\u003eEventContext\u003c/code\u003e supports registration of nonexistent targets. \u003c/p\u003e\n\u003ch2\u003eEvent Source\u003c/h2\u003e The \n\u003ccode\u003eEventContext\u003c/code\u003e instance on which you invoke the registration methods is the \n\u003cem\u003eevent source\u003c/em\u003e of the events that are (potentially) generated. The source is \n\u003cem\u003enot necessarily\u003c/em\u003e the object named by the target. Only when the target is the empty name is the object named by the target the source. In other words, the target, along with the scope parameter, are used to identify the object(s) that the listener is interested in, but the event source is the \n\u003ccode\u003eEventContext\u003c/code\u003e instance with which the listener has registered. \n\u003cp\u003e For example, suppose a listener makes the following registration: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e      NamespaceChangeListener listener \u003d ...;\n      src.addNamingListener(\"x\", SUBTREE_SCOPE, listener);\n\u003c/pre\u003e\n\u003c/blockquote\u003e When an object named \"x/y\" is subsequently deleted, the corresponding \n\u003ccode\u003eNamingEvent\u003c/code\u003e (\n\u003ccode\u003eevt\u003c/code\u003e) must contain: \n\u003cblockquote\u003e\n \u003cpre\u003e      evt.getEventContext() \u003d\u003d src\n      evt.getOldBinding().getName().equals(\"x/y\")\n\u003c/pre\u003e\n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Furthermore, listener registration/deregistration is with the \u003ccode\u003eEventContext\u003c/code\u003e \u003cem\u003einstance\u003c/em\u003e, and not with the corresponding object in the namespace. If the program intends at some point to remove a listener, then it needs to keep a reference to the \u003ccode\u003eEventContext\u003c/code\u003e instance on which it invoked \u003ccode\u003eaddNamingListener()\u003c/code\u003e (just as it needs to keep a reference to the listener in order to remove it later). It cannot expect to do a \u003ccode\u003elookup()\u003c/code\u003e and get another instance of an \u003ccode\u003eEventContext\u003c/code\u003e on which to perform the deregistration. \u003c/p\u003e\n\u003ch2\u003eLifetime of Registration\u003c/h2\u003e A registered listener becomes deregistered when: \n\u003cul\u003e \n \u003cli\u003eIt is removed using \u003ccode\u003eremoveNamingListener()\u003c/code\u003e. \u003c/li\u003e\n \u003cli\u003eAn exception is thrown while collecting information about the events. That is, when the listener receives a \u003ccode\u003eNamingExceptionEvent\u003c/code\u003e. \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eContext.close()\u003c/code\u003e is invoked on the \u003ccode\u003eEventContext\u003c/code\u003e instance with which it has registered. \u003c/li\u003e\n\u003c/ul\u003e Until that point, an \n\u003ccode\u003eEventContext\u003c/code\u003e instance that has outstanding listeners will continue to exist and be maintained by the service provider. \n\u003ch2\u003eListener Implementations\u003c/h2\u003e The registration/deregistration methods accept an instance of \n\u003ccode\u003eNamingListener\u003c/code\u003e. There are subinterfaces of \n\u003ccode\u003eNamingListener\u003c/code\u003e for different of event types of \n\u003ccode\u003eNamingEvent\u003c/code\u003e. For example, the \n\u003ccode\u003eObjectChangeListener\u003c/code\u003e interface is for the \n\u003ccode\u003eNamingEvent.OBJECT_CHANGED\u003c/code\u003e event type. To register interest in multiple event types, the listener implementation should implement multiple \n\u003ccode\u003eNamingListener\u003c/code\u003e subinterfaces and use a single invocation of \n\u003ccode\u003eaddNamingListener()\u003c/code\u003e. In addition to reducing the number of method calls and possibly the code size of the listeners, this allows some service providers to optimize the registration. \n\u003ch2\u003eThreading Issues\u003c/h2\u003e Like \n\u003ccode\u003eContext\u003c/code\u003e instances in general, instances of \n\u003ccode\u003eEventContext\u003c/code\u003e are not guaranteed to be thread-safe. Care must be taken when multiple threads are accessing the same \n\u003ccode\u003eEventContext\u003c/code\u003e concurrently. See the \n\u003ca href\u003d\"package-summary.html#THREADING\"\u003epackage description\u003c/a\u003e for more information on threading issues.",
   "tagMap": {
     "since": [
       "1.3"

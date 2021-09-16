@@ -13,17 +13,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.JComponent",
-            "type": "Class"
-          },
-          "name": "input",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -47,17 +36,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.JComponent",
-            "type": "Class"
-          },
-          "name": "input",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -94,17 +72,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.JComponent",
-            "type": "Class"
-          },
-          "name": "target",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -134,26 +101,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.JComponent",
-            "type": "Class"
-          },
-          "name": "source",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.JComponent",
-            "type": "Class"
-          },
-          "name": "target",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -192,7 +139,7 @@
   "memberType": "JavaClass",
   "modifiers": 1025,
   "name": "javax.swing.InputVerifier",
-  "annotations": [],
+  "comment": "This class provides the validation mechanism for Swing components. GUIs often need to ensure that the components are in a valid state before allowing the user to navigate the input focus. To do this, clients create a subclass of \n\u003ccode\u003eInputVerifier\u003c/code\u003e and, using \n\u003ccode\u003eJComponent\u003c/code\u003e\u0027s \n\u003ccode\u003esetInputVerifier\u003c/code\u003e method, attach an instance of their subclass to the \n\u003ccode\u003eJComponent\u003c/code\u003e which is the source of the focus transfer operation. The \n\u003ccode\u003eInputVerifier\u003c/code\u003e also provides the possibility to validate against the target of the focus transfer which may reject the focus. Before focus is transferred from the source Swing component to the target Swing component, the input verifier\u0027s \n\u003ccode\u003eshouldYieldFocus(source, target)\u003c/code\u003e method is called. Focus is transferred only if that method returns \n\u003ccode\u003etrue\u003c/code\u003e. \n\u003cp\u003e The following example has two text fields, with the first one expecting the string \"pass\" to be entered by the user. If either that string is entered in the first text field or the second text field contains \"accept\" string, then the user can advance focus to the second text field by clicking in it or by pressing TAB. However, if another string is entered in the first text field and the second text field does not contain \"accept\", then the user will be unable to transfer focus to the second text field. \u003c/p\u003e\n\u003cpre\u003e import java.awt.*;\n import javax.swing.*;\n\n // This program demonstrates the use of the Swing InputVerifier class.\n // It creates two text fields; the first of the text fields expects the\n // string \"pass\" as input, and will allow focus to advance to the second text\n // field if either that string is typed in by the user or the second\n // field contains \"accept\" string.\n\n public class VerifierTest extends JFrame {\n\n     public VerifierTest() {\n         JTextField field1 \u003d new JTextField(\"Type \\\"pass\\\" here\");\n         JTextField field2 \u003d new JTextField(\"or \\\"accept\\\" here\");\n         getContentPane().add(field1, BorderLayout.NORTH);\n         getContentPane().add(field2, BorderLayout.SOUTH);\n\n         field1.setInputVerifier(new InputVerifier() {\n             public boolean verify(JComponent input) {\n                return \"pass\".equals(((JTextField) input).getText());\n             }\n\n             public boolean verifyTarget(JComponent input) {\n                 return \"accept\".equals(((JTextField) input).getText());\n             }\n\n             public boolean shouldYieldFocus(JComponent source,\n                                                          JComponent target) {\n                 return verify(source) || verifyTarget(target);\n             }\n         });\n\n         pack();\n         setVisible(true);\n     }\n\n     public static void main(String[] args) {\n         SwingUtilities.invokeLater(VerifierTest::new);\n     }\n }\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.3"

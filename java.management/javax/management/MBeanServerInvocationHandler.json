@@ -13,7 +13,6 @@
         "name": "javax.management.MBeanServerConnection",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -34,7 +33,6 @@
         "name": "javax.management.ObjectName",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -55,7 +53,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -76,50 +73,6 @@
         "name": "T",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.management.MBeanServerConnection",
-            "type": "Class"
-          },
-          "name": "connection",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.management.ObjectName",
-            "type": "Class"
-          },
-          "name": "objectName",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Class",
-            "parameters": [
-              {
-                "name": "T",
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "interfaceClass",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "boolean",
-            "type": "Class"
-          },
-          "name": "notificationBroadcaster",
-          "varargs": false
-        }
-      ],
       "genericParameters": [
         {
           "name": "T",
@@ -155,42 +108,6 @@
         "name": "java.lang.Object",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.Throwable",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "proxy",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.reflect.Method",
-            "type": "Class"
-          },
-          "name": "method",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "args",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -300,7 +217,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.management.MBeanServerInvocationHandler",
-  "annotations": [],
+  "comment": "\u003cp\u003e\u003ca href\u003d\"../../../java.base/java/lang/reflect/InvocationHandler.html\" title\u003d\"interface in java.lang.reflect\"\u003e\u003ccode\u003eInvocationHandler\u003c/code\u003e\u003c/a\u003e that forwards methods in an MBean\u0027s management interface through the MBean server to the MBean.\u003c/p\u003e \n\u003cp\u003eGiven an \u003ca href\u003d\"MBeanServerConnection.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanServerConnection\u003c/code\u003e\u003c/a\u003e, the \u003ca href\u003d\"ObjectName.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eObjectName\u003c/code\u003e\u003c/a\u003e of an MBean within that MBean server, and a Java interface \u003ccode\u003eIntf\u003c/code\u003e that describes the management interface of the MBean using the patterns for a Standard MBean or an MXBean, this class can be used to construct a proxy for the MBean. The proxy implements the interface \u003ccode\u003eIntf\u003c/code\u003e such that all of its methods are forwarded through the MBean server to the MBean.\u003c/p\u003e \n\u003cp\u003eIf the \u003ccode\u003eInvocationHandler\u003c/code\u003e is for an MXBean, then the parameters of a method are converted from the type declared in the MXBean interface into the corresponding mapped type, and the return value is converted from the mapped type into the declared type. For example, with the method\u003cbr\u003e \u003ccode\u003epublic List\u0026lt;String\u0026gt; reverse(List\u0026lt;String\u0026gt; list);\u003c/code\u003e\u003cbr\u003e and given that the mapped type for \u003ccode\u003eList\u0026lt;String\u0026gt;\u003c/code\u003e is \u003ccode\u003e String[]\u003c/code\u003e, a call to \u003ccode\u003eproxy.reverse(someList)\u003c/code\u003e will convert \u003ccode\u003esomeList\u003c/code\u003e from a \u003ccode\u003eList\u0026lt;String\u0026gt;\u003c/code\u003e to a \u003ccode\u003eString[]\u003c/code\u003e, call the MBean operation \u003ccode\u003ereverse\u003c/code\u003e, then convert the returned \u003ccode\u003eString[]\u003c/code\u003e into a \u003ccode\u003eList\u0026lt;String\u0026gt;\u003c/code\u003e.\u003c/p\u003e \n\u003cp\u003eThe method Object.toString(), Object.hashCode(), or Object.equals(Object), when invoked on a proxy using this invocation handler, is forwarded to the MBean server as a method on the proxied MBean only if it appears in one of the proxy\u0027s interfaces. For a proxy created with \u003ca href\u003d\"JMX.html#newMBeanProxy(javax.management.MBeanServerConnection,javax.management.ObjectName,java.lang.Class)\"\u003e\u003ccode\u003eJMX.newMBeanProxy\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"JMX.html#newMXBeanProxy(javax.management.MBeanServerConnection,javax.management.ObjectName,java.lang.Class)\"\u003e\u003ccode\u003eJMX.newMXBeanProxy\u003c/code\u003e\u003c/a\u003e, this means that the method must appear in the Standard MBean or MXBean interface. Otherwise these methods have the following behavior: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003etoString() returns a string representation of the proxy \u003c/li\u003e\n \u003cli\u003ehashCode() returns a hash code for the proxy such that two equal proxies have the same hash code \u003c/li\u003e\n \u003cli\u003eequals(Object) returns true if and only if the Object argument is of the same proxy class as this proxy, with an MBeanServerInvocationHandler that has the same MBeanServerConnection and ObjectName; if one of the \u003ccode\u003eMBeanServerInvocationHandler\u003c/code\u003es was constructed with a \u003ccode\u003eClass\u003c/code\u003e argument then the other must have been constructed with the same \u003ccode\u003eClass\u003c/code\u003e for \u003ccode\u003eequals\u003c/code\u003e to return true. \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

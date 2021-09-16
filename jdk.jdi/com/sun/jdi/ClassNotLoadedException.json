@@ -13,7 +13,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -70,7 +69,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "com.sun.jdi.ClassNotLoadedException",
-  "annotations": [],
+  "comment": "Thrown to indicate that the requested class has not yet been loaded through the appropriate class loader. \n\u003cp\u003e Due to the lazy class linking performed by many VMs, it is possible for a field or variable to be visible in a program before the associated class is loaded. Until the class is loaded all that is available is a signature string. If an attempt is made to set the value of such a field or variable from JDI, the appropriate type checking cannot be done because the destination class has not been loaded. The same is true for the element class of array elements. \u003c/p\u003e\n\u003cp\u003e It is not advisable to solve this problem by attempting a class load on the fly in this case. There are two problems in having the debugger load a class instead of waiting for it to load over the normal course of events. \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eThere can be no guarantee that running the appropriate class loader won\u0027t cause a deadlock in loading the class. Class loaders can consist of arbitrary Java programming language code and the class loading methods are usually synchronized. Most of the work done by a debugger happens when threads are suspended. If another application thread is suspended within the same class loader, a deadlock is very possible. \u003c/li\u003e\n \u003cli\u003eChanging the order in which classes are normally loaded may either mask or reveal bugs in the application. An unintrusive debugger should strive to leave unchanged the behavior of the application being debugged. \u003c/li\u003e\n\u003c/ul\u003e To avoid these potential problems, this exception is thrown. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Note that this exception will be thrown until the class in question is visible to the class loader of enclosing class. (That is, the class loader of the enclosing class must be an \u003ci\u003einitiating\u003c/i\u003e class loader for the class in question.) See \u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e for more details.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#com.sun.jdi.ClassNotLoadedException\"\u003eSerialized Form\u003c/a\u003e"

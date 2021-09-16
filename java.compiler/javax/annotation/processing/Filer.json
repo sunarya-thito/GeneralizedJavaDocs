@@ -13,32 +13,6 @@
         "name": "javax.tools.JavaFileObject",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.CharSequence",
-            "type": "Class"
-          },
-          "name": "name",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.lang.model.element.Element",
-            "type": "Class"
-          },
-          "name": "originatingElements",
-          "varargs": true
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -73,32 +47,6 @@
         "name": "javax.tools.JavaFileObject",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.CharSequence",
-            "type": "Class"
-          },
-          "name": "name",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.lang.model.element.Element",
-            "type": "Class"
-          },
-          "name": "originatingElements",
-          "varargs": true
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -130,50 +78,6 @@
         "name": "javax.tools.FileObject",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.tools.JavaFileManager$Location",
-            "type": "Class"
-          },
-          "name": "location",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.CharSequence",
-            "type": "Class"
-          },
-          "name": "moduleAndPkg",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.CharSequence",
-            "type": "Class"
-          },
-          "name": "relativeName",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.lang.model.element.Element",
-            "type": "Class"
-          },
-          "name": "originatingElements",
-          "varargs": true
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -207,41 +111,6 @@
         "name": "javax.tools.FileObject",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.tools.JavaFileManager$Location",
-            "type": "Class"
-          },
-          "name": "location",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.CharSequence",
-            "type": "Class"
-          },
-          "name": "moduleAndPkg",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.CharSequence",
-            "type": "Class"
-          },
-          "name": "relativeName",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -273,7 +142,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.annotation.processing.Filer",
-  "annotations": [],
+  "comment": "This interface supports the creation of new files by an annotation processor. Files created in this way will be known to the annotation processing tool implementing this interface, better enabling the tool to manage them. Source and class files so created will be \n\u003ca href\u003d\"RoundEnvironment.html#getRootElements()\"\u003econsidered for processing\u003c/a\u003e by the tool in a subsequent \n\u003ca href\u003d\"RoundEnvironment.html\" title\u003d\"interface in javax.annotation.processing\"\u003eround of processing\u003c/a\u003e after the \n\u003ccode\u003eclose\u003c/code\u003e method has been called on the \n\u003ccode\u003eWriter\u003c/code\u003e or \n\u003ccode\u003e OutputStream\u003c/code\u003e used to write the contents of the file. Three kinds of files are distinguished: source files, class files, and auxiliary resource files. \n\u003cp\u003e There are two distinguished supported locations (subtrees within the logical file system) where newly created files are placed: one for \u003ca href\u003d\"../../tools/StandardLocation.html#SOURCE_OUTPUT\"\u003enew source files\u003c/a\u003e, and one for \u003ca href\u003d\"../../tools/StandardLocation.html#CLASS_OUTPUT\"\u003enew class files\u003c/a\u003e. (These might be specified on a tool\u0027s command line, for example, using flags such as \u003ccode\u003e-s\u003c/code\u003e and \u003ccode\u003e-d\u003c/code\u003e.) The actual locations for new source files and new class files may or may not be distinct on a particular run of the tool. Resource files may be created in either location. The methods for reading and writing resources take a relative name argument. A relative name is a non-null, non-empty sequence of path segments separated by \u003ccode\u003e\u0027/\u0027\u003c/code\u003e; \u003ccode\u003e\u0027.\u0027\u003c/code\u003e and \u003ccode\u003e\u0027..\u0027\u003c/code\u003e are invalid path segments. A valid relative name must match the \"path-rootless\" rule of \u003ca href\u003d\"http://www.ietf.org/rfc/rfc3986.txt\"\u003eRFC\u0026nbsp;3986\u003c/a\u003e, section 3.3. \u003c/p\u003e\n\u003cp\u003eThe file creation methods take a variable number of arguments to allow the \u003cem\u003eoriginating elements\u003c/em\u003e to be provided as hints to the tool infrastructure to better manage dependencies. The originating elements are the classes or interfaces or packages (representing \u003ccode\u003epackage-info\u003c/code\u003e files) or modules (representing \u003ccode\u003emodule-info\u003c/code\u003e files) which caused an annotation processor to attempt to create a new file. For example, if an annotation processor tries to create a source file, \u003ccode\u003e GeneratedFromUserSource\u003c/code\u003e, in response to processing \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e  @Generate\n  public class UserSource {}\n \u003c/pre\u003e\n\u003c/blockquote\u003e the type element for \n\u003ccode\u003eUserSource\u003c/code\u003e should be passed as part of the creation method call as in: \n\u003cblockquote\u003e\n \u003cpre\u003e      filer.createSourceFile(\"GeneratedFromUserSource\",\n                             eltUtils.getTypeElement(\"UserSource\"));\n \u003c/pre\u003e\n\u003c/blockquote\u003e If there are no originating elements, none need to be passed. This information may be used in an incremental environment to determine the need to rerun processors or remove generated files. Non-incremental environments may ignore the originating element information. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e During each run of an annotation processing tool, a file with a given pathname may be created only once. If that file already exists before the first attempt to create it, the old contents will be deleted. Any subsequent attempt to create the same file during a run will throw a \u003ca href\u003d\"FilerException.html\" title\u003d\"class in javax.annotation.processing\"\u003e\u003ccode\u003eFilerException\u003c/code\u003e\u003c/a\u003e, as will attempting to create both a class file and source file for the same type name or same package name. The \u003ca href\u003d\"Processor.html\" title\u003d\"interface in javax.annotation.processing\"\u003einitial inputs\u003c/a\u003e to the tool are considered to be created by the zeroth round; therefore, attempting to create a source or class file corresponding to one of those inputs will result in a \u003ca href\u003d\"FilerException.html\" title\u003d\"class in javax.annotation.processing\"\u003e\u003ccode\u003eFilerException\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e In general, processors must not knowingly attempt to overwrite existing files that were not generated by some processor. A \u003ccode\u003e Filer\u003c/code\u003e may reject attempts to open a file corresponding to an existing class or interface, like \u003ccode\u003ejava.lang.Object\u003c/code\u003e. Likewise, the invoker of the annotation processing tool must not knowingly configure the tool such that the discovered processors will attempt to overwrite existing files that were not generated. \u003c/p\u003e\n\u003cp\u003e Processors can indicate a source or class file is generated by including a \u003ca href\u003d\"Generated.html\" title\u003d\"annotation in javax.annotation.processing\"\u003e\u003ccode\u003eGenerated\u003c/code\u003e\u003c/a\u003e annotation if the environment is configured so that that class or interface is accessible.\u003c/p\u003e",
   "tagMap": {
     "apiNote": [
       "Some of the effect of overwriting a file can be achieved by using a \n\u003ci\u003edecorator\u003c/i\u003e-style pattern. Instead of modifying a class directly, the class is designed so that either its superclass is generated by annotation processing or subclasses of the class are generated by annotation processing. If the subclasses are generated, the parent class may be designed to use factories instead of public constructors so that only subclass instances would be presented to clients of the parent class."

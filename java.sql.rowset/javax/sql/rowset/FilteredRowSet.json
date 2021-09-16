@@ -13,23 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.sql.SQLException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.sql.rowset.Predicate",
-            "type": "Class"
-          },
-          "name": "p",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -50,7 +33,6 @@
         "name": "javax.sql.rowset.Predicate",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -67,7 +49,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.sql.rowset.FilteredRowSet",
-  "annotations": [],
+  "comment": "The standard interface that all standard implementations of \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e must implement. The \n\u003ccode\u003eFilteredRowSetImpl\u003c/code\u003e class provides the reference implementation which may be extended if required. Alternatively, a vendor is free to implement its own version by implementing this interface. \n\u003ch2\u003e1.0 Background\u003c/h2\u003e There are occasions when a \n\u003ccode\u003eRowSet\u003c/code\u003e object has a need to provide a degree of filtering to its contents. One possible solution is to provide a query language for all standard \n\u003ccode\u003eRowSet\u003c/code\u003e implementations; however, this is an impractical approach for lightweight components such as disconnected \n\u003ccode\u003eRowSet\u003c/code\u003e objects. The \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e interface seeks to address this need without supplying a heavyweight query language along with the processing that such a query language would require. \n\u003cp\u003e A JDBC \u003ccode\u003eFilteredRowSet\u003c/code\u003e standard implementation implements the \u003ccode\u003eRowSet\u003c/code\u003e interfaces and extends the \u003ccode\u003eCachedRowSet\u003c/code\u003e class. The \u003ccode\u003eCachedRowSet\u003c/code\u003e class provides a set of protected cursor manipulation methods, which a \u003ccode\u003eFilteredRowSet\u003c/code\u003e implementation can override to supply filtering support. \u003c/p\u003e\n\u003ch2\u003e2.0 Predicate Sharing\u003c/h2\u003e If a \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e implementation is shared using the inherited \n\u003ccode\u003ecreateShared\u003c/code\u003e method in parent interfaces, the \n\u003ccode\u003ePredicate\u003c/code\u003e should be shared without modification by all \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e instance clones. \n\u003ch2\u003e3.0 Usage\u003c/h2\u003e \n\u003cp\u003e By implementing a \u003ccode\u003ePredicate\u003c/code\u003e (see example in \u003ca href\u003d\"Predicate.html\"\u003ePredicate\u003c/a\u003e class JavaDoc), a \u003ccode\u003eFilteredRowSet\u003c/code\u003e could then be used as described below. \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n     FilteredRowSet frs \u003d new FilteredRowSetImpl();\n     frs.populate(rs);\n\n     Range name \u003d new Range(\"Alpha\", \"Bravo\", \"columnName\");\n     frs.setFilter(name);\n\n     frs.next() // only names from \"Alpha\" to \"Bravo\" will be returned\n \u003c/code\u003e\n \u003c/pre\u003e In the example above, we initialize a \n\u003ccode\u003eRange\u003c/code\u003e object which implements the \n\u003ccode\u003ePredicate\u003c/code\u003e interface. This object expresses the following constraints: All rows outputted or modified from this \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e object must fall between the values \u0027Alpha\u0027 and \u0027Bravo\u0027 both values inclusive, in the column \u0027columnName\u0027. If a filter is applied to a \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e object that contains no data that falls within the range of the filter, no rows are returned. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e This framework allows multiple classes implementing predicates to be used in combination to achieved the required filtering result with out the need for query language processing. \u003c/p\u003e\n\u003ch2\u003e4.0 Updating a \u003ccode\u003eFilteredRowSet\u003c/code\u003e Object\u003c/h2\u003e The predicate set on a \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e object applies a criterion on all rows in a \n\u003ccode\u003eRowSet\u003c/code\u003e object to manage a subset of rows in a \n\u003ccode\u003eRowSet\u003c/code\u003e object. This criterion governs the subset of rows that are visible and also defines which rows can be modified, deleted or inserted. \n\u003cp\u003e Therefore, the predicate set on a \u003ccode\u003eFilteredRowSet\u003c/code\u003e object must be considered as bi-directional and the set criterion as the gating mechanism for all views and updates to the \u003ccode\u003eFilteredRowSet\u003c/code\u003e object. Any attempt to update the \u003ccode\u003eFilteredRowSet\u003c/code\u003e that violates the criterion will result in a \u003ccode\u003eSQLException\u003c/code\u003e object being thrown. \u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003eFilteredRowSet\u003c/code\u003e range criterion can be modified by applying a new \u003ccode\u003ePredicate\u003c/code\u003e object to the \u003ccode\u003eFilteredRowSet\u003c/code\u003e instance at any time. This is possible if no additional references to the \u003ccode\u003eFilteredRowSet\u003c/code\u003e object are detected. A new filter has an immediate effect on criterion enforcement within the \u003ccode\u003eFilteredRowSet\u003c/code\u003e object, and all subsequent views and updates will be subject to similar enforcement. \u003c/p\u003e\n\u003ch2\u003e5.0 Behavior of Rows Outside the Filter\u003c/h2\u003e Rows that fall outside of the filter set on a \n\u003ccode\u003eFilteredRowSet\u003c/code\u003e object cannot be modified until the filter is removed or a new filter is applied. \n\u003cp\u003e Furthermore, only rows that fall within the bounds of a filter will be synchronized with the data source.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.5"

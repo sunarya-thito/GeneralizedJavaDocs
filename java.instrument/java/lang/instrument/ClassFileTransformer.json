@@ -14,65 +14,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.instrument.IllegalClassFormatException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.ClassLoader",
-            "type": "Class"
-          },
-          "name": "loader",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "className",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Class",
-            "parameters": [
-              {
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "classBeingRedefined",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.ProtectionDomain",
-            "type": "Class"
-          },
-          "name": "protectionDomain",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "byte",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "classfileBuffer",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": true,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -104,74 +45,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.instrument.IllegalClassFormatException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Module",
-            "type": "Class"
-          },
-          "name": "module",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.ClassLoader",
-            "type": "Class"
-          },
-          "name": "loader",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "className",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Class",
-            "parameters": [
-              {
-                "type": "Wildcard"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "classBeingRedefined",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.security.ProtectionDomain",
-            "type": "Class"
-          },
-          "name": "protectionDomain",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "byte",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "classfileBuffer",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": true,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -205,7 +78,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "java.lang.instrument.ClassFileTransformer",
-  "annotations": [],
+  "comment": "A transformer of class files. An agent registers an implementation of this interface using the \n\u003ca href\u003d\"Instrumentation.html#addTransformer(java.lang.instrument.ClassFileTransformer,boolean)\"\u003e\u003ccode\u003eaddTransformer\u003c/code\u003e\u003c/a\u003e method so that the transformer\u0027s \n\u003ca href\u003d\"#transform(java.lang.Module,java.lang.ClassLoader,java.lang.String,java.lang.Class,java.security.ProtectionDomain,byte%5B%5D)\"\u003e\u003ccode\u003etransform\u003c/code\u003e\u003c/a\u003e method is invoked when classes are loaded, \n\u003ca href\u003d\"Instrumentation.html#redefineClasses(java.lang.instrument.ClassDefinition...)\"\u003e\u003ccode\u003eredefined\u003c/code\u003e\u003c/a\u003e, or \n\u003ca href\u003d\"Instrumentation.html#retransformClasses(java.lang.Class...)\"\u003e\u003ccode\u003eretransformed\u003c/code\u003e\u003c/a\u003e. The implementation should override one of the \n\u003ccode\u003etransform\u003c/code\u003e methods defined here. Transformers are invoked before the class is defined by the Java virtual machine. \n\u003cp\u003e There are two kinds of transformers, determined by the \u003ccode\u003ecanRetransform\u003c/code\u003e parameter of \u003ca href\u003d\"Instrumentation.html#addTransformer(java.lang.instrument.ClassFileTransformer,boolean)\"\u003e\u003ccode\u003eInstrumentation.addTransformer(ClassFileTransformer,boolean)\u003c/code\u003e\u003c/a\u003e: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003ci\u003eretransformation capable\u003c/i\u003e transformers that were added with \u003ccode\u003ecanRetransform\u003c/code\u003e as true \u003c/li\u003e \n \u003cli\u003e\u003ci\u003eretransformation incapable\u003c/i\u003e transformers that were added with \u003ccode\u003ecanRetransform\u003c/code\u003e as false or where added with \u003ca href\u003d\"Instrumentation.html#addTransformer(java.lang.instrument.ClassFileTransformer)\"\u003e\u003ccode\u003eInstrumentation.addTransformer(ClassFileTransformer)\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Once a transformer has been registered with \u003ca href\u003d\"Instrumentation.html#addTransformer(java.lang.instrument.ClassFileTransformer,boolean)\"\u003e\u003ccode\u003eaddTransformer\u003c/code\u003e\u003c/a\u003e, the transformer will be called for every new class definition and every class redefinition. Retransformation capable transformers will also be called on every class retransformation. The request for a new class definition is made with \u003ca href\u003d\"../../../../java.base/java/lang/ClassLoader.html#defineClass(byte%5B%5D,int,int)\"\u003e\u003ccode\u003eClassLoader.defineClass\u003c/code\u003e\u003c/a\u003e or its native equivalents. The request for a class redefinition is made with \u003ca href\u003d\"Instrumentation.html#redefineClasses(java.lang.instrument.ClassDefinition...)\"\u003e\u003ccode\u003eInstrumentation.redefineClasses\u003c/code\u003e\u003c/a\u003e or its native equivalents. The request for a class retransformation is made with \u003ca href\u003d\"Instrumentation.html#retransformClasses(java.lang.Class...)\"\u003e\u003ccode\u003eInstrumentation.retransformClasses\u003c/code\u003e\u003c/a\u003e or its native equivalents. The transformer is called during the processing of the request, before the class file bytes have been verified or applied. When there are multiple transformers, transformations are composed by chaining the \u003ccode\u003etransform\u003c/code\u003e calls. That is, the byte array returned by one call to \u003ccode\u003etransform\u003c/code\u003e becomes the input (via the \u003ccode\u003eclassfileBuffer\u003c/code\u003e parameter) to the next call. \u003c/p\u003e\n\u003cp\u003e Transformations are applied in the following order: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eRetransformation incapable transformers \u003c/li\u003e \n \u003cli\u003eRetransformation incapable native transformers \u003c/li\u003e \n \u003cli\u003eRetransformation capable transformers \u003c/li\u003e \n \u003cli\u003eRetransformation capable native transformers \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e For retransformations, the retransformation incapable transformers are not called, instead the result of the previous transformation is reused. In all other cases, this method is called. Within each of these groupings, transformers are called in the order registered. Native transformers are provided by the \u003ccode\u003eClassFileLoadHook\u003c/code\u003e event in the Java Virtual Machine Tool Interface). \u003c/p\u003e\n\u003cp\u003e The input (via the \u003ccode\u003eclassfileBuffer\u003c/code\u003e parameter) to the first transformer is: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003efor new class definition, the bytes passed to \u003ccode\u003eClassLoader.defineClass\u003c/code\u003e \u003c/li\u003e \n \u003cli\u003efor class redefinition, \u003ccode\u003edefinitions.getDefinitionClassFile()\u003c/code\u003e where \u003ccode\u003edefinitions\u003c/code\u003e is the parameter to \u003ca href\u003d\"Instrumentation.html#redefineClasses(java.lang.instrument.ClassDefinition...)\"\u003e\u003ccode\u003eInstrumentation.redefineClasses\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e \n \u003cli\u003efor class retransformation, the bytes passed to the new class definition or, if redefined, the last redefinition, with all transformations made by retransformation incapable transformers reapplied automatically and unaltered; for details see \u003ca href\u003d\"Instrumentation.html#retransformClasses(java.lang.Class...)\"\u003e\u003ccode\u003eInstrumentation.retransformClasses\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e If the implementing method determines that no transformations are needed, it should return \u003ccode\u003enull\u003c/code\u003e. Otherwise, it should create a new \u003ccode\u003ebyte[]\u003c/code\u003e array, copy the input \u003ccode\u003eclassfileBuffer\u003c/code\u003e into it, along with all desired transformations, and return the new array. The input \u003ccode\u003eclassfileBuffer\u003c/code\u003e must not be modified. \u003c/p\u003e\n\u003cp\u003e In the retransform and redefine cases, the transformer must support the redefinition semantics: if a class that the transformer changed during initial definition is later retransformed or redefined, the transformer must insure that the second class output class file is a legal redefinition of the first output class file. \u003c/p\u003e\n\u003cp\u003e If the transformer throws an exception (which it doesn\u0027t catch), subsequent transformers will still be called and the load, redefine or retransform will still be attempted. Thus, throwing an exception has the same effect as returning \u003ccode\u003enull\u003c/code\u003e. To prevent unexpected behavior when unchecked exceptions are generated in transformer code, a transformer can catch \u003ccode\u003eThrowable\u003c/code\u003e. If the transformer believes the \u003ccode\u003eclassFileBuffer\u003c/code\u003e does not represent a validly formatted class file, it should throw an \u003ccode\u003eIllegalClassFormatException\u003c/code\u003e; while this has the same effect as returning null. it facilitates the logging or debugging of format corruptions. \u003c/p\u003e\n\u003cp\u003e Note the term \u003ci\u003eclass file\u003c/i\u003e is used as defined in section 3.1 of \u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e, to mean a sequence of bytes in class file format, whether or not they reside in a file.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/Instrumentation.html\" title\u003d\"interface in java.lang.instrument\"\u003e\u003ccode\u003eInstrumentation\u003c/code\u003e\u003c/a\u003e"

@@ -13,17 +13,6 @@
         "name": "T",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "T",
-            "type": "Class"
-          },
-          "name": "callSite",
-          "varargs": false
-        }
-      ],
       "genericParameters": [
         {
           "name": "T",
@@ -59,7 +48,6 @@
         "name": "jdk.dynalink.linker.LinkerServices",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -77,7 +65,6 @@
         "name": "java.lang.StackTraceElement",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -94,6 +81,6 @@
   "memberType": "JavaClass",
   "modifiers": 17,
   "name": "jdk.dynalink.DynamicLinker",
-  "annotations": [],
+  "comment": "The linker for \n\u003ca href\u003d\"RelinkableCallSite.html\" title\u003d\"interface in jdk.dynalink\"\u003e\u003ccode\u003eRelinkableCallSite\u003c/code\u003e\u003c/a\u003e objects. A dynamic linker is a main objects when using Dynalink, it coordinates linking of call sites with linkers of available language runtimes that are represented by \n\u003ca href\u003d\"linker/GuardingDynamicLinker.html\" title\u003d\"interface in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardingDynamicLinker\u003c/code\u003e\u003c/a\u003e objects (you only need to deal with these if you are yourself implementing a language runtime with its own object model and/or type conversions). To use Dynalink, you have to create one or more dynamic linkers using a \n\u003ca href\u003d\"DynamicLinkerFactory.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003eDynamicLinkerFactory\u003c/code\u003e\u003c/a\u003e. Subsequently, you need to invoke its \n\u003ca href\u003d\"#link(T)\"\u003e\u003ccode\u003elink(RelinkableCallSite)\u003c/code\u003e\u003c/a\u003e method from \n\u003ccode\u003einvokedynamic\u003c/code\u003e bootstrap methods to let it manage all the call sites they create. Usual usage would be to create at least one class per language runtime to contain one linker instance as: \n\u003cpre\u003e\n class MyLanguageRuntime {\n     private static final GuardingDynamicLinker myLanguageLinker \u003d new MyLanguageLinker();\n     private static final DynamicLinker dynamicLinker \u003d createDynamicLinker();\n\n     private static DynamicLinker createDynamicLinker() {\n         final DynamicLinkerFactory factory \u003d new DynamicLinkerFactory();\n         factory.setPrioritizedLinker(myLanguageLinker);\n         return factory.createLinker();\n     }\n\n     public static CallSite bootstrap(MethodHandles.Lookup lookup, String name, MethodType type) {\n         return dynamicLinker.link(\n             new SimpleRelinkableCallSite(\n                 new CallSiteDescriptor(lookup, parseOperation(name), type)));\n     }\n\n     private static Operation parseOperation(String name) {\n         ...\n     }\n }\n \u003c/pre\u003e The above setup of one static linker instance is often too simple. You will often have your language runtime have a concept of some kind of \"context class loader\" and you will want to create one dynamic linker per such class loader, to ensure it incorporates linkers for all other language runtimes visible to that class loader (see \n\u003ca href\u003d\"DynamicLinkerFactory.html#setClassLoader(java.lang.ClassLoader)\"\u003e\u003ccode\u003eDynamicLinkerFactory.setClassLoader(ClassLoader)\u003c/code\u003e\u003c/a\u003e). \n\u003cp\u003e There are three components you need to provide in the above example: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eYou are expected to provide a \u003ca href\u003d\"linker/GuardingDynamicLinker.html\" title\u003d\"interface in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardingDynamicLinker\u003c/code\u003e\u003c/a\u003e for your own language. If your runtime doesn\u0027t have its own object model or type conversions, you don\u0027t need to implement a \u003ccode\u003eGuardingDynamicLinker\u003c/code\u003e; you would simply not invoke the \u003ccode\u003esetPrioritizedLinker\u003c/code\u003e method on the factory.\u003c/li\u003e \n \u003cli\u003eThe performance of the programs can depend on your choice of the class to represent call sites. The above example used \u003ca href\u003d\"support/SimpleRelinkableCallSite.html\" title\u003d\"class in jdk.dynalink.support\"\u003e\u003ccode\u003eSimpleRelinkableCallSite\u003c/code\u003e\u003c/a\u003e, but you might want to use \u003ca href\u003d\"support/ChainedCallSite.html\" title\u003d\"class in jdk.dynalink.support\"\u003e\u003ccode\u003eChainedCallSite\u003c/code\u003e\u003c/a\u003e instead. You\u0027ll need to experiment and decide what fits your runtime the best. You can further subclass either of these or implement your own.\u003c/li\u003e \n \u003cli\u003eYou also need to provide \u003ca href\u003d\"CallSiteDescriptor.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003eCallSiteDescriptor\u003c/code\u003e\u003c/a\u003es to your call sites. They are immutable objects that contain all the information about the call site: the class performing the lookups, the operation being invoked, and the method signature. You will have to supply your own scheme to encode and decode operations in the call site name or static parameters, that is why in the above example the \u003ccode\u003eparseOperation\u003c/code\u003e method is left unimplemented.\u003c/li\u003e \n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {}
 }

@@ -13,7 +13,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -41,13 +40,6 @@
         ],
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -69,29 +61,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.util.List",
-            "parameters": [
-              {
-                "name": "java.nio.file.attribute.AclEntry",
-                "type": "Class"
-              }
-            ],
-            "type": "Class"
-          },
-          "name": "acl",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -112,7 +81,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "java.nio.file.attribute.AclFileAttributeView",
-  "annotations": [],
+  "comment": "A file attribute view that supports reading or updating a file\u0027s Access Control Lists (ACL) or file owner attributes. \n\u003cp\u003e ACLs are used to specify access rights to file system objects. An ACL is an ordered list of \u003ca href\u003d\"AclEntry.html\" title\u003d\"class in java.nio.file.attribute\"\u003e\u003ccode\u003eaccess-control-entries\u003c/code\u003e\u003c/a\u003e, each specifying a \u003ca href\u003d\"UserPrincipal.html\" title\u003d\"interface in java.nio.file.attribute\"\u003e\u003ccode\u003eUserPrincipal\u003c/code\u003e\u003c/a\u003e and the level of access for that user principal. This file attribute view defines the \u003ca href\u003d\"#getAcl()\"\u003e\u003ccode\u003egetAcl\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#setAcl(java.util.List)\"\u003e\u003ccode\u003esetAcl\u003c/code\u003e\u003c/a\u003e methods to read and write ACLs based on the ACL model specified in \u003ca href\u003d\"http://www.ietf.org/rfc/rfc3530.txt\"\u003e\u003ci\u003eRFC\u0026nbsp;3530: Network File System (NFS) version 4 Protocol\u003c/i\u003e\u003c/a\u003e. This file attribute view is intended for file system implementations that support the NFSv4 ACL model or have a \u003cem\u003ewell-defined\u003c/em\u003e mapping between the NFSv4 ACL model and the ACL model used by the file system. The details of such mapping are implementation dependent and are therefore unspecified. \u003c/p\u003e\n\u003cp\u003e This class also extends \u003ccode\u003eFileOwnerAttributeView\u003c/code\u003e so as to define methods to get and set the file owner. \u003c/p\u003e\n\u003cp\u003e When a file system provides access to a set of \u003ca href\u003d\"../FileStore.html\" title\u003d\"class in java.nio.file\"\u003e\u003ccode\u003efile-systems\u003c/code\u003e\u003c/a\u003e that are not homogeneous then only some of the file systems may support ACLs. The \u003ca href\u003d\"../FileStore.html#supportsFileAttributeView(java.lang.Class)\"\u003e\u003ccode\u003esupportsFileAttributeView\u003c/code\u003e\u003c/a\u003e method can be used to test if a file system supports ACLs. \u003c/p\u003e\n\u003ch2\u003eInteroperability\u003c/h2\u003e RFC\u0026nbsp;3530 allows for special user identities to be used on platforms that support the POSIX defined access permissions. The special user identities are \"\n\u003ccode\u003eOWNER@\u003c/code\u003e\", \"\n\u003ccode\u003eGROUP@\u003c/code\u003e\", and \"\n\u003ccode\u003eEVERYONE@\u003c/code\u003e\". When both the \n\u003ccode\u003eAclFileAttributeView\u003c/code\u003e and the \n\u003ca href\u003d\"PosixFileAttributeView.html\" title\u003d\"interface in java.nio.file.attribute\"\u003e\u003ccode\u003ePosixFileAttributeView\u003c/code\u003e\u003c/a\u003e are supported then these special user identities may be included in ACL \n\u003ca href\u003d\"AclEntry.html\" title\u003d\"class in java.nio.file.attribute\"\u003e\u003ccode\u003eentries\u003c/code\u003e\u003c/a\u003e that are read or written. The file system\u0027s \n\u003ca href\u003d\"UserPrincipalLookupService.html\" title\u003d\"class in java.nio.file.attribute\"\u003e\u003ccode\u003eUserPrincipalLookupService\u003c/code\u003e\u003c/a\u003e may be used to obtain a \n\u003ca href\u003d\"UserPrincipal.html\" title\u003d\"interface in java.nio.file.attribute\"\u003e\u003ccode\u003eUserPrincipal\u003c/code\u003e\u003c/a\u003e to represent these special identities by invoking the \n\u003ca href\u003d\"UserPrincipalLookupService.html#lookupPrincipalByName(java.lang.String)\"\u003e\u003ccode\u003elookupPrincipalByName\u003c/code\u003e\u003c/a\u003e method. \n\u003cp\u003e \u003cb\u003eUsage Example:\u003c/b\u003e Suppose we wish to add an entry to an existing ACL to grant \"joe\" access: \u003c/p\u003e\n\u003cpre\u003e     // lookup \"joe\"\n     UserPrincipal joe \u003d file.getFileSystem().getUserPrincipalLookupService()\n         .lookupPrincipalByName(\"joe\");\n\n     // get view\n     AclFileAttributeView view \u003d Files.getFileAttributeView(file, AclFileAttributeView.class);\n\n     // create ACE to give \"joe\" read access\n     AclEntry entry \u003d AclEntry.newBuilder()\n         .setType(AclEntryType.ALLOW)\n         .setPrincipal(joe)\n         .setPermissions(AclEntryPermission.READ_DATA, AclEntryPermission.READ_ATTRIBUTES)\n         .build();\n\n     // read ACL, insert ACE, re-write ACL\n     List\u0026lt;AclEntry\u0026gt; acl \u003d view.getAcl();\n     acl.add(0, entry);   // insert before any DENY entries\n     view.setAcl(acl);\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003e Dynamic Access \u003c/h2\u003e \n\u003cp\u003e Where dynamic access to file attributes is required, the attributes supported by this attribute view are as follows: \u003c/p\u003e\n\u003cblockquote\u003e \n \u003ctable class\u003d\"striped\"\u003e \n  \u003ccaption style\u003d\"display:none\"\u003e\n   Supported attributes\n  \u003c/caption\u003e \n  \u003cthead\u003e \n   \u003ctr\u003e \n    \u003cth scope\u003d\"col\"\u003e Name \u003c/th\u003e \n    \u003cth scope\u003d\"col\"\u003e Type \u003c/th\u003e \n   \u003c/tr\u003e \n  \u003c/thead\u003e \n  \u003ctbody\u003e \n   \u003ctr\u003e \n    \u003cth scope\u003d\"row\"\u003e \"acl\" \u003c/th\u003e \n    \u003ctd\u003e \u003ca href\u003d\"../../../util/List.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eList\u003c/code\u003e\u003c/a\u003e\u0026lt;\u003ca href\u003d\"AclEntry.html\" title\u003d\"class in java.nio.file.attribute\"\u003e\u003ccode\u003eAclEntry\u003c/code\u003e\u003c/a\u003e\u0026gt; \u003c/td\u003e \n   \u003c/tr\u003e \n   \u003ctr\u003e \n    \u003cth scope\u003d\"row\"\u003e \"owner\" \u003c/th\u003e \n    \u003ctd\u003e \u003ca href\u003d\"UserPrincipal.html\" title\u003d\"interface in java.nio.file.attribute\"\u003e\u003ccode\u003eUserPrincipal\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e \n   \u003c/tr\u003e \n  \u003c/tbody\u003e \n \u003c/table\u003e \n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"../Files.html#getAttribute(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)\"\u003e\u003ccode\u003egetAttribute\u003c/code\u003e\u003c/a\u003e method may be used to read the ACL or owner attributes as if by invoking the \u003ca href\u003d\"#getAcl()\"\u003e\u003ccode\u003egetAcl\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"FileOwnerAttributeView.html#getOwner()\"\u003e\u003ccode\u003egetOwner\u003c/code\u003e\u003c/a\u003e methods. \u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"../Files.html#setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)\"\u003e\u003ccode\u003esetAttribute\u003c/code\u003e\u003c/a\u003e method may be used to update the ACL or owner attributes as if by invoking the \u003ca href\u003d\"#setAcl(java.util.List)\"\u003e\u003ccode\u003esetAcl\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"FileOwnerAttributeView.html#setOwner(java.nio.file.attribute.UserPrincipal)\"\u003e\u003ccode\u003esetOwner\u003c/code\u003e\u003c/a\u003e methods. \u003c/p\u003e\n\u003ch2\u003e Setting the ACL when creating a file \u003c/h2\u003e \n\u003cp\u003e Implementations supporting this attribute view may also support setting the initial ACL when creating a file or directory. The initial ACL may be provided to methods such as \u003ca href\u003d\"../Files.html#createFile(java.nio.file.Path,java.nio.file.attribute.FileAttribute...)\"\u003e\u003ccode\u003ecreateFile\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"../Files.html#createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute...)\"\u003e\u003ccode\u003ecreateDirectory\u003c/code\u003e\u003c/a\u003e as an \u003ca href\u003d\"FileAttribute.html\" title\u003d\"interface in java.nio.file.attribute\"\u003e\u003ccode\u003eFileAttribute\u003c/code\u003e\u003c/a\u003e with \u003ca href\u003d\"FileAttribute.html#name()\"\u003e\u003ccode\u003ename\u003c/code\u003e\u003c/a\u003e \u003ccode\u003e\"acl:acl\"\u003c/code\u003e and a \u003ca href\u003d\"FileAttribute.html#value()\"\u003e\u003ccode\u003evalue\u003c/code\u003e\u003c/a\u003e that is the list of \u003ccode\u003eAclEntry\u003c/code\u003e objects. \u003c/p\u003e\n\u003cp\u003e Where an implementation supports an ACL model that differs from the NFSv4 defined ACL model then setting the initial ACL when creating the file must translate the ACL to the model supported by the file system. Methods that create a file should reject (by throwing \u003ca href\u003d\"../../../io/IOException.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eIOException\u003c/code\u003e\u003c/a\u003e) any attempt to create a file that would be less secure as a result of the translation.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.7"

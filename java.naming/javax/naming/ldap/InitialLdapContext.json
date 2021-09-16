@@ -13,23 +13,6 @@
         "name": "javax.naming.ldap.ExtendedResponse",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.ExtendedRequest",
-            "type": "Class"
-          },
-          "name": "request",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -56,24 +39,6 @@
         "name": "javax.naming.ldap.LdapContext",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.Control",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "reqCtls",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -103,24 +68,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.Control",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "connCtls",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -148,13 +95,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -178,24 +118,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.Control",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "requestControls",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -223,13 +145,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -257,13 +172,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -359,7 +267,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.naming.ldap.InitialLdapContext",
-  "annotations": [],
+  "comment": "This class is the starting context for performing LDAPv3-style extended operations and controls. \n\u003cp\u003e See \u003ccode\u003ejavax.naming.InitialContext\u003c/code\u003e and \u003ccode\u003ejavax.naming.InitialDirContext\u003c/code\u003e for details on synchronization, and the policy for how an initial context is created. \u003c/p\u003e\n\u003ch2\u003eRequest Controls\u003c/h2\u003e When you create an initial context (\n\u003ccode\u003eInitialLdapContext\u003c/code\u003e), you can specify a list of request controls. These controls will be used as the request controls for any implicit LDAP \"bind\" operation performed by the context or contexts derived from the context. These are called \n\u003cem\u003econnection request controls\u003c/em\u003e. Use \n\u003ccode\u003egetConnectControls()\u003c/code\u003e to get a context\u0027s connection request controls. \n\u003cp\u003e The request controls supplied to the initial context constructor are \u003cem\u003enot\u003c/em\u003e used as the context request controls for subsequent context operations such as searches and lookups. Context request controls are set and updated by using \u003ccode\u003esetRequestControls()\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e As shown, there can be two different sets of request controls associated with a context: connection request controls and context request controls. This is required for those applications needing to send critical controls that might not be applicable to both the context operation and any implicit LDAP \"bind\" operation. A typical user program would do the following: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e InitialLdapContext lctx \u003d new InitialLdapContext(env, critConnCtls);\n lctx.setRequestControls(critModCtls);\n lctx.modifyAttributes(name, mods);\n Controls[] respCtls \u003d  lctx.getResponseControls();\n\u003c/pre\u003e\n\u003c/blockquote\u003e It specifies first the critical controls for creating the initial context (\n\u003ccode\u003ecritConnCtls\u003c/code\u003e), and then sets the context\u0027s request controls (\n\u003ccode\u003ecritModCtls\u003c/code\u003e) for the context operation. If for some reason \n\u003ccode\u003elctx\u003c/code\u003e needs to reconnect to the server, it will use \n\u003ccode\u003ecritConnCtls\u003c/code\u003e. See the \n\u003ccode\u003eLdapContext\u003c/code\u003e interface for more discussion about request controls. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Service provider implementors should read the \"Service Provider\" section in the \u003ccode\u003eLdapContext\u003c/code\u003e class description for implementation details.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/ldap/LdapContext.html\" title\u003d\"interface in javax.naming.ldap\"\u003e\u003ccode\u003eLdapContext\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/InitialContext.html\" title\u003d\"class in javax.naming\"\u003e\u003ccode\u003eInitialContext\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/directory/InitialDirContext.html\" title\u003d\"class in javax.naming.directory\"\u003e\u003ccode\u003eInitialDirContext\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#setInitialContextFactoryBuilder(javax.naming.spi.InitialContextFactoryBuilder)\"\u003e\u003ccode\u003eNamingManager.setInitialContextFactoryBuilder(javax.naming.spi.InitialContextFactoryBuilder)\u003c/code\u003e\u003c/a\u003e"

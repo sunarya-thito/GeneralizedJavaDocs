@@ -13,7 +13,6 @@
         "name": "java.nio.channels.FileChannel",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -31,7 +30,6 @@
         "name": "java.nio.channels.Channel",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -52,7 +50,6 @@
         "name": "long",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -70,7 +67,6 @@
         "name": "long",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -88,7 +84,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -106,26 +101,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "position",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "long",
-            "type": "Class"
-          },
-          "name": "size",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -147,7 +122,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -165,13 +139,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1025,
@@ -190,13 +157,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -220,7 +180,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 17,
@@ -355,7 +314,7 @@
   "memberType": "JavaClass",
   "modifiers": 1025,
   "name": "java.nio.channels.FileLock",
-  "annotations": [],
+  "comment": "A token representing a lock on a region of a file. \n\u003cp\u003e A file-lock object is created each time a lock is acquired on a file via one of the \u003ca href\u003d\"FileChannel.html#lock(long,long,boolean)\"\u003e\u003ccode\u003elock\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"FileChannel.html#tryLock(long,long,boolean)\"\u003e\u003ccode\u003etryLock\u003c/code\u003e\u003c/a\u003e methods of the \u003ca href\u003d\"FileChannel.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eFileChannel\u003c/code\u003e\u003c/a\u003e class, or the \u003ca href\u003d\"AsynchronousFileChannel.html#lock(long,long,boolean,A,java.nio.channels.CompletionHandler)\"\u003e\u003ccode\u003elock\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"AsynchronousFileChannel.html#tryLock(long,long,boolean)\"\u003e\u003ccode\u003etryLock\u003c/code\u003e\u003c/a\u003e methods of the \u003ca href\u003d\"AsynchronousFileChannel.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eAsynchronousFileChannel\u003c/code\u003e\u003c/a\u003e class. \u003c/p\u003e\n\u003cp\u003e A file-lock object is initially valid. It remains valid until the lock is released by invoking the \u003ca href\u003d\"#release()\"\u003e\u003ccode\u003erelease\u003c/code\u003e\u003c/a\u003e method, by closing the channel that was used to acquire it, or by the termination of the Java virtual machine, whichever comes first. The validity of a lock may be tested by invoking its \u003ca href\u003d\"#isValid()\"\u003e\u003ccode\u003eisValid\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e A file lock is either \u003ci\u003eexclusive\u003c/i\u003e or \u003ci\u003eshared\u003c/i\u003e. A shared lock prevents other concurrently-running programs from acquiring an overlapping exclusive lock, but does allow them to acquire overlapping shared locks. An exclusive lock prevents other programs from acquiring an overlapping lock of either type. Once it is released, a lock has no further effect on the locks that may be acquired by other programs. \u003c/p\u003e\n\u003cp\u003e Whether a lock is exclusive or shared may be determined by invoking its \u003ca href\u003d\"#isShared()\"\u003e\u003ccode\u003eisShared\u003c/code\u003e\u003c/a\u003e method. Some platforms do not support shared locks, in which case a request for a shared lock is automatically converted into a request for an exclusive lock. \u003c/p\u003e\n\u003cp\u003e The locks held on a particular file by a single Java virtual machine do not overlap. The \u003ca href\u003d\"#overlaps(long,long)\"\u003e\u003ccode\u003eoverlaps\u003c/code\u003e\u003c/a\u003e method may be used to test whether a candidate lock range overlaps an existing lock. \u003c/p\u003e\n\u003cp\u003e A file-lock object records the file channel upon whose file the lock is held, the type and validity of the lock, and the position and size of the locked region. Only the validity of a lock is subject to change over time; all other aspects of a lock\u0027s state are immutable. \u003c/p\u003e\n\u003cp\u003e File locks are held on behalf of the entire Java virtual machine. They are not suitable for controlling access to a file by multiple threads within the same virtual machine. \u003c/p\u003e\n\u003cp\u003e File-lock objects are safe for use by multiple concurrent threads. \u003ca id\u003d\"pdep\"\u003e\u003c/a\u003e\u003c/p\u003e\n\u003ch2\u003e Platform dependencies \u003c/h2\u003e \n\u003cp\u003e This file-locking API is intended to map directly to the native locking facility of the underlying operating system. Thus the locks held on a file should be visible to all programs that have access to the file, regardless of the language in which those programs are written. \u003c/p\u003e\n\u003cp\u003e Whether or not a lock actually prevents another program from accessing the content of the locked region is system-dependent and therefore unspecified. The native file-locking facilities of some systems are merely \u003ci\u003eadvisory\u003c/i\u003e, meaning that programs must cooperatively observe a known locking protocol in order to guarantee data integrity. On other systems native file locks are \u003ci\u003emandatory\u003c/i\u003e, meaning that if one program locks a region of a file then other programs are actually prevented from accessing that region in a way that would violate the lock. On yet other systems, whether native file locks are advisory or mandatory is configurable on a per-file basis. To ensure consistent and correct behavior across platforms, it is strongly recommended that the locks provided by this API be used as if they were advisory locks. \u003c/p\u003e\n\u003cp\u003e On some systems, acquiring a mandatory lock on a region of a file prevents that region from being \u003ca href\u003d\"FileChannel.html#map(java.nio.channels.FileChannel.MapMode,long,long)\"\u003e\u003ccode\u003e\u003ci\u003emapped into memory\u003c/i\u003e\u003c/code\u003e\u003c/a\u003e, and vice versa. Programs that combine locking and mapping should be prepared for this combination to fail. \u003c/p\u003e\n\u003cp\u003e On some systems, closing a channel releases all locks held by the Java virtual machine on the underlying file regardless of whether the locks were acquired via that channel or via another channel open on the same file. It is strongly recommended that, within a program, a unique channel be used to acquire all locks on any given file. \u003c/p\u003e\n\u003cp\u003e Some network filesystems permit file locking to be used with memory-mapped files only when the locked regions are page-aligned and a whole multiple of the underlying hardware\u0027s page size. Some network filesystems do not implement file locks on regions that extend past a certain position, often 2\u003csup\u003e30\u003c/sup\u003e or 2\u003csup\u003e31\u003c/sup\u003e. In general, great care should be taken when locking files that reside on network filesystems.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.4"

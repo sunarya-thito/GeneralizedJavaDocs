@@ -13,7 +13,6 @@
         "name": "java.net.URI",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -41,7 +40,6 @@
         ],
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -59,7 +57,6 @@
         "name": "java.security.KeyStore$ProtectionParameter",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -125,7 +122,7 @@
   "memberType": "JavaClass",
   "modifiers": 17,
   "name": "java.security.DomainLoadStoreParameter",
-  "annotations": [],
+  "comment": "Configuration data that specifies the keystores in a keystore domain. A keystore domain is a collection of keystores that are presented as a single logical keystore. The configuration data is used during \n\u003ccode\u003eKeyStore\u003c/code\u003e \n\u003ca href\u003d\"KeyStore.html#load(java.security.KeyStore.LoadStoreParameter)\"\u003e\u003ccode\u003eload\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"KeyStore.html#store(java.security.KeyStore.LoadStoreParameter)\"\u003e\u003ccode\u003estore\u003c/code\u003e\u003c/a\u003e operations. \n\u003cp\u003e The following syntax is supported for configuration data: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n     domain \u0026lt;domainName\u0026gt; [\u0026lt;property\u0026gt; ...] {\n         keystore \u0026lt;keystoreName\u0026gt; [\u0026lt;property\u0026gt; ...] ;\n         ...\n     };\n     ...\n \u003c/code\u003e\u003c/pre\u003e where \n\u003ccode\u003edomainName\u003c/code\u003e and \n\u003ccode\u003ekeystoreName\u003c/code\u003e are identifiers and \n\u003ccode\u003eproperty\u003c/code\u003e is a key/value pairing. The key and value are separated by an \u0027equals\u0027 symbol and the value is enclosed in double quotes. A property value may be either a printable string or a binary string of colon-separated pairs of hexadecimal digits. Multi-valued properties are represented as a comma-separated list of values, enclosed in square brackets. See \n\u003ca href\u003d\"../util/Arrays.html#toString(java.lang.Object%5B%5D)\"\u003e\u003ccode\u003eArrays.toString(java.lang.Object[])\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e To ensure that keystore entries are uniquely identified, each entry\u0027s alias is prefixed by its \u003ccode\u003ekeystoreName\u003c/code\u003e followed by the entry name separator and each \u003ccode\u003ekeystoreName\u003c/code\u003e must be unique within its domain. Entry name prefixes are omitted when storing a keystore. \u003c/p\u003e\n\u003cp\u003e Properties are context-sensitive: properties that apply to all the keystores in a domain are located in the domain clause, and properties that apply only to a specific keystore are located in that keystore\u0027s clause. Unless otherwise specified, a property in a keystore clause overrides a property of the same name in the domain clause. All property names are case-insensitive. The following properties are supported: \u003c/p\u003e\n\u003cdl\u003e \n \u003cdt\u003e \n  \u003ccode\u003ekeystoreType\u003d\"\u0026lt;type\u0026gt;\"\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   The keystore type. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003ekeystoreURI\u003d\"\u0026lt;url\u0026gt;\"\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   The keystore location. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003ekeystoreProviderName\u003d\"\u0026lt;name\u0026gt;\"\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   The name of the keystore\u0027s JCE provider. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003ekeystorePasswordEnv\u003d\"\u0026lt;environment-variable\u0026gt;\"\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   The environment variable that stores a keystore password. Alternatively, passwords may be supplied to the constructor method in a \n  \u003ccode\u003eMap\u0026lt;String, ProtectionParameter\u0026gt;\u003c/code\u003e. \n \u003c/dd\u003e \n \u003cdt\u003e \n  \u003ccode\u003eentryNameSeparator\u003d\"\u0026lt;separator\u0026gt;\"\u003c/code\u003e \n \u003c/dt\u003e \n \u003cdd\u003e\n   The separator between a keystore name prefix and an entry name. When specified, it applies to all the entries in a domain. Its default value is a space. \n \u003c/dd\u003e \n\u003c/dl\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e For example, configuration data for a simple keystore domain comprising three keystores is shown below: \u003c/p\u003e\n\u003cpre\u003e\n domain app1 {\n     keystore app1-truststore\n         keystoreURI\u003d\"file:///app1/etc/truststore.jks\";\n\n     keystore system-truststore\n         keystoreURI\u003d\"${java.home}/lib/security/cacerts\";\n\n     keystore app1-keystore\n         keystoreType\u003d\"PKCS12\"\n         keystoreURI\u003d\"file:///app1/etc/keystore.p12\";\n };\n\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.8"

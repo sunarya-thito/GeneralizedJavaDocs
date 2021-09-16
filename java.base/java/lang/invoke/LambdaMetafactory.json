@@ -61,68 +61,6 @@
         "name": "java.lang.invoke.CallSite",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.invoke.LambdaConversionException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodHandles$Lookup",
-            "type": "Class"
-          },
-          "name": "caller",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "invokedName",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodType",
-            "type": "Class"
-          },
-          "name": "invokedType",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodType",
-            "type": "Class"
-          },
-          "name": "samMethodType",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodHandle",
-            "type": "Class"
-          },
-          "name": "implMethod",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodType",
-            "type": "Class"
-          },
-          "name": "instantiatedMethodType",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -151,50 +89,6 @@
         "name": "java.lang.invoke.CallSite",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.invoke.LambdaConversionException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodHandles$Lookup",
-            "type": "Class"
-          },
-          "name": "caller",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "invokedName",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.invoke.MethodType",
-            "type": "Class"
-          },
-          "name": "invokedType",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "args",
-          "varargs": true
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 9,
@@ -220,7 +114,7 @@
   "memberType": "JavaClass",
   "modifiers": 17,
   "name": "java.lang.invoke.LambdaMetafactory",
-  "annotations": [],
+  "comment": "\u003cp\u003eMethods to facilitate the creation of simple \"function objects\" that implement one or more interfaces by delegation to a provided \u003ca href\u003d\"MethodHandle.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eMethodHandle\u003c/code\u003e\u003c/a\u003e, possibly after type adaptation and partial evaluation of arguments. These methods are typically used as \u003cem\u003ebootstrap methods\u003c/em\u003e for \u003ccode\u003einvokedynamic\u003c/code\u003e call sites, to support the \u003cem\u003elambda expression\u003c/em\u003e and \u003cem\u003emethod reference expression\u003c/em\u003e features of the Java Programming Language. \u003c/p\u003e\n\u003cp\u003eIndirect access to the behavior specified by the provided \u003ccode\u003eMethodHandle\u003c/code\u003e proceeds in order through three phases: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003cem\u003eLinkage\u003c/em\u003e occurs when the methods in this class are invoked. They take as arguments an interface to be implemented (typically a \u003cem\u003efunctional interface\u003c/em\u003e, one with a single abstract method), a name and signature of a method from that interface to be implemented, a method handle describing the desired implementation behavior for that method, and possibly other additional metadata, and produce a \u003ca href\u003d\"CallSite.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eCallSite\u003c/code\u003e\u003c/a\u003e whose target can be used to create suitable function objects. Linkage may involve dynamically loading a new class that implements the target interface. The \u003ccode\u003eCallSite\u003c/code\u003e can be considered a \"factory\" for function objects and so these linkage methods are referred to as \"metafactories\".\u003c/li\u003e \n \u003cli\u003e\u003cem\u003eCapture\u003c/em\u003e occurs when the \u003ccode\u003eCallSite\u003c/code\u003e\u0027s target is invoked, typically through an \u003ccode\u003einvokedynamic\u003c/code\u003e call site, producing a function object. This may occur many times for a single factory \u003ccode\u003eCallSite\u003c/code\u003e. Capture may involve allocation of a new function object, or may return an existing function object. The behavior \u003ccode\u003eMethodHandle\u003c/code\u003e may have additional parameters beyond those of the specified interface method; these are referred to as \u003cem\u003ecaptured parameters\u003c/em\u003e, which must be provided as arguments to the \u003ccode\u003eCallSite\u003c/code\u003e target, and which may be early-bound to the behavior \u003ccode\u003eMethodHandle\u003c/code\u003e. The number of captured parameters and their types are determined during linkage. The identity of a function object produced by invoking the \u003ccode\u003eCallSite\u003c/code\u003e\u0027s target is unpredictable, and therefore identity-sensitive operations (such as reference equality, object locking, and \u003ccode\u003eSystem.identityHashCode()\u003c/code\u003e may produce different results in different implementations, or even upon different invocations in the same implementation.\u003c/li\u003e \n \u003cli\u003e\u003cem\u003eInvocation\u003c/em\u003e occurs when an implemented interface method is invoked on a function object. This may occur many times for a single function object. The method referenced by the behavior \u003ccode\u003eMethodHandle\u003c/code\u003e is invoked with the captured arguments and any additional arguments provided on invocation, as if by \u003ca href\u003d\"MethodHandle.html#invoke(java.lang.Object...)\"\u003e\u003ccode\u003eMethodHandle.invoke(Object...)\u003c/code\u003e\u003c/a\u003e.\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eIt is sometimes useful to restrict the set of inputs or results permitted at invocation. For example, when the generic interface \u003ccode\u003ePredicate\u0026lt;T\u0026gt;\u003c/code\u003e is parameterized as \u003ccode\u003ePredicate\u0026lt;String\u0026gt;\u003c/code\u003e, the input must be a \u003ccode\u003eString\u003c/code\u003e, even though the method to implement allows any \u003ccode\u003eObject\u003c/code\u003e. At linkage time, an additional \u003ca href\u003d\"MethodType.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eMethodType\u003c/code\u003e\u003c/a\u003e parameter describes the \"instantiated\" method type; on invocation, the arguments and eventual result are checked against this \u003ccode\u003eMethodType\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003eThis class provides two forms of linkage methods: a standard version (\u003ca href\u003d\"#metafactory(java.lang.invoke.MethodHandles.Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.invoke.MethodType,java.lang.invoke.MethodHandle,java.lang.invoke.MethodType)\"\u003e\u003ccode\u003emetafactory(MethodHandles.Lookup, String, MethodType, MethodType, MethodHandle, MethodType)\u003c/code\u003e\u003c/a\u003e) using an optimized protocol, and an alternate version \u003ca href\u003d\"#altMetafactory(java.lang.invoke.MethodHandles.Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.Object...)\"\u003e\u003ccode\u003ealtMetafactory(MethodHandles.Lookup, String, MethodType, Object...)\u003c/code\u003e\u003c/a\u003e). The alternate version is a generalization of the standard version, providing additional control over the behavior of the generated function objects via flags and additional arguments. The alternate version adds the ability to manage the following attributes of function objects: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003cem\u003eBridging.\u003c/em\u003e It is sometimes useful to implement multiple variations of the method signature, involving argument or return type adaptation. This occurs when multiple distinct VM signatures for a method are logically considered to be the same method by the language. The flag \u003ccode\u003eFLAG_BRIDGES\u003c/code\u003e indicates that a list of additional \u003ccode\u003eMethodType\u003c/code\u003es will be provided, each of which will be implemented by the resulting function object. These methods will share the same name and instantiated type.\u003c/li\u003e \n \u003cli\u003e\u003cem\u003eMultiple interfaces.\u003c/em\u003e If needed, more than one interface can be implemented by the function object. (These additional interfaces are typically marker interfaces with no methods.) The flag \u003ccode\u003eFLAG_MARKERS\u003c/code\u003e indicates that a list of additional interfaces will be provided, each of which should be implemented by the resulting function object.\u003c/li\u003e \n \u003cli\u003e\u003cem\u003eSerializability.\u003c/em\u003e The generated function objects do not generally support serialization. If desired, \u003ccode\u003eFLAG_SERIALIZABLE\u003c/code\u003e can be used to indicate that the function objects should be serializable. Serializable function objects will use, as their serialized form, instances of the class \u003ccode\u003eSerializedLambda\u003c/code\u003e, which requires additional assistance from the capturing class (the class described by the \u003ca href\u003d\"MethodHandles.Lookup.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eMethodHandles.Lookup\u003c/code\u003e\u003c/a\u003e parameter \u003ccode\u003ecaller\u003c/code\u003e); see \u003ca href\u003d\"SerializedLambda.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eSerializedLambda\u003c/code\u003e\u003c/a\u003e for details.\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eAssume the linkage arguments are as follows: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003ccode\u003einvokedType\u003c/code\u003e (describing the \u003ccode\u003eCallSite\u003c/code\u003e signature) has K parameters of types (D1..Dk) and return type Rd;\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003esamMethodType\u003c/code\u003e (describing the implemented method type) has N parameters, of types (U1..Un) and return type Ru;\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003eimplMethod\u003c/code\u003e (the \u003ccode\u003eMethodHandle\u003c/code\u003e providing the implementation has M parameters, of types (A1..Am) and return type Ra (if the method describes an instance method, the method type of this method handle already includes an extra first argument corresponding to the receiver);\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003einstantiatedMethodType\u003c/code\u003e (allowing restrictions on invocation) has N parameters, of types (T1..Tn) and return type Rt.\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eThen the following linkage invariants must hold: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eRd is an interface\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003eimplMethod\u003c/code\u003e is a \u003cem\u003edirect method handle\u003c/em\u003e\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003esamMethodType\u003c/code\u003e and \u003ccode\u003einstantiatedMethodType\u003c/code\u003e have the same arity N, and for i\u003d1..N, Ti and Ui are the same type, or Ti and Ui are both reference types and Ti is a subtype of Ui\u003c/li\u003e \n \u003cli\u003eEither Rt and Ru are the same type, or both are reference types and Rt is a subtype of Ru\u003c/li\u003e \n \u003cli\u003eK + N \u003d M\u003c/li\u003e \n \u003cli\u003eFor i\u003d1..K, Di \u003d Ai\u003c/li\u003e \n \u003cli\u003eFor i\u003d1..N, Ti is adaptable to Aj, where j\u003di+k\u003c/li\u003e \n \u003cli\u003eThe return type Rt is void, or the return type Ra is not void and is adaptable to Rt\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eFurther, at capture time, if \u003ccode\u003eimplMethod\u003c/code\u003e corresponds to an instance method, and there are any capture arguments (\u003ccode\u003eK \u0026gt; 0\u003c/code\u003e), then the first capture argument (corresponding to the receiver) must be non-null. \u003c/p\u003e\n\u003cp\u003eA type Q is considered adaptable to S as follows: \u003c/p\u003e\n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption style\u003d\"display:none\"\u003e\n  adaptable types\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"col\"\u003eQ\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eS\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eLink-time checks\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eInvocation-time checks\u003c/th\u003e\n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003ePrimitive\u003c/th\u003e\n   \u003cth scope\u003d\"row\"\u003ePrimitive\u003c/th\u003e \n   \u003ctd\u003eQ can be converted to S via a primitive widening conversion\u003c/td\u003e \n   \u003ctd\u003eNone\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003ePrimitive\u003c/th\u003e\n   \u003cth scope\u003d\"row\"\u003eReference\u003c/th\u003e \n   \u003ctd\u003eS is a supertype of the Wrapper(Q)\u003c/td\u003e \n   \u003ctd\u003eCast from Wrapper(Q) to S\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003eReference\u003c/th\u003e\n   \u003cth scope\u003d\"row\"\u003ePrimitive\u003c/th\u003e \n   \u003ctd\u003efor parameter types: Q is a primitive wrapper and Primitive(Q) can be widened to S \u003cbr\u003efor return types: If Q is a primitive wrapper, check that Primitive(Q) can be widened to S\u003c/td\u003e \n   \u003ctd\u003eIf Q is not a primitive wrapper, cast Q to the base Wrapper(S); for example Number for numeric types\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003eReference\u003c/th\u003e\n   \u003cth scope\u003d\"row\"\u003eReference\u003c/th\u003e \n   \u003ctd\u003efor parameter types: S is a supertype of Q \u003cbr\u003efor return types: none\u003c/td\u003e \n   \u003ctd\u003eCast from Q to S\u003c/td\u003e \n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "apiNote": [
       "These linkage methods are designed to support the evaluation of \n\u003cem\u003elambda expressions\u003c/em\u003e and \n\u003cem\u003emethod references\u003c/em\u003e in the Java Language. For every lambda expressions or method reference in the source code, there is a target type which is a functional interface. Evaluating a lambda expression produces an object of its target type. The recommended mechanism for evaluating lambda expressions is to desugar the lambda body to a method, invoke an invokedynamic call site whose static argument list describes the sole method of the functional interface and the desugared implementation method, and returns an object (the lambda object) that implements the target type. (For method references, the implementation method is simply the referenced method; no desugaring is needed.) \n\u003cp\u003eThe argument list of the implementation method and the argument list of the interface method(s) may differ in several ways. The implementation methods may have additional arguments to accommodate arguments captured by the lambda expression; there may also be differences resulting from permitted adaptations of arguments, such as casting, boxing, unboxing, and primitive widening. (Varargs adaptations are not handled by the metafactories; these are expected to be handled by the caller.) \u003c/p\u003e\n\u003cp\u003eInvokedynamic call sites have two argument lists: a static argument list and a dynamic argument list. The static argument list is stored in the constant pool; the dynamic argument is pushed on the operand stack at capture time. The bootstrap method has access to the entire static argument list (which in this case, includes information describing the implementation method, the target interface, and the target interface method(s)), as well as a method signature describing the number and static types (but not the values) of the dynamic arguments and the static return type of the invokedynamic site.\u003c/p\u003e"

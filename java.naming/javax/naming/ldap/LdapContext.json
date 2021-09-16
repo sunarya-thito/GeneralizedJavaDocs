@@ -29,23 +29,6 @@
         "name": "javax.naming.ldap.ExtendedResponse",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.ExtendedRequest",
-            "type": "Class"
-          },
-          "name": "request",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -69,24 +52,6 @@
         "name": "javax.naming.ldap.LdapContext",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.Control",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "requestControls",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -113,24 +78,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.Control",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "connCtls",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -155,13 +102,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -182,24 +122,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.naming.ldap.Control",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "requestControls",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -224,13 +146,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -255,13 +170,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "throwsClasses": [
-        {
-          "name": "javax.naming.NamingException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -281,7 +189,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.naming.ldap.LdapContext",
-  "annotations": [],
+  "comment": "This interface represents a context in which you can perform operations with LDAPv3-style controls and perform LDAPv3-style extended operations. For applications that do not require such controls or extended operations, the more generic \n\u003ccode\u003ejavax.naming.directory.DirContext\u003c/code\u003e should be used instead. \n\u003ch2\u003eUsage Details About Controls\u003c/h2\u003e This interface provides support for LDAP v3 controls. At a high level, this support allows a user program to set request controls for LDAP operations that are executed in the course of the user program\u0027s invocation of \n\u003ccode\u003eContext\u003c/code\u003e/\n\u003ccode\u003eDirContext\u003c/code\u003e methods, and read response controls resulting from LDAP operations. At the implementation level, there are some details that developers of both the user program and service providers need to understand in order to correctly use request and response controls. \n\u003ch2\u003eRequest Controls\u003c/h2\u003e \n\u003cp\u003e There are two types of request controls: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eRequest controls that affect how a connection is created \u003c/li\u003e\n \u003cli\u003eRequest controls that affect context methods \u003c/li\u003e\n\u003c/ul\u003e The former is used whenever a connection needs to be established or re-established with an LDAP server. The latter is used when all other LDAP operations are sent to the LDAP server. The reason why a distinction between these two types of request controls is necessary is because JNDI is a high-level API that does not deal directly with connections. It is the job of service providers to do any necessary connection management. Consequently, a single connection may be shared by multiple context instances, and a service provider is free to use its own algorithms to conserve connection and network usage. Thus, when a method is invoked on the context instance, the service provider might need to do some connection management in addition to performing the corresponding LDAP operations. For connection management, it uses the \n\u003cem\u003econnection request controls\u003c/em\u003e, while for the normal LDAP operations, it uses the \n\u003cem\u003econtext request controls\u003c/em\u003e. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eUnless explicitly qualified, the term \"request controls\" refers to context request controls. \u003c/p\u003e\n\u003ch3\u003eContext Request Controls\u003c/h3\u003e There are two ways in which a context instance gets its request controls: \n\u003col\u003e \n \u003cli\u003e\u003ccode\u003eldapContext.newInstance(\u003cstrong\u003ereqCtls\u003c/strong\u003e)\u003c/code\u003e \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eldapContext.setRequestControls(\u003cstrong\u003ereqCtls\u003c/strong\u003e)\u003c/code\u003e \u003c/li\u003e\n\u003c/ol\u003e where \n\u003ccode\u003eldapContext\u003c/code\u003e is an instance of \n\u003ccode\u003eLdapContext\u003c/code\u003e. Specifying \n\u003ccode\u003enull\u003c/code\u003e or an empty array for \n\u003ccode\u003ereqCtls\u003c/code\u003e means no request controls. \n\u003ccode\u003enewInstance()\u003c/code\u003e creates a new instance of a context using \n\u003ccode\u003ereqCtls\u003c/code\u003e, while \n\u003ccode\u003esetRequestControls()\u003c/code\u003e updates an existing context instance\u0027s request controls to \n\u003ccode\u003ereqCtls\u003c/code\u003e. \n\u003cp\u003e Unlike environment properties, request controls of a context instance \u003cem\u003eare not inherited\u003c/em\u003e by context instances that are derived from it. Derived context instances have \u003ccode\u003enull\u003c/code\u003e as their context request controls. You must set the request controls of a derived context instance explicitly using \u003ccode\u003esetRequestControls()\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e A context instance\u0027s request controls are retrieved using the method \u003ccode\u003egetRequestControls()\u003c/code\u003e. \u003c/p\u003e\n\u003ch3\u003eConnection Request Controls\u003c/h3\u003e There are three ways in which connection request controls are set: \n\u003col\u003e \n \u003cli\u003e\u003ccode\u003e new InitialLdapContext(env, \u003cstrong\u003econnCtls\u003c/strong\u003e)\u003c/code\u003e \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003erefException.getReferralContext(env, \u003cstrong\u003econnCtls\u003c/strong\u003e)\u003c/code\u003e \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eldapContext.reconnect(\u003cstrong\u003econnCtls\u003c/strong\u003e);\u003c/code\u003e \u003c/li\u003e\n\u003c/ol\u003e where \n\u003ccode\u003erefException\u003c/code\u003e is an instance of \n\u003ccode\u003eLdapReferralException\u003c/code\u003e, and \n\u003ccode\u003eldapContext\u003c/code\u003e is an instance of \n\u003ccode\u003eLdapContext\u003c/code\u003e. Specifying \n\u003ccode\u003enull\u003c/code\u003e or an empty array for \n\u003ccode\u003econnCtls\u003c/code\u003e means no connection request controls. \n\u003cp\u003e Like environment properties, connection request controls of a context \u003cem\u003eare inherited\u003c/em\u003e by contexts that are derived from it. Typically, you initialize the connection request controls using the \u003ccode\u003eInitialLdapContext\u003c/code\u003e constructor or \u003ccode\u003eLdapReferralContext.getReferralContext()\u003c/code\u003e. These connection request controls are inherited by contexts that share the same connection--that is, contexts derived from the initial or referral contexts. \u003c/p\u003e\n\u003cp\u003e Use \u003ccode\u003ereconnect()\u003c/code\u003e to change the connection request controls of a context. Invoking \u003ccode\u003eldapContext.reconnect()\u003c/code\u003e affects only the connection used by \u003ccode\u003eldapContext\u003c/code\u003e and any new contexts instances that are derived form \u003ccode\u003eldapContext\u003c/code\u003e. Contexts that previously shared the connection with \u003ccode\u003eldapContext\u003c/code\u003e remain unchanged. That is, a context\u0027s connection request controls must be explicitly changed and is not affected by changes to another context\u0027s connection request controls. \u003c/p\u003e\n\u003cp\u003e A context instance\u0027s connection request controls are retrieved using the method \u003ccode\u003egetConnectControls()\u003c/code\u003e. \u003c/p\u003e\n\u003ch3\u003eService Provider Requirements\u003c/h3\u003e A service provider supports connection and context request controls in the following ways. Context request controls must be associated on a per context instance basis while connection request controls must be associated on a per connection instance basis. The service provider must look for the connection request controls in the environment property \"java.naming.ldap.control.connect\" and pass this environment property on to context instances that it creates. \n\u003ch2\u003eResponse Controls\u003c/h2\u003e The method \n\u003ccode\u003eLdapContext.getResponseControls()\u003c/code\u003e is used to retrieve the response controls generated by LDAP operations executed as the result of invoking a \n\u003ccode\u003eContext\u003c/code\u003e/\n\u003ccode\u003eDirContext\u003c/code\u003e operation. The result is all of the responses controls generated by the underlying LDAP operations, including any implicit reconnection. To get only the reconnection response controls, use \n\u003ccode\u003ereconnect()\u003c/code\u003e followed by \n\u003ccode\u003egetResponseControls()\u003c/code\u003e. \n\u003ch2\u003eParameters\u003c/h2\u003e A \n\u003ccode\u003eControl[]\u003c/code\u003e array passed as a parameter to any method is owned by the caller. The service provider will not modify the array or keep a reference to it, although it may keep references to the individual \n\u003ccode\u003eControl\u003c/code\u003e objects in the array. A \n\u003ccode\u003eControl[]\u003c/code\u003e array returned by any method is immutable, and may not subsequently be modified by either the caller or the service provider.",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/ldap/InitialLdapContext.html\" title\u003d\"class in javax.naming.ldap\"\u003e\u003ccode\u003eInitialLdapContext\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/ldap/LdapReferralException.html#getReferralContext(java.util.Hashtable,javax.naming.ldap.Control%5B%5D)\"\u003e\u003ccode\u003eLdapReferralException.getReferralContext(java.util.Hashtable,javax.naming.ldap.Control[])\u003c/code\u003e\u003c/a\u003e"

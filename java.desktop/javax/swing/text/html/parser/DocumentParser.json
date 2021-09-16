@@ -13,41 +13,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.io.Reader",
-            "type": "Class"
-          },
-          "name": "in",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.text.html.HTMLEditorKit$ParserCallback",
-            "type": "Class"
-          },
-          "name": "callback",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "boolean",
-            "type": "Class"
-          },
-          "name": "ignoreCharSet",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -70,17 +35,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.text.html.parser.TagElement",
-            "type": "Class"
-          },
-          "name": "tag",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
@@ -101,23 +55,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.swing.text.ChangedCharSetException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.text.html.parser.TagElement",
-            "type": "Class"
-          },
-          "name": "tag",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
@@ -141,17 +78,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.swing.text.html.parser.TagElement",
-            "type": "Class"
-          },
-          "name": "tag",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
@@ -172,18 +98,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "char",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "data",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 4,
@@ -226,6 +140,6 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.swing.text.html.parser.DocumentParser",
-  "annotations": [],
+  "comment": "A Parser for HTML Documents (actually, you can specify a DTD, but you should really only use this class with the html dtd in swing). Reads an InputStream of HTML and invokes the appropriate methods in the ParserCallback class. This is the default parser used by HTMLEditorKit to parse HTML url\u0027s. \n\u003cp\u003eThis will message the callback for all valid tags, as well as tags that are implied but not explicitly specified. For example, the html string (\u0026lt;p\u0026gt;blah) only has a p tag defined. The callback will see the following methods: \u003c/p\u003e\n\u003col\u003e\n \u003cli\u003e\u003ci\u003ehandleStartTag(html, ...)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleStartTag(head, ...)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleEndTag(head)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleStartTag(body, ...)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleStartTag(p, ...)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleText(...)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleEndTag(p)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleEndTag(body)\u003c/i\u003e\u003c/li\u003e \n \u003cli\u003e\u003ci\u003ehandleEndTag(html)\u003c/i\u003e\u003c/li\u003e \n\u003c/ol\u003e The items in \n\u003ci\u003eitalic\u003c/i\u003e are implied, that is, although they were not explicitly specified, to be correct html they should have been present (head isn\u0027t necessary, but it is still generated). For tags that are implied, the AttributeSet argument will have a value of \n\u003ccode\u003eBoolean.TRUE\u003c/code\u003e for the key \n\u003ccode\u003eHTMLEditorKit.ParserCallback.IMPLIED\u003c/code\u003e. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eHTML.Attributes defines a type safe enumeration of html attributes. If an attribute key of a tag is defined in HTML.Attribute, the HTML.Attribute will be used as the key, otherwise a String will be used. For example \u0026lt;p foo\u003dbar class\u003dneat\u0026gt; has two attributes. foo is not defined in HTML.Attribute, where as class is, therefore the AttributeSet will have two values in it, HTML.Attribute.CLASS with a String value of \u0027neat\u0027 and the String key \u0027foo\u0027 with a String value of \u0027bar\u0027. \u003c/p\u003e\n\u003cp\u003eThe position argument will indicate the start of the tag, comment or text. Similar to arrays, the first character in the stream has a position of 0. For tags that are implied the position will indicate the location of the next encountered tag. In the first example, the implied start body and html tags will have the same position as the p tag, and the implied end p, html and body tags will all have the same position. \u003c/p\u003e\n\u003cp\u003eAs html skips whitespace the position for text will be the position of the first valid character, eg in the string \u0027\\n\\n\\nblah\u0027 the text \u0027blah\u0027 will have a position of 3, the newlines are skipped. \u003c/p\u003e\n\u003cp\u003e For attributes that do not have a value, eg in the html string \u003ccode\u003e\u0026lt;foo blah\u0026gt;\u003c/code\u003e the attribute \u003ccode\u003eblah\u003c/code\u003e does not have a value, there are two possible values that will be placed in the AttributeSet\u0027s value: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eIf the DTD does not contain an definition for the element, or the definition does not have an explicit value then the value in the AttributeSet will be \u003ccode\u003eHTML.NULL_ATTRIBUTE_VALUE\u003c/code\u003e. \u003c/li\u003e\n \u003cli\u003eIf the DTD contains an explicit value, as in: \u003ccode\u003e\u0026lt;!ATTLIST OPTION selected (selected) #IMPLIED\u0026gt;\u003c/code\u003e this value from the dtd (in this case selected) will be used. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Once the stream has been parsed, the callback is notified of the most likely end of line string. The end of line string will be one of \\n, \\r or \\r\\n, which ever is encountered the most in parsing the stream.\u003c/p\u003e",
   "tagMap": {}
 }

@@ -25,7 +25,6 @@
         "name": "com.sun.jdi.ReferenceType",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -43,7 +42,6 @@
         "name": "com.sun.jdi.Method",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -61,7 +59,6 @@
         "name": "long",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -79,13 +76,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "com.sun.jdi.AbsentInformationException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -106,23 +96,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "com.sun.jdi.AbsentInformationException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "stratum",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -149,13 +122,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "com.sun.jdi.AbsentInformationException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -176,23 +142,6 @@
         "name": "java.lang.String",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "com.sun.jdi.AbsentInformationException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "stratum",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -219,7 +168,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -237,17 +185,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.String",
-            "type": "Class"
-          },
-          "name": "stratum",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -271,17 +208,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "obj",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -308,7 +234,6 @@
         "name": "int",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -331,7 +256,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "com.sun.jdi.Location",
-  "annotations": [],
+  "comment": "A point within the executing code of the target VM. Locations are used to identify the current position of a suspended thread (analogous to an instruction pointer or program counter register in native programs). They are also used to identify the position at which to set a breakpoint. \n\u003cp\u003e The availability of a line number for a location will depend on the level of debugging information available from the target VM. \u003c/p\u003e\n\u003cp\u003e Several mirror interfaces have locations. Each such mirror extends a \u003ca href\u003d\"Locatable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocatable\u003c/code\u003e\u003c/a\u003e interface. \u003c/p\u003e\n\u003cp\u003e \u003ca id\u003d\"strata\"\u003e\u003cb\u003eStrata\u003c/b\u003e\u003c/a\u003e \u003c/p\u003e\n\u003cp\u003e The source information for a Location is dependent on the \u003ci\u003estratum\u003c/i\u003e which is used. A stratum is a source code level within a sequence of translations. For example, say the baz program is written in the programming language \"Foo\" then translated to the language \"Bar\" and finally translated into the Java programming language. The Java programming language stratum is named \u003ccode\u003e\"Java\"\u003c/code\u003e, let\u0027s say the other strata are named \"Foo\" and \"Bar\". A given location (as viewed by the \u003ca href\u003d\"#sourceName()\"\u003e\u003ccode\u003esourceName()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#lineNumber()\"\u003e\u003ccode\u003elineNumber()\u003c/code\u003e\u003c/a\u003e methods) might be at line 14 of \"baz.foo\" in the \u003ccode\u003e\"Foo\"\u003c/code\u003e stratum, line 23 of \"baz.bar\" in the \u003ccode\u003e\"Bar\"\u003c/code\u003e stratum and line 71 of the \u003ccode\u003e\"Java\"\u003c/code\u003e stratum. Note that while the Java programming language may have only one source file for a reference type, this restriction does not apply to other strata - thus each Location should be consulted to determine its source path. Queries which do not specify a stratum (\u003ca href\u003d\"#sourceName()\"\u003e\u003ccode\u003esourceName()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#sourcePath()\"\u003e\u003ccode\u003esourcePath()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#lineNumber()\"\u003e\u003ccode\u003elineNumber()\u003c/code\u003e\u003c/a\u003e) use the VM\u0027s default stratum (\u003ca href\u003d\"VirtualMachine.html#getDefaultStratum()\"\u003e\u003ccode\u003eVirtualMachine.getDefaultStratum()\u003c/code\u003e\u003c/a\u003e). If the specified stratum (whether explicitly specified by a method parameter or implicitly as the VM\u0027s default) is \u003ccode\u003enull\u003c/code\u003e or is not available in the declaring type, the declaring type\u0027s default stratum is used (\u003ca href\u003d\"#declaringType()\"\u003e\u003ccode\u003edeclaringType()\u003c/code\u003e\u003c/a\u003e.\u003ca href\u003d\"ReferenceType.html#defaultStratum()\"\u003e\u003ccode\u003edefaultStratum()\u003c/code\u003e\u003c/a\u003e). Note that in the normal case, of code that originates as Java programming language source, there will be only one stratum (\u003ccode\u003e\"Java\"\u003c/code\u003e) and it will be returned as the default. To determine the available strata use \u003ca href\u003d\"ReferenceType.html#availableStrata()\"\u003e\u003ccode\u003eReferenceType.availableStrata()\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/request/EventRequestManager.html\" title\u003d\"interface in com.sun.jdi.request\"\u003e\u003ccode\u003eEventRequestManager\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/StackFrame.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eStackFrame\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/event/BreakpointEvent.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eBreakpointEvent\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/event/ExceptionEvent.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eExceptionEvent\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Locatable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocatable\u003c/code\u003e\u003c/a\u003e"

@@ -13,33 +13,6 @@
         "name": "java.nio.file.FileVisitResult",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "owner": "java.nio.file.FileVisitor",
-            "name": "T",
-            "type": "Variable"
-          },
-          "name": "dir",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.nio.file.attribute.BasicFileAttributes",
-            "type": "Class"
-          },
-          "name": "attrs",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -64,33 +37,6 @@
         "name": "java.nio.file.FileVisitResult",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "owner": "java.nio.file.FileVisitor",
-            "name": "T",
-            "type": "Variable"
-          },
-          "name": "file",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.nio.file.attribute.BasicFileAttributes",
-            "type": "Class"
-          },
-          "name": "attrs",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -115,33 +61,6 @@
         "name": "java.nio.file.FileVisitResult",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "owner": "java.nio.file.FileVisitor",
-            "name": "T",
-            "type": "Variable"
-          },
-          "name": "file",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.io.IOException",
-            "type": "Class"
-          },
-          "name": "exc",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -166,33 +85,6 @@
         "name": "java.nio.file.FileVisitResult",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.io.IOException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "owner": "java.nio.file.FileVisitor",
-            "name": "T",
-            "type": "Variable"
-          },
-          "name": "dir",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.io.IOException",
-            "type": "Class"
-          },
-          "name": "exc",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -222,7 +114,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "java.nio.file.FileVisitor",
-  "annotations": [],
+  "comment": "A visitor of files. An implementation of this interface is provided to the \n\u003ca href\u003d\"Files.html#walkFileTree(java.nio.file.Path,java.util.Set,int,java.nio.file.FileVisitor)\"\u003e\u003ccode\u003eFiles.walkFileTree\u003c/code\u003e\u003c/a\u003e methods to visit each file in a file tree. \n\u003cp\u003e \u003cb\u003eUsage Examples:\u003c/b\u003e Suppose we want to delete a file tree. In that case, each directory should be deleted after the entries in the directory are deleted. \u003c/p\u003e\n\u003cpre\u003e     Path start \u003d ...\n     Files.walkFileTree(start, new SimpleFileVisitor\u0026lt;Path\u0026gt;() {\n         @Override\n         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)\n             throws IOException\n         {\n             Files.delete(file);\n             return FileVisitResult.CONTINUE;\n         }\n         @Override\n         public FileVisitResult postVisitDirectory(Path dir, IOException e)\n             throws IOException\n         {\n             if (e \u003d\u003d null) {\n                 Files.delete(dir);\n                 return FileVisitResult.CONTINUE;\n             } else {\n                 // directory iteration failed\n                 throw e;\n             }\n         }\n     });\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Furthermore, suppose we want to copy a file tree to a target location. In that case, symbolic links should be followed and the target directory should be created before the entries in the directory are copied. \u003c/p\u003e\n\u003cpre\u003e     final Path source \u003d ...\n     final Path target \u003d ...\n\n     Files.walkFileTree(source, EnumSet.of(FileVisitOption.FOLLOW_LINKS), Integer.MAX_VALUE,\n         new SimpleFileVisitor\u0026lt;Path\u0026gt;() {\n             @Override\n             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)\n                 throws IOException\n             {\n                 Path targetdir \u003d target.resolve(source.relativize(dir));\n                 try {\n                     Files.copy(dir, targetdir);\n                 } catch (FileAlreadyExistsException e) {\n                      if (!Files.isDirectory(targetdir))\n                          throw e;\n                 }\n                 return CONTINUE;\n             }\n             @Override\n             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)\n                 throws IOException\n             {\n                 Files.copy(file, target.resolve(source.relativize(file)));\n                 return CONTINUE;\n             }\n         });\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.7"

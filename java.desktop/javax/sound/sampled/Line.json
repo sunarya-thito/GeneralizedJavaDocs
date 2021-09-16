@@ -13,7 +13,6 @@
         "name": "javax.sound.sampled.Line$Info",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -31,13 +30,6 @@
         "name": "void",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "javax.sound.sampled.LineUnavailableException",
-          "type": "Class"
-        }
-      ],
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -60,7 +52,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -84,7 +75,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -106,7 +96,6 @@
         "type": "Class",
         "arrayDimensions": 1
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -127,17 +116,6 @@
         "name": "boolean",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.sound.sampled.Control$Type",
-            "type": "Class"
-          },
-          "name": "control",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -158,17 +136,6 @@
         "name": "javax.sound.sampled.Control",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.sound.sampled.Control$Type",
-            "type": "Class"
-          },
-          "name": "control",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -195,17 +162,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.sound.sampled.LineListener",
-            "type": "Class"
-          },
-          "name": "listener",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -226,17 +182,6 @@
         "name": "void",
         "type": "Class"
       },
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "javax.sound.sampled.LineListener",
-            "type": "Class"
-          },
-          "name": "listener",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 0,
@@ -259,7 +204,7 @@
   "memberType": "JavaClass",
   "modifiers": 513,
   "name": "javax.sound.sampled.Line",
-  "annotations": [],
+  "comment": "The \n\u003ccode\u003eLine\u003c/code\u003e interface represents a mono or multi-channel audio feed. A line is an element of the digital audio \"pipeline,\" such as a mixer, an input or output port, or a data path into or out of a mixer. \n\u003cp\u003e A line can have controls, such as gain, pan, and reverb. The controls themselves are instances of classes that extend the base \u003ca href\u003d\"Control.html\" title\u003d\"class in javax.sound.sampled\"\u003e\u003ccode\u003eControl\u003c/code\u003e\u003c/a\u003e class. The \u003ccode\u003eLine\u003c/code\u003e interface provides two accessor methods for obtaining the line\u0027s controls: \u003ca href\u003d\"#getControls()\"\u003e\u003ccode\u003egetControls\u003c/code\u003e\u003c/a\u003e returns the entire set, and \u003ca href\u003d\"#getControl(javax.sound.sampled.Control.Type)\"\u003e\u003ccode\u003egetControl\u003c/code\u003e\u003c/a\u003e returns a single control of specified type. \u003c/p\u003e\n\u003cp\u003e Lines exist in various states at different times. When a line opens, it reserves system resources for itself, and when it closes, these resources are freed for other objects or applications. The \u003ca href\u003d\"#isOpen()\"\u003e\u003ccode\u003eisOpen()\u003c/code\u003e\u003c/a\u003e method lets you discover whether a line is open or closed. An open line need not be processing data, however. Such processing is typically initiated by subinterface methods such as \u003ca href\u003d\"SourceDataLine.html#write(byte%5B%5D,int,int)\"\u003e\u003ccode\u003eSourceDataLine.write\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"TargetDataLine.html#read(byte%5B%5D,int,int)\"\u003e\u003ccode\u003eTargetDataLine.read\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e You can register an object to receive notifications whenever the line\u0027s state changes. The object must implement the \u003ca href\u003d\"LineListener.html\" title\u003d\"interface in javax.sound.sampled\"\u003e\u003ccode\u003eLineListener\u003c/code\u003e\u003c/a\u003e interface, which consists of the single method \u003ca href\u003d\"LineListener.html#update(javax.sound.sampled.LineEvent)\"\u003e\u003ccode\u003eupdate\u003c/code\u003e\u003c/a\u003e. This method will be invoked when a line opens and closes (and, if it\u0027s a \u003ca href\u003d\"DataLine.html\" title\u003d\"interface in javax.sound.sampled\"\u003e\u003ccode\u003eDataLine\u003c/code\u003e\u003c/a\u003e , when it starts and stops). \u003c/p\u003e\n\u003cp\u003e An object can be registered to listen to multiple lines. The event it receives in its \u003ccode\u003eupdate\u003c/code\u003e method will specify which line created the event, what type of event it was (\u003ccode\u003eOPEN\u003c/code\u003e, \u003ccode\u003eCLOSE\u003c/code\u003e, \u003ccode\u003eSTART\u003c/code\u003e, or \u003ccode\u003eSTOP\u003c/code\u003e), and how many sample frames the line had processed at the time the event occurred. \u003c/p\u003e\n\u003cp\u003e Certain line operations, such as open and close, can generate security exceptions if invoked by unprivileged code when the line is a shared audio resource.\u003c/p\u003e",
   "tagMap": {
     "see": [
       "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/sampled/LineEvent.html\" title\u003d\"class in javax.sound.sampled\"\u003e\u003ccode\u003eLineEvent\u003c/code\u003e\u003c/a\u003e"

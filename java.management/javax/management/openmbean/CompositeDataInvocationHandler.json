@@ -13,7 +13,6 @@
         "name": "javax.management.openmbean.CompositeData",
         "type": "Class"
       },
-      "parameters": [],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -31,42 +30,6 @@
         "name": "java.lang.Object",
         "type": "Class"
       },
-      "throwsClasses": [
-        {
-          "name": "java.lang.Throwable",
-          "type": "Class"
-        }
-      ],
-      "parameters": [
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class"
-          },
-          "name": "proxy",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.reflect.Method",
-            "type": "Class"
-          },
-          "name": "method",
-          "varargs": false
-        },
-        {
-          "annotations": [],
-          "type": {
-            "name": "java.lang.Object",
-            "type": "Class",
-            "arrayDimensions": 1
-          },
-          "name": "args",
-          "varargs": false
-        }
-      ],
       "isDefaultMethod": false,
       "memberType": "JavaMethod",
       "modifiers": 1,
@@ -123,7 +86,7 @@
   "memberType": "JavaClass",
   "modifiers": 1,
   "name": "javax.management.openmbean.CompositeDataInvocationHandler",
-  "annotations": [],
+  "comment": "\u003cp\u003eAn \u003ca href\u003d\"../../../../java.base/java/lang/reflect/InvocationHandler.html\" title\u003d\"interface in java.lang.reflect\"\u003e\u003ccode\u003eInvocationHandler\u003c/code\u003e\u003c/a\u003e that forwards getter methods to a \u003ca href\u003d\"CompositeData.html\" title\u003d\"interface in javax.management.openmbean\"\u003e\u003ccode\u003eCompositeData\u003c/code\u003e\u003c/a\u003e. If you have an interface that contains only getter methods (such as \u003ccode\u003eString getName()\u003c/code\u003e or \u003ccode\u003eboolean isActive()\u003c/code\u003e) then you can use this class in conjunction with the \u003ca href\u003d\"../../../../java.base/java/lang/reflect/Proxy.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eProxy\u003c/code\u003e\u003c/a\u003e class to produce an implementation of the interface where each getter returns the value of the corresponding item in a \u003ccode\u003eCompositeData\u003c/code\u003e.\u003c/p\u003e \n\u003cp\u003eFor example, suppose you have an interface like this: \u003c/p\u003e\n\u003cblockquote\u003e \n \u003cpre\u003e   public interface NamedNumber {\n       public int getNumber();\n       public String getName();\n   }\n   \u003c/pre\u003e \n\u003c/blockquote\u003e and a \n\u003ccode\u003eCompositeData\u003c/code\u003e constructed like this: \n\u003cblockquote\u003e \n \u003cpre\u003e   CompositeData cd \u003d\n       new \u003ca href\u003d\"CompositeDataSupport.html\" title\u003d\"class in javax.management.openmbean\"\u003e\u003ccode\u003eCompositeDataSupport\u003c/code\u003e\u003c/a\u003e(\n           someCompositeType,\n           new String[] {\"number\", \"name\"},\n           new Object[] {\u003cb\u003e5\u003c/b\u003e, \"five\"}\n       );\n   \u003c/pre\u003e \n\u003c/blockquote\u003e then you can construct an object implementing \n\u003ccode\u003eNamedNumber\u003c/code\u003e and backed by the object \n\u003ccode\u003ecd\u003c/code\u003e like this: \n\u003cblockquote\u003e \n \u003cpre\u003e   InvocationHandler handler \u003d\n       new CompositeDataInvocationHandler(cd);\n   NamedNumber nn \u003d (NamedNumber)\n       Proxy.newProxyInstance(NamedNumber.class.getClassLoader(),\n                              new Class[] {NamedNumber.class},\n                              handler);\n   \u003c/pre\u003e \n\u003c/blockquote\u003e A call to \n\u003ccode\u003enn.getNumber()\u003c/code\u003e will then return \n\u003cb\u003e5\u003c/b\u003e. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eIf the first letter of the property defined by a getter is a capital, then this handler will look first for an item in the \u003ccode\u003eCompositeData\u003c/code\u003e beginning with a capital, then, if that is not found, for an item beginning with the corresponding lowercase letter or code point. For a getter called \u003ccode\u003egetNumber()\u003c/code\u003e, the handler will first look for an item called \u003ccode\u003eNumber\u003c/code\u003e, then for \u003ccode\u003enumber\u003c/code\u003e. If the getter is called \u003ccode\u003egetnumber()\u003c/code\u003e, then the item must be called \u003ccode\u003enumber\u003c/code\u003e.\u003c/p\u003e \n\u003cp\u003eIf the method given to \u003ca href\u003d\"#invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object%5B%5D)\"\u003e\u003ccode\u003einvoke\u003c/code\u003e\u003c/a\u003e is the method \u003ccode\u003eboolean equals(Object)\u003c/code\u003e inherited from \u003ccode\u003eObject\u003c/code\u003e, then it will return true if and only if the argument is a \u003ccode\u003eProxy\u003c/code\u003e whose \u003ccode\u003eInvocationHandler\u003c/code\u003e is also a \u003ccode\u003e CompositeDataInvocationHandler\u003c/code\u003e and whose backing \u003ccode\u003e CompositeData\u003c/code\u003e is equal (not necessarily identical) to this object\u0027s. If the method given to \u003ccode\u003einvoke\u003c/code\u003e is the method \u003ccode\u003eint hashCode()\u003c/code\u003e inherited from \u003ccode\u003eObject\u003c/code\u003e, then it will return a value that is consistent with this definition of \u003ccode\u003e equals\u003c/code\u003e: if two objects are equal according to \u003ccode\u003eequals\u003c/code\u003e, then they will have the same \u003ccode\u003ehashCode\u003c/code\u003e.\u003c/p\u003e",
   "tagMap": {
     "since": [
       "1.6"
