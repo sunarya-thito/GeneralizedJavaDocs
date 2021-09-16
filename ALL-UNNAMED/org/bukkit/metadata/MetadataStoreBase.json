@@ -1,0 +1,221 @@
+{
+  "packageName": "org.bukkit.metadata",
+  "simpleName": "MetadataStoreBase",
+  "moduleName": "ALL-UNNAMED",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setMetadata",
+      "comment": "Adds a metadata value to an object. Each metadata value is owned by a specific Plugin. If a plugin has already added a metadata value to an object, that value will be replaced with the value of newMetadataValue. Multiple plugins can set independent values for the same metadataKey without conflict. Implementation note: I considered using a ReadWriteLock for controlling access to metadataMap, but decided that the added overhead wasn\u0027t worth the finer grained access control. Bukkit is almost entirely single threaded so locking overhead shouldn\u0027t pose a problem.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/metadata/MetadataStore.html#setMetadata(T,java.lang.String,org.bukkit.metadata.MetadataValue)\"\u003e\u003ccode\u003eMetadataStore.setMetadata(Object, String, MetadataValue)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - The object receiving the metadata.",
+          "\u003ccode\u003emetadataKey\u003c/code\u003e - A unique key to identify this metadata.",
+          "\u003ccode\u003enewMetadataValue\u003c/code\u003e - The metadata value to apply."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If value is null, or the owning plugin is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "org.bukkit.metadata.MetadataValue",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMetadata",
+      "comment": "Returns all metadata values attached to an object. If multiple have attached metadata, each will value will be included.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/metadata/MetadataStore.html#getMetadata(T,java.lang.String)\"\u003e\u003ccode\u003eMetadataStore.getMetadata(Object, String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the object being interrogated.",
+          "\u003ccode\u003emetadataKey\u003c/code\u003e - the unique metadata key being sought."
+        ],
+        "return": [
+          "A list of values, one for each plugin that has set the requested value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hasMetadata",
+      "comment": "Tests to see if a metadata attribute has been set on an object.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the object upon which the has-metadata test is performed.",
+          "\u003ccode\u003emetadataKey\u003c/code\u003e - the unique metadata key being queried."
+        ],
+        "return": [
+          "the existence of the metadataKey within subject."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeMetadata",
+      "comment": "Removes a metadata item owned by a plugin from a subject.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/metadata/MetadataStore.html#removeMetadata(T,java.lang.String,org.bukkit.plugin.Plugin)\"\u003e\u003ccode\u003eMetadataStore.removeMetadata(Object, String, org.bukkit.plugin.Plugin)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the object to remove the metadata from.",
+          "\u003ccode\u003emetadataKey\u003c/code\u003e - the unique metadata key identifying the metadata to remove.",
+          "\u003ccode\u003eowningPlugin\u003c/code\u003e - the plugin attempting to remove a metadata item."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If plugin is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "invalidateAll",
+      "comment": "Invalidates all metadata in the metadata store that originates from the given plugin. Doing this will force each invalidated metadata item to be recalculated the next time it is accessed.",
+      "annotations": [],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/metadata/MetadataStore.html#invalidateAll(org.bukkit.plugin.Plugin)\"\u003e\u003ccode\u003eMetadataStore.invalidateAll(org.bukkit.plugin.Plugin)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eowningPlugin\u003c/code\u003e - the plugin requesting the invalidation."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If plugin is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeAll",
+      "comment": "Removes all metadata in the metadata store that originates from the given plugin.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eowningPlugin\u003c/code\u003e - the plugin requesting the invalidation."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If plugin is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "disambiguate",
+      "comment": "Creates a unique name for the object receiving metadata by combining unique data from the subject with a metadataKey. The name created must be globally unique for the given object and any two equivalent objects must generate the same unique name. For example, two Player objects must generate the same string if they represent the same player, even if the objects would fail a reference equality test.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - The object for which this key is being generated.",
+          "\u003ccode\u003emetadataKey\u003c/code\u003e - The name identifying the metadata value."
+        ],
+        "return": [
+          "a unique metadata key for the given subject."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "annotations": [],
+      "tagMap": {}
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "org.bukkit.metadata.MetadataStoreBase",
+  "tagMap": {}
+}

@@ -1,0 +1,1004 @@
+{
+  "packageName": "org.bukkit.inventory",
+  "simpleName": "Inventory",
+  "moduleName": "ALL-UNNAMED",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Iterable",
+    "parameters": [
+      {
+        "name": "org.bukkit.inventory.ItemStack",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSize",
+      "comment": "Returns the size of the inventory",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The size of the inventory"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMaxStackSize",
+      "comment": "Returns the maximum stack size for an ItemStack in this inventory.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The maximum size for an ItemStack in this inventory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setMaxStackSize",
+      "comment": "This method allows you to change the maximum stack size for an inventory. Caveats: Not all inventories respect this value. Stacks larger than 127 may be clipped when the world is saved. This value is not guaranteed to be preserved; be sure to set it before every time you want to set a slot over the max stack size. Stacks larger than the default max size for this type of inventory may not display correctly in the client.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - The new maximum stack size for items in this inventory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.bukkit.inventory.ItemStack",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getItem",
+      "comment": "Returns the ItemStack found in the slot at the given index",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index of the Slot\u0027s ItemStack to return"
+        ],
+        "return": [
+          "The ItemStack in the slot"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setItem",
+      "comment": "Stores the ItemStack at the given index of the inventory.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index where to put the ItemStack",
+          "\u003ccode\u003eitem\u003c/code\u003e - The ItemStack to set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.HashMap",
+        "parameters": [
+          {
+            "name": "java.lang.Integer",
+            "type": "Class"
+          },
+          {
+            "name": "org.bukkit.inventory.ItemStack",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addItem",
+      "comment": "Stores the given ItemStacks in the inventory. This will try to fill existing stacks and empty slots as well as it can. The returned HashMap contains what it couldn\u0027t store, where the key is the index of the parameter, and the value is the ItemStack at that index of the varargs parameter. If all items are stored, it will return an empty HashMap. If you pass in ItemStacks which exceed the maximum stack size for the Material, first they will be added to partial stacks where Material.getMaxStackSize() is not exceeded, up to Material.getMaxStackSize(). When there are no partial stacks left stacks will be split on Inventory.getMaxStackSize() allowing you to exceed the maximum stack size for that material. It is known that in some implementations this method will also set the inputted argument amount to the number of that item not placed in slots.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitems\u003c/code\u003e - The ItemStacks to add"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if items or any element in it is null"
+        ],
+        "return": [
+          "A HashMap containing items that didn\u0027t fit."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.HashMap",
+        "parameters": [
+          {
+            "name": "java.lang.Integer",
+            "type": "Class"
+          },
+          {
+            "name": "org.bukkit.inventory.ItemStack",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeItem",
+      "comment": "Removes the given ItemStacks from the inventory. It will try to remove \u0027as much as possible\u0027 from the types and amounts you give as arguments. The returned HashMap contains what it couldn\u0027t remove, where the key is the index of the parameter, and the value is the ItemStack at that index of the varargs parameter. If all the given ItemStacks are removed, it will return an empty HashMap. It is known that in some implementations this method will also set the inputted argument amount to the number of that item not removed from slots.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitems\u003c/code\u003e - The ItemStacks to remove"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if items is null"
+        ],
+        "return": [
+          "A HashMap containing items that couldn\u0027t be removed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.HashMap",
+        "parameters": [
+          {
+            "name": "java.lang.Integer",
+            "type": "Class"
+          },
+          {
+            "name": "org.bukkit.inventory.ItemStack",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeItemAnySlot",
+      "comment": "Searches all possible inventory slots in order to remove the given ItemStacks. Similar to removeItem(ItemStack...) in behavior, except this method will check all possible slots in the inventory, rather than just the main storage contents. It will try to remove \u0027as much as possible\u0027 from the types and amounts you give as arguments. The returned HashMap contains what it couldn\u0027t remove, where the key is the index of the parameter, and the value is the ItemStack at that index of the varargs parameter. If all the given ItemStacks are removed, it will return an empty HashMap. It is known that in some implementations this method will also set the inputted argument amount to the number of that item not removed from slots.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitems\u003c/code\u003e - The ItemStacks to remove"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if items is null"
+        ],
+        "return": [
+          "A HashMap containing items that couldn\u0027t be removed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.bukkit.inventory.ItemStack",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "comment": "Returns all ItemStacks from the inventory",
+      "annotations": [
+        {
+          "type": {
+            "name": "Nullable",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "An array of ItemStacks from the inventory. Individual items may be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setContents",
+      "comment": "Completely replaces the inventory\u0027s contents. Removes all existing contents and replaces it with the ItemStacks given in the array.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitems\u003c/code\u003e - A complete replacement for the contents; the length must be less than or equal to \n\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/inventory/Inventory.html#getSize()\"\u003e\u003ccode\u003egetSize()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the array has more items than the inventory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.bukkit.inventory.ItemStack",
+        "type": "Class",
+        "arrayDimensions": 1
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getStorageContents",
+      "comment": "Return the contents from the section of the inventory where items can reasonably be expected to be stored. In most cases this will represent the entire inventory, but in some cases it may exclude armor or result slots. It is these contents which will be used for add / contains / remove methods which look for a specific stack.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "inventory storage contents. Individual items may be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setStorageContents",
+      "comment": "Put the given ItemStacks into the storage slots",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitems\u003c/code\u003e - The ItemStacks to use as storage contents"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the array has more items than the inventory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "contains",
+      "comment": "Checks if the inventory contains any ItemStacks with the given material.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ematerial\u003c/code\u003e - The material to check for"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if material is null"
+        ],
+        "return": [
+          "true if an ItemStack is found with the given Material"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "contains",
+      "comment": "Checks if the inventory contains any ItemStacks matching the given ItemStack. This will only return true if both the type and the amount of the stack match.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Contract",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "value",
+              "value": "null -\u003e false"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - The ItemStack to match against"
+        ],
+        "return": [
+          "false if item is null, true if any exactly matching ItemStacks were found"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "contains",
+      "comment": "Checks if the inventory contains any ItemStacks with the given material, adding to at least the minimum amount specified.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ematerial\u003c/code\u003e - The material to check for",
+          "\u003ccode\u003eamount\u003c/code\u003e - The minimum amount"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if material is null"
+        ],
+        "return": [
+          "true if amount is less than 1, true if enough ItemStacks were found to add to the given amount"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "contains",
+      "comment": "Checks if the inventory contains at least the minimum amount specified of exactly matching ItemStacks. An ItemStack only counts if both the type and the amount of the stack match.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Contract",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "value",
+              "value": "null, _ -\u003e false"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/inventory/Inventory.html#containsAtLeast(org.bukkit.inventory.ItemStack,int)\"\u003e\u003ccode\u003econtainsAtLeast(ItemStack, int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - the ItemStack to match against",
+          "\u003ccode\u003eamount\u003c/code\u003e - how many identical stacks to check for"
+        ],
+        "return": [
+          "false if item is null, true if amount less than 1, true if amount of exactly matching ItemStacks were found"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "containsAtLeast",
+      "comment": "Checks if the inventory contains ItemStacks matching the given ItemStack whose amounts sum to at least the minimum amount specified.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Contract",
+            "type": "Class"
+          },
+          "values": [
+            {
+              "name": "value",
+              "value": "null, _ -\u003e false"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - the ItemStack to match against",
+          "\u003ccode\u003eamount\u003c/code\u003e - the minimum amount"
+        ],
+        "return": [
+          "false if item is null, true if amount less than 1, true if enough ItemStacks were found to add to the given amount"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.HashMap",
+        "parameters": [
+          {
+            "name": "java.lang.Integer",
+            "type": "Class"
+          },
+          {
+            "upperBounds": [
+              {
+                "name": "org.bukkit.inventory.ItemStack",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "all",
+      "comment": "Returns a HashMap with all slots and ItemStacks in the inventory with the given Material. The HashMap contains entries where, the key is the slot index, and the value is the ItemStack in that slot. If no matching ItemStack with the given Material is found, an empty map is returned.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ematerial\u003c/code\u003e - The material to look for"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if material is null"
+        ],
+        "return": [
+          "A HashMap containing the slot index, ItemStack pairs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.HashMap",
+        "parameters": [
+          {
+            "name": "java.lang.Integer",
+            "type": "Class"
+          },
+          {
+            "upperBounds": [
+              {
+                "name": "org.bukkit.inventory.ItemStack",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "all",
+      "comment": "Finds all slots in the inventory containing any ItemStacks with the given ItemStack. This will only match slots if both the type and the amount of the stack match The HashMap contains entries where, the key is the slot index, and the value is the ItemStack in that slot. If no matching ItemStack with the given Material is found, an empty map is returned.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - The ItemStack to match against"
+        ],
+        "return": [
+          "A map from slot indexes to item at index"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "first",
+      "comment": "Finds the first slot in the inventory containing an ItemStack with the given material",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ematerial\u003c/code\u003e - The material to look for"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if material is null"
+        ],
+        "return": [
+          "The slot index of the given Material or -1 if not found"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "first",
+      "comment": "Returns the first slot in the inventory containing an ItemStack with the given stack. This will only match a slot if both the type and the amount of the stack match",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - The ItemStack to match against"
+        ],
+        "return": [
+          "The slot index of the given ItemStack or -1 if not found"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "firstEmpty",
+      "comment": "Returns the first empty Slot.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "The first empty Slot found, or -1 if no empty slots."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isEmpty",
+      "comment": "Check whether or not this inventory is empty. An inventory is considered to be empty if there are no ItemStacks in any slot of this inventory.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "true if empty, false otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "remove",
+      "comment": "Removes all stacks in the inventory matching the given material.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ematerial\u003c/code\u003e - The material to remove"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if material is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "remove",
+      "comment": "Removes all stacks in the inventory matching the given stack. This will only match a slot if both the type and the amount of the stack match",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - The ItemStack to match against"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "clear",
+      "comment": "Clears out a particular slot in the index.",
+      "annotations": [],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index to empty."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "clear",
+      "comment": "Clears out the whole Inventory.",
+      "annotations": [],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes the inventory for all viewers.",
+      "annotations": [],
+      "tagMap": {
+        "return": [
+          "the number if viewers the inventory was closed for"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "org.bukkit.entity.HumanEntity",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getViewers",
+      "comment": "Gets a list of players viewing the inventory. Note that a player is considered to be viewing their own inventory and internal crafting screen even when said inventory is not open. They will normally be considered to be viewing their inventory even when they have a different inventory screen open, but it\u0027s possible for customized inventory screens to exclude the viewer\u0027s inventory, so this should never be assumed to be non-empty.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "A list of HumanEntities who are viewing this Inventory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.bukkit.event.inventory.InventoryType",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getType",
+      "comment": "Returns what type of inventory this is.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "The InventoryType representing the type of inventory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.bukkit.inventory.InventoryHolder",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getHolder",
+      "comment": "Gets the block or entity belonging to the open inventory",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "The holder of the inventory; null if it has no holder."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.bukkit.inventory.InventoryHolder",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getHolder",
+      "comment": "Gets the block or entity belonging to the open inventory",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euseSnapshot\u003c/code\u003e - Create a snapshot if the holder is a tile entity"
+        ],
+        "return": [
+          "The holder of the inventory; null if it has no holder."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ListIterator",
+        "parameters": [
+          {
+            "name": "org.bukkit.inventory.ItemStack",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "iterator",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html#iterator()\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eiterator\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html\" title\u003d\"class or interface in java.lang\" class\u003d\"external-link\"\u003eIterable\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/inventory/ItemStack.html\" title\u003d\"class in org.bukkit.inventory\"\u003eItemStack\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ListIterator",
+        "parameters": [
+          {
+            "name": "org.bukkit.inventory.ItemStack",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "iterator",
+      "comment": "Returns an iterator starting at the given index. If the index is positive, then the first call to next() will return the item at that index; if it is negative, the first call to previous will return the item at index (getSize() + index).",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.NotNull",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index."
+        ],
+        "return": [
+          "An iterator."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.bukkit.Location",
+        "type": "Class"
+      },
+      "isDefaultMethod": false,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLocation",
+      "comment": "Get the location of the block or entity which corresponds to this inventory. May return null if this container was custom created or is a virtual / subcontainer.",
+      "annotations": [
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        },
+        {
+          "type": {
+            "name": "org.jetbrains.annotations.Nullable",
+            "type": "Class"
+          }
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "location or null if not applicable."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.bukkit.inventory.Inventory",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/inventory/Inventory.html#getContents()\"\u003e\u003ccode\u003egetContents()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://papermc.io/javadocs/paper/1.17/org/bukkit/inventory/Inventory.html#getStorageContents()\"\u003e\u003ccode\u003egetStorageContents()\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}
