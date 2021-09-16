@@ -1,0 +1,56 @@
+{
+  "packageName": "java.awt",
+  "simpleName": "SecondaryLoop",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "enter",
+      "comment": "Blocks the execution of the current thread and enters a new secondary event loop on the event dispatch thread. This method can be called by any thread including the event dispatch thread. This thread will be blocked until the exit() method is called or the loop is terminated. A new secondary loop will be created on the event dispatch thread for dispatching events in either case. This method can only start one new event loop at a time per object. If a secondary event loop has already been started by this object and is currently still running, this method returns false to indicate that it was not successful in starting a new event loop. Otherwise, this method blocks the calling thread and later returns true when the new event loop is terminated. At such time, this object can again be used to start another new event loop.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e after termination of the secondary loop, if the secondary loop was started by this call, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "exit",
+      "comment": "Unblocks the execution of the thread blocked by the enter() method and exits the secondary loop. This method resumes the thread that called the enter() method and exits the secondary loop that was created when the enter() method was invoked. Note that if any other secondary loop is started while this loop is running, the blocked thread will not resume execution until the nested loop is terminated. If this secondary loop has not been started with the enter() method, or this secondary loop has already finished with the exit() method, this method returns false, otherwise true is returned.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this loop was previously started and has not yet been finished with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/SecondaryLoop.html#exit()\"\u003e\u003ccode\u003eexit()\u003c/code\u003e\u003c/a\u003e method, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.awt.SecondaryLoop",
+  "comment": "A helper interface to run the nested event loop. \n\u003cp\u003e Objects that implement this interface are created with the \u003ca href\u003d\"EventQueue.html#createSecondaryLoop()\"\u003e\u003ccode\u003eEventQueue.createSecondaryLoop()\u003c/code\u003e\u003c/a\u003e method. The interface provides two methods, \u003ca href\u003d\"#enter()\"\u003e\u003ccode\u003eenter()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#exit()\"\u003e\u003ccode\u003eexit()\u003c/code\u003e\u003c/a\u003e, which can be used to start and stop the event loop. \u003c/p\u003e\n\u003cp\u003e When the \u003ca href\u003d\"#enter()\"\u003e\u003ccode\u003eenter()\u003c/code\u003e\u003c/a\u003e method is called, the current thread is blocked until the loop is terminated by the \u003ca href\u003d\"#exit()\"\u003e\u003ccode\u003eexit()\u003c/code\u003e\u003c/a\u003e method. Also, a new event loop is started on the event dispatch thread, which may or may not be the current thread. The loop can be terminated on any thread by calling its \u003ca href\u003d\"#exit()\"\u003e\u003ccode\u003eexit()\u003c/code\u003e\u003c/a\u003e method. After the loop is terminated, the \u003ccode\u003eSecondaryLoop\u003c/code\u003e object can be reused to run a new nested event loop. \u003c/p\u003e\n\u003cp\u003e A typical use case of applying this interface is AWT and Swing modal dialogs. When a modal dialog is shown on the event dispatch thread, it enters a new secondary loop. Later, when the dialog is hidden or disposed, it exits the loop, and the thread continues its execution. \u003c/p\u003e\n\u003cp\u003e The following example illustrates a simple use case of secondary loops: \u003c/p\u003e\n\u003cpre\u003e   SecondaryLoop loop;\n\n   JButton jButton \u003d new JButton(\"Button\");\n   jButton.addActionListener(new ActionListener() {\n       \u003ccode\u003e@Override\u003c/code\u003e\n       public void actionPerformed(ActionEvent e) {\n           Toolkit tk \u003d Toolkit.getDefaultToolkit();\n           EventQueue eq \u003d tk.getSystemEventQueue();\n           loop \u003d eq.createSecondaryLoop();\n\n           // Spawn a new thread to do the work\n           Thread worker \u003d new WorkerThread();\n           worker.start();\n\n           // Enter the loop to block the current event\n           // handler, but leave UI responsive\n           if (!loop.enter()) {\n               // Report an error\n           }\n       }\n   });\n\n   class WorkerThread extends Thread {\n       \u003ccode\u003e@Override\u003c/code\u003e\n       public void run() {\n           // Perform calculations\n           doSomethingUseful();\n\n           // Exit the loop\n           loop.exit();\n       }\n   }\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Dialog.html#show()\"\u003e\u003ccode\u003eDialog.show()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/EventQueue.html#createSecondaryLoop()\"\u003e\u003ccode\u003eEventQueue.createSecondaryLoop()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/Toolkit.html#getSystemEventQueue()\"\u003e\u003ccode\u003eToolkit.getSystemEventQueue()\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.7"
+    ]
+  }
+}

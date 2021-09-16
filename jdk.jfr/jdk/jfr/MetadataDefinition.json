@@ -1,0 +1,19 @@
+{
+  "packageName": "jdk.jfr",
+  "simpleName": "MetadataDefinition",
+  "moduleName": "jdk.jfr",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "jdk.jfr.MetadataDefinition",
+  "comment": "Meta annotation for defining new types of event metadata. \n\u003cp\u003e In the following example, a transaction event is defined with two user-defined annotations, \u003ccode\u003e@Severity\u003c/code\u003e and \u003ccode\u003e@TransactionId\u003c/code\u003e. \u003c/p\u003e\n\u003cpre\u003e @MetadataDefinition\n @Label(\"Severity\")\n @Description(\"Value between 0 and 100 that indicates severity. 100 is most severe.\")\n @Retention(RetentionPolicy.RUNTIME)\n @Target({ElementType.TYPE})\n public @interface Severity {\n     int value() default 50;\n }\n\n @MetadataDefinition\n @Label(\"Transaction Id\")\n @Relational\n @Retention(RetentionPolicy.RUNTIME)\n @Target({ElementType.FIELD})\n public @interface TransactionId {\n }\n\n @Severity(80)\n @Label(\"Transaction Blocked\")\n class TransactionBlocked extends Event {\n     @TransactionId\n     @Label(\"Transaction\")\n     long transactionId1;\n\n     @TransactionId\n     @Label(\"Transaction Blocker\")\n     long transactionId2;\n }\n \u003c/pre\u003e Adding \n\u003ccode\u003e@MetadataDefinition\u003c/code\u003e to the declaration of \n\u003ccode\u003e@Severity\u003c/code\u003e and \n\u003ccode\u003e@TransactionId\u003c/code\u003e ensures the information is saved by Flight Recorder.\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

@@ -1,0 +1,647 @@
+{
+  "packageName": "com.sun.jdi",
+  "simpleName": "ThreadReference",
+  "moduleName": "jdk.jdi",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "com.sun.jdi.ObjectReference",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "THREAD_STATUS_UNKNOWN",
+      "comment": "Thread status is unknown",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ThreadReference.THREAD_STATUS_UNKNOWN\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "THREAD_STATUS_ZOMBIE",
+      "comment": "Thread has completed execution",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ThreadReference.THREAD_STATUS_ZOMBIE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "THREAD_STATUS_RUNNING",
+      "comment": "Thread is runnable",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ThreadReference.THREAD_STATUS_RUNNING\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "THREAD_STATUS_SLEEPING",
+      "comment": "Thread is sleeping - Thread.sleep() or JVM_Sleep() was called",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ThreadReference.THREAD_STATUS_SLEEPING\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "THREAD_STATUS_MONITOR",
+      "comment": "Thread is waiting on a java monitor",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ThreadReference.THREAD_STATUS_MONITOR\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "THREAD_STATUS_WAIT",
+      "comment": "Thread is waiting - Object.wait() or JVM_MonitorWait() was called",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ThreadReference.THREAD_STATUS_WAIT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "THREAD_STATUS_NOT_STARTED",
+      "comment": "Thread has not yet been started",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ThreadReference.THREAD_STATUS_NOT_STARTED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Returns the name of this thread.",
+      "tagMap": {
+        "return": [
+          "the string containing the thread name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "suspend",
+      "comment": "Suspends this thread. The thread can be resumed through resume() or resumed with other threads through VirtualMachine.resume(). Unlike Thread.suspend(), suspends of both the virtual machine and individual threads are counted. Before a thread will run again, it must be resumed (through resume() or resume()) the same number of times it has been suspended. Suspending single threads with this method has the same dangers as Thread.suspend(). If the suspended thread holds a monitor needed by another running thread, deadlock is possible in the target VM (at least until the suspended thread is resumed again). The suspended thread is guaranteed to remain suspended until resumed through one of the JDI resume methods mentioned above; the application in the target VM cannot resume the suspended thread through Thread.resume().",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resume",
+      "comment": "Resumes this thread. If this thread was not previously suspended through suspend() or through VirtualMachine.suspend(), or because of a SUSPEND_ALL or SUSPEND_EVENT_THREAD event, then invoking this method has no effect. Otherwise, the count of pending suspends on this thread is decremented. If it is decremented to 0, the thread will continue to execute. Note: the normal way to resume from an event related suspension is via EventSet.resume().",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "suspendCount",
+      "comment": "Returns the number of pending suspends for this thread. See suspend() for an explanation of counted suspends.",
+      "tagMap": {
+        "return": [
+          "pending suspend count as an integer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.InvalidTypeException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.ObjectReference",
+            "type": "Class"
+          },
+          "field": {
+            "name": "throwable"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "stop",
+      "comment": "Stops this thread with an asynchronous exception. A debugger thread in the target VM will stop this thread with the given Throwable object.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ethrowable\u003c/code\u003e - the asynchronous exception to throw."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidTypeException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidTypeException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ethrowable\u003c/code\u003e is not an instance of java.lang.Throwable in the target VM.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "interrupt",
+      "comment": "Interrupts this thread unless the thread has been suspended by the debugger.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#interrupt()\"\u003e\u003ccode\u003eThread.interrupt()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "status",
+      "comment": "Returns the thread\u0027s status. If the thread is not suspended the thread\u0027s current status is returned. If the thread is suspended, the thread\u0027s status before the suspension is returned (or THREAD_STATUS_UNKNOWN if this information is not available. isSuspended() can be used to determine if the thread has been suspended.",
+      "tagMap": {
+        "return": [
+          "one of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#THREAD_STATUS_UNKNOWN\"\u003e\u003ccode\u003eTHREAD_STATUS_UNKNOWN\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#THREAD_STATUS_ZOMBIE\"\u003e\u003ccode\u003eTHREAD_STATUS_ZOMBIE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#THREAD_STATUS_RUNNING\"\u003e\u003ccode\u003eTHREAD_STATUS_RUNNING\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#THREAD_STATUS_SLEEPING\"\u003e\u003ccode\u003eTHREAD_STATUS_SLEEPING\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#THREAD_STATUS_MONITOR\"\u003e\u003ccode\u003eTHREAD_STATUS_MONITOR\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#THREAD_STATUS_WAIT\"\u003e\u003ccode\u003eTHREAD_STATUS_WAIT\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#THREAD_STATUS_NOT_STARTED\"\u003e\u003ccode\u003eTHREAD_STATUS_NOT_STARTED\u003c/code\u003e\u003c/a\u003e,"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSuspended",
+      "comment": "Determines whether the thread has been suspended by the the debugger.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the thread is currently suspended; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isAtBreakpoint",
+      "comment": "Determines whether the thread is suspended at a breakpoint.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the thread is currently stopped at a breakpoint; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ThreadGroupReference",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "threadGroup",
+      "comment": "Returns this thread\u0027s thread group.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadGroupReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eThreadGroupReference\u003c/code\u003e\u003c/a\u003e that mirrors this thread\u0027s thread group in the target VM."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "frameCount",
+      "comment": "Returns the number of stack frames in the thread\u0027s current call stack. The thread must be suspended (normally through an interruption to the VM) to get this information, and it is only valid until the thread is resumed again.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the thread is not suspended in the target VM"
+        ],
+        "return": [
+          "an integer frame count"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.StackFrame",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "frames",
+      "comment": "Returns a List containing each StackFrame in the thread\u0027s current call stack. The thread must be suspended (normally through an interruption to the VM) to get this information, and it is only valid until the thread is resumed again.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the thread is not suspended in the target VM"
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/StackFrame.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eStackFrame\u003c/code\u003e\u003c/a\u003e with the current frame first followed by each caller\u0027s frame."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.StackFrame",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "frame",
+      "comment": "Returns the StackFrame at the given index in the thread\u0027s current call stack. Index 0 retrieves the current frame; higher indices retrieve caller frames. The thread must be suspended (normally through an interruption to the VM) to get this information, and it is only valid until the thread is resumed again.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the desired frame"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the thread is not suspended in the target VM",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the index is greater than or equal to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#frameCount()\"\u003e\u003ccode\u003eframeCount()\u003c/code\u003e\u003c/a\u003e or is negative."
+        ],
+        "return": [
+          "the requested \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/StackFrame.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eStackFrame\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.StackFrame",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "start"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "length"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "frames",
+      "comment": "Returns a List containing a range of StackFrame mirrors from the thread\u0027s current call stack. The thread must be suspended (normally through an interruption to the VM) to get this information, and it is only valid until the thread is resumed again.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estart\u003c/code\u003e - the index of the first frame to retrieve. Index 0 represents the current frame.",
+          "\u003ccode\u003elength\u003c/code\u003e - the number of frames to retrieve"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the thread is not suspended in the target VM",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified range is not within the range of stack frame indicies. That is, the exception is thrown if any of the following are true: \n\u003cpre\u003e    start \u0026lt; 0\n    start \u0026gt;\u003d \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#frameCount()\"\u003e\u003ccode\u003eframeCount()\u003c/code\u003e\u003c/a\u003e\n    length \u0026lt; 0\n    (start+length) \u0026gt; \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html#frameCount()\"\u003e\u003ccode\u003eframeCount()\u003c/code\u003e\u003c/a\u003e\u003c/pre\u003e"
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/StackFrame.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eStackFrame\u003c/code\u003e\u003c/a\u003e with the current frame first followed by each caller\u0027s frame."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.ObjectReference",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "ownedMonitors",
+      "comment": "Returns a List containing an ObjectReference for each monitor owned by the thread. A monitor is owned by a thread if it has been entered (via the synchronized statement or entry into a synchronized method) and has not been relinquished through Object.wait(). Not all target virtual machines support this operation. Use VirtualMachine.canGetOwnedMonitorInfo() to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the thread is not suspended in the target VM"
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e objects. The list has zero length if no monitors are owned by this thread."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.MonitorInfo",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "ownedMonitorsAndFrames",
+      "comment": "Returns a List containing a MonitorInfo object for each monitor owned by the thread. A monitor is owned by a thread if it has been entered (via the synchronized statement or entry into a synchronized method) and has not been relinquished through Object.wait(). Not all target virtual machines support this operation. Use VirtualMachine.canGetMonitorFrameInfo() to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the thread is not suspended in the target VM"
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/MonitorInfo.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMonitorInfo\u003c/code\u003e\u003c/a\u003e objects. The list has zero length if no monitors are owned by this thread."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ObjectReference",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "currentContendedMonitor",
+      "comment": "Returns an ObjectReference for the monitor, if any, for which this thread is currently waiting. The thread can be waiting for a monitor through entry into a synchronized method, the synchronized statement, or Object.wait(). The status() method can be used to differentiate between the first two cases and the third. Not all target virtual machines support this operation. Use VirtualMachine.canGetCurrentContendedMonitor() to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the thread is not suspended in the target VM"
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e corresponding to the contended monitor, or null if it is not waiting for a monitor."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.StackFrame",
+            "type": "Class"
+          },
+          "field": {
+            "name": "frame"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "popFrames",
+      "comment": "Pop stack frames. All frames up to and including the frame are popped off the stack. The frame previous to the parameter frame will become the current frame. After this operation, this thread will be suspended at the invoke instruction of the target method that created frame. The frame\u0027s method can be reentered with a step into the instruction. The operand stack is restored, however, any changes to the arguments that occurred in the called method, remain. For example, if the method foo:     void foo(int x) {\n        System.out.println(\"Foo: \" + x);\n        x \u003d 4;\n        System.out.println(\"pop here\");\n    }\n was called with foo(7) and foo is popped at the second println and resumed, it will print: Foo: 4. Locks acquired by a popped frame are released when it is popped. This applies to synchronized methods that are popped, and to any synchronized blocks within them. Finally blocks are not executed. No aspect of state, other than this thread\u0027s execution point and locks, is affected by this call. Specifically, the values of fields are unchanged, as are external resources such as I/O streams. Additionally, the target program might be placed in a state that is impossible with normal program flow; for example, order of lock acquisition might be perturbed. Thus the target program may proceed differently than the user would expect. The specified thread must be suspended. All StackFrame objects for this thread are invalidated. No events are generated by this method. None of the frames through and including the frame for the caller of frame may be native. Not all target virtual machines support this operation. Use VirtualMachine.canPopFrames() to determine if the operation is supported.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eframe\u003c/code\u003e - Stack frame to pop. \n\u003ccode\u003eframe\u003c/code\u003e is on this thread\u0027s call stack."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canPopFrames()\"\u003e\u003ccode\u003eVirtualMachine.canPopFrames()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if this thread is not suspended.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eframe\u003c/code\u003e is not on this thread\u0027s call stack.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/NativeMethodException.html\" title\u003d\"class in com.sun.jdi\"\u003eNativeMethodException\u003c/a\u003e\u003c/code\u003e - if one of the frames that would be popped is that of a native method or if the frame previous to \n\u003ci\u003eframe\u003c/i\u003e is native.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eframe\u003c/code\u003e has become invalid. Once this thread is resumed, the stack frame is no longer valid. This exception is also thrown if there are no more frames.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.InvalidTypeException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.jdi.ClassNotLoadedException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.Value",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "forceEarlyReturn",
+      "comment": "Force a method to return before it reaches a return statement. The method which will return early is referred to as the called method. The called method is the current method (as defined by the Frames section in the Java Virtual Machine Specification) for the specified thread at the time this method is called. The thread must be suspended. The return occurs when execution of Java programming language code is resumed on this thread. Between the call to this method and resumption of thread execution, the state of the stack is undefined. No further instructions are executed in the called method. Specifically, finally blocks are not executed. Note: this can cause inconsistent states in the application. A lock acquired by calling the called method (if it is a synchronized method) and locks acquired by entering synchronized blocks within the called method are released. Note: this does not apply to native locks or java.util.concurrent.locks locks. Events, such as MethodExit, are generated as they would be in a normal return. The called method must be a non-native Java programming language method. Forcing return on a thread with only one frame on the stack causes the thread to exit when resumed. The value argument is the value that the method is to return. If the return type of the method is void, then value must be a VoidValue. Object values must be assignment compatible with the method return type (This implies that the method return type must be loaded through the enclosing class\u0027s class loader). Primitive values must be either assignment compatible with the method return type or must be convertible to the variable type without loss of information. See JLS section 5.2 for more information on assignment compatibility. Not all target virtual machines support this operation. Use VirtualMachine.canForceEarlyReturn() to determine if the operation is supported.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evalue\u003c/code\u003e - the value the method is to return."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetInstanceInfo()\"\u003e\u003ccode\u003ecanForceEarlyReturn()\u003c/code\u003e\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if this thread is not suspended.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/NativeMethodException.html\" title\u003d\"class in com.sun.jdi\"\u003eNativeMethodException\u003c/a\u003e\u003c/code\u003e - if the frame to be returned from is that of a native method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if there are no frames.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidTypeException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidTypeException\u003c/a\u003e\u003c/code\u003e - if the value\u0027s type does not match the method\u0027s return type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotLoadedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotLoadedException\u003c/a\u003e\u003c/code\u003e - if the method\u0027s return type has not yet been loaded through the appropriate class loader.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "com.sun.jdi.ThreadReference",
+  "comment": "A thread object from the target VM. A ThreadReference is an \n\u003ca href\u003d\"ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e with additional access to thread-specific information from the target VM.",
+  "tagMap": {
+    "since": [
+      "1.3"
+    ]
+  }
+}

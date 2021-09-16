@@ -1,0 +1,131 @@
+{
+  "packageName": "org.w3c.dom.traversal",
+  "simpleName": "NodeIterator",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRoot",
+      "comment": "The root node of the NodeIterator, as specified when it was created.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWhatToShow",
+      "comment": "This attribute determines which node types are presented via the NodeIterator. The available set of constants is defined in the NodeFilter interface. Nodes not accepted by whatToShow will be skipped, but their children may still be considered. Note that this skip takes precedence over the filter, if any.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.traversal.NodeFilter",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFilter",
+      "comment": "The NodeFilter used to screen nodes.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getExpandEntityReferences",
+      "comment": "The value of this flag determines whether the children of entity reference nodes are visible to the NodeIterator. If false, these children and their descendants will be rejected. Note that this rejection takes precedence over whatToShow and the filter. Also note that this is currently the only situation where NodeIterators may reject a complete subtree rather than skipping individual nodes. To produce a view of the document that has entity references expanded and does not expose the entity reference node itself, use the whatToShow flags to hide the entity reference node and set expandEntityReferences to true when creating the NodeIterator. To produce a view of the document that has entity reference nodes but no entity expansion, use the whatToShow flags to show the entity reference node and set expandEntityReferences to false.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "nextNode",
+      "comment": "Returns the next node in the set and advances the position of the NodeIterator in the set. After a NodeIterator is created, the first call to nextNode() returns the first node in the set.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - INVALID_STATE_ERR: Raised if this method is called after the \n\u003ccode\u003edetach\u003c/code\u003e method was invoked."
+        ],
+        "return": [
+          "The next \n\u003ccode\u003eNode\u003c/code\u003e in the set being iterated over, or \n\u003ccode\u003enull\u003c/code\u003e if there are no more members in that set."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "previousNode",
+      "comment": "Returns the previous node in the set and moves the position of the NodeIterator backwards in the set.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - INVALID_STATE_ERR: Raised if this method is called after the \n\u003ccode\u003edetach\u003c/code\u003e method was invoked."
+        ],
+        "return": [
+          "The previous \n\u003ccode\u003eNode\u003c/code\u003e in the set being iterated over, or \n\u003ccode\u003enull\u003c/code\u003e if there are no more members in that set."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "detach",
+      "comment": "Detaches the NodeIterator from the set which it iterated over, releasing any computational resources and placing the NodeIterator in the INVALID state. After detach has been invoked, calls to nextNode or previousNode will raise the exception INVALID_STATE_ERR.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.w3c.dom.traversal.NodeIterator",
+  "comment": "\u003ccode\u003eNodeIterators\u003c/code\u003e are used to step through a set of nodes, e.g. the set of nodes in a \n\u003ccode\u003eNodeList\u003c/code\u003e, the document subtree governed by a particular \n\u003ccode\u003eNode\u003c/code\u003e, the results of a query, or any other set of nodes. The set of nodes to be iterated is determined by the implementation of the \n\u003ccode\u003eNodeIterator\u003c/code\u003e. DOM Level 2 specifies a single \n\u003ccode\u003eNodeIterator\u003c/code\u003e implementation for document-order traversal of a document subtree. Instances of these \n\u003ccode\u003eNodeIterators\u003c/code\u003e are created by calling \n\u003ccode\u003eDocumentTraversal\u003c/code\u003e\n\u003ccode\u003e.createNodeIterator()\u003c/code\u003e. \n\u003cp\u003eSee also the \u003ca href\u003d\"http://www.w3.org/TR/2000/REC-DOM-Level-2-Traversal-Range-20001113\"\u003eDocument Object Model (DOM) Level 2 Traversal and Range Specification\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9, DOM Level 2"
+    ]
+  }
+}

@@ -1,0 +1,744 @@
+{
+  "packageName": "javax.lang.model.util",
+  "simpleName": "Types",
+  "moduleName": "java.compiler",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.Element",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asElement",
+      "comment": "Returns the element corresponding to a type. The type may be a DeclaredType or TypeVariable. Returns null if the type is not one with a corresponding element.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the type to map to an element"
+        ],
+        "return": [
+          "the element corresponding to the given type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t1"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSameType",
+      "comment": "Tests whether two TypeMirror objects represent the same type. Caveat: if either of the arguments to this method represents a wildcard, this method will return false. As a consequence, a wildcard is not the same type as itself. This might be surprising at first, but makes sense once you consider that an example like this must be rejected by the compiler:    List\u003c?\u003e list \u003d new ArrayList\u003cObject\u003e();\n   list.add(list.get(0));\n Since annotations are only meta-data associated with a type, the set of annotations on either argument is not taken into account when computing whether or not two TypeMirror objects are the same type. In particular, two TypeMirror objects can have different annotations and still be considered the same.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003et1\u003c/code\u003e - the first type",
+          "\u003ccode\u003et2\u003c/code\u003e - the second type"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if the two types are the same"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t1"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSubtype",
+      "comment": "Tests whether one type is a subtype of another. Any type is considered to be a subtype of itself.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-4.html#jls-4.10\"\u003e4.10 Subtyping\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et1\u003c/code\u003e - the first type",
+          "\u003ccode\u003et2\u003c/code\u003e - the second type"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if given a type for an executable, package, or module"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if the first type is a subtype of the second"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t1"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isAssignable",
+      "comment": "Tests whether one type is assignable to another.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-5.html#jls-5.2\"\u003e5.2 Assignment Contexts\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et1\u003c/code\u003e - the first type",
+          "\u003ccode\u003et2\u003c/code\u003e - the second type"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if given a type for an executable, package, or module"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if the first type is assignable to the second"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t1"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "contains",
+      "comment": "Tests whether one type argument contains another.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-4.html#jls-4.5.1\"\u003e4.5.1 Type Arguments of Parameterized Types\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et1\u003c/code\u003e - the first type",
+          "\u003ccode\u003et2\u003c/code\u003e - the second type"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if given a type for an executable, package, or module"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if the first type contains the second"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.ExecutableType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "m1"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.ExecutableType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "m2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSubsignature",
+      "comment": "Tests whether the signature of one method is a subsignature of another.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-8.html#jls-8.4.2\"\u003e8.4.2 Method Signature\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003em1\u003c/code\u003e - the first method",
+          "\u003ccode\u003em2\u003c/code\u003e - the second method"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if the first signature is a subsignature of the second"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.lang.model.type.TypeMirror",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "directSupertypes",
+      "comment": "Returns the direct supertypes of a type. The interface types, if any, will appear last in the list. For an interface type with no direct super-interfaces, a type mirror representing java.lang.Object is returned.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-4.html#jls-4.10\"\u003e4.10 Subtyping\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the type being examined"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if given a type for an executable, package, or module"
+        ],
+        "return": [
+          "the direct supertypes, or an empty list if none"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.TypeMirror",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "erasure",
+      "comment": "Returns the erasure of a type.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-4.html#jls-4.6\"\u003e4.6 Type Erasure\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the type to be erased"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if given a type for a package or module"
+        ],
+        "return": [
+          "the erasure of a type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.element.TypeElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.PrimitiveType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "p"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "boxedClass",
+      "comment": "Returns the class of a boxed value of the primitive type argument. That is, boxing conversion is applied.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-5.html#jls-5.1.7\"\u003e5.1.7 Boxing Conversion\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ep\u003c/code\u003e - the primitive type to be converted"
+        ],
+        "return": [
+          "the class of a boxed value of the primitive type argument"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.PrimitiveType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "unboxedType",
+      "comment": "Returns the type (a primitive type) of unboxed values of a given type. That is, unboxing conversion is applied.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-5.html#jls-5.1.8\"\u003e5.1.8 Unboxing Conversion\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the type to be unboxed"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given type has no unboxing conversion"
+        ],
+        "return": [
+          "the type of an unboxed value of type \n\u003ccode\u003et\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.TypeMirror",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "capture",
+      "comment": "Applies capture conversion to a type.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-5.html#jls-5.1.10\"\u003e5.1.10 Capture Conversion\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the type to be converted"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if given a type for an executable, package, or module"
+        ],
+        "return": [
+          "the result of applying capture conversion"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.PrimitiveType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeKind",
+            "type": "Class"
+          },
+          "field": {
+            "name": "kind"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPrimitiveType",
+      "comment": "Returns a primitive type.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ekind\u003c/code\u003e - the kind of primitive type to return"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekind\u003c/code\u003e is not a primitive kind"
+        ],
+        "return": [
+          "a primitive type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.NullType",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNullType",
+      "comment": "Returns the null type. This is the type of null.",
+      "tagMap": {
+        "return": [
+          "the null type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.NoType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeKind",
+            "type": "Class"
+          },
+          "field": {
+            "name": "kind"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNoType",
+      "comment": "Returns a pseudo-type used where no actual type is appropriate. The kind of type to return may be either VOID or NONE. To get the pseudo-type corresponding to a package or module, call asType() on the element modeling the package or module. Names can be converted to elements for packages or modules using Elements.getPackageElement(CharSequence) or Elements.getModuleElement(CharSequence), respectively.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ekind\u003c/code\u003e - the kind of type to return"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekind\u003c/code\u003e is not valid"
+        ],
+        "return": [
+          "a pseudo-type of kind \n\u003ccode\u003eVOID\u003c/code\u003e or \n\u003ccode\u003eNONE\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.ArrayType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "componentType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getArrayType",
+      "comment": "Returns an array type with the specified component type.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecomponentType\u003c/code\u003e - the component type"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the component type is not valid for an array"
+        ],
+        "return": [
+          "an array type with the specified component type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.WildcardType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "extendsBound"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "superBound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWildcardType",
+      "comment": "Returns a new wildcard type. Either of the wildcard\u0027s bounds may be specified, or neither, but not both.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eextendsBound\u003c/code\u003e - the extends (upper) bound, or \n\u003ccode\u003enull\u003c/code\u003e if none",
+          "\u003ccode\u003esuperBound\u003c/code\u003e - the super (lower) bound, or \n\u003ccode\u003enull\u003c/code\u003e if none"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if bounds are not valid"
+        ],
+        "return": [
+          "a new wildcard type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.DeclaredType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.element.TypeElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "typeElem"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "typeArgs"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDeclaredType",
+      "comment": "Returns the type corresponding to a type element and actual type arguments. Given the type element for Set and the type mirror for String, for example, this method may be used to get the parameterized type Set\u003cString\u003e. The number of type arguments must either equal the number of the type element\u0027s formal type parameters, or must be zero. If zero, and if the type element is generic, then the type element\u0027s raw type is returned. If a parameterized type is being returned, its type element must not be contained within a generic outer class. The parameterized type Outer\u003cString\u003e.Inner\u003cNumber\u003e, for example, may be constructed by first using this method to get the type Outer\u003cString\u003e, and then invoking getDeclaredType(DeclaredType, TypeElement, TypeMirror...).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etypeElem\u003c/code\u003e - the type element",
+          "\u003ccode\u003etypeArgs\u003c/code\u003e - the actual type arguments"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if too many or too few type arguments are given, or if an inappropriate type argument or type element is provided"
+        ],
+        "return": [
+          "the type corresponding to a type element and actual type arguments"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.DeclaredType",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.DeclaredType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "containing"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.element.TypeElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "typeElem"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.type.TypeMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "typeArgs"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDeclaredType",
+      "comment": "Returns the type corresponding to a type element and actual type arguments, given a containing type of which it is a member. The parameterized type Outer\u003cString\u003e.Inner\u003cNumber\u003e, for example, may be constructed by first using getDeclaredType(TypeElement, TypeMirror...) to get the type Outer\u003cString\u003e, and then invoking this method. If the containing type is a parameterized type, the number of type arguments must equal the number of typeElem\u0027s formal type parameters. If it is not parameterized or if it is null, this method is equivalent to getDeclaredType(typeElem, typeArgs).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econtaining\u003c/code\u003e - the containing type, or \n\u003ccode\u003enull\u003c/code\u003e if none",
+          "\u003ccode\u003etypeElem\u003c/code\u003e - the type element",
+          "\u003ccode\u003etypeArgs\u003c/code\u003e - the actual type arguments"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if too many or too few type arguments are given, or if an inappropriate type argument, type element, or containing type is provided"
+        ],
+        "return": [
+          "the type corresponding to the type element and actual type arguments, contained within the given type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.type.TypeMirror",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.type.DeclaredType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "containing"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "field": {
+            "name": "element"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asMemberOf",
+      "comment": "Returns the type of an element when that element is viewed as a member of, or otherwise directly contained by, a given type. For example, when viewed as a member of the parameterized type Set\u003cString\u003e, the Set.add method is an ExecutableType whose parameter is of type String.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econtaining\u003c/code\u003e - the containing type",
+          "\u003ccode\u003eelement\u003c/code\u003e - the element"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the element is not a valid one for the given type"
+        ],
+        "return": [
+          "the type of the element as viewed from the containing type"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.lang.model.util.Types",
+  "comment": "Utility methods for operating on types. \n\u003cp\u003e\u003cb\u003eCompatibility Note:\u003c/b\u003e Methods may be added to this interface in future releases of the platform.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/ProcessingEnvironment.html#getTypeUtils()\"\u003e\u003ccode\u003eProcessingEnvironment.getTypeUtils()\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

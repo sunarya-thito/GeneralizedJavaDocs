@@ -1,0 +1,356 @@
+{
+  "packageName": "java.time.temporal",
+  "simpleName": "Temporal",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.time.temporal.TemporalAccessor",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSupported",
+      "comment": "Checks if the specified unit is supported. This checks if the specified unit can be added to, or subtracted from, this date-time. If false, then calling the plus(long, TemporalUnit) and minus methods will throw an exception.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must check and handle all units defined in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoUnit.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoUnit\u003c/code\u003e\u003c/a\u003e. If the unit is supported, then true must be returned, otherwise false must be returned. \n\u003cp\u003e If the field is not a \u003ccode\u003eChronoUnit\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalUnit.isSupportedBy(Temporal)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the argument. \u003c/p\u003e\n\u003cp\u003e Implementations must ensure that no observable state is altered when this read-only method is invoked.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eunit\u003c/code\u003e - the unit to check, null returns false"
+        ],
+        "return": [
+          "true if the unit can be added/subtracted, false if not"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.Temporal",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalAdjuster",
+            "type": "Class"
+          },
+          "field": {
+            "name": "adjuster"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "with",
+      "comment": "Returns an adjusted object of the same type as this object with the adjustment made. This adjusts this date-time according to the rules of the specified adjuster. A simple adjuster might simply set the one of the fields, such as the year field. A more complex adjuster might set the date to the last day of the month. A selection of common adjustments is provided in TemporalAdjusters. These include finding the \"last day of the month\" and \"next Wednesday\". The adjuster is responsible for handling special cases, such as the varying lengths of month and leap years. Some example code indicating how and why this method is used:   date \u003d date.with(Month.JULY);        // most key classes implement TemporalAdjuster\n  date \u003d date.with(lastDayOfMonth());  // static import from Adjusters\n  date \u003d date.with(next(WEDNESDAY));   // static import from Adjusters and DayOfWeek",
+      "tagMap": {
+        "implSpec": [
+          "\u003cp\u003e Implementations must not alter either this object or the specified temporal object. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable implementations. \u003c/p\u003e\n\u003cp\u003e The default implementation must behave equivalent to this code: \u003c/p\u003e\n\u003cpre\u003e  return adjuster.adjustInto(this);\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eadjuster\u003c/code\u003e - the adjuster to use, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if unable to make the adjustment",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "an object of the same type with the specified adjustment made, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.Temporal",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalField",
+            "type": "Class"
+          },
+          "field": {
+            "name": "field"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newValue"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "with",
+      "comment": "Returns an object of the same type as this object with the specified field altered. This returns a new object based on this one with the value for the specified field changed. For example, on a LocalDate, this could be used to set the year, month or day-of-month. The returned object will have the same observable type as this object. In some cases, changing a field is not fully defined. For example, if the target object is a date representing the 31st January, then changing the month to February would be unclear. In cases like this, the field is responsible for resolving the result. Typically it will choose the previous valid date, which would be the last valid day of February in this example.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must check and handle all fields defined in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoField.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoField\u003c/code\u003e\u003c/a\u003e. If the field is supported, then the adjustment must be performed. If unsupported, then an \n\u003ccode\u003eUnsupportedTemporalTypeException\u003c/code\u003e must be thrown. \n\u003cp\u003e If the field is not a \u003ccode\u003eChronoField\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalField.adjustInto(Temporal, long)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the first argument. \u003c/p\u003e\n\u003cp\u003e Implementations must not alter this object. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable implementations.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efield\u003c/code\u003e - the field to set in the result, not null",
+          "\u003ccode\u003enewValue\u003c/code\u003e - the new value of the field in the result"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the field cannot be set",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the field is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "an object of the same type with the specified field set, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.Temporal",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalAmount",
+            "type": "Class"
+          },
+          "field": {
+            "name": "amount"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "plus",
+      "comment": "Returns an object of the same type as this object with an amount added. This adjusts this temporal, adding according to the rules of the specified amount. The amount is typically a Period but may be any other type implementing the TemporalAmount interface, such as Duration. Some example code indicating how and why this method is used:   date \u003d date.plus(period);                // add a Period instance\n  date \u003d date.plus(duration);              // add a Duration instance\n  date \u003d date.plus(workingDays(6));        // example user-written workingDays method\n Note that calling plus followed by minus is not guaranteed to return the same date-time.",
+      "tagMap": {
+        "implSpec": [
+          "\u003cp\u003e Implementations must not alter either this object or the specified temporal object. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable implementations. \u003c/p\u003e\n\u003cp\u003e The default implementation must behave equivalent to this code: \u003c/p\u003e\n\u003cpre\u003e  return amount.addTo(this);\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eamount\u003c/code\u003e - the amount to add, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the addition cannot be made",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "an object of the same type with the specified adjustment made, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.Temporal",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "amountToAdd"
+          }
+        },
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "plus",
+      "comment": "Returns an object of the same type as this object with the specified period added. This method returns a new object based on this one with the specified period added. For example, on a LocalDate, this could be used to add a number of years, months or days. The returned object will have the same observable type as this object. In some cases, changing a field is not fully defined. For example, if the target object is a date representing the 31st January, then adding one month would be unclear. In cases like this, the field is responsible for resolving the result. Typically it will choose the previous valid date, which would be the last valid day of February in this example.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must check and handle all units defined in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoUnit.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoUnit\u003c/code\u003e\u003c/a\u003e. If the unit is supported, then the addition must be performed. If unsupported, then an \n\u003ccode\u003eUnsupportedTemporalTypeException\u003c/code\u003e must be thrown. \n\u003cp\u003e If the unit is not a \u003ccode\u003eChronoUnit\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalUnit.addTo(Temporal, long)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the first argument. \u003c/p\u003e\n\u003cp\u003e Implementations must not alter this object. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable implementations.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eamountToAdd\u003c/code\u003e - the amount of the specified unit to add, may be negative",
+          "\u003ccode\u003eunit\u003c/code\u003e - the unit of the amount to add, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the unit cannot be added",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the unit is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "an object of the same type with the specified period added, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.Temporal",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalAmount",
+            "type": "Class"
+          },
+          "field": {
+            "name": "amount"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "minus",
+      "comment": "Returns an object of the same type as this object with an amount subtracted. This adjusts this temporal, subtracting according to the rules of the specified amount. The amount is typically a Period but may be any other type implementing the TemporalAmount interface, such as Duration. Some example code indicating how and why this method is used:   date \u003d date.minus(period);               // subtract a Period instance\n  date \u003d date.minus(duration);             // subtract a Duration instance\n  date \u003d date.minus(workingDays(6));       // example user-written workingDays method\n Note that calling plus followed by minus is not guaranteed to return the same date-time.",
+      "tagMap": {
+        "implSpec": [
+          "\u003cp\u003e Implementations must not alter either this object or the specified temporal object. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable implementations. \u003c/p\u003e\n\u003cp\u003e The default implementation must behave equivalent to this code: \u003c/p\u003e\n\u003cpre\u003e  return amount.subtractFrom(this);\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eamount\u003c/code\u003e - the amount to subtract, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the subtraction cannot be made",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "an object of the same type with the specified adjustment made, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.Temporal",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "amountToSubtract"
+          }
+        },
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "minus",
+      "comment": "Returns an object of the same type as this object with the specified period subtracted. This method returns a new object based on this one with the specified period subtracted. For example, on a LocalDate, this could be used to subtract a number of years, months or days. The returned object will have the same observable type as this object. In some cases, changing a field is not fully defined. For example, if the target object is a date representing the 31st March, then subtracting one month would be unclear. In cases like this, the field is responsible for resolving the result. Typically it will choose the previous valid date, which would be the last valid day of February in this example.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must behave in a manor equivalent to the default method behavior. \n\u003cp\u003e Implementations must not alter this object. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable implementations. \u003c/p\u003e\n\u003cp\u003e The default implementation must behave equivalent to this code: \u003c/p\u003e\n\u003cpre\u003e  return (amountToSubtract \u003d\u003d Long.MIN_VALUE ?\n      plus(Long.MAX_VALUE, unit).plus(1, unit) : plus(-amountToSubtract, unit));\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eamountToSubtract\u003c/code\u003e - the amount of the specified unit to subtract, may be negative",
+          "\u003ccode\u003eunit\u003c/code\u003e - the unit of the amount to subtract, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the unit cannot be subtracted",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the unit is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "an object of the same type with the specified period subtracted, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.Temporal",
+            "type": "Class"
+          },
+          "field": {
+            "name": "endExclusive"
+          }
+        },
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "until",
+      "comment": "Calculates the amount of time until another temporal in terms of the specified unit. This calculates the amount of time between two temporal objects in terms of a single TemporalUnit. The start and end points are this and the specified temporal. The end point is converted to be of the same type as the start point if different. The result will be negative if the end is before the start. For example, the amount in hours between two temporal objects can be calculated using startTime.until(endTime, HOURS). The calculation returns a whole number, representing the number of complete units between the two temporals. For example, the amount in hours between the times 11:30 and 13:29 will only be one hour as it is one minute short of two hours. There are two equivalent ways of using this method. The first is to invoke this method directly. The second is to use TemporalUnit.between(Temporal, Temporal):    // these two lines are equivalent\n   temporal \u003d start.until(end, unit);\n   temporal \u003d unit.between(start, end);\n The choice should be made based on which makes the code more readable. For example, this method allows the number of days between two dates to be calculated:   long daysBetween \u003d start.until(end, DAYS);\n  // or alternatively\n  long daysBetween \u003d DAYS.between(start, end);",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must begin by checking to ensure that the input temporal object is of the same observable type as the implementation. They must then perform the calculation for all instances of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoUnit.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoUnit\u003c/code\u003e\u003c/a\u003e. An \n\u003ccode\u003eUnsupportedTemporalTypeException\u003c/code\u003e must be thrown for \n\u003ccode\u003eChronoUnit\u003c/code\u003e instances that are unsupported. \n\u003cp\u003e If the unit is not a \u003ccode\u003eChronoUnit\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalUnit.between(Temporal, Temporal)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the first argument and the converted input temporal as the second argument. \u003c/p\u003e\n\u003cp\u003e In summary, implementations must behave in a manner equivalent to this pseudo-code: \u003c/p\u003e\n\u003cpre\u003e  // convert the end temporal to the same type as this class\n  if (unit instanceof ChronoUnit) {\n    // if unit is supported, then calculate and return result\n    // else throw UnsupportedTemporalTypeException for unsupported units\n  }\n  return unit.between(this, convertedEndTemporal);\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Note that the unit\u0027s \u003ccode\u003ebetween\u003c/code\u003e method must only be invoked if the two temporal objects have exactly the same type evaluated by \u003ccode\u003egetClass()\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e Implementations must ensure that no observable state is altered when this read-only method is invoked.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eendExclusive\u003c/code\u003e - the end temporal, exclusive, converted to be of the same type as this object, not null",
+          "\u003ccode\u003eunit\u003c/code\u003e - the unit to measure the amount in, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the amount cannot be calculated, or the end temporal cannot be converted to the same type as this temporal",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the unit is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "the amount of time between this temporal object and the specified one in terms of the unit; positive if the specified object is later than this one, negative if it is earlier than this one"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.time.temporal.Temporal",
+  "comment": "Framework-level interface defining read-write access to a temporal object, such as a date, time, offset or some combination of these. \n\u003cp\u003e This is the base interface type for date, time and offset objects that are complete enough to be manipulated using plus and minus. It is implemented by those classes that can provide and manipulate information as \u003ca href\u003d\"TemporalField.html\" title\u003d\"interface in java.time.temporal\"\u003efields\u003c/a\u003e or \u003ca href\u003d\"TemporalQuery.html\" title\u003d\"interface in java.time.temporal\"\u003equeries\u003c/a\u003e. See \u003ca href\u003d\"TemporalAccessor.html\" title\u003d\"interface in java.time.temporal\"\u003e\u003ccode\u003eTemporalAccessor\u003c/code\u003e\u003c/a\u003e for the read-only version of this interface. \u003c/p\u003e\n\u003cp\u003e Most date and time information can be represented as a number. These are modeled using \u003ccode\u003eTemporalField\u003c/code\u003e with the number held using a \u003ccode\u003elong\u003c/code\u003e to handle large values. Year, month and day-of-month are simple examples of fields, but they also include instant and offsets. See \u003ca href\u003d\"ChronoField.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoField\u003c/code\u003e\u003c/a\u003e for the standard set of fields. \u003c/p\u003e\n\u003cp\u003e Two pieces of date/time information cannot be represented by numbers, the \u003ca href\u003d\"../chrono/Chronology.html\" title\u003d\"interface in java.time.chrono\"\u003echronology\u003c/a\u003e and the \u003ca href\u003d\"../ZoneId.html\" title\u003d\"class in java.time\"\u003etime-zone\u003c/a\u003e. These can be accessed via \u003ca href\u003d\"TemporalAccessor.html#query(java.time.temporal.TemporalQuery)\"\u003e\u003ccode\u003equeries\u003c/code\u003e\u003c/a\u003e using the static methods defined on \u003ca href\u003d\"TemporalQuery.html\" title\u003d\"interface in java.time.temporal\"\u003e\u003ccode\u003eTemporalQuery\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e This interface is a framework-level interface that should not be widely used in application code. Instead, applications should create and pass around instances of concrete types, such as \u003ccode\u003eLocalDate\u003c/code\u003e. There are many reasons for this, part of which is that implementations of this interface may be in calendar systems other than ISO. See \u003ca href\u003d\"../chrono/ChronoLocalDate.html\" title\u003d\"interface in java.time.chrono\"\u003e\u003ccode\u003eChronoLocalDate\u003c/code\u003e\u003c/a\u003e for a fuller discussion of the issues. \u003c/p\u003e\n\u003ch2\u003eWhen to implement\u003c/h2\u003e \n\u003cp\u003e A class should implement this interface if it meets three criteria: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eit provides access to date/time/offset information, as per \u003ccode\u003eTemporalAccessor\u003c/code\u003e \u003c/li\u003e\n \u003cli\u003ethe set of fields are contiguous from the largest to the smallest \u003c/li\u003e\n \u003cli\u003ethe set of fields are complete, such that no other field is needed to define the valid range of values for the fields that are represented \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Four examples make this clear: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003ccode\u003eLocalDate\u003c/code\u003e implements this interface as it represents a set of fields that are contiguous from days to forever and require no external information to determine the validity of each date. It is therefore able to implement plus/minus correctly. \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eLocalTime\u003c/code\u003e implements this interface as it represents a set of fields that are contiguous from nanos to within days and require no external information to determine validity. It is able to implement plus/minus correctly, by wrapping around the day. \u003c/li\u003e\n \u003cli\u003e\u003ccode\u003eMonthDay\u003c/code\u003e, the combination of month-of-year and day-of-month, does not implement this interface. While the combination is contiguous, from days to months within years, the combination does not have sufficient information to define the valid range of values for day-of-month. As such, it is unable to implement plus/minus correctly. \u003c/li\u003e\n \u003cli\u003eThe combination day-of-week and day-of-month (\"Friday the 13th\") should not implement this interface. It does not represent a contiguous set of fields, as days to weeks overlaps days to months. \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "This interface places no restrictions on the mutability of implementations, however immutability is strongly recommended. All implementations must be \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Comparable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eComparable\u003c/code\u003e\u003c/a\u003e."
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

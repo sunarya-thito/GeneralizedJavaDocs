@@ -1,0 +1,615 @@
+{
+  "packageName": "java.net",
+  "simpleName": "URLStreamHandler",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.net.URLConnection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "openConnection",
+      "comment": "Opens a connection to the object referenced by the URL argument. This method should be overridden by a subclass. If for the handler\u0027s protocol (such as HTTP or JAR), there exists a public, specialized URLConnection subclass belonging to one of the following packages or one of their subpackages: java.lang, java.io, java.util, java.net, the connection returned will be of that subclass. For example, for HTTP an HttpURLConnection will be returned, and for JAR a JarURLConnection will be returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - the URL that this connects to."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs while opening the connection."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eURLConnection\u003c/code\u003e object for the \n\u003ccode\u003eURL\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.URLConnection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.Proxy",
+            "type": "Class"
+          },
+          "field": {
+            "name": "p"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "openConnection",
+      "comment": "Same as openConnection(URL), except that the connection will be made through the specified proxy; Protocol handlers that do not support proxying will ignore the proxy parameter and make a normal connection. Calling this method preempts the system\u0027s default ProxySelector settings.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method first checks that the given \n\u003ccode\u003eURL\u003c/code\u003e and \n\u003ccode\u003eProxy\u003c/code\u003e are not null, then throws \n\u003ccode\u003e UnsupportedOperationException\u003c/code\u003e. Subclasses should override this method with an appropriate implementation."
+        ],
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - the URL that this connects to.",
+          "\u003ccode\u003ep\u003c/code\u003e - the proxy through which the connection will be made. If direct connection is desired, Proxy.NO_PROXY should be specified."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs while opening the connection.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either u or p is null, or p has the wrong type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the subclass that implements the protocol doesn\u0027t support this method."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eURLConnection\u003c/code\u003e object for the \n\u003ccode\u003eURL\u003c/code\u003e."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "spec"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "start"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "limit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "parseURL",
+      "comment": "Parses the string representation of a URL into a URL object. If there is any inherited context, then it has already been copied into the URL argument. The parseURL method of URLStreamHandler parses the string representation as if it were an http specification. Most URL protocol families have a similar parsing. A stream protocol handler for a protocol that has a different syntax must override this routine.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - the \n\u003ccode\u003eURL\u003c/code\u003e to receive the result of parsing the spec.",
+          "\u003ccode\u003espec\u003c/code\u003e - the \n\u003ccode\u003eString\u003c/code\u003e representing the URL that must be parsed.",
+          "\u003ccode\u003estart\u003c/code\u003e - the character index at which to begin parsing. This is just past the \u0027\n\u003ccode\u003e:\u003c/code\u003e\u0027 (if there is one) that specifies the determination of the protocol name.",
+          "\u003ccode\u003elimit\u003c/code\u003e - the character position to stop parsing at. This is the end of the string or the position of the \"\n\u003ccode\u003e#\u003c/code\u003e\" character, if present. All information after the sharp sign indicates an anchor."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getDefaultPort",
+      "comment": "Returns the default port for a URL parsed by this handler. This method is meant to be overridden by handlers with default port numbers.",
+      "tagMap": {
+        "return": [
+          "the default port for a \n\u003ccode\u003eURL\u003c/code\u003e parsed by this handler."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u1"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "equals",
+      "comment": "Provides the default equals calculation. May be overridden by handlers for other protocols that have different requirements for equals(). This method requires that none of its arguments is null. This is guaranteed by the fact that it is only called by java.net.URL class.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu1\u003c/code\u003e - a URL object",
+          "\u003ccode\u003eu2\u003c/code\u003e - a URL object"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the two urls are considered equal, i.e. they refer to the same fragment in the same file."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "hashCode",
+      "comment": "Provides the default hash calculation. May be overridden by handlers for other protocols that have different requirements for hashCode calculation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - a URL object"
+        ],
+        "return": [
+          "an \n\u003ccode\u003eint\u003c/code\u003e suitable for hash table indexing"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u1"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "sameFile",
+      "comment": "Compare two urls to see whether they refer to the same file, i.e., having the same protocol, host, port, and path. This method requires that none of its arguments is null. This is guaranteed by the fact that it is only called indirectly by java.net.URL class.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu1\u003c/code\u003e - a URL object",
+          "\u003ccode\u003eu2\u003c/code\u003e - a URL object"
+        ],
+        "return": [
+          "true if u1 and u2 refer to the same file"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.InetAddress",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getHostAddress",
+      "comment": "Get the IP address of our host. An empty host field or a DNS failure will result in a null return.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - a URL object"
+        ],
+        "return": [
+          "an \n\u003ccode\u003eInetAddress\u003c/code\u003e representing the host IP address."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u1"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u2"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "hostsEqual",
+      "comment": "Compares the host components of two URLs.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu1\u003c/code\u003e - the URL of the first host to compare",
+          "\u003ccode\u003eu2\u003c/code\u003e - the URL of the second host to compare"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if they are equal, \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "toExternalForm",
+      "comment": "Converts a URL of a specific protocol to a String.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - the URL."
+        ],
+        "return": [
+          "a string representation of the \n\u003ccode\u003eURL\u003c/code\u003e argument."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "protocol"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "host"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "port"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "authority"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "userInfo"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "path"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "query"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ref"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "setURL",
+      "comment": "Sets the fields of the URL argument to the indicated values. Only classes derived from URLStreamHandler are able to use this method to set the values of the URL fields.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - the URL to modify.",
+          "\u003ccode\u003eprotocol\u003c/code\u003e - the protocol name.",
+          "\u003ccode\u003ehost\u003c/code\u003e - the remote host value for the URL.",
+          "\u003ccode\u003eport\u003c/code\u003e - the port on the remote machine.",
+          "\u003ccode\u003eauthority\u003c/code\u003e - the authority part for the URL.",
+          "\u003ccode\u003euserInfo\u003c/code\u003e - the userInfo part of the URL.",
+          "\u003ccode\u003epath\u003c/code\u003e - the path component of the URL.",
+          "\u003ccode\u003equery\u003c/code\u003e - the query part for the URL.",
+          "\u003ccode\u003eref\u003c/code\u003e - the reference."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the protocol handler of the URL is different from this one"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "u"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "protocol"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "host"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "port"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ref"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "setURL",
+      "comment": "Sets the fields of the URL argument to the indicated values. Only classes derived from URLStreamHandler are able to use this method to set the values of the URL fields.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eu\u003c/code\u003e - the URL to modify.",
+          "\u003ccode\u003eprotocol\u003c/code\u003e - the protocol name. This value is ignored since 1.2.",
+          "\u003ccode\u003ehost\u003c/code\u003e - the remote host value for the URL.",
+          "\u003ccode\u003eport\u003c/code\u003e - the port on the remote machine.",
+          "\u003ccode\u003efile\u003c/code\u003e - the file.",
+          "\u003ccode\u003eref\u003c/code\u003e - the reference."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the protocol handler of the URL is different from this one"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructor for subclasses to call.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.net.URLStreamHandler",
+  "comment": "The abstract class \n\u003ccode\u003eURLStreamHandler\u003c/code\u003e is the common superclass for all stream protocol handlers. A stream protocol handler knows how to make a connection for a particular protocol type, such as \n\u003ccode\u003ehttp\u003c/code\u003e or \n\u003ccode\u003ehttps\u003c/code\u003e. \n\u003cp\u003e In most cases, an instance of a \u003ccode\u003eURLStreamHandler\u003c/code\u003e subclass is not created directly by an application. Rather, the first time a protocol name is encountered when constructing a \u003ccode\u003eURL\u003c/code\u003e, the appropriate stream protocol handler is automatically loaded.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html#%3Cinit%3E(java.lang.String,java.lang.String,int,java.lang.String)\"\u003e\u003ccode\u003eURL(java.lang.String, java.lang.String, int, java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.0"
+    ]
+  }
+}

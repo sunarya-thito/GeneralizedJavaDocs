@@ -1,0 +1,378 @@
+{
+  "packageName": "java.lang.management",
+  "simpleName": "MemoryPoolMXBean",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.management.PlatformManagedObject",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Returns the name representing this memory pool.",
+      "tagMap": {
+        "return": [
+          "the name of this memory pool."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.MemoryType",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getType",
+      "comment": "Returns the type of this memory pool. MBeanServer access: The mapped type of MemoryType is String and the value is the name of the MemoryType.",
+      "tagMap": {
+        "return": [
+          "the type of this memory pool."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.MemoryUsage",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getUsage",
+      "comment": "Returns an estimate of the memory usage of this memory pool. This method returns null if this memory pool is not valid (i.e. no longer exists). This method requests the Java virtual machine to make a best-effort estimate of the current memory usage of this memory pool. For some memory pools, this method may be an expensive operation that requires some computation to determine the estimate. An implementation should document when this is the case. This method is designed for use in monitoring system memory usage and detecting low memory condition. MBeanServer access: The mapped type of MemoryUsage is CompositeData with attributes as specified in MemoryUsage.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryUsage.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eMemoryUsage\u003c/code\u003e\u003c/a\u003e object; or \n\u003ccode\u003enull\u003c/code\u003e if this pool not valid."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.MemoryUsage",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPeakUsage",
+      "comment": "Returns the peak memory usage of this memory pool since the Java virtual machine was started or since the peak was reset. This method returns null if this memory pool is not valid (i.e. no longer exists). MBeanServer access: The mapped type of MemoryUsage is CompositeData with attributes as specified in MemoryUsage.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryUsage.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eMemoryUsage\u003c/code\u003e\u003c/a\u003e object representing the peak memory usage; or \n\u003ccode\u003enull\u003c/code\u003e if this pool is not valid."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resetPeakUsage",
+      "comment": "Resets the peak memory usage statistic of this memory pool to the current memory usage.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"control\")."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isValid",
+      "comment": "Tests if this memory pool is valid in the Java virtual machine. A memory pool becomes invalid once the Java virtual machine removes it from the memory system.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the memory pool is valid in the running Java virtual machine; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMemoryManagerNames",
+      "comment": "Returns the name of memory managers that manages this memory pool. Each memory pool will be managed by at least one memory manager.",
+      "tagMap": {
+        "return": [
+          "an array of \n\u003ccode\u003eString\u003c/code\u003e objects, each is the name of a memory manager managing this memory pool."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getUsageThreshold",
+      "comment": "Returns the usage threshold value of this memory pool in bytes. Each memory pool has a platform-dependent default threshold value. The current usage threshold can be changed via the setUsageThreshold method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#isUsageThresholdSupported()\"\u003e\u003ccode\u003eisUsageThresholdSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a usage threshold."
+        ],
+        "return": [
+          "the usage threshold value of this memory pool in bytes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "threshold"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setUsageThreshold",
+      "comment": "Sets the threshold of this memory pool to the given threshold value if this memory pool supports the usage threshold. The usage threshold crossing checking is enabled in this memory pool if the threshold is set to a positive value. The usage threshold crossing checking is disabled if it is set to zero.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#isUsageThresholdSupported()\"\u003e\u003ccode\u003eisUsageThresholdSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#UsageThreshold\"\u003eUsage threshold\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ethreshold\u003c/code\u003e - the new threshold value in bytes. Must be non-negative."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ethreshold\u003c/code\u003e is negative or greater than the maximum amount of memory for this memory pool if defined.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a usage threshold.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"control\")."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isUsageThresholdExceeded",
+      "comment": "Tests if the memory usage of this memory pool reaches or exceeds its usage threshold value.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a usage threshold."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the memory usage of this memory pool reaches or exceeds the threshold value; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getUsageThresholdCount",
+      "comment": "Returns the number of times that the memory usage has crossed the usage threshold.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a usage threshold."
+        ],
+        "return": [
+          "the number of times that the memory usage has crossed its usage threshold value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isUsageThresholdSupported",
+      "comment": "Tests if this memory pool supports usage threshold.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this memory pool supports usage threshold; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCollectionUsageThreshold",
+      "comment": "Returns the collection usage threshold value of this memory pool in bytes. The default value is zero. The collection usage threshold can be changed via the setCollectionUsageThreshold method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#isCollectionUsageThresholdSupported()\"\u003e\u003ccode\u003eisCollectionUsageThresholdSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a collection usage threshold."
+        ],
+        "return": [
+          "the collection usage threshold of this memory pool in bytes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "threshold"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setCollectionUsageThreshold",
+      "comment": "Sets the collection usage threshold of this memory pool to the given threshold value. When this threshold is set to positive, the Java virtual machine will check the memory usage at its best appropriate time after it has expended effort in recycling unused objects in this memory pool. The collection usage threshold crossing checking is enabled in this memory pool if the threshold is set to a positive value. The collection usage threshold crossing checking is disabled if it is set to zero.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#isCollectionUsageThresholdSupported()\"\u003e\u003ccode\u003eisCollectionUsageThresholdSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#CollectionThreshold\"\u003eCollection usage threshold\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ethreshold\u003c/code\u003e - the new collection usage threshold value in bytes. Must be non-negative."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ethreshold\u003c/code\u003e is negative or greater than the maximum amount of memory for this memory pool if defined.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a collection usage threshold.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"control\")."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isCollectionUsageThresholdExceeded",
+      "comment": "Tests if the memory usage of this memory pool after the most recent collection on which the Java virtual machine has expended effort has reached or exceeded its collection usage threshold. This method does not request the Java virtual machine to perform any garbage collection other than its normal automatic memory management.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a usage threshold."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the memory usage of this memory pool reaches or exceeds the collection usage threshold value in the most recent collection; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCollectionUsageThresholdCount",
+      "comment": "Returns the number of times that the Java virtual machine has detected that the memory usage has reached or exceeded the collection usage threshold.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#isCollectionUsageThresholdSupported()\"\u003e\u003ccode\u003eisCollectionUsageThresholdSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory pool does not support a collection usage threshold."
+        ],
+        "return": [
+          "the number of times that the memory usage has reached or exceeded the collection usage threshold."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.MemoryUsage",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCollectionUsage",
+      "comment": "Returns the memory usage after the Java virtual machine most recently expended effort in recycling unused objects in this memory pool. This method does not request the Java virtual machine to perform any garbage collection other than its normal automatic memory management. This method returns null if the Java virtual machine does not support this method. MBeanServer access: The mapped type of MemoryUsage is CompositeData with attributes as specified in MemoryUsage.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/MemoryUsage.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eMemoryUsage\u003c/code\u003e\u003c/a\u003e representing the memory usage of this memory pool after the Java virtual machine most recently expended effort in recycling unused objects; \n\u003ccode\u003enull\u003c/code\u003e if this method is not supported."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isCollectionUsageThresholdSupported",
+      "comment": "Tests if this memory pool supports a collection usage threshold.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this memory pool supports the collection usage threshold; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.lang.management.MemoryPoolMXBean",
+  "comment": "The management interface for a memory pool. A memory pool represents the memory resource managed by the Java virtual machine and is managed by one or more \n\u003ca href\u003d\"MemoryManagerMXBean.html\" title\u003d\"interface in java.lang.management\"\u003e\u003ccode\u003ememory managers\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e A Java virtual machine has one or more instances of the implementation class of this interface. An instance implementing this interface is an \u003ca href\u003d\"ManagementFactory.html#MXBean\"\u003eMXBean\u003c/a\u003e that can be obtained by calling the \u003ca href\u003d\"ManagementFactory.html#getMemoryPoolMXBeans()\"\u003e\u003ccode\u003eManagementFactory.getMemoryPoolMXBeans()\u003c/code\u003e\u003c/a\u003e method or from the \u003ca href\u003d\"ManagementFactory.html#getPlatformMBeanServer()\"\u003e\u003ccode\u003eplatform MBeanServer\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eObjectName\u003c/code\u003e for uniquely identifying the MXBean for a memory pool within an \u003ccode\u003eMBeanServer\u003c/code\u003e is: \u003c/p\u003e\n\u003cblockquote\u003e \n \u003ca href\u003d\"ManagementFactory.html#MEMORY_POOL_MXBEAN_DOMAIN_TYPE\"\u003e\u003ccode\u003ejava.lang:type\u003dMemoryPool\u003c/code\u003e\u003c/a\u003e\n \u003ccode\u003e,name\u003d\u003c/code\u003e\n \u003ci\u003epool\u0027s name\u003c/i\u003e \n\u003c/blockquote\u003e It can be obtained by calling the \n\u003ca href\u003d\"PlatformManagedObject.html#getObjectName()\"\u003e\u003ccode\u003ePlatformManagedObject.getObjectName()\u003c/code\u003e\u003c/a\u003e method. \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003eMemory Type\u003c/h2\u003e \n\u003cp\u003eThe Java virtual machine has a heap for object allocation and also maintains non-heap memory for the method area and the Java virtual machine execution. The Java virtual machine can have one or more memory pools. Each memory pool represents a memory area of one of the following types: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003ca href\u003d\"MemoryType.html#HEAP\"\u003e\u003ccode\u003eheap\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e \n \u003cli\u003e\u003ca href\u003d\"MemoryType.html#NON_HEAP\"\u003e\u003ccode\u003enon-heap\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003eMemory Usage Monitoring\u003c/h2\u003e A memory pool has the following attributes: \n\u003cul\u003e \n \u003cli\u003e\u003ca href\u003d\"#Usage\"\u003eMemory usage\u003c/a\u003e\u003c/li\u003e \n \u003cli\u003e\u003ca href\u003d\"#PeakUsage\"\u003ePeak memory usage\u003c/a\u003e\u003c/li\u003e \n \u003cli\u003e\u003ca href\u003d\"#UsageThreshold\"\u003eUsage Threshold\u003c/a\u003e\u003c/li\u003e \n \u003cli\u003e\u003ca href\u003d\"#CollectionThreshold\"\u003eCollection Usage Threshold\u003c/a\u003e (only supported by some \u003cem\u003egarbage-collected\u003c/em\u003e memory pools)\u003c/li\u003e \n\u003c/ul\u003e \n\u003ch3\u003e\u003ca id\u003d\"Usage\"\u003e1. Memory Usage\u003c/a\u003e\u003c/h3\u003e The \n\u003ca href\u003d\"#getUsage()\"\u003e\u003ccode\u003egetUsage()\u003c/code\u003e\u003c/a\u003e method provides an estimate of the current usage of a memory pool. For a garbage-collected memory pool, the amount of used memory includes the memory occupied by all objects in the pool including both \n\u003cem\u003ereachable\u003c/em\u003e and \n\u003cem\u003eunreachable\u003c/em\u003e objects. \n\u003cp\u003eIn general, this method is a lightweight operation for getting an approximate memory usage. For some memory pools, for example, when objects are not packed contiguously, this method may be an expensive operation that requires some computation to determine the current memory usage. An implementation should document when this is the case. \u003c/p\u003e\n\u003ch3\u003e\u003ca id\u003d\"PeakUsage\"\u003e2. Peak Memory Usage\u003c/a\u003e\u003c/h3\u003e The Java virtual machine maintains the peak memory usage of a memory pool since the virtual machine was started or the peak was reset. The peak memory usage is returned by the \n\u003ca href\u003d\"#getPeakUsage()\"\u003e\u003ccode\u003egetPeakUsage()\u003c/code\u003e\u003c/a\u003e method and reset by calling the \n\u003ca href\u003d\"#resetPeakUsage()\"\u003e\u003ccode\u003eresetPeakUsage()\u003c/code\u003e\u003c/a\u003e method. \n\u003ch3\u003e\u003ca id\u003d\"UsageThreshold\"\u003e3. Usage Threshold\u003c/a\u003e\u003c/h3\u003e Each memory pool has a manageable attribute called the \n\u003ci\u003eusage threshold\u003c/i\u003e which has a default value supplied by the Java virtual machine. The default value is platform-dependent. The usage threshold can be set via the \n\u003ca href\u003d\"#setUsageThreshold(long)\"\u003e\u003ccode\u003esetUsageThreshold\u003c/code\u003e\u003c/a\u003e method. If the threshold is set to a positive value, the usage threshold crossing checking is enabled in this memory pool. If the usage threshold is set to zero, usage threshold crossing checking on this memory pool is disabled. The \n\u003ca href\u003d\"#isUsageThresholdSupported()\"\u003e\u003ccode\u003eisUsageThresholdSupported()\u003c/code\u003e\u003c/a\u003e method can be used to determine if this functionality is supported. \n\u003cp\u003e A Java virtual machine performs usage threshold crossing checking on a memory pool basis at its best appropriate time, typically, at garbage collection time. Each memory pool maintains a \u003ca href\u003d\"#getUsageThresholdCount()\"\u003e\u003ccode\u003eusage threshold count\u003c/code\u003e\u003c/a\u003e that will get incremented every time when the Java virtual machine detects that the memory pool usage is crossing the threshold. \u003c/p\u003e\n\u003cp\u003e This manageable usage threshold attribute is designed for monitoring the increasing trend of memory usage with low overhead. Usage threshold may not be appropriate for some memory pools. For example, a generational garbage collector, a common garbage collection algorithm used in many Java virtual machine implementations, manages two or more generations segregating objects by age. Most of the objects are allocated in the \u003cem\u003eyoungest generation\u003c/em\u003e (say a nursery memory pool). The nursery memory pool is designed to be filled up and collecting the nursery memory pool will free most of its memory space since it is expected to contain mostly short-lived objects and mostly are unreachable at garbage collection time. In this case, it is more appropriate for the nursery memory pool not to support a usage threshold. In addition, if the cost of an object allocation in one memory pool is very low (for example, just atomic pointer exchange), the Java virtual machine would probably not support the usage threshold for that memory pool since the overhead in comparing the usage with the threshold is higher than the cost of object allocation. \u003c/p\u003e\n\u003cp\u003e The memory usage of the system can be monitored using \u003ca href\u003d\"#Polling\"\u003epolling\u003c/a\u003e or \u003ca href\u003d\"#ThresholdNotification\"\u003ethreshold notification\u003c/a\u003e mechanisms. \u003c/p\u003e\n\u003col type\u003d\"a\"\u003e \n \u003cli\u003e\u003ca id\u003d\"Polling\"\u003e\u003cb\u003ePolling\u003c/b\u003e\u003c/a\u003e \u003cp\u003e An application can continuously monitor its memory usage by calling either the \u003ca href\u003d\"#getUsage()\"\u003e\u003ccode\u003egetUsage()\u003c/code\u003e\u003c/a\u003e method for all memory pools or the \u003ca href\u003d\"#isUsageThresholdExceeded()\"\u003e\u003ccode\u003eisUsageThresholdExceeded()\u003c/code\u003e\u003c/a\u003e method for those memory pools that support a usage threshold. Below is example code that has a thread dedicated for task distribution and processing. At every interval, it will determine if it should receive and process new tasks based on its memory usage. If the memory usage exceeds its usage threshold, it will redistribute all outstanding tasks to other VMs and stop receiving new tasks until the memory usage returns below its usage threshold. \u003c/p\u003e\u003cpre\u003e       // Assume the usage threshold is supported for this pool.\n       // Set the threshold to myThreshold above which no new tasks\n       // should be taken.\n       pool.setUsageThreshold(myThreshold);\n       ....\n\n       boolean lowMemory \u003d false;\n       while (true) {\n          if (pool.isUsageThresholdExceeded()) {\n              // potential low memory, so redistribute tasks to other VMs\n              lowMemory \u003d true;\n              redistributeTasks();\n              // stop receiving new tasks\n              stopReceivingTasks();\n          } else {\n              if (lowMemory) {\n                  // resume receiving tasks\n                  lowMemory \u003d false;\n                  resumeReceivingTasks();\n              }\n              // processing outstanding task\n              ...\n          }\n          // sleep for sometime\n          try {\n              Thread.sleep(sometime);\n          } catch (InterruptedException e) {\n              ...\n          }\n       }\n       \u003c/pre\u003e \n  \u003chr\u003e The above example does not differentiate the case where the memory usage has temporarily dropped below the usage threshold from the case where the memory usage remains above the threshold between two iterations. The usage threshold count returned by the \u003ca href\u003d\"#getUsageThresholdCount()\"\u003e\u003ccode\u003egetUsageThresholdCount()\u003c/code\u003e\u003c/a\u003e method can be used to determine if the memory usage has returned below the threshold between two polls. \u003cp\u003e\u003c/p\u003e\u003cp\u003e Below shows another example that takes some action if a memory pool is under low memory and ignores the memory usage changes during the action processing time. \u003c/p\u003e\u003cpre\u003e       // Assume the usage threshold is supported for this pool.\n       // Set the threshold to myThreshold which determines if\n       // the application will take some action under low memory condition.\n       pool.setUsageThreshold(myThreshold);\n\n       int prevCrossingCount \u003d 0;\n       while (true) {\n           // A busy loop to detect when the memory usage\n           // has exceeded the threshold.\n           while (!pool.isUsageThresholdExceeded() ||\n                  pool.getUsageThresholdCount() \u003d\u003d prevCrossingCount) {\n               try {\n                   Thread.sleep(sometime)\n               } catch (InterruptException e) {\n                   ....\n               }\n           }\n\n           // Do some processing such as check for memory usage\n           // and issue a warning\n           ....\n\n           // Gets the current threshold count. The busy loop will then\n           // ignore any crossing of threshold happens during the processing.\n           prevCrossingCount \u003d pool.getUsageThresholdCount();\n       }\n       \u003c/pre\u003e\n  \u003chr\u003e \u003cp\u003e\u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e\u003ca id\u003d\"ThresholdNotification\"\u003e\u003cb\u003eUsage Threshold Notifications\u003c/b\u003e\u003c/a\u003e \u003cp\u003e Usage threshold notification will be emitted by \u003ca href\u003d\"MemoryMXBean.html\" title\u003d\"interface in java.lang.management\"\u003e\u003ccode\u003eMemoryMXBean\u003c/code\u003e\u003c/a\u003e. When the Java virtual machine detects that the memory usage of a memory pool has reached or exceeded the usage threshold the virtual machine will trigger the \u003ccode\u003eMemoryMXBean\u003c/code\u003e to emit an \u003ca href\u003d\"MemoryNotificationInfo.html#MEMORY_THRESHOLD_EXCEEDED\"\u003e\u003ccode\u003eusage threshold exceeded notification\u003c/code\u003e\u003c/a\u003e. Another usage threshold exceeded notification will not be generated until the usage has fallen below the threshold and then exceeded it again. \u003c/p\u003e\u003cp\u003e Below is an example code implementing the same logic as the first example above but using the usage threshold notification mechanism to detect low memory conditions instead of polling. In this example code, upon receiving notification, the notification listener notifies another thread to perform the actual action such as to redistribute outstanding tasks, stop receiving tasks, or resume receiving tasks. The \u003ccode\u003ehandleNotification\u003c/code\u003e method should be designed to do a very minimal amount of work and return without delay to avoid causing delay in delivering subsequent notifications. Time-consuming actions should be performed by a separate thread. The notification listener may be invoked by multiple threads concurrently; so the tasks performed by the listener should be properly synchronized. \u003c/p\u003e\u003cpre\u003e       class MyListener implements javax.management.NotificationListener {\n            public void handleNotification(Notification notification, Object handback)  {\n                String notifType \u003d notification.getType();\n                if (notifType.equals(MemoryNotificationInfo.MEMORY_THRESHOLD_EXCEEDED)) {\n                    // potential low memory, notify another thread\n                    // to redistribute outstanding tasks to other VMs\n                    // and stop receiving new tasks.\n                    lowMemory \u003d true;\n                    notifyAnotherThread(lowMemory);\n                }\n            }\n       }\n\n       // Register MyListener with MemoryMXBean\n       MemoryMXBean mbean \u003d ManagementFactory.getMemoryMXBean();\n       NotificationEmitter emitter \u003d (NotificationEmitter) mbean;\n       MyListener listener \u003d new MyListener();\n       emitter.addNotificationListener(listener, null, null);\n\n       // Assume this pool supports a usage threshold.\n       // Set the threshold to myThreshold above which no new tasks\n       // should be taken.\n       pool.setUsageThreshold(myThreshold);\n\n       // Usage threshold detection is enabled and notification will be\n       // handled by MyListener.  Continue for other processing.\n       ....\n\n       \u003c/pre\u003e \n  \u003chr\u003e \u003cp\u003e\u003c/p\u003e\u003cp\u003e There is no guarantee about when the \u003ccode\u003eMemoryMXBean\u003c/code\u003e will emit a threshold notification and when the notification will be delivered. When a notification listener is invoked, the memory usage of the memory pool may have crossed the usage threshold more than once. The \u003ca href\u003d\"MemoryNotificationInfo.html#getCount()\"\u003e\u003ccode\u003eMemoryNotificationInfo.getCount()\u003c/code\u003e\u003c/a\u003e method returns the number of times that the memory usage has crossed the usage threshold at the point in time when the notification was constructed. It can be compared with the current usage threshold count returned by the \u003ca href\u003d\"#getUsageThresholdCount()\"\u003e\u003ccode\u003egetUsageThresholdCount()\u003c/code\u003e\u003c/a\u003e method to determine if such situation has occurred. \u003c/p\u003e\u003c/li\u003e \n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch3\u003e\u003ca id\u003d\"CollectionThreshold\"\u003e4. Collection Usage Threshold\u003c/a\u003e\u003c/h3\u003e Collection usage threshold is a manageable attribute only applicable to some garbage-collected memory pools. After a Java virtual machine has expended effort in reclaiming memory space by recycling unused objects in a memory pool at garbage collection time, some number of bytes in the memory pools that are garbaged collected will still be in use. The collection usage threshold allows a value to be set for this number of bytes such that if the threshold is exceeded, a \n\u003ca href\u003d\"MemoryNotificationInfo.html#MEMORY_THRESHOLD_EXCEEDED\"\u003e\u003ccode\u003ecollection usage threshold exceeded notification\u003c/code\u003e\u003c/a\u003e will be emitted by the \n\u003ca href\u003d\"MemoryMXBean.html\" title\u003d\"interface in java.lang.management\"\u003e\u003ccode\u003eMemoryMXBean\u003c/code\u003e\u003c/a\u003e. In addition, the \n\u003ca href\u003d\"#getCollectionUsageThresholdCount()\"\u003e\u003ccode\u003ecollection usage threshold count\u003c/code\u003e\u003c/a\u003e will then be incremented. \n\u003cp\u003e The \u003ca href\u003d\"#isCollectionUsageThresholdSupported()\"\u003e\u003ccode\u003eisCollectionUsageThresholdSupported()\u003c/code\u003e\u003c/a\u003e method can be used to determine if this functionality is supported. \u003c/p\u003e\n\u003cp\u003e A Java virtual machine performs collection usage threshold checking on a memory pool basis. This checking is enabled if the collection usage threshold is set to a positive value. If the collection usage threshold is set to zero, this checking is disabled on this memory pool. Default value is zero. The Java virtual machine performs the collection usage threshold checking at garbage collection time. \u003c/p\u003e\n\u003cp\u003e Some garbage-collected memory pools may choose not to support the collection usage threshold. For example, a memory pool is only managed by a continuous concurrent garbage collector. Objects can be allocated in this memory pool by some thread while the unused objects are reclaimed by the concurrent garbage collector simultaneously. Unless there is a well-defined garbage collection time which is the best appropriate time to check the memory usage, the collection usage threshold should not be supported. \u003c/p\u003e\n\u003cp\u003e The collection usage threshold is designed for monitoring the memory usage after the Java virtual machine has expended effort in reclaiming memory space. The collection usage could also be monitored by the polling and threshold notification mechanism described above for the \u003ca href\u003d\"#UsageThreshold\"\u003eusage threshold\u003c/a\u003e in a similar fashion.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ManagementFactory.html#getPlatformMXBeans(java.lang.Class)\"\u003e\u003ccode\u003eManagementFactory.getPlatformMXBeans(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/package-summary.html\"\u003e JMX Specification.\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/package-summary.html#examples\"\u003e Ways to Access MXBeans\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

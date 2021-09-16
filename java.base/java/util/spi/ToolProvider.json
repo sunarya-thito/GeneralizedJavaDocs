@@ -1,0 +1,194 @@
+{
+  "packageName": "java.util.spi",
+  "simpleName": "ToolProvider",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Returns the name of this tool provider.",
+      "tagMap": {
+        "apiNote": [
+          "It is recommended that the name be the same as would be used on the command line: for example, \"javac\", \"jar\", \"jlink\"."
+        ],
+        "return": [
+          "the name of this tool provider"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.PrintWriter",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        },
+        {
+          "type": {
+            "name": "java.io.PrintWriter",
+            "type": "Class"
+          },
+          "field": {
+            "name": "err"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "args"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "run",
+      "comment": "Runs an instance of the tool, returning zero for a successful run. Any non-zero return value indicates a tool-specific error during the execution. Two streams should be provided, for \"expected\" output, and for any error messages. If it is not necessary to distinguish the output, the same stream may be used for both.",
+      "tagMap": {
+        "apiNote": [
+          "The interpretation of the arguments will be specific to each tool."
+        ],
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - a stream to which \"expected\" output should be written",
+          "\u003ccode\u003eerr\u003c/code\u003e - a stream to which any error messages should be written",
+          "\u003ccode\u003eargs\u003c/code\u003e - the command-line arguments for the tool"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if any of the arguments are \n\u003ccode\u003enull\u003c/code\u003e, or if there are any \n\u003ccode\u003enull\u003c/code\u003e values in the \n\u003ccode\u003eargs\u003c/code\u003e array"
+        ],
+        "return": [
+          "the result of executing the tool. A return value of 0 means the tool did not encounter any errors; any other value indicates that at least one error occurred during execution."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.PrintStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        },
+        {
+          "type": {
+            "name": "java.io.PrintStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "err"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "args"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "run",
+      "comment": "Runs an instance of the tool, returning zero for a successful run. Any non-zero return value indicates a tool-specific error during the execution. Two streams should be provided, for \"expected\" output, and for any error messages. If it is not necessary to distinguish the output, the same stream may be used for both.",
+      "tagMap": {
+        "apiNote": [
+          "The interpretation of the arguments will be specific to each tool."
+        ],
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - a stream to which \"expected\" output should be written",
+          "\u003ccode\u003eerr\u003c/code\u003e - a stream to which any error messages should be written",
+          "\u003ccode\u003eargs\u003c/code\u003e - the command-line arguments for the tool"
+        ],
+        "implNote": [
+          "This implementation wraps the \n\u003ccode\u003eout\u003c/code\u003e and \n\u003ccode\u003eerr\u003c/code\u003e streams within \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PrintWriter.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003ePrintWriter\u003c/code\u003e\u003c/a\u003es, and then calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/spi/ToolProvider.html#run(java.io.PrintWriter,java.io.PrintWriter,java.lang.String...)\"\u003e\u003ccode\u003erun(PrintWriter, PrintWriter, String[])\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if any of the arguments are \n\u003ccode\u003enull\u003c/code\u003e, or if there are any \n\u003ccode\u003enull\u003c/code\u003e values in the \n\u003ccode\u003eargs\u003c/code\u003e array"
+        ],
+        "return": [
+          "the result of executing the tool. A return value of 0 means the tool did not encounter any errors; any other value indicates that at least one error occurred during execution."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.util.spi.ToolProvider",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "findFirst",
+      "comment": "Returns the first instance of a ToolProvider with the given name, as loaded by ServiceLoader using the system class loader.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the desired tool provider"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "an \n\u003ccode\u003eOptional\u0026lt;ToolProvider\u0026gt;\u003c/code\u003e of the first instance found"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.spi.ToolProvider",
+  "comment": "An interface for command-line tools to provide a way to be invoked without necessarily starting a new VM. \n\u003cp\u003eTool providers are normally located using the service-provider loading facility defined by \u003ca href\u003d\"../ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e. Each provider must provide a name, and a method to run an instance of the corresponding tool. When a tool is run, it will be provided with an array of string arguments, and a pair of streams: one for normal (or expected) output and the other for reporting any errors that may occur. The interpretation of the string arguments will normally be defined by each individual tool provider, but will generally correspond to the arguments that could be provided to the tool when invoking the tool from the command line.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

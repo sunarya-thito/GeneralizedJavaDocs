@@ -1,0 +1,310 @@
+{
+  "packageName": "javax.xml.stream",
+  "simpleName": "XMLEventWriter",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "javax.xml.stream.util.XMLEventConsumer",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "flush",
+      "comment": "Writes any cached events to the underlying output mechanism",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Frees any resources associated with this stream",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.xml.stream.events.XMLEvent",
+            "type": "Class"
+          },
+          "field": {
+            "name": "event"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "add",
+      "comment": "Add an event to the output stream Adding a START_ELEMENT will open a new namespace scope that will be closed when the corresponding END_ELEMENT is written. Required and optional fields for events added to the writer Event Type Required Fields Optional Fields Required Behavior START_ELEMENT QName name namespaces , attributes A START_ELEMENT will be written by writing the name, namespaces, and attributes of the event in XML 1.0 valid syntax for START_ELEMENTs. The name is written by looking up the prefix for the namespace uri. The writer can be configured to respect prefixes of QNames. If the writer is respecting prefixes it must use the prefix set on the QName. The default behavior is to lookup the value for the prefix on the EventWriter\u0027s internal namespace context. Each attribute (if any) is written using the behavior specified in the attribute section of this table. Each namespace (if any) is written using the behavior specified in the namespace section of this table. END_ELEMENT Qname name None A well formed END_ELEMENT tag is written. The name is written by looking up the prefix for the namespace uri. The writer can be configured to respect prefixes of QNames. If the writer is respecting prefixes it must use the prefix set on the QName. The default behavior is to lookup the value for the prefix on the EventWriter\u0027s internal namespace context. If the END_ELEMENT name does not match the START_ELEMENT name an XMLStreamException is thrown. ATTRIBUTE QName name , String value QName type An attribute is written using the same algorithm to find the lexical form as used in START_ELEMENT. The default is to use double quotes to wrap attribute values and to escape any double quotes found in the value. The type value is ignored. NAMESPACE String prefix, String namespaceURI, boolean isDefaultNamespaceDeclaration None A namespace declaration is written. If the namespace is a default namespace declaration (isDefault is true) then xmlns\u003d\"$namespaceURI\" is written and the prefix is optional. If isDefault is false, the prefix must be declared and the writer must prepend xmlns to the prefix and write out a standard prefix declaration. PROCESSING_INSTRUCTION None String target, String data The data does not need to be present and may be null. Target is required and many not be null. The writer will write data section directly after the target, enclosed in appropriate XML 1.0 syntax COMMENT None String comment If the comment is present (not null) it is written, otherwise an an empty comment is written START_DOCUMENT None String encoding , boolean standalone, String version A START_DOCUMENT event is not required to be written to the stream. If present the attributes are written inside the appropriate XML declaration syntax END_DOCUMENT None None Nothing is written to the output DTD String DocumentTypeDefinition None The DocumentTypeDefinition is written to the output",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/util/XMLEventConsumer.html#add(javax.xml.stream.events.XMLEvent)\"\u003eadd\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/util/XMLEventConsumer.html\" title\u003d\"interface in javax.xml.stream.util\"\u003eXMLEventConsumer\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - the event to be added"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.xml.stream.XMLEventReader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "reader"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "add",
+      "comment": "Adds an entire stream to an output stream, calls next() on the inputStream argument until hasNext() returns false This should be treated as a convenience method that will perform the following loop over all the events in an event reader and call add on each event.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereader\u003c/code\u003e - the event stream to add to the output"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "uri"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPrefix",
+      "comment": "Gets the prefix the uri is bound to",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - the uri to look up"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ],
+        "return": [
+          "the prefix"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "prefix"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "uri"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setPrefix",
+      "comment": "Sets the prefix the uri is bound to. This prefix is bound in the scope of the current START_ELEMENT / END_ELEMENT pair. If this method is called before a START_ELEMENT has been written the prefix is bound in the root scope.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprefix\u003c/code\u003e - the prefix to bind to the uri",
+          "\u003ccode\u003euri\u003c/code\u003e - the uri to bind to the prefix"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "uri"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setDefaultNamespace",
+      "comment": "Binds a URI to the default namespace This URI is bound in the scope of the current START_ELEMENT / END_ELEMENT pair. If this method is called before a START_ELEMENT has been written the uri is bound in the root scope.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - the uri to bind to the default namespace"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.stream.XMLStreamException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.xml.namespace.NamespaceContext",
+            "type": "Class"
+          },
+          "field": {
+            "name": "context"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setNamespaceContext",
+      "comment": "Sets the current namespace context for prefix and uri bindings. This context becomes the root namespace context for writing and will replace the current root namespace context. Subsequent calls to setPrefix and setDefaultNamespace will bind namespaces using the context passed to the method as the root context for resolving namespaces.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econtext\u003c/code\u003e - the namespace context to use for this writer"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLStreamException.html\" title\u003d\"class in javax.xml.stream\"\u003eXMLStreamException\u003c/a\u003e\u003c/code\u003e - if an error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.namespace.NamespaceContext",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNamespaceContext",
+      "comment": "Returns the current namespace context.",
+      "tagMap": {
+        "return": [
+          "the current namespace context"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.xml.stream.XMLEventWriter",
+  "comment": "This is the top level interface for writing XML documents. Instances of this interface are not required to validate the form of the XML.",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/XMLEventReader.html\" title\u003d\"interface in javax.xml.stream\"\u003e\u003ccode\u003eXMLEventReader\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/events/XMLEvent.html\" title\u003d\"interface in javax.xml.stream.events\"\u003e\u003ccode\u003eXMLEvent\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/events/Characters.html\" title\u003d\"interface in javax.xml.stream.events\"\u003e\u003ccode\u003eCharacters\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/events/ProcessingInstruction.html\" title\u003d\"interface in javax.xml.stream.events\"\u003e\u003ccode\u003eProcessingInstruction\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/events/StartElement.html\" title\u003d\"interface in javax.xml.stream.events\"\u003e\u003ccode\u003eStartElement\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/stream/events/EndElement.html\" title\u003d\"interface in javax.xml.stream.events\"\u003e\u003ccode\u003eEndElement\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

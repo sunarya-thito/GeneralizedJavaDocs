@@ -1,0 +1,182 @@
+{
+  "packageName": "org.w3c.dom.xpath",
+  "simpleName": "XPathEvaluator",
+  "moduleName": "jdk.xml.dom",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.w3c.dom.xpath.XPathExpression",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.xpath.XPathException",
+          "type": "Class"
+        },
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "expression"
+          }
+        },
+        {
+          "type": {
+            "name": "org.w3c.dom.xpath.XPathNSResolver",
+            "type": "Class"
+          },
+          "field": {
+            "name": "resolver"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createExpression",
+      "comment": "Creates a parsed XPath expression with resolved namespaces. This is useful when an expression will be reused in an application since it makes it possible to compile the expression string into a more efficient internal form and preresolve all namespace prefixes which occur within the expression.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eexpression\u003c/code\u003e - The XPath expression string to be parsed.",
+          "\u003ccode\u003eresolver\u003c/code\u003e - The \n\u003ccode\u003eresolver\u003c/code\u003e permits translation of prefixes within the XPath expression into appropriate namespace URIs . If this is specified as \n\u003ccode\u003enull\u003c/code\u003e, any namespace prefix within the expression will result in \n\u003ccode\u003eDOMException\u003c/code\u003e being thrown with the code \n\u003ccode\u003eNAMESPACE_ERR\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.xml.dom/org/w3c/dom/xpath/XPathException.html\" title\u003d\"class in org.w3c.dom.xpath\"\u003eXPathException\u003c/a\u003e\u003c/code\u003e - INVALID_EXPRESSION_ERR: Raised if the expression is not legal according to the rules of the \n\u003ccode\u003eXPathEvaluator\u003c/code\u003ei",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - NAMESPACE_ERR: Raised if the expression contains namespace prefixes which cannot be resolved by the specified \n\u003ccode\u003eXPathNSResolver\u003c/code\u003e."
+        ],
+        "return": [
+          "The compiled form of the XPath expression."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.xpath.XPathNSResolver",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "org.w3c.dom.Node",
+            "type": "Class"
+          },
+          "field": {
+            "name": "nodeResolver"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createNSResolver",
+      "comment": "Adapts any DOM node to resolve namespaces so that an XPath expression can be easily evaluated relative to the context of the node where it appeared within the document. This adapter works like the DOM Level 3 method lookupNamespaceURI on nodes in resolving the namespaceURI from a given prefix using the current information available in the node\u0027s hierarchy at the time lookupNamespaceURI is called. also correctly resolving the implicit xml prefix.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enodeResolver\u003c/code\u003e - The node to be used as a context for namespace resolution."
+        ],
+        "return": [
+          "\u003ccode\u003eXPathNSResolver\u003c/code\u003e which resolves namespaces with respect to the definitions in scope for a specified node."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.xpath.XPathException",
+          "type": "Class"
+        },
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "expression"
+          }
+        },
+        {
+          "type": {
+            "name": "org.w3c.dom.Node",
+            "type": "Class"
+          },
+          "field": {
+            "name": "contextNode"
+          }
+        },
+        {
+          "type": {
+            "name": "org.w3c.dom.xpath.XPathNSResolver",
+            "type": "Class"
+          },
+          "field": {
+            "name": "resolver"
+          }
+        },
+        {
+          "type": {
+            "name": "short",
+            "type": "Class"
+          },
+          "field": {
+            "name": "type"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "result"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "evaluate",
+      "comment": "Evaluates an XPath expression string and returns a result of the specified type if possible.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eexpression\u003c/code\u003e - The XPath expression string to be parsed and evaluated.",
+          "\u003ccode\u003econtextNode\u003c/code\u003e - The \n\u003ccode\u003econtext\u003c/code\u003e is context node for the evaluation of this XPath expression. If the XPathEvaluator was obtained by casting the \n\u003ccode\u003eDocument\u003c/code\u003e then this must be owned by the same document and must be a \n\u003ccode\u003eDocument\u003c/code\u003e, \n\u003ccode\u003eElement\u003c/code\u003e, \n\u003ccode\u003eAttribute\u003c/code\u003e, \n\u003ccode\u003eText\u003c/code\u003e, \n\u003ccode\u003eCDATASection\u003c/code\u003e, \n\u003ccode\u003eComment\u003c/code\u003e, \n\u003ccode\u003eProcessingInstruction\u003c/code\u003e, or \n\u003ccode\u003eXPathNamespace\u003c/code\u003e node. If the context node is a \n\u003ccode\u003eText\u003c/code\u003e or a \n\u003ccode\u003eCDATASection\u003c/code\u003e, then the context is interpreted as the whole logical text node as seen by XPath, unless the node is empty in which case it may not serve as the XPath context.",
+          "\u003ccode\u003eresolver\u003c/code\u003e - The \n\u003ccode\u003eresolver\u003c/code\u003e permits translation of prefixes within the XPath expression into appropriate namespace URIs . If this is specified as \n\u003ccode\u003enull\u003c/code\u003e, any namespace prefix within the expression will result in \n\u003ccode\u003eDOMException\u003c/code\u003e being thrown with the code \n\u003ccode\u003eNAMESPACE_ERR\u003c/code\u003e.",
+          "\u003ccode\u003etype\u003c/code\u003e - If a specific \n\u003ccode\u003etype\u003c/code\u003e is specified, then the result will be returned as the corresponding type.For XPath 1.0 results, this must be one of the codes of the \n\u003ccode\u003eXPathResult\u003c/code\u003e interface.",
+          "\u003ccode\u003eresult\u003c/code\u003e - The \n\u003ccode\u003eresult\u003c/code\u003e specifies a specific result object which may be reused and returned by this method. If this is specified as \n\u003ccode\u003enull\u003c/code\u003eor the implementation does not reuse the specified result, a new result object will be constructed and returned.For XPath 1.0 results, this object will be of type \n\u003ccode\u003eXPathResult\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.xml.dom/org/w3c/dom/xpath/XPathException.html\" title\u003d\"class in org.w3c.dom.xpath\"\u003eXPathException\u003c/a\u003e\u003c/code\u003e - INVALID_EXPRESSION_ERR: Raised if the expression is not legal according to the rules of the \n\u003ccode\u003eXPathEvaluator\u003c/code\u003ei \n\u003cbr\u003eTYPE_ERR: Raised if the result cannot be converted to return the specified type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - NAMESPACE_ERR: Raised if the expression contains namespace prefixes which cannot be resolved by the specified \n\u003ccode\u003eXPathNSResolver\u003c/code\u003e. \n\u003cbr\u003eWRONG_DOCUMENT_ERR: The Node is from a document that is not supported by this \n\u003ccode\u003eXPathEvaluator\u003c/code\u003e. \n\u003cbr\u003eNOT_SUPPORTED_ERR: The Node is not a type permitted as an XPath context node or the request type is not permitted by this \n\u003ccode\u003eXPathEvaluator\u003c/code\u003e."
+        ],
+        "return": [
+          "The result of the evaluation of the XPath expression.For XPath 1.0 results, this object will be of type \n\u003ccode\u003eXPathResult\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.w3c.dom.xpath.XPathEvaluator",
+  "comment": "The evaluation of XPath expressions is provided by \n\u003ccode\u003eXPathEvaluator\u003c/code\u003e. In a DOM implementation which supports the XPath 3.0 feature, as described above, the \n\u003ccode\u003eXPathEvaluator\u003c/code\u003e interface will be implemented on the same object which implements the \n\u003ccode\u003eDocument\u003c/code\u003e interface permitting it to be obtained by the usual binding-specific method such as casting or by using the DOM Level 3 getInterface method. In this case the implementation obtained from the Document supports the XPath DOM module and is compatible with the XPath 1.0 specification. \n\u003cp\u003eEvaluation of expressions with specialized extension functions or variables may not work in all implementations and is, therefore, not portable. \u003ccode\u003eXPathEvaluator\u003c/code\u003e implementations may be available from other sources that could provide specific support for specialized extension functions or variables as would be defined by other specifications. \u003c/p\u003e\n\u003cp\u003eSee also the \u003ca href\u003d\"https://www.w3.org/TR/DOM-Level-3-XPath/\"\u003eDocument Object Model (DOM) Level 3 XPath Specification\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {}
+}

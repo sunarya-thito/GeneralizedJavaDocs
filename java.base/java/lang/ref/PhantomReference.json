@@ -1,0 +1,100 @@
+{
+  "packageName": "java.lang.ref",
+  "simpleName": "PhantomReference",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.ref.Reference",
+    "parameters": [
+      {
+        "name": "T",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "owner": "java.lang.ref.PhantomReference",
+        "name": "T",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "get",
+      "comment": "Returns this reference object\u0027s referent. Because the referent of a phantom reference is always inaccessible, this method always returns null.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html#refersTo(T)\"\u003e\u003ccode\u003eReference.refersTo(T)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html#get()\"\u003eget\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html\" title\u003d\"class in java.lang.ref\"\u003eReference\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/PhantomReference.html\" title\u003d\"type parameter in PhantomReference\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.lang.ref.PhantomReference",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "referent"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ref.ReferenceQueue",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.lang.ref.PhantomReference",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "q"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new phantom reference that refers to the given object and is registered with the given queue. It is possible to create a phantom reference with a null queue, but such a reference is completely useless: Its get method will always return null and, since it does not have a queue, it will never be enqueued.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereferent\u003c/code\u003e - the object the new phantom reference will refer to",
+          "\u003ccode\u003eq\u003c/code\u003e - the queue with which the reference is to be registered, or \n\u003ccode\u003enull\u003c/code\u003e if registration is not required"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.lang.ref.PhantomReference",
+  "comment": "Phantom reference objects, which are enqueued after the collector determines that their referents may otherwise be reclaimed. Phantom references are most often used to schedule post-mortem cleanup actions. \n\u003cp\u003e Suppose the garbage collector determines at a certain point in time that an object is \u003ca href\u003d\"package-summary.html#reachability\"\u003e phantom reachable\u003c/a\u003e. At that time it will atomically clear all phantom references to that object and all phantom references to any other phantom-reachable objects from which that object is reachable. At the same time or at some later time it will enqueue those newly-cleared phantom references that are registered with reference queues. \u003c/p\u003e\n\u003cp\u003e In order to ensure that a reclaimable object remains so, the referent of a phantom reference may not be retrieved: The \u003ccode\u003eget\u003c/code\u003e method of a phantom reference always returns \u003ccode\u003enull\u003c/code\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.2"
+    ]
+  }
+}

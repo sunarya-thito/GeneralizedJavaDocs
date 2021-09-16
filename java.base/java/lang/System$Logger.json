@@ -1,0 +1,495 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "Logger",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Returns the name of this logger.",
+      "tagMap": {
+        "return": [
+          "the logger name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isLoggable",
+      "comment": "Checks if a message of the given level would be logged by this logger.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - the log message level."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the given log message level is currently being logged."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "msg"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a message.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation for this method calls \n\u003ccode\u003ethis.log(level, (ResourceBundle)null, msg, (Object[])null);\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - the log message level.",
+          "\u003ccode\u003emsg\u003c/code\u003e - the string message (or a key in the message catalog, if this logger is a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.LoggerFinder.html#getLocalizedLogger(java.lang.String,java.util.ResourceBundle,java.lang.Module)\"\u003e\u003ccode\u003elocalized logger\u003c/code\u003e\u003c/a\u003e); can be \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.function.Supplier",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "msgSupplier"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a lazily supplied message. If the logger is currently enabled for the given log message level then a message is logged that is the result produced by the given supplier function. Otherwise, the supplier is not operated on.",
+      "tagMap": {
+        "implSpec": [
+          "When logging is enabled for the given level, the default implementation for this method calls \n\u003ccode\u003ethis.log(level, (ResourceBundle)null, msgSupplier.get(), (Object[])null);\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - the log message level.",
+          "\u003ccode\u003emsgSupplier\u003c/code\u003e - a supplier function that produces a message."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or \n\u003ccode\u003emsgSupplier\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a message produced from the given object. If the logger is currently enabled for the given log message level then a message is logged that, by default, is the result produced from calling toString on the given object. Otherwise, the object is not operated on.",
+      "tagMap": {
+        "implSpec": [
+          "When logging is enabled for the given level, the default implementation for this method calls \n\u003ccode\u003ethis.log(level, (ResourceBundle)null, obj.toString(), (Object[])null);\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - the log message level.",
+          "\u003ccode\u003eobj\u003c/code\u003e - the object to log."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or \n\u003ccode\u003eobj\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "msg"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "thrown"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a message associated with a given throwable.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation for this method calls \n\u003ccode\u003ethis.log(level, (ResourceBundle)null, msg, thrown);\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - the log message level.",
+          "\u003ccode\u003emsg\u003c/code\u003e - the string message (or a key in the message catalog, if this logger is a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.LoggerFinder.html#getLocalizedLogger(java.lang.String,java.util.ResourceBundle,java.lang.Module)\"\u003e\u003ccode\u003elocalized logger\u003c/code\u003e\u003c/a\u003e); can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003ethrown\u003c/code\u003e - a \n\u003ccode\u003eThrowable\u003c/code\u003e associated with the log message; can be \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.function.Supplier",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "msgSupplier"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "thrown"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a lazily supplied message associated with a given throwable. If the logger is currently enabled for the given log message level then a message is logged that is the result produced by the given supplier function. Otherwise, the supplier is not operated on.",
+      "tagMap": {
+        "implSpec": [
+          "When logging is enabled for the given level, the default implementation for this method calls \n\u003ccode\u003ethis.log(level, (ResourceBundle)null, msgSupplier.get(), thrown);\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - one of the log message level identifiers.",
+          "\u003ccode\u003emsgSupplier\u003c/code\u003e - a supplier function that produces a message.",
+          "\u003ccode\u003ethrown\u003c/code\u003e - a \n\u003ccode\u003eThrowable\u003c/code\u003e associated with log message; can be \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or \n\u003ccode\u003emsgSupplier\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "format"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "params"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a message with an optional list of parameters.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation for this method calls \n\u003ccode\u003ethis.log(level, (ResourceBundle)null, format, params);\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - one of the log message level identifiers.",
+          "\u003ccode\u003eformat\u003c/code\u003e - the string message format in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/text/MessageFormat.html\" title\u003d\"class in java.text\"\u003e\u003ccode\u003eMessageFormat\u003c/code\u003e\u003c/a\u003e format, (or a key in the message catalog, if this logger is a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.LoggerFinder.html#getLocalizedLogger(java.lang.String,java.util.ResourceBundle,java.lang.Module)\"\u003e\u003ccode\u003elocalized logger\u003c/code\u003e\u003c/a\u003e); can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eparams\u003c/code\u003e - an optional list of parameters to the message (may be none)."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.ResourceBundle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bundle"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "msg"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "thrown"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a localized message associated with a given throwable. If the given resource bundle is non-null, the msg string is localized using the given resource bundle. Otherwise the msg string is not localized.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - the log message level.",
+          "\u003ccode\u003ebundle\u003c/code\u003e - a resource bundle to localize \n\u003ccode\u003emsg\u003c/code\u003e; can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003emsg\u003c/code\u003e - the string message (or a key in the message catalog, if \n\u003ccode\u003ebundle\u003c/code\u003e is not \n\u003ccode\u003enull\u003c/code\u003e); can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003ethrown\u003c/code\u003e - a \n\u003ccode\u003eThrowable\u003c/code\u003e associated with the log message; can be \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.System$Logger$Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.ResourceBundle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bundle"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "format"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "params"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "log",
+      "comment": "Logs a message with resource bundle and an optional list of parameters. If the given resource bundle is non-null, the format string is localized using the given resource bundle. Otherwise the format string is not localized.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elevel\u003c/code\u003e - the log message level.",
+          "\u003ccode\u003ebundle\u003c/code\u003e - a resource bundle to localize \n\u003ccode\u003eformat\u003c/code\u003e; can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eformat\u003c/code\u003e - the string message format in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/text/MessageFormat.html\" title\u003d\"class in java.text\"\u003e\u003ccode\u003eMessageFormat\u003c/code\u003e\u003c/a\u003e format, (or a key in the message catalog if \n\u003ccode\u003ebundle\u003c/code\u003e is not \n\u003ccode\u003enull\u003c/code\u003e); can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eparams\u003c/code\u003e - an optional list of parameters to the message (may be none)."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elevel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "java.lang.System$Logger$Level"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "java.lang.System$Logger",
+  "comment": "\u003ccode\u003eSystem.Logger\u003c/code\u003e instances log messages that will be routed to the underlying logging framework the \n\u003ca href\u003d\"System.LoggerFinder.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eLoggerFinder\u003c/code\u003e\u003c/a\u003e uses. \n\u003ccode\u003eSystem.Logger\u003c/code\u003e instances are typically obtained from the \n\u003ca href\u003d\"System.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSystem\u003c/code\u003e\u003c/a\u003e class, by calling \n\u003ca href\u003d\"System.html#getLogger(java.lang.String)\"\u003e\u003ccode\u003eSystem.getLogger(loggerName)\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"System.html#getLogger(java.lang.String,java.util.ResourceBundle)\"\u003e\u003ccode\u003eSystem.getLogger(loggerName, bundle)\u003c/code\u003e\u003c/a\u003e.",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#getLogger(java.lang.String)\"\u003e\u003ccode\u003eSystem.getLogger(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#getLogger(java.lang.String,java.util.ResourceBundle)\"\u003e\u003ccode\u003eSystem.getLogger(java.lang.String, java.util.ResourceBundle)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.LoggerFinder.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSystem.LoggerFinder\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "packageName": "java.io",
+  "simpleName": "SerializablePermission",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.security.BasicPermission",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new SerializablePermission with the specified name. The name is the symbolic name of the SerializablePermission, such as \"enableSubstitution\", etc.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the SerializablePermission."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is empty."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "actions"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new SerializablePermission object with the specified name. The name is the symbolic name of the SerializablePermission, and the actions String is currently unused and should be null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the SerializablePermission.",
+          "\u003ccode\u003eactions\u003c/code\u003e - currently unused and must be set to null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is empty."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "java.io.SerializablePermission",
+  "comment": "This class is for Serializable permissions. A SerializablePermission contains a name (also referred to as a \"target name\") but no actions list; you either have the named permission or you don\u0027t. \n\u003cp\u003e The target name is the name of the Serializable permission (see below). \u003c/p\u003e\n\u003cp\u003e The following table lists the standard \u003ccode\u003eSerializablePermission\u003c/code\u003e target names, and for each provides a description of what the permission allows and a discussion of the risks of granting code the permission. \u003c/p\u003e\n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption style\u003d\"display:none\"\u003e\n  Permission target name, what the permission allows, and associated risks\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"col\"\u003ePermission Target Name\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eWhat the Permission Allows\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eRisks of Allowing this Permission\u003c/th\u003e \n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003eenableSubclassImplementation\u003c/th\u003e \n   \u003ctd\u003eSubclass implementation of ObjectOutputStream or ObjectInputStream to override the default serialization or deserialization, respectively, of objects\u003c/td\u003e \n   \u003ctd\u003eCode can use this to serialize or deserialize classes in a purposefully malfeasant manner. For example, during serialization, malicious code can use this to purposefully store confidential private field data in a way easily accessible to attackers. Or, during deserialization it could, for example, deserialize a class with all its private fields zeroed out.\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003eenableSubstitution\u003c/th\u003e \n   \u003ctd\u003eSubstitution of one object for another during serialization or deserialization\u003c/td\u003e \n   \u003ctd\u003eThis is dangerous because malicious code can replace the actual object with one which has incorrect or malignant data.\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003eserialFilter\u003c/th\u003e \n   \u003ctd\u003eSetting a filter for ObjectInputStreams.\u003c/td\u003e \n   \u003ctd\u003eCode could remove a configured filter and remove protections already established.\u003c/td\u003e \n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/BasicPermission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eBasicPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Permission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Permissions.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermissions\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/PermissionCollection.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermissionCollection\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSecurityManager\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.io.SerializablePermission\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.2"
+    ]
+  }
+}

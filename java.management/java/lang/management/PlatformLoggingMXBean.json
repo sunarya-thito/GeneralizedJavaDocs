@@ -1,0 +1,147 @@
+{
+  "packageName": "java.lang.management",
+  "simpleName": "PlatformLoggingMXBean",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.management.PlatformManagedObject",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLoggerNames",
+      "comment": "Returns the list of the currently registered logger names. This method calls LogManager.getLoggerNames() and returns a list of the logger names.",
+      "tagMap": {
+        "return": [
+          "A list of \n\u003ccode\u003eString\u003c/code\u003e each of which is a currently registered \n\u003ccode\u003eLogger\u003c/code\u003e name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "loggerName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLoggerLevel",
+      "comment": "Gets the name of the log level associated with the specified logger. If the specified logger does not exist, null is returned. This method first finds the logger of the given name and then returns the name of the log level by calling: Logger.getLevel().getName(); If the Level of the specified logger is null, which means that this logger\u0027s effective level is inherited from its parent, an empty string will be returned.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/Logger.html#getLevel()\"\u003e\u003ccode\u003eLogger.getLevel()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eloggerName\u003c/code\u003e - The name of the \n\u003ccode\u003eLogger\u003c/code\u003e to be retrieved."
+        ],
+        "return": [
+          "The name of the log level of the specified logger; or an empty string if the log level of the specified logger is \n\u003ccode\u003enull\u003c/code\u003e. If the specified logger does not exist, \n\u003ccode\u003enull\u003c/code\u003e is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "loggerName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "levelName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setLoggerLevel",
+      "comment": "Sets the specified logger to the specified new level. If the levelName is not null, the level of the specified logger is set to the parsed Level matching the levelName. If the levelName is null, the level of the specified logger is set to null and the effective level of the logger is inherited from its nearest ancestor with a specific (non-null) level value.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/Logger.html#setLevel(java.util.logging.Level)\"\u003e\u003ccode\u003eLogger.setLevel(java.util.logging.Level)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eloggerName\u003c/code\u003e - The name of the \n\u003ccode\u003eLogger\u003c/code\u003e to be set. Must be non-null.",
+          "\u003ccode\u003elevelName\u003c/code\u003e - The name of the level to set on the specified logger, or \n\u003ccode\u003enull\u003c/code\u003e if setting the level to inherit from its nearest ancestor."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the specified logger does not exist, or \n\u003ccode\u003elevelName\u003c/code\u003e is not a valid level name.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and if the caller does not have LoggingPermission(\"control\")."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "loggerName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getParentLoggerName",
+      "comment": "Returns the name of the parent for the specified logger. If the specified logger does not exist, null is returned. If the specified logger is the root Logger in the namespace, the result will be an empty string.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eloggerName\u003c/code\u003e - The name of a \n\u003ccode\u003eLogger\u003c/code\u003e."
+        ],
+        "return": [
+          "the name of the nearest existing parent logger; an empty string if the specified logger is the root logger. If the specified logger does not exist, \n\u003ccode\u003enull\u003c/code\u003e is returned."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.lang.management.PlatformLoggingMXBean",
+  "comment": "The management interface for the \n\u003ca href\u003d\"../../../../java.logging/java/util/logging/package-summary.html\"\u003elogging\u003c/a\u003e facility. \n\u003cp\u003eThere is a single global instance of the \u003ccode\u003ePlatformLoggingMXBean\u003c/code\u003e. The \u003ca href\u003d\"ManagementFactory.html#getPlatformMXBean(java.lang.Class)\"\u003e\u003ccode\u003eManagementFactory.getPlatformMXBean\u003c/code\u003e\u003c/a\u003e method can be used to obtain the \u003ccode\u003ePlatformLoggingMXBean\u003c/code\u003e object as follows: \u003c/p\u003e\n\u003cpre\u003e     PlatformLoggingMXBean logging \u003d ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class);\n \u003c/pre\u003e The \n\u003ccode\u003ePlatformLoggingMXBean\u003c/code\u003e object is also registered with the platform \n\u003ca href\u003d\"ManagementFactory.html#getPlatformMBeanServer()\"\u003eMBeanServer\u003c/a\u003e. The \n\u003ca href\u003d\"../../../javax/management/ObjectName.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eObjectName\u003c/code\u003e\u003c/a\u003e for uniquely identifying the \n\u003ccode\u003ePlatformLoggingMXBean\u003c/code\u003e within an MBeanServer is: \n\u003cpre\u003e      \u003ca href\u003d\"../../../../java.logging/java/util/logging/LogManager.html#LOGGING_MXBEAN_NAME\"\u003e\u003ccode\u003ejava.util.logging:type\u003dLogging\u003c/code\u003e\u003c/a\u003e\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

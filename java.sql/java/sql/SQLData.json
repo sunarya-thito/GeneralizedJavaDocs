@@ -1,0 +1,144 @@
+{
+  "packageName": "java.sql",
+  "simpleName": "SQLData",
+  "moduleName": "java.sql",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSQLTypeName",
+      "comment": "Returns the fully-qualified name of the SQL user-defined type that this object represents. This method is called by the JDBC driver to get the name of the UDT instance that is being mapped to this instance of SQLData.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if there is a database access error",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLFeatureNotSupportedException.html\" title\u003d\"class in java.sql\"\u003eSQLFeatureNotSupportedException\u003c/a\u003e\u003c/code\u003e - if the JDBC driver does not support this method"
+        ],
+        "return": [
+          "the type name that was passed to the method \n\u003ccode\u003ereadSQL\u003c/code\u003e when this object was constructed and populated"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.sql.SQLInput",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stream"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "typeName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "readSQL",
+      "comment": "Populates this object with data read from the database. The implementation of the method must follow this protocol: It must read each of the attributes or elements of the SQL type from the given input stream. This is done by calling a method of the input stream to read each item, in the order that they appear in the SQL definition of the type. The method readSQL then assigns the data to appropriate fields or elements (of this or other objects). Specifically, it must call the appropriate reader method (SQLInput.readString, SQLInput.readBigDecimal, and so on) method(s) to do the following: for a distinct type, read its single data element; for a structured type, read a value for each attribute of the SQL type. The JDBC driver initializes the input stream with a type map before calling this method, which is used by the appropriate SQLInput reader method on the stream.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLInput.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eSQLInput\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estream\u003c/code\u003e - the \n\u003ccode\u003eSQLInput\u003c/code\u003e object from which to read the data for the value that is being custom mapped",
+          "\u003ccode\u003etypeName\u003c/code\u003e - the SQL type name of the value on the data stream"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if there is a database access error",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLFeatureNotSupportedException.html\" title\u003d\"class in java.sql\"\u003eSQLFeatureNotSupportedException\u003c/a\u003e\u003c/code\u003e - if the JDBC driver does not support this method"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.sql.SQLOutput",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stream"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "writeSQL",
+      "comment": "Writes this object to the given SQL data stream, converting it back to its SQL value in the data source. The implementation of the method must follow this protocol: It must write each of the attributes of the SQL type to the given output stream. This is done by calling a method of the output stream to write each item, in the order that they appear in the SQL definition of the type. Specifically, it must call the appropriate SQLOutput writer method(s) (writeInt, writeString, and so on) to do the following: for a Distinct Type, write its single data element; for a Structured Type, write a value for each attribute of the SQL type.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLOutput.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eSQLOutput\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estream\u003c/code\u003e - the \n\u003ccode\u003eSQLOutput\u003c/code\u003e object to which to write the data for the value that was custom mapped"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if there is a database access error",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLFeatureNotSupportedException.html\" title\u003d\"class in java.sql\"\u003eSQLFeatureNotSupportedException\u003c/a\u003e\u003c/code\u003e - if the JDBC driver does not support this method"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.sql.SQLData",
+  "comment": "The interface used for the custom mapping of an SQL user-defined type (UDT) to a class in the Java programming language. The class object for a class implementing the \n\u003ccode\u003eSQLData\u003c/code\u003e interface will be entered in the appropriate \n\u003ccode\u003eConnection\u003c/code\u003e object\u0027s type map along with the SQL name of the UDT for which it is a custom mapping. \n\u003cp\u003e Typically, a \u003ccode\u003eSQLData\u003c/code\u003e implementation will define a field for each attribute of an SQL structured type or a single field for an SQL \u003ccode\u003eDISTINCT\u003c/code\u003e type. When the UDT is retrieved from a data source with the \u003ccode\u003eResultSet.getObject\u003c/code\u003e method, it will be mapped as an instance of this class. A programmer can operate on this class instance just as on any other object in the Java programming language and then store any changes made to it by calling the \u003ccode\u003ePreparedStatement.setObject\u003c/code\u003e method, which will map it back to the SQL type. \u003c/p\u003e\n\u003cp\u003e It is expected that the implementation of the class for a custom mapping will be done by a tool. In a typical implementation, the programmer would simply supply the name of the SQL UDT, the name of the class to which it is being mapped, and the names of the fields to which each of the attributes of the UDT is to be mapped. The tool will use this information to implement the \u003ccode\u003eSQLData.readSQL\u003c/code\u003e and \u003ccode\u003eSQLData.writeSQL\u003c/code\u003e methods. The \u003ccode\u003ereadSQL\u003c/code\u003e method calls the appropriate \u003ccode\u003eSQLInput\u003c/code\u003e methods to read each attribute from an \u003ccode\u003eSQLInput\u003c/code\u003e object, and the \u003ccode\u003ewriteSQL\u003c/code\u003e method calls \u003ccode\u003eSQLOutput\u003c/code\u003e methods to write each attribute back to the data source via an \u003ccode\u003eSQLOutput\u003c/code\u003e object. \u003c/p\u003e\n\u003cp\u003e An application programmer will not normally call \u003ccode\u003eSQLData\u003c/code\u003e methods directly, and the \u003ccode\u003eSQLInput\u003c/code\u003e and \u003ccode\u003eSQLOutput\u003c/code\u003e methods are called internally by \u003ccode\u003eSQLData\u003c/code\u003e methods, not by application code.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.2"
+    ]
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "packageName": "java.util.concurrent",
+  "simpleName": "TransferQueue",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.util.concurrent.BlockingQueue",
+    "parameters": [
+      {
+        "name": "E",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.concurrent.TransferQueue",
+            "name": "E",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "e"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "tryTransfer",
+      "comment": "Transfers the element to a waiting consumer immediately, if possible. More precisely, transfers the specified element immediately if there exists a consumer already waiting to receive it (in BlockingQueue.take() or timed poll), otherwise returning false without enqueuing the element.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element to transfer"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the class of the specified element prevents it from being added to this queue",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified element is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if some property of the specified element prevents it from being added to this queue"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the element was transferred, else \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.concurrent.TransferQueue",
+            "name": "E",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "e"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "transfer",
+      "comment": "Transfers the element to a consumer, waiting if necessary to do so. More precisely, transfers the specified element immediately if there exists a consumer already waiting to receive it (in BlockingQueue.take() or timed poll), else waits until the element is received by a consumer.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element to transfer"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting, in which case the element is not left enqueued",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the class of the specified element prevents it from being added to this queue",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified element is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if some property of the specified element prevents it from being added to this queue"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.concurrent.TransferQueue",
+            "name": "E",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "e"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "timeout"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "tryTransfer",
+      "comment": "Transfers the element to a consumer if it is possible to do so before the timeout elapses. More precisely, transfers the specified element immediately if there exists a consumer already waiting to receive it (in BlockingQueue.take() or timed poll), else waits until the element is received by a consumer, returning false if the specified wait time elapses before the element can be transferred.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ee\u003c/code\u003e - the element to transfer",
+          "\u003ccode\u003etimeout\u003c/code\u003e - how long to wait before giving up, in units of \n\u003ccode\u003eunit\u003c/code\u003e",
+          "\u003ccode\u003eunit\u003c/code\u003e - a \n\u003ccode\u003eTimeUnit\u003c/code\u003e determining how to interpret the \n\u003ccode\u003etimeout\u003c/code\u003e parameter"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting, in which case the element is not left enqueued",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the class of the specified element prevents it from being added to this queue",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified element is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if some property of the specified element prevents it from being added to this queue"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if successful, or \n\u003ccode\u003efalse\u003c/code\u003e if the specified waiting time elapses before completion, in which case the element is not left enqueued"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasWaitingConsumer",
+      "comment": "Returns true if there is at least one consumer waiting to receive an element via BlockingQueue.take() or timed poll. The return value represents a momentary state of affairs.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if there is at least one waiting consumer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWaitingConsumerCount",
+      "comment": "Returns an estimate of the number of consumers waiting to receive elements via BlockingQueue.take() or timed poll. The return value is an approximation of a momentary state of affairs, that may be inaccurate if consumers have completed or given up waiting. The value may be useful for monitoring and heuristics, but not for synchronization control. Implementations of this method are likely to be noticeably slower than those for hasWaitingConsumer().",
+      "tagMap": {
+        "return": [
+          "the number of consumers waiting to receive elements"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "E",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.concurrent.TransferQueue",
+  "comment": "A \n\u003ca href\u003d\"BlockingQueue.html\" title\u003d\"interface in java.util.concurrent\"\u003e\u003ccode\u003eBlockingQueue\u003c/code\u003e\u003c/a\u003e in which producers may wait for consumers to receive elements. A \n\u003ccode\u003eTransferQueue\u003c/code\u003e may be useful for example in message passing applications in which producers sometimes (using method \n\u003ca href\u003d\"#transfer(E)\"\u003e\u003ccode\u003etransfer(E)\u003c/code\u003e\u003c/a\u003e) await receipt of elements by consumers invoking \n\u003ccode\u003etake\u003c/code\u003e or \n\u003ccode\u003epoll\u003c/code\u003e, while at other times enqueue elements (via method \n\u003ccode\u003eput\u003c/code\u003e) without waiting for receipt. \n\u003ca href\u003d\"#tryTransfer(E)\"\u003eNon-blocking\u003c/a\u003e and \n\u003ca href\u003d\"#tryTransfer(E,long,java.util.concurrent.TimeUnit)\"\u003etime-out\u003c/a\u003e versions of \n\u003ccode\u003etryTransfer\u003c/code\u003e are also available. A \n\u003ccode\u003eTransferQueue\u003c/code\u003e may also be queried, via \n\u003ca href\u003d\"#hasWaitingConsumer()\"\u003e\u003ccode\u003ehasWaitingConsumer()\u003c/code\u003e\u003c/a\u003e, whether there are any threads waiting for items, which is a converse analogy to a \n\u003ccode\u003epeek\u003c/code\u003e operation. \n\u003cp\u003eLike other blocking queues, a \u003ccode\u003eTransferQueue\u003c/code\u003e may be capacity bounded. If so, an attempted transfer operation may initially block waiting for available space, and/or subsequently block waiting for reception by a consumer. Note that in a queue with zero capacity, such as \u003ca href\u003d\"SynchronousQueue.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eSynchronousQueue\u003c/code\u003e\u003c/a\u003e, \u003ccode\u003eput\u003c/code\u003e and \u003ccode\u003etransfer\u003c/code\u003e are effectively synonymous. \u003c/p\u003e\n\u003cp\u003eThis interface is a member of the \u003ca href\u003d\"../../../../java.base/java/util/package-summary.html#CollectionsFramework\"\u003e Java Collections Framework\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

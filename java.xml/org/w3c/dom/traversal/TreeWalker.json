@@ -1,0 +1,225 @@
+{
+  "packageName": "org.w3c.dom.traversal",
+  "simpleName": "TreeWalker",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRoot",
+      "comment": "The root node of the TreeWalker, as specified when it was created.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWhatToShow",
+      "comment": "This attribute determines which node types are presented via the TreeWalker. The available set of constants is defined in the NodeFilter interface. Nodes not accepted by whatToShow will be skipped, but their children may still be considered. Note that this skip takes precedence over the filter, if any.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.traversal.NodeFilter",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFilter",
+      "comment": "The filter used to screen nodes.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getExpandEntityReferences",
+      "comment": "The value of this flag determines whether the children of entity reference nodes are visible to the TreeWalker. If false, these children and their descendants will be rejected. Note that this rejection takes precedence over whatToShow and the filter, if any. To produce a view of the document that has entity references expanded and does not expose the entity reference node itself, use the whatToShow flags to hide the entity reference node and set expandEntityReferences to true when creating the TreeWalker. To produce a view of the document that has entity reference nodes but no entity expansion, use the whatToShow flags to show the entity reference node and set expandEntityReferences to false.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCurrentNode",
+      "comment": "The node at which the TreeWalker is currently positioned. Alterations to the DOM tree may cause the current node to no longer be accepted by the TreeWalker\u0027s associated filter. currentNode may also be explicitly set to any node, whether or not it is within the subtree specified by the root node or would be accepted by the filter and whatToShow flags. Further traversal occurs relative to currentNode even if it is not part of the current view, by applying the filters in the requested direction; if no traversal is possible, currentNode is not changed.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "org.w3c.dom.Node",
+            "type": "Class"
+          },
+          "field": {
+            "name": "currentNode"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setCurrentNode",
+      "comment": "The node at which the TreeWalker is currently positioned. Alterations to the DOM tree may cause the current node to no longer be accepted by the TreeWalker\u0027s associated filter. currentNode may also be explicitly set to any node, whether or not it is within the subtree specified by the root node or would be accepted by the filter and whatToShow flags. Further traversal occurs relative to currentNode even if it is not part of the current view, by applying the filters in the requested direction; if no traversal is possible, currentNode is not changed.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - NOT_SUPPORTED_ERR: Raised if an attempt is made to set \n\u003ccode\u003ecurrentNode\u003c/code\u003e to \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "parentNode",
+      "comment": "Moves to and returns the closest visible ancestor node of the current node. If the search for parentNode attempts to step upward from the TreeWalker\u0027s root node, or if it fails to find a visible ancestor node, this method retains the current position and returns null.",
+      "tagMap": {
+        "return": [
+          "The new parent node, or \n\u003ccode\u003enull\u003c/code\u003e if the current node has no parent in the \n\u003ccode\u003eTreeWalker\u003c/code\u003e\u0027s logical view."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "firstChild",
+      "comment": "Moves the TreeWalker to the first visible child of the current node, and returns the new node. If the current node has no visible children, returns null, and retains the current node.",
+      "tagMap": {
+        "return": [
+          "The new node, or \n\u003ccode\u003enull\u003c/code\u003e if the current node has no visible children in the \n\u003ccode\u003eTreeWalker\u003c/code\u003e\u0027s logical view."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "lastChild",
+      "comment": "Moves the TreeWalker to the last visible child of the current node, and returns the new node. If the current node has no visible children, returns null, and retains the current node.",
+      "tagMap": {
+        "return": [
+          "The new node, or \n\u003ccode\u003enull\u003c/code\u003e if the current node has no children in the \n\u003ccode\u003eTreeWalker\u003c/code\u003e\u0027s logical view."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "previousSibling",
+      "comment": "Moves the TreeWalker to the previous sibling of the current node, and returns the new node. If the current node has no visible previous sibling, returns null, and retains the current node.",
+      "tagMap": {
+        "return": [
+          "The new node, or \n\u003ccode\u003enull\u003c/code\u003e if the current node has no previous sibling. in the \n\u003ccode\u003eTreeWalker\u003c/code\u003e\u0027s logical view."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "nextSibling",
+      "comment": "Moves the TreeWalker to the next sibling of the current node, and returns the new node. If the current node has no visible next sibling, returns null, and retains the current node.",
+      "tagMap": {
+        "return": [
+          "The new node, or \n\u003ccode\u003enull\u003c/code\u003e if the current node has no next sibling. in the \n\u003ccode\u003eTreeWalker\u003c/code\u003e\u0027s logical view."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "previousNode",
+      "comment": "Moves the TreeWalker to the previous visible node in document order relative to the current node, and returns the new node. If the current node has no previous node, or if the search for previousNode attempts to step upward from the TreeWalker\u0027s root node, returns null, and retains the current node.",
+      "tagMap": {
+        "return": [
+          "The new node, or \n\u003ccode\u003enull\u003c/code\u003e if the current node has no previous node in the \n\u003ccode\u003eTreeWalker\u003c/code\u003e\u0027s logical view."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Node",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "nextNode",
+      "comment": "Moves the TreeWalker to the next visible node in document order relative to the current node, and returns the new node. If the current node has no next node, or if the search for nextNode attempts to step upward from the TreeWalker\u0027s root node, returns null, and retains the current node.",
+      "tagMap": {
+        "return": [
+          "The new node, or \n\u003ccode\u003enull\u003c/code\u003e if the current node has no next node in the \n\u003ccode\u003eTreeWalker\u003c/code\u003e\u0027s logical view."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.w3c.dom.traversal.TreeWalker",
+  "comment": "\u003ccode\u003eTreeWalker\u003c/code\u003e objects are used to navigate a document tree or subtree using the view of the document defined by their \n\u003ccode\u003ewhatToShow\u003c/code\u003e flags and filter (if any). Any function which performs navigation using a \n\u003ccode\u003eTreeWalker\u003c/code\u003e will automatically support any view defined by a \n\u003ccode\u003eTreeWalker\u003c/code\u003e. \n\u003cp\u003eOmitting nodes from the logical view of a subtree can result in a structure that is substantially different from the same subtree in the complete, unfiltered document. Nodes that are siblings in the \u003ccode\u003eTreeWalker\u003c/code\u003e view may be children of different, widely separated nodes in the original view. For instance, consider a \u003ccode\u003eNodeFilter\u003c/code\u003e that skips all nodes except for Text nodes and the root node of a document. In the logical view that results, all text nodes will be siblings and appear as direct children of the root node, no matter how deeply nested the structure of the original document. \u003c/p\u003e\n\u003cp\u003eSee also the \u003ca href\u003d\"http://www.w3.org/TR/2000/REC-DOM-Level-2-Traversal-Range-20001113\"\u003eDocument Object Model (DOM) Level 2 Traversal and Range Specification\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9, DOM Level 2"
+    ]
+  }
+}

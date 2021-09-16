@@ -1,0 +1,84 @@
+{
+  "packageName": "javax.swing",
+  "simpleName": "Painter",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.Graphics2D",
+            "type": "Class"
+          },
+          "field": {
+            "name": "g"
+          }
+        },
+        {
+          "type": {
+            "owner": "javax.swing.Painter",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "object"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "width"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "height"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "paint",
+      "comment": "Renders to the given Graphics2D object. Implementations of this method may modify state on the Graphics2D, and are not required to restore that state upon completion. In most cases, it is recommended that the caller pass in a scratch graphics object. The Graphics2D must never be null. State on the graphics object may be honored by the paint method, but may not be. For instance, setting the antialiasing rendering hint on the graphics may or may not be respected by the Painter implementation. The supplied object parameter acts as an optional configuration argument. For example, it could be of type Component. A Painter that expected it could then read state from that Component and use the state for painting. For example, an implementation may read the backgroundColor and use that. Generally, to enhance reusability, most standard Painters ignore this parameter. They can thus be reused in any context. The object may be null. Implementations must not throw a NullPointerException if the object parameter is null. Finally, the width and height arguments specify the width and height that the Painter should paint into. More specifically, the specified width and height instruct the painter that it should paint fully within this width and height. Any specified clip on the g param will further constrain the region. For example, suppose I have a Painter implementation that draws a gradient. The gradient goes from white to black. It \"stretches\" to fill the painted region. Thus, if I use this Painter to paint a 500 x 500 region, the far left would be black, the far right would be white, and a smooth gradient would be painted between. I could then, without modification, reuse the Painter to paint a region that is 20x20 in size. This region would also be black on the left, white on the right, and a smooth gradient painted between.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eg\u003c/code\u003e - The Graphics2D to render to. This must not be null.",
+          "\u003ccode\u003eobject\u003c/code\u003e - an optional configuration parameter. This may be null.",
+          "\u003ccode\u003ewidth\u003c/code\u003e - width of the area to paint.",
+          "\u003ccode\u003eheight\u003c/code\u003e - height of the area to paint."
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.swing.Painter",
+  "comment": "\u003cp\u003eA painting delegate. The Painter interface defines exactly one method, \u003ccode\u003epaint\u003c/code\u003e. It is used in situations where the developer can change the painting routine of a component without having to resort to subclassing the component. It is also generically useful when doing any form of painting delegation.\u003c/p\u003e \n\u003cp\u003e\u003ccode\u003ePainter\u003c/code\u003es are simply encapsulations of Java2D code and make it fairly trivial to reuse existing \u003ccode\u003ePainter\u003c/code\u003es or to combine them together. Implementations of this interface are also trivial to write, such that if you can\u0027t find a \u003ccode\u003ePainter\u003c/code\u003e that does what you need, you can write one with minimal effort. Writing a \u003ccode\u003ePainter\u003c/code\u003e requires knowledge of Java2D.\u003c/p\u003e \n\u003cp\u003eA \u003ccode\u003ePainter\u003c/code\u003e may be created with a type parameter. This type will be expected in the \u003ccode\u003epaint\u003c/code\u003e method. For example, you may wish to write a \u003ccode\u003ePainter\u003c/code\u003e that only works with subclasses of \u003ca href\u003d\"../../java/awt/Component.html\" title\u003d\"class in java.awt\"\u003e\u003ccode\u003eComponent\u003c/code\u003e\u003c/a\u003e. In that case, when the \u003ccode\u003ePainter\u003c/code\u003e is declared, you may declare that it requires a \u003ccode\u003eComponent\u003c/code\u003e, allowing the paint method to be type safe. Ex: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n Painter\u0026lt;Component\u0026gt; p \u003d new Painter\u0026lt;Component\u0026gt;() {\n     public void paint(Graphics2D g, Component c, int width, int height) {\n         g.setColor(c.getBackground());\n         //and so forth\n     }\n }\n \u003c/code\u003e\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eThis interface makes no guarantees of threadsafety.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

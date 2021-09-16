@@ -1,0 +1,136 @@
+{
+  "packageName": "javax.management",
+  "simpleName": "NotificationBroadcaster",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listener"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.NotificationFilter",
+            "type": "Class"
+          },
+          "field": {
+            "name": "filter"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "handback"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addNotificationListener",
+      "comment": "Adds a listener to this MBean.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationBroadcaster.html#removeNotificationListener(javax.management.NotificationListener)\"\u003e\u003ccode\u003eremoveNotificationListener(javax.management.NotificationListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - The listener object which will handle the notifications emitted by the broadcaster.",
+          "\u003ccode\u003efilter\u003c/code\u003e - The filter object. If filter is null, no filtering will be performed before handling notifications.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - An opaque object to be sent back to the listener when a notification is emitted. This object cannot be used by the Notification broadcaster object. It should be resent unchanged with the notification to the listener."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - Listener parameter is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.NotificationListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listener"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListener",
+      "comment": "Removes a listener from this MBean. If the listener has been registered with different handback objects or notification filters, all entries corresponding to the listener will be removed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationBroadcaster.html#addNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationEmitter.html#removeNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eNotificationEmitter.removeNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - A listener that was previously added to this MBean."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - The listener is not registered with the MBean."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.MBeanNotificationInfo",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNotificationInfo",
+      "comment": "Returns an array indicating, for each notification this MBean may send, the name of the Java class of the notification and the notification type. It is not illegal for the MBean to send notifications not described in this array. However, some clients of the MBean server may depend on the array being complete for their correct functioning.",
+      "tagMap": {
+        "return": [
+          "the array of possible notifications."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.management.NotificationBroadcaster",
+  "comment": "\u003cp\u003eInterface implemented by an MBean that emits Notifications. It allows a listener to be registered with the MBean as a notification listener.\u003c/p\u003e \n\u003ch2\u003eNotification dispatch\u003c/h2\u003e \n\u003cp\u003eWhen an MBean emits a notification, it considers each listener that has been added with \u003ca href\u003d\"#addNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eaddNotificationListener\u003c/code\u003e\u003c/a\u003e and not subsequently removed with \u003ca href\u003d\"#removeNotificationListener(javax.management.NotificationListener)\"\u003e\u003ccode\u003eremoveNotificationListener\u003c/code\u003e\u003c/a\u003e. If a filter was provided with that listener, and if the filter\u0027s \u003ca href\u003d\"NotificationFilter.html#isNotificationEnabled(javax.management.Notification)\"\u003e\u003ccode\u003eisNotificationEnabled\u003c/code\u003e\u003c/a\u003e method returns false, the listener is ignored. Otherwise, the listener\u0027s \u003ca href\u003d\"NotificationListener.html#handleNotification(javax.management.Notification,java.lang.Object)\"\u003e\u003ccode\u003ehandleNotification\u003c/code\u003e\u003c/a\u003e method is called with the notification, as well as the handback object that was provided to \u003ccode\u003eaddNotificationListener\u003c/code\u003e.\u003c/p\u003e \n\u003cp\u003eIf the same listener is added more than once, it is considered as many times as it was added. It is often useful to add the same listener with different filters or handback objects.\u003c/p\u003e \n\u003cp\u003eImplementations of this interface can differ regarding the thread in which the methods of filters and listeners are called.\u003c/p\u003e \n\u003cp\u003eIf the method call of a filter or listener throws an \u003ca href\u003d\"../../../java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eException\u003c/code\u003e\u003c/a\u003e, then that exception should not prevent other listeners from being invoked. However, if the method call throws an \u003ca href\u003d\"../../../java.base/java/lang/Error.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eError\u003c/code\u003e\u003c/a\u003e, then it is recommended that processing of the notification stop at that point, and if it is possible to propagate the \u003ccode\u003eError\u003c/code\u003e to the sender of the notification, this should be done.\u003c/p\u003e \n\u003cp\u003eNew code should use the \u003ca href\u003d\"NotificationEmitter.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eNotificationEmitter\u003c/code\u003e\u003c/a\u003e interface instead.\u003c/p\u003e \n\u003cp\u003eImplementations of this interface and of \u003ccode\u003eNotificationEmitter\u003c/code\u003e should be careful about synchronization. In particular, it is not a good idea for an implementation to hold any locks while it is calling a listener. To deal with the possibility that the list of listeners might change while a notification is being dispatched, a good strategy is to use a \u003ca href\u003d\"../../../java.base/java/util/concurrent/CopyOnWriteArrayList.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCopyOnWriteArrayList\u003c/code\u003e\u003c/a\u003e for this list.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

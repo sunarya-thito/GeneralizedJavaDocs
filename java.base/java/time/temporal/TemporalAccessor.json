@@ -1,0 +1,220 @@
+{
+  "packageName": "java.time.temporal",
+  "simpleName": "TemporalAccessor",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalField",
+            "type": "Class"
+          },
+          "field": {
+            "name": "field"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSupported",
+      "comment": "Checks if the specified field is supported. This checks if the date-time can be queried for the specified field. If false, then calling the range and get methods will throw an exception.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must check and handle all fields defined in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoField.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoField\u003c/code\u003e\u003c/a\u003e. If the field is supported, then true must be returned, otherwise false must be returned. \n\u003cp\u003e If the field is not a \u003ccode\u003eChronoField\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalField.isSupportedBy(TemporalAccessor)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the argument. \u003c/p\u003e\n\u003cp\u003e Implementations must ensure that no observable state is altered when this read-only method is invoked.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efield\u003c/code\u003e - the field to check, null returns false"
+        ],
+        "return": [
+          "true if this date-time can be queried for the field, false if not"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.ValueRange",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalField",
+            "type": "Class"
+          },
+          "field": {
+            "name": "field"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "range",
+      "comment": "Gets the range of valid values for the specified field. All fields can be expressed as a long integer. This method returns an object that describes the valid range for that value. The value of this temporal object is used to enhance the accuracy of the returned range. If the date-time cannot return the range, because the field is unsupported or for some other reason, an exception will be thrown. Note that the result only describes the minimum and maximum valid values and it is important not to read too much into them. For example, there could be values within the range that are invalid for the field.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must check and handle all fields defined in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoField.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoField\u003c/code\u003e\u003c/a\u003e. If the field is supported, then the range of the field must be returned. If unsupported, then an \n\u003ccode\u003eUnsupportedTemporalTypeException\u003c/code\u003e must be thrown. \n\u003cp\u003e If the field is not a \u003ccode\u003eChronoField\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalField.rangeRefinedBy(TemporalAccessor)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the argument. \u003c/p\u003e\n\u003cp\u003e Implementations must ensure that no observable state is altered when this read-only method is invoked. \u003c/p\u003e\n\u003cp\u003e The default implementation must behave equivalent to this code: \u003c/p\u003e\n\u003cpre\u003e  if (field instanceof ChronoField) {\n    if (isSupported(field)) {\n      return field.range();\n    }\n    throw new UnsupportedTemporalTypeException(\"Unsupported field: \" + field);\n  }\n  return field.rangeRefinedBy(this);\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efield\u003c/code\u003e - the field to query the range for, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the range for the field cannot be obtained",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the field is not supported"
+        ],
+        "return": [
+          "the range of valid values for the field, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalField",
+            "type": "Class"
+          },
+          "field": {
+            "name": "field"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "get",
+      "comment": "Gets the value of the specified field as an int. This queries the date-time for the value of the specified field. The returned value will always be within the valid range of values for the field. If the date-time cannot return the value, because the field is unsupported or for some other reason, an exception will be thrown.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must check and handle all fields defined in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoField.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoField\u003c/code\u003e\u003c/a\u003e. If the field is supported and has an \n\u003ccode\u003eint\u003c/code\u003e range, then the value of the field must be returned. If unsupported, then an \n\u003ccode\u003eUnsupportedTemporalTypeException\u003c/code\u003e must be thrown. \n\u003cp\u003e If the field is not a \u003ccode\u003eChronoField\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalField.getFrom(TemporalAccessor)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the argument. \u003c/p\u003e\n\u003cp\u003e Implementations must ensure that no observable state is altered when this read-only method is invoked. \u003c/p\u003e\n\u003cp\u003e The default implementation must behave equivalent to this code: \u003c/p\u003e\n\u003cpre\u003e  if (range(field).isIntValue()) {\n    return range(field).checkValidIntValue(getLong(field), field);\n  }\n  throw new UnsupportedTemporalTypeException(\"Invalid field \" + field + \" + for get() method, use getLong() instead\");\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efield\u003c/code\u003e - the field to get, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if a value for the field cannot be obtained or the value is outside the range of valid values for the field",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the field is not supported or the range of values exceeds an \n\u003ccode\u003eint\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "the value for the field, within the valid range of values"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalField",
+            "type": "Class"
+          },
+          "field": {
+            "name": "field"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLong",
+      "comment": "Gets the value of the specified field as a long. This queries the date-time for the value of the specified field. The returned value may be outside the valid range of values for the field. If the date-time cannot return the value, because the field is unsupported or for some other reason, an exception will be thrown.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must check and handle all fields defined in \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/ChronoField.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoField\u003c/code\u003e\u003c/a\u003e. If the field is supported, then the value of the field must be returned. If unsupported, then an \n\u003ccode\u003eUnsupportedTemporalTypeException\u003c/code\u003e must be thrown. \n\u003cp\u003e If the field is not a \u003ccode\u003eChronoField\u003c/code\u003e, then the result of this method is obtained by invoking \u003ccode\u003eTemporalField.getFrom(TemporalAccessor)\u003c/code\u003e passing \u003ccode\u003ethis\u003c/code\u003e as the argument. \u003c/p\u003e\n\u003cp\u003e Implementations must ensure that no observable state is altered when this read-only method is invoked.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efield\u003c/code\u003e - the field to get, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if a value for the field cannot be obtained",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the field is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "the value for the field"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "R",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalQuery",
+            "parameters": [
+              {
+                "name": "R",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "query"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "R",
+          "type": "Variable"
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "query",
+      "comment": "Queries this date-time. This queries this date-time using the specified query strategy object. Queries are a key tool for extracting information from date-times. They exists to externalize the process of querying, permitting different approaches, as per the strategy design pattern. Examples might be a query that checks if the date is the day before February 29th in a leap year, or calculates the number of days to your next birthday. The most common query implementations are method references, such as LocalDate::from and ZoneId::from. Additional implementations are provided as static methods on TemporalQuery.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eR\u003c/code\u003e - the type of the result"
+        ],
+        "implSpec": [
+          "The default implementation must behave equivalent to this code: \n\u003cpre\u003e  if (query \u003d\u003d TemporalQueries.zoneId() ||\n        query \u003d\u003d TemporalQueries.chronology() || query \u003d\u003d TemporalQueries.precision()) {\n    return null;\n  }\n  return query.queryFrom(this);\n \u003c/pre\u003e Future versions are permitted to add further queries to the if statement. \n\u003cp\u003e All classes implementing this interface and overriding this method must call \u003ccode\u003eTemporalAccessor.super.query(query)\u003c/code\u003e. JDK classes may avoid calling super if they provide behavior equivalent to the default behaviour, however non-JDK classes may not utilize this optimization and must call \u003ccode\u003esuper\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e If the implementation can supply a value for one of the queries listed in the if statement of the default implementation, then it must do so. For example, an application-defined \u003ccode\u003eHourMin\u003c/code\u003e class storing the hour and minute must override this method as follows: \u003c/p\u003e\n\u003cpre\u003e  if (query \u003d\u003d TemporalQueries.precision()) {\n    return MINUTES;\n  }\n  return TemporalAccessor.super.query(query);\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Implementations must ensure that no observable state is altered when this read-only method is invoked.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003equery\u003c/code\u003e - the query to invoke, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if unable to query",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "the query result, null may be returned (defined by the query)"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.time.temporal.TemporalAccessor",
+  "comment": "Framework-level interface defining read-only access to a temporal object, such as a date, time, offset or some combination of these. \n\u003cp\u003e This is the base interface type for date, time and offset objects. It is implemented by those classes that can provide information as \u003ca href\u003d\"TemporalField.html\" title\u003d\"interface in java.time.temporal\"\u003efields\u003c/a\u003e or \u003ca href\u003d\"TemporalQuery.html\" title\u003d\"interface in java.time.temporal\"\u003equeries\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e Most date and time information can be represented as a number. These are modeled using \u003ccode\u003eTemporalField\u003c/code\u003e with the number held using a \u003ccode\u003elong\u003c/code\u003e to handle large values. Year, month and day-of-month are simple examples of fields, but they also include instant and offsets. See \u003ca href\u003d\"ChronoField.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoField\u003c/code\u003e\u003c/a\u003e for the standard set of fields. \u003c/p\u003e\n\u003cp\u003e Two pieces of date/time information cannot be represented by numbers, the \u003ca href\u003d\"../chrono/Chronology.html\" title\u003d\"interface in java.time.chrono\"\u003echronology\u003c/a\u003e and the \u003ca href\u003d\"../ZoneId.html\" title\u003d\"class in java.time\"\u003etime-zone\u003c/a\u003e. These can be accessed via \u003ca href\u003d\"#query(java.time.temporal.TemporalQuery)\"\u003equeries\u003c/a\u003e using the static methods defined on \u003ca href\u003d\"TemporalQuery.html\" title\u003d\"interface in java.time.temporal\"\u003e\u003ccode\u003eTemporalQuery\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e A sub-interface, \u003ca href\u003d\"Temporal.html\" title\u003d\"interface in java.time.temporal\"\u003e\u003ccode\u003eTemporal\u003c/code\u003e\u003c/a\u003e, extends this definition to one that also supports adjustment and manipulation on more complete temporal objects. \u003c/p\u003e\n\u003cp\u003e This interface is a framework-level interface that should not be widely used in application code. Instead, applications should create and pass around instances of concrete types, such as \u003ccode\u003eLocalDate\u003c/code\u003e. There are many reasons for this, part of which is that implementations of this interface may be in calendar systems other than ISO. See \u003ca href\u003d\"../chrono/ChronoLocalDate.html\" title\u003d\"interface in java.time.chrono\"\u003e\u003ccode\u003eChronoLocalDate\u003c/code\u003e\u003c/a\u003e for a fuller discussion of the issues.\u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "This interface places no restrictions on the mutability of implementations, however immutability is strongly recommended."
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

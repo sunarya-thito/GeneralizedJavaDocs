@@ -1,0 +1,415 @@
+{
+  "packageName": "java.rmi.server",
+  "simpleName": "RemoteRef",
+  "moduleName": "java.rmi",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.io.Externalizable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "long",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "serialVersionUID",
+      "comment": "indicate compatibility with JDK 1.1.x version of class.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.rmi.server.RemoteRef.serialVersionUID\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "packagePrefix",
+      "comment": "Initialize the server package prefix: assumes that the implementation of server ref classes (e.g., UnicastRef, UnicastServerRef) are located in the package defined by the prefix.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.rmi.server.RemoteRef.packagePrefix\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.rmi.Remote",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.reflect.Method",
+            "type": "Class"
+          },
+          "field": {
+            "name": "method"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "params"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "opnum"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invoke",
+      "comment": "Invoke a method. This form of delegating method invocation to the reference allows the reference to take care of setting up the connection to the remote host, marshaling some representation for the method and parameters, then communicating the method invocation to the remote host. This method either returns the result of a method invocation on the remote object which resides on the remote host or throws a RemoteException if the call failed or an application-level exception if the remote invocation throws an exception.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the object that contains the RemoteRef (e.g., the RemoteStub for the object.",
+          "\u003ccode\u003emethod\u003c/code\u003e - the method to be invoked",
+          "\u003ccode\u003eparams\u003c/code\u003e - the parameter list",
+          "\u003ccode\u003eopnum\u003c/code\u003e - a hash that may be used to represent the method"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if any exception occurs during remote method invocation"
+        ],
+        "return": [
+          "result of remote method invocation"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.rmi.server.RemoteCall",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.rmi.server.RemoteObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.server.Operation",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "op"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "opnum"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "hash"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "newCall",
+      "comment": "Creates an appropriate call object for a new remote method invocation on this object. Passing operation array and index, allows the stubs generator to assign the operation indexes and interpret them. The remote reference may need the operation to encode in the call.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/server/RemoteRef.html#invoke(java.rmi.Remote,java.lang.reflect.Method,java.lang.Object%5B%5D,long)\"\u003e\u003ccode\u003einvoke(Remote,java.lang.reflect.Method,Object[],long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - remote stub through which to make call",
+          "\u003ccode\u003eop\u003c/code\u003e - array of stub operations",
+          "\u003ccode\u003eopnum\u003c/code\u003e - operation number",
+          "\u003ccode\u003ehash\u003c/code\u003e - stub/skeleton interface hash"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if failed to initiate new remote call"
+        ],
+        "return": [
+          "call object representing remote call"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.rmi.server.RemoteCall",
+            "type": "Class"
+          },
+          "field": {
+            "name": "call"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invoke",
+      "comment": "Executes the remote call. Invoke will raise any \"user\" exceptions which should pass through and not be caught by the stub. If any exception is raised during the remote invocation, invoke should take care of cleaning up the connection before raising the \"user\" or remote exception.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/server/RemoteRef.html#invoke(java.rmi.Remote,java.lang.reflect.Method,java.lang.Object%5B%5D,long)\"\u003e\u003ccode\u003einvoke(Remote,java.lang.reflect.Method,Object[],long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecall\u003c/code\u003e - object representing remote call"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if any exception occurs during remote method"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.rmi.RemoteException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.rmi.server.RemoteCall",
+            "type": "Class"
+          },
+          "field": {
+            "name": "call"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "done",
+      "comment": "Allows the remote reference to clean up (or reuse) the connection. Done should only be called if the invoke returns successfully (non-exceptionally) to the stub.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/server/RemoteRef.html#invoke(java.rmi.Remote,java.lang.reflect.Method,java.lang.Object%5B%5D,long)\"\u003e\u003ccode\u003einvoke(Remote,java.lang.reflect.Method,Object[],long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecall\u003c/code\u003e - object representing remote call"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/RemoteException.html\" title\u003d\"class in java.rmi\"\u003eRemoteException\u003c/a\u003e\u003c/code\u003e - if remote error occurs during call cleanup"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.ObjectOutput",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRefClass",
+      "comment": "Returns the class name of the ref type to be serialized onto the stream \u0027out\u0027.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - the output stream to which the reference will be serialized"
+        ],
+        "return": [
+          "the class name (without package qualification) of the reference type"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "remoteHashCode",
+      "comment": "Returns a hashcode for a remote object. Two remote object stubs that refer to the same remote object will have the same hash code (in order to support remote objects as keys in hash tables).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Hashtable.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashtable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "remote object hashcode"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.rmi.server.RemoteRef",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "remoteEquals",
+      "comment": "Compares two remote objects for equality. Returns a boolean that indicates whether this remote object is equivalent to the specified Object. This method is used when a remote object is stored in a hashtable.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Hashtable.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashtable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the Object to compare with"
+        ],
+        "return": [
+          "true if these Objects are equal; false otherwise."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "remoteToString",
+      "comment": "Returns a String that represents the reference of this remote object.",
+      "tagMap": {
+        "return": [
+          "string representing remote object reference"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.rmi.server.RemoteRef",
+  "comment": "\u003ccode\u003eRemoteRef\u003c/code\u003e represents the handle for a remote object. A \n\u003ccode\u003eRemoteStub\u003c/code\u003e uses a remote reference to carry out a remote method invocation to a remote object.",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.rmi/java/rmi/server/RemoteStub.html\" title\u003d\"class in java.rmi.server\"\u003e\u003ccode\u003eRemoteStub\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.1"
+    ]
+  }
+}

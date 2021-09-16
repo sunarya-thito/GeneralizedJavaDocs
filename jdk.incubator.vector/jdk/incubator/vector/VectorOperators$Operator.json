@@ -1,0 +1,159 @@
+{
+  "packageName": "jdk.incubator.vector",
+  "simpleName": "Operator",
+  "moduleName": "jdk.incubator.vector",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Returns the symbolic name of this operator, as a constant in VectorOperators. The operator symbol, Java method name, or example expression, such as \"+\", \"max\" or \"-a\", is also available as operatorName().",
+      "tagMap": {
+        "return": [
+          "the symbolic name of this operator, such as \n\u003ccode\u003e\"ADD\"\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "operatorName",
+      "comment": "Returns the Java operator symbol or method name corresponding to this operator. If there is no symbol or method, return a string containing a representative expression for the operator, using operand names a, b (for non-unary operators), and c (for ternary operators). The symbolic name of the constant, such as \"ADD\", is also available as name().",
+      "tagMap": {
+        "return": [
+          "an operator token, such as \n\u003ccode\u003e\"+\"\u003c/code\u003e, or a method name, such as \n\u003ccode\u003e\"max\"\u003c/code\u003e, or a representative expression, such as \n\u003ccode\u003e\"-a\"\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "arity",
+      "comment": "Returns the arity of this operator (1, 2, or 3).",
+      "tagMap": {
+        "return": [
+          "the arity of this operator (1, 2, or 3)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isBoolean",
+      "comment": "Reports whether this operator returns a boolean (a mask). A boolean operator also reports boolean as the rangeType.",
+      "tagMap": {
+        "return": [
+          "whether this operator returns a boolean"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "rangeType",
+      "comment": "Reports the special return type of this operator. If this operator is a boolean, returns boolean.class. If this operator is a Conversion, returns its range type. Otherwise, the operator\u0027s return value always has whatever type was given as an input, and this method returns Object.class to denote that fact.",
+      "tagMap": {
+        "return": [
+          "the special return type, or \n\u003ccode\u003eObject.class\u003c/code\u003e if none"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isAssociative",
+      "comment": "Returns the associativity of this operator. Only binary operators can be associative.",
+      "tagMap": {
+        "return": [
+          "the associativity of this operator"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "compatibleWith",
+      "comment": "Reports whether this operator is compatible with the proposed element type. First, unrestricted operators are compatible with all element types. Next, if the element type is double or float and the operator is restricted to floating point types, it is compatible. Otherwise, if the element type is neither double nor float and the operator is restricted to integral types, it is compatible. Otherwise, the operator is not compatible.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementType\u003c/code\u003e - the proposed operand type for the operator"
+        ],
+        "return": [
+          "whether the proposed type is compatible with this operator"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "jdk.incubator.vector.VectorOperators$Operator",
+  "comment": "Root type for all operator tokens, providing queries for common properties such as arity, argument and return types, symbolic name, and operator name.",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorOperators.Unary.html\" title\u003d\"interface in jdk.incubator.vector\"\u003e\u003ccode\u003eUnary\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorOperators.Binary.html\" title\u003d\"interface in jdk.incubator.vector\"\u003e\u003ccode\u003eBinary\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorOperators.Ternary.html\" title\u003d\"interface in jdk.incubator.vector\"\u003e\u003ccode\u003eTernary\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorOperators.Associative.html\" title\u003d\"interface in jdk.incubator.vector\"\u003e\u003ccode\u003eAssociative\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorOperators.Comparison.html\" title\u003d\"interface in jdk.incubator.vector\"\u003e\u003ccode\u003eComparison\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorOperators.Test.html\" title\u003d\"interface in jdk.incubator.vector\"\u003e\u003ccode\u003eTest\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorOperators.Conversion.html\" title\u003d\"interface in jdk.incubator.vector\"\u003e\u003ccode\u003eConversion\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "apiNote": [
+      "User code should not implement this interface. A future release of this type may restrict implementations to be members of the same package."
+    ]
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "packageName": "java.lang.invoke",
+  "simpleName": "VolatileCallSite",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.invoke.CallSite",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getTarget",
+      "comment": "Returns the target method of the call site, which behaves like a volatile field of the VolatileCallSite. The interactions of getTarget with memory are the same as of a read from a volatile field. In particular, the current thread is required to issue a fresh read of the target from memory, and must not fail to see a recent update to the target by another thread.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/VolatileCallSite.html#setTarget(java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003esetTarget(java.lang.invoke.MethodHandle)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/CallSite.html#getTarget()\"\u003egetTarget\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/CallSite.html\" title\u003d\"class in java.lang.invoke\"\u003eCallSite\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the linkage state of this call site, a method handle which can change over time"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newTarget"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setTarget",
+      "comment": "Updates the target method of this call site, as a volatile variable. The type of the new target must agree with the type of the old target. The interactions with memory are the same as of a write to a volatile field. In particular, any threads is guaranteed to see the updated target the next time it calls getTarget.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/VolatileCallSite.html#getTarget()\"\u003e\u003ccode\u003egetTarget()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/CallSite.html#setTarget(java.lang.invoke.MethodHandle)\"\u003esetTarget\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/CallSite.html\" title\u003d\"class in java.lang.invoke\"\u003eCallSite\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enewTarget\u003c/code\u003e - the new target"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the proposed new target is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/WrongMethodTypeException.html\" title\u003d\"class in java.lang.invoke\"\u003eWrongMethodTypeException\u003c/a\u003e\u003c/code\u003e - if the proposed new target has a method type that differs from the previous target"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "dynamicInvoker",
+      "comment": "Produces a method handle equivalent to an invokedynamic instruction which has been linked to this call site. This method is equivalent to the following code: \n MethodHandle getTarget, invoker, result;\n getTarget \u003d MethodHandles.publicLookup().bind(this, \"getTarget\", MethodType.methodType(MethodHandle.class));\n invoker \u003d MethodHandles.exactInvoker(this.type());\n result \u003d MethodHandles.foldArguments(invoker, getTarget)",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/CallSite.html#dynamicInvoker()\"\u003edynamicInvoker\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/CallSite.html\" title\u003d\"class in java.lang.invoke\"\u003eCallSite\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a method handle which always invokes this call site\u0027s current target"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "type"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a call site with a volatile binding to its target. The initial target is set to a method handle of the given type which will throw an IllegalStateException if called.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etype\u003c/code\u003e - the method type that this call site will have"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the proposed type is null"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "target"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a call site with a volatile binding to its target. The target is set to the given value.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etarget\u003c/code\u003e - the method handle that will be the initial target of the call site"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the proposed target is null"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.lang.invoke.VolatileCallSite",
+  "comment": "A \n\u003ccode\u003eVolatileCallSite\u003c/code\u003e is a \n\u003ca href\u003d\"CallSite.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eCallSite\u003c/code\u003e\u003c/a\u003e whose target acts like a volatile variable. An \n\u003ccode\u003einvokedynamic\u003c/code\u003e instruction linked to a \n\u003ccode\u003eVolatileCallSite\u003c/code\u003e sees updates to its call site target immediately, even if the update occurs in another thread. There may be a performance penalty for such tight coupling between threads. \n\u003cp\u003e Unlike \u003ccode\u003eMutableCallSite\u003c/code\u003e, there is no \u003ca href\u003d\"MutableCallSite.html#syncAll(java.lang.invoke.MutableCallSite%5B%5D)\"\u003esyncAll operation\u003c/a\u003e on volatile call sites, since every write to a volatile variable is implicitly synchronized with reader threads. \u003c/p\u003e\n\u003cp\u003e In other respects, a \u003ccode\u003eVolatileCallSite\u003c/code\u003e is interchangeable with \u003ccode\u003eMutableCallSite\u003c/code\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MutableCallSite.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eMutableCallSite\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.7"
+    ]
+  }
+}

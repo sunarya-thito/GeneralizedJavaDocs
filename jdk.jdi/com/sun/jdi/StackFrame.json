@@ -1,0 +1,328 @@
+{
+  "packageName": "com.sun.jdi",
+  "simpleName": "StackFrame",
+  "moduleName": "jdk.jdi",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "com.sun.jdi.Mirror",
+      "type": "Class"
+    },
+    {
+      "name": "com.sun.jdi.Locatable",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "com.sun.jdi.Location",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "location",
+      "comment": "Returns the Location of the current instruction in the frame. The method for which this frame was created can also be accessed through the returned location. For the top frame in the stack, this location identifies the next instruction to be executed. For all other frames, this location identifies the instruction that caused the next frame\u0027s method to be invoked. If the frame represents a native method invocation, the returned location indicates the class and method, but the code index will not be valid (-1).",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Locatable.html#location()\"\u003elocation\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Locatable.html\" title\u003d\"interface in com.sun.jdi\"\u003eLocatable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid."
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Location.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocation\u003c/code\u003e\u003c/a\u003e of the current instruction."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ThreadReference",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "thread",
+      "comment": "Returns the thread under which this frame\u0027s method is running.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eThreadReference\u003c/code\u003e\u003c/a\u003e which mirrors the frame\u0027s thread."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ObjectReference",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "thisObject",
+      "comment": "Returns the value of \u0027this\u0027 for the current frame. The ObjectReference for \u0027this\u0027 is only available for non-native instance methods.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid."
+        ],
+        "return": [
+          "an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e, or null if the frame represents a native or static method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.LocalVariable",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "visibleVariables",
+      "comment": "Returns a list containing each LocalVariable that can be accessed from this frame\u0027s location. Visibility is based on the code index of the current instruction of this StackFrame. Each variable has a range of byte code indices in which it is accessible. If this stack frame\u0027s method matches this variable\u0027s method and if the code index of this StackFrame is within the variable\u0027s byte code range, the variable is visible. A variable\u0027s byte code range is at least as large as the scope of that variable, but can continue beyond the end of the scope under certain circumstances: the compiler/VM does not immediately reuse the variable\u0027s slot. the compiler/VM is implemented to report the extended range that would result from the item above. The advantage of an extended range is that variables from recently exited scopes may remain available for examination (this is especially useful for loop indices). If, as a result of the extensions above, the current frame location is contained within the range of multiple local variables of the same name, the variable with the highest-starting range is chosen for the returned list.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if there is no local variable information for this method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/NativeMethodException.html\" title\u003d\"class in com.sun.jdi\"\u003eNativeMethodException\u003c/a\u003e\u003c/code\u003e - if the current method is native."
+        ],
+        "return": [
+          "the list of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/LocalVariable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocalVariable\u003c/code\u003e\u003c/a\u003e objects currently visible; the list will be empty if there are no visible variables; specifically, frames in native methods will always return a zero-length list."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.LocalVariable",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "visibleVariableByName",
+      "comment": "Finds a LocalVariable that matches the given name and is visible at the current frame location. See visibleVariables() for more information on visibility.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the variable name to find"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if there is no local variable information for this method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/NativeMethodException.html\" title\u003d\"class in com.sun.jdi\"\u003eNativeMethodException\u003c/a\u003e\u003c/code\u003e - if the current method is native."
+        ],
+        "return": [
+          "the matching \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/LocalVariable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocalVariable\u003c/code\u003e\u003c/a\u003e, or null if there is no visible variable with the given name; frames in native methods will always return null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.Value",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.LocalVariable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "variable"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValue",
+      "comment": "Gets the Value of a LocalVariable in this frame. The variable must be valid for this frame\u0027s method and visible according to the rules described in visibleVariables().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evariable\u003c/code\u003e - the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/LocalVariable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocalVariable\u003c/code\u003e\u003c/a\u003e to be accessed"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the variable is either invalid for this frame\u0027s method or not visible.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid."
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e of the instance field."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.LocalVariable",
+            "type": "Class"
+          },
+          {
+            "name": "com.sun.jdi.Value",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "com.sun.jdi.LocalVariable",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "variables"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValues",
+      "comment": "Returns the values of multiple local variables in this frame. Each variable must be valid for this frame\u0027s method and visible according to the rules described in visibleVariables().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evariables\u003c/code\u003e - a list of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/LocalVariable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocalVariable\u003c/code\u003e\u003c/a\u003e objects to be accessed"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any variable is either invalid for this frame\u0027s method or not visible.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid."
+        ],
+        "return": [
+          "a map associating each \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/LocalVariable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocalVariable\u003c/code\u003e\u003c/a\u003e with its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.InvalidTypeException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.jdi.ClassNotLoadedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.LocalVariable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "variable"
+          }
+        },
+        {
+          "type": {
+            "name": "com.sun.jdi.Value",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setValue",
+      "comment": "Sets the Value of a LocalVariable in this frame. The variable must be valid for this frame\u0027s method and visible according to the rules described in visibleVariables(). Object values must be assignment compatible with the variable type (This implies that the variable type must be loaded through the enclosing class\u0027s class loader). Primitive values must be either assignment compatible with the variable type or must be convertible to the variable type without loss of information. See JLS section 5.2 for more information on assignment compatibility.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evariable\u003c/code\u003e - the field containing the requested value",
+          "\u003ccode\u003evalue\u003c/code\u003e - the new value to assign"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field is not valid for this object\u0027s class.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidTypeException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidTypeException\u003c/a\u003e\u003c/code\u003e - if the value\u0027s type does not match the variable\u0027s type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotLoadedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotLoadedException\u003c/a\u003e\u003c/code\u003e - if the variable type has not yet been loaded through the appropriate class loader.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Value",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getArgumentValues",
+      "comment": "Returns the values of all arguments in this frame. Values are returned even if no local variable information is present.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidStackFrameException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidStackFrameException\u003c/a\u003e\u003c/code\u003e - if this stack frame has become invalid. Once the frame\u0027s thread is resumed, the stack frame is no longer valid."
+        ],
+        "return": [
+          "a list containing a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e object for each argument to this frame, in the order in which the arguments were declared. If the method corresponding to this frame has no arguments, an empty list is returned."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "com.sun.jdi.StackFrame",
+  "comment": "The state of one method invocation on a thread\u0027s call stack. As a thread executes, stack frames are pushed and popped from its call stack as methods are invoked and then return. A StackFrame mirrors one such frame from a target VM at some point in its thread\u0027s execution. The call stack is, then, simply a List of StackFrame objects. The call stack can be obtained any time a thread is suspended through a call to \n\u003ca href\u003d\"ThreadReference.html#frames()\"\u003e\u003ccode\u003eThreadReference.frames()\u003c/code\u003e\u003c/a\u003e \n\u003cp\u003e StackFrames provide access to a method\u0027s local variables and their current values. \u003c/p\u003e\n\u003cp\u003e The lifetime of a StackFrame is very limited. It is available only for suspended threads and becomes invalid once its thread is resumed. \u003c/p\u003e\n\u003cp\u003e Any method on \u003ccode\u003eStackFrame\u003c/code\u003e which takes \u003ccode\u003eStackFrame\u003c/code\u003e as an parameter may throw \u003ca href\u003d\"VMDisconnectedException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eVMDisconnectedException\u003c/code\u003e\u003c/a\u003e if the target VM is disconnected and the \u003ca href\u003d\"event/VMDisconnectEvent.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eVMDisconnectEvent\u003c/code\u003e\u003c/a\u003e has been or is available to be read from the \u003ca href\u003d\"event/EventQueue.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eEventQueue\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e Any method on \u003ccode\u003eStackFrame\u003c/code\u003e which takes \u003ccode\u003eStackFrame\u003c/code\u003e as an parameter may throw \u003ca href\u003d\"VMOutOfMemoryException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eVMOutOfMemoryException\u003c/code\u003e\u003c/a\u003e if the target VM has run out of memory.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.3"
+    ]
+  }
+}

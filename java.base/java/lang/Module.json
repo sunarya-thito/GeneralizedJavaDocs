@@ -1,0 +1,688 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "Module",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isNamed",
+      "comment": "Returns true if this module is a named module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getUnnamedModule()\"\u003e\u003ccode\u003eClassLoader.getUnnamedModule()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this is a named module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getName",
+      "comment": "Returns the module name or null if this module is an unnamed module.",
+      "tagMap": {
+        "return": [
+          "The module name"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ClassLoader",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getClassLoader",
+      "comment": "Returns the ClassLoader for this module. If there is a security manager then its checkPermission method if first called with a RuntimePermission(\"getClassLoader\") permission to check that the caller is allowed to get access to the class loader.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If denied by the security manager"
+        ],
+        "return": [
+          "The class loader for this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.module.ModuleDescriptor",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDescriptor",
+      "comment": "Returns the module descriptor for this module or null if this module is an unnamed module.",
+      "tagMap": {
+        "return": [
+          "The module descriptor for this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ModuleLayer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getLayer",
+      "comment": "Returns the module layer that contains this module or null if this module is not in a module layer. A module layer contains named modules and therefore this method always returns null when invoked on an unnamed module. Dynamic modules are named modules that are generated at runtime. A dynamic module may or may not be in a module layer.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/Proxy.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eProxy\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "The module layer that contains this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canRead",
+      "comment": "Indicates if this module reads the given module. This method returns true if invoked to test if this module reads itself. It also returns true if invoked on an unnamed module (as unnamed modules read all modules).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#addReads(java.lang.Module)\"\u003e\u003ccode\u003eaddReads(Module)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - The other module"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this module reads \n\u003ccode\u003eother\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Module",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addReads",
+      "comment": "If the caller\u0027s module is this module then update this module to read the given module. This method is a no-op if other is this module (all modules read themselves), this module is an unnamed module (as unnamed modules read all modules), or this module already reads other.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#canRead(java.lang.Module)\"\u003e\u003ccode\u003ecanRead(java.lang.Module)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - The other module"
+        ],
+        "implNote": [
+          "\u003cem\u003eRead edges\u003c/em\u003e added by this method are \n\u003cem\u003eweak\u003c/em\u003e and do not prevent \n\u003ccode\u003eother\u003c/code\u003e from being GC\u0027ed when this module is strongly reachable."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalCallerException.html\" title\u003d\"class in java.lang\"\u003eIllegalCallerException\u003c/a\u003e\u003c/code\u003e - If this is a named module and the caller\u0027s module is not this module"
+        ],
+        "return": [
+          "this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pn"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isExported",
+      "comment": "Returns true if this module exports the given package to at least the given module. This method returns true if invoked to test if a package in this module is exported to itself. It always returns true when invoked on an unnamed module. A package that is open to the given module is considered exported to that module at run-time and so this method returns true if the package is open to the given module. This method does not check if the given module reads this module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleDescriptor.html#exports()\"\u003e\u003ccode\u003eModuleDescriptor.exports()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#addExports(java.lang.String,java.lang.Module)\"\u003e\u003ccode\u003eaddExports(String,Module)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epn\u003c/code\u003e - The package name",
+          "\u003ccode\u003eother\u003c/code\u003e - The other module"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this module exports the package to at least the given module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pn"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isOpen",
+      "comment": "Returns true if this module has opened a package to at least the given module. This method returns true if invoked to test if a package in this module is open to itself. It returns true when invoked on an open module with a package in the module. It always returns true when invoked on an unnamed module. This method does not check if the given module reads this module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleDescriptor.html#opens()\"\u003e\u003ccode\u003eModuleDescriptor.opens()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#addOpens(java.lang.String,java.lang.Module)\"\u003e\u003ccode\u003eaddOpens(String,Module)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AccessibleObject.html#setAccessible(boolean)\"\u003e\u003ccode\u003eAccessibleObject.setAccessible(boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.html#privateLookupIn(java.lang.Class,java.lang.invoke.MethodHandles.Lookup)\"\u003e\u003ccode\u003eMethodHandles.privateLookupIn(java.lang.Class\u0026lt;?\u0026gt;, java.lang.invoke.MethodHandles.Lookup)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epn\u003c/code\u003e - The package name",
+          "\u003ccode\u003eother\u003c/code\u003e - The other module"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this module has \n\u003cem\u003eopened\u003c/em\u003e the package to at least the given module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pn"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isExported",
+      "comment": "Returns true if this module exports the given package unconditionally. This method always returns true when invoked on an unnamed module. A package that is opened unconditionally is considered exported unconditionally at run-time and so this method returns true if the package is opened unconditionally. This method does not check if the given module reads this module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleDescriptor.html#exports()\"\u003e\u003ccode\u003eModuleDescriptor.exports()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epn\u003c/code\u003e - The package name"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this module exports the package unconditionally"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pn"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isOpen",
+      "comment": "Returns true if this module has opened a package unconditionally. This method always returns true when invoked on an unnamed module. Additionally, it always returns true when invoked on an open module with a package in the module. This method does not check if the given module reads this module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleDescriptor.html#opens()\"\u003e\u003ccode\u003eModuleDescriptor.opens()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epn\u003c/code\u003e - The package name"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this module has \n\u003cem\u003eopened\u003c/em\u003e the package unconditionally"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Module",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pn"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addExports",
+      "comment": "If the caller\u0027s module is this module then update this module to export the given package to the given module. This method has no effect if the package is already exported (or open) to the given module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#isExported(java.lang.String,java.lang.Module)\"\u003e\u003ccode\u003eisExported(String,Module)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "As specified in section \n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-5.html#jls-5.4.3\"\u003e5.4.3\u003c/a\u003e of the \n\u003ccite\u003eThe Java Virtual Machine Specification \u003c/cite\u003e, if an attempt to resolve a symbolic reference fails because of a linkage error, then subsequent attempts to resolve the reference always fail with the same error that was thrown as a result of the initial resolution attempt."
+        ],
+        "param": [
+          "\u003ccode\u003epn\u003c/code\u003e - The package name",
+          "\u003ccode\u003eother\u003c/code\u003e - The module"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003epn\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or this is a named module and the package \n\u003ccode\u003epn\u003c/code\u003e is not a package in this module",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalCallerException.html\" title\u003d\"class in java.lang\"\u003eIllegalCallerException\u003c/a\u003e\u003c/code\u003e - If this is a named module and the caller\u0027s module is not this module"
+        ],
+        "See Java Virtual Machine Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-5.html#jls-5.4.3\"\u003e5.4.3 Resolution\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "return": [
+          "this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Module",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pn"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addOpens",
+      "comment": "If this module has opened a package to at least the caller module then update this module to open the package to the given module. Opening a package with this method allows all types in the package, and all their members, not just public types and their public members, to be reflected on by the given module when using APIs that support private access or a way to bypass or suppress default Java language access control checks. This method has no effect if the package is already open to the given module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#isOpen(java.lang.String,java.lang.Module)\"\u003e\u003ccode\u003eisOpen(String,Module)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AccessibleObject.html#setAccessible(boolean)\"\u003e\u003ccode\u003eAccessibleObject.setAccessible(boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.html#privateLookupIn(java.lang.Class,java.lang.invoke.MethodHandles.Lookup)\"\u003e\u003ccode\u003eMethodHandles.privateLookupIn(java.lang.Class\u0026lt;?\u0026gt;, java.lang.invoke.MethodHandles.Lookup)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "This method can be used for cases where a \n\u003cem\u003econsumer module\u003c/em\u003e uses a qualified opens to open a package to an \n\u003cem\u003eAPI module\u003c/em\u003e but where the reflective access to the members of classes in the consumer module is delegated to code in another module. Code in the API module can use this method to open the package in the consumer module to the other module."
+        ],
+        "param": [
+          "\u003ccode\u003epn\u003c/code\u003e - The package name",
+          "\u003ccode\u003eother\u003c/code\u003e - The module"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003epn\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or this is a named module and the package \n\u003ccode\u003epn\u003c/code\u003e is not a package in this module",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalCallerException.html\" title\u003d\"class in java.lang\"\u003eIllegalCallerException\u003c/a\u003e\u003c/code\u003e - If this is a named module and this module has not opened the package to at least the caller\u0027s module"
+        ],
+        "return": [
+          "this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Module",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "service"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addUses",
+      "comment": "If the caller\u0027s module is this module then update this module to add a service dependence on the given service type. This method is intended for use by frameworks that invoke ServiceLoader on behalf of other modules or where the framework is passed a reference to the service type by other code. This method is a no-op when invoked on an unnamed module or an automatic module. This method does not cause resolveAndBind to be re-run.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#canUse(java.lang.Class)\"\u003e\u003ccode\u003ecanUse(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleDescriptor.html#uses()\"\u003e\u003ccode\u003eModuleDescriptor.uses()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eservice\u003c/code\u003e - The service type"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalCallerException.html\" title\u003d\"class in java.lang\"\u003eIllegalCallerException\u003c/a\u003e\u003c/code\u003e - If this is a named module and the caller\u0027s module is not this module"
+        ],
+        "return": [
+          "this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "service"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "canUse",
+      "comment": "Indicates if this module has a service dependence on the given service type. This method always returns true when invoked on an unnamed module or an automatic module.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Module.html#addUses(java.lang.Class)\"\u003e\u003ccode\u003eaddUses(Class)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eservice\u003c/code\u003e - The service type"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this module uses service type \n\u003ccode\u003est\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPackages",
+      "comment": "Returns the set of package names for the packages in this module. For named modules, the returned set contains an element for each package in the module. For unnamed modules, the returned set contains an element for each package that has been defined in the unnamed module.",
+      "tagMap": {
+        "return": [
+          "the set of the package names of the packages in this module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "annotationClass"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "upperBounds": [
+            {
+              "name": "java.lang.annotation.Annotation",
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAnnotation",
+      "comment": "Returns this element\u0027s annotation for the specified type if such an annotation is present, else null. This method returns null when invoked on an unnamed module. Note that any annotation returned by this method is a declaration annotation.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the annotation to query for and return if present"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AnnotatedElement.html#getAnnotation(java.lang.Class)\"\u003egetAnnotation\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AnnotatedElement.html\" title\u003d\"interface in java.lang.reflect\"\u003eAnnotatedElement\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eannotationClass\u003c/code\u003e - the Class object corresponding to the annotation type"
+        ],
+        "return": [
+          "this element\u0027s annotation for the specified annotation type if present on this element, else null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.annotation.Annotation",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAnnotations",
+      "comment": "Returns annotations that are present on this element. If there are no annotations present on this element, the return value is an array of length 0. The caller of this method is free to modify the returned array; it will have no effect on the arrays returned to other callers. This method returns an empty array when invoked on an unnamed module. Note that any annotations returned by this method are declaration annotations.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AnnotatedElement.html#getAnnotations()\"\u003egetAnnotations\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AnnotatedElement.html\" title\u003d\"interface in java.lang.reflect\"\u003eAnnotatedElement\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "annotations present on this element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.annotation.Annotation",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDeclaredAnnotations",
+      "comment": "Returns annotations that are directly present on this element. This method ignores inherited annotations. If there are no annotations directly present on this element, the return value is an array of length 0. The caller of this method is free to modify the returned array; it will have no effect on the arrays returned to other callers. This method returns an empty array when invoked on an unnamed module. Note that any annotations returned by this method are declaration annotations.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AnnotatedElement.html#getDeclaredAnnotations()\"\u003egetDeclaredAnnotations\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/AnnotatedElement.html\" title\u003d\"interface in java.lang.reflect\"\u003eAnnotatedElement\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "annotations directly present on this element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getResourceAsStream",
+      "comment": "Returns an input stream for reading a resource in this module. The name parameter is a \u0027/\u0027-separated path name that identifies the resource. As with Class.getResourceAsStream, this method delegates to the module\u0027s class loader findResource(String,String) method, invoking it with the module name (or null when the module is unnamed) and the name of the resource. If the resource name has a leading slash then it is dropped before delegation. A resource in a named module may be encapsulated so that it cannot be located by code in other modules. Whether a resource can be located or not is determined as follows: If the resource name ends with \".class\" then it is not encapsulated. A package name is derived from the resource name. If the package name is a package in the module then the resource can only be located by the caller of this method when the package is open to at least the caller\u0027s module. If the resource is not in a package in the module then the resource is not encapsulated. In the above, the package name for a resource is derived from the subsequence of characters that precedes the last \u0027/\u0027 in the name and then replacing each \u0027/\u0027 character in the subsequence with \u0027.\u0027. A leading slash is ignored when deriving the package name. As an example, the package name derived for a resource named \"a/b/c/foo.properties\" is \"a.b.c\". A resource name with the name \"META-INF/MANIFEST.MF\" is never encapsulated because \"META-INF\" is not a legal package name. This method returns null if the resource is not in this module, the resource is encapsulated and cannot be located by the caller, or access to the resource is denied by the security manager.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Class.html#getResourceAsStream(java.lang.String)\"\u003e\u003ccode\u003eClass.getResourceAsStream(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The resource name"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "return": [
+          "An input stream for reading the resource or \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns the string representation of this module. For a named module, the representation is the string \"module\", followed by a space, and then the module name. For an unnamed module, the representation is the string \"unnamed module\", followed by a space, and then an implementation specific string that identifies the unnamed module.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "The string representation of this module"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "java.lang.Module",
+  "comment": "Represents a run-time module, either \n\u003ca href\u003d\"#isNamed()\"\u003e\u003ccode\u003enamed\u003c/code\u003e\u003c/a\u003e or unnamed. \n\u003cp\u003e Named modules have a \u003ca href\u003d\"#getName()\"\u003e\u003ccode\u003ename\u003c/code\u003e\u003c/a\u003e and are constructed by the Java Virtual Machine when a graph of modules is defined to the Java virtual machine to create a \u003ca href\u003d\"ModuleLayer.html\" title\u003d\"class in java.lang\"\u003emodule layer\u003c/a\u003e. \u003c/p\u003e \n\u003cp\u003e An unnamed module does not have a name. There is an unnamed module for each \u003ca href\u003d\"ClassLoader.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClassLoader\u003c/code\u003e\u003c/a\u003e, obtained by invoking its \u003ca href\u003d\"ClassLoader.html#getUnnamedModule()\"\u003e\u003ccode\u003egetUnnamedModule\u003c/code\u003e\u003c/a\u003e method. All types that are not in a named module are members of their defining class loader\u0027s unnamed module. \u003c/p\u003e \n\u003cp\u003e The package names that are parameters or returned by methods defined in this class are the fully-qualified names of the packages as defined in section \u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-6.html#jls-6.5.3\"\u003e6.5.3\u003c/a\u003e of \u003ccite\u003eThe Java Language Specification\u003c/cite\u003e, for example, \u003ccode\u003e\"java.lang\"\u003c/code\u003e. \u003c/p\u003e \n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument to a method in this class causes a \u003ca href\u003d\"NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown. \u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Class.html#getModule()\"\u003e\u003ccode\u003eClass.getModule()\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

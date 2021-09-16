@@ -1,0 +1,258 @@
+{
+  "packageName": "java.security",
+  "simpleName": "ProtectionDomain",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.security.CodeSource",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getCodeSource",
+      "comment": "Returns the CodeSource of this domain.",
+      "tagMap": {
+        "return": [
+          "the CodeSource of this domain which may be null."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ClassLoader",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getClassLoader",
+      "comment": "Returns the ClassLoader of this domain.",
+      "tagMap": {
+        "return": [
+          "the ClassLoader of this domain which may be null."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.Principal",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getPrincipals",
+      "comment": "Returns an array of principals for this domain.",
+      "tagMap": {
+        "return": [
+          "a non-null array of principals for this domain. Returns a new array each time this method is called."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.PermissionCollection",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getPermissions",
+      "comment": "Returns the static permissions granted to this domain.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Policy.html#refresh()\"\u003e\u003ccode\u003ePolicy.refresh()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Policy.html#getPermissions(java.security.ProtectionDomain)\"\u003e\u003ccode\u003ePolicy.getPermissions(ProtectionDomain)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the static set of permissions for this domain which may be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "staticPermissionsOnly",
+      "comment": "Returns true if this domain contains only static permissions and does not check the current Policy at the time of permission checking.",
+      "tagMap": {
+        "return": [
+          "true if this domain contains only static permissions."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.Permission",
+            "type": "Class"
+          },
+          "field": {
+            "name": "perm"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "implies",
+      "comment": "Check and see if this ProtectionDomain implies the permissions expressed in the Permission object. The set of permissions evaluated is a function of whether the ProtectionDomain was constructed with a static set of permissions or it was bound to a dynamically mapped set of permissions. If the staticPermissionsOnly() method returns true, then the permission will only be checked against the PermissionCollection supplied at construction. Otherwise, the permission will be checked against the combination of the PermissionCollection supplied at construction and the current Policy binding.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eperm\u003c/code\u003e - the Permission object to check."
+        ],
+        "return": [
+          "true if \n\u003ccode\u003eperm\u003c/code\u003e is implied by this ProtectionDomain."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Convert a ProtectionDomain to a String.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of the object."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.CodeSource",
+            "type": "Class"
+          },
+          "field": {
+            "name": "codesource"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PermissionCollection",
+            "type": "Class"
+          },
+          "field": {
+            "name": "permissions"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new ProtectionDomain with the given CodeSource and Permissions. If the permissions object is not null, then setReadOnly() will be called on the passed in Permissions object. The permissions granted to this domain are static, i.e. invoking the staticPermissionsOnly() method returns true. They contain only the ones passed to this constructor and the current Policy will not be consulted.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecodesource\u003c/code\u003e - the codesource associated with this domain",
+          "\u003ccode\u003epermissions\u003c/code\u003e - the permissions granted to this domain"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.CodeSource",
+            "type": "Class"
+          },
+          "field": {
+            "name": "codesource"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PermissionCollection",
+            "type": "Class"
+          },
+          "field": {
+            "name": "permissions"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "classloader"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.Principal",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "principals"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new ProtectionDomain qualified by the given CodeSource, Permissions, ClassLoader and array of Principals. If the permissions object is not null, then setReadOnly() will be called on the passed in Permissions object. The permissions granted to this domain are dynamic, i.e. invoking the staticPermissionsOnly() method returns false. They include both the static permissions passed to this constructor, and any permissions granted to this domain by the current Policy at the time a permission is checked. This constructor is typically used by ClassLoaders and DomainCombiners which delegate to Policy to actively associate the permissions granted to this domain. This constructor affords the Policy provider the opportunity to augment the supplied PermissionCollection to reflect policy changes.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Policy.html#refresh()\"\u003e\u003ccode\u003ePolicy.refresh()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Policy.html#getPermissions(java.security.ProtectionDomain)\"\u003e\u003ccode\u003ePolicy.getPermissions(ProtectionDomain)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecodesource\u003c/code\u003e - the CodeSource associated with this domain",
+          "\u003ccode\u003epermissions\u003c/code\u003e - the permissions granted to this domain",
+          "\u003ccode\u003eclassloader\u003c/code\u003e - the ClassLoader associated with this domain",
+          "\u003ccode\u003eprincipals\u003c/code\u003e - the array of Principals associated with this domain. The contents of the array are copied to protect against subsequent modification."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.security.ProtectionDomain",
+  "comment": "The ProtectionDomain class encapsulates the characteristics of a domain, which encloses a set of classes whose instances are granted a set of permissions when being executed on behalf of a given set of Principals. \n\u003cp\u003e A static set of permissions can be bound to a ProtectionDomain when it is constructed; such permissions are granted to the domain regardless of the Policy in force. However, to support dynamic security policies, a ProtectionDomain can also be constructed such that it is dynamically mapped to a set of permissions by the current Policy whenever a permission is checked.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.2"
+    ]
+  }
+}

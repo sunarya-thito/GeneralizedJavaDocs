@@ -1,0 +1,313 @@
+{
+  "packageName": "jdk.incubator.foreign",
+  "simpleName": "MemoryAddress",
+  "moduleName": "jdk.incubator.foreign",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "jdk.incubator.foreign.Addressable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "jdk.incubator.foreign.MemoryAddress",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "NULL",
+      "comment": "The off-heap memory address instance modelling the NULL address.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryAddress",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "address",
+      "comment": "Description copied from interface: Addressable",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/Addressable.html#address()\"\u003eaddress\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/Addressable.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003eAddressable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryAddress.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryAddress\u003c/code\u003e\u003c/a\u003e instance associated with this object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryAddress",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addOffset",
+      "comment": "Creates a new memory address with given offset (in bytes), which might be negative, from current one.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eoffset\u003c/code\u003e - specified offset (in bytes), relative to this address, which should be used to create the new address."
+        ],
+        "return": [
+          "a new memory address with given offset from current one."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemorySegment",
+            "type": "Class"
+          },
+          "field": {
+            "name": "segment"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "segmentOffset",
+      "comment": "Returns the offset of this memory address into the given segment. More specifically, if both the segment\u0027s base address and this address are off-heap addresses, the result is computed as this.toRawLongValue() - segment.address().toRawLongValue(). Otherwise, if both addresses in the form (B, O1), (B, O2), where B is the same base heap object and O1, O2 are byte offsets (relative to the base object) associated with this address and the segment\u0027s base address, the result is computed as O1 - O2. If the segment\u0027s base address and this address are both heap addresses, but with different base objects, the result is undefined and an exception is thrown. Similarly, if the segment\u0027s base address is an heap address (resp. off-heap) and this address is an off-heap (resp. heap) address, the result is undefined and an exception is thrown. Otherwise, the result is a byte offset SO. If this address falls within the spatial bounds of the given segment, then 0 \u003c\u003d SO \u003c segment.byteSize(); otherwise, SO \u003c 0 || SO \u003e segment.byteSize().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esegment\u003c/code\u003e - the segment relative to which this address offset should be computed"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esegment\u003c/code\u003e is not compatible with this address; this can happen, for instance, when \n\u003ccode\u003esegment\u003c/code\u003e models an heap memory region, while this address models an off-heap memory address."
+        ],
+        "return": [
+          "the offset of this memory address into the given segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesSize"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asSegmentRestricted",
+      "comment": "Returns a new confined native memory segment with given size, and whose base address is this address; the returned segment has its own temporal bounds, and can therefore be closed. This method can be useful when interacting with custom native memory sources (e.g. custom allocators), where an address to some underlying memory region is typically obtained from native code (often as a plain long value). The returned segment will feature all access modes (see MemorySegment.ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()). Clients should ensure that the address and bounds refers to a valid region of memory that is accessible for reading and, if appropriate, writing; an attempt to access an invalid memory location from Java code will either return an arbitrary value, have no visible effect, or cause an unspecified exception to be thrown. Calling MemorySegment.close() on the returned segment will not result in releasing any memory resources which might implicitly be associated with the segment. This method is equivalent to the following code: \n    asSegmentRestricted(byteSize, null, null);\n This method is restricted. Restricted methods are unsafe, and, if used incorrectly, their use might crash the JVM or, worse, silently result in memory corruption. Thus, clients should refrain from depending on restricted methods, and use safe and supported functionalities, where possible.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytesSize\u003c/code\u003e - the desired size."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebytesSize \u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this address is an heap address.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalAccessError.html\" title\u003d\"class in java.lang\"\u003eIllegalAccessError\u003c/a\u003e\u003c/code\u003e - if the runtime property \n\u003ccode\u003eforeign.restricted\u003c/code\u003e is not set to either \n\u003ccode\u003epermit\u003c/code\u003e, \n\u003ccode\u003ewarn\u003c/code\u003e or \n\u003ccode\u003edebug\u003c/code\u003e (the default value is set to \n\u003ccode\u003edeny\u003c/code\u003e)."
+        ],
+        "return": [
+          "a new confined native memory segment with given base address and size."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesSize"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Runnable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cleanupAction"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attachment"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asSegmentRestricted",
+      "comment": "Returns a new confined native memory segment with given size, and whose base address is this address; the returned segment has its own temporal bounds, and can therefore be closed. This method can be useful when interacting with custom native memory sources (e.g. custom allocators), where an address to some underlying memory region is typically obtained from native code (often as a plain long value). The returned segment will feature all access modes (see MemorySegment.ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()). Moreover, the returned segment will keep a strong reference to the supplied attachment object (if any), which can be useful in cases where the lifecycle of the segment is dependent on that of some other external resource. Clients should ensure that the address and bounds refers to a valid region of memory that is accessible for reading and, if appropriate, writing; an attempt to access an invalid memory location from Java code will either return an arbitrary value, have no visible effect, or cause an unspecified exception to be thrown. Calling MemorySegment.close() on the returned segment will not result in releasing any memory resources which might implicitly be associated with the segment, but will result in calling the provided cleanup action (if any). Both the cleanup action and the attachment object (if any) will be preserved under terminal operations such as MemorySegment.handoff(Thread), MemorySegment.share() and MemorySegment.registerCleaner(Cleaner). This method is restricted. Restricted methods are unsafe, and, if used incorrectly, their use might crash the JVM or, worse, silently result in memory corruption. Thus, clients should refrain from depending on restricted methods, and use safe and supported functionalities, where possible.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytesSize\u003c/code\u003e - the desired size.",
+          "\u003ccode\u003ecleanupAction\u003c/code\u003e - the cleanup action; can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eattachment\u003c/code\u003e - an attachment object that will be kept strongly reachable by the returned segment; can be \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebytesSize \u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this address is an heap address.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalAccessError.html\" title\u003d\"class in java.lang\"\u003eIllegalAccessError\u003c/a\u003e\u003c/code\u003e - if the runtime property \n\u003ccode\u003eforeign.restricted\u003c/code\u003e is not set to either \n\u003ccode\u003epermit\u003c/code\u003e, \n\u003ccode\u003ewarn\u003c/code\u003e or \n\u003ccode\u003edebug\u003c/code\u003e (the default value is set to \n\u003ccode\u003edeny\u003c/code\u003e)."
+        ],
+        "return": [
+          "a new confined native memory segment with given base address and size."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toRawLongValue",
+      "comment": "Returns the raw long value associated with this memory address.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this memory address is an heap address."
+        ],
+        "return": [
+          "The raw long value associated with this memory address."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "that"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "equals",
+      "comment": "Compares the specified object with this address for equality. Returns true if and only if the specified object is also an address, and it refers to the same memory location as this address.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "apiNote": [
+          "two addresses might be considered equal despite their associated segments differ. This can happen, for instance, if the segment associated with one address is a \n\u003cem\u003eslice\u003c/em\u003e (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(long,long)\"\u003e\u003ccode\u003eMemorySegment.asSlice(long, long)\u003c/code\u003e\u003c/a\u003e) of the segment associated with the other address. Moreover, two addresses might be considered equals despite differences in the temporal bounds associated with their corresponding segments."
+        ],
+        "param": [
+          "\u003ccode\u003ethat\u003c/code\u003e - the object to be compared for equality with this address."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the specified object is equal to this address."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hashCode",
+      "comment": "Returns the hash code value for this address.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the hash code value for this address."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryAddress",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofLong",
+      "comment": "Obtain an off-heap memory address instance from given long address.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evalue\u003c/code\u003e - the long address."
+        ],
+        "return": [
+          "the new memory address instance."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.incubator.foreign.MemoryAddress",
+  "comment": "A memory address models a reference into a memory location. Memory addresses are typically obtained using the \n\u003ca href\u003d\"MemorySegment.html#address()\"\u003e\u003ccode\u003eMemorySegment.address()\u003c/code\u003e\u003c/a\u003e method, and can refer to either off-heap or on-heap memory. Given an address, it is possible to compute its offset relative to a given segment, which can be useful when performing memory dereference operations using a memory access var handle (see \n\u003ca href\u003d\"MemoryHandles.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryHandles\u003c/code\u003e\u003c/a\u003e). \n\u003cp\u003e All implementations of this interface must be \u003ca href\u003d\"../../../../java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e; programmers should treat instances that are \u003ca href\u003d\"#equals(java.lang.Object)\"\u003eequal\u003c/a\u003e as interchangeable and should not use instances for synchronization, or unpredictable behavior may occur. For example, in a future release, synchronization may fail. The \u003ccode\u003eequals\u003c/code\u003e method should be used for comparisons. \u003c/p\u003e\n\u003cp\u003e Non-platform classes should not implement \u003ca href\u003d\"MemoryAddress.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003eMemoryAddress\u003c/a\u003e directly. \u003c/p\u003e\n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument, or an array argument containing one or more \u003ccode\u003enull\u003c/code\u003e elements to a method in this class causes a \u003ca href\u003d\"../../../../java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown. \u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "Implementations of this interface are immutable, thread-safe and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e."
+    ],
+    "apiNote": [
+      "In the future, if the Java language permits, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryAddress.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryAddress\u003c/code\u003e\u003c/a\u003e may become a \n\u003ccode\u003esealed\u003c/code\u003e interface, which would prohibit subclassing except by explicitly permitted types."
+    ]
+  }
+}

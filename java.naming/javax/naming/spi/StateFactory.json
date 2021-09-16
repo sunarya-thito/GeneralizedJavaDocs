@@ -1,0 +1,103 @@
+{
+  "packageName": "javax.naming.spi",
+  "simpleName": "StateFactory",
+  "moduleName": "java.naming",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.naming.NamingException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.naming.Name",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.naming.Context",
+            "type": "Class"
+          },
+          "field": {
+            "name": "nameCtx"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Hashtable",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "environment"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getStateToBind",
+      "comment": "Retrieves the state of an object for binding. NamingManager.getStateToBind() successively loads in state factories and invokes this method on them until one produces a non-null answer. DirectoryManager.getStateToBind() successively loads in state factories. If a factory implements DirStateFactory, then DirectoryManager invokes DirStateFactory.getStateToBind(); otherwise it invokes StateFactory.getStateToBind(). When an exception is thrown by a factory, the exception is passed on to the caller of NamingManager.getStateToBind() and DirectoryManager.getStateToBind(). The search for other factories that may produce a non-null answer is halted. A factory should only throw an exception if it is sure that it is the only intended factory and that no other factories should be tried. If this factory cannot create an object using the arguments supplied, it should return null. The name and nameCtx parameters may optionally be used to specify the name of the object being created. See the description of \"Name and Context Parameters\" in ObjectFactory.getObjectInstance() for details. If a factory uses nameCtx it should synchronize its use against concurrent access, since context implementations are not guaranteed to be thread-safe. The name and environment parameters are owned by the caller. The implementation will not modify these objects or keep references to them, although it may keep references to clones or copies.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getStateToBind(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getStateToBind(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/DirectoryManager.html#getStateToBind(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable,javax.naming.directory.Attributes)\"\u003e\u003ccode\u003eDirectoryManager.getStateToBind(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;, javax.naming.directory.Attributes)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - A non-null object whose state is to be retrieved.",
+          "\u003ccode\u003ename\u003c/code\u003e - The name of this object relative to \n\u003ccode\u003enameCtx\u003c/code\u003e, or null if no name is specified.",
+          "\u003ccode\u003enameCtx\u003c/code\u003e - The context relative to which the \n\u003ccode\u003ename\u003c/code\u003e parameter is specified, or null if \n\u003ccode\u003ename\u003c/code\u003e is relative to the default initial context.",
+          "\u003ccode\u003eenvironment\u003c/code\u003e - The possibly null environment to be used in the creation of the object\u0027s state."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/NamingException.html\" title\u003d\"class in javax.naming\"\u003eNamingException\u003c/a\u003e\u003c/code\u003e - if this factory encountered an exception while attempting to get the object\u0027s state, and no other factories are to be tried."
+        ],
+        "return": [
+          "The object\u0027s state for binding; null if the factory is not returning any changes."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.naming.spi.StateFactory",
+  "comment": "This interface represents a factory for obtaining the state of an object for binding. \n\u003cp\u003e The JNDI framework allows for object implementations to be loaded in dynamically via \u003cem\u003eobject factories\u003c/em\u003e. For example, when looking up a printer bound in the name space, if the print service binds printer names to \u003ccode\u003eReference\u003c/code\u003es, the printer \u003ccode\u003eReference\u003c/code\u003e could be used to create a printer object, so that the caller of lookup can directly operate on the printer object after the lookup. \u003c/p\u003e\n\u003cp\u003eAn \u003ccode\u003eObjectFactory\u003c/code\u003e is responsible for creating objects of a specific type. In the above example, you may have a \u003ccode\u003ePrinterObjectFactory\u003c/code\u003e for creating \u003ccode\u003ePrinter\u003c/code\u003e objects. \u003c/p\u003e\n\u003cp\u003e For the reverse process, when an object is bound into the namespace, JNDI provides \u003cem\u003estate factories\u003c/em\u003e. Continuing with the printer example, suppose the printer object is updated and rebound: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e ctx.rebind(\"inky\", printer);\n \u003c/pre\u003e\n\u003c/blockquote\u003e The service provider for \n\u003ccode\u003ectx\u003c/code\u003e uses a state factory to obtain the state of \n\u003ccode\u003eprinter\u003c/code\u003e for binding into its namespace. A state factory for the \n\u003ccode\u003ePrinter\u003c/code\u003e type object might return a more compact object for storage in the naming system. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A state factory must implement the \u003ccode\u003eStateFactory\u003c/code\u003e interface. In addition, the factory class must be public and must have a public constructor that accepts no parameters. Note that in cases where the factory is in a named module then it must be in a package which is exported by that module to the \u003ccode\u003ejava.naming\u003c/code\u003e module. \u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003egetStateToBind()\u003c/code\u003e method of a state factory may be invoked multiple times, possibly using different parameters. The implementation is thread-safe. \u003c/p\u003e\n\u003cp\u003e \u003ccode\u003eStateFactory\u003c/code\u003e is intended for use with service providers that implement only the \u003ccode\u003eContext\u003c/code\u003e interface. \u003ccode\u003eDirStateFactory\u003c/code\u003e is intended for use with service providers that implement the \u003ccode\u003eDirContext\u003c/code\u003e interface.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getStateToBind(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getStateToBind(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/DirectoryManager.html#getStateToBind(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable,javax.naming.directory.Attributes)\"\u003e\u003ccode\u003eDirectoryManager.getStateToBind(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;, javax.naming.directory.Attributes)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/ObjectFactory.html\" title\u003d\"interface in javax.naming.spi\"\u003e\u003ccode\u003eObjectFactory\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/DirStateFactory.html\" title\u003d\"interface in javax.naming.spi\"\u003e\u003ccode\u003eDirStateFactory\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "packageName": "java.util.stream",
+  "simpleName": "Builder",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.util.function.Consumer",
+    "parameters": [
+      {
+        "name": "T",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.stream.Stream$Builder",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "accept",
+      "comment": "Adds an element to the stream being built.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html#accept(T)\"\u003eaccept\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html\" title\u003d\"interface in java.util.function\"\u003eConsumer\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/Stream.Builder.html\" title\u003d\"type parameter in Stream.Builder\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the input argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the builder has already transitioned to the built state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream$Builder",
+        "parameters": [
+          {
+            "owner": "java.util.stream.Stream$Builder",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.stream.Stream$Builder",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "add",
+      "comment": "Adds an element to the stream being built.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation behaves as if: \n\u003cpre\u003e\u003ccode\u003e\n     accept(t)\n     return this;\n \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the element to add"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the builder has already transitioned to the built state"
+        ],
+        "return": [
+          "\u003ccode\u003ethis\u003c/code\u003e builder"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "owner": "java.util.stream.Stream$Builder",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "build",
+      "comment": "Builds the stream, transitioning this builder to the built state. An IllegalStateException is thrown if there are further attempts to operate on the builder after it has entered the built state.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the builder has already transitioned to the built state"
+        ],
+        "return": [
+          "the built stream"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "java.util.stream.Stream$Builder",
+  "comment": "A mutable builder for a \n\u003ccode\u003eStream\u003c/code\u003e. This allows the creation of a \n\u003ccode\u003eStream\u003c/code\u003e by generating elements individually and adding them to the \n\u003ccode\u003eBuilder\u003c/code\u003e (without the copying overhead that comes from using an \n\u003ccode\u003eArrayList\u003c/code\u003e as a temporary buffer.) \n\u003cp\u003eA stream builder has a lifecycle, which starts in a building phase, during which elements can be added, and then transitions to a built phase, after which elements may not be added. The built phase begins when the \u003ca href\u003d\"#build()\"\u003e\u003ccode\u003ebuild()\u003c/code\u003e\u003c/a\u003e method is called, which creates an ordered \u003ccode\u003eStream\u003c/code\u003e whose elements are the elements that were added to the stream builder, in the order they were added.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream/Stream.html#builder()\"\u003e\u003ccode\u003eStream.builder()\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

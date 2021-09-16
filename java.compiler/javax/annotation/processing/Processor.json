@@ -1,0 +1,245 @@
+{
+  "packageName": "javax.annotation.processing",
+  "simpleName": "Processor",
+  "moduleName": "java.compiler",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSupportedOptions",
+      "comment": "Returns the options recognized by this processor. An implementation of the processing tool must provide a way to pass processor-specific options distinctly from options passed to the tool itself, see getOptions. Each string returned in the set must be a period separated sequence of identifiers: SupportedOptionString: Identifiers Identifiers: Identifier Identifier . Identifiers Identifier: Syntactic identifier, including keywords and literals A tool might use this information to determine if any options provided by a user are unrecognized by any processor, in which case it may wish to report a warning.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/SupportedOptions.html\" title\u003d\"annotation in javax.annotation.processing\"\u003e\u003ccode\u003eSupportedOptions\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the options recognized by this processor or an empty set if none"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSupportedAnnotationTypes",
+      "comment": "Returns the names of the annotation interfaces supported by this processor. An element of the result may be the canonical (fully qualified) name of a supported annotation interface. Alternately it may be of the form \"name.*\" representing the set of all annotation interfaces with canonical names beginning with \"name.\". In either of those cases, the name of the annotation interface can be optionally preceded by a module name followed by a \"/\" character. For example, if a processor supports \"a.B\", this can include multiple annotation interfaces named a.B which reside in different modules. To only support a.B in the foo module, instead use \"foo/a.B\". If a module name is included, only an annotation in that module is matched. In particular, if a module name is given in an environment where modules are not supported, such as an annotation processing environment configured for a source version without modules, then the annotation interfaces with a module name do not match. Finally, \"*\" by itself represents the set of all annotation interfaces, including the empty set. Note that a processor should not claim \"*\" unless it is actually processing all files; claiming unnecessary annotations may cause a performance slowdown in some environments. Each string returned in the set must be accepted by the following grammar: SupportedAnnotationTypeString: ModulePrefixopt TypeName DotStaropt * ModulePrefix: ModuleName / DotStar: . * where TypeName and ModuleName are as defined in The Java Language Specification (6.5 Determining the Meaning of a Name).",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-3.html#jls-3.8\"\u003e3.8 Identifiers\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/SupportedAnnotationTypes.html\" title\u003d\"annotation in javax.annotation.processing\"\u003e\u003ccode\u003eSupportedAnnotationTypes\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "When running in an environment which supports modules, processors are encouraged to include the module prefix when describing their supported annotation interfaces. The method \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/AbstractProcessor.html#getSupportedAnnotationTypes()\"\u003e\u003ccode\u003eAbstractProcessor.getSupportedAnnotationTypes\u003c/code\u003e\u003c/a\u003e provides support for stripping off the module prefix when running in an environment without modules."
+        ],
+        "return": [
+          "the names of the annotation interfaces supported by this processor or an empty set if none"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.lang.model.SourceVersion",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSupportedSourceVersion",
+      "comment": "Returns the latest source version supported by this annotation processor.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/SupportedSourceVersion.html\" title\u003d\"annotation in javax.annotation.processing\"\u003e\u003ccode\u003eSupportedSourceVersion\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/ProcessingEnvironment.html#getSourceVersion()\"\u003e\u003ccode\u003eProcessingEnvironment.getSourceVersion()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the latest source version supported by this annotation processor"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.annotation.processing.ProcessingEnvironment",
+            "type": "Class"
+          },
+          "field": {
+            "name": "processingEnv"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "init",
+      "comment": "Initializes the processor with the processing environment.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprocessingEnv\u003c/code\u003e - environment for facilities the tool framework provides to the processor"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "javax.lang.model.element.TypeElement",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "annotations"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.annotation.processing.RoundEnvironment",
+            "type": "Class"
+          },
+          "field": {
+            "name": "roundEnv"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "process",
+      "comment": "Processes a set of annotation interfaces on type elements originating from the prior round and returns whether or not these annotation interfaces are claimed by this processor. If true is returned, the annotation interfaces are claimed and subsequent processors will not be asked to process them; if false is returned, the annotation interfaces are unclaimed and subsequent processors may be asked to process them. A processor may always return the same boolean value or may vary the result based on its own chosen criteria. The input set will be empty if the processor supports \"*\" and the root elements have no annotations. A Processor must gracefully handle an empty set of annotations.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eannotations\u003c/code\u003e - the annotation interfaces requested to be processed",
+          "\u003ccode\u003eroundEnv\u003c/code\u003e - environment for information about the current and prior round"
+        ],
+        "return": [
+          "whether or not the set of annotation interfaces are claimed by this processor"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.annotation.processing.Completion",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "field": {
+            "name": "element"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.element.AnnotationMirror",
+            "type": "Class"
+          },
+          "field": {
+            "name": "annotation"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.element.ExecutableElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "member"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "userText"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCompletions",
+      "comment": "Returns to the tool infrastructure an iterable of suggested completions to an annotation. Since completions are being asked for, the information provided about the annotation may be incomplete, as if for a source code fragment. A processor may return an empty iterable. Annotation processors should focus their efforts on providing completions for annotation members with additional validity constraints known to the processor, for example an int member whose value should lie between 1 and 10 or a string member that should be recognized by a known grammar, such as a regular expression or a URL. Since incomplete programs are being modeled, some of the parameters may only have partial information or may be null. At least one of element and userText must be non-null. If element is non-null, annotation and member may be null. Processors may not throw a NullPointerException if some parameters are null; if a processor has no completions to offer based on the provided information, an empty iterable can be returned. The processor may also return a single completion with an empty value string and a message describing why there are no completions. Completions are informative and may reflect additional validity checks performed by annotation processors. For example, consider the simple annotation:  @MersennePrime {\n    int value();\n }\n (A Mersenne prime is prime number of the form 2n - 1.) Given an AnnotationMirror for this annotation interface, a list of all such primes in the int range could be returned without examining any other arguments to getCompletions:  import static javax.annotation.processing.Completions.*;\n ...\n return List.of(of(\"3\"),\n                of(\"7\"),\n                of(\"31\"),\n                of(\"127\"),\n                of(\"8191\"),\n                of(\"131071\"),\n                of(\"524287\"),\n                of(\"2147483647\"));\n A more informative set of completions would include the number of each prime:  return List.of(of(\"3\",          \"M2\"),\n                of(\"7\",          \"M3\"),\n                of(\"31\",         \"M5\"),\n                of(\"127\",        \"M7\"),\n                of(\"8191\",       \"M13\"),\n                of(\"131071\",     \"M17\"),\n                of(\"524287\",     \"M19\"),\n                of(\"2147483647\", \"M31\"));\n However, if the userText is available, it can be checked to see if only a subset of the Mersenne primes are valid. For example, if the user has typed @MersennePrime(1 the value of userText will be \"1\"; and only two of the primes are possible completions:  return Arrays.asList(of(\"127\",        \"M7\"),\n                      of(\"131071\",     \"M17\"));\n Sometimes no valid completion is possible. For example, there is no in-range Mersenne prime starting with 9: @MersennePrime(9 An appropriate response in this case is to either return an empty list of completions,  return Collections.emptyList();\n or a single empty completion with a helpful message  return Arrays.asList(of(\"\", \"No in-range Mersenne primes start with 9\"));",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelement\u003c/code\u003e - the element being annotated",
+          "\u003ccode\u003eannotation\u003c/code\u003e - the (perhaps partial) annotation being applied to the element",
+          "\u003ccode\u003emember\u003c/code\u003e - the annotation member to return possible completions for",
+          "\u003ccode\u003euserText\u003c/code\u003e - source code text to be completed"
+        ],
+        "return": [
+          "suggested completions to the annotation"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.annotation.processing.Processor",
+  "comment": "The interface for an annotation processor. \n\u003cp\u003eAnnotation processing happens in a sequence of \u003ca href\u003d\"RoundEnvironment.html\" title\u003d\"interface in javax.annotation.processing\"\u003erounds\u003c/a\u003e. On each round, a processor may be asked to \u003ca href\u003d\"#process(java.util.Set,javax.annotation.processing.RoundEnvironment)\"\u003eprocess\u003c/a\u003e a subset of the annotations found on the source and class files produced by a prior round. The inputs to the first round of processing are the initial inputs to a run of the tool; these initial inputs can be regarded as the output of a virtual zeroth round of processing. If a processor was asked to process on a given round, it will be asked to process on subsequent rounds, including the last round, even if there are no annotations for it to process. The tool infrastructure may also ask a processor to process files generated implicitly by the tool\u0027s operation. \u003c/p\u003e\n\u003cp\u003e Each implementation of a \u003ccode\u003eProcessor\u003c/code\u003e must provide a public no-argument constructor to be used by tools to instantiate the processor. The tool infrastructure will interact with classes implementing this interface as follows: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003eIf an existing \u003ccode\u003eProcessor\u003c/code\u003e object is not being used, to create an instance of a processor the tool calls the no-arg constructor of the processor class. \u003c/li\u003e\n \u003cli\u003eNext, the tool calls the \u003ca href\u003d\"#init(javax.annotation.processing.ProcessingEnvironment)\"\u003e\u003ccode\u003einit\u003c/code\u003e\u003c/a\u003e method with an appropriate \u003ca href\u003d\"ProcessingEnvironment.html\" title\u003d\"interface in javax.annotation.processing\"\u003e\u003ccode\u003eProcessingEnvironment\u003c/code\u003e\u003c/a\u003e. \u003c/li\u003e\n \u003cli\u003eAfterwards, the tool calls \u003ca href\u003d\"#getSupportedAnnotationTypes()\"\u003e\u003ccode\u003egetSupportedAnnotationTypes\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#getSupportedOptions()\"\u003e\u003ccode\u003egetSupportedOptions\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#getSupportedSourceVersion()\"\u003e\u003ccode\u003egetSupportedSourceVersion\u003c/code\u003e\u003c/a\u003e. These methods are only called once per run, not on each round. \u003c/li\u003e\n \u003cli\u003eAs appropriate, the tool calls the \u003ca href\u003d\"#process(java.util.Set,javax.annotation.processing.RoundEnvironment)\"\u003e\u003ccode\u003eprocess\u003c/code\u003e\u003c/a\u003e method on the \u003ccode\u003eProcessor\u003c/code\u003e object; a new \u003ccode\u003eProcessor\u003c/code\u003e object is \u003cem\u003enot\u003c/em\u003e created for each round. \u003c/li\u003e\n\u003c/ol\u003e If a processor object is created and used without the above protocol being followed, then the processor\u0027s behavior is not defined by this interface specification. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The tool uses a \u003ci\u003ediscovery process\u003c/i\u003e to find annotation processors and decide whether or not they should be run. By configuring the tool, the set of potential processors can be controlled. For example, for a \u003ca href\u003d\"../../tools/JavaCompiler.html\" title\u003d\"interface in javax.tools\"\u003e\u003ccode\u003eJavaCompiler\u003c/code\u003e\u003c/a\u003e the list of candidate processors to run can be \u003ca href\u003d\"../../tools/JavaCompiler.CompilationTask.html#setProcessors(java.lang.Iterable)\"\u003eset directly\u003c/a\u003e or controlled by a \u003ca href\u003d\"../../tools/StandardLocation.html#ANNOTATION_PROCESSOR_PATH\"\u003esearch path\u003c/a\u003e used for a \u003ca href\u003d\"../../../../java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003eservice-style\u003c/a\u003e lookup. Other tool implementations may have different configuration mechanisms, such as command line options; for details, refer to the particular tool\u0027s documentation. Which processors the tool asks to \u003ca href\u003d\"#process(java.util.Set,javax.annotation.processing.RoundEnvironment)\"\u003erun\u003c/a\u003e is a function of the interfaces of the annotations \u003cem\u003e\u003ca href\u003d\"../../lang/model/AnnotatedConstruct.html\" title\u003d\"interface in javax.lang.model\"\u003epresent\u003c/a\u003e\u003c/em\u003e on the \u003ca href\u003d\"RoundEnvironment.html#getRootElements()\"\u003eroot elements\u003c/a\u003e, what \u003ca href\u003d\"#getSupportedAnnotationTypes()\"\u003eannotation interfaces a processor supports\u003c/a\u003e, and whether or not a processor \u003ca href\u003d\"#process(java.util.Set,javax.annotation.processing.RoundEnvironment)\"\u003eclaims the annotation interfaces it processes\u003c/a\u003e. A processor will be asked to process a subset of the annotation interfaces it supports, possibly an empty set. For a given round, the tool computes the set of annotation interfaces that are present on the elements enclosed within the root elements. If there is at least one annotation interface present, then as processors claim annotation interfaces, they are removed from the set of unmatched annotation interfaces. When the set is empty or no more processors are available, the round has run to completion. If there are no annotation interfaces present, annotation processing still occurs but only \u003ci\u003euniversal processors\u003c/i\u003e which support processing all annotation interfaces, \u003ccode\u003e\"*\"\u003c/code\u003e, can claim the (empty) set of annotation interfaces. \u003c/p\u003e\n\u003cp\u003eAn annotation interface is considered present if there is at least one annotation of that interface present on an element enclosed within the root elements of a round. For this purpose, a type parameter is considered to be enclosed by its \u003ca href\u003d\"../../lang/model/element/TypeParameterElement.html#getGenericElement()\"\u003egeneric element\u003c/a\u003e. For this purpose, a package element is \u003cem\u003enot\u003c/em\u003e considered to enclose the top-level classes and interfaces within that package. (A root element representing a package is created when a \u003ccode\u003epackage-info\u003c/code\u003e file is processed.) Likewise, for this purpose, a module element is \u003cem\u003enot\u003c/em\u003e considered to enclose the packages within that module. (A root element representing a module is created when a \u003ccode\u003emodule-info\u003c/code\u003e file is processed.) Annotations on \u003ca href\u003d\"../../../../java.base/java/lang/annotation/ElementType.html#TYPE_USE\"\u003etype uses\u003c/a\u003e, as opposed to annotations on elements, are ignored when computing whether or not an annotation interface is present. \u003c/p\u003e\n\u003cp\u003eAn annotation is \u003cem\u003epresent\u003c/em\u003e if it meets the definition of being present given in \u003ca href\u003d\"../../lang/model/AnnotatedConstruct.html\" title\u003d\"interface in javax.lang.model\"\u003e\u003ccode\u003eAnnotatedConstruct\u003c/code\u003e\u003c/a\u003e. In brief, an annotation is considered present for the purposes of discovery if it is directly present or present via inheritance. An annotation is \u003cem\u003enot\u003c/em\u003e considered present by virtue of being wrapped by a container annotation. Operationally, this is equivalent to an annotation being present on an element if and only if it would be included in the results of \u003ca href\u003d\"../../lang/model/util/Elements.html#getAllAnnotationMirrors(javax.lang.model.element.Element)\"\u003e\u003ccode\u003eElements.getAllAnnotationMirrors(Element)\u003c/code\u003e\u003c/a\u003e called on that element. Since annotations inside container annotations are not considered present, to properly process \u003ca href\u003d\"../../../../java.base/java/lang/annotation/Repeatable.html\" title\u003d\"annotation in java.lang.annotation\"\u003erepeatable annotation interfaces\u003c/a\u003e, processors are advised to include both the repeatable annotation interface and its containing annotation interface in the set of \u003ca href\u003d\"#getSupportedAnnotationTypes()\"\u003esupported annotation interfaces\u003c/a\u003e of a processor. \u003c/p\u003e\n\u003cp\u003eNote that if a processor supports \u003ccode\u003e\"*\"\u003c/code\u003e and returns \u003ccode\u003e true\u003c/code\u003e, all annotations are claimed. Therefore, a universal processor being used to, for example, implement additional validity checks should return \u003ccode\u003efalse\u003c/code\u003e so as to not prevent other such checkers from being able to run. \u003c/p\u003e\n\u003cp\u003eIf a processor throws an uncaught exception, the tool may cease other active annotation processors. If a processor raises an error, the current round will run to completion and the subsequent round will indicate an \u003ca href\u003d\"RoundEnvironment.html#errorRaised()\"\u003eerror was raised\u003c/a\u003e. Since annotation processors are run in a cooperative environment, a processor should throw an uncaught exception only in situations where no error recovery or reporting is feasible. \u003c/p\u003e\n\u003cp\u003eThe tool environment is not required to support annotation processors that access environmental resources, either \u003ca href\u003d\"RoundEnvironment.html\" title\u003d\"interface in javax.annotation.processing\"\u003eper round\u003c/a\u003e or \u003ca href\u003d\"ProcessingEnvironment.html\" title\u003d\"interface in javax.annotation.processing\"\u003ecross-round\u003c/a\u003e, in a multi-threaded fashion. \u003c/p\u003e\n\u003cp\u003eIf the methods that return configuration information about the annotation processor return \u003ccode\u003enull\u003c/code\u003e, return other invalid input, or throw an exception, the tool infrastructure must treat this as an error condition. \u003c/p\u003e\n\u003cp\u003eTo be robust when running in different tool implementations, an annotation processor should have the following properties: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003eThe result of processing a given input is not a function of the presence or absence of other inputs (orthogonality). \u003c/li\u003e\n \u003cli\u003eProcessing the same input produces the same output (consistency). \u003c/li\u003e\n \u003cli\u003eProcessing input \u003ci\u003eA\u003c/i\u003e followed by processing input \u003ci\u003eB\u003c/i\u003e is equivalent to processing \u003ci\u003eB\u003c/i\u003e then \u003ci\u003eA\u003c/i\u003e (commutativity) \u003c/li\u003e\n \u003cli\u003eProcessing an input does not rely on the presence of the output of other annotation processors (independence) \u003c/li\u003e\n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eThe \u003ca href\u003d\"Filer.html\" title\u003d\"interface in javax.annotation.processing\"\u003e\u003ccode\u003eFiler\u003c/code\u003e\u003c/a\u003e interface discusses restrictions on how processors can operate on files.\u003c/p\u003e",
+  "tagMap": {
+    "apiNote": [
+      "Implementors of this interface may find it convenient to extend \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/AbstractProcessor.html\" title\u003d\"class in javax.annotation.processing\"\u003e\u003ccode\u003eAbstractProcessor\u003c/code\u003e\u003c/a\u003e rather than implementing this interface directly."
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

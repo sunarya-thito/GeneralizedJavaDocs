@@ -1,0 +1,85 @@
+{
+  "packageName": "java.sql",
+  "simpleName": "ShardingKeyBuilder",
+  "moduleName": "java.sql",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.sql.ShardingKeyBuilder",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "subkey"
+          }
+        },
+        {
+          "type": {
+            "name": "java.sql.SQLType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "subkeyType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "subkey",
+      "comment": "This method will be called to add a subkey into a Sharding Key object being built. The order in which subkey method is called is important as it indicates the order of placement of the subkey within the Sharding Key.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esubkey\u003c/code\u003e - contains the object that needs to be part of shard sub key",
+          "\u003ccode\u003esubkeyType\u003c/code\u003e - sub-key data type of type java.sql.SQLType"
+        ],
+        "return": [
+          "this builder object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.sql.ShardingKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "build",
+      "comment": "Returns an instance of the object defined by this builder.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - If an error occurs building the object"
+        ],
+        "return": [
+          "The built object"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.sql.ShardingKeyBuilder",
+  "comment": "A builder created from a \n\u003ccode\u003eDataSource\u003c/code\u003e or \n\u003ccode\u003eXADataSource\u003c/code\u003e object, used to create a \n\u003ca href\u003d\"ShardingKey.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eShardingKey\u003c/code\u003e\u003c/a\u003e with sub-keys of supported data types. Implementations must support JDBCType.VARCHAR and may also support additional data types. \n\u003cp\u003e The following example illustrates the use of \u003ccode\u003eShardingKeyBuilder\u003c/code\u003e to create a \u003ca href\u003d\"ShardingKey.html\" title\u003d\"interface in java.sql\"\u003e\u003ccode\u003eShardingKey\u003c/code\u003e\u003c/a\u003e: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n\n     DataSource ds \u003d new MyDataSource();\n     ShardingKey shardingKey \u003d ds.createShardingKeyBuilder()\n                           .subkey(\"abc\", JDBCType.VARCHAR)\n                           .subkey(94002, JDBCType.INTEGER)\n                           .build();\n \u003c/code\u003e\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

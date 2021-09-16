@@ -1,0 +1,425 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "ProcessHandle",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Comparable",
+    "parameters": [
+      {
+        "name": "java.lang.ProcessHandle",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "pid",
+      "comment": "Returns the native process ID of the process. The native process ID is an identification number that the operating system assigns to the process. The operating system may reuse the process ID after a process terminates. Use equals or compareTo to compare ProcessHandles.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the implementation does not support this operation"
+        ],
+        "return": [
+          "the native process ID of the process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pid"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "of",
+      "comment": "Returns an Optional\u003cProcessHandle\u003e for an existing native process.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epid\u003c/code\u003e - a native process ID"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the implementation does not support this operation"
+        ],
+        "return": [
+          "an \n\u003ccode\u003eOptional\u0026lt;ProcessHandle\u0026gt;\u003c/code\u003e of the PID for the process; the \n\u003ccode\u003eOptional\u003c/code\u003e is empty if the process does not exist"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ProcessHandle",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "current",
+      "comment": "Returns a ProcessHandle for the current process. The ProcessHandle cannot be used to destroy the current process, use System.exit instead.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the implementation does not support this operation"
+        ],
+        "return": [
+          "a ProcessHandle for the current process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "parent",
+      "comment": "Returns an Optional\u003cProcessHandle\u003e for the parent process. Note that Processes in a zombie state usually don\u0027t have a parent.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")"
+        ],
+        "return": [
+          "an \n\u003ccode\u003eOptional\u0026lt;ProcessHandle\u0026gt;\u003c/code\u003e of the parent process; the \n\u003ccode\u003eOptional\u003c/code\u003e is empty if the child process does not have a parent or if the parent is not available, possibly due to operating system limitations"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "children",
+      "comment": "Returns a snapshot of the current direct children of the process. The parent() of a direct child process is the process. Typically, a process that is not alive has no children. Note that processes are created and terminate asynchronously. There is no guarantee that a process is alive.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")"
+        ],
+        "return": [
+          "a sequential Stream of ProcessHandles for processes that are direct children of the process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "descendants",
+      "comment": "Returns a snapshot of the descendants of the process. The descendants of a process are the children of the process plus the descendants of those children, recursively. Typically, a process that is not alive has no children. Note that processes are created and terminate asynchronously. There is no guarantee that a process is alive.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")"
+        ],
+        "return": [
+          "a sequential Stream of ProcessHandles for processes that are descendants of the process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "allProcesses",
+      "comment": "Returns a snapshot of all processes visible to the current process. Note that processes are created and terminate asynchronously. There is no guarantee that a process in the stream is alive or that no other processes may have been created since the inception of the snapshot.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the implementation does not support this operation"
+        ],
+        "return": [
+          "a Stream of ProcessHandles for all processes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ProcessHandle$Info",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "info",
+      "comment": "Returns a snapshot of information about the process. A ProcessHandle.Info instance has accessor methods that return information about the process if it is available.",
+      "tagMap": {
+        "return": [
+          "a snapshot of information about the process, always non-null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onExit",
+      "comment": "Returns a CompletableFuture\u003cProcessHandle\u003e for the termination of the process. The CompletableFuture provides the ability to trigger dependent functions or actions that may be run synchronously or asynchronously upon process termination. When the process has terminated the CompletableFuture is completed regardless of the exit status of the process. The onExit method can be called multiple times to invoke independent actions when the process exits. Calling onExit().get() waits for the process to terminate and returns the ProcessHandle. The future can be used to check if the process is done or to wait for it to terminate. Cancelling the CompleteableFuture does not affect the Process.",
+      "tagMap": {
+        "apiNote": [
+          "The process may be observed to have terminated with \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ProcessHandle.html#isAlive()\"\u003e\u003ccode\u003eisAlive()\u003c/code\u003e\u003c/a\u003e before the ComputableFuture is completed and dependent actions are invoked."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the process is the current process"
+        ],
+        "return": [
+          "a new \n\u003ccode\u003eCompletableFuture\u0026lt;ProcessHandle\u0026gt;\u003c/code\u003e for the ProcessHandle"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "supportsNormalTermination",
+      "comment": "Returns true if the implementation of destroy() normally terminates the process. Returns false if the implementation of destroy forcibly and immediately terminates the process.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the implementation of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ProcessHandle.html#destroy()\"\u003e\u003ccode\u003edestroy()\u003c/code\u003e\u003c/a\u003e normally terminates the process; otherwise, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ProcessHandle.html#destroy()\"\u003e\u003ccode\u003edestroy()\u003c/code\u003e\u003c/a\u003e forcibly terminates the process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "destroy",
+      "comment": "Requests the process to be killed. Whether the process represented by this ProcessHandle object is normally terminated or not is implementation dependent. Forcible process destruction is defined as the immediate termination of the process, whereas normal termination allows the process to shut down cleanly. If the process is not alive, no action is taken. The operating system access controls may prevent the process from being killed. The CompletableFuture from onExit() is completed when the process has terminated. Note: The process may not terminate immediately. For example, isAlive() may return true for a brief period after destroy() is called.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the process is the current process"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if termination was successfully requested, otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "destroyForcibly",
+      "comment": "Requests the process to be killed forcibly. The process represented by this ProcessHandle object is forcibly terminated. Forcible process destruction is defined as the immediate termination of the process, whereas normal termination allows the process to shut down cleanly. If the process is not alive, no action is taken. The operating system access controls may prevent the process from being killed. The CompletableFuture from onExit() is completed when the process has terminated. Note: The process may not terminate immediately. For example, isAlive() may return true for a brief period after destroyForcibly() is called.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the process is the current process"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if termination was successfully requested, otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isAlive",
+      "comment": "Tests whether the process represented by this ProcessHandle is alive. Process termination is implementation and operating system specific. The process is considered alive as long as the PID is valid.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the process represented by this \n\u003ccode\u003eProcessHandle\u003c/code\u003e object has not yet terminated"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hashCode",
+      "comment": "Returns a hash code value for this ProcessHandle. The hashcode value follows the general contract for Object.hashCode(). The value is a function of the pid() value and may be a function of additional information to uniquely identify the process. If two ProcessHandles are equal according to the equals method, then calling the hashCode method on each of the two objects must produce the same integer result.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a hash code value for this object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "equals",
+      "comment": "Returns true if other object is non-null, is of the same implementation, and represents the same system process; otherwise it returns false.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - another object"
+        ],
+        "implNote": [
+          "It is implementation specific whether ProcessHandles with the same PID represent the same system process. ProcessHandle implementations should contain additional information to uniquely identify the process. For example, the start time of the process could be used to determine if the PID has been re-used. The implementation of \n\u003ccode\u003eequals\u003c/code\u003e should return \n\u003ccode\u003etrue\u003c/code\u003e for two ProcessHandles with the same PID unless there is information to distinguish them."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the \n\u003ccode\u003eother\u003c/code\u003e object is non-null, is of the same implementation class and represents the same system process; otherwise returns \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "compareTo",
+      "comment": "Compares this ProcessHandle with the specified ProcessHandle for order. The order is not specified, but is consistent with Object.equals(java.lang.Object), which returns true if and only if two instances of ProcessHandle are of the same implementation and represent the same system process. Comparison is only supported among objects of same implementation. If attempt is made to mutually compare two different implementations of ProcessHandles, ClassCastException is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Comparable.html#compareTo(T)\"\u003ecompareTo\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Comparable.html\" title\u003d\"interface in java.lang\"\u003eComparable\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ProcessHandle.html\" title\u003d\"interface in java.lang\"\u003eProcessHandle\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the ProcessHandle to be compared"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified object is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the specified object is not of same class as this object"
+        ],
+        "return": [
+          "a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object."
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "java.lang.ProcessHandle$Info"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.lang.ProcessHandle",
+  "comment": "ProcessHandle identifies and provides control of native processes. Each individual process can be monitored for liveness, list its children, get information about the process or destroy it. By comparison, \n\u003ca href\u003d\"Process.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eProcess\u003c/code\u003e\u003c/a\u003e instances were started by the current process and additionally provide access to the process input, output, and error streams. \n\u003cp\u003e The native process ID is an identification number that the operating system assigns to the process. The range for process id values is dependent on the operating system. For example, an embedded system might use a 16-bit value. Status information about a process is retrieved from the native system and may change asynchronously; processes may be created or terminate spontaneously. The time between when a process terminates and the process id is reused for a new process is unpredictable. Race conditions can exist between checking the status of a process and acting upon it. When using ProcessHandles avoid assumptions about the liveness or identity of the underlying process. \u003c/p\u003e\n\u003cp\u003e Each ProcessHandle identifies and allows control of a process in the native system. ProcessHandles are returned from the factory methods \u003ca href\u003d\"#current()\"\u003e\u003ccode\u003ecurrent()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#of(long)\"\u003e\u003ccode\u003eof(long)\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#children()\"\u003e\u003ccode\u003echildren()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#descendants()\"\u003e\u003ccode\u003edescendants()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#parent()\"\u003e\u003ccode\u003eparent()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#allProcesses()\"\u003e\u003ccode\u003eallProcesses()\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"Process.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eProcess\u003c/code\u003e\u003c/a\u003e instances created by \u003ca href\u003d\"ProcessBuilder.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eProcessBuilder\u003c/code\u003e\u003c/a\u003e can be queried for a ProcessHandle that provides information about the Process. ProcessHandle references should not be freely distributed. \u003c/p\u003e\n\u003cp\u003e A \u003ca href\u003d\"../util/concurrent/CompletableFuture.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCompletableFuture\u003c/code\u003e\u003c/a\u003e available from \u003ca href\u003d\"#onExit()\"\u003e\u003ccode\u003eonExit()\u003c/code\u003e\u003c/a\u003e can be used to wait for process termination, and possibly trigger dependent actions. \u003c/p\u003e\n\u003cp\u003e The factory methods limit access to ProcessHandles using the SecurityManager checking the \u003ca href\u003d\"RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission(\"manageProcess\")\u003c/code\u003e\u003c/a\u003e. The ability to control processes is also restricted by the native system, ProcessHandle provides no more access to, or control over, the native process than would be allowed by a native application.\u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "In the case where ProcessHandles cannot be supported then the factory methods must consistently throw \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e. The methods of this class throw \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e if the operating system does not allow access to query or kill a process. \n\u003cp\u003e The \u003ccode\u003eProcessHandle\u003c/code\u003e static factory methods return instances that are \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e, immutable and thread-safe. Programmers should treat instances that are \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ProcessHandle.html#equals(java.lang.Object)\"\u003eequal\u003c/a\u003e as interchangeable and should not use instances for synchronization, or unpredictable behavior may occur. For example, in a future release, synchronization may fail. Use the \u003ccode\u003eequals\u003c/code\u003e or \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ProcessHandle.html#compareTo(java.lang.ProcessHandle)\"\u003e\u003ccode\u003ecompareTo\u003c/code\u003e\u003c/a\u003e methods to compare ProcessHandles.\u003c/p\u003e"
+    ],
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eProcess\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

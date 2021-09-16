@@ -1,0 +1,750 @@
+{
+  "packageName": "javax.security.auth",
+  "simpleName": "Subject",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setReadOnly",
+      "comment": "Set this Subject to be read-only. Modifications (additions and removals) to this Subject\u0027s Principal Set and credential Sets will be disallowed. The destroy operation on this Subject\u0027s credentials will still be permitted. Subsequent attempts to modify the Subject\u0027s Principal and credential Sets will result in an IllegalStateException being thrown. Also, once a Subject is read-only, it can not be reset to being writable again.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/AuthPermission.html#%3Cinit%3E(java.lang.String)\"\u003e\u003ccode\u003eAuthPermission(\"setReadOnly\")\u003c/code\u003e\u003c/a\u003e permission to set this \n\u003ccode\u003eSubject\u003c/code\u003e to be read-only."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isReadOnly",
+      "comment": "Query whether this Subject is read-only.",
+      "tagMap": {
+        "return": [
+          "true if this \n\u003ccode\u003eSubject\u003c/code\u003e is read-only, false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.security.auth.Subject",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.AccessControlContext",
+            "type": "Class"
+          },
+          "field": {
+            "name": "acc"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSubject",
+      "comment": "Get the Subject associated with the provided AccessControlContext. The AccessControlContext may contain many Subjects (from nested doAs calls). In this situation, the most recent Subject associated with the AccessControlContext is returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eacc\u003c/code\u003e - the \n\u003ccode\u003eAccessControlContext\u003c/code\u003e from which to retrieve the \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/AuthPermission.html#%3Cinit%3E(java.lang.String)\"\u003e\u003ccode\u003eAuthPermission(\"getSubject\")\u003c/code\u003e\u003c/a\u003e permission to get the \n\u003ccode\u003eSubject\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the provided \n\u003ccode\u003eAccessControlContext\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "the \n\u003ccode\u003eSubject\u003c/code\u003e associated with the provided \n\u003ccode\u003eAccessControlContext\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e if no \n\u003ccode\u003eSubject\u003c/code\u003e is associated with the provided \n\u003ccode\u003eAccessControlContext\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "subject"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PrivilegedAction",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "action"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "doAs",
+      "comment": "Perform work as a particular Subject. This method first retrieves the current Thread\u0027s AccessControlContext via AccessController.getContext, and then instantiates a new AccessControlContext using the retrieved context along with a new SubjectDomainCombiner (constructed using the provided Subject). Finally, this method invokes AccessController.doPrivileged, passing it the provided PrivilegedAction, as well as the newly constructed AccessControlContext.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the value returned by the PrivilegedAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ],
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e that the specified \n\u003ccode\u003eaction\u003c/code\u003e will run as. This parameter may be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eaction\u003c/code\u003e - the code to be run as the specified \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ePrivilegedAction\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/AuthPermission.html#%3Cinit%3E(java.lang.String)\"\u003e\u003ccode\u003eAuthPermission(\"doAs\")\u003c/code\u003e\u003c/a\u003e permission to invoke this method."
+        ],
+        "return": [
+          "the value returned by the PrivilegedAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.PrivilegedActionException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "subject"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PrivilegedExceptionAction",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "action"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "doAs",
+      "comment": "Perform work as a particular Subject. This method first retrieves the current Thread\u0027s AccessControlContext via AccessController.getContext, and then instantiates a new AccessControlContext using the retrieved context along with a new SubjectDomainCombiner (constructed using the provided Subject). Finally, this method invokes AccessController.doPrivileged, passing it the provided PrivilegedExceptionAction, as well as the newly constructed AccessControlContext.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the value returned by the PrivilegedExceptionAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ],
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e that the specified \n\u003ccode\u003eaction\u003c/code\u003e will run as. This parameter may be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eaction\u003c/code\u003e - the code to be run as the specified \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/PrivilegedActionException.html\" title\u003d\"class in java.security\"\u003ePrivilegedActionException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ePrivilegedExceptionAction.run\u003c/code\u003e method throws a checked exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003ePrivilegedExceptionAction\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/AuthPermission.html#%3Cinit%3E(java.lang.String)\"\u003e\u003ccode\u003eAuthPermission(\"doAs\")\u003c/code\u003e\u003c/a\u003e permission to invoke this method."
+        ],
+        "return": [
+          "the value returned by the PrivilegedExceptionAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "subject"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PrivilegedAction",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "action"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.AccessControlContext",
+            "type": "Class"
+          },
+          "field": {
+            "name": "acc"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "doAsPrivileged",
+      "comment": "Perform privileged work as a particular Subject. This method behaves exactly as Subject.doAs, except that instead of retrieving the current Thread\u0027s AccessControlContext, it uses the provided AccessControlContext. If the provided AccessControlContext is null, this method instantiates a new AccessControlContext with an empty collection of ProtectionDomains.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the value returned by the PrivilegedAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ],
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e that the specified \n\u003ccode\u003eaction\u003c/code\u003e will run as. This parameter may be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eaction\u003c/code\u003e - the code to be run as the specified \n\u003ccode\u003eSubject\u003c/code\u003e.",
+          "\u003ccode\u003eacc\u003c/code\u003e - the \n\u003ccode\u003eAccessControlContext\u003c/code\u003e to be tied to the specified \n\u003ci\u003esubject\u003c/i\u003e and \n\u003ci\u003eaction\u003c/i\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ePrivilegedAction\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/AuthPermission.html#%3Cinit%3E(java.lang.String)\"\u003e\u003ccode\u003eAuthPermission(\"doAsPrivileged\")\u003c/code\u003e\u003c/a\u003e permission to invoke this method."
+        ],
+        "return": [
+          "the value returned by the PrivilegedAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.PrivilegedActionException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "subject"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PrivilegedExceptionAction",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "action"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.AccessControlContext",
+            "type": "Class"
+          },
+          "field": {
+            "name": "acc"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "doAsPrivileged",
+      "comment": "Perform privileged work as a particular Subject. This method behaves exactly as Subject.doAs, except that instead of retrieving the current Thread\u0027s AccessControlContext, it uses the provided AccessControlContext. If the provided AccessControlContext is null, this method instantiates a new AccessControlContext with an empty collection of ProtectionDomains.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the value returned by the PrivilegedExceptionAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ],
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e that the specified \n\u003ccode\u003eaction\u003c/code\u003e will run as. This parameter may be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003eaction\u003c/code\u003e - the code to be run as the specified \n\u003ccode\u003eSubject\u003c/code\u003e.",
+          "\u003ccode\u003eacc\u003c/code\u003e - the \n\u003ccode\u003eAccessControlContext\u003c/code\u003e to be tied to the specified \n\u003ci\u003esubject\u003c/i\u003e and \n\u003ci\u003eaction\u003c/i\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/PrivilegedActionException.html\" title\u003d\"class in java.security\"\u003ePrivilegedActionException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ePrivilegedExceptionAction.run\u003c/code\u003e method throws a checked exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003ePrivilegedExceptionAction\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/AuthPermission.html#%3Cinit%3E(java.lang.String)\"\u003e\u003ccode\u003eAuthPermission(\"doAsPrivileged\")\u003c/code\u003e\u003c/a\u003e permission to invoke this method."
+        ],
+        "return": [
+          "the value returned by the PrivilegedExceptionAction\u0027s \n\u003ccode\u003erun\u003c/code\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.security.Principal",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPrincipals",
+      "comment": "Return the Set of Principals associated with this Subject. Each Principal represents an identity for this Subject. The returned Set is backed by this Subject\u0027s internal Principal Set. Any modification to the returned Set affects the internal Principal Set as well. If a security manager is installed, the caller must have a AuthPermission(\"modifyPrincipals\") permission to modify the returned set, or a SecurityException will be thrown.",
+      "tagMap": {
+        "return": [
+          "the \n\u003ccode\u003eSet\u003c/code\u003e of Principals associated with this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "c"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "upperBounds": [
+            {
+              "name": "java.security.Principal",
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPrincipals",
+      "comment": "Return a Set of Principals associated with this Subject that are instances or subclasses of the specified Class. The returned Set is not backed by this Subject\u0027s internal Principal Set. A new Set is created and returned for each method invocation. Modifications to the returned Set will not affect the internal Principal Set.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the class modeled by \n\u003ccode\u003ec\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - the returned \n\u003ccode\u003eSet\u003c/code\u003e of Principals will all be instances of this class."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003eClass\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSet\u003c/code\u003e of Principals that are instances of the specified \n\u003ccode\u003eClass\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.Object",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPublicCredentials",
+      "comment": "Return the Set of public credentials held by this Subject. The returned Set is backed by this Subject\u0027s internal public Credential Set. Any modification to the returned Set affects the internal public Credential Set as well. If a security manager is installed, the caller must have a AuthPermission(\"modifyPublicCredentials\") permission to modify the returned set, or a SecurityException will be thrown.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003eSet\u003c/code\u003e of public credentials held by this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.Object",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPrivateCredentials",
+      "comment": "Return the Set of private credentials held by this Subject. The returned Set is backed by this Subject\u0027s internal private Credential Set. Any modification to the returned Set affects the internal private Credential Set as well. If a security manager is installed, the caller must have a AuthPermission(\"modifyPrivateCredentials\") permission to modify the returned set, or a SecurityException will be thrown. While iterating through the Set, a SecurityException is thrown if a security manager is installed and the caller does not have a PrivateCredentialPermission to access a particular Credential. The Iterator is nevertheless advanced to the next element in the Set.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003eSet\u003c/code\u003e of private credentials held by this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "c"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPublicCredentials",
+      "comment": "Return a Set of public credentials associated with this Subject that are instances or subclasses of the specified Class. The returned Set is not backed by this Subject\u0027s internal public Credential Set. A new Set is created and returned for each method invocation. Modifications to the returned Set will not affect the internal public Credential Set.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the class modeled by \n\u003ccode\u003ec\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - the returned \n\u003ccode\u003eSet\u003c/code\u003e of public credentials will all be instances of this class."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003eClass\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSet\u003c/code\u003e of public credentials that are instances of the specified \n\u003ccode\u003eClass\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "c"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPrivateCredentials",
+      "comment": "Return a Set of private credentials associated with this Subject that are instances or subclasses of the specified Class. If a security manager is installed, the caller must have a PrivateCredentialPermission to access all of the requested Credentials, or a SecurityException will be thrown. The returned Set is not backed by this Subject\u0027s internal private Credential Set. A new Set is created and returned for each method invocation. Modifications to the returned Set will not affect the internal private Credential Set.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the class modeled by \n\u003ccode\u003ec\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - the returned \n\u003ccode\u003eSet\u003c/code\u003e of private credentials will all be instances of this class."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003eClass\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSet\u003c/code\u003e of private credentials that are instances of the specified \n\u003ccode\u003eClass\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "o"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "equals",
+      "comment": "Compares the specified Object with this Subject for equality. Returns true if the given object is also a Subject and the two Subject instances are equivalent. More formally, two Subject instances are equal if their Principal and Credential Sets are equal.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eo\u003c/code\u003e - Object to be compared for equality with this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/PrivateCredentialPermission.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003ePrivateCredentialPermission\u003c/code\u003e\u003c/a\u003e permission to access the private credentials for this \n\u003ccode\u003eSubject\u003c/code\u003e or the provided \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ],
+        "return": [
+          "true if the specified Object is equal to this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Return the String representation of this Subject.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the String representation of this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hashCode",
+      "comment": "Returns a hashcode for this Subject.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and the caller does not have a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/auth/PrivateCredentialPermission.html\" title\u003d\"class in javax.security.auth\"\u003e\u003ccode\u003ePrivateCredentialPermission\u003c/code\u003e\u003c/a\u003e permission to access this Subject\u0027s private credentials."
+        ],
+        "return": [
+          "a hashcode for this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Create an instance of a Subject with an empty Set of Principals and empty Sets of public and private credentials. The newly constructed Sets check whether this Subject has been set read-only before permitting subsequent modifications. The newly created Sets also prevent illegal modifications by ensuring that callers have sufficient permissions. These Sets also prohibit null elements, and attempts to add or query a null element will result in a NullPointerException. To modify the Principals Set, the caller must have AuthPermission(\"modifyPrincipals\"). To modify the public credential Set, the caller must have AuthPermission(\"modifyPublicCredentials\"). To modify the private credential Set, the caller must have AuthPermission(\"modifyPrivateCredentials\").",
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "readOnly"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.security.Principal",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "principals"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "pubCredentials"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "privCredentials"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Create an instance of a Subject with Principals and credentials. The Principals and credentials from the specified Sets are copied into newly constructed Sets. These newly created Sets check whether this Subject has been set read-only before permitting subsequent modifications. The newly created Sets also prevent illegal modifications by ensuring that callers have sufficient permissions. These Sets also prohibit null elements, and attempts to add or query a null element will result in a NullPointerException. To modify the Principals Set, the caller must have AuthPermission(\"modifyPrincipals\"). To modify the public credential Set, the caller must have AuthPermission(\"modifyPublicCredentials\"). To modify the private credential Set, the caller must have AuthPermission(\"modifyPrivateCredentials\").",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereadOnly\u003c/code\u003e - true if the \n\u003ccode\u003eSubject\u003c/code\u003e is to be read-only, and false otherwise.",
+          "\u003ccode\u003eprincipals\u003c/code\u003e - the \n\u003ccode\u003eSet\u003c/code\u003e of Principals to be associated with this \n\u003ccode\u003eSubject\u003c/code\u003e.",
+          "\u003ccode\u003epubCredentials\u003c/code\u003e - the \n\u003ccode\u003eSet\u003c/code\u003e of public credentials to be associated with this \n\u003ccode\u003eSubject\u003c/code\u003e.",
+          "\u003ccode\u003eprivCredentials\u003c/code\u003e - the \n\u003ccode\u003eSet\u003c/code\u003e of private credentials to be associated with this \n\u003ccode\u003eSubject\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003eprincipals\u003c/code\u003e, \n\u003ccode\u003epubCredentials\u003c/code\u003e, or \n\u003ccode\u003eprivCredentials\u003c/code\u003e are \n\u003ccode\u003enull\u003c/code\u003e, or a null value exists within any of these three Sets."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "javax.security.auth.Subject",
+  "comment": "\u003cp\u003e A \u003ccode\u003eSubject\u003c/code\u003e represents a grouping of related information for a single entity, such as a person. Such information includes the Subject\u0027s identities as well as its security-related attributes (passwords and cryptographic keys, for example). \u003c/p\u003e\n\u003cp\u003e Subjects may potentially have multiple identities. Each identity is represented as a \u003ccode\u003ePrincipal\u003c/code\u003e within the \u003ccode\u003eSubject\u003c/code\u003e. Principals simply bind names to a \u003ccode\u003eSubject\u003c/code\u003e. For example, a \u003ccode\u003eSubject\u003c/code\u003e that happens to be a person, Alice, might have two Principals: one which binds \"Alice Bar\", the name on her driver license, to the \u003ccode\u003eSubject\u003c/code\u003e, and another which binds, \"999-99-9999\", the number on her student identification card, to the \u003ccode\u003eSubject\u003c/code\u003e. Both Principals refer to the same \u003ccode\u003eSubject\u003c/code\u003e even though each has a different name. \u003c/p\u003e\n\u003cp\u003e A \u003ccode\u003eSubject\u003c/code\u003e may also own security-related attributes, which are referred to as credentials. Sensitive credentials that require special protection, such as private cryptographic keys, are stored within a private credential \u003ccode\u003eSet\u003c/code\u003e. Credentials intended to be shared, such as public key certificates or Kerberos server tickets are stored within a public credential \u003ccode\u003eSet\u003c/code\u003e. Different permissions are required to access and modify the different credential Sets. \u003c/p\u003e\n\u003cp\u003e To retrieve all the Principals associated with a \u003ccode\u003eSubject\u003c/code\u003e, invoke the \u003ccode\u003egetPrincipals\u003c/code\u003e method. To retrieve all the public or private credentials belonging to a \u003ccode\u003eSubject\u003c/code\u003e, invoke the \u003ccode\u003egetPublicCredentials\u003c/code\u003e method or \u003ccode\u003egetPrivateCredentials\u003c/code\u003e method, respectively. To modify the returned \u003ccode\u003eSet\u003c/code\u003e of Principals and credentials, use the methods defined in the \u003ccode\u003eSet\u003c/code\u003e class. For example: \u003c/p\u003e\n\u003cpre\u003e      Subject subject;\n      Principal principal;\n      Object credential;\n\n      // add a Principal and credential to the Subject\n      subject.getPrincipals().add(principal);\n      subject.getPublicCredentials().add(credential);\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e This \u003ccode\u003eSubject\u003c/code\u003e class implements \u003ccode\u003eSerializable\u003c/code\u003e. While the Principals associated with the \u003ccode\u003eSubject\u003c/code\u003e are serialized, the credentials associated with the \u003ccode\u003eSubject\u003c/code\u003e are not. Note that the \u003ccode\u003ejava.security.Principal\u003c/code\u003e class does not implement \u003ccode\u003eSerializable\u003c/code\u003e. Therefore all concrete \u003ccode\u003ePrincipal\u003c/code\u003e implementations associated with Subjects must implement \u003ccode\u003eSerializable\u003c/code\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Principal.html\" title\u003d\"interface in java.security\"\u003e\u003ccode\u003ePrincipal\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/DomainCombiner.html\" title\u003d\"interface in java.security\"\u003e\u003ccode\u003eDomainCombiner\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.security.auth.Subject\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

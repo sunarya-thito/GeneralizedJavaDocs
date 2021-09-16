@@ -1,0 +1,395 @@
+{
+  "packageName": "java.util",
+  "simpleName": "ServiceLoader",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "owner": "java.util.ServiceLoader",
+            "name": "S",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "iterator",
+      "comment": "Returns an iterator to lazily load and instantiate the available providers of this loader\u0027s service. To achieve laziness the actual work of locating and instantiating providers is done by the iterator itself. Its hasNext and next methods can therefore throw a ServiceConfigurationError for any of the reasons specified in the Errors section above. To write robust code it is only necessary to catch ServiceConfigurationError when using the iterator. If an error is thrown then subsequent invocations of the iterator will make a best effort to locate and instantiate the next available provider, but in general such recovery cannot be guaranteed. Caching: The iterator returned by this method first yields all of the elements of the provider cache, in the order that they were loaded. It then lazily loads and instantiates any remaining service providers, adding each one to the cache in turn. If this loader\u0027s provider caches are cleared by invoking the reload method then existing iterators for this service loader should be discarded. The hasNext and next methods of the iterator throw ConcurrentModificationException if used after the provider cache has been cleared. The iterator returned by this method does not support removal. Invoking its remove method will cause an UnsupportedOperationException to be thrown.",
+      "tagMap": {
+        "apiNote": [
+          "Throwing an error in these cases may seem extreme. The rationale for this behavior is that a malformed provider-configuration file, like a malformed class file, indicates a serious problem with the way the Java virtual machine is configured or is being used. As such it is preferable to throw an error rather than try to recover or, even worse, fail silently."
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html#iterator()\"\u003eiterator\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html\" title\u003d\"interface in java.lang\"\u003eIterable\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceLoader.html\" title\u003d\"type parameter in ServiceLoader\"\u003eS\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "return": [
+          "An iterator that lazily loads providers for this loader\u0027s service"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.util.ServiceLoader$Provider",
+            "parameters": [
+              {
+                "owner": "java.util.ServiceLoader",
+                "name": "S",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "stream",
+      "comment": "Returns a stream to lazily load available providers of this loader\u0027s service. The stream elements are of type Provider, the Provider\u0027s get method must be invoked to get or instantiate the provider. To achieve laziness the actual work of locating providers is done when processing the stream. If a service provider cannot be loaded for any of the reasons specified in the Errors section above then ServiceConfigurationError is thrown by whatever method caused the service provider to be loaded. Caching: When processing the stream then providers that were previously loaded by stream operations are processed first, in load order. It then lazily loads any remaining service providers. If this loader\u0027s provider caches are cleared by invoking the reload method then existing streams for this service loader should be discarded. The returned stream\u0027s source spliterator is fail-fast and will throw ConcurrentModificationException if the provider cache has been cleared. The following examples demonstrate usage. The first example creates a stream of CodecFactory objects, the second example is the same except that it sorts the providers by provider class name (and so locate all providers). \n    Stream\u003cCodecFactory\u003e providers \u003d ServiceLoader.load(CodecFactory.class)\n            .stream()\n            .map(Provider::get);\n\n    Stream\u003cCodecFactory\u003e providers \u003d ServiceLoader.load(CodecFactory.class)\n            .stream()\n            .sorted(Comparator.comparing(p -\u003e p.type().getName()))\n            .map(Provider::get);",
+      "tagMap": {
+        "return": [
+          "A stream that lazily loads providers for this loader\u0027s service"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ServiceLoader",
+        "parameters": [
+          {
+            "name": "S",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "S",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "service"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "loader"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "load",
+      "comment": "Creates a new service loader for the given service. The service loader uses the given class loader as the starting point to locate service providers for the service. The service loader\u0027s iterator and stream locate providers in both named and unnamed modules, as follows: Step 1: Locate providers in named modules. Service providers are located in all named modules of the class loader or to any class loader reachable via parent delegation. In addition, if the class loader is not the bootstrap or platform class loader, then service providers may be located in the named modules of other class loaders. Specifically, if the class loader, or any class loader reachable via parent delegation, has a module in a module layer, then service providers in all modules in the module layer are located. For example, suppose there is a module layer where each module is in its own class loader (see defineModulesWithManyLoaders). If this ServiceLoader.load method is invoked to locate providers using any of the class loaders created for the module layer, then it will locate all of the providers in the module layer, irrespective of their defining class loader. Ordering: The service loader will first locate any service providers in modules defined to the class loader, then its parent class loader, its parent parent, and so on to the bootstrap class loader. If a class loader has modules in a module layer then all providers in that module layer are located (irrespective of their class loader) before the providers in the parent class loader are located. The ordering of modules in same class loader, or the ordering of modules in a module layer, is not defined. If a module declares more than one provider then the providers are located in the order that its module descriptor lists the providers. Providers added dynamically by instrumentation agents (see redefineModule) are always located after providers declared by the module. Step 2: Locate providers in unnamed modules. Service providers in unnamed modules are located if their class names are listed in provider-configuration files located by the class loader\u0027s getResources method. The ordering is based on the order that the class loader\u0027s getResources method finds the service configuration files and within that, the order that the class names are listed in the file. In a provider-configuration file, any mention of a service provider that is deployed in a named module is ignored. This is to avoid duplicates that would otherwise arise when a named module has both a provides directive and a provider-configuration file that mention the same service provider. The provider class must be visible to the class loader.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the class of the service type"
+        ],
+        "apiNote": [
+          "If the class path of the class loader includes remote network URLs then those URLs may be dereferenced in the process of searching for provider-configuration files. \n\u003cp\u003e This activity is normal, although it may cause puzzling entries to be created in web-server logs. If a web server is not configured correctly, however, then this activity may cause the provider-loading algorithm to fail spuriously. \u003c/p\u003e\n\u003cp\u003e A web server should return an HTTP 404 (Not Found) response when a requested resource does not exist. Sometimes, however, web servers are erroneously configured to return an HTTP 200 (OK) response along with a helpful HTML error page in such cases. This will cause a \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceConfigurationError\u003c/code\u003e\u003c/a\u003e to be thrown when this class attempts to parse the HTML page as a provider-configuration file. The best solution to this problem is to fix the misconfigured web server to return the correct response code (HTTP 404) along with the HTML error page.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eservice\u003c/code\u003e - The interface or abstract class representing the service",
+          "\u003ccode\u003eloader\u003c/code\u003e - The class loader to be used to load provider-configuration files and provider classes, or \n\u003ccode\u003enull\u003c/code\u003e if the system class loader (or, failing that, the bootstrap class loader) is to be used"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003eServiceConfigurationError\u003c/a\u003e\u003c/code\u003e - if the service type is not accessible to the caller or the caller is in an explicit module and its module descriptor does not declare that it uses \n\u003ccode\u003eservice\u003c/code\u003e"
+        ],
+        "return": [
+          "A new service loader"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ServiceLoader",
+        "parameters": [
+          {
+            "name": "S",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "S",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "service"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "load",
+      "comment": "Creates a new service loader for the given service type, using the current thread\u0027s context class loader. An invocation of this convenience method of the form \n     ServiceLoader.load(service)\n is equivalent to \n     ServiceLoader.load(service, Thread.currentThread().getContextClassLoader())",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the class of the service type"
+        ],
+        "apiNote": [
+          "Service loader objects obtained with this method should not be cached VM-wide. For example, different applications in the same VM may have different thread context class loaders. A lookup by one application may locate a service provider that is only visible via its thread context class loader and so is not suitable to be located by the other application. Memory leaks can also arise. A thread local may be suited to some applications."
+        ],
+        "param": [
+          "\u003ccode\u003eservice\u003c/code\u003e - The interface or abstract class representing the service"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003eServiceConfigurationError\u003c/a\u003e\u003c/code\u003e - if the service type is not accessible to the caller or the caller is in an explicit module and its module descriptor does not declare that it uses \n\u003ccode\u003eservice\u003c/code\u003e"
+        ],
+        "return": [
+          "A new service loader"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ServiceLoader",
+        "parameters": [
+          {
+            "name": "S",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "S",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "service"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "loadInstalled",
+      "comment": "Creates a new service loader for the given service type, using the platform class loader. This convenience method is equivalent to: \n     ServiceLoader.load(service, ClassLoader.getPlatformClassLoader())\n This method is intended for use when only installed providers are desired. The resulting service will only find and load providers that have been installed into the current Java virtual machine; providers on the application\u0027s module path or class path will be ignored.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the class of the service type"
+        ],
+        "param": [
+          "\u003ccode\u003eservice\u003c/code\u003e - The interface or abstract class representing the service"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003eServiceConfigurationError\u003c/a\u003e\u003c/code\u003e - if the service type is not accessible to the caller or the caller is in an explicit module and its module descriptor does not declare that it uses \n\u003ccode\u003eservice\u003c/code\u003e"
+        ],
+        "return": [
+          "A new service loader"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.ServiceLoader",
+        "parameters": [
+          {
+            "name": "S",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.ModuleLayer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layer"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "S",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "service"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "load",
+      "comment": "Creates a new service loader for the given service type to load service providers from modules in the given module layer and its ancestors. It does not locate providers in unnamed modules. The ordering that the service loader\u0027s iterator and stream locate providers and yield elements is as follows: Providers are located in a module layer before locating providers in parent layers. Traversal of parent layers is depth-first with each layer visited at most once. For example, suppose L0 is the boot layer, L1 and L2 are modules layers with L0 as their parent. Now suppose that L3 is created with L1 and L2 as the parents (in that order). Using a service loader to locate providers with L3 as the context will locate providers in the following order: L3, L1, L0, L2. If a module declares more than one provider then the providers are located in the order that its module descriptor lists the providers. Providers added dynamically by instrumentation agents are always located after providers declared by the module. The ordering of modules in a module layer is not defined.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the class of the service type"
+        ],
+        "apiNote": [
+          "Unlike the other load methods defined here, the service type is the second parameter. The reason for this is to avoid source compatibility issues for code that uses \n\u003ccode\u003eload(S, null)\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003elayer\u003c/code\u003e - The module layer",
+          "\u003ccode\u003eservice\u003c/code\u003e - The interface or abstract class representing the service"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003eServiceConfigurationError\u003c/a\u003e\u003c/code\u003e - if the service type is not accessible to the caller or the caller is in an explicit module and its module descriptor does not declare that it uses \n\u003ccode\u003eservice\u003c/code\u003e"
+        ],
+        "return": [
+          "A new service loader"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "owner": "java.util.ServiceLoader",
+            "name": "S",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "findFirst",
+      "comment": "Load the first available service provider of this loader\u0027s service. This convenience method is equivalent to invoking the iterator() method and obtaining the first element. It therefore returns the first element from the provider cache if possible, it otherwise attempts to load and instantiate the first provider. The following example loads the first available service provider. If no service providers are located then it uses a default implementation. \n    CodecFactory factory \u003d ServiceLoader.load(CodecFactory.class)\n                                        .findFirst()\n                                        .orElse(DEFAULT_CODECSET_FACTORY);",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003eServiceConfigurationError\u003c/a\u003e\u003c/code\u003e - If a provider class cannot be loaded for any of the reasons specified in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceLoader.html#errors\"\u003eErrors\u003c/a\u003e section above."
+        ],
+        "return": [
+          "The first service provider or empty \n\u003ccode\u003eOptional\u003c/code\u003e if no service providers are located"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "reload",
+      "comment": "Clear this loader\u0027s provider cache so that all providers will be reloaded. After invoking this method, subsequent invocations of the iterator or stream methods will lazily locate providers (and instantiate in the case of iterator) from scratch, just as is done by a newly-created service loader. This method is intended for use in situations in which new service providers can be installed into a running Java virtual machine.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns a string describing this service.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "A descriptive string"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "java.util.ServiceLoader$Provider"
+  ],
+  "genericParameters": [
+    {
+      "name": "S",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "java.util.ServiceLoader",
+  "comment": "A facility to load implementations of a service. \n\u003cp\u003e A \u003ci\u003eservice\u003c/i\u003e is a well-known interface or class for which zero, one, or many service providers exist. A \u003ci\u003eservice provider\u003c/i\u003e (or just \u003ci\u003eprovider\u003c/i\u003e) is a class that implements or subclasses the well-known interface or class. A \u003ccode\u003eServiceLoader\u003c/code\u003e is an object that locates and loads service providers deployed in the run time environment at a time of an application\u0027s choosing. Application code refers only to the service, not to service providers, and is assumed to be capable of choosing between multiple service providers (based on the functionality they expose through the service), and handling the possibility that no service providers are located. \u003c/p\u003e\n\u003ch2\u003e Obtaining a service loader \u003c/h2\u003e \n\u003cp\u003e An application obtains a service loader for a given service by invoking one of the static \u003ccode\u003eload\u003c/code\u003e methods of \u003ccode\u003eServiceLoader\u003c/code\u003e. If the application is a module, then its module declaration must have a \u003ci\u003euses\u003c/i\u003e directive that specifies the service; this helps to locate providers and ensure they will execute reliably. In addition, if the application module does not contain the service, then its module declaration must have a \u003ci\u003erequires\u003c/i\u003e directive that specifies the module which exports the service. It is strongly recommended that the application module does \u003cb\u003enot\u003c/b\u003e require modules which contain providers of the service. \u003c/p\u003e\n\u003cp\u003e A service loader can be used to locate and instantiate providers of the service by means of the \u003ca href\u003d\"#iterator()\"\u003e\u003ccode\u003eiterator\u003c/code\u003e\u003c/a\u003e method. \u003ccode\u003eServiceLoader\u003c/code\u003e also defines the \u003ca href\u003d\"#stream()\"\u003e\u003ccode\u003estream\u003c/code\u003e\u003c/a\u003e method to obtain a stream of providers that can be inspected and filtered without instantiating them. \u003c/p\u003e\n\u003cp\u003e As an example, suppose the service is \u003ccode\u003ecom.example.CodecFactory\u003c/code\u003e, an interface that defines methods for producing encoders and decoders: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n     package com.example;\n     public interface CodecFactory {\n         Encoder getEncoder(String encodingName);\n         Decoder getDecoder(String encodingName);\n     }\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The following code obtains a service loader for the \u003ccode\u003eCodecFactory\u003c/code\u003e service, then uses its iterator (created automatically by the enhanced-for loop) to yield instances of the service providers that are located: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n     ServiceLoader\u0026lt;CodecFactory\u0026gt; loader \u003d ServiceLoader.load(CodecFactory.class);\n     for (CodecFactory factory : loader) {\n         Encoder enc \u003d factory.getEncoder(\"PNG\");\n         if (enc !\u003d null)\n             ... use enc to encode a PNG file\n             break;\n         }\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e If this code resides in a module, then in order to refer to the \u003ccode\u003ecom.example.CodecFactory\u003c/code\u003e interface, the module declaration would require the module which exports the interface. The module declaration would also specify use of \u003ccode\u003ecom.example.CodecFactory\u003c/code\u003e: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n     requires com.example.codec.core;\n     uses com.example.CodecFactory;\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Sometimes an application may wish to inspect a service provider before instantiating it, in order to determine if an instance of that service provider would be useful. For example, a service provider for \u003ccode\u003e CodecFactory\u003c/code\u003e that is capable of producing a \"PNG\" encoder may be annotated with \u003ccode\u003e@PNG\u003c/code\u003e. The following code uses service loader\u0027s \u003ccode\u003estream\u003c/code\u003e method to yield instances of \u003ccode\u003eProvider\u0026lt;CodecFactory\u0026gt;\u003c/code\u003e in contrast to how the iterator yields instances of \u003ccode\u003eCodecFactory\u003c/code\u003e: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n     ServiceLoader\u0026lt;CodecFactory\u0026gt; loader \u003d ServiceLoader.load(CodecFactory.class);\n     Set\u0026lt;CodecFactory\u0026gt; pngFactories \u003d loader\n            .stream()                                              // Note a below\n            .filter(p -\u0026gt; p.type().isAnnotationPresent(PNG.class))  // Note b\n            .map(Provider::get)                                    // Note c\n            .collect(Collectors.toSet());\n \u003c/code\u003e\u003c/pre\u003e \n\u003col type\u003d\"a\"\u003e \n \u003cli\u003e A stream of \u003ccode\u003eProvider\u0026lt;CodecFactory\u0026gt;\u003c/code\u003e objects \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003ep.type()\u003c/code\u003e yields a \u003ccode\u003eClass\u0026lt;CodecFactory\u0026gt;\u003c/code\u003e \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003eget()\u003c/code\u003e yields an instance of \u003ccode\u003eCodecFactory\u003c/code\u003e \u003c/li\u003e \n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003e Designing services \u003c/h2\u003e \n\u003cp\u003e A service is a single type, usually an interface or abstract class. A concrete class can be used, but this is not recommended. The type may have any accessibility. The methods of a service are highly domain-specific, so this API specification cannot give concrete advice about their form or function. However, there are two general guidelines: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003e\u003cp\u003e A service should declare as many methods as needed to allow service providers to communicate their domain-specific properties and other quality-of-implementation factors. An application which obtains a service loader for the service may then invoke these methods on each instance of a service provider, in order to choose the best provider for the application. \u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e\u003cp\u003e A service should express whether its service providers are intended to be direct implementations of the service or to be an indirection mechanism such as a \"proxy\" or a \"factory\". Service providers tend to be indirection mechanisms when domain-specific objects are relatively expensive to instantiate; in this case, the service should be designed so that service providers are abstractions which create the \"real\" implementation on demand. For example, the \u003ccode\u003eCodecFactory\u003c/code\u003e service expresses through its name that its service providers are factories for codecs, rather than codecs themselves, because it may be expensive or complicated to produce certain codecs. \u003c/p\u003e\u003c/li\u003e \n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003e \u003ca id\u003d\"developing-service-providers\"\u003eDeveloping service providers\u003c/a\u003e \u003c/h2\u003e \n\u003cp\u003e A service provider is a single type, usually a concrete class. An interface or abstract class is permitted because it may declare a static provider method, discussed later. The type must be public and must not be an inner class. \u003c/p\u003e\n\u003cp\u003e A service provider and its supporting code may be developed in a module, which is then deployed on the application module path or in a modular image. Alternatively, a service provider and its supporting code may be packaged as a JAR file and deployed on the application class path. The advantage of developing a service provider in a module is that the provider can be fully encapsulated to hide all details of its implementation. \u003c/p\u003e\n\u003cp\u003e An application that obtains a service loader for a given service is indifferent to whether providers of the service are deployed in modules or packaged as JAR files. The application instantiates service providers via the service loader\u0027s iterator, or via \u003ca href\u003d\"ServiceLoader.Provider.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eProvider\u003c/code\u003e\u003c/a\u003e objects in the service loader\u0027s stream, without knowledge of the service providers\u0027 locations. \u003c/p\u003e\n\u003ch2\u003e Deploying service providers as modules \u003c/h2\u003e \n\u003cp\u003e A service provider that is developed in a module must be specified in a \u003ci\u003eprovides\u003c/i\u003e directive in the module declaration. The provides directive specifies both the service and the service provider; this helps to locate the provider when another module, with a \u003ci\u003euses\u003c/i\u003e directive for the service, obtains a service loader for the service. It is strongly recommended that the module does not export the package containing the service provider. There is no support for a module specifying, in a \u003ci\u003eprovides\u003c/i\u003e directive, a service provider in another module. \u003c/p\u003e\n\u003cp\u003e A service provider that is developed in a module has no control over when it is instantiated, since that occurs at the behest of the application, but it does have control over how it is instantiated: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e If the service provider declares a provider method, then the service loader invokes that method to obtain an instance of the service provider. A provider method is a public static method named \"provider\" with no formal parameters and a return type that is assignable to the service\u0027s interface or class. \u003cp\u003e In this case, the service provider itself need not be assignable to the service\u0027s interface or class. \u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e If the service provider does not declare a provider method, then the service provider is instantiated directly, via its provider constructor. A provider constructor is a public constructor with no formal parameters. \u003cp\u003e In this case, the service provider must be assignable to the service\u0027s interface or class \u003c/p\u003e\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A service provider that is deployed as an \u003ca href\u003d\"../lang/module/ModuleDescriptor.html#isAutomatic()\"\u003eautomatic module\u003c/a\u003e on the application module path must have a provider constructor. There is no support for a provider method in this case. \u003c/p\u003e\n\u003cp\u003e As an example, suppose a module specifies the following directive: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n     provides com.example.CodecFactory with com.example.impl.StandardCodecs,\n              com.example.impl.ExtendedCodecsFactory;\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e where \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e \u003ccode\u003ecom.example.CodecFactory\u003c/code\u003e is the two-method service from earlier. \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003ecom.example.impl.StandardCodecs\u003c/code\u003e is a public class that implements \u003ccode\u003eCodecFactory\u003c/code\u003e and has a public no-args constructor. \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003ecom.example.impl.ExtendedCodecsFactory\u003c/code\u003e is a public class that does not implement CodecFactory, but it declares a public static no-args method named \"provider\" with a return type of \u003ccode\u003eCodecFactory\u003c/code\u003e. \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A service loader will instantiate \u003ccode\u003eStandardCodecs\u003c/code\u003e via its constructor, and will instantiate \u003ccode\u003eExtendedCodecsFactory\u003c/code\u003e by invoking its \u003ccode\u003eprovider\u003c/code\u003e method. The requirement that the provider constructor or provider method is public helps to document the intent that the class (that is, the service provider) will be instantiated by an entity (that is, a service loader) which is outside the class\u0027s package. \u003c/p\u003e\n\u003ch2\u003e Deploying service providers on the class path \u003c/h2\u003e A service provider that is packaged as a JAR file for the class path is identified by placing a \n\u003ci\u003eprovider-configuration file\u003c/i\u003e in the resource directory \n\u003ccode\u003eMETA-INF/services\u003c/code\u003e. The name of the provider-configuration file is the fully qualified binary name of the service. The provider-configuration file contains a list of fully qualified binary names of service providers, one per line. \n\u003cp\u003e For example, suppose the service provider \u003ccode\u003ecom.example.impl.StandardCodecs\u003c/code\u003e is packaged in a JAR file for the class path. The JAR file will contain a provider-configuration file named: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003ccode\u003e META-INF/services/com.example.CodecFactory \u003c/code\u003e\n\u003c/blockquote\u003e that contains the line: \n\u003cblockquote\u003e\n \u003ccode\u003e com.example.impl.StandardCodecs # Standard codecs \u003c/code\u003e\n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e\u003ca id\u003d\"format\"\u003eThe provider-configuration file must be encoded in UTF-8. \u003c/a\u003e Space and tab characters surrounding each service provider\u0027s name, as well as blank lines, are ignored. The comment character is \u003ccode\u003e\u0027#\u0027\u003c/code\u003e (\u003ccode\u003e\u0027\u0026amp;#92;u0023\u0027\u003c/code\u003e \u003cspan style\u003d\"font-size:smaller;\"\u003eNUMBER SIGN\u003c/span\u003e); on each line all characters following the first comment character are ignored. If a service provider class name is listed more than once in a provider-configuration file then the duplicate is ignored. If a service provider class is named in more than one configuration file then the duplicate is ignored. \u003c/p\u003e\n\u003cp\u003e A service provider that is mentioned in a provider-configuration file may be located in the same JAR file as the provider-configuration file or in a different JAR file. The service provider must be visible from the class loader that is initially queried to locate the provider-configuration file; this is not necessarily the class loader which ultimately locates the provider-configuration file. \u003c/p\u003e\n\u003ch2\u003e Timing of provider discovery \u003c/h2\u003e \n\u003cp\u003e Service providers are loaded and instantiated lazily, that is, on demand. A service loader maintains a cache of the providers that have been loaded so far. Each invocation of the \u003ccode\u003eiterator\u003c/code\u003e method returns an \u003ccode\u003eIterator\u003c/code\u003e that first yields all of the elements cached from previous iteration, in instantiation order, and then lazily locates and instantiates any remaining providers, adding each one to the cache in turn. Similarly, each invocation of the stream method returns a \u003ccode\u003eStream\u003c/code\u003e that first processes all providers loaded by previous stream operations, in load order, and then lazily locates any remaining providers. Caches are cleared via the \u003ca href\u003d\"#reload()\"\u003e\u003ccode\u003ereload\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003ch2\u003e \u003ca id\u003d\"errors\"\u003eErrors\u003c/a\u003e \u003c/h2\u003e \n\u003cp\u003e When using the service loader\u0027s \u003ccode\u003eiterator\u003c/code\u003e, the \u003ca href\u003d\"Iterator.html#hasNext()\"\u003e\u003ccode\u003ehasNext\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"Iterator.html#next()\"\u003e\u003ccode\u003enext\u003c/code\u003e\u003c/a\u003e methods will fail with \u003ca href\u003d\"ServiceConfigurationError.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceConfigurationError\u003c/code\u003e\u003c/a\u003e if an error occurs locating, loading or instantiating a service provider. When processing the service loader\u0027s stream then \u003ccode\u003eServiceConfigurationError\u003c/code\u003e may be thrown by any method that causes a service provider to be located or loaded. \u003c/p\u003e\n\u003cp\u003e When loading or instantiating a service provider in a module, \u003ccode\u003e ServiceConfigurationError\u003c/code\u003e can be thrown for the following reasons: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e The service provider cannot be loaded. \u003c/li\u003e \n \u003cli\u003e The service provider does not declare a provider method, and either it is not assignable to the service\u0027s interface/class or does not have a provider constructor. \u003c/li\u003e \n \u003cli\u003e The service provider declares a public static no-args method named \"provider\" with a return type that is not assignable to the service\u0027s interface or class. \u003c/li\u003e \n \u003cli\u003e The service provider class file has more than one public static no-args method named \"\u003ccode\u003eprovider\u003c/code\u003e\". \u003c/li\u003e \n \u003cli\u003e The service provider declares a provider method and it fails by returning \u003ccode\u003enull\u003c/code\u003e or throwing an exception. \u003c/li\u003e \n \u003cli\u003e The service provider does not declare a provider method, and its provider constructor fails by throwing an exception. \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e When reading a provider-configuration file, or loading or instantiating a provider class named in a provider-configuration file, then \u003ccode\u003e ServiceConfigurationError\u003c/code\u003e can be thrown for the following reasons: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e The format of the provider-configuration file violates the \u003ca href\u003d\"ServiceLoader.html#format\"\u003eformat\u003c/a\u003e specified above; \u003c/li\u003e \n \u003cli\u003e An \u003ca href\u003d\"../io/IOException.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eIOException\u003c/code\u003e\u003c/a\u003e occurs while reading the provider-configuration file; \u003c/li\u003e \n \u003cli\u003e A service provider cannot be loaded; \u003c/li\u003e \n \u003cli\u003e A service provider is not assignable to the service\u0027s interface or class, or does not define a provider constructor, or cannot be instantiated. \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003e Security \u003c/h2\u003e \n\u003cp\u003e Service loaders always execute in the security context of the caller of the iterator or stream methods and may also be restricted by the security context of the caller that created the service loader. Trusted system code should typically invoke the methods in this class, and the methods of the iterators which they return, from within a privileged security context. \u003c/p\u003e\n\u003ch2\u003e Concurrency \u003c/h2\u003e \n\u003cp\u003e Instances of this class are not safe for use by multiple concurrent threads. \u003c/p\u003e\n\u003ch3\u003e Null handling \u003c/h3\u003e \n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument to any method in this class will cause a \u003ca href\u003d\"../lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.6"
+    ]
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "packageName": "java.time.temporal",
+  "simpleName": "TemporalUnit",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.time.Duration",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDuration",
+      "comment": "Gets the duration of this unit, which may be an estimate. All units return a duration measured in standard nanoseconds from this method. The duration will be positive and non-zero. For example, an hour has a duration of 60 * 60 * 1,000,000,000ns. Some units may return an accurate duration while others return an estimate. For example, days have an estimated duration due to the possibility of daylight saving time changes. To determine if the duration is an estimate, use isDurationEstimated().",
+      "tagMap": {
+        "return": [
+          "the duration of this unit, which may be an estimate, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isDurationEstimated",
+      "comment": "Checks if the duration of the unit is an estimate. All units have a duration, however the duration is not always accurate. For example, days have an estimated duration due to the possibility of daylight saving time changes. This method returns true if the duration is an estimate and false if it is accurate. Note that accurate/estimated ignores leap seconds.",
+      "tagMap": {
+        "return": [
+          "true if the duration is estimated, false if accurate"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isDateBased",
+      "comment": "Checks if this unit represents a component of a date. A date is time-based if it can be used to imply meaning from a date. It must have a duration that is an integral multiple of the length of a standard day. Note that it is valid for both isDateBased() and isTimeBased() to return false, such as when representing a unit like 36 hours.",
+      "tagMap": {
+        "return": [
+          "true if this unit is a component of a date"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isTimeBased",
+      "comment": "Checks if this unit represents a component of a time. A unit is time-based if it can be used to imply meaning from a time. It must have a duration that divides into the length of a standard day without remainder. Note that it is valid for both isDateBased() and isTimeBased() to return false, such as when representing a unit like 36 hours.",
+      "tagMap": {
+        "return": [
+          "true if this unit is a component of a time"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.Temporal",
+            "type": "Class"
+          },
+          "field": {
+            "name": "temporal"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSupportedBy",
+      "comment": "Checks if this unit is supported by the specified temporal object. This checks that the implementing date-time can add/subtract this unit. This can be used to avoid throwing an exception. This default implementation derives the value using Temporal.plus(long, TemporalUnit).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etemporal\u003c/code\u003e - the temporal object to check, not null"
+        ],
+        "return": [
+          "true if the unit is supported"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "R",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "R",
+            "type": "Class"
+          },
+          "field": {
+            "name": "temporal"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "amount"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "R",
+          "upperBounds": [
+            {
+              "name": "java.time.temporal.Temporal",
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addTo",
+      "comment": "Returns a copy of the specified temporal object with the specified period added. The period added is a multiple of this unit. For example, this method could be used to add \"3 days\" to a date by calling this method on the instance representing \"days\", passing the date and the period \"3\". The period to be added may be negative, which is equivalent to subtraction. There are two equivalent ways of using this method. The first is to invoke this method directly. The second is to use Temporal.plus(long, TemporalUnit):    // these two lines are equivalent, but the second approach is recommended\n   temporal \u003d thisUnit.addTo(temporal);\n   temporal \u003d temporal.plus(thisUnit);\n It is recommended to use the second approach, plus(TemporalUnit), as it is a lot clearer to read in code. Implementations should perform any queries or calculations using the units available in ChronoUnit or the fields available in ChronoField. If the unit is not supported an UnsupportedTemporalTypeException must be thrown. Implementations must not alter the specified temporal object. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable implementations.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eR\u003c/code\u003e - the type of the Temporal object"
+        ],
+        "param": [
+          "\u003ccode\u003etemporal\u003c/code\u003e - the temporal object to adjust, not null",
+          "\u003ccode\u003eamount\u003c/code\u003e - the amount of this unit to add, positive or negative"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the amount cannot be added",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the unit is not supported by the temporal"
+        ],
+        "return": [
+          "the adjusted temporal object, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.Temporal",
+            "type": "Class"
+          },
+          "field": {
+            "name": "temporal1Inclusive"
+          }
+        },
+        {
+          "type": {
+            "name": "java.time.temporal.Temporal",
+            "type": "Class"
+          },
+          "field": {
+            "name": "temporal2Exclusive"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "between",
+      "comment": "Calculates the amount of time between two temporal objects. This calculates the amount in terms of this unit. The start and end points are supplied as temporal objects and must be of compatible types. The implementation will convert the second type to be an instance of the first type before the calculating the amount. The result will be negative if the end is before the start. For example, the amount in hours between two temporal objects can be calculated using HOURS.between(startTime, endTime). The calculation returns a whole number, representing the number of complete units between the two temporals. For example, the amount in hours between the times 11:30 and 13:29 will only be one hour as it is one minute short of two hours. There are two equivalent ways of using this method. The first is to invoke this method directly. The second is to use Temporal.until(Temporal, TemporalUnit):    // these two lines are equivalent\n   between \u003d thisUnit.between(start, end);\n   between \u003d start.until(end, thisUnit);\n The choice should be made based on which makes the code more readable. For example, this method allows the number of days between two dates to be calculated:   long daysBetween \u003d DAYS.between(start, end);\n  // or alternatively\n  long daysBetween \u003d start.until(end, DAYS);\n Implementations should perform any queries or calculations using the units available in ChronoUnit or the fields available in ChronoField. If the unit is not supported an UnsupportedTemporalTypeException must be thrown. Implementations must not alter the specified temporal objects.",
+      "tagMap": {
+        "implSpec": [
+          "Implementations must begin by checking to if the two temporals have the same type using \n\u003ccode\u003egetClass()\u003c/code\u003e. If they do not, then the result must be obtained by calling \n\u003ccode\u003etemporal1Inclusive.until(temporal2Exclusive, this)\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003etemporal1Inclusive\u003c/code\u003e - the base temporal object, not null",
+          "\u003ccode\u003etemporal2Exclusive\u003c/code\u003e - the other temporal object, exclusive, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the amount cannot be calculated, or the end temporal cannot be converted to the same type as the start temporal",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/UnsupportedTemporalTypeException.html\" title\u003d\"class in java.time.temporal\"\u003eUnsupportedTemporalTypeException\u003c/a\u003e\u003c/code\u003e - if the unit is not supported by the temporal",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "the amount of time between temporal1Inclusive and temporal2Exclusive in terms of this unit; positive if temporal2Exclusive is later than temporal1Inclusive, negative if earlier"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toString",
+      "comment": "Gets a descriptive name for the unit. This should be in the plural and upper-first camel case, such as \u0027Days\u0027 or \u0027Minutes\u0027.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the name of this unit, not null"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.time.temporal.TemporalUnit",
+  "comment": "A unit of date-time, such as Days or Hours. \n\u003cp\u003e Measurement of time is built on units, such as years, months, days, hours, minutes and seconds. Implementations of this interface represent those units. \u003c/p\u003e\n\u003cp\u003e An instance of this interface represents the unit itself, rather than an amount of the unit. See \u003ca href\u003d\"../Period.html\" title\u003d\"class in java.time\"\u003e\u003ccode\u003ePeriod\u003c/code\u003e\u003c/a\u003e for a class that represents an amount in terms of the common units. \u003c/p\u003e\n\u003cp\u003e The most commonly used units are defined in \u003ca href\u003d\"ChronoUnit.html\" title\u003d\"enum class in java.time.temporal\"\u003e\u003ccode\u003eChronoUnit\u003c/code\u003e\u003c/a\u003e. Further units are supplied in \u003ca href\u003d\"IsoFields.html\" title\u003d\"class in java.time.temporal\"\u003e\u003ccode\u003eIsoFields\u003c/code\u003e\u003c/a\u003e. Units can also be written by application code by implementing this interface. \u003c/p\u003e\n\u003cp\u003e The unit works using double dispatch. Client code calls methods on a date-time like \u003ccode\u003eLocalDateTime\u003c/code\u003e which check if the unit is a \u003ccode\u003eChronoUnit\u003c/code\u003e. If it is, then the date-time must handle it. Otherwise, the method call is re-dispatched to the matching method in this interface.\u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "This interface must be implemented with care to ensure other classes operate correctly. All implementations that can be instantiated must be final, immutable and thread-safe. It is recommended to use an enum where possible."
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

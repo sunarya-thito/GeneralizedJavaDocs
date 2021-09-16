@@ -1,0 +1,20 @@
+{
+  "packageName": "javax.swing.plaf",
+  "simpleName": "UIResource",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.swing.plaf.UIResource",
+  "comment": "This interface is used to mark objects created by ComponentUI delegates. The \n\u003ccode\u003eComponentUI.installUI()\u003c/code\u003e and \n\u003ccode\u003eComponentUI.uninstallUI()\u003c/code\u003e methods can use this interface to decide if a properties value has been overridden. For example, the JList cellRenderer property is initialized by BasicListUI.installUI(), only if it\u0027s initial value is null: \n\u003cpre\u003e if (list.getCellRenderer() \u003d\u003d null) {\n     list.setCellRenderer((ListCellRenderer)(UIManager.get(\"List.cellRenderer\")));\n }\n \u003c/pre\u003e At uninstallUI() time we reset the property to null if its value is an instance of UIResource: \n\u003cpre\u003e if (list.getCellRenderer() instanceof UIResource) {\n     list.setCellRenderer(null);\n }\n\u003c/pre\u003e This pattern applies to all properties except the java.awt.Component properties font, foreground, and background. If one of these properties isn\u0027t initialized, or is explicitly set to null, its container provides the value. For this reason the \n\u003ccode\u003e\"\u003d\u003d null\"\u003c/code\u003e is unreliable when installUI() is called to dynamically change a components look and feel. So at installUI() time we check to see if the current value is a UIResource: \n\u003cpre\u003e if (!(list.getFont() instanceof UIResource)) {\n     list.setFont(UIManager.getFont(\"List.font\"));\n }\n \u003c/pre\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/plaf/ComponentUI.html\" title\u003d\"class in javax.swing.plaf\"\u003e\u003ccode\u003eComponentUI\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

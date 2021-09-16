@@ -1,0 +1,530 @@
+{
+  "packageName": "javax.swing",
+  "simpleName": "SwingWorker",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "owner": "javax.swing.SwingWorker",
+        "name": "T",
+        "type": "Variable"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "doInBackground",
+      "comment": "Computes a result, or throws an exception if unable to do so. Note that this method is executed only once. Note: this method is executed in a background thread.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if unable to compute a result"
+        ],
+        "return": [
+          "the computed result"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "run",
+      "comment": "Sets this Future to the result of computation unless it has been cancelled.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#run()\"\u003e\u003ccode\u003eThread.run()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runnable.html#run()\"\u003erun\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runnable.html\" title\u003d\"interface in java.lang\"\u003eRunnable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RunnableFuture.html#run()\"\u003erun\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RunnableFuture.html\" title\u003d\"interface in java.util.concurrent\"\u003eRunnableFuture\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html\" title\u003d\"type parameter in SwingWorker\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "javax.swing.SwingWorker",
+            "name": "V",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "chunks"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "publish",
+      "comment": "Sends data chunks to the process(java.util.List\u003cV\u003e) method. This method is to be used from inside the doInBackground method to deliver intermediate results for processing on the Event Dispatch Thread inside the process method. Because the process method is invoked asynchronously on the Event Dispatch Thread multiple invocations to the publish method might occur before the process method is executed. For performance purposes all these invocations are coalesced into one invocation with concatenated arguments. For example:  publish(\"1\");\n publish(\"2\", \"3\");\n publish(\"4\", \"5\", \"6\");\n might result in:  process(\"1\", \"2\", \"3\", \"4\", \"5\", \"6\")\n Sample Usage. This code snippet loads some tabular data and updates DefaultTableModel with it. Note that it safe to mutate the tableModel from inside the process method because it is invoked on the Event Dispatch Thread.  class TableSwingWorker extends\n         SwingWorker\u003cDefaultTableModel, Object[]\u003e {\n     private final DefaultTableModel tableModel;\n\n     public TableSwingWorker(DefaultTableModel tableModel) {\n         this.tableModel \u003d tableModel;\n     }\n\n     @Override\n     protected DefaultTableModel doInBackground() throws Exception {\n         for (Object[] row \u003d loadData();\n                  ! isCancelled() \u0026\u0026 row !\u003d null;\n                  row \u003d loadData()) {\n             publish((Object[]) row);\n         }\n         return tableModel;\n     }\n\n     @Override\n     protected void process(List\u003cObject[]\u003e chunks) {\n         for (Object[] row : chunks) {\n             tableModel.addRow(row);\n         }\n     }\n }",
+      "annotations": [
+        {
+          "type": "SafeVarargs"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html#process(java.util.List)\"\u003e\u003ccode\u003eprocess(java.util.List\u0026lt;V\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003echunks\u003c/code\u003e - intermediate results to process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "owner": "javax.swing.SwingWorker",
+                "name": "V",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "chunks"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "process",
+      "comment": "Receives data chunks from the publish method asynchronously on the Event Dispatch Thread. Please refer to the publish(V...) method for more details.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html#publish(V...)\"\u003e\u003ccode\u003epublish(V...)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003echunks\u003c/code\u003e - intermediate results to process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "done",
+      "comment": "Executed on the Event Dispatch Thread after the doInBackground method is finished. The default implementation does nothing. Subclasses may override this method to perform completion actions on the Event Dispatch Thread. Note that you can query status inside the implementation of this method to determine the result of this task or whether this task has been cancelled.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html#doInBackground()\"\u003e\u003ccode\u003edoInBackground()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html#isCancelled()\"\u003e\u003ccode\u003eisCancelled()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html#get()\"\u003e\u003ccode\u003eget()\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "progress"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "setProgress",
+      "comment": "Sets the progress bound property. The value should be from 0 to 100. Because PropertyChangeListeners are notified asynchronously on the Event Dispatch Thread multiple invocations to the setProgress method might occur before any PropertyChangeListeners are invoked. For performance purposes all these invocations are coalesced into one invocation with the last invocation argument only. For example, the following invokations:  setProgress(1);\n setProgress(2);\n setProgress(3);\n might result in a single PropertyChangeListener notification with the value 3.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprogress\u003c/code\u003e - the progress value to set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - is value not from 0 to 100"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getProgress",
+      "comment": "Returns the progress bound property.",
+      "tagMap": {
+        "return": [
+          "the progress bound property."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "execute",
+      "comment": "Schedules this SwingWorker for execution on a worker thread. There are a number of worker threads available. In the event all worker threads are busy handling other SwingWorkers this SwingWorker is placed in a waiting queue. Note: SwingWorker is only designed to be executed once. Executing a SwingWorker more than once will not result in invoking the doInBackground method twice.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mayInterruptIfRunning"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "cancel",
+      "comment": "Attempts to cancel execution of this task. This attempt will fail if the task has already completed, has already been cancelled, or could not be cancelled for some other reason. If successful, and this task has not started when cancel is called, this task should never run. If the task has already started, then the mayInterruptIfRunning parameter determines whether the thread executing this task should be interrupted in an attempt to stop the task. After this method returns, subsequent calls to Future.isDone() will always return true. Subsequent calls to Future.isCancelled() will always return true if this method returned true.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html#cancel(boolean)\"\u003ecancel\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html\" title\u003d\"interface in java.util.concurrent\"\u003eFuture\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html\" title\u003d\"type parameter in SwingWorker\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emayInterruptIfRunning\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if the thread executing this task should be interrupted; otherwise, in-progress tasks are allowed to complete"
+        ],
+        "return": [
+          "\u003ccode\u003efalse\u003c/code\u003e if the task could not be cancelled, typically because it has already completed normally; \n\u003ccode\u003etrue\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isCancelled",
+      "comment": "Returns true if this task was cancelled before it completed normally.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html#isCancelled()\"\u003eisCancelled\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html\" title\u003d\"interface in java.util.concurrent\"\u003eFuture\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html\" title\u003d\"type parameter in SwingWorker\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this task was cancelled before it completed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isDone",
+      "comment": "Returns true if this task completed. Completion may be due to normal termination, an exception, or cancellation -- in all of these cases, this method will return true.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html#isDone()\"\u003eisDone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html\" title\u003d\"interface in java.util.concurrent\"\u003eFuture\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html\" title\u003d\"type parameter in SwingWorker\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this task completed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "owner": "javax.swing.SwingWorker",
+        "name": "T",
+        "type": "Variable"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.ExecutionException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "get",
+      "comment": "Waits if necessary for the computation to complete, and then retrieves its result. Note: calling get on the Event Dispatch Thread blocks all events, including repaints, from being processed until this SwingWorker is complete. When you want the SwingWorker to block on the Event Dispatch Thread we recommend that you use a modal dialog. For example:  class SwingWorkerCompletionWaiter implements PropertyChangeListener {\n     private JDialog dialog;\n\n     public SwingWorkerCompletionWaiter(JDialog dialog) {\n         this.dialog \u003d dialog;\n     }\n\n     public void propertyChange(PropertyChangeEvent event) {\n         if (\"state\".equals(event.getPropertyName())\n                 \u0026\u0026 SwingWorker.StateValue.DONE \u003d\u003d event.getNewValue()) {\n             dialog.setVisible(false);\n             dialog.dispose();\n         }\n     }\n }\n JDialog dialog \u003d new JDialog(owner, true);\n swingWorker.addPropertyChangeListener(\n     new SwingWorkerCompletionWaiter(dialog));\n swingWorker.execute();\n //the dialog will be visible until the SwingWorker is done\n dialog.setVisible(true);",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html#get()\"\u003eget\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html\" title\u003d\"interface in java.util.concurrent\"\u003eFuture\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html\" title\u003d\"type parameter in SwingWorker\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CancellationException.html\" title\u003d\"class in java.util.concurrent\"\u003eCancellationException\u003c/a\u003e\u003c/code\u003e - if the computation was cancelled",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread was interrupted while waiting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/ExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eExecutionException\u003c/a\u003e\u003c/code\u003e - if the computation threw an exception"
+        ],
+        "return": [
+          "the computed result"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "owner": "javax.swing.SwingWorker",
+        "name": "T",
+        "type": "Variable"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.ExecutionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.concurrent.TimeoutException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "timeout"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "get",
+      "comment": "Waits if necessary for at most the given time for the computation to complete, and then retrieves its result, if available. Please refer to get() for more details.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html#get(long,java.util.concurrent.TimeUnit)\"\u003eget\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Future.html\" title\u003d\"interface in java.util.concurrent\"\u003eFuture\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/SwingWorker.html\" title\u003d\"type parameter in SwingWorker\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etimeout\u003c/code\u003e - the maximum time to wait",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the timeout argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CancellationException.html\" title\u003d\"class in java.util.concurrent\"\u003eCancellationException\u003c/a\u003e\u003c/code\u003e - if the computation was cancelled",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread was interrupted while waiting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/ExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eExecutionException\u003c/a\u003e\u003c/code\u003e - if the computation threw an exception",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/TimeoutException.html\" title\u003d\"class in java.util.concurrent\"\u003eTimeoutException\u003c/a\u003e\u003c/code\u003e - if the wait timed out"
+        ],
+        "return": [
+          "the computed result"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.beans.PropertyChangeListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listener"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "addPropertyChangeListener",
+      "comment": "Adds a PropertyChangeListener to the listener list. The listener is registered for all properties. The same listener object may be added more than once, and will be called as many times as it is added. If listener is null, no exception is thrown and no action is taken. Note: This is merely a convenience wrapper. All work is delegated to PropertyChangeSupport from getPropertyChangeSupport().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - the \n\u003ccode\u003ePropertyChangeListener\u003c/code\u003e to be added"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.beans.PropertyChangeListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listener"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "removePropertyChangeListener",
+      "comment": "Removes a PropertyChangeListener from the listener list. This removes a PropertyChangeListener that was registered for all properties. If listener was added more than once to the same event source, it will be notified one less time after being removed. If listener is null, or was never added, no exception is thrown and no action is taken. Note: This is merely a convenience wrapper. All work is delegated to PropertyChangeSupport from getPropertyChangeSupport().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elistener\u003c/code\u003e - the \n\u003ccode\u003ePropertyChangeListener\u003c/code\u003e to be removed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "propertyName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "oldValue"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newValue"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "firePropertyChange",
+      "comment": "Reports a bound property update to any registered listeners. No event is fired if old and new are equal and non-null. This SwingWorker will be the source for any generated events. When called off the Event Dispatch Thread PropertyChangeListeners are notified asynchronously on the Event Dispatch Thread. Note: This is merely a convenience wrapper. All work is delegated to PropertyChangeSupport from getPropertyChangeSupport().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epropertyName\u003c/code\u003e - the programmatic name of the property that was changed",
+          "\u003ccode\u003eoldValue\u003c/code\u003e - the old value of the property",
+          "\u003ccode\u003enewValue\u003c/code\u003e - the new value of the property"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.beans.PropertyChangeSupport",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getPropertyChangeSupport",
+      "comment": "Returns the PropertyChangeSupport for this SwingWorker. This method is used when flexible access to bound properties support is needed. This SwingWorker will be the source for any generated events. Note: The returned PropertyChangeSupport notifies any PropertyChangeListeners asynchronously on the Event Dispatch Thread in the event that firePropertyChange or fireIndexedPropertyChange are called off the Event Dispatch Thread.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003ePropertyChangeSupport\u003c/code\u003e for this \n\u003ccode\u003eSwingWorker\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.SwingWorker$StateValue",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getState",
+      "comment": "Returns the SwingWorker state bound property.",
+      "tagMap": {
+        "return": [
+          "the current state"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs this SwingWorker.",
+      "tagMap": {}
+    }
+  ],
+  "innerClasses": [
+    "javax.swing.SwingWorker$StateValue"
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    },
+    {
+      "name": "V",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.swing.SwingWorker",
+  "comment": "An abstract class to perform lengthy GUI-interaction tasks in a background thread. Several background threads can be used to execute such tasks. However, the exact strategy of choosing a thread for any particular \n\u003ccode\u003eSwingWorker\u003c/code\u003e is unspecified and should not be relied on. \n\u003cp\u003e When writing a multi-threaded application using Swing, there are two constraints to keep in mind: (refer to \u003ca href\u003d\"https://docs.oracle.com/javase/tutorial/uiswing/concurrency/index.html\"\u003e Concurrency in Swing \u003c/a\u003e for more details): \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e Time-consuming tasks should not be run on the \u003ci\u003eEvent Dispatch Thread\u003c/i\u003e. Otherwise the application becomes unresponsive. \u003c/li\u003e \n \u003cli\u003e Swing components should be accessed on the \u003ci\u003eEvent Dispatch Thread\u003c/i\u003e only. \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e These constraints mean that a GUI application with time intensive computing needs at least two threads: 1) a thread to perform the lengthy task and 2) the \u003ci\u003eEvent Dispatch Thread\u003c/i\u003e (EDT) for all GUI-related activities. This involves inter-thread communication which can be tricky to implement. \u003c/p\u003e\n\u003cp\u003e \u003ccode\u003eSwingWorker\u003c/code\u003e is designed for situations where you need to have a long running task run in a background thread and provide updates to the UI either when done, or while processing. Subclasses of \u003ccode\u003eSwingWorker\u003c/code\u003e must implement the \u003ca href\u003d\"#doInBackground()\"\u003e\u003ccode\u003edoInBackground()\u003c/code\u003e\u003c/a\u003e method to perform the background computation. \u003c/p\u003e\n\u003cp\u003e \u003cb\u003eWorkflow\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003e There are three threads involved in the life cycle of a \u003ccode\u003eSwingWorker\u003c/code\u003e : \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e \u003cp\u003e \u003ci\u003eCurrent\u003c/i\u003e thread: The \u003ca href\u003d\"#execute()\"\u003e\u003ccode\u003eexecute()\u003c/code\u003e\u003c/a\u003e method is called on this thread. It schedules \u003ccode\u003eSwingWorker\u003c/code\u003e for the execution on a \u003ci\u003eworker\u003c/i\u003e thread and returns immediately. One can wait for the \u003ccode\u003eSwingWorker\u003c/code\u003e to complete using the \u003ca href\u003d\"#get()\"\u003e\u003ccode\u003eget\u003c/code\u003e\u003c/a\u003e methods. \u003c/p\u003e\u003c/li\u003e\n \u003cli\u003e \u003cp\u003e \u003ci\u003eWorker\u003c/i\u003e thread: The \u003ca href\u003d\"#doInBackground()\"\u003e\u003ccode\u003edoInBackground()\u003c/code\u003e\u003c/a\u003e method is called on this thread. This is where all background activities should happen. To notify \u003ccode\u003ePropertyChangeListeners\u003c/code\u003e about bound properties changes use the \u003ca href\u003d\"#firePropertyChange(java.lang.String,java.lang.Object,java.lang.Object)\"\u003e\u003ccode\u003efirePropertyChange\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#getPropertyChangeSupport()\"\u003e\u003ccode\u003egetPropertyChangeSupport()\u003c/code\u003e\u003c/a\u003e methods. By default there are two bound properties available: \u003ccode\u003estate\u003c/code\u003e and \u003ccode\u003eprogress\u003c/code\u003e. \u003c/p\u003e\u003c/li\u003e\n \u003cli\u003e \u003cp\u003e \u003ci\u003eEvent Dispatch Thread\u003c/i\u003e: All Swing related activities occur on this thread. \u003ccode\u003eSwingWorker\u003c/code\u003e invokes the \u003ca href\u003d\"#process(java.util.List)\"\u003e\u003ccode\u003eprocess\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#done()\"\u003e\u003ccode\u003edone()\u003c/code\u003e\u003c/a\u003e methods and notifies any \u003ccode\u003ePropertyChangeListeners\u003c/code\u003e on this thread. \u003c/p\u003e\u003c/li\u003e\n \u003cp\u003e\u003c/p\u003e\n \u003cp\u003e\u003c/p\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Often, the \u003ci\u003eCurrent\u003c/i\u003e thread is the \u003ci\u003eEvent Dispatch Thread\u003c/i\u003e. \u003c/p\u003e\n\u003cp\u003e Before the \u003ccode\u003edoInBackground\u003c/code\u003e method is invoked on a \u003ci\u003eworker\u003c/i\u003e thread, \u003ccode\u003eSwingWorker\u003c/code\u003e notifies any \u003ccode\u003ePropertyChangeListeners\u003c/code\u003e about the \u003ccode\u003estate\u003c/code\u003e property change to \u003ccode\u003eStateValue.STARTED\u003c/code\u003e. After the \u003ccode\u003edoInBackground\u003c/code\u003e method is finished the \u003ccode\u003edone\u003c/code\u003e method is executed. Then \u003ccode\u003eSwingWorker\u003c/code\u003e notifies any \u003ccode\u003ePropertyChangeListeners\u003c/code\u003e about the \u003ccode\u003estate\u003c/code\u003e property change to \u003ccode\u003eStateValue.DONE\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e \u003ccode\u003eSwingWorker\u003c/code\u003e is only designed to be executed once. Executing a \u003ccode\u003eSwingWorker\u003c/code\u003e more than once will not result in invoking the \u003ccode\u003edoInBackground\u003c/code\u003e method twice. \u003c/p\u003e\n\u003cp\u003e \u003cb\u003eSample Usage\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003e The following example illustrates the simplest use case. Some processing is done in the background and when done you update a Swing component. \u003c/p\u003e\n\u003cp\u003e Say we want to find the \"Meaning of Life\" and display the result in a \u003ccode\u003eJLabel\u003c/code\u003e. \u003c/p\u003e\n\u003cpre\u003e   final JLabel label;\n   class MeaningOfLifeFinder extends SwingWorker\u0026lt;String, Object\u0026gt; {\n       \u003ccode\u003e@Override\u003c/code\u003e\n       public String doInBackground() {\n           return findTheMeaningOfLife();\n       }\n\n       \u003ccode\u003e@Override\u003c/code\u003e\n       protected void done() {\n           try {\n               label.setText(get());\n           } catch (Exception ignore) {\n           }\n       }\n   }\n\n   (new MeaningOfLifeFinder()).execute();\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The next example is useful in situations where you wish to process data as it is ready on the \u003ci\u003eEvent Dispatch Thread\u003c/i\u003e. \u003c/p\u003e\n\u003cp\u003e Now we want to find the first N prime numbers and display the results in a \u003ccode\u003eJTextArea\u003c/code\u003e. While this is computing, we want to update our progress in a \u003ccode\u003eJProgressBar\u003c/code\u003e. Finally, we also want to print the prime numbers to \u003ccode\u003eSystem.out\u003c/code\u003e. \u003c/p\u003e\n\u003cpre\u003e class PrimeNumbersTask extends\n         SwingWorker\u0026lt;List\u0026lt;Integer\u0026gt;, Integer\u0026gt; {\n     PrimeNumbersTask(JTextArea textArea, int numbersToFind) {\n         //initialize\n     }\n\n     \u003ccode\u003e@Override\u003c/code\u003e\n     public List\u0026lt;Integer\u0026gt; doInBackground() {\n         while (! enough \u0026amp;\u0026amp; ! isCancelled()) {\n                 number \u003d nextPrimeNumber();\n                 publish(number);\n                 setProgress(100 * numbers.size() / numbersToFind);\n             }\n         }\n         return numbers;\n     }\n\n     \u003ccode\u003e@Override\u003c/code\u003e\n     protected void process(List\u0026lt;Integer\u0026gt; chunks) {\n         for (int number : chunks) {\n             textArea.append(number + \"\\n\");\n         }\n     }\n }\n\n JTextArea textArea \u003d new JTextArea();\n final JProgressBar progressBar \u003d new JProgressBar(0, 100);\n PrimeNumbersTask task \u003d new PrimeNumbersTask(textArea, N);\n task.addPropertyChangeListener(\n     new PropertyChangeListener() {\n         public  void propertyChange(PropertyChangeEvent evt) {\n             if (\"progress\".equals(evt.getPropertyName())) {\n                 progressBar.setValue((Integer)evt.getNewValue());\n             }\n         }\n     });\n\n task.execute();\n System.out.println(task.get()); //prints all prime numbers we have got\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Because \u003ccode\u003eSwingWorker\u003c/code\u003e implements \u003ccode\u003eRunnable\u003c/code\u003e, a \u003ccode\u003eSwingWorker\u003c/code\u003e can be submitted to an \u003ca href\u003d\"../../../java.base/java/util/concurrent/Executor.html\" title\u003d\"interface in java.util.concurrent\"\u003e\u003ccode\u003eExecutor\u003c/code\u003e\u003c/a\u003e for execution.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.6"
+    ]
+  }
+}

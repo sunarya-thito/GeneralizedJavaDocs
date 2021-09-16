@@ -1,0 +1,313 @@
+{
+  "packageName": "javax.sql.rowset.spi",
+  "simpleName": "SyncResolver",
+  "moduleName": "java.sql.rowset",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "javax.sql.RowSet",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "UPDATE_ROW_CONFLICT",
+      "comment": "Indicates that a conflict occurred while the RowSet object was attempting to update a row in the data source. The values in the data source row to be updated differ from the RowSet object\u0027s original values for that row, which means that the row in the data source has been updated or deleted since the last synchronization.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.spi.SyncResolver.UPDATE_ROW_CONFLICT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "DELETE_ROW_CONFLICT",
+      "comment": "Indicates that a conflict occurred while the RowSet object was attempting to delete a row in the data source. The values in the data source row to be updated differ from the RowSet object\u0027s original values for that row, which means that the row in the data source has been updated or deleted since the last synchronization.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.spi.SyncResolver.DELETE_ROW_CONFLICT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "INSERT_ROW_CONFLICT",
+      "comment": "Indicates that a conflict occurred while the RowSet object was attempting to insert a row into the data source. This means that a row with the same primary key as the row to be inserted has been inserted into the data source since the last synchronization.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.spi.SyncResolver.INSERT_ROW_CONFLICT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "NO_ROW_CONFLICT",
+      "comment": "Indicates that no conflict occurred while the RowSet object was attempting to update, delete or insert a row in the data source. The values in the SyncResolver will contain null values only as an indication that no information in pertinent to the conflict resolution in this row.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.spi.SyncResolver.NO_ROW_CONFLICT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getStatus",
+      "comment": "Retrieves the conflict status of the current row of this SyncResolver, which indicates the operation the RowSet object was attempting when the conflict occurred.",
+      "tagMap": {
+        "return": [
+          "one of the following constants: \n\u003ccode\u003eSyncResolver.UPDATE_ROW_CONFLICT\u003c/code\u003e, \n\u003ccode\u003eSyncResolver.DELETE_ROW_CONFLICT\u003c/code\u003e, \n\u003ccode\u003eSyncResolver.INSERT_ROW_CONFLICT\u003c/code\u003e, or \n\u003ccode\u003eSyncResolver.NO_ROW_CONFLICT\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getConflictValue",
+      "comment": "Retrieves the value in the designated column in the current row of this SyncResolver object, which is the value in the data source that caused a conflict.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - an \n\u003ccode\u003eint\u003c/code\u003e designating the column in this row of this \n\u003ccode\u003eSyncResolver\u003c/code\u003e object from which to retrieve the value causing a conflict"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs"
+        ],
+        "return": [
+          "the value of the designated column in the current row of this \n\u003ccode\u003eSyncResolver\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "columnName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getConflictValue",
+      "comment": "Retrieves the value in the designated column in the current row of this SyncResolver object, which is the value in the data source that caused a conflict.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecolumnName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e object designating the column in this row of this \n\u003ccode\u003eSyncResolver\u003c/code\u003e object from which to retrieve the value causing a conflict"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs"
+        ],
+        "return": [
+          "the value of the designated column in the current row of this \n\u003ccode\u003eSyncResolver\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setResolvedValue",
+      "comment": "Sets obj as the value in column index in the current row of the RowSet object that is being synchronized. obj is set as the value in the data source internally.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - an \n\u003ccode\u003eint\u003c/code\u003e giving the number of the column into which to set the value to be persisted",
+          "\u003ccode\u003eobj\u003c/code\u003e - an \n\u003ccode\u003eObject\u003c/code\u003e that is the value to be set in the \n\u003ccode\u003eRowSet\u003c/code\u003e object and persisted in the data source"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "columnName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setResolvedValue",
+      "comment": "Sets obj as the value in column columnName in the current row of the RowSet object that is being synchronized. obj is set as the value in the data source internally.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecolumnName\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e object giving the name of the column into which to set the value to be persisted",
+          "\u003ccode\u003eobj\u003c/code\u003e - an \n\u003ccode\u003eObject\u003c/code\u003e that is the value to be set in the \n\u003ccode\u003eRowSet\u003c/code\u003e object and persisted in the data source"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "nextConflict",
+      "comment": "Moves the cursor down from its current position to the next row that contains a conflict value. A SyncResolver object\u0027s cursor is initially positioned before the first conflict row; the first call to the method nextConflict makes the first conflict row the current row; the second call makes the second conflict row the current row, and so on. A call to the method nextConflict will implicitly close an input stream if one is open and will clear the SyncResolver object\u0027s warning chain.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the result set type is \n\u003ccode\u003eTYPE_FORWARD_ONLY\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the new current row is valid; \n\u003ccode\u003efalse\u003c/code\u003e if there are no more rows"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "previousConflict",
+      "comment": "Moves the cursor up from its current position to the previous conflict row in this SyncResolver object. A call to the method previousConflict will implicitly close an input stream if one is open and will clear the SyncResolver object\u0027s warning chain.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the result set type is \n\u003ccode\u003eTYPE_FORWARD_ONLY\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the cursor is on a valid row; \n\u003ccode\u003efalse\u003c/code\u003e if it is off the result set"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.sql.rowset.spi.SyncResolver",
+  "comment": "Defines a framework that allows applications to use a manual decision tree to decide what should be done when a synchronization conflict occurs. Although it is not mandatory for applications to resolve synchronization conflicts manually, this framework provides the means to delegate to the application when conflicts arise. \n\u003cp\u003e Note that a conflict is a situation where the \u003ccode\u003eRowSet\u003c/code\u003e object\u0027s original values for a row do not match the values in the data source, which indicates that the data source row has been modified since the last synchronization. Note also that a \u003ccode\u003eRowSet\u003c/code\u003e object\u0027s original values are the values it had just prior to the the last synchronization, which are not necessarily its initial values. \u003c/p\u003e\n\u003ch2\u003eDescription of a \u003ccode\u003eSyncResolver\u003c/code\u003e Object\u003c/h2\u003e A \n\u003ccode\u003eSyncResolver\u003c/code\u003e object is a specialized \n\u003ccode\u003eRowSet\u003c/code\u003e object that implements the \n\u003ccode\u003eSyncResolver\u003c/code\u003e interface. It \n\u003cb\u003emay\u003c/b\u003e operate as either a connected \n\u003ccode\u003eRowSet\u003c/code\u003e object (an implementation of the \n\u003ccode\u003eJdbcRowSet\u003c/code\u003e interface) or a connected \n\u003ccode\u003eRowSet\u003c/code\u003e object (an implementation of the \n\u003ccode\u003eCachedRowSet\u003c/code\u003e interface or one of its subinterfaces). For information on the subinterfaces, see the \n\u003ca href\u003d\"../package-summary.html\"\u003e\u003ccode\u003ejavax.sql.rowset\u003c/code\u003e\u003c/a\u003e package description. The reference implementation for \n\u003ccode\u003eSyncResolver\u003c/code\u003e implements the \n\u003ccode\u003eCachedRowSet\u003c/code\u003e interface, but other implementations may choose to implement the \n\u003ccode\u003eJdbcRowSet\u003c/code\u003e interface to satisfy particular needs. \n\u003cp\u003e After an application has attempted to synchronize a \u003ccode\u003eRowSet\u003c/code\u003e object with the data source (by calling the \u003ccode\u003eCachedRowSet\u003c/code\u003e method \u003ccode\u003eacceptChanges\u003c/code\u003e), and one or more conflicts have been found, a rowset\u0027s \u003ccode\u003eSyncProvider\u003c/code\u003e object creates an instance of \u003ccode\u003eSyncResolver\u003c/code\u003e. This new \u003ccode\u003eSyncResolver\u003c/code\u003e object has the same number of rows and columns as the \u003ccode\u003eRowSet\u003c/code\u003e object that was attempting the synchronization. The \u003ccode\u003eSyncResolver\u003c/code\u003e object contains the values from the data source that caused the conflict(s) and \u003ccode\u003enull\u003c/code\u003e for all other values. In addition, it contains information about each conflict. \u003c/p\u003e\n\u003ch2\u003eGetting and Using a \u003ccode\u003eSyncResolver\u003c/code\u003e Object\u003c/h2\u003e When the method \n\u003ccode\u003eacceptChanges\u003c/code\u003e encounters conflicts, the \n\u003ccode\u003eSyncProvider\u003c/code\u003e object creates a \n\u003ccode\u003eSyncProviderException\u003c/code\u003e object and sets it with the new \n\u003ccode\u003eSyncResolver\u003c/code\u003e object. The method \n\u003ccode\u003eacceptChanges\u003c/code\u003e will throw this exception, which the application can then catch and use to retrieve the \n\u003ccode\u003eSyncResolver\u003c/code\u003e object it contains. The following code snippet uses the \n\u003ccode\u003eSyncProviderException\u003c/code\u003e method \n\u003ccode\u003egetSyncResolver\u003c/code\u003e to get the \n\u003ccode\u003eSyncResolver\u003c/code\u003e object \n\u003ci\u003eresolver\u003c/i\u003e. \n\u003cpre\u003e \u003ccode\u003e\n     \u003c/code\u003e catch (SyncProviderException spe) {\n         SyncResolver resolver \u003d spe.getSyncResolver();\n     ...\n     }\n\n }\n \u003c/pre\u003e \n\u003cp\u003e With \u003ci\u003eresolver\u003c/i\u003e in hand, an application can use it to get the information it contains about the conflict or conflicts. A \u003ccode\u003eSyncResolver\u003c/code\u003e object such as \u003ci\u003eresolver\u003c/i\u003e keeps track of the conflicts for each row in which there is a conflict. It also places a lock on the table or tables affected by the rowset\u0027s command so that no more conflicts can occur while the current conflicts are being resolved. \u003c/p\u003e\n\u003cp\u003e The following kinds of information can be obtained from a \u003ccode\u003eSyncResolver\u003c/code\u003e object: \u003c/p\u003e\n\u003ch3\u003eWhat operation was being attempted when a conflict occurred\u003c/h3\u003e The \n\u003ccode\u003eSyncProvider\u003c/code\u003e interface defines four constants describing states that may occur. Three constants describe the type of operation (update, delete, or insert) that a \n\u003ccode\u003eRowSet\u003c/code\u003e object was attempting to perform when a conflict was discovered, and the fourth indicates that there is no conflict. These constants are the possible return values when a \n\u003ccode\u003eSyncResolver\u003c/code\u003e object calls the method \n\u003ccode\u003egetStatus\u003c/code\u003e. \n\u003cpre\u003e     \u003ccode\u003eint operation \u003d resolver.getStatus(); \u003c/code\u003e\n \u003c/pre\u003e \n\u003ch3\u003eThe value in the data source that caused a conflict\u003c/h3\u003e A conflict exists when a value that a \n\u003ccode\u003eRowSet\u003c/code\u003e object has changed and is attempting to write to the data source has also been changed in the data source since the last synchronization. An application can call the \n\u003ccode\u003eSyncResolver\u003c/code\u003e method \n\u003ccode\u003egetConflictValue\u003c/code\u003e to retrieve the value in the data source that is the cause of the conflict because the values in a \n\u003ccode\u003eSyncResolver\u003c/code\u003e object are the conflict values from the data source. \n\u003cpre\u003e     java.lang.Object conflictValue \u003d resolver.getConflictValue(2);\n \u003c/pre\u003e Note that the column in \n\u003ci\u003eresolver\u003c/i\u003e can be designated by the column number, as is done in the preceding line of code, or by the column name. \n\u003cp\u003e With the information retrieved from the methods \u003ccode\u003egetStatus\u003c/code\u003e and \u003ccode\u003egetConflictValue\u003c/code\u003e, the application may make a determination as to which value should be persisted in the data source. The application then calls the \u003ccode\u003eSyncResolver\u003c/code\u003e method \u003ccode\u003esetResolvedValue\u003c/code\u003e, which sets the value to be persisted in the \u003ccode\u003eRowSet\u003c/code\u003e object and also in the data source. \u003c/p\u003e\n\u003cpre\u003e     resolver.setResolvedValue(\"DEPT\", 8390426);\n \u003c/pre\u003e In the preceding line of code, the column name designates the column in the \n\u003ccode\u003eRowSet\u003c/code\u003e object that is to be set with the given value. The column number can also be used to designate the column. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e An application calls the method \u003ccode\u003esetResolvedValue\u003c/code\u003e after it has resolved all of the conflicts in the current conflict row and repeats this process for each conflict row in the \u003ccode\u003eSyncResolver\u003c/code\u003e object. \u003c/p\u003e\n\u003ch2\u003eNavigating a \u003ccode\u003eSyncResolver\u003c/code\u003e Object\u003c/h2\u003e Because a \n\u003ccode\u003eSyncResolver\u003c/code\u003e object is a \n\u003ccode\u003eRowSet\u003c/code\u003e object, an application can use all of the \n\u003ccode\u003eRowSet\u003c/code\u003e methods for moving the cursor to navigate a \n\u003ccode\u003eSyncResolver\u003c/code\u003e object. For example, an application can use the \n\u003ccode\u003eRowSet\u003c/code\u003e method \n\u003ccode\u003enext\u003c/code\u003e to get to each row and then call the \n\u003ccode\u003eSyncResolver\u003c/code\u003e method \n\u003ccode\u003egetStatus\u003c/code\u003e to see if the row contains a conflict. In a row with one or more conflicts, the application can iterate through the columns to find any non-null values, which will be the values from the data source that are in conflict. \n\u003cp\u003e To make it easier to navigate a \u003ccode\u003eSyncResolver\u003c/code\u003e object, especially when there are large numbers of rows with no conflicts, the \u003ccode\u003eSyncResolver\u003c/code\u003e interface defines the methods \u003ccode\u003enextConflict\u003c/code\u003e and \u003ccode\u003epreviousConflict\u003c/code\u003e, which move only to rows that contain at least one conflict value. Then an application can call the \u003ccode\u003eSyncResolver\u003c/code\u003e method \u003ccode\u003egetConflictValue\u003c/code\u003e, supplying it with the column number, to get the conflict value itself. The code fragment in the next section gives an example. \u003c/p\u003e\n\u003ch2\u003eCode Example\u003c/h2\u003e The following code fragment demonstrates how a disconnected \n\u003ccode\u003eRowSet\u003c/code\u003e object \n\u003ci\u003ecrs\u003c/i\u003e might attempt to synchronize itself with the underlying data source and then resolve the conflicts. In the \n\u003ccode\u003etry\u003c/code\u003e block, \n\u003ci\u003ecrs\u003c/i\u003e calls the method \n\u003ccode\u003eacceptChanges\u003c/code\u003e, passing it the \n\u003ccode\u003eConnection\u003c/code\u003e object \n\u003ci\u003econ\u003c/i\u003e. If there are no conflicts, the changes in \n\u003ci\u003ecrs\u003c/i\u003e are simply written to the data source. However, if there is a conflict, the method \n\u003ccode\u003eacceptChanges\u003c/code\u003e throws a \n\u003ccode\u003eSyncProviderException\u003c/code\u003e object, and the \n\u003ccode\u003ecatch\u003c/code\u003e block takes effect. In this example, which illustrates one of the many ways a \n\u003ccode\u003eSyncResolver\u003c/code\u003e object can be used, the \n\u003ccode\u003eSyncResolver\u003c/code\u003e method \n\u003ccode\u003enextConflict\u003c/code\u003e is used in a \n\u003ccode\u003ewhile\u003c/code\u003e loop. The loop will end when \n\u003ccode\u003enextConflict\u003c/code\u003e returns \n\u003ccode\u003efalse\u003c/code\u003e, which will occur when there are no more conflict rows in the \n\u003ccode\u003eSyncResolver\u003c/code\u003e object \n\u003ci\u003eresolver\u003c/i\u003e. In This particular code fragment, \n\u003ci\u003eresolver\u003c/i\u003e looks for rows that have update conflicts (rows with the status \n\u003ccode\u003eSyncResolver.UPDATE_ROW_CONFLICT\u003c/code\u003e), and the rest of this code fragment executes only for rows where conflicts occurred because \n\u003ci\u003ecrs\u003c/i\u003e was attempting an update. \n\u003cp\u003e After the cursor for \u003ci\u003eresolver\u003c/i\u003e has moved to the next conflict row that has an update conflict, the method \u003ccode\u003egetRow\u003c/code\u003e indicates the number of the current row, and the cursor for the \u003ccode\u003eCachedRowSet\u003c/code\u003e object \u003ci\u003ecrs\u003c/i\u003e is moved to the comparable row in \u003ci\u003ecrs\u003c/i\u003e. By iterating through the columns of that row in both \u003ci\u003eresolver\u003c/i\u003e and \u003ci\u003ecrs\u003c/i\u003e, the conflicting values can be retrieved and compared to decide which one should be persisted. In this code fragment, the value in \u003ci\u003ecrs\u003c/i\u003e is the one set as the resolved value, which means that it will be used to overwrite the conflict value in the data source. \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n     try {\n\n         crs.acceptChanges(con);\n\n     } catch (SyncProviderException spe) {\n\n         SyncResolver resolver \u003d spe.getSyncResolver();\n\n         Object crsValue;  // value in the RowSet object\n         Object resolverValue:  // value in the SyncResolver object\n         Object resolvedValue:  // value to be persisted\n\n         while(resolver.nextConflict())  {\n             if(resolver.getStatus() \u003d\u003d SyncResolver.UPDATE_ROW_CONFLICT)  {\n                 int row \u003d resolver.getRow();\n                 crs.absolute(row);\n\n                 int colCount \u003d crs.getMetaData().getColumnCount();\n                 for(int j \u003d 1; j \u0026lt;\u003d colCount; j++) {\n                     if (resolver.getConflictValue(j) !\u003d null)  {\n                         crsValue \u003d crs.getObject(j);\n                         resolverValue \u003d resolver.getConflictValue(j);\n                         . . .\n                         // compare crsValue and resolverValue to determine\n                         // which should be the resolved value (the value to persist)\n                         resolvedValue \u003d crsValue;\n\n                         resolver.setResolvedValue(j, resolvedValue);\n                      }\n                  }\n              }\n          }\n      }\n \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

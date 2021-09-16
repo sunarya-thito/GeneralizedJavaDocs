@@ -1,0 +1,115 @@
+{
+  "packageName": "java.rmi.server",
+  "simpleName": "RemoteObjectInvocationHandler",
+  "moduleName": "java.rmi",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.rmi.server.RemoteObject",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Throwable",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "proxy"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.reflect.Method",
+            "type": "Class"
+          },
+          "field": {
+            "name": "method"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "args"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "invoke",
+      "comment": "Processes a method invocation made on the encapsulating proxy instance, proxy, and returns the result. RemoteObjectInvocationHandler implements this method as follows: If method is one of the following methods, it is processed as described below: Object.hashCode: Returns the hash code value for the proxy. Object.equals: Returns true if the argument (args[0]) is an instance of a dynamic proxy class and this invocation handler is equal to the invocation handler of that argument, and returns false otherwise. Object.toString: Returns a string representation of the proxy. If method overrides Object.finalize, it is ignored. Otherwise, a remote call is made as follows: If proxy is not an instance of the interface Remote, then an IllegalArgumentException is thrown. Otherwise, the invoke method is invoked on this invocation handler\u0027s RemoteRef, passing proxy, method, args, and the method hash (defined in section 8.3 of the \"Java Remote Method Invocation (RMI) Specification\") for method, and the result is returned. If an exception is thrown by RemoteRef.invoke and that exception is a checked exception that is not assignable to any exception in the throws clause of the method implemented by the proxy\u0027s class, then that exception is wrapped in an UnexpectedException and the wrapped exception is thrown. Otherwise, the exception thrown by invoke is thrown by this method. The semantics of this method are unspecified if the arguments could not have been produced by an instance of some valid dynamic proxy class containing this invocation handler.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/UndeclaredThrowableException.html\" title\u003d\"class in java.lang.reflect\"\u003e\u003ccode\u003eUndeclaredThrowableException\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/InvocationHandler.html#invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object%5B%5D)\"\u003einvoke\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/reflect/InvocationHandler.html\" title\u003d\"interface in java.lang.reflect\"\u003eInvocationHandler\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eproxy\u003c/code\u003e - the proxy instance that the method was invoked on",
+          "\u003ccode\u003emethod\u003c/code\u003e - the \n\u003ccode\u003eMethod\u003c/code\u003e instance corresponding to the interface method invoked on the proxy instance",
+          "\u003ccode\u003eargs\u003c/code\u003e - an array of objects containing the values of the arguments passed in the method invocation on the proxy instance, or \n\u003ccode\u003enull\u003c/code\u003e if the method takes no arguments"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html\" title\u003d\"class in java.lang\"\u003eThrowable\u003c/a\u003e\u003c/code\u003e - the exception to throw from the method invocation on the proxy instance"
+        ],
+        "return": [
+          "the value to return from the method invocation on the proxy instance"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.rmi.server.RemoteRef",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ref"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new RemoteObjectInvocationHandler constructed with the specified RemoteRef.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eref\u003c/code\u003e - the remote ref"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eref\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.rmi.server.RemoteObjectInvocationHandler",
+  "comment": "An implementation of the \n\u003ccode\u003eInvocationHandler\u003c/code\u003e interface for use with Java Remote Method Invocation (Java RMI). This invocation handler can be used in conjunction with a dynamic proxy instance as a replacement for a pregenerated stub class. \n\u003cp\u003eApplications are not expected to use this class directly. A remote object exported to use a dynamic proxy with \u003ca href\u003d\"UnicastRemoteObject.html\" title\u003d\"class in java.rmi.server\"\u003e\u003ccode\u003eUnicastRemoteObject\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"../activation/Activatable.html\" title\u003d\"class in java.rmi.activation\"\u003e\u003ccode\u003eActivatable\u003c/code\u003e\u003c/a\u003e has an instance of this class as that proxy\u0027s invocation handler.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.rmi.server.RemoteObjectInvocationHandler\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

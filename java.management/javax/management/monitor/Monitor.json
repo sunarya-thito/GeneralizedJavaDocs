@@ -1,0 +1,682 @@
+{
+  "packageName": "javax.management.monitor",
+  "simpleName": "Monitor",
+  "moduleName": "java.management",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.management.NotificationBroadcasterSupport",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "capacityIncrement",
+      "comment": "The amount by which the capacity of the monitor arrays are automatically incremented when their size becomes greater than their capacity.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.management.monitor.Monitor.capacityIncrement\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "elementCount",
+      "comment": "The number of valid components in the vector of observed objects.",
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "alreadyNotified",
+      "comment": "Monitor errors that have already been notified.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "alreadyNotifieds",
+      "comment": "Selected monitor errors that have already been notified. Each element in this array corresponds to an observed object in the vector. It contains a bit mask of the flags OBSERVED_OBJECT_ERROR_NOTIFIED etc, indicating whether the corresponding notification has already been sent for the MBean being monitored.",
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "javax.management.MBeanServer",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "server",
+      "comment": "Reference to the MBean server. This reference is null when the monitor MBean is not registered in an MBean server. This reference is initialized before the monitor MBean is registered in the MBean server.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/Monitor.html#preRegister(javax.management.MBeanServer,javax.management.ObjectName)\"\u003e\u003ccode\u003epreRegister(MBeanServer server, ObjectName name)\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "RESET_FLAGS_ALREADY_NOTIFIED",
+      "comment": "This flag is used to reset the alreadyNotifieds monitor attribute.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.management.monitor.Monitor.RESET_FLAGS_ALREADY_NOTIFIED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "OBSERVED_OBJECT_ERROR_NOTIFIED",
+      "comment": "Flag denoting that a notification has occurred after changing the observed object. This flag is used to check that the new observed object is registered in the MBean server at the time of the first notification.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.management.monitor.Monitor.OBSERVED_OBJECT_ERROR_NOTIFIED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "OBSERVED_ATTRIBUTE_ERROR_NOTIFIED",
+      "comment": "Flag denoting that a notification has occurred after changing the observed attribute. This flag is used to check that the new observed attribute belongs to the observed object at the time of the first notification.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.management.monitor.Monitor.OBSERVED_ATTRIBUTE_ERROR_NOTIFIED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED",
+      "comment": "Flag denoting that a notification has occurred after changing the observed object or the observed attribute. This flag is used to check that the observed attribute type is correct (depending on the monitor in use) at the time of the first notification.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.management.monitor.Monitor.OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "RUNTIME_ERROR_NOTIFIED",
+      "comment": "Flag denoting that a notification has occurred after changing the observed object or the observed attribute. This flag is used to notify any exception (except the cases described above) when trying to get the value of the observed attribute at the time of the first notification.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.management.monitor.Monitor.RUNTIME_ERROR_NOTIFIED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "dbgTag",
+      "comment": "This field is retained for compatibility but should not be referenced.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectName",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.MBeanServer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "server"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "preRegister",
+      "comment": "Allows the monitor MBean to perform any operations it needs before being registered in the MBean server. Initializes the reference to the MBean server.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html#preRegister(javax.management.MBeanServer,javax.management.ObjectName)\"\u003epreRegister\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003eMBeanRegistration\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eserver\u003c/code\u003e - The MBean server in which the monitor MBean will be registered.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the monitor MBean."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if something goes wrong"
+        ],
+        "return": [
+          "The name of the monitor MBean registered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "registrationDone"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "postRegister",
+      "comment": "Allows the monitor MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. Not used in this context.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html#postRegister(java.lang.Boolean)\"\u003epostRegister\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003eMBeanRegistration\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eregistrationDone\u003c/code\u003e - Indicates whether or not the MBean has been successfully registered in the MBean server. The value false means that the registration phase has failed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "preDeregister",
+      "comment": "Allows the monitor MBean to perform any operations it needs before being unregistered by the MBean server. Stops the monitor.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html#preDeregister()\"\u003epreDeregister\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003eMBeanRegistration\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if something goes wrong"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "postDeregister",
+      "comment": "Allows the monitor MBean to perform any operations needed after having been unregistered by the MBean server. Not used in this context.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html#postDeregister()\"\u003epostDeregister\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistration.html\" title\u003d\"interface in javax.management\"\u003eMBeanRegistration\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "start",
+      "comment": "Starts the monitor.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#start()\"\u003estart\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "stop",
+      "comment": "Stops the monitor.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#stop()\"\u003estop\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectName",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getObservedObject",
+      "comment": "Returns the object name of the first object in the set of observed MBeans, or null if there is no such object.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/Monitor.html#setObservedObject(javax.management.ObjectName)\"\u003e\u003ccode\u003esetObservedObject(ObjectName)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#getObservedObject()\"\u003egetObservedObject\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "The object being observed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "object"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setObservedObject",
+      "comment": "Removes all objects from the set of observed objects, and then adds the specified object.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/Monitor.html#getObservedObject()\"\u003e\u003ccode\u003egetObservedObject()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#setObservedObject(javax.management.ObjectName)\"\u003esetObservedObject\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobject\u003c/code\u003e - The object to observe."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - The specified object is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "object"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addObservedObject",
+      "comment": "Adds the specified object in the set of observed MBeans, if this object is not already present.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#addObservedObject(javax.management.ObjectName)\"\u003eaddObservedObject\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobject\u003c/code\u003e - The object to observe."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - The specified object is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "object"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeObservedObject",
+      "comment": "Removes the specified object from the set of observed MBeans.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#removeObservedObject(javax.management.ObjectName)\"\u003eremoveObservedObject\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobject\u003c/code\u003e - The object to remove."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "object"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "containsObservedObject",
+      "comment": "Tests whether the specified object is in the set of observed MBeans.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#containsObservedObject(javax.management.ObjectName)\"\u003econtainsObservedObject\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobject\u003c/code\u003e - The object to check."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the specified object is present, \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectName",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getObservedObjects",
+      "comment": "Returns an array containing the objects being observed.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#getObservedObjects()\"\u003egetObservedObjects\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "The objects being observed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getObservedAttribute",
+      "comment": "Gets the attribute being observed. The observed attribute is not initialized by default (set to null).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/Monitor.html#setObservedAttribute(java.lang.String)\"\u003e\u003ccode\u003esetObservedAttribute(java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#getObservedAttribute()\"\u003egetObservedAttribute\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "The attribute being observed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attribute"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setObservedAttribute",
+      "comment": "Sets the attribute to observe. The observed attribute is not initialized by default (set to null).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/Monitor.html#getObservedAttribute()\"\u003e\u003ccode\u003egetObservedAttribute()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#setObservedAttribute(java.lang.String)\"\u003esetObservedAttribute\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eattribute\u003c/code\u003e - The attribute to observe."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - The specified attribute is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getGranularityPeriod",
+      "comment": "Gets the granularity period (in milliseconds). The default value of the granularity period is 10 seconds.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/Monitor.html#setGranularityPeriod(long)\"\u003e\u003ccode\u003esetGranularityPeriod(long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#getGranularityPeriod()\"\u003egetGranularityPeriod\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "The granularity period value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "period"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setGranularityPeriod",
+      "comment": "Sets the granularity period (in milliseconds). The default value of the granularity period is 10 seconds.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/Monitor.html#getGranularityPeriod()\"\u003e\u003ccode\u003egetGranularityPeriod()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#setGranularityPeriod(long)\"\u003esetGranularityPeriod\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eperiod\u003c/code\u003e - The granularity period value."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - The granularity period is less than or equal to zero."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isActive",
+      "comment": "Tests whether the monitor MBean is active. A monitor MBean is marked active when the start method is called. It becomes inactive when the stop method is called.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html#isActive()\"\u003eisActive\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/monitor/MonitorMBean.html\" title\u003d\"interface in javax.management.monitor\"\u003eMonitorMBean\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the monitor MBean is active, \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructor for subclasses to call.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.management.monitor.Monitor",
+  "comment": "Defines the part common to all monitor MBeans. A monitor MBean monitors values of an attribute common to a set of observed MBeans. The observed attribute is monitored at intervals specified by the granularity period. A gauge value (derived gauge) is derived from the values of the observed attribute.",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

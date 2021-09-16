@@ -1,0 +1,59 @@
+{
+  "packageName": "javax.sql",
+  "simpleName": "RowSetWriter",
+  "moduleName": "java.sql",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.sql.RowSetInternal",
+            "type": "Class"
+          },
+          "field": {
+            "name": "caller"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "writeData",
+      "comment": "Writes the changes in this RowSetWriter object\u0027s rowset back to the data source from which it got its data.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecaller\u003c/code\u003e - the \n\u003ccode\u003eRowSet\u003c/code\u003e object (1) that has implemented the \n\u003ccode\u003eRowSetInternal\u003c/code\u003e interface, (2) with which this writer is registered, and (3) that called this method internally"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the modified data was written; \n\u003ccode\u003efalse\u003c/code\u003e if not, which will be the case if there is a conflict"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.sql.RowSetWriter",
+  "comment": "An object that implements the \n\u003ccode\u003eRowSetWriter\u003c/code\u003e interface, called a \n\u003ci\u003ewriter\u003c/i\u003e. A writer may be registered with a \n\u003ccode\u003eRowSet\u003c/code\u003e object that supports the reader/writer paradigm. \n\u003cp\u003e If a disconnected \u003ccode\u003eRowSet\u003c/code\u003e object modifies some of its data, and it has a writer associated with it, it may be implemented so that it calls on the writer\u0027s \u003ccode\u003ewriteData\u003c/code\u003e method internally to write the updates back to the data source. In order to do this, the writer must first establish a connection with the rowset\u0027s data source. \u003c/p\u003e\n\u003cp\u003e If the data to be updated has already been changed in the data source, there is a conflict, in which case the writer will not write the changes to the data source. The algorithm the writer uses for preventing or limiting conflicts depends entirely on its implementation.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

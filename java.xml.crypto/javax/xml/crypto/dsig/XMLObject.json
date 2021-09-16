@@ -1,0 +1,109 @@
+{
+  "packageName": "javax.xml.crypto.dsig",
+  "simpleName": "XMLObject",
+  "moduleName": "java.xml.crypto",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "javax.xml.crypto.XMLStructure",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "TYPE",
+      "comment": "URI that identifies the Object element (this can be specified as the value of the type parameter of the Reference class to identify the referent\u0027s type).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.xml.crypto.dsig.XMLObject.TYPE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "javax.xml.crypto.XMLStructure",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getContent",
+      "comment": "Returns an unmodifiable list of XMLStructures contained in this XMLObject, which represent elements from any namespace. If there is a public subclass representing the type of XMLStructure, it is returned as an instance of that class (ex: a SignatureProperties element would be returned as an instance of SignatureProperties).",
+      "tagMap": {
+        "return": [
+          "an unmodifiable list of \n\u003ccode\u003eXMLStructure\u003c/code\u003es (may be empty but never \n\u003ccode\u003enull\u003c/code\u003e)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getId",
+      "comment": "Returns the Id of this XMLObject.",
+      "tagMap": {
+        "return": [
+          "the Id (or \n\u003ccode\u003enull\u003c/code\u003e if not specified)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMimeType",
+      "comment": "Returns the mime type of this XMLObject. The mime type is an optional attribute which describes the data within this XMLObject (independent of its encoding).",
+      "tagMap": {
+        "return": [
+          "the mime type (or \n\u003ccode\u003enull\u003c/code\u003e if not specified)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getEncoding",
+      "comment": "Returns the encoding URI of this XMLObject. The encoding URI identifies the method by which the object is encoded.",
+      "tagMap": {
+        "return": [
+          "the encoding URI (or \n\u003ccode\u003enull\u003c/code\u003e if not specified)"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.xml.crypto.dsig.XMLObject",
+  "comment": "A representation of the XML \n\u003ccode\u003eObject\u003c/code\u003e element as defined in the \n\u003ca href\u003d\"http://www.w3.org/TR/xmldsig-core/\"\u003e W3C Recommendation for XML-Signature Syntax and Processing\u003c/a\u003e. An \n\u003ccode\u003eXMLObject\u003c/code\u003e may contain any data and may include optional MIME type, ID, and encoding attributes. The XML Schema Definition is defined as: \n\u003cpre\u003e\u003ccode\u003e\n \u0026lt;element name\u003d\"Object\" type\u003d\"ds:ObjectType\"/\u0026gt;\n \u0026lt;complexType name\u003d\"ObjectType\" mixed\u003d\"true\"\u0026gt;\n   \u0026lt;sequence minOccurs\u003d\"0\" maxOccurs\u003d\"unbounded\"\u0026gt;\n     \u0026lt;any namespace\u003d\"##any\" processContents\u003d\"lax\"/\u0026gt;\n   \u0026lt;/sequence\u0026gt;\n   \u0026lt;attribute name\u003d\"Id\" type\u003d\"ID\" use\u003d\"optional\"/\u0026gt;\n   \u0026lt;attribute name\u003d\"MimeType\" type\u003d\"string\" use\u003d\"optional\"/\u0026gt;\n   \u0026lt;attribute name\u003d\"Encoding\" type\u003d\"anyURI\" use\u003d\"optional\"/\u0026gt;\n \u0026lt;/complexType\u0026gt;\n \u003c/code\u003e\u003c/pre\u003e A \n\u003ccode\u003eXMLObject\u003c/code\u003e instance may be created by invoking the \n\u003ca href\u003d\"XMLSignatureFactory.html#newXMLObject(java.util.List,java.lang.String,java.lang.String,java.lang.String)\"\u003e\u003ccode\u003enewXMLObject\u003c/code\u003e\u003c/a\u003e method of the \n\u003ca href\u003d\"XMLSignatureFactory.html\" title\u003d\"class in javax.xml.crypto.dsig\"\u003e\u003ccode\u003eXMLSignatureFactory\u003c/code\u003e\u003c/a\u003e class; for example: \n\u003cpre\u003e   XMLSignatureFactory fac \u003d XMLSignatureFactory.getInstance(\"DOM\");\n   Manifest manifest \u003d fac.newManifest(references);\n   List\u0026lt;XMLStructure\u0026gt; content \u003d Collections.singletonList(manifest);\n   XMLObject object \u003d factory.newXMLObject(content, \"object-1\", null, null);\n \u003c/pre\u003e \n\u003cp\u003eNote that this class is named \u003ccode\u003eXMLObject\u003c/code\u003e rather than \u003ccode\u003eObject\u003c/code\u003e to avoid naming clashes with the existing \u003ca href\u003d\"../../../../../java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003ejava.lang.Object\u003c/code\u003e\u003c/a\u003e class.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/dsig/XMLSignatureFactory.html#newXMLObject(java.util.List,java.lang.String,java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eXMLSignatureFactory.newXMLObject(List, String, String, String)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

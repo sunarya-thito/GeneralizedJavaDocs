@@ -1,0 +1,346 @@
+{
+  "packageName": "java.net.http",
+  "simpleName": "WebSocket",
+  "moduleName": "java.net.http",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "NORMAL_CLOSURE",
+      "comment": "The WebSocket Close message status code (1000), indicating normal closure, meaning that the purpose for which the connection was established has been fulfilled.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/WebSocket.html#sendClose(int,java.lang.String)\"\u003e\u003ccode\u003esendClose(int, String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/WebSocket.Listener.html#onClose(java.net.http.WebSocket,int,java.lang.String)\"\u003e\u003ccode\u003eWebSocket.Listener.onClose(WebSocket, int, String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.net.http.WebSocket.NORMAL_CLOSURE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "field": {
+            "name": "data"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "last"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sendText",
+      "comment": "Sends textual data with characters from the given character sequence. The character sequence must not be modified until the CompletableFuture returned from this method has completed. A CompletableFuture returned from this method can complete exceptionally with: IllegalStateException - if there is a pending text or binary send operation or if the previous binary data does not complete the message IOException - if an I/O error occurs, or if the output is closed",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edata\u003c/code\u003e - the data",
+          "\u003ccode\u003elast\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if this invocation completes the message, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ],
+        "implNote": [
+          "If \n\u003ccode\u003edata\u003c/code\u003e is a malformed UTF-16 sequence, the operation will fail with \n\u003ccode\u003eIOException\u003c/code\u003e."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletableFuture\u003c/code\u003e that completes, with this WebSocket, when the data has been sent"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "data"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "last"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sendBinary",
+      "comment": "Sends binary data with bytes from the given buffer. The data is located in bytes from the buffer\u0027s position to its limit. Upon normal completion of a CompletableFuture returned from this method the buffer will have no remaining bytes. The buffer must not be accessed until after that. The CompletableFuture returned from this method can complete exceptionally with: IllegalStateException - if there is a pending text or binary send operation or if the previous textual data does not complete the message IOException - if an I/O error occurs, or if the output is closed",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edata\u003c/code\u003e - the data",
+          "\u003ccode\u003elast\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if this invocation completes the message, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletableFuture\u003c/code\u003e that completes, with this WebSocket, when the data has been sent"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "message"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sendPing",
+      "comment": "Sends a Ping message with bytes from the given buffer. The message consists of not more than 125 bytes from the buffer\u0027s position to its limit. Upon normal completion of a CompletableFuture returned from this method the buffer will have no remaining bytes. The buffer must not be accessed until after that. The CompletableFuture returned from this method can complete exceptionally with: IllegalStateException - if there is a pending ping or pong send operation IllegalArgumentException - if the message is too long IOException - if an I/O error occurs, or if the output is closed",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emessage\u003c/code\u003e - the message"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletableFuture\u003c/code\u003e that completes, with this WebSocket, when the Ping message has been sent"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "message"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sendPong",
+      "comment": "Sends a Pong message with bytes from the given buffer. The message consists of not more than 125 bytes from the buffer\u0027s position to its limit. Upon normal completion of a CompletableFuture returned from this method the buffer will have no remaining bytes. The buffer must not be accessed until after that. Given that the WebSocket implementation will automatically send a reciprocal pong when a ping is received, it is rarely required to send a pong message explicitly. The CompletableFuture returned from this method can complete exceptionally with: IllegalStateException - if there is a pending ping or pong send operation IllegalArgumentException - if the message is too long IOException - if an I/O error occurs, or if the output is closed",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emessage\u003c/code\u003e - the message"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletableFuture\u003c/code\u003e that completes, with this WebSocket, when the Pong message has been sent"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "statusCode"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "reason"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sendClose",
+      "comment": "Initiates an orderly closure of this WebSocket\u0027s output by sending a Close message with the given status code and the reason. The statusCode is an integer from the range 1000 \u003c\u003d code \u003c\u003d 4999. Status codes 1002, 1003, 1006, 1007, 1009, 1010, 1012, 1013 and 1015 are illegal. Behaviour in respect to other status codes is implementation-specific. A legal reason is a string that has a UTF-8 representation not longer than 123 bytes. A CompletableFuture returned from this method can complete exceptionally with: IllegalArgumentException - if statusCode is illegal, or if reason is illegal IOException - if an I/O error occurs, or if the output is closed Unless the CompletableFuture returned from this method completes with IllegalArgumentException, or the method throws NullPointerException, the output will be closed. If not already closed, the input remains open until a Close message received, or abort is invoked, or an error occurs.",
+      "tagMap": {
+        "apiNote": [
+          "Use the provided integer constant \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/WebSocket.html#NORMAL_CLOSURE\"\u003e\u003ccode\u003eNORMAL_CLOSURE\u003c/code\u003e\u003c/a\u003e as a status code and an empty string as a reason in a typical case: \n\u003cpre\u003e\u003ccode\u003e    CompletableFuture\u0026lt;WebSocket\u0026gt; webSocket \u003d ...\n    webSocket.thenCompose(ws -\u0026gt; ws.sendText(\"Hello, \", false))\n             .thenCompose(ws -\u0026gt; ws.sendText(\"world!\", true))\n             .thenCompose(ws -\u0026gt; ws.sendClose(WebSocket.NORMAL_CLOSURE, \"\"))\n             .join(); \u003c/code\u003e\u003c/pre\u003e The \n\u003ccode\u003esendClose\u003c/code\u003e method does not close this WebSocket\u0027s input. It merely closes this WebSocket\u0027s output by sending a Close message. To enforce closing the input, invoke the \n\u003ccode\u003eabort\u003c/code\u003e method. Here is an example of an application that sends a Close message, and then starts a timer. Once no data has been received within the specified timeout, the timer goes off and the alarm aborts \n\u003ccode\u003eWebSocket\u003c/code\u003e: \n\u003cpre\u003e\u003ccode\u003e    MyAlarm alarm \u003d new MyAlarm(webSocket::abort);\n    WebSocket.Listener listener \u003d new WebSocket.Listener() {\n\n        public CompletionStage\u0026lt;?\u0026gt; onText(WebSocket webSocket,\n                                         CharSequence data,\n                                         boolean last) {\n            alarm.snooze();\n            ...\n        }\n        ...\n    };\n    ...\n    Runnable startTimer \u003d () -\u0026gt; {\n        MyTimer idleTimer \u003d new MyTimer();\n        idleTimer.add(alarm, 30, TimeUnit.SECONDS);\n    };\n    webSocket.sendClose(WebSocket.NORMAL_CLOSURE, \"ok\").thenRun(startTimer);\n \u003c/code\u003e \u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estatusCode\u003c/code\u003e - the status code",
+          "\u003ccode\u003ereason\u003c/code\u003e - the reason"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletableFuture\u003c/code\u003e that completes, with this WebSocket, when the Close message has been sent"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "n"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "request",
+      "comment": "Increments the counter of invocations of receive methods. This WebSocket will invoke onText, onBinary, onPing, onPong or onClose methods on the associated listener (i.e. receive methods) up to n more times.",
+      "tagMap": {
+        "apiNote": [
+          "The parameter of this method is the number of invocations being requested from this WebSocket to the associated listener, not the number of messages. Sometimes a message may be delivered to the listener in a single invocation, but not always. For example, Ping, Pong and Close messages are delivered in a single invocation of \n\u003ccode\u003eonPing\u003c/code\u003e, \n\u003ccode\u003eonPong\u003c/code\u003e and \n\u003ccode\u003eonClose\u003c/code\u003e methods respectively. However, whether or not Text and Binary messages are delivered in a single invocation of \n\u003ccode\u003eonText\u003c/code\u003e and \n\u003ccode\u003eonBinary\u003c/code\u003e methods depends on the boolean argument (\n\u003ccode\u003elast\u003c/code\u003e) of these methods. If \n\u003ccode\u003elast\u003c/code\u003e is \n\u003ccode\u003efalse\u003c/code\u003e, then there is more to a message than has been delivered to the invocation. \n\u003cp\u003e Here is an example of a listener that requests invocations, one at a time, until a complete message has been accumulated, and then processes the result: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e    WebSocket.Listener listener \u003d new WebSocket.Listener() {\n\n        StringBuilder text \u003d new StringBuilder();\n\n        public CompletionStage\u0026lt;?\u0026gt; onText(WebSocket webSocket,\n                                         CharSequence message,\n                                         boolean last) {\n            text.append(message);\n            if (last) {\n                processCompleteTextMessage(text);\n                text \u003d new StringBuilder();\n            }\n            webSocket.request(1);\n            return null;\n        }\n    ...\n    } \u003c/code\u003e \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003en\u003c/code\u003e - the number of invocations"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003en \u0026lt;\u003d 0\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSubprotocol",
+      "comment": "Returns the subprotocol used by this WebSocket.",
+      "tagMap": {
+        "return": [
+          "the subprotocol, or an empty string if there\u0027s no subprotocol"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isOutputClosed",
+      "comment": "Tells whether this WebSocket\u0027s output is closed. If this method returns true, subsequent invocations will also return true.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if closed, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isInputClosed",
+      "comment": "Tells whether this WebSocket\u0027s input is closed. If this method returns true, subsequent invocations will also return true.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if closed, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "abort",
+      "comment": "Closes this WebSocket\u0027s input and output abruptly. When this method returns both the input and the output will have been closed. Any pending send operations will fail with IOException. Subsequent invocations of abort will have no effect.",
+      "tagMap": {}
+    }
+  ],
+  "innerClasses": [
+    "java.net.http.WebSocket$Listener",
+    "java.net.http.WebSocket$Builder"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.net.http.WebSocket",
+  "comment": "A WebSocket Client. \n\u003cp\u003e \u003ccode\u003eWebSocket\u003c/code\u003e instances are created through \u003ca href\u003d\"WebSocket.Builder.html\" title\u003d\"interface in java.net.http\"\u003e\u003ccode\u003eWebSocket.Builder\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e WebSocket has an input and an output side. These sides are independent from each other. A side can either be open or closed. Once closed, the side remains closed. WebSocket messages are sent through a \u003ccode\u003eWebSocket\u003c/code\u003e and received through a \u003ccode\u003eWebSocket.Listener\u003c/code\u003e associated with it. Messages can be sent until the WebSocket\u0027s output is closed, and received until the WebSocket\u0027s input is closed. \u003c/p\u003e\n\u003cp\u003e A send method is any of the \u003ccode\u003esendText\u003c/code\u003e, \u003ccode\u003esendBinary\u003c/code\u003e, \u003ccode\u003esendPing\u003c/code\u003e, \u003ccode\u003esendPong\u003c/code\u003e and \u003ccode\u003esendClose\u003c/code\u003e methods of \u003ccode\u003eWebSocket\u003c/code\u003e. A send method initiates a send operation and returns a \u003ccode\u003eCompletableFuture\u003c/code\u003e which completes once the operation has completed. If the \u003ccode\u003eCompletableFuture\u003c/code\u003e completes normally the operation is considered succeeded. If the \u003ccode\u003eCompletableFuture\u003c/code\u003e completes exceptionally, the operation is considered failed. An operation that has been initiated but not yet completed is considered pending. \u003c/p\u003e\n\u003cp\u003e A receive method is any of the \u003ccode\u003eonText\u003c/code\u003e, \u003ccode\u003eonBinary\u003c/code\u003e, \u003ccode\u003eonPing\u003c/code\u003e, \u003ccode\u003eonPong\u003c/code\u003e and \u003ccode\u003eonClose\u003c/code\u003e methods of \u003ccode\u003eListener\u003c/code\u003e. WebSocket initiates a receive operation by invoking a receive method on the listener. The listener then must return a \u003ccode\u003eCompletionStage\u003c/code\u003e which completes once the operation has completed. \u003c/p\u003e\n\u003cp\u003e To control receiving of messages, a WebSocket maintains an \u003ca id\u003d\"counter\"\u003einternal counter\u003c/a\u003e. This counter\u0027s value is a number of times the WebSocket has yet to invoke a receive method. While this counter is zero the WebSocket does not invoke receive methods. The counter is incremented by \u003ccode\u003en\u003c/code\u003e when \u003ccode\u003erequest(n)\u003c/code\u003e is called. The counter is decremented by one when the WebSocket invokes a receive method. \u003ccode\u003eonOpen\u003c/code\u003e and \u003ccode\u003eonError\u003c/code\u003e are not receive methods. WebSocket invokes \u003ccode\u003eonOpen\u003c/code\u003e prior to any other methods on the listener. WebSocket invokes \u003ccode\u003eonOpen\u003c/code\u003e at most once. WebSocket may invoke \u003ccode\u003eonError\u003c/code\u003e at any given time. If the WebSocket invokes \u003ccode\u003eonError\u003c/code\u003e or \u003ccode\u003eonClose\u003c/code\u003e, then no further listener\u0027s methods will be invoked, no matter the value of the counter. For a newly built WebSocket the counter is zero. \u003c/p\u003e\n\u003cp\u003e Unless otherwise stated, \u003ccode\u003enull\u003c/code\u003e arguments will cause methods of \u003ccode\u003eWebSocket\u003c/code\u003e to throw \u003ccode\u003eNullPointerException\u003c/code\u003e, similarly, \u003ccode\u003eWebSocket\u003c/code\u003e will not pass \u003ccode\u003enull\u003c/code\u003e arguments to methods of \u003ccode\u003eListener\u003c/code\u003e. The state of a WebSocket is not changed by the invocations that throw or return a \u003ccode\u003eCompletableFuture\u003c/code\u003e that completes with one of the \u003ccode\u003eNullPointerException\u003c/code\u003e, \u003ccode\u003eIllegalArgumentException\u003c/code\u003e, \u003ccode\u003eIllegalStateException\u003c/code\u003e exceptions. \u003c/p\u003e\n\u003cp\u003e \u003ccode\u003eWebSocket\u003c/code\u003e handles received Ping and Close messages automatically (as per the WebSocket Protocol) by replying with Pong and Close messages. If the listener receives Ping or Close messages, no mandatory actions from the listener are required.\u003c/p\u003e",
+  "tagMap": {
+    "apiNote": [
+      "The relationship between a WebSocket and the associated Listener is analogous to that of a Subscription and the associated Subscriber of type \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eFlow\u003c/code\u003e\u003c/a\u003e."
+    ],
+    "since": [
+      "11"
+    ]
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "packageName": "java.time",
+  "simpleName": "ZoneId",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "SHORT_IDS",
+      "comment": "A map of zone overrides to enable the short time-zone names to be used. Use of short zone IDs has been deprecated in java.util.TimeZone. This map allows the IDs to continue to be used via the of(String, Map) factory method. This map contains a mapping of the IDs that is in line with TZDB 2005r and later, where \u0027EST\u0027, \u0027MST\u0027 and \u0027HST\u0027 map to IDs which do not include daylight savings. This maps as follows: EST - -05:00 HST - -10:00 MST - -07:00 ACT - Australia/Darwin AET - Australia/Sydney AGT - America/Argentina/Buenos_Aires ART - Africa/Cairo AST - America/Anchorage BET - America/Sao_Paulo BST - Asia/Dhaka CAT - Africa/Harare CNT - America/St_Johns CST - America/Chicago CTT - Asia/Shanghai EAT - Africa/Addis_Ababa ECT - Europe/Paris IET - America/Indiana/Indianapolis IST - Asia/Kolkata JST - Asia/Tokyo MIT - Pacific/Apia NET - Asia/Yerevan NST - Pacific/Auckland PLT - Asia/Karachi PNT - America/Phoenix PRT - America/Puerto_Rico PST - America/Los_Angeles SST - Pacific/Guadalcanal VST - Asia/Ho_Chi_Minh The map is unmodifiable.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.time.ZoneId",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "systemDefault",
+      "comment": "Gets the system default time-zone. This queries TimeZone.getDefault() to find the default time-zone and converts it to a ZoneId. If the system default time-zone is changed, then the result of this method will also change.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the converted zone ID has an invalid format",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/zone/ZoneRulesException.html\" title\u003d\"class in java.time.zone\"\u003eZoneRulesException\u003c/a\u003e\u003c/code\u003e - if the converted zone region ID cannot be found"
+        ],
+        "return": [
+          "the zone ID, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getAvailableZoneIds",
+      "comment": "Gets the set of available zone IDs. This set includes the string form of all available region-based IDs. Offset-based zone IDs are not included in the returned set. The ID can be passed to of(String) to create a ZoneId. The set of zone IDs can increase over time, although in a typical application the set of IDs is fixed. Each call to this method is thread-safe.",
+      "tagMap": {
+        "return": [
+          "a modifiable copy of the set of zone IDs, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.ZoneId",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "zoneId"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "aliasMap"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "of",
+      "comment": "Obtains an instance of ZoneId using its ID using a map of aliases to supplement the standard zone IDs. Many users of time-zones use short abbreviations, such as PST for \u0027Pacific Standard Time\u0027 and PDT for \u0027Pacific Daylight Time\u0027. These abbreviations are not unique, and so cannot be used as IDs. This method allows a map of string to time-zone to be setup and reused within an application.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ezoneId\u003c/code\u003e - the time-zone ID, not null",
+          "\u003ccode\u003ealiasMap\u003c/code\u003e - a map of alias zone IDs (typically abbreviations) to real zone IDs, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the zone ID has an invalid format",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/zone/ZoneRulesException.html\" title\u003d\"class in java.time.zone\"\u003eZoneRulesException\u003c/a\u003e\u003c/code\u003e - if the zone ID is a region ID that cannot be found"
+        ],
+        "return": [
+          "the zone ID, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.ZoneId",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "zoneId"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "of",
+      "comment": "Obtains an instance of ZoneId from an ID ensuring that the ID is valid and available for use. This method parses the ID producing a ZoneId or ZoneOffset. A ZoneOffset is returned if the ID is \u0027Z\u0027, or starts with \u0027+\u0027 or \u0027-\u0027. The result will always be a valid ID for which ZoneRules can be obtained. Parsing matches the zone ID step by step as follows. If the zone ID equals \u0027Z\u0027, the result is ZoneOffset.UTC. If the zone ID consists of a single letter, the zone ID is invalid and DateTimeException is thrown. If the zone ID starts with \u0027+\u0027 or \u0027-\u0027, the ID is parsed as a ZoneOffset using ZoneOffset.of(String). If the zone ID equals \u0027GMT\u0027, \u0027UTC\u0027 or \u0027UT\u0027 then the result is a ZoneId with the same ID and rules equivalent to ZoneOffset.UTC. If the zone ID starts with \u0027UTC+\u0027, \u0027UTC-\u0027, \u0027GMT+\u0027, \u0027GMT-\u0027, \u0027UT+\u0027 or \u0027UT-\u0027 then the ID is a prefixed offset-based ID. The ID is split in two, with a two or three letter prefix and a suffix starting with the sign. The suffix is parsed as a ZoneOffset. The result will be a ZoneId with the specified UTC/GMT/UT prefix and the normalized offset ID as per ZoneOffset.getId(). The rules of the returned ZoneId will be equivalent to the parsed ZoneOffset. All other IDs are parsed as region-based zone IDs. Region IDs must match the regular expression [A-Za-z][A-Za-z0-9~/._+-]+ otherwise a DateTimeException is thrown. If the zone ID is not in the configured set of IDs, ZoneRulesException is thrown. The detailed format of the region ID depends on the group supplying the data. The default set of data is supplied by the IANA Time Zone Database (TZDB). This has region IDs of the form \u0027{area}/{city}\u0027, such as \u0027Europe/Paris\u0027 or \u0027America/New_York\u0027. This is compatible with most IDs from TimeZone.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ezoneId\u003c/code\u003e - the time-zone ID, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if the zone ID has an invalid format",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/zone/ZoneRulesException.html\" title\u003d\"class in java.time.zone\"\u003eZoneRulesException\u003c/a\u003e\u003c/code\u003e - if the zone ID is a region ID that cannot be found"
+        ],
+        "return": [
+          "the zone ID, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.ZoneId",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "prefix"
+          }
+        },
+        {
+          "type": {
+            "name": "java.time.ZoneOffset",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "ofOffset",
+      "comment": "Obtains an instance of ZoneId wrapping an offset. If the prefix is \"GMT\", \"UTC\", or \"UT\" a ZoneId with the prefix and the non-zero offset is returned. If the prefix is empty \"\" the ZoneOffset is returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprefix\u003c/code\u003e - the time-zone ID, not null",
+          "\u003ccode\u003eoffset\u003c/code\u003e - the offset, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the prefix is not one of \"GMT\", \"UTC\", or \"UT\", or \"\""
+        ],
+        "return": [
+          "the zone ID, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.ZoneId",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.TemporalAccessor",
+            "type": "Class"
+          },
+          "field": {
+            "name": "temporal"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "from",
+      "comment": "Obtains an instance of ZoneId from a temporal object. This obtains a zone based on the specified temporal. A TemporalAccessor represents an arbitrary set of date and time information, which this factory converts to an instance of ZoneId. A TemporalAccessor represents some form of date and time information. This factory converts the arbitrary temporal object to an instance of ZoneId. The conversion will try to obtain the zone in a way that favours region-based zones over offset-based zones using TemporalQueries.zone(). This method matches the signature of the functional interface TemporalQuery allowing it to be used as a query via method reference, ZoneId::from.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etemporal\u003c/code\u003e - the temporal object to convert, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if unable to convert to a \n\u003ccode\u003eZoneId\u003c/code\u003e"
+        ],
+        "return": [
+          "the zone ID, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getId",
+      "comment": "Gets the unique time-zone ID. This ID uniquely defines this object. The format of an offset based ID is defined by ZoneOffset.getId().",
+      "tagMap": {
+        "return": [
+          "the time-zone unique ID, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.format.TextStyle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "style"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "field": {
+            "name": "locale"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDisplayName",
+      "comment": "Gets the textual representation of the zone, such as \u0027British Time\u0027 or \u0027+02:00\u0027. This returns the textual name used to identify the time-zone ID, suitable for presentation to the user. The parameters control the style of the returned text and the locale. If no textual mapping is found then the full ID is returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estyle\u003c/code\u003e - the length of the text required, not null",
+          "\u003ccode\u003elocale\u003c/code\u003e - the locale to use, not null"
+        ],
+        "return": [
+          "the text value of the zone, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.zone.ZoneRules",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getRules",
+      "comment": "Gets the time-zone rules for this ID allowing calculations to be performed. The rules provide the functionality associated with a time-zone, such as finding the offset for a given instant or local date-time. A time-zone can be invalid if it is deserialized in a Java Runtime which does not have the same rules loaded as the Java Runtime that stored it. In this case, calling this method will throw a ZoneRulesException. The rules are supplied by ZoneRulesProvider. An advanced provider may support dynamic updates to the rules without restarting the Java Runtime. If so, then the result of this method may change over time. Each individual call will be still remain thread-safe. ZoneOffset will always return a set of rules where the offset never changes.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/zone/ZoneRulesException.html\" title\u003d\"class in java.time.zone\"\u003eZoneRulesException\u003c/a\u003e\u003c/code\u003e - if no rules are available for this ID"
+        ],
+        "return": [
+          "the rules, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.ZoneId",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "normalized",
+      "comment": "Normalizes the time-zone ID, returning a ZoneOffset where possible. The returns a normalized ZoneId that can be used in place of this ID. The result will have ZoneRules equivalent to those returned by this object, however the ID returned by getId() may be different. The normalization checks if the rules of this ZoneId have a fixed offset. If they do, then the ZoneOffset equal to that offset is returned. Otherwise this is returned.",
+      "tagMap": {
+        "return": [
+          "the time-zone unique ID, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "equals",
+      "comment": "Checks if this time-zone ID is equal to another time-zone ID. The comparison is based on the ID.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the object to check, null returns false"
+        ],
+        "return": [
+          "true if this is equal to the other time-zone ID"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hashCode",
+      "comment": "A hash code for this time-zone ID.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a suitable hash code"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Outputs this zone as a String, using the ID.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of this time-zone ID, not null"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.time.ZoneId",
+  "comment": "A time-zone ID, such as \n\u003ccode\u003eEurope/Paris\u003c/code\u003e. \n\u003cp\u003e A \u003ccode\u003eZoneId\u003c/code\u003e is used to identify the rules used to convert between an \u003ca href\u003d\"Instant.html\" title\u003d\"class in java.time\"\u003e\u003ccode\u003eInstant\u003c/code\u003e\u003c/a\u003e and a \u003ca href\u003d\"LocalDateTime.html\" title\u003d\"class in java.time\"\u003e\u003ccode\u003eLocalDateTime\u003c/code\u003e\u003c/a\u003e. There are two distinct types of ID: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eFixed offsets - a fully resolved offset from UTC/Greenwich, that uses the same offset for all local date-times \u003c/li\u003e\n \u003cli\u003eGeographical regions - an area where a specific set of rules for finding the offset from UTC/Greenwich apply \u003c/li\u003e\n\u003c/ul\u003e Most fixed offsets are represented by \n\u003ca href\u003d\"ZoneOffset.html\" title\u003d\"class in java.time\"\u003e\u003ccode\u003eZoneOffset\u003c/code\u003e\u003c/a\u003e. Calling \n\u003ca href\u003d\"#normalized()\"\u003e\u003ccode\u003enormalized()\u003c/code\u003e\u003c/a\u003e on any \n\u003ccode\u003eZoneId\u003c/code\u003e will ensure that a fixed offset ID will be represented as a \n\u003ccode\u003eZoneOffset\u003c/code\u003e. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The actual rules, describing when and how the offset changes, are defined by \u003ca href\u003d\"zone/ZoneRules.html\" title\u003d\"class in java.time.zone\"\u003e\u003ccode\u003eZoneRules\u003c/code\u003e\u003c/a\u003e. This class is simply an ID used to obtain the underlying rules. This approach is taken because rules are defined by governments and change frequently, whereas the ID is stable. \u003c/p\u003e\n\u003cp\u003e The distinction has other effects. Serializing the \u003ccode\u003eZoneId\u003c/code\u003e will only send the ID, whereas serializing the rules sends the entire data set. Similarly, a comparison of two IDs only examines the ID, whereas a comparison of two rules examines the entire data set. \u003c/p\u003e\n\u003ch2\u003eTime-zone IDs\u003c/h2\u003e The ID is unique within the system. There are three types of ID. \n\u003cp\u003e The simplest type of ID is that from \u003ccode\u003eZoneOffset\u003c/code\u003e. This consists of \u0027Z\u0027 and IDs starting with \u0027+\u0027 or \u0027-\u0027. \u003c/p\u003e\n\u003cp\u003e The next type of ID are offset-style IDs with some form of prefix, such as \u0027GMT+2\u0027 or \u0027UTC+01:00\u0027. The recognised prefixes are \u0027UTC\u0027, \u0027GMT\u0027 and \u0027UT\u0027. The offset is the suffix and will be normalized during creation. These IDs can be normalized to a \u003ccode\u003eZoneOffset\u003c/code\u003e using \u003ccode\u003enormalized()\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e The third type of ID are region-based IDs. A region-based ID must be of two or more characters, and not start with \u0027UTC\u0027, \u0027GMT\u0027, \u0027UT\u0027 \u0027+\u0027 or \u0027-\u0027. Region-based IDs are defined by configuration, see \u003ca href\u003d\"zone/ZoneRulesProvider.html\" title\u003d\"class in java.time.zone\"\u003e\u003ccode\u003eZoneRulesProvider\u003c/code\u003e\u003c/a\u003e. The configuration focuses on providing the lookup from the ID to the underlying \u003ccode\u003eZoneRules\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e Time-zone rules are defined by governments and change frequently. There are a number of organizations, known here as groups, that monitor time-zone changes and collate them. The default group is the IANA Time Zone Database (TZDB). Other organizations include IATA (the airline industry body) and Microsoft. \u003c/p\u003e\n\u003cp\u003e Each group defines its own format for the region ID it provides. The TZDB group defines IDs such as \u0027Europe/London\u0027 or \u0027America/New_York\u0027. TZDB IDs take precedence over other groups. \u003c/p\u003e\n\u003cp\u003e It is strongly recommended that the group name is included in all IDs supplied by groups other than TZDB to avoid conflicts. For example, IATA airline time-zone region IDs are typically the same as the three letter airport code. However, the airport of Utrecht has the code \u0027UTC\u0027, which is obviously a conflict. The recommended format for region IDs from groups other than TZDB is \u0027group~region\u0027. Thus if IATA data were defined, Utrecht airport would be \u0027IATA~UTC\u0027. \u003c/p\u003e\n\u003ch2\u003eSerialization\u003c/h2\u003e This class can be serialized and stores the string zone ID in the external form. The \n\u003ccode\u003eZoneOffset\u003c/code\u003e subclass uses a dedicated format that only stores the offset from UTC/Greenwich. \n\u003cp\u003e A \u003ccode\u003eZoneId\u003c/code\u003e can be deserialized in a Java Runtime where the ID is unknown. For example, if a server-side Java Runtime has been updated with a new zone ID, but the client-side Java Runtime has not been updated. In this case, the \u003ccode\u003eZoneId\u003c/code\u003e object will exist, and can be queried using \u003ccode\u003egetId\u003c/code\u003e, \u003ccode\u003eequals\u003c/code\u003e, \u003ccode\u003ehashCode\u003c/code\u003e, \u003ccode\u003etoString\u003c/code\u003e, \u003ccode\u003egetDisplayName\u003c/code\u003e and \u003ccode\u003enormalized\u003c/code\u003e. However, any call to \u003ccode\u003egetRules\u003c/code\u003e will fail with \u003ccode\u003eZoneRulesException\u003c/code\u003e. This approach is designed to allow a \u003ca href\u003d\"ZonedDateTime.html\" title\u003d\"class in java.time\"\u003e\u003ccode\u003eZonedDateTime\u003c/code\u003e\u003c/a\u003e to be loaded and queried, but not modified, on a Java Runtime with incomplete time-zone information. \u003c/p\u003e\n\u003cp\u003e This is a \u003ca href\u003d\"../../../java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e class; programmers should treat instances that are \u003ca href\u003d\"#equals(java.lang.Object)\"\u003eequal\u003c/a\u003e as interchangeable and should not use instances for synchronization, or unpredictable behavior may occur. For example, in a future release, synchronization may fail. The \u003ccode\u003eequals\u003c/code\u003e method should be used for comparisons.\u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "This abstract class has two implementations, both of which are immutable and thread-safe. One implementation models region-based IDs, the other is \n\u003ccode\u003eZoneOffset\u003c/code\u003e modelling offset-based IDs. This difference is visible in serialization."
+    ],
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.time.ZoneId\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

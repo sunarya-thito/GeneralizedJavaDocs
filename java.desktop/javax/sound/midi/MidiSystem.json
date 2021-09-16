@@ -1,0 +1,888 @@
+{
+  "packageName": "javax.sound.midi",
+  "simpleName": "MidiSystem",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.sound.midi.MidiDevice$Info",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getMidiDeviceInfo",
+      "comment": "Obtains an array of information objects representing the set of all MIDI devices available on the system. A returned information object can then be used to obtain the corresponding device object, by invoking getMidiDevice.",
+      "tagMap": {
+        "return": [
+          "an array of \n\u003ccode\u003eMidiDevice.Info\u003c/code\u003e objects, one for each installed MIDI device. If no such devices are installed, an array of length 0 is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.MidiDevice",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.sound.midi.MidiDevice$Info",
+            "type": "Class"
+          },
+          "field": {
+            "name": "info"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getMidiDevice",
+      "comment": "Obtains the requested MIDI device.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiDeviceInfo()\"\u003e\u003ccode\u003egetMidiDeviceInfo()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003einfo\u003c/code\u003e - a device information object representing the desired device"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - if the requested device is not available due to resource restrictions",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the info object does not represent a MIDI device installed on the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003einfo\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the requested device"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Receiver",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getReceiver",
+      "comment": "Obtains a MIDI receiver from an external MIDI port or other default device. The returned receiver always implements the MidiDeviceReceiver interface. If the system property javax.sound.midi.Receiver is defined or it is defined in the file \"sound.properties\", it is used to identify the device that provides the default receiver. For details, refer to the class description. If a suitable MIDI port is not available, the Receiver is retrieved from an installed synthesizer. If a native receiver provided by the default device does not implement the MidiDeviceReceiver interface, it will be wrapped in a wrapper class that implements the MidiDeviceReceiver interface. The corresponding Receiver method calls will be forwarded to the native receiver. If this method returns successfully, the MidiDevice the Receiver belongs to is opened implicitly, if it is not already open. It is possible to close an implicitly opened device by calling close on the returned Receiver. All open Receiver instances have to be closed in order to release system resources hold by the MidiDevice. For a detailed description of open/close behaviour see the class description of MidiDevice.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - if the default receiver is not available due to resource restrictions, or no device providing receivers is installed in the system"
+        ],
+        "return": [
+          "the default MIDI receiver"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Transmitter",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getTransmitter",
+      "comment": "Obtains a MIDI transmitter from an external MIDI port or other default source. The returned transmitter always implements the MidiDeviceTransmitter interface. If the system property javax.sound.midi.Transmitter is defined or it is defined in the file \"sound.properties\", it is used to identify the device that provides the default transmitter. For details, refer to the class description. If a native transmitter provided by the default device does not implement the MidiDeviceTransmitter interface, it will be wrapped in a wrapper class that implements the MidiDeviceTransmitter interface. The corresponding Transmitter method calls will be forwarded to the native transmitter. If this method returns successfully, the MidiDevice the Transmitter belongs to is opened implicitly, if it is not already open. It is possible to close an implicitly opened device by calling close on the returned Transmitter. All open Transmitter instances have to be closed in order to release system resources hold by the MidiDevice. For a detailed description of open/close behaviour see the class description of MidiDevice.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - if the default transmitter is not available due to resource restrictions, or no device providing transmitters is installed in the system"
+        ],
+        "return": [
+          "the default MIDI transmitter"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Synthesizer",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSynthesizer",
+      "comment": "Obtains the default synthesizer. If the system property javax.sound.midi.Synthesizer is defined or it is defined in the file \"sound.properties\", it is used to identify the default synthesizer. For details, refer to the class description.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - if the synthesizer is not available due to resource restrictions, or no synthesizer is installed in the system"
+        ],
+        "return": [
+          "the default synthesizer"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Sequencer",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSequencer",
+      "comment": "Obtains the default Sequencer, connected to a default device. The returned Sequencer instance is connected to the default Synthesizer, as returned by getSynthesizer(). If there is no Synthesizer available, or the default Synthesizer cannot be opened, the sequencer is connected to the default Receiver, as returned by getReceiver(). The connection is made by retrieving a Transmitter instance from the Sequencer and setting its Receiver. Closing and re-opening the sequencer will restore the connection to the default device. This method is equivalent to calling getSequencer(true). If the system property javax.sound.midi.Sequencer is defined or it is defined in the file \"sound.properties\", it is used to identify the default sequencer. For details, refer to the class description.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getSequencer(boolean)\"\u003e\u003ccode\u003egetSequencer(boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getSynthesizer()\"\u003e\u003ccode\u003egetSynthesizer()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getReceiver()\"\u003e\u003ccode\u003egetReceiver()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - if the sequencer is not available due to resource restrictions, or there is no \n\u003ccode\u003eReceiver\u003c/code\u003e available by any installed \n\u003ccode\u003eMidiDevice\u003c/code\u003e, or no sequencer is installed in the system"
+        ],
+        "return": [
+          "the default sequencer, connected to a default Receiver"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Sequencer",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "connected"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSequencer",
+      "comment": "Obtains the default Sequencer, optionally connected to a default device. If connected is true, the returned Sequencer instance is connected to the default Synthesizer, as returned by getSynthesizer(). If there is no Synthesizer available, or the default Synthesizer cannot be opened, the sequencer is connected to the default Receiver, as returned by getReceiver(). The connection is made by retrieving a Transmitter instance from the Sequencer and setting its Receiver. Closing and re-opening the sequencer will restore the connection to the default device. If connected is false, the returned Sequencer instance is not connected, it has no open Transmitters. In order to play the sequencer on a MIDI device, or a Synthesizer, it is necessary to get a Transmitter and set its Receiver. If the system property javax.sound.midi.Sequencer is defined or it is defined in the file \"sound.properties\", it is used to identify the default sequencer. For details, refer to the class description.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getSynthesizer()\"\u003e\u003ccode\u003egetSynthesizer()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getReceiver()\"\u003e\u003ccode\u003egetReceiver()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003econnected\u003c/code\u003e - whether or not the returned \n\u003ccode\u003eSequencer\u003c/code\u003e is connected to the default \n\u003ccode\u003eSynthesizer\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - if the sequencer is not available due to resource restrictions, or no sequencer is installed in the system, or if \n\u003ccode\u003econnected\u003c/code\u003e is true, and there is no \n\u003ccode\u003eReceiver\u003c/code\u003e available by any installed \n\u003ccode\u003eMidiDevice\u003c/code\u003e"
+        ],
+        "return": [
+          "the default sequencer"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Soundbank",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stream"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSoundbank",
+      "comment": "Constructs a MIDI sound bank by reading it from the specified stream. The stream must point to a valid MIDI soundbank file. In general, MIDI soundbank providers may need to read some data from the stream before determining whether they support it. These parsers must be able to mark the stream, read enough data to determine whether they support the stream, and, if not, reset the stream\u0027s read pointer to its original position. If the input stream does not support this, this method may fail with an IOException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#markSupported()\"\u003e\u003ccode\u003eInputStream.markSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#mark(int)\"\u003e\u003ccode\u003eInputStream.mark(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estream\u003c/code\u003e - the source of the sound bank data"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the stream does not point to valid MIDI soundbank data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred when loading the soundbank",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estream\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the sound bank"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Soundbank",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "url"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSoundbank",
+      "comment": "Constructs a Soundbank by reading it from the specified URL. The URL must point to a valid MIDI soundbank file.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - the source of the sound bank data"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the URL does not point to valid MIDI soundbank data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred when loading the soundbank",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eurl\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the sound bank"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Soundbank",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.File",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSoundbank",
+      "comment": "Constructs a Soundbank by reading it from the specified File. The File must point to a valid MIDI soundbank file.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the source of the sound bank data"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003eFile\u003c/code\u003e does not point to valid MIDI soundbank data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurred when loading the soundbank",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efile\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the sound bank"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.MidiFileFormat",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stream"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getMidiFileFormat",
+      "comment": "Obtains the MIDI file format of the data in the specified input stream. The stream must point to valid MIDI file data for a file type recognized by the system. This method and/or the code it invokes may need to read some data from the stream to determine whether its data format is supported. The implementation may therefore need to mark the stream, read enough data to determine whether it is in a supported format, and reset the stream\u0027s read pointer to its original position. If the input stream does not permit this set of operations, this method may fail with an IOException. This operation can only succeed for files of a type which can be parsed by an installed file reader. It may fail with an InvalidMidiDataException even for valid files if no compatible file reader is installed. It will also fail with an InvalidMidiDataException if a compatible file reader is installed, but encounters errors while determining the file format.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileFormat(java.net.URL)\"\u003e\u003ccode\u003egetMidiFileFormat(URL)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileFormat(java.io.File)\"\u003e\u003ccode\u003egetMidiFileFormat(File)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#markSupported()\"\u003e\u003ccode\u003eInputStream.markSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#mark(int)\"\u003e\u003ccode\u003eInputStream.mark(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estream\u003c/code\u003e - the input stream from which file format information should be extracted"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the stream does not point to valid MIDI file data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs while accessing the stream",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estream\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "an \n\u003ccode\u003eMidiFileFormat\u003c/code\u003e object describing the MIDI file format"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.MidiFileFormat",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "url"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getMidiFileFormat",
+      "comment": "Obtains the MIDI file format of the data in the specified URL. The URL must point to valid MIDI file data for a file type recognized by the system. This operation can only succeed for files of a type which can be parsed by an installed file reader. It may fail with an InvalidMidiDataException even for valid files if no compatible file reader is installed. It will also fail with an InvalidMidiDataException if a compatible file reader is installed, but encounters errors while determining the file format.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileFormat(java.io.InputStream)\"\u003e\u003ccode\u003egetMidiFileFormat(InputStream)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileFormat(java.io.File)\"\u003e\u003ccode\u003egetMidiFileFormat(File)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - the URL from which file format information should be extracted"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the URL does not point to valid MIDI file data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs while accessing the URL",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eurl\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eMidiFileFormat\u003c/code\u003e object describing the MIDI file format"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.MidiFileFormat",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.File",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getMidiFileFormat",
+      "comment": "Obtains the MIDI file format of the specified File. The File must point to valid MIDI file data for a file type recognized by the system. This operation can only succeed for files of a type which can be parsed by an installed file reader. It may fail with an InvalidMidiDataException even for valid files if no compatible file reader is installed. It will also fail with an InvalidMidiDataException if a compatible file reader is installed, but encounters errors while determining the file format.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileFormat(java.io.InputStream)\"\u003e\u003ccode\u003egetMidiFileFormat(InputStream)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileFormat(java.net.URL)\"\u003e\u003ccode\u003egetMidiFileFormat(URL)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the \n\u003ccode\u003eFile\u003c/code\u003e from which file format information should be extracted"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003eFile\u003c/code\u003e does not point to valid MIDI file data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs while accessing the file",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efile\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eMidiFileFormat\u003c/code\u003e object describing the MIDI file format"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Sequence",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stream"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSequence",
+      "comment": "Obtains a MIDI sequence from the specified input stream. The stream must point to valid MIDI file data for a file type recognized by the system. This method and/or the code it invokes may need to read some data from the stream to determine whether its data format is supported. The implementation may therefore need to mark the stream, read enough data to determine whether it is in a supported format, and reset the stream\u0027s read pointer to its original position. If the input stream does not permit this set of operations, this method may fail with an IOException. This operation can only succeed for files of a type which can be parsed by an installed file reader. It may fail with an InvalidMidiDataException even for valid files if no compatible file reader is installed. It will also fail with an InvalidMidiDataException if a compatible file reader is installed, but encounters errors while constructing the Sequence object from the file data.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#markSupported()\"\u003e\u003ccode\u003eInputStream.markSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#mark(int)\"\u003e\u003ccode\u003eInputStream.mark(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estream\u003c/code\u003e - the input stream from which the \n\u003ccode\u003eSequence\u003c/code\u003e should be constructed"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the stream does not point to valid MIDI file data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs while accessing the stream",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estream\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSequence\u003c/code\u003e object based on the MIDI file data contained in the input stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Sequence",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "url"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSequence",
+      "comment": "Obtains a MIDI sequence from the specified URL. The URL must point to valid MIDI file data for a file type recognized by the system. This operation can only succeed for files of a type which can be parsed by an installed file reader. It may fail with an InvalidMidiDataException even for valid files if no compatible file reader is installed. It will also fail with an InvalidMidiDataException if a compatible file reader is installed, but encounters errors while constructing the Sequence object from the file data.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - the URL from which the \n\u003ccode\u003eSequence\u003c/code\u003e should be constructed"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the URL does not point to valid MIDI file data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs while accessing the URL",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eurl\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSequence\u003c/code\u003e object based on the MIDI file data pointed to by the URL"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Sequence",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.InvalidMidiDataException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.File",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSequence",
+      "comment": "Obtains a MIDI sequence from the specified File. The File must point to valid MIDI file data for a file type recognized by the system. This operation can only succeed for files of a type which can be parsed by an installed file reader. It may fail with an InvalidMidiDataException even for valid files if no compatible file reader is installed. It will also fail with an InvalidMidiDataException if a compatible file reader is installed, but encounters errors while constructing the Sequence object from the file data.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the \n\u003ccode\u003eFile\u003c/code\u003e from which the \n\u003ccode\u003eSequence\u003c/code\u003e should be constructed"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/InvalidMidiDataException.html\" title\u003d\"class in javax.sound.midi\"\u003eInvalidMidiDataException\u003c/a\u003e\u003c/code\u003e - if the File does not point to valid MIDI file data recognized by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efile\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSequence\u003c/code\u003e object based on the MIDI file data pointed to by the File"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getMidiFileTypes",
+      "comment": "Obtains the set of MIDI file types for which file writing support is provided by the system.",
+      "tagMap": {
+        "return": [
+          "array of unique file types. If no file types are supported, an array of length 0 is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fileType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isFileTypeSupported",
+      "comment": "Indicates whether file writing support for the specified MIDI file type is provided by the system.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efileType\u003c/code\u003e - the file type for which write capabilities are queried"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the file type is supported, otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.sound.midi.Sequence",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sequence"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getMidiFileTypes",
+      "comment": "Obtains the set of MIDI file types that the system can write from the sequence specified.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esequence\u003c/code\u003e - the sequence for which MIDI file type support is queried"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esequence\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the set of unique supported file types. If no file types are supported, returns an array of length 0."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fileType"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.sound.midi.Sequence",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sequence"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isFileTypeSupported",
+      "comment": "Indicates whether a MIDI file of the file type specified can be written from the sequence indicated.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efileType\u003c/code\u003e - the file type for which write capabilities are queried",
+          "\u003ccode\u003esequence\u003c/code\u003e - the sequence for which file writing support is queried"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esequence\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the file type is supported for this sequence, otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.sound.midi.Sequence",
+            "type": "Class"
+          },
+          "field": {
+            "name": "in"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fileType"
+          }
+        },
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "write",
+      "comment": "Writes a stream of bytes representing a file of the MIDI file type indicated to the output stream provided.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#isFileTypeSupported(int,javax.sound.midi.Sequence)\"\u003e\u003ccode\u003eisFileTypeSupported(int, Sequence)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileTypes(javax.sound.midi.Sequence)\"\u003e\u003ccode\u003egetMidiFileTypes(Sequence)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ein\u003c/code\u003e - sequence containing MIDI data to be written to the file",
+          "\u003ccode\u003efileType\u003c/code\u003e - the file type of the file to be written to the output stream",
+          "\u003ccode\u003eout\u003c/code\u003e - stream to which the file data should be written"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the file format is not supported by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ein\u003c/code\u003e or \n\u003ccode\u003eout\u003c/code\u003e are \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the number of bytes written to the output stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.sound.midi.Sequence",
+            "type": "Class"
+          },
+          "field": {
+            "name": "in"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "type"
+          }
+        },
+        {
+          "type": {
+            "name": "java.io.File",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "write",
+      "comment": "Writes a stream of bytes representing a file of the MIDI file type indicated to the external file provided.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#isFileTypeSupported(int,javax.sound.midi.Sequence)\"\u003e\u003ccode\u003eisFileTypeSupported(int, Sequence)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiSystem.html#getMidiFileTypes(javax.sound.midi.Sequence)\"\u003e\u003ccode\u003egetMidiFileTypes(Sequence)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ein\u003c/code\u003e - sequence containing MIDI data to be written to the file",
+          "\u003ccode\u003etype\u003c/code\u003e - the file type of the file to be written to the output stream",
+          "\u003ccode\u003eout\u003c/code\u003e - external file to which the file data should be written"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O exception occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the file type is not supported by the system",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ein\u003c/code\u003e or \n\u003ccode\u003eout\u003c/code\u003e are \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the number of bytes written to the file"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.sound.midi.MidiSystem",
+  "comment": "The \n\u003ccode\u003eMidiSystem\u003c/code\u003e class provides access to the installed MIDI system resources, including devices such as synthesizers, sequencers, and MIDI input and output ports. A typical simple MIDI application might begin by invoking one or more \n\u003ccode\u003eMidiSystem\u003c/code\u003e methods to learn what devices are installed and to obtain the ones needed in that application. \n\u003cp\u003e The class also has methods for reading files, streams, and URLs that contain standard MIDI file data or soundbanks. You can query the \u003ccode\u003eMidiSystem\u003c/code\u003e for the format of a specified MIDI file. \u003c/p\u003e\n\u003cp\u003e You cannot instantiate a \u003ccode\u003eMidiSystem\u003c/code\u003e; all the methods are static. \u003c/p\u003e\n\u003cp\u003e Properties can be used to specify default MIDI devices. Both system properties and a properties file are considered. The \"sound.properties\" properties file is read from an implementation-specific location (typically it is the \u003ccode\u003econf\u003c/code\u003e directory in the Java installation directory). The optional \"javax.sound.config.file\" system property can be used to specify the properties file that will be read as the initial configuration. If a property exists both as a system property and in the properties file, the system property takes precedence. If none is specified, a suitable default is chosen among the available devices. The syntax of the properties file is specified in \u003ca href\u003d\"../../../../java.base/java/util/Properties.html#load(java.io.InputStream)\"\u003e\u003ccode\u003eProperties.load\u003c/code\u003e\u003c/a\u003e. The following table lists the available property keys and which methods consider them: \u003c/p\u003e\n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption\u003e\n  MIDI System Property Keys\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"col\"\u003eProperty Key \u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eInterface \u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eAffected Method \u003c/th\u003e\n  \u003c/tr\u003e\n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\u003ccode\u003ejavax.sound.midi.Receiver\u003c/code\u003e \u003c/th\u003e\n   \u003ctd\u003e\u003ca href\u003d\"Receiver.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eReceiver\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n   \u003ctd\u003e\u003ca href\u003d\"#getReceiver()\"\u003e\u003ccode\u003egetReceiver()\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n  \u003c/tr\u003e\n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\u003ccode\u003ejavax.sound.midi.Sequencer\u003c/code\u003e \u003c/th\u003e\n   \u003ctd\u003e\u003ca href\u003d\"Sequencer.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eSequencer\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n   \u003ctd\u003e\u003ca href\u003d\"#getSequencer()\"\u003e\u003ccode\u003egetSequencer()\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n  \u003c/tr\u003e\n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\u003ccode\u003ejavax.sound.midi.Synthesizer\u003c/code\u003e \u003c/th\u003e\n   \u003ctd\u003e\u003ca href\u003d\"Synthesizer.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eSynthesizer\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n   \u003ctd\u003e\u003ca href\u003d\"#getSynthesizer()\"\u003e\u003ccode\u003egetSynthesizer()\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n  \u003c/tr\u003e\n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\u003ccode\u003ejavax.sound.midi.Transmitter\u003c/code\u003e \u003c/th\u003e\n   \u003ctd\u003e\u003ca href\u003d\"Transmitter.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eTransmitter\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n   \u003ctd\u003e\u003ca href\u003d\"#getTransmitter()\"\u003e\u003ccode\u003egetTransmitter()\u003c/code\u003e\u003c/a\u003e \u003c/td\u003e\n  \u003c/tr\u003e\n \u003c/tbody\u003e \n\u003c/table\u003e The property value consists of the provider class name and the device name, separated by the hash mark (\"#\"). The provider class name is the fully-qualified name of a concrete \n\u003ca href\u003d\"spi/MidiDeviceProvider.html\" title\u003d\"class in javax.sound.midi.spi\"\u003e\u003ccode\u003eMIDI device provider\u003c/code\u003e\u003c/a\u003e class. The device name is matched against the \n\u003ccode\u003eString\u003c/code\u003e returned by the \n\u003ccode\u003egetName\u003c/code\u003e method of \n\u003ccode\u003eMidiDevice.Info\u003c/code\u003e. Either the class name, or the device name may be omitted. If only the class name is specified, the trailing hash mark is optional. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e If the provider class is specified, and it can be successfully retrieved from the installed providers, the list of \u003ccode\u003eMidiDevice.Info\u003c/code\u003e objects is retrieved from the provider. Otherwise, or when these devices do not provide a subsequent match, the list is retrieved from \u003ca href\u003d\"#getMidiDeviceInfo()\"\u003e\u003ccode\u003egetMidiDeviceInfo()\u003c/code\u003e\u003c/a\u003e to contain all available \u003ccode\u003eMidiDevice.Info\u003c/code\u003e objects. \u003c/p\u003e\n\u003cp\u003e If a device name is specified, the resulting list of \u003ccode\u003eMidiDevice.Info\u003c/code\u003e objects is searched: the first one with a matching name, and whose \u003ccode\u003eMidiDevice\u003c/code\u003e implements the respective interface, will be returned. If no matching \u003ccode\u003eMidiDevice.Info\u003c/code\u003e object is found, or the device name is not specified, the first suitable device from the resulting list will be returned. For Sequencer and Synthesizer, a device is suitable if it implements the respective interface; whereas for Receiver and Transmitter, a device is suitable if it implements neither Sequencer nor Synthesizer and provides at least one Receiver or Transmitter, respectively. \u003c/p\u003e\n\u003cp\u003e For example, the property \u003ccode\u003ejavax.sound.midi.Receiver\u003c/code\u003e with a value \u003ccode\u003e\"com.sun.media.sound.MidiProvider#SunMIDI1\"\u003c/code\u003e will have the following consequences when \u003ccode\u003egetReceiver\u003c/code\u003e is called: if the class \u003ccode\u003ecom.sun.media.sound.MidiProvider\u003c/code\u003e exists in the list of installed MIDI device providers, the first \u003ccode\u003eReceiver\u003c/code\u003e device with name \u003ccode\u003e\"SunMIDI1\"\u003c/code\u003e will be returned. If it cannot be found, the first \u003ccode\u003eReceiver\u003c/code\u003e from that provider will be returned, regardless of name. If there is none, the first \u003ccode\u003eReceiver\u003c/code\u003e with name \u003ccode\u003e\"SunMIDI1\"\u003c/code\u003e in the list of all devices (as returned by \u003ccode\u003egetMidiDeviceInfo\u003c/code\u003e) will be returned, or, if not found, the first \u003ccode\u003eReceiver\u003c/code\u003e that can be found in the list of all devices is returned. If that fails, too, a \u003ccode\u003eMidiUnavailableException\u003c/code\u003e is thrown.\u003c/p\u003e",
+  "tagMap": {}
+}

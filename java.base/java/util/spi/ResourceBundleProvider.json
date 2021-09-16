@@ -1,0 +1,63 @@
+{
+  "packageName": "java.util.spi",
+  "simpleName": "ResourceBundleProvider",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.ResourceBundle",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "baseName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "field": {
+            "name": "locale"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getBundle",
+      "comment": "Returns a ResourceBundle for the given bundle name and locale. This method returns null if there is no ResourceBundle found for the given parameters.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebaseName\u003c/code\u003e - the base bundle name of the resource bundle, a fully qualified class name",
+          "\u003ccode\u003elocale\u003c/code\u003e - the locale for which the resource bundle should be loaded"
+        ],
+        "return": [
+          "the ResourceBundle created for the given parameters, or null if no \n\u003ccode\u003eResourceBundle\u003c/code\u003e for the given parameters is found"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.spi.ResourceBundleProvider",
+  "comment": "\u003ccode\u003eResourceBundleProvider\u003c/code\u003e is a service provider interface for resource bundles. It is used by \n\u003ca href\u003d\"../ResourceBundle.html#getBundle(java.lang.String)\"\u003e\u003ccode\u003eResourceBundle.getBundle\u003c/code\u003e\u003c/a\u003e factory methods to locate and load the service providers that are deployed as modules via \n\u003ca href\u003d\"../ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e. \n\u003ch2\u003eDeveloping resource bundle services\u003c/h2\u003e A service for a resource bundle of a given \n\u003cem\u003e\u003ccode\u003ebaseName\u003c/code\u003e\u003c/em\u003e must have a fully-qualified class name of the form: \n\u003cblockquote\u003e \n \u003ccode\u003e\u0026lt;package of baseName\u0026gt; + \".spi.\" + \u0026lt;simple name of baseName\u0026gt; + \"Provider\"\u003c/code\u003e \n\u003c/blockquote\u003e The service type is in a \n\u003ccode\u003espi\u003c/code\u003e subpackage as it may be packaged in a module separate from the resource bundle providers. For example, the service for a resource bundle named \n\u003ccode\u003ecom.example.app.MyResources\u003c/code\u003e must be \n\u003ccode\u003ecom.example.app.spi.MyResourcesProvider\u003c/code\u003e: \n\u003cblockquote\u003e\n \u003cpre\u003e \u003ccode\u003epackage com.example.app.spi;\n public interface MyResourcesProvider extends ResourceBundleProvider {\n }\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e \n\u003ch2\u003eDeploying resource bundle service providers\u003c/h2\u003e Resource bundles can be deployed in one or more service providers in modules. For example, a provider for a service named \"\n\u003ccode\u003ecom.example.app.spi.MyResourcesProvider\u003c/code\u003e\" has the following implementation class: \n\u003cblockquote\u003e\n \u003cpre\u003e \u003ccode\u003eimport com.example.app.spi.MyResourcesProvider;\n class MyResourcesProviderImpl extends AbstractResourceBundleProvider\n     implements MyResourcesProvider\n {\n     public MyResourcesProviderImpl() {\n         super(\"java.properties\");\n     }\n     // this provider maps the resource bundle to per-language package\n     protected String toBundleName(String baseName, Locale locale) {\n         return \"p.\" + locale.getLanguage() + \".\" + baseName;\n     }\n\n     public ResourceBundle getBundle(String baseName, Locale locale) {\n         // this module only provides bundles in French\n         if (locale.equals(Locale.FRENCH)) {\n              return super.getBundle(baseName, locale);\n         }\n         // otherwise return null\n         return null;\n     }\n }\u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e This example provides \"\n\u003ccode\u003ecom.example.app.MyResources\u003c/code\u003e\" resource bundle of the French locale. Traditionally resource bundles of all locales are packaged in the same package as the resource bundle base name. When deploying resource bundles in more than one modules and two modules containing a package of the same name, \n\u003cem\u003esplit package\u003c/em\u003e, is not supported, resource bundles in each module can be packaged in a different package as shown in this example where this provider packages the resource bundles in per-language package, i.e. \n\u003ccode\u003ecom.example.app.fr\u003c/code\u003e for French locale. \n\u003cp\u003e A provider can provide more than one services, each of which is a service for a resource bundle of a different base name. \u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"AbstractResourceBundleProvider.html\" title\u003d\"class in java.util.spi\"\u003e\u003ccode\u003eAbstractResourceBundleProvider\u003c/code\u003e\u003c/a\u003e provides the basic implementation for \u003ccode\u003eResourceBundleProvider\u003c/code\u003e and a subclass can override the \u003ca href\u003d\"AbstractResourceBundleProvider.html#toBundleName(java.lang.String,java.util.Locale)\"\u003e\u003ccode\u003etoBundleName\u003c/code\u003e\u003c/a\u003e method to return a provider-specific location of the resource to be loaded, for example, per-language package. A provider can override \u003ca href\u003d\"#getBundle(java.lang.String,java.util.Locale)\"\u003e\u003ccode\u003eResourceBundleProvider.getBundle\u003c/code\u003e\u003c/a\u003e method for example to only search the known supported locales or return resource bundles in other formats such as XML. \u003c/p\u003e\n\u003cp\u003eThe module declaration of this provider module specifies the following directive: \u003c/p\u003e\n\u003cpre\u003e     provides com.example.app.spi.MyResourcesProvider with com.example.impl.MyResourcesProviderImpl;\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003e\u003ca id\u003d\"obtain-resource-bundle\"\u003eObtaining resource bundles from providers\u003c/a\u003e\u003c/h2\u003e The module declaration of the \n\u003cem\u003econsumer module\u003c/em\u003e that calls one of the \n\u003ccode\u003eResourceBundle.getBundle\u003c/code\u003e factory methods to obtain a resource bundle from service providers must specify the following directive: \n\u003cpre\u003e     uses com.example.app.spi.MyResourcesProvider;\n \u003c/pre\u003e \n\u003ca href\u003d\"../ResourceBundle.html#getBundle(java.lang.String,java.util.Locale)\"\u003e\u003ccode\u003eResourceBundle.getBundle(\"com.example.app.MyResource\", locale)\u003c/code\u003e\u003c/a\u003e locates and loads the providers for \n\u003ccode\u003ecom.example.app.spi.MyResourcesProvider\u003c/code\u003e service and then invokes \n\u003ca href\u003d\"#getBundle(java.lang.String,java.util.Locale)\"\u003e\u003ccode\u003eResourceBundleProvider.getBundle(\"com.example.app.MyResource\", locale)\u003c/code\u003e\u003c/a\u003e to find the resource bundle of the given base name and locale. If the consumer module is a resource bundle service provider for \n\u003ccode\u003ecom.example.app.spi.MyResourcesProvider\u003c/code\u003e, \n\u003ccode\u003eResourceBundle.getBundle\u003c/code\u003e will locate resource bundles only from service providers. Otherwise, \n\u003ccode\u003eResourceBundle.getBundle\u003c/code\u003e may continue the search of the resource bundle in other modules and class path per the specification of the \n\u003ccode\u003eResourceBundle.getBundle\u003c/code\u003e method being called.",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/spi/AbstractResourceBundleProvider.html\" title\u003d\"class in java.util.spi\"\u003e\u003ccode\u003eAbstractResourceBundleProvider\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ResourceBundle.html#resource-bundle-modules\"\u003e Resource Bundles and Named Modules\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

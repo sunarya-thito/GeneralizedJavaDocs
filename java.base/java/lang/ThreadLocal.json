@@ -1,0 +1,176 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "ThreadLocal",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "owner": "java.lang.ThreadLocal",
+        "name": "T",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "initialValue",
+      "comment": "Returns the current thread\u0027s \"initial value\" for this thread-local variable. This method will be invoked the first time a thread accesses the variable with the get() method, unless the thread previously invoked the set(T) method, in which case the initialValue method will not be invoked for the thread. Normally, this method is invoked at most once per thread, but it may be invoked again in case of subsequent invocations of remove() followed by get(). This implementation simply returns null; if the programmer desires thread-local variables to have an initial value other than null, ThreadLocal must be subclassed, and this method overridden. Typically, an anonymous inner class will be used.",
+      "tagMap": {
+        "return": [
+          "the initial value for this thread-local"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ThreadLocal",
+        "parameters": [
+          {
+            "name": "S",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.function.Supplier",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "S",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "supplier"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "S",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "withInitial",
+      "comment": "Creates a thread local variable. The initial value of the variable is determined by invoking the get method on the Supplier.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eS\u003c/code\u003e - the type of the thread local\u0027s value"
+        ],
+        "param": [
+          "\u003ccode\u003esupplier\u003c/code\u003e - the supplier to be used to determine the initial value"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified supplier is null"
+        ],
+        "return": [
+          "a new thread local variable"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "owner": "java.lang.ThreadLocal",
+        "name": "T",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "get",
+      "comment": "Returns the value in the current thread\u0027s copy of this thread-local variable. If the variable has no value for the current thread, it is first initialized to the value returned by an invocation of the initialValue() method.",
+      "tagMap": {
+        "return": [
+          "the current thread\u0027s value of this thread-local"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.lang.ThreadLocal",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "set",
+      "comment": "Sets the current thread\u0027s copy of this thread-local variable to the specified value. Most subclasses will have no need to override this method, relying solely on the initialValue() method to set the values of thread-locals.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be stored in the current thread\u0027s copy of this thread-local."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "remove",
+      "comment": "Removes the current thread\u0027s value for this thread-local variable. If this thread-local variable is subsequently read by the current thread, its value will be reinitialized by invoking its initialValue() method, unless its value is set by the current thread in the interim. This may result in multiple invocations of the initialValue method in the current thread.",
+      "tagMap": {
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a thread local variable.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadLocal.html#withInitial(java.util.function.Supplier)\"\u003e\u003ccode\u003ewithInitial(java.util.function.Supplier)\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.lang.ThreadLocal",
+  "comment": "This class provides thread-local variables. These variables differ from their normal counterparts in that each thread that accesses one (via its \n\u003ccode\u003eget\u003c/code\u003e or \n\u003ccode\u003eset\u003c/code\u003e method) has its own, independently initialized copy of the variable. \n\u003ccode\u003eThreadLocal\u003c/code\u003e instances are typically private static fields in classes that wish to associate state with a thread (e.g., a user ID or Transaction ID). \n\u003cp\u003eFor example, the class below generates unique identifiers local to each thread. A thread\u0027s id is assigned the first time it invokes \u003ccode\u003eThreadId.get()\u003c/code\u003e and remains unchanged on subsequent calls. \u003c/p\u003e\n\u003cpre\u003e import java.util.concurrent.atomic.AtomicInteger;\n\n public class ThreadId {\n     // Atomic integer containing the next thread ID to be assigned\n     private static final AtomicInteger nextId \u003d new AtomicInteger(0);\n\n     // Thread local variable containing each thread\u0027s ID\n     private static final ThreadLocal\u0026lt;Integer\u0026gt; threadId \u003d\n         new ThreadLocal\u0026lt;Integer\u0026gt;() {\n             @Override protected Integer initialValue() {\n                 return nextId.getAndIncrement();\n         }\n     };\n\n     // Returns the current thread\u0027s unique ID, assigning it if necessary\n     public static int get() {\n         return threadId.get();\n     }\n }\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eEach thread holds an implicit reference to its copy of a thread-local variable as long as the thread is alive and the \u003ccode\u003eThreadLocal\u003c/code\u003e instance is accessible; after a thread goes away, all of its copies of thread-local instances are subject to garbage collection (unless other references to these copies exist).\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.2"
+    ]
+  }
+}

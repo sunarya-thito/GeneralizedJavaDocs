@@ -1,0 +1,132 @@
+{
+  "packageName": "javax.tools",
+  "simpleName": "Tool",
+  "moduleName": "java.compiler",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Returns the name of this tool, or an empty string if no name is provided.",
+      "tagMap": {
+        "apiNote": [
+          "It is recommended that the name be the same as would be used on the command line: for example, \"javac\", \"jar\", \"jlink\"."
+        ],
+        "implNote": [
+          "This implementation returns an empty string."
+        ],
+        "return": [
+          "the name of this tool"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "in"
+          }
+        },
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        },
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "err"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "arguments"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "run",
+      "comment": "Run the tool with the given I/O channels and arguments. By convention a tool returns 0 for success and nonzero for errors. Any diagnostics generated will be written to either out or err in some unspecified format.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ein\u003c/code\u003e - \"standard\" input; use System.in if null",
+          "\u003ccode\u003eout\u003c/code\u003e - \"standard\" output; use System.out if null",
+          "\u003ccode\u003eerr\u003c/code\u003e - \"standard\" error; use System.err if null",
+          "\u003ccode\u003earguments\u003c/code\u003e - arguments to pass to the tool"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the array of arguments contains any \n\u003ccode\u003enull\u003c/code\u003e elements."
+        ],
+        "return": [
+          "0 for success; nonzero otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "javax.lang.model.SourceVersion",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSourceVersions",
+      "comment": "Returns the source versions of the Java programming language supported by this tool.",
+      "tagMap": {
+        "return": [
+          "a set of supported source versions"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.tools.Tool",
+  "comment": "Common interface for tools that can be invoked from a program. A tool is traditionally a command line program such as a compiler. The set of tools available with a platform is defined by the vendor. \n\u003cp\u003eTools can be located using \u003ca href\u003d\"../../../java.base/java/util/ServiceLoader.html#load(java.lang.Class)\"\u003e\u003ccode\u003eServiceLoader.load(Class)\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.6"
+    ]
+  }
+}

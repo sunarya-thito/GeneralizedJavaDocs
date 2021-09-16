@@ -1,0 +1,75 @@
+{
+  "packageName": "javax.xml.crypto.dsig.keyinfo",
+  "simpleName": "X509Data",
+  "moduleName": "java.xml.crypto",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "javax.xml.crypto.XMLStructure",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "TYPE",
+      "comment": "URI identifying the X509Data KeyInfo type: http://www.w3.org/2000/09/xmldsig#X509Data. This can be specified as the value of the type parameter of the RetrievalMethod class to describe a remote X509Data structure.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.xml.crypto.dsig.keyinfo.X509Data.TYPE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "RAW_X509_CERTIFICATE_TYPE",
+      "comment": "URI identifying the binary (ASN.1 DER) X.509 Certificate KeyInfo type: http://www.w3.org/2000/09/xmldsig#rawX509Certificate. This can be specified as the value of the type parameter of the RetrievalMethod class to describe a remote X509 Certificate.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.xml.crypto.dsig.keyinfo.X509Data.RAW_X509_CERTIFICATE_TYPE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getContent",
+      "comment": "Returns an unmodifiable list of the content in this X509Data. Valid types are String (subject names), byte[] (subject key ids), X509Certificate, X509CRL, or XMLStructure (X509IssuerSerial objects or elements from an external namespace).",
+      "tagMap": {
+        "return": [
+          "an unmodifiable list of the content in this \n\u003ccode\u003eX509Data\u003c/code\u003e (never \n\u003ccode\u003enull\u003c/code\u003e or empty)"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.xml.crypto.dsig.keyinfo.X509Data",
+  "comment": "A representation of the XML \n\u003ccode\u003eX509Data\u003c/code\u003e element as defined in the \n\u003ca href\u003d\"http://www.w3.org/TR/xmldsig-core/\"\u003e W3C Recommendation for XML-Signature Syntax and Processing\u003c/a\u003e. An \n\u003ccode\u003eX509Data\u003c/code\u003e object contains one or more identifers of keys or X.509 certificates (or certificates\u0027 identifiers or a revocation list). The XML Schema Definition is defined as: \n\u003cpre\u003e    \u0026lt;element name\u003d\"X509Data\" type\u003d\"ds:X509DataType\"/\u0026gt;\n    \u0026lt;complexType name\u003d\"X509DataType\"\u0026gt;\n        \u0026lt;sequence maxOccurs\u003d\"unbounded\"\u0026gt;\n          \u0026lt;choice\u0026gt;\n            \u0026lt;element name\u003d\"X509IssuerSerial\" type\u003d\"ds:X509IssuerSerialType\"/\u0026gt;\n            \u0026lt;element name\u003d\"X509SKI\" type\u003d\"base64Binary\"/\u0026gt;\n            \u0026lt;element name\u003d\"X509SubjectName\" type\u003d\"string\"/\u0026gt;\n            \u0026lt;element name\u003d\"X509Certificate\" type\u003d\"base64Binary\"/\u0026gt;\n            \u0026lt;element name\u003d\"X509CRL\" type\u003d\"base64Binary\"/\u0026gt;\n            \u0026lt;any namespace\u003d\"##other\" processContents\u003d\"lax\"/\u0026gt;\n          \u0026lt;/choice\u0026gt;\n        \u0026lt;/sequence\u0026gt;\n    \u0026lt;/complexType\u0026gt;\n\n    \u0026lt;complexType name\u003d\"X509IssuerSerialType\"\u0026gt;\n      \u0026lt;sequence\u0026gt;\n        \u0026lt;element name\u003d\"X509IssuerName\" type\u003d\"string\"/\u0026gt;\n        \u0026lt;element name\u003d\"X509SerialNumber\" type\u003d\"integer\"/\u0026gt;\n      \u0026lt;/sequence\u0026gt;\n    \u0026lt;/complexType\u0026gt;\n \u003c/pre\u003e An \n\u003ccode\u003eX509Data\u003c/code\u003e instance may be created by invoking the \n\u003ca href\u003d\"KeyInfoFactory.html#newX509Data(java.util.List)\"\u003e\u003ccode\u003enewX509Data\u003c/code\u003e\u003c/a\u003e methods of the \n\u003ca href\u003d\"KeyInfoFactory.html\" title\u003d\"class in javax.xml.crypto.dsig.keyinfo\"\u003e\u003ccode\u003eKeyInfoFactory\u003c/code\u003e\u003c/a\u003e class and passing it a list of one or more \n\u003ca href\u003d\"../../XMLStructure.html\" title\u003d\"interface in javax.xml.crypto\"\u003e\u003ccode\u003eXMLStructure\u003c/code\u003e\u003c/a\u003es representing X.509 content; for example: \n\u003cpre\u003e   KeyInfoFactory factory \u003d KeyInfoFactory.getInstance(\"DOM\");\n   X509Data x509Data \u003d factory.newX509Data\n       (Collections.singletonList(\"cn\u003dAlice\"));\n \u003c/pre\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/dsig/keyinfo/KeyInfoFactory.html#newX509Data(java.util.List)\"\u003e\u003ccode\u003eKeyInfoFactory.newX509Data(List)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

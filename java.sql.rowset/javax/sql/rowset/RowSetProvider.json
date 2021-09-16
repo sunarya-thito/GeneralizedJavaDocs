@@ -1,0 +1,113 @@
+{
+  "packageName": "javax.sql.rowset",
+  "simpleName": "RowSetProvider",
+  "moduleName": "java.sql.rowset",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.RowSetFactory",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "newFactory",
+      "comment": "Creates a new instance of a RowSetFactory implementation. This method uses the following look up order to determine the RowSetFactory implementation class to load: The System property javax.sql.rowset.RowSetFactory. For example: -Djavax.sql.rowset.RowSetFactory\u003dcom.sun.rowset.RowSetFactoryImpl The ServiceLoader API. The ServiceLoader API will look for a class name in the file META-INF/services/javax.sql.rowset.RowSetFactory in jars available to the runtime. For example, to have the RowSetFactory implementation com.sun.rowset.RowSetFactoryImpl loaded, the entry in META-INF/services/javax.sql.rowset.RowSetFactory would be: com.sun.rowset.RowSetFactoryImpl Platform default RowSetFactory instance. Once an application has obtained a reference to a RowSetFactory, it can use the factory to obtain RowSet instances.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if the default factory class cannot be loaded, instantiated. The cause will be set to actual Exception"
+        ],
+        "return": [
+          "New instance of a \n\u003ccode\u003eRowSetFactory\u003c/code\u003e"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.RowSetFactory",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "factoryClassName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cl"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "newFactory",
+      "comment": "Creates a new instance of a RowSetFactory from the specified factory class name. This function is useful when there are multiple providers in the classpath. It gives more control to the application as it can specify which provider should be loaded. Once an application has obtained a reference to a RowSetFactory it can use the factory to obtain RowSet instances.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/RowSetProvider.html#newFactory()\"\u003e\u003ccode\u003enewFactory()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efactoryClassName\u003c/code\u003e - fully qualified factory class name that provides an implementation of \n\u003ccode\u003ejavax.sql.rowset.RowSetFactory\u003c/code\u003e.",
+          "\u003ccode\u003ecl\u003c/code\u003e - \n\u003ccode\u003eClassLoader\u003c/code\u003e used to load the factory class. If \n\u003ccode\u003enull\u003c/code\u003e current \n\u003ccode\u003eThread\u003c/code\u003e\u0027s context classLoader is used to load the factory class."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efactoryClassName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or the factory class cannot be loaded, instantiated."
+        ],
+        "return": [
+          "New instance of a \n\u003ccode\u003eRowSetFactory\u003c/code\u003e"
+        ],
+        "since": [
+          "1.7"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "RowSetProvider constructor",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.sql.rowset.RowSetProvider",
+  "comment": "A factory API that enables applications to obtain a \n\u003ccode\u003eRowSetFactory\u003c/code\u003e implementation that can be used to create different types of \n\u003ccode\u003eRowSet\u003c/code\u003e implementations. \n\u003cp\u003e Example: \u003c/p\u003e \n\u003cpre\u003e RowSetFactory aFactory \u003d RowSetProvider.newFactory();\n CachedRowSet crs \u003d aFactory.createCachedRowSet();\n ...\n RowSetFactory rsf \u003d RowSetProvider.newFactory(\"com.sun.rowset.RowSetFactoryImpl\", null);\n WebRowSet wrs \u003d rsf.createWebRowSet();\n \u003c/pre\u003e \n\u003cp\u003e Tracing of this class may be enabled by setting the System property \u003ccode\u003ejavax.sql.rowset.RowSetFactory.debug\u003c/code\u003e to any value but \u003ccode\u003efalse\u003c/code\u003e. \u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

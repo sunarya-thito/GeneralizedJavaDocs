@@ -1,0 +1,91 @@
+{
+  "packageName": "com.sun.source.util",
+  "simpleName": "Plugin",
+  "moduleName": "jdk.compiler",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Returns the user-friendly name of this plug-in.",
+      "tagMap": {
+        "return": [
+          "the user-friendly name of the plug-in"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.source.util.JavacTask",
+            "type": "Class"
+          },
+          "field": {
+            "name": "task"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "args"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "init",
+      "comment": "Initializes the plug-in for a given compilation task.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etask\u003c/code\u003e - The compilation task that has just been started",
+          "\u003ccode\u003eargs\u003c/code\u003e - Arguments, if any, for the plug-in"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "autoStart",
+      "comment": "Returns whether or not this plugin should be automatically started, even if not explicitly specified in the command-line options. This method will be called by javac for all plugins located by the service loader. If the method returns true, the plugin will be initialized with an empty array of string arguments if it is not otherwise initialized due to an explicit command-line option.",
+      "tagMap": {
+        "return": [
+          "whether or not this plugin should be automatically started"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "com.sun.source.util.Plugin",
+  "comment": "The interface for a javac plug-in. \n\u003cp\u003eThe javac plug-in mechanism allows a user to specify one or more plug-ins on the javac command line, to be started soon after the compilation has begun. Plug-ins are identified by a user-friendly name. Each plug-in that is started will be passed an array of strings, which may be used to provide the plug-in with values for any desired options or other arguments. \u003c/p\u003e\n\u003cp\u003ePlug-ins are located via a \u003ca href\u003d\"../../../../../java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e, using the same class path as annotation processors (i.e. \u003ca href\u003d\"../../../../../java.compiler/javax/tools/StandardLocation.html#ANNOTATION_PROCESSOR_PATH\"\u003e\u003ccode\u003eANNOTATION_PROCESSOR_PATH\u003c/code\u003e\u003c/a\u003e or \u003ccode\u003e-processorpath\u003c/code\u003e). \u003c/p\u003e\n\u003cp\u003eIt is expected that a typical plug-in will simply register a \u003ca href\u003d\"TaskListener.html\" title\u003d\"interface in com.sun.source.util\"\u003e\u003ccode\u003eTaskListener\u003c/code\u003e\u003c/a\u003e to be informed of events during the execution of the compilation, and that the rest of the work will be done by the task listener.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.8"
+    ]
+  }
+}

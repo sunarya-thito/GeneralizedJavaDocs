@@ -1,0 +1,84 @@
+{
+  "packageName": "javax.net.ssl",
+  "simpleName": "SSLPermission",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.security.BasicPermission",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new SSLPermission with the specified name. The name is the symbolic name of the SSLPermission, such as \"setDefaultAuthenticator\", etc. An asterisk may appear at the end of the name, following a \".\", or by itself, to signify a wildcard match.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the SSLPermission."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is empty."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "actions"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new SSLPermission object with the specified name. The name is the symbolic name of the SSLPermission, and the actions String is currently unused and should be null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the SSLPermission.",
+          "\u003ccode\u003eactions\u003c/code\u003e - ignored."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is empty."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "javax.net.ssl.SSLPermission",
+  "comment": "This class is for various network permissions. An SSLPermission contains a name (also referred to as a \"target name\") but no actions list; you either have the named permission or you don\u0027t. \n\u003cp\u003e The target name is the name of the network permission (see below). The naming convention follows the hierarchical property naming convention. Also, an asterisk may appear at the end of the name, following a \".\", or by itself, to signify a wildcard match. For example: \"foo.*\" and \"*\" signify a wildcard match, while \"*foo\" and \"a*b\" do not. \u003c/p\u003e\n\u003cp\u003e The following table lists all the possible SSLPermission target names, and for each provides a description of what the permission allows and a discussion of the risks of granting code the permission. \u003c/p\u003e\n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption style\u003d\"display:none\"\u003e\n  permission name, what it allows, and associated risks\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"col\"\u003ePermission Target Name\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eWhat the Permission Allows\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eRisks of Allowing this Permission\u003c/th\u003e \n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003esetHostnameVerifier\u003c/th\u003e \n   \u003ctd\u003eThe ability to set a callback which can decide whether to allow a mismatch between the host being connected to by an HttpsURLConnection and the common name field in server certificate. \u003c/td\u003e \n   \u003ctd\u003eMalicious code can set a verifier that monitors host names visited by HttpsURLConnection requests or that allows server certificates with invalid common names. \u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003egetSSLSessionContext\u003c/th\u003e \n   \u003ctd\u003eThe ability to get the SSLSessionContext of an SSLSession. \u003c/td\u003e \n   \u003ctd\u003eMalicious code may monitor sessions which have been established with SSL peers or might invalidate sessions to slow down performance. \u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003esetDefaultSSLContext\u003c/th\u003e \n   \u003ctd\u003eThe ability to set the default SSL context \u003c/td\u003e \n   \u003ctd\u003eMalicious code can set a context that monitors the opening of connections or the plaintext data that is transmitted. \u003c/td\u003e \n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/BasicPermission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eBasicPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Permission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Permissions.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermissions\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/PermissionCollection.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermissionCollection\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSecurityManager\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.net.ssl.SSLPermission\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

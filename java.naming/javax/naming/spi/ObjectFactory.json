@@ -1,0 +1,103 @@
+{
+  "packageName": "javax.naming.spi",
+  "simpleName": "ObjectFactory",
+  "moduleName": "java.naming",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.naming.Name",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.naming.Context",
+            "type": "Class"
+          },
+          "field": {
+            "name": "nameCtx"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Hashtable",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "environment"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getObjectInstance",
+      "comment": "Creates an object using the location or reference information specified. Special requirements of this object are supplied using environment. An example of such an environment property is user identity information. NamingManager.getObjectInstance() successively loads in object factories and invokes this method on them until one produces a non-null answer. When an exception is thrown by an object factory, the exception is passed on to the caller of NamingManager.getObjectInstance() (and no search is made for other factories that may produce a non-null answer). An object factory should only throw an exception if it is sure that it is the only intended factory and that no other object factories should be tried. If this factory cannot create an object using the arguments supplied, it should return null. A URL context factory is a special ObjectFactory that creates contexts for resolving URLs or objects whose locations are specified by URLs. The getObjectInstance() method of a URL context factory will obey the following rules. If obj is null, create a context for resolving URLs of the scheme associated with this factory. The resulting context is not tied to a specific URL: it is able to handle arbitrary URLs with this factory\u0027s scheme id. For example, invoking getObjectInstance() with obj set to null on an LDAP URL context factory would return a context that can resolve LDAP URLs such as \"ldap://ldap.wiz.com/o\u003dwiz,c\u003dus\" and \"ldap://ldap.umich.edu/o\u003dumich,c\u003dus\". If obj is a URL string, create an object (typically a context) identified by the URL. For example, suppose this is an LDAP URL context factory. If obj is \"ldap://ldap.wiz.com/o\u003dwiz,c\u003dus\", getObjectInstance() would return the context named by the distinguished name \"o\u003dwiz, c\u003dus\" at the LDAP server ldap.wiz.com. This context can then be used to resolve LDAP names (such as \"cn\u003dGeorge\") relative to that context. If obj is an array of URL strings, the assumption is that the URLs are equivalent in terms of the context to which they refer. Verification of whether the URLs are, or need to be, equivalent is up to the context factory. The order of the URLs in the array is not significant. The object returned by getObjectInstance() is like that of the single URL case. It is the object named by the URLs. If obj is of any other type, the behavior of getObjectInstance() is determined by the context factory implementation. The name and environment parameters are owned by the caller. The implementation will not modify these objects or keep references to them, although it may keep references to clones or copies. Name and Context Parameters. The name and nameCtx parameters may optionally be used to specify the name of the object being created. name is the name of the object, relative to context nameCtx. If there are several possible contexts from which the object could be named -- as will often be the case -- it is up to the caller to select one. A good rule of thumb is to select the \"deepest\" context available. If nameCtx is null, name is relative to the default initial context. If no name is being specified, the name parameter should be null. If a factory uses nameCtx it should synchronize its use against concurrent access, since context implementations are not guaranteed to be thread-safe.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getObjectInstance(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getObjectInstance(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getURLContext(java.lang.String,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getURLContext(java.lang.String, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - The possibly null object containing location or reference information that can be used in creating an object.",
+          "\u003ccode\u003ename\u003c/code\u003e - The name of this object relative to \n\u003ccode\u003enameCtx\u003c/code\u003e, or null if no name is specified.",
+          "\u003ccode\u003enameCtx\u003c/code\u003e - The context relative to which the \n\u003ccode\u003ename\u003c/code\u003e parameter is specified, or null if \n\u003ccode\u003ename\u003c/code\u003e is relative to the default initial context.",
+          "\u003ccode\u003eenvironment\u003c/code\u003e - The possibly null environment that is used in creating the object."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if this object factory encountered an exception while attempting to create an object, and no other object factories are to be tried."
+        ],
+        "return": [
+          "The object created; null if an object cannot be created."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.naming.spi.ObjectFactory",
+  "comment": "This interface represents a factory for creating an object. \n\u003cp\u003e The JNDI framework allows for object implementations to be loaded in dynamically via \u003cem\u003eobject factories\u003c/em\u003e. For example, when looking up a printer bound in the name space, if the print service binds printer names to References, the printer Reference could be used to create a printer object, so that the caller of lookup can directly operate on the printer object after the lookup. \u003c/p\u003e\n\u003cp\u003eAn \u003ccode\u003eObjectFactory\u003c/code\u003e is responsible for creating objects of a specific type. In the above example, you may have a PrinterObjectFactory for creating Printer objects. \u003c/p\u003e\n\u003cp\u003e An object factory must implement the \u003ccode\u003eObjectFactory\u003c/code\u003e interface. In addition, the factory class must be public and must have a public constructor that accepts no parameters. Note that in cases where the factory is in a named module then it must be in a package which is exported by that module to the \u003ccode\u003ejava.naming\u003c/code\u003e module. \u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003egetObjectInstance()\u003c/code\u003e method of an object factory may be invoked multiple times, possibly using different parameters. The implementation is thread-safe. \u003c/p\u003e\n\u003cp\u003e The mention of URL in the documentation for this class refers to a URL string as defined by RFC 1738 and its related RFCs. It is any string that conforms to the syntax described therein, and may not always have corresponding support in the java.net.URL class or Web browsers.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getObjectInstance(java.lang.Object,javax.naming.Name,javax.naming.Context,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getObjectInstance(java.lang.Object, javax.naming.Name, javax.naming.Context, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/NamingManager.html#getURLContext(java.lang.String,java.util.Hashtable)\"\u003e\u003ccode\u003eNamingManager.getURLContext(java.lang.String, java.util.Hashtable\u0026lt;?, ?\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/ObjectFactoryBuilder.html\" title\u003d\"interface in javax.naming.spi\"\u003e\u003ccode\u003eObjectFactoryBuilder\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/spi/StateFactory.html\" title\u003d\"interface in javax.naming.spi\"\u003e\u003ccode\u003eStateFactory\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

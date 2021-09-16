@@ -1,0 +1,1010 @@
+{
+  "packageName": "java.nio.file",
+  "simpleName": "Path",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "java.lang.Comparable",
+      "parameters": [
+        {
+          "name": "java.nio.file.Path",
+          "type": "Class"
+        }
+      ],
+      "type": "Class"
+    },
+    {
+      "name": "java.lang.Iterable",
+      "parameters": [
+        {
+          "name": "java.nio.file.Path",
+          "type": "Class"
+        }
+      ],
+      "type": "Class"
+    },
+    {
+      "name": "java.nio.file.Watchable",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "first"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "more"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "of",
+      "comment": "Returns a Path by converting a path string, or a sequence of strings that when joined form a path string. If more does not specify any elements then the value of the first parameter is the path string to convert. If more specifies one or more elements then each non-empty string, including first, is considered to be a sequence of name elements and is joined to form a path string. The details as to how the Strings are joined is provider specific but typically they will be joined using the name-separator as the separator. For example, if the name separator is \"/\" and getPath(\"/foo\",\"bar\",\"gus\") is invoked, then the path string \"/foo/bar/gus\" is converted to a Path. A Path representing an empty path is returned if first is the empty string and more does not contain any non-empty strings. The Path is obtained by invoking the getPath method of the default FileSystem. Note that while this method is very convenient, using it will imply an assumed reference to the default FileSystem and limit the utility of the calling code. Hence it should not be used in library code intended for flexible reuse. A more flexible alternative is to use an existing Path instance as an anchor, such as: \n     Path dir \u003d ...\n     Path path \u003d dir.resolve(\"file\");",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystem.html#getPath(java.lang.String,java.lang.String...)\"\u003e\u003ccode\u003eFileSystem.getPath(java.lang.String, java.lang.String...)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efirst\u003c/code\u003e - the path string or initial part of the path string",
+          "\u003ccode\u003emore\u003c/code\u003e - additional strings to be joined to form the path string"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/InvalidPathException.html\" title\u003d\"class in java.nio.file\"\u003eInvalidPathException\u003c/a\u003e\u003c/code\u003e - if the path string cannot be converted to a \n\u003ccode\u003ePath\u003c/code\u003e"
+        ],
+        "return": [
+          "the resulting \n\u003ccode\u003ePath\u003c/code\u003e"
+        ],
+        "since": [
+          "11"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URI",
+            "type": "Class"
+          },
+          "field": {
+            "name": "uri"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "of",
+      "comment": "Returns a Path by converting a URI. This method iterates over the installed providers to locate the provider that is identified by the URI scheme of the given URI. URI schemes are compared without regard to case. If the provider is found then its getPath method is invoked to convert the URI. In the case of the default provider, identified by the URI scheme \"file\", the given URI has a non-empty path component, and undefined query and fragment components. Whether the authority component may be present is platform specific. The returned Path is associated with the default file system. The default provider provides a similar round-trip guarantee to the File class. For a given Path p it is guaranteed that Path.of(p.toUri()).equals( p.toAbsolutePath()) so long as the original Path, the URI, and the new Path are all created in (possibly different invocations of) the same Java virtual machine. Whether other providers make any guarantees is provider specific and therefore unspecified.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - the URI to convert"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if preconditions on the \n\u003ccode\u003euri\u003c/code\u003e parameter do not hold. The format of the URI is provider specific.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystemNotFoundException.html\" title\u003d\"class in java.nio.file\"\u003eFileSystemNotFoundException\u003c/a\u003e\u003c/code\u003e - The file system, identified by the URI, does not exist and cannot be created automatically, or the provider identified by the URI\u0027s scheme component is not installed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is installed and it denies an unspecified permission to access the file system"
+        ],
+        "return": [
+          "the resulting \n\u003ccode\u003ePath\u003c/code\u003e"
+        ],
+        "since": [
+          "11"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.FileSystem",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFileSystem",
+      "comment": "Returns the file system that created this object.",
+      "tagMap": {
+        "return": [
+          "the file system that created this object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isAbsolute",
+      "comment": "Tells whether or not this path is absolute. An absolute path is complete in that it doesn\u0027t need to be combined with other path information in order to locate a file.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, this path is absolute"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getRoot",
+      "comment": "Returns the root component of this path as a Path object, or null if this path does not have a root component.",
+      "tagMap": {
+        "return": [
+          "a path representing the root component of this path, or \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFileName",
+      "comment": "Returns the name of the file or directory denoted by this path as a Path object. The file name is the farthest element from the root in the directory hierarchy.",
+      "tagMap": {
+        "return": [
+          "a path representing the name of the file or directory, or \n\u003ccode\u003enull\u003c/code\u003e if this path has zero elements"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getParent",
+      "comment": "Returns the parent path, or null if this path does not have a parent. The parent of this path object consists of this path\u0027s root component, if any, and each element in the path except for the farthest from the root in the directory hierarchy. This method does not access the file system; the path or its parent may not exist. Furthermore, this method does not eliminate special names such as \".\" and \"..\" that may be used in some implementations. On UNIX for example, the parent of \"/a/b/c\" is \"/a/b\", and the parent of \"x/y/.\" is \"x/y\". This method may be used with the normalize method, to eliminate redundant names, for cases where shell-like navigation is required. If this path has more than one element, and no root component, then this method is equivalent to evaluating the expression:  subpath(0, getNameCount()-1);",
+      "tagMap": {
+        "return": [
+          "a path representing the path\u0027s parent"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNameCount",
+      "comment": "Returns the number of name elements in the path.",
+      "tagMap": {
+        "return": [
+          "the number of elements in the path, or \n\u003ccode\u003e0\u003c/code\u003e if this path only represents a root component"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Returns a name element of this path as a Path object. The index parameter is the index of the name element to return. The element that is closest to the root in the directory hierarchy has index 0. The element that is farthest from the root has index count-1.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the index of the element"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eindex\u003c/code\u003e is negative, \n\u003ccode\u003eindex\u003c/code\u003e is greater than or equal to the number of elements, or this path has zero name elements"
+        ],
+        "return": [
+          "the name element"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "beginIndex"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "endIndex"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "subpath",
+      "comment": "Returns a relative Path that is a subsequence of the name elements of this path. The beginIndex and endIndex parameters specify the subsequence of name elements. The name that is closest to the root in the directory hierarchy has index 0. The name that is farthest from the root has index count-1. The returned Path object has the name elements that begin at beginIndex and extend to the element at index endIndex-1.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebeginIndex\u003c/code\u003e - the index of the first element, inclusive",
+          "\u003ccode\u003eendIndex\u003c/code\u003e - the index of the last element, exclusive"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebeginIndex\u003c/code\u003e is negative, or greater than or equal to the number of elements. If \n\u003ccode\u003eendIndex\u003c/code\u003e is less than or equal to \n\u003ccode\u003ebeginIndex\u003c/code\u003e, or larger than the number of elements."
+        ],
+        "return": [
+          "a new \n\u003ccode\u003ePath\u003c/code\u003e object that is a subsequence of the name elements in this \n\u003ccode\u003ePath\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "startsWith",
+      "comment": "Tests if this path starts with the given path. This path starts with the given path if this path\u0027s root component starts with the root component of the given path, and this path starts with the same name elements as the given path. If the given path has more name elements than this path then false is returned. Whether or not the root component of this path starts with the root component of the given path is file system specific. If this path does not have a root component and the given path has a root component then this path does not start with the given path. If the given path is associated with a different FileSystem to this path then false is returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the given path"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this path starts with the given path; otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "startsWith",
+      "comment": "Tests if this path starts with a Path, constructed by converting the given path string, in exactly the manner specified by the startsWith(Path) method. On UNIX for example, the path \"foo/bar\" starts with \"foo\" and \"foo/bar\". It does not start with \"f\" or \"fo\".",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent for this path to: \n\u003cpre\u003e\u003ccode\u003e\n     startsWith(getFileSystem().getPath(other));\n \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the given path string"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/InvalidPathException.html\" title\u003d\"class in java.nio.file\"\u003eInvalidPathException\u003c/a\u003e\u003c/code\u003e - If the path string cannot be converted to a Path."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this path starts with the given path; otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "endsWith",
+      "comment": "Tests if this path ends with the given path. If the given path has N elements, and no root component, and this path has N or more elements, then this path ends with the given path if the last N elements of each path, starting at the element farthest from the root, are equal. If the given path has a root component then this path ends with the given path if the root component of this path ends with the root component of the given path, and the corresponding elements of both paths are equal. Whether or not the root component of this path ends with the root component of the given path is file system specific. If this path does not have a root component and the given path has a root component then this path does not end with the given path. If the given path is associated with a different FileSystem to this path then false is returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the given path"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this path ends with the given path; otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "endsWith",
+      "comment": "Tests if this path ends with a Path, constructed by converting the given path string, in exactly the manner specified by the endsWith(Path) method. On UNIX for example, the path \"foo/bar\" ends with \"foo/bar\" and \"bar\". It does not end with \"r\" or \"/bar\". Note that trailing separators are not taken into account, and so invoking this method on the Path\"foo/bar\" with the String \"bar/\" returns true.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent for this path to: \n\u003cpre\u003e\u003ccode\u003e\n     endsWith(getFileSystem().getPath(other));\n \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the given path string"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/InvalidPathException.html\" title\u003d\"class in java.nio.file\"\u003eInvalidPathException\u003c/a\u003e\u003c/code\u003e - If the path string cannot be converted to a Path."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this path ends with the given path; otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "normalize",
+      "comment": "Returns a path that is this path with redundant name elements eliminated. The precise definition of this method is implementation dependent but in general it derives from this path, a path that does not contain redundant name elements. In many file systems, the \".\" and \"..\" are special names used to indicate the current directory and parent directory. In such file systems all occurrences of \".\" are considered redundant. If a \"..\" is preceded by a non-\"..\" name then both names are considered redundant (the process to identify such names is repeated until it is no longer applicable). This method does not access the file system; the path may not locate a file that exists. Eliminating \"..\" and a preceding name from a path may result in the path that locates a different file than the original path. This can arise when the preceding name is a symbolic link.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#getParent()\"\u003e\u003ccode\u003egetParent()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#toRealPath(java.nio.file.LinkOption...)\"\u003e\u003ccode\u003etoRealPath(java.nio.file.LinkOption...)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the resulting path or this path if it does not contain redundant name elements; an empty path is returned if this path does not have a root component and all name elements are redundant"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolve",
+      "comment": "Resolve the given path against this path. If the other parameter is an absolute path then this method trivially returns other. If other is an empty path then this method trivially returns this path. Otherwise this method considers this path to be a directory and resolves the given path against this path. In the simplest case, the given path does not have a root component, in which case this method joins the given path to this path and returns a resulting path that ends with the given path. Where the given path has a root component then resolution is highly implementation dependent and therefore unspecified.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#relativize(java.nio.file.Path)\"\u003e\u003ccode\u003erelativize(java.nio.file.Path)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the path to resolve against this path"
+        ],
+        "return": [
+          "the resulting path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolve",
+      "comment": "Converts a given path string to a Path and resolves it against this Path in exactly the manner specified by the resolve method. For example, suppose that the name separator is \"/\" and a path represents \"foo/bar\", then invoking this method with the path string \"gus\" will result in the Path \"foo/bar/gus\".",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent for this path to: \n\u003cpre\u003e\u003ccode\u003e\n     resolve(getFileSystem().getPath(other));\n \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystem.html#getPath(java.lang.String,java.lang.String...)\"\u003e\u003ccode\u003eFileSystem.getPath(java.lang.String, java.lang.String...)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the path string to resolve against this path"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/InvalidPathException.html\" title\u003d\"class in java.nio.file\"\u003eInvalidPathException\u003c/a\u003e\u003c/code\u003e - if the path string cannot be converted to a Path."
+        ],
+        "return": [
+          "the resulting path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolveSibling",
+      "comment": "Resolves the given path against this path\u0027s parent path. This is useful where a file name needs to be replaced with another file name. For example, suppose that the name separator is \"/\" and a path represents \"dir1/dir2/foo\", then invoking this method with the Path \"bar\" will result in the Path \"dir1/dir2/bar\". If this path does not have a parent path, or other is absolute, then this method returns other. If other is an empty path then this method returns this path\u0027s parent, or where this path doesn\u0027t have a parent, the empty path.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent for this path to: \n\u003cpre\u003e\u003ccode\u003e\n     (getParent() \u003d\u003d null) ? other : getParent().resolve(other);\n \u003c/code\u003e\u003c/pre\u003e unless \n\u003ccode\u003eother \u003d\u003d null\u003c/code\u003e, in which case a \n\u003ccode\u003eNullPointerException\u003c/code\u003e is thrown."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#resolve(java.nio.file.Path)\"\u003e\u003ccode\u003eresolve(Path)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the path to resolve against this path\u0027s parent"
+        ],
+        "return": [
+          "the resulting path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resolveSibling",
+      "comment": "Converts a given path string to a Path and resolves it against this path\u0027s parent path in exactly the manner specified by the resolveSibling method.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent for this path to: \n\u003cpre\u003e\u003ccode\u003e\n     resolveSibling(getFileSystem().getPath(other));\n \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystem.html#getPath(java.lang.String,java.lang.String...)\"\u003e\u003ccode\u003eFileSystem.getPath(java.lang.String, java.lang.String...)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the path string to resolve against this path\u0027s parent"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/InvalidPathException.html\" title\u003d\"class in java.nio.file\"\u003eInvalidPathException\u003c/a\u003e\u003c/code\u003e - if the path string cannot be converted to a Path."
+        ],
+        "return": [
+          "the resulting path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "relativize",
+      "comment": "Constructs a relative path between this path and a given path. Relativization is the inverse of resolution. This method attempts to construct a relative path that when resolved against this path, yields a path that locates the same file as the given path. For example, on UNIX, if this path is \"/a/b\" and the given path is \"/a/b/c/d\" then the resulting relative path would be \"c/d\". Where this path and the given path do not have a root component, then a relative path can be constructed. A relative path cannot be constructed if only one of the paths have a root component. Where both paths have a root component then it is implementation dependent if a relative path can be constructed. If this path and the given path are equal then an empty path is returned. For any two normalized paths p and q, where q does not have a root component, p.relativize(p .resolve(q)).equals(q) When symbolic links are supported, then whether the resulting path, when resolved against this path, yields a path that can be used to locate the same file as other is implementation dependent. For example, if this path is \"/a/b\" and the given path is \"/a/x\" then the resulting relative path may be \"../x\". If \"b\" is a symbolic link then is implementation dependent if \"a/b/../x\" would locate the same file as \"/a/x\".",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the path to relativize against this path"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eother\u003c/code\u003e is not a \n\u003ccode\u003ePath\u003c/code\u003e that can be relativized against this path"
+        ],
+        "return": [
+          "the resulting relative path, or an empty path if both paths are equal"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.URI",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toUri",
+      "comment": "Returns a URI to represent this path. This method constructs an absolute URI with a scheme equal to the URI scheme that identifies the provider. The exact form of the scheme specific part is highly provider dependent. In the case of the default provider, the URI is hierarchical with a path component that is absolute. The query and fragment components are undefined. Whether the authority component is defined or not is implementation dependent. There is no guarantee that the URI may be used to construct a java.io.File. In particular, if this path represents a Universal Naming Convention (UNC) path, then the UNC server name may be encoded in the authority component of the resulting URI. In the case of the default provider, and the file exists, and it can be determined that the file is a directory, then the resulting URI will end with a slash. The default provider provides a similar round-trip guarantee to the File class. For a given Path p it is guaranteed that Path.of(p.toUri()).equals(p .toAbsolutePath()) so long as the original Path, the URI, and the new Path are all created in (possibly different invocations of) the same Java virtual machine. Whether other providers make any guarantees is provider specific and therefore unspecified. When a file system is constructed to access the contents of a file as a file system then it is highly implementation specific if the returned URI represents the given path in the file system or it represents a compound URI that encodes the URI of the enclosing file system. A format for compound URIs is not defined in this release; such a scheme may be added in a future release.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOError.html\" title\u003d\"class in java.io\"\u003eIOError\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs obtaining the absolute path, or where a file system is constructed to access the contents of a file as a file system, and the URI of the enclosing file system cannot be obtained",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#toAbsolutePath()\"\u003e\u003ccode\u003etoAbsolutePath\u003c/code\u003e\u003c/a\u003e method throws a security exception."
+        ],
+        "return": [
+          "the URI representing this path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toAbsolutePath",
+      "comment": "Returns a Path object representing the absolute path of this path. If this path is already absolute then this method simply returns this path. Otherwise, this method resolves the path in an implementation dependent manner, typically by resolving the path against a file system default directory. Depending on the implementation, this method may throw an I/O error if the file system is not accessible.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOError.html\" title\u003d\"class in java.io\"\u003eIOError\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, a security manager is installed, and this path is not absolute, then the security manager\u0027s \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPropertyAccess(java.lang.String)\"\u003e\u003ccode\u003echeckPropertyAccess\u003c/code\u003e\u003c/a\u003e method is invoked to check access to the system property \n\u003ccode\u003euser.dir\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003ePath\u003c/code\u003e object representing the absolute path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.LinkOption",
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toRealPath",
+      "comment": "Returns the real path of an existing file. The precise definition of this method is implementation dependent but in general it derives from this path, an absolute path that locates the same file as this path, but with name elements that represent the actual name of the directories and the file. For example, where filename comparisons on a file system are case insensitive then the name elements represent the names in their actual case. Additionally, the resulting path has redundant name elements removed. If this path is relative then its absolute path is first obtained, as if by invoking the toAbsolutePath method. The options array may be used to indicate how symbolic links are handled. By default, symbolic links are resolved to their final target. If the option NOFOLLOW_LINKS is present then this method does not resolve symbolic links. Some implementations allow special names such as \"..\" to refer to the parent directory. When deriving the real path, and a \"..\" (or equivalent) is preceded by a non-\"..\" name then an implementation will typically cause both names to be removed. When not resolving symbolic links and the preceding name is a symbolic link then the names are only removed if it guaranteed that the resulting path will locate the same file as this path.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eoptions\u003c/code\u003e - options indicating how symbolic links are handled"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the file does not exist or an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the file, and where this path is not absolute, its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPropertyAccess(java.lang.String)\"\u003e\u003ccode\u003echeckPropertyAccess\u003c/code\u003e\u003c/a\u003e method is invoked to check access to the system property \n\u003ccode\u003euser.dir\u003c/code\u003e"
+        ],
+        "return": [
+          "an absolute path represent the \n\u003cem\u003ereal\u003c/em\u003e path of the file located by this object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.File",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toFile",
+      "comment": "Returns a File object representing this path. Where this Path is associated with the default provider, then this method is equivalent to returning a File object constructed with the String representation of this path. If this path was created by invoking the File toPath method then there is no guarantee that the File object returned by this method is equal to the original File.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent for this path to: \n\u003cpre\u003e\u003ccode\u003e\n     new File(toString());\n \u003c/code\u003e\u003c/pre\u003e if the \n\u003ccode\u003eFileSystem\u003c/code\u003e which created this \n\u003ccode\u003ePath\u003c/code\u003e is the default file system; otherwise an \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e is thrown."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003ePath\u003c/code\u003e is not associated with the default provider"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eFile\u003c/code\u003e object representing this path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.WatchKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.WatchService",
+            "type": "Class"
+          },
+          "field": {
+            "name": "watcher"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.file.WatchEvent$Kind",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "events"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.file.WatchEvent$Modifier",
+            "type": "Class"
+          },
+          "field": {
+            "name": "modifiers"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "register",
+      "comment": "Registers the file located by this path with a watch service. In this release, this path locates a directory that exists. The directory is registered with the watch service so that entries in the directory can be watched. The events parameter is the events to register and may contain the following events: ENTRY_CREATE - entry created or moved into the directory ENTRY_DELETE - entry deleted or moved out of the directory ENTRY_MODIFY - entry in directory was modified The context for these events is the relative path between the directory located by this path, and the path that locates the directory entry that is created, deleted, or modified. The set of events may include additional implementation specific event that are not defined by the enum StandardWatchEventKinds The modifiers parameter specifies modifiers that qualify how the directory is registered. This release does not define any standard modifiers. It may contain implementation specific modifiers. Where a file is registered with a watch service by means of a symbolic link then it is implementation specific if the watch continues to depend on the existence of the symbolic link after it is registered.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Watchable.html#register(java.nio.file.WatchService,java.nio.file.WatchEvent.Kind%5B%5D,java.nio.file.WatchEvent.Modifier...)\"\u003eregister\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Watchable.html\" title\u003d\"interface in java.nio.file\"\u003eWatchable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewatcher\u003c/code\u003e - the watch service to which this object is to be registered",
+          "\u003ccode\u003eevents\u003c/code\u003e - the events for which this object should be registered",
+          "\u003ccode\u003emodifiers\u003c/code\u003e - the modifiers, if any, that modify how the object is registered"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if unsupported events or modifiers are specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if an invalid combination of events or modifiers is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedWatchServiceException.html\" title\u003d\"class in java.nio.file\"\u003eClosedWatchServiceException\u003c/a\u003e\u003c/code\u003e - if the watch service is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NotDirectoryException.html\" title\u003d\"class in java.nio.file\"\u003eNotDirectoryException\u003c/a\u003e\u003c/code\u003e - if the file is registered to watch the entries in a directory and the file is not a directory \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the file."
+        ],
+        "return": [
+          "a key representing the registration of this object with the given watch service"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.WatchKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.WatchService",
+            "type": "Class"
+          },
+          "field": {
+            "name": "watcher"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.file.WatchEvent$Kind",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "events"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "register",
+      "comment": "Registers the file located by this path with a watch service. An invocation of this method behaves in exactly the same way as the invocation      watchable.register(watcher, events, new WatchEvent.Modifier[0]);\n Usage Example: Suppose we wish to register a directory for entry create, delete, and modify events:      Path dir \u003d ...\n     WatchService watcher \u003d ...\n\n     WatchKey key \u003d dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent for this path to: \n\u003cpre\u003e\u003ccode\u003e\n     register(watcher, events, new WatchEvent.Modifier[0]);\n \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Watchable.html#register(java.nio.file.WatchService,java.nio.file.WatchEvent.Kind...)\"\u003eregister\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Watchable.html\" title\u003d\"interface in java.nio.file\"\u003eWatchable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewatcher\u003c/code\u003e - The watch service to which this object is to be registered",
+          "\u003ccode\u003eevents\u003c/code\u003e - The events for which this object should be registered"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - If unsupported events are specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If an invalid combination of events is specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedWatchServiceException.html\" title\u003d\"class in java.nio.file\"\u003eClosedWatchServiceException\u003c/a\u003e\u003c/code\u003e - If the watch service is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NotDirectoryException.html\" title\u003d\"class in java.nio.file\"\u003eNotDirectoryException\u003c/a\u003e\u003c/code\u003e - If the file is registered to watch the entries in a directory and the file is not a directory \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the file."
+        ],
+        "return": [
+          "A key representing the registration of this object with the given watch service"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "iterator",
+      "comment": "Returns an iterator over the name elements of this path. The first element returned by the iterator represents the name element that is closest to the root in the directory hierarchy, the second element is the next closest, and so on. The last element returned is the name of the file or directory denoted by this path. The root component, if present, is not returned by the iterator.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation returns an \n\u003ccode\u003eIterator\u0026lt;Path\u0026gt;\u003c/code\u003e which, for this path, traverses the \n\u003ccode\u003ePath\u003c/code\u003es returned by \n\u003ccode\u003egetName(index)\u003c/code\u003e, where \n\u003ccode\u003eindex\u003c/code\u003e ranges from zero to \n\u003ccode\u003egetNameCount() - 1\u003c/code\u003e, inclusive."
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html#iterator()\"\u003eiterator\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html\" title\u003d\"interface in java.lang\"\u003eIterable\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html\" title\u003d\"interface in java.nio.file\"\u003ePath\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "return": [
+          "an iterator over the name elements of this path."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "compareTo",
+      "comment": "Compares two abstract paths lexicographically. The ordering defined by this method is provider specific, and in the case of the default provider, platform specific. This method does not access the file system and neither file is required to exist. This method may not be used to compare paths that are associated with different file system providers.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Comparable.html#compareTo(T)\"\u003ecompareTo\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Comparable.html\" title\u003d\"interface in java.lang\"\u003eComparable\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html\" title\u003d\"interface in java.nio.file\"\u003ePath\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the path compared to this path."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the paths are associated with different providers"
+        ],
+        "return": [
+          "zero if the argument is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eequal\u003c/code\u003e\u003c/a\u003e to this path, a value less than zero if this path is lexicographically less than the argument, or a value greater than zero if this path is lexicographically greater than the argument"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "equals",
+      "comment": "Tests this path for equality with the given object. If the given object is not a Path, or is a Path associated with a different FileSystem, then this method returns false. Whether or not two path are equal depends on the file system implementation. In some cases the paths are compared without regard to case, and others are case sensitive. This method does not access the file system and the file is not required to exist. Where required, the isSameFile method may be used to check if two paths locate the same file. This method satisfies the general contract of the Object.equals method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the object to which this object is to be compared"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, the given object is a \n\u003ccode\u003ePath\u003c/code\u003e that is identical to this \n\u003ccode\u003ePath\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hashCode",
+      "comment": "Computes a hash code for this path. The hash code is based upon the components of the path, and satisfies the general contract of the Object.hashCode method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the hash-code value for this path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toString",
+      "comment": "Returns the string representation of this path. If this path was created by converting a path string using the getPath method then the path string returned by this method may differ from the original String used to create the path. The returned path string uses the default name separator to separate names in the path.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the string representation of this path"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.file.Path",
+  "comment": "An object that may be used to locate a file in a file system. It will typically represent a system dependent file path. \n\u003cp\u003e A \u003ccode\u003ePath\u003c/code\u003e represents a path that is hierarchical and composed of a sequence of directory and file name elements separated by a special separator or delimiter. A \u003cem\u003eroot component\u003c/em\u003e, that identifies a file system hierarchy, may also be present. The name element that is \u003cem\u003efarthest\u003c/em\u003e from the root of the directory hierarchy is the name of a file or directory. The other name elements are directory names. A \u003ccode\u003ePath\u003c/code\u003e can represent a root, a root and a sequence of names, or simply one or more name elements. A \u003ccode\u003ePath\u003c/code\u003e is considered to be an \u003ci\u003eempty path\u003c/i\u003e if it consists solely of one name element that is empty. Accessing a file using an \u003ci\u003eempty path\u003c/i\u003e is equivalent to accessing the default directory of the file system. \u003ccode\u003ePath\u003c/code\u003e defines the \u003ca href\u003d\"#getFileName()\"\u003e\u003ccode\u003egetFileName\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#getParent()\"\u003e\u003ccode\u003egetParent\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#getRoot()\"\u003e\u003ccode\u003egetRoot\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#subpath(int,int)\"\u003e\u003ccode\u003esubpath\u003c/code\u003e\u003c/a\u003e methods to access the path components or a subsequence of its name elements. \u003c/p\u003e\n\u003cp\u003e In addition to accessing the components of a path, a \u003ccode\u003ePath\u003c/code\u003e also defines the \u003ca href\u003d\"#resolve(java.nio.file.Path)\"\u003e\u003ccode\u003eresolve\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#resolveSibling(java.nio.file.Path)\"\u003e\u003ccode\u003eresolveSibling\u003c/code\u003e\u003c/a\u003e methods to combine paths. The \u003ca href\u003d\"#relativize(java.nio.file.Path)\"\u003e\u003ccode\u003erelativize\u003c/code\u003e\u003c/a\u003e method that can be used to construct a relative path between two paths. Paths can be \u003ca href\u003d\"#compareTo(java.nio.file.Path)\"\u003e\u003ccode\u003ecompared\u003c/code\u003e\u003c/a\u003e, and tested against each other using the \u003ca href\u003d\"#startsWith(java.nio.file.Path)\"\u003e\u003ccode\u003estartsWith\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#endsWith(java.nio.file.Path)\"\u003e\u003ccode\u003eendsWith\u003c/code\u003e\u003c/a\u003e methods. \u003c/p\u003e\n\u003cp\u003e This interface extends \u003ca href\u003d\"Watchable.html\" title\u003d\"interface in java.nio.file\"\u003e\u003ccode\u003eWatchable\u003c/code\u003e\u003c/a\u003e interface so that a directory located by a path can be \u003ca href\u003d\"#register(java.nio.file.WatchService,java.nio.file.WatchEvent.Kind%5B%5D,java.nio.file.WatchEvent.Modifier...)\"\u003e\u003ccode\u003eregistered\u003c/code\u003e\u003c/a\u003e with a \u003ca href\u003d\"WatchService.html\" title\u003d\"interface in java.nio.file\"\u003e\u003ccode\u003eWatchService\u003c/code\u003e\u003c/a\u003e and entries in the directory watched. \u003c/p\u003e \n\u003cp\u003e \u003cb\u003eWARNING:\u003c/b\u003e This interface is only intended to be implemented by those developing custom file system implementations. Methods may be added to this interface in future releases. \u003c/p\u003e \n\u003ch2\u003eAccessing Files\u003c/h2\u003e \n\u003cp\u003e Paths may be used with the \u003ca href\u003d\"Files.html\" title\u003d\"class in java.nio.file\"\u003e\u003ccode\u003eFiles\u003c/code\u003e\u003c/a\u003e class to operate on files, directories, and other types of files. For example, suppose we want a \u003ca href\u003d\"../../io/BufferedReader.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eBufferedReader\u003c/code\u003e\u003c/a\u003e to read text from a file \"\u003ccode\u003eaccess.log\u003c/code\u003e\". The file is located in a directory \"\u003ccode\u003elogs\u003c/code\u003e\" relative to the current working directory and is UTF-8 encoded. \u003c/p\u003e\n\u003cpre\u003e     Path path \u003d FileSystems.getDefault().getPath(\"logs\", \"access.log\");\n     BufferedReader reader \u003d Files.newBufferedReader(path, StandardCharsets.UTF_8);\n \u003c/pre\u003e \n\u003ca id\u003d\"interop\"\u003e\u003c/a\u003e\n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003eInteroperability\u003c/h2\u003e \n\u003cp\u003e Paths associated with the default \u003ca href\u003d\"spi/FileSystemProvider.html\" title\u003d\"class in java.nio.file.spi\"\u003e\u003ccode\u003eprovider\u003c/code\u003e\u003c/a\u003e are generally interoperable with the \u003ca href\u003d\"../../io/File.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003ejava.io.File\u003c/code\u003e\u003c/a\u003e class. Paths created by other providers are unlikely to be interoperable with the abstract path names represented by \u003ccode\u003ejava.io.File\u003c/code\u003e. The \u003ca href\u003d\"../../io/File.html#toPath()\"\u003e\u003ccode\u003etoPath\u003c/code\u003e\u003c/a\u003e method may be used to obtain a \u003ccode\u003ePath\u003c/code\u003e from the abstract path name represented by a \u003ccode\u003ejava.io.File\u003c/code\u003e object. The resulting \u003ccode\u003ePath\u003c/code\u003e can be used to operate on the same file as the \u003ccode\u003ejava.io.File\u003c/code\u003e object. In addition, the \u003ca href\u003d\"#toFile()\"\u003e\u003ccode\u003etoFile\u003c/code\u003e\u003c/a\u003e method is useful to construct a \u003ccode\u003e File\u003c/code\u003e from the \u003ccode\u003eString\u003c/code\u003e representation of a \u003ccode\u003ePath\u003c/code\u003e. \u003c/p\u003e\n\u003ch2\u003eConcurrency\u003c/h2\u003e \n\u003cp\u003e Implementations of this interface are immutable and safe for use by multiple concurrent threads.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

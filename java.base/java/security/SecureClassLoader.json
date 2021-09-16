@@ -1,0 +1,272 @@
+{
+  "packageName": "java.security",
+  "simpleName": "SecureClassLoader",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.ClassLoader",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "off"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.CodeSource",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cs"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "defineClass",
+      "comment": "Converts an array of bytes into an instance of class Class, with an optional CodeSource. Before the class can be used it must be resolved. If a non-null CodeSource is supplied a ProtectionDomain is constructed and associated with the class being defined.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the expected name of the class, or \n\u003ccode\u003enull\u003c/code\u003e if not known, using \u0027.\u0027 and not \u0027/\u0027 as the separator and without a trailing \".class\" suffix.",
+          "\u003ccode\u003eb\u003c/code\u003e - the bytes that make up the class data. The bytes in positions \n\u003ccode\u003eoff\u003c/code\u003e through \n\u003ccode\u003eoff+len-1\u003c/code\u003e should have the format of a valid class file as defined by \n\u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e.",
+          "\u003ccode\u003eoff\u003c/code\u003e - the start offset in \n\u003ccode\u003eb\u003c/code\u003e of the class data",
+          "\u003ccode\u003elen\u003c/code\u003e - the length of the class data",
+          "\u003ccode\u003ecs\u003c/code\u003e - the associated CodeSource, or \n\u003ccode\u003enull\u003c/code\u003e if none"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassFormatError.html\" title\u003d\"class in java.lang\"\u003eClassFormatError\u003c/a\u003e\u003c/code\u003e - if the data did not contain a valid class",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if either \n\u003ccode\u003eoff\u003c/code\u003e or \n\u003ccode\u003elen\u003c/code\u003e is negative, or if \n\u003ccode\u003eoff+len\u003c/code\u003e is greater than \n\u003ccode\u003eb.length\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if an attempt is made to add this class to a package that contains classes that were signed by a different set of certificates than this class, or if the class name begins with \"java.\"."
+        ],
+        "return": [
+          "the \n\u003ccode\u003eClass\u003c/code\u003e object created from the data, and optional CodeSource."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "b"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.CodeSource",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cs"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 20,
+      "name": "defineClass",
+      "comment": "Converts a ByteBuffer into an instance of class Class, with an optional CodeSource. Before the class can be used it must be resolved. If a non-null CodeSource is supplied a ProtectionDomain is constructed and associated with the class being defined.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the expected name of the class, or \n\u003ccode\u003enull\u003c/code\u003e if not known, using \u0027.\u0027 and not \u0027/\u0027 as the separator and without a trailing \".class\" suffix.",
+          "\u003ccode\u003eb\u003c/code\u003e - the bytes that make up the class data. The bytes from positions \n\u003ccode\u003eb.position()\u003c/code\u003e through \n\u003ccode\u003eb.position() + b.limit() -1\u003c/code\u003e should have the format of a valid class file as defined by \n\u003ccite\u003eThe Java Virtual Machine Specification\u003c/cite\u003e.",
+          "\u003ccode\u003ecs\u003c/code\u003e - the associated CodeSource, or \n\u003ccode\u003enull\u003c/code\u003e if none"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassFormatError.html\" title\u003d\"class in java.lang\"\u003eClassFormatError\u003c/a\u003e\u003c/code\u003e - if the data did not contain a valid class",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if an attempt is made to add this class to a package that contains classes that were signed by a different set of certificates than this class, or if the class name begins with \"java.\"."
+        ],
+        "return": [
+          "the \n\u003ccode\u003eClass\u003c/code\u003e object created from the data, and optional CodeSource."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.PermissionCollection",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.CodeSource",
+            "type": "Class"
+          },
+          "field": {
+            "name": "codesource"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getPermissions",
+      "comment": "Returns the permissions for the given CodeSource object. This method is invoked by the defineClass method which takes a CodeSource as an argument when it is constructing the ProtectionDomain for the class being defined.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecodesource\u003c/code\u003e - the codesource."
+        ],
+        "return": [
+          "the permissions granted to the codesource."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "parent"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new SecureClassLoader using the specified parent class loader for delegation. If there is a security manager, this method first calls the security manager\u0027s checkCreateClassLoader method to ensure creation of a class loader is allowed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkCreateClassLoader()\"\u003e\u003ccode\u003eSecurityManager.checkCreateClassLoader()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eparent\u003c/code\u003e - the parent ClassLoader"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckCreateClassLoader\u003c/code\u003e method doesn\u0027t allow creation of a class loader."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new SecureClassLoader using the default parent class loader for delegation. If there is a security manager, this method first calls the security manager\u0027s checkCreateClassLoader method to ensure creation of a class loader is allowed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkCreateClassLoader()\"\u003e\u003ccode\u003eSecurityManager.checkCreateClassLoader()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckCreateClassLoader\u003c/code\u003e method doesn\u0027t allow creation of a class loader."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "parent"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new SecureClassLoader of the specified name and using the specified parent class loader for delegation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - class loader name; or \n\u003ccode\u003enull\u003c/code\u003e if not named",
+          "\u003ccode\u003eparent\u003c/code\u003e - the parent class loader"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given name is empty.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkCreateClassLoader()\"\u003e\u003ccode\u003eSecurityManager.checkCreateClassLoader()\u003c/code\u003e\u003c/a\u003e method doesn\u0027t allow creation of a class loader."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.security.SecureClassLoader",
+  "comment": "This class extends ClassLoader with additional support for defining classes with an associated code source and permissions which are retrieved by the system policy by default.",
+  "tagMap": {
+    "since": [
+      "1.2"
+    ]
+  }
+}

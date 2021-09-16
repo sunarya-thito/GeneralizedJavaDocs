@@ -1,0 +1,740 @@
+{
+  "packageName": "java.awt.print",
+  "simpleName": "PrinterJob",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.awt.print.PrinterJob",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getPrinterJob",
+      "comment": "Creates and returns a PrinterJob which is initially associated with the default printer. If no printers are available on the system, a PrinterJob will still be returned from this method, but getPrintService() will return null, and calling print with this PrinterJob might generate an exception. Applications that need to determine if there are suitable printers before creating a PrinterJob should ensure that the array returned from lookupPrintServices is not empty.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPrintJobAccess()\"\u003e\u003ccode\u003eSecurityManager.checkPrintJobAccess()\u003c/code\u003e\u003c/a\u003e method disallows this thread from creating a print job request"
+        ],
+        "return": [
+          "a new \n\u003ccode\u003ePrinterJob\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.print.PrintService",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "lookupPrintServices",
+      "comment": "A convenience method which looks up 2D print services. Services returned from this method may be installed on PrinterJobs which support print services. Calling this method is equivalent to calling PrintServiceLookup.lookupPrintServices() and specifying a Pageable DocFlavor.",
+      "tagMap": {
+        "return": [
+          "a possibly empty array of 2D print services."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.print.StreamPrintServiceFactory",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mimeType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "lookupStreamPrintServices",
+      "comment": "A convenience method which locates factories for stream print services which can image 2D graphics. Sample usage : \n FileOutputStream outstream;\n StreamPrintService psPrinter;\n String psMimeType \u003d \"application/postscript\";\n PrinterJob pj \u003d PrinterJob.getPrinterJob();\n\n StreamPrintServiceFactory[] factories \u003d\n     PrinterJob.lookupStreamPrintServices(psMimeType);\n if (factories.length \u003e 0) {\n     try {\n         outstream \u003d new File(\"out.ps\");\n         psPrinter \u003d  factories[0].getPrintService(outstream);\n         // psPrinter can now be set as the service on a PrinterJob\n         pj.setPrintService(psPrinter)\n     } catch (Exception e) {\n         e.printStackTrace();\n     }\n }\n Services returned from this method may be installed on PrinterJob instances which support print services. Calling this method is equivalent to calling StreamPrintServiceFactory.lookupStreamPrintServiceFactories() and specifying a Pageable DocFlavor.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emimeType\u003c/code\u003e - the required output format, or null to mean any format."
+        ],
+        "return": [
+          "a possibly empty array of 2D stream print service factories."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.print.PrintService",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPrintService",
+      "comment": "Returns the service (printer) for this printer job. Implementations of this class which do not support print services may return null. null will also be returned if no printers are available.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html#setPrintService(javax.print.PrintService)\"\u003e\u003ccode\u003esetPrintService(PrintService)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html#getPrinterJob()\"\u003e\u003ccode\u003egetPrinterJob()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the service for this printer job."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.print.PrinterException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.print.PrintService",
+            "type": "Class"
+          },
+          "field": {
+            "name": "service"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setPrintService",
+      "comment": "Associate this PrinterJob with a new PrintService. This method is overridden by subclasses which support specifying a Print Service. Throws PrinterException if the specified service cannot support the Pageable and Printable interfaces necessary to support 2D printing.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html#getPrintService()\"\u003e\u003ccode\u003egetPrintService()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eservice\u003c/code\u003e - a print service that supports 2D printing"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterException.html\" title\u003d\"class in java.awt.print\"\u003ePrinterException\u003c/a\u003e\u003c/code\u003e - if the specified service does not support 2D printing, or this PrinterJob class does not support setting a 2D print service, or the specified service is otherwise not a valid print service."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.print.Printable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "painter"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setPrintable",
+      "comment": "Calls painter to render the pages. The pages in the document to be printed by this PrinterJob are rendered by the Printable object, painter. The PageFormat for each page is the default page format.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epainter\u003c/code\u003e - the \n\u003ccode\u003ePrintable\u003c/code\u003e that renders each page of the document."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.print.Printable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "painter"
+          }
+        },
+        {
+          "type": {
+            "name": "java.awt.print.PageFormat",
+            "type": "Class"
+          },
+          "field": {
+            "name": "format"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setPrintable",
+      "comment": "Calls painter to render the pages in the specified format. The pages in the document to be printed by this PrinterJob are rendered by the Printable object, painter. The PageFormat of each page is format.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epainter\u003c/code\u003e - the \n\u003ccode\u003ePrintable\u003c/code\u003e called to render each page of the document",
+          "\u003ccode\u003eformat\u003c/code\u003e - the size and orientation of each page to be printed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.NullPointerException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.print.Pageable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "document"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setPageable",
+      "comment": "Queries document for the number of pages and the PageFormat and Printable for each page held in the Pageable instance, document.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PageFormat.html\" title\u003d\"class in java.awt.print\"\u003e\u003ccode\u003ePageFormat\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Printable.html\" title\u003d\"interface in java.awt.print\"\u003e\u003ccode\u003ePrintable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003edocument\u003c/code\u003e - the pages to be printed. It can not be \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - the \n\u003ccode\u003ePageable\u003c/code\u003e passed in was \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.HeadlessException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "printDialog",
+      "comment": "Presents a dialog to the user for changing the properties of the print job. This method will display a native dialog if a native print service is selected, and user choice of printers will be restricted to these native print services. To present the cross platform print dialog for all services, including native ones instead use printDialog(PrintRequestAttributeSet). PrinterJob implementations which can use PrintService\u0027s will update the PrintService for this PrinterJob to reflect the new service selected by the user.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()\"\u003e\u003ccode\u003eGraphicsEnvironment.isHeadless()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/HeadlessException.html\" title\u003d\"class in java.awt\"\u003eHeadlessException\u003c/a\u003e\u003c/code\u003e - if GraphicsEnvironment.isHeadless() returns true."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the user does not cancel the dialog; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.HeadlessException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.print.attribute.PrintRequestAttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attributes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "printDialog",
+      "comment": "A convenience method which displays a cross-platform print dialog for all services which are capable of printing 2D graphics using the Pageable interface. The selected printer when the dialog is initially displayed will reflect the print service currently attached to this print job. If the user changes the print service, the PrinterJob will be updated to reflect this, unless the user cancels the dialog. As well as allowing the user to select the destination printer, the user can also select values of various print request attributes. The attributes parameter on input will reflect the applications required initial selections in the user dialog. Attributes not specified display using the default for the service. On return it will reflect the user\u0027s choices. Selections may be updated by the implementation to be consistent with the supported values for the currently selected print service. As the user scrolls to a new print service selection, the values copied are based on the settings for the previous service, together with any user changes. The values are not based on the original settings supplied by the client. With the exception of selected printer, the PrinterJob state is not updated to reflect the user\u0027s changes. For the selections to affect a printer job, the attributes must be specified in the call to the print(PrintRequestAttributeSet) method. If using the Pageable interface, clients which intend to use media selected by the user must create a PageFormat derived from the user\u0027s selections. If the user cancels the dialog, the attributes will not reflect any changes made by the user.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()\"\u003e\u003ccode\u003eGraphicsEnvironment.isHeadless()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eattributes\u003c/code\u003e - on input is application supplied attributes, on output the contents are updated to reflect user choices. This parameter may not be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/HeadlessException.html\" title\u003d\"class in java.awt\"\u003eHeadlessException\u003c/a\u003e\u003c/code\u003e - if GraphicsEnvironment.isHeadless() returns true.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eattributes\u003c/code\u003e parameter is null."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the user does not cancel the dialog; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.print.PageFormat",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.HeadlessException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.print.PageFormat",
+            "type": "Class"
+          },
+          "field": {
+            "name": "page"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "pageDialog",
+      "comment": "Displays a dialog that allows modification of a PageFormat instance. The page argument is used to initialize controls in the page setup dialog. If the user cancels the dialog then this method returns the original page object unmodified. If the user okays the dialog then this method returns a new PageFormat object with the indicated changes. In either case, the original page object is not modified.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()\"\u003e\u003ccode\u003eGraphicsEnvironment.isHeadless()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epage\u003c/code\u003e - the default \n\u003ccode\u003ePageFormat\u003c/code\u003e presented to the user for modification"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/HeadlessException.html\" title\u003d\"class in java.awt\"\u003eHeadlessException\u003c/a\u003e\u003c/code\u003e - if GraphicsEnvironment.isHeadless() returns true."
+        ],
+        "return": [
+          "the original \n\u003ccode\u003epage\u003c/code\u003e object if the dialog is cancelled; a new \n\u003ccode\u003ePageFormat\u003c/code\u003e object containing the format indicated by the user if the dialog is acknowledged."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.print.PageFormat",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.HeadlessException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.print.attribute.PrintRequestAttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attributes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "pageDialog",
+      "comment": "A convenience method which displays a cross-platform page setup dialog. The choices available will reflect the print service currently set on this PrinterJob. The attributes parameter on input will reflect the client\u0027s required initial selections in the user dialog. Attributes which are not specified display using the default for the service. On return it will reflect the user\u0027s choices. Selections may be updated by the implementation to be consistent with the supported values for the currently selected print service. The return value will be a PageFormat equivalent to the selections in the PrintRequestAttributeSet. If the user cancels the dialog, the attributes will not reflect any changes made by the user, and the return value will be null.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()\"\u003e\u003ccode\u003eGraphicsEnvironment.isHeadless()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eattributes\u003c/code\u003e - on input is application supplied attributes, on output the contents are updated to reflect user choices. This parameter may not be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/HeadlessException.html\" title\u003d\"class in java.awt\"\u003eHeadlessException\u003c/a\u003e\u003c/code\u003e - if GraphicsEnvironment.isHeadless() returns true.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eattributes\u003c/code\u003e parameter is null."
+        ],
+        "return": [
+          "a page format if the user does not cancel the dialog; \n\u003ccode\u003enull\u003c/code\u003e otherwise."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.print.PageFormat",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.print.PageFormat",
+            "type": "Class"
+          },
+          "field": {
+            "name": "page"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "defaultPage",
+      "comment": "Clones the PageFormat argument and alters the clone to describe a default page size and orientation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epage\u003c/code\u003e - the \n\u003ccode\u003ePageFormat\u003c/code\u003e to be cloned and altered"
+        ],
+        "return": [
+          "clone of \n\u003ccode\u003epage\u003c/code\u003e, altered to describe a default \n\u003ccode\u003ePageFormat\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.print.PageFormat",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "defaultPage",
+      "comment": "Creates a new PageFormat instance and sets it to a default size and orientation.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ccode\u003ePageFormat\u003c/code\u003e set to a default size and orientation."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.print.PageFormat",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.print.attribute.PrintRequestAttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attributes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPageFormat",
+      "comment": "Calculates a PageFormat with values consistent with those supported by the current PrintService for this job (ie the value returned by getPrintService()) and media, printable area and orientation contained in attributes. Calling this method does not update the job. It is useful for clients that have a set of attributes obtained from printDialog(PrintRequestAttributeSet attributes) and need a PageFormat to print a Pageable object.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eattributes\u003c/code\u003e - a set of printing attributes, for example obtained from calling printDialog. If \n\u003ccode\u003eattributes\u003c/code\u003e is null a default PageFormat is returned."
+        ],
+        "return": [
+          "a \n\u003ccode\u003ePageFormat\u003c/code\u003e whose settings conform with those of the current service and the specified attributes."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.print.PageFormat",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.print.PageFormat",
+            "type": "Class"
+          },
+          "field": {
+            "name": "page"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "validatePage",
+      "comment": "Returns the clone of page with its settings adjusted to be compatible with the current printer of this PrinterJob. For example, the returned PageFormat could have its imageable area adjusted to fit within the physical area of the paper that is used by the current printer.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epage\u003c/code\u003e - the \n\u003ccode\u003ePageFormat\u003c/code\u003e that is cloned and whose settings are changed to be compatible with the current printer"
+        ],
+        "return": [
+          "a \n\u003ccode\u003ePageFormat\u003c/code\u003e that is cloned from \n\u003ccode\u003epage\u003c/code\u003e and whose settings are changed to conform with this \n\u003ccode\u003ePrinterJob\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.print.PrinterException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "print",
+      "comment": "Prints a set of pages.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Book.html\" title\u003d\"class in java.awt.print\"\u003e\u003ccode\u003eBook\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Pageable.html\" title\u003d\"interface in java.awt.print\"\u003e\u003ccode\u003ePageable\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Printable.html\" title\u003d\"interface in java.awt.print\"\u003e\u003ccode\u003ePrintable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterException.html\" title\u003d\"class in java.awt.print\"\u003ePrinterException\u003c/a\u003e\u003c/code\u003e - an error in the print system caused the job to be aborted."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.print.PrinterException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.print.attribute.PrintRequestAttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attributes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "print",
+      "comment": "Prints a set of pages using the settings in the attribute set. The default implementation ignores the attribute set. Note that some attributes may be set directly on the PrinterJob by equivalent method calls, (for example), copies: setCopies(int), job name: setJobName(String) and specifying media size and orientation though the PageFormat object. If a supported attribute-value is specified in this attribute set, it will take precedence over the API settings for this print() operation only. The following behaviour is specified for PageFormat: If a client uses the Printable interface, then the attributes parameter to this method is examined for attributes which specify media (by size), orientation, and imageable area, and those are used to construct a new PageFormat which is passed to the Printable object\u0027s print() method. See Printable for an explanation of the required behaviour of a Printable to ensure optimal printing via PrinterJob. For clients of the Pageable interface, the PageFormat will always be as supplied by that interface, on a per page basis. These behaviours allow an application to directly pass the user settings returned from printDialog(PrintRequestAttributeSet attributes to this print() method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Book.html\" title\u003d\"class in java.awt.print\"\u003e\u003ccode\u003eBook\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Pageable.html\" title\u003d\"interface in java.awt.print\"\u003e\u003ccode\u003ePageable\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Printable.html\" title\u003d\"interface in java.awt.print\"\u003e\u003ccode\u003ePrintable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eattributes\u003c/code\u003e - a set of attributes for the job"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterException.html\" title\u003d\"class in java.awt.print\"\u003ePrinterException\u003c/a\u003e\u003c/code\u003e - an error in the print system caused the job to be aborted."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "copies"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setCopies",
+      "comment": "Sets the number of copies to be printed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html#getCopies()\"\u003e\u003ccode\u003egetCopies()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecopies\u003c/code\u003e - the number of copies to be printed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getCopies",
+      "comment": "Gets the number of copies to be printed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html#setCopies(int)\"\u003e\u003ccode\u003esetCopies(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the number of copies to be printed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getUserName",
+      "comment": "Gets the name of the printing user.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and PropertyPermission - user.name is not given in the policy file"
+        ],
+        "return": [
+          "the name of the printing user"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "jobName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setJobName",
+      "comment": "Sets the name of the document to be printed. The document name can not be null.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html#getJobName()\"\u003e\u003ccode\u003egetJobName()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ejobName\u003c/code\u003e - the name of the document to be printed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getJobName",
+      "comment": "Gets the name of the document to be printed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html#setJobName(java.lang.String)\"\u003e\u003ccode\u003esetJobName(java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the name of the document to be printed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "cancel",
+      "comment": "Cancels a print job that is in progress. If print has been called but has not returned then this method signals that the job should be cancelled at the next chance. If there is no print job in progress then this call does nothing.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isCancelled",
+      "comment": "Returns true if a print job is in progress, but is going to be cancelled at the next opportunity; otherwise returns false.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the job in progress is going to be cancelled; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "A PrinterJob object should be created using the static getPrinterJob method.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.awt.print.PrinterJob",
+  "comment": "The \n\u003ccode\u003ePrinterJob\u003c/code\u003e class is the principal class that controls printing. An application calls methods in this class to set up a job, optionally to invoke a print dialog with the user, and then to print the pages of the job.",
+  "tagMap": {}
+}

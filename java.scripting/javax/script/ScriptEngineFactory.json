@@ -1,0 +1,314 @@
+{
+  "packageName": "javax.script",
+  "simpleName": "ScriptEngineFactory",
+  "moduleName": "java.scripting",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getEngineName",
+      "comment": "Returns the full name of the ScriptEngine. For instance an implementation based on the Mozilla Rhino Javascript engine might return Rhino Mozilla Javascript Engine.",
+      "tagMap": {
+        "return": [
+          "The name of the engine implementation."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getEngineVersion",
+      "comment": "Returns the version of the ScriptEngine.",
+      "tagMap": {
+        "return": [
+          "The \n\u003ccode\u003eScriptEngine\u003c/code\u003e implementation version."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getExtensions",
+      "comment": "Returns an immutable list of filename extensions, which generally identify scripts written in the language supported by this ScriptEngine. The array is used by the ScriptEngineManager to implement its getEngineByExtension method.",
+      "tagMap": {
+        "return": [
+          "The list of extensions."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMimeTypes",
+      "comment": "Returns an immutable list of mimetypes, associated with scripts that can be executed by the engine. The list is used by the ScriptEngineManager class to implement its getEngineByMimetype method.",
+      "tagMap": {
+        "return": [
+          "The list of mime types."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNames",
+      "comment": "Returns an immutable list of short names for the ScriptEngine, which may be used to identify the ScriptEngine by the ScriptEngineManager. For instance, an implementation based on the Mozilla Rhino Javascript engine might return list containing {\"javascript\", \"rhino\"}.",
+      "tagMap": {
+        "return": [
+          "an immutable list of short names"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLanguageName",
+      "comment": "Returns the name of the scripting language supported by this ScriptEngine.",
+      "tagMap": {
+        "return": [
+          "The name of the supported language."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLanguageVersion",
+      "comment": "Returns the version of the scripting language supported by this ScriptEngine.",
+      "tagMap": {
+        "return": [
+          "The version of the supported language."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getParameter",
+      "comment": "Returns the value of an attribute whose meaning may be implementation-specific. Keys for which the value is defined in all implementations are: ScriptEngine.ENGINE ScriptEngine.ENGINE_VERSION ScriptEngine.LANGUAGE ScriptEngine.LANGUAGE_VERSION ScriptEngine.NAME The values for these keys are the Strings returned by getEngineName, getEngineVersion, getLanguageName, getLanguageVersion for the first four keys respectively. For NAME, one of the Strings returned by getNames is returned. A reserved key, THREADING, whose value describes the behavior of the engine with respect to concurrent execution of scripts and maintenance of state is also defined. These values for the THREADING key are: null - The engine implementation is not thread safe, and cannot be used to execute scripts concurrently on multiple threads. \"MULTITHREADED\" - The engine implementation is internally thread-safe and scripts may execute concurrently although effects of script execution on one thread may be visible to scripts on other threads. \"THREAD-ISOLATED\" - The implementation satisfies the requirements of \"MULTITHREADED\", and also, the engine maintains independent values for symbols in scripts executing on different threads. \"STATELESS\" - The implementation satisfies the requirements of \"THREAD-ISOLATED\". In addition, script executions do not alter the mappings in the Bindings which is the engine scope of the ScriptEngine. In particular, the keys in the Bindings and their associated values are the same before and after the execution of the script. Implementations may define implementation-specific keys.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - The name of the parameter"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the key is null."
+        ],
+        "return": [
+          "The value for the given parameter. Returns \n\u003ccode\u003enull\u003c/code\u003e if no value is assigned to the key."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "m"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "args"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMethodCallSyntax",
+      "comment": "Returns a String which can be used to invoke a method of a Java object using the syntax of the supported scripting language. For instance, an implementation for a Javascript engine might be; \n public String getMethodCallSyntax(String obj,\n                                   String m, String... args) {\n      String ret \u003d obj;\n      ret +\u003d \".\" + m + \"(\";\n      for (int i \u003d 0; i \u003c args.length; i++) {\n          ret +\u003d args[i];\n          if (i \u003c args.length - 1) {\n              ret +\u003d \",\";\n          }\n      }\n      ret +\u003d \")\";\n      return ret;\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - The name representing the object whose method is to be invoked. The name is the one used to create bindings using the \n\u003ccode\u003eput\u003c/code\u003e method of \n\u003ccode\u003eScriptEngine\u003c/code\u003e, the \n\u003ccode\u003eput\u003c/code\u003e method of an \n\u003ccode\u003eENGINE_SCOPE\u003c/code\u003e \n\u003ccode\u003eBindings\u003c/code\u003e,or the \n\u003ccode\u003esetAttribute\u003c/code\u003e method of \n\u003ccode\u003eScriptContext\u003c/code\u003e. The identifier used in scripts may be a decorated form of the specified one.",
+          "\u003ccode\u003em\u003c/code\u003e - The name of the method to invoke.",
+          "\u003ccode\u003eargs\u003c/code\u003e - names of the arguments in the method call."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if obj or m or args or any of the elements of args is null."
+        ],
+        "return": [
+          "The String used to invoke the method in the syntax of the scripting language."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "toDisplay"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getOutputStatement",
+      "comment": "Returns a String that can be used as a statement to display the specified String using the syntax of the supported scripting language. For instance, the implementation for a Perl engine might be; \n public String getOutputStatement(String toDisplay) {\n      return \"print(\" + toDisplay + \")\";\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etoDisplay\u003c/code\u003e - The String to be displayed by the returned statement."
+        ],
+        "return": [
+          "The string used to display the String in the syntax of the scripting language."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "statements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getProgram",
+      "comment": "Returns a valid scripting language executable program with given statements. For instance an implementation for a PHP engine might be: \n public String getProgram(String... statements) {\n      String retval \u003d \"\u003c?\\n\";\n      int len \u003d statements.length;\n      for (int i \u003d 0; i \u003c len; i++) {\n          retval +\u003d statements[i] + \";\\n\";\n      }\n      return retval +\u003d \"?\u003e\";\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estatements\u003c/code\u003e - The statements to be executed. May be return values of calls to the \n\u003ccode\u003egetMethodCallSyntax\u003c/code\u003e and \n\u003ccode\u003egetOutputStatement\u003c/code\u003e methods."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003estatements\u003c/code\u003e array or any of its elements is null"
+        ],
+        "return": [
+          "The Program"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.script.ScriptEngine",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getScriptEngine",
+      "comment": "Returns an instance of the ScriptEngine associated with this ScriptEngineFactory. A new ScriptEngine is generally returned, but implementations may pool, share or reuse engines.",
+      "tagMap": {
+        "return": [
+          "A new \n\u003ccode\u003eScriptEngine\u003c/code\u003e instance."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.script.ScriptEngineFactory",
+  "comment": "\u003ccode\u003eScriptEngineFactory\u003c/code\u003e is used to describe and instantiate \n\u003ccode\u003eScriptEngines\u003c/code\u003e. \n\u003cbr\u003e\n\u003cbr\u003e Each class implementing \n\u003ccode\u003eScriptEngine\u003c/code\u003e has a corresponding factory that exposes metadata describing the engine class. \n\u003cbr\u003e\n\u003cbr\u003eThe \n\u003ccode\u003eScriptEngineManager\u003c/code\u003e uses the service-provider loader mechanism described in the \n\u003ca href\u003d\"../../../java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e class to obtain instances of \n\u003ccode\u003eScriptEngineFactory\u003c/code\u003e instances. See \n\u003ca href\u003d\"ScriptEngineManager.html#%3Cinit%3E()\"\u003e\u003ccode\u003eScriptEngineManager()\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"ScriptEngineManager.html#%3Cinit%3E(java.lang.ClassLoader)\"\u003e\u003ccode\u003eScriptEngineManager(java.lang.ClassLoader)\u003c/code\u003e\u003c/a\u003e.",
+  "tagMap": {
+    "since": [
+      "1.6"
+    ]
+  }
+}

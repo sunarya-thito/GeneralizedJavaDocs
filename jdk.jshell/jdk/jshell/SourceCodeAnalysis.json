@@ -1,0 +1,386 @@
+{
+  "packageName": "jdk.jshell",
+  "simpleName": "SourceCodeAnalysis",
+  "moduleName": "jdk.jshell",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "jdk.jshell.SourceCodeAnalysis$CompletionInfo",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "input"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "analyzeCompletion",
+      "comment": "Given an input string, find the first snippet of code (one statement, definition, import, or expression) and evaluate if it is complete.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - the input source string"
+        ],
+        "return": [
+          "a CompletionInfo instance with location and completeness info"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.jshell.SourceCodeAnalysis$Suggestion",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "input"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cursor"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "anchor"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "completionSuggestions",
+      "comment": "Compute possible follow-ups for the given input. Uses information from the current JShell state, including type information, to filter the suggestions.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - the user input, so far",
+          "\u003ccode\u003ecursor\u003c/code\u003e - the current position of the cursors in the given \n\u003ccode\u003einput\u003c/code\u003e text",
+          "\u003ccode\u003eanchor\u003c/code\u003e - outgoing parameter - when an option will be completed, the text between the anchor and cursor will be deleted and replaced with the given option"
+        ],
+        "return": [
+          "list of candidate continuations of the given input."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.jshell.SourceCodeAnalysis$Documentation",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "input"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cursor"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "computeJavadoc"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "documentation",
+      "comment": "Compute documentation for the given user\u0027s input. Multiple Documentation objects may be returned when multiple elements match the user\u0027s input (like for overloaded methods).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - the snippet the user wrote so far",
+          "\u003ccode\u003ecursor\u003c/code\u003e - the current position of the cursors in the given \n\u003ccode\u003einput\u003c/code\u003e text",
+          "\u003ccode\u003ecomputeJavadoc\u003c/code\u003e - true if the javadoc for the given input should be computed in addition to the signature"
+        ],
+        "return": [
+          "the documentations for the given user\u0027s input, if multiple elements match the input, multiple \n\u003ccode\u003eDocumentation\u003c/code\u003e objects are returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "code"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cursor"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "analyzeType",
+      "comment": "Infer the type of the given expression. The expression spans from the beginning of code to the given cursor position. Returns null if the type of the expression cannot be inferred.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecode\u003c/code\u003e - the expression for which the type should be inferred",
+          "\u003ccode\u003ecursor\u003c/code\u003e - current cursor position in the given code"
+        ],
+        "return": [
+          "the inferred type, or null if it cannot be inferred"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jshell.SourceCodeAnalysis$QualifiedNames",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "code"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cursor"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "listQualifiedNames",
+      "comment": "List qualified names known for the simple name in the given code immediately to the left of the given cursor position. The qualified names are gathered by inspecting the classpath used by eval (see JShell.addToClasspath(java.lang.String)).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecode\u003c/code\u003e - the expression for which the candidate qualified names should be computed",
+          "\u003ccode\u003ecursor\u003c/code\u003e - current cursor position in the given code"
+        ],
+        "return": [
+          "the known qualified names"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jshell.SourceCodeAnalysis$SnippetWrapper",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.jshell.Snippet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "snippet"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "wrapper",
+      "comment": "Returns the wrapper information for the Snippet. The wrapper changes as the environment changes, so calls to this method at different times may yield different results.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esnippet\u003c/code\u003e - the \n\u003ccode\u003eSnippet\u003c/code\u003e from which to retrieve the wrapper"
+        ],
+        "return": [
+          "information on the wrapper"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.jshell.SourceCodeAnalysis$SnippetWrapper",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "input"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "wrappers",
+      "comment": "Returns the wrapper information for the snippet within the input source string. Wrapper information for malformed and incomplete snippets also generate wrappers. The list is in snippet encounter order. The wrapper changes as the environment changes, so calls to this method at different times may yield different results. The input should be exactly one complete snippet of source code, that is, one expression, statement, variable declaration, method declaration, class declaration, or import. To break arbitrary input into individual complete snippets, use analyzeCompletion(String). The wrapper may not match that returned by wrapper(Snippet), were the source converted to a Snippet.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - the source input from which to generate wrappers"
+        ],
+        "return": [
+          "a list of wrapper information"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.jshell.Snippet",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "input"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "sourceToSnippets",
+      "comment": "Converts the source code of a snippet into a Snippet object (or list of Snippet objects in the case of some var declarations, e.g.: int x, y, z;). Does not install the snippets: declarations are not accessible by other snippets; imports are not added. Does not execute the snippets. Queries may be done on the Snippet object. The Snippet.id() will be \"*UNASSOCIATED*\". The returned snippets are not associated with the JShell instance, so attempts to pass them to JShell methods will throw an IllegalArgumentException. They will not appear in queries for snippets -- for example, JShell.snippets(). Restrictions on the input are as in JShell.eval. Only preliminary compilation is performed, sufficient to build the Snippet. Snippets known to be erroneous, are returned as ErroneousSnippet, other snippets may or may not be in error.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - The input String to convert"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003eJShell\u003c/code\u003e instance is closed."
+        ],
+        "return": [
+          "usually a singleton list of Snippet, but may be empty or multiple"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "name": "jdk.jshell.Snippet",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.jshell.Snippet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "snippet"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "dependents",
+      "comment": "Returns a collection of Snippets which might need updating if the given Snippet is updated. The returned collection is designed to be inclusive and may include many false positives.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esnippet\u003c/code\u003e - the \n\u003ccode\u003eSnippet\u003c/code\u003e whose dependents are requested"
+        ],
+        "return": [
+          "the collection of dependents"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "jdk.jshell.SourceCodeAnalysis$Completeness",
+    "jdk.jshell.SourceCodeAnalysis$SnippetWrapper",
+    "jdk.jshell.SourceCodeAnalysis$Suggestion",
+    "jdk.jshell.SourceCodeAnalysis$CompletionInfo",
+    "jdk.jshell.SourceCodeAnalysis$QualifiedNames",
+    "jdk.jshell.SourceCodeAnalysis$Documentation"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "jdk.jshell.SourceCodeAnalysis",
+  "comment": "Provides analysis utilities for source code input. Optional functionality that provides for a richer interactive experience. Includes completion analysis: Is the input a complete snippet of code? Do I need to prompt for more input? Would adding a semicolon make it complete? Is there more than one snippet? etc. Also includes completion suggestions, as might be used in tab-completion.",
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

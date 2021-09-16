@@ -1,0 +1,1906 @@
+{
+  "packageName": "javax.management.remote.rmi",
+  "simpleName": "RMIConnection",
+  "moduleName": "java.management.rmi",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "java.io.Closeable",
+      "type": "Class"
+    },
+    {
+      "name": "java.rmi.Remote",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getConnectionId",
+      "comment": "Returns the connection ID. This string is different for every open connection to a given RMI connector server.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnector.html#connect()\"\u003e\u003ccode\u003eRMIConnector.connect\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "the connection ID"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes this connection. On return from this method, the RMI object implementing this interface is unexported, so further remote calls to it will fail.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the connection could not be closed, or the Remote object could not be unexported, or there was a communication failure when transmitting the remote close request."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "className"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Handles the method MBeanServerConnection.createMBean(String, ObjectName).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#getMBeanInfo(javax.management.ObjectName,javax.security.auth.Subject)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "className"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "loaderName"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Handles the method MBeanServerConnection.createMBean(String, ObjectName, ObjectName).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null.",
+          "\u003ccode\u003eloaderName\u003c/code\u003e - The object name of the class loader to be used.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The specified class loader is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#getMBeanInfo(javax.management.ObjectName,javax.security.auth.Subject)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "className"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "params"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "signature"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Handles the method MBeanServerConnection.createMBean(String, ObjectName, Object[], String[]). The Object[] parameter is wrapped in a MarshalledObject.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null.",
+          "\u003ccode\u003eparams\u003c/code\u003e - An array containing the parameters of the constructor to be invoked, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e. The encapsulated array can be null, equivalent to an empty array.",
+          "\u003ccode\u003esignature\u003c/code\u003e - An array containing the signature of the constructor to be invoked. Can be null, equivalent to an empty array.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern, or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#getMBeanInfo(javax.management.ObjectName,javax.security.auth.Subject)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceAlreadyExistsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.NotCompliantMBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "className"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "loaderName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "params"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "signature"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMBean",
+      "comment": "Handles the method MBeanServerConnection.createMBean(String, ObjectName, ObjectName, Object[], String[]). The Object[] parameter is wrapped in a MarshalledObject.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - The class name of the MBean to be instantiated.",
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean. May be null.",
+          "\u003ccode\u003eloaderName\u003c/code\u003e - The object name of the class loader to be used.",
+          "\u003ccode\u003eparams\u003c/code\u003e - An array containing the parameters of the constructor to be invoked, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e. The encapsulated array can be null, equivalent to an empty array.",
+          "\u003ccode\u003esignature\u003c/code\u003e - An array containing the signature of the constructor to be invoked. Can be null, equivalent to an empty array.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.ClassNotFoundException\u003c/code\u003e or a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e that occurred when trying to invoke the MBean\u0027s constructor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceAlreadyExistsException.html\" title\u003d\"class in javax.management\"\u003eInstanceAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - The MBean is already under the control of the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The \n\u003ccode\u003epreRegister\u003c/code\u003e (\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception. The MBean will not be registered.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - The constructor of the MBean has thrown an exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotCompliantMBeanException.html\" title\u003d\"class in javax.management\"\u003eNotCompliantMBeanException\u003c/a\u003e\u003c/code\u003e - This class is not a JMX compliant MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The specified class loader is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The className passed in parameter is null, the \n\u003ccode\u003eObjectName\u003c/code\u003e passed in parameter contains a pattern, or no \n\u003ccode\u003eObjectName\u003c/code\u003e is specified for the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eObjectInstance\u003c/code\u003e, containing the \n\u003ccode\u003eObjectName\u003c/code\u003e and the Java class name of the newly instantiated MBean. If the contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003en\u003c/code\u003e, the contained Java class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#getMBeanInfo(javax.management.ObjectName,javax.security.auth.Subject)\"\u003e\u003ccode\u003egetMBeanInfo(n)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanRegistrationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "unregisterMBean",
+      "comment": "Handles the method MBeanServerConnection.unregisterMBean(ObjectName).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean to be unregistered.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanRegistrationException.html\" title\u003d\"class in javax.management\"\u003eMBeanRegistrationException\u003c/a\u003e\u003c/code\u003e - The preDeregister ((\n\u003ccode\u003eMBeanRegistration\u003c/code\u003e interface) method of the MBean has thrown an exception.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or the MBean you are when trying to unregister is the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanServerDelegate.html\" title\u003d\"class in javax.management\"\u003e\u003ccode\u003eMBeanServerDelegate\u003c/code\u003e\u003c/a\u003e MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.ObjectInstance",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getObjectInstance",
+      "comment": "Handles the method MBeanServerConnection.getObjectInstance(ObjectName).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eObjectInstance\u003c/code\u003e associated with the MBean specified by \n\u003cvar\u003ename\u003c/var\u003e. The contained \n\u003ccode\u003eObjectName\u003c/code\u003e is \n\u003ccode\u003ename\u003c/code\u003e and the contained class name is \n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#getMBeanInfo(javax.management.ObjectName,javax.security.auth.Subject)\"\u003e\u003ccode\u003egetMBeanInfo(name)\u003c/code\u003e\u003c/a\u003e.getClassName()\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "javax.management.ObjectInstance",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "query"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "queryMBeans",
+      "comment": "Handles the method MBeanServerConnection.queryMBeans(ObjectName, QueryExp). The QueryExp is wrapped in a MarshalledObject.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name pattern identifying the MBeans to be retrieved. If null or no domain and key properties are specified, all the MBeans registered will be retrieved.",
+          "\u003ccode\u003equery\u003c/code\u003e - The query expression to be applied for selecting MBeans, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e. If the \n\u003ccode\u003eMarshalledObject\u003c/code\u003e encapsulates a null value no query expression will be applied for selecting MBeans.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "A set containing the \n\u003ccode\u003eObjectInstance\u003c/code\u003e objects for the selected MBeans. If no MBean satisfies the query an empty list is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "query"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "queryNames",
+      "comment": "Handles the method MBeanServerConnection.queryNames(ObjectName, QueryExp). The QueryExp is wrapped in a MarshalledObject.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name pattern identifying the MBean names to be retrieved. If null or no domain and key properties are specified, the name of all registered MBeans will be retrieved.",
+          "\u003ccode\u003equery\u003c/code\u003e - The query expression to be applied for selecting MBeans, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e. If the \n\u003ccode\u003eMarshalledObject\u003c/code\u003e encapsulates a null value no query expression will be applied for selecting MBeans.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "A set containing the ObjectNames for the MBeans selected. If no MBean satisfies the query, an empty list is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isRegistered",
+      "comment": "Handles the method MBeanServerConnection.isRegistered(ObjectName).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean to be checked.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "True if the MBean is already registered in the MBean server, false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Integer",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMBeanCount",
+      "comment": "Handles the method MBeanServerConnection.getMBeanCount().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "the number of MBeans registered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.AttributeNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attribute"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttribute",
+      "comment": "Handles the method MBeanServerConnection.getAttribute(ObjectName, String).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#setAttribute(javax.management.ObjectName,java.rmi.MarshalledObject,javax.security.auth.Subject)\"\u003e\u003ccode\u003esetAttribute(javax.management.ObjectName, java.rmi.MarshalledObject, javax.security.auth.Subject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean from which the attribute is to be retrieved.",
+          "\u003ccode\u003eattribute\u003c/code\u003e - A String specifying the name of the attribute to be retrieved.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/AttributeNotFoundException.html\" title\u003d\"class in javax.management\"\u003eAttributeNotFoundException\u003c/a\u003e\u003c/code\u003e - The attribute specified is not accessible in the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps an exception thrown by the MBean\u0027s getter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e thrown when trying to invoke the getter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or the attribute in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeMBeanException.html\" title\u003d\"class in javax.management\"\u003eRuntimeMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps a runtime exception thrown by the MBean\u0027s getter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "The value of the retrieved attribute."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.AttributeList",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "attributes"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttributes",
+      "comment": "Handles the method MBeanServerConnection.getAttributes(ObjectName, String[]).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#setAttributes(javax.management.ObjectName,java.rmi.MarshalledObject,javax.security.auth.Subject)\"\u003e\u003ccode\u003esetAttributes(javax.management.ObjectName, java.rmi.MarshalledObject, javax.security.auth.Subject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean from which the attributes are retrieved.",
+          "\u003ccode\u003eattributes\u003c/code\u003e - A list of the attributes to be retrieved.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred when trying to invoke the getAttributes method of a Dynamic MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wrap a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or attributes in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "The list of the retrieved attributes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.AttributeNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InvalidAttributeValueException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attribute"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setAttribute",
+      "comment": "Handles the method MBeanServerConnection.setAttribute(ObjectName, Attribute). The Attribute parameter is wrapped in a MarshalledObject.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#getAttribute(javax.management.ObjectName,java.lang.String,javax.security.auth.Subject)\"\u003e\u003ccode\u003egetAttribute(javax.management.ObjectName, java.lang.String, javax.security.auth.Subject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean within which the attribute is to be set.",
+          "\u003ccode\u003eattribute\u003c/code\u003e - The identification of the attribute to be set and the value it is to be set to, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/AttributeNotFoundException.html\" title\u003d\"class in javax.management\"\u003eAttributeNotFoundException\u003c/a\u003e\u003c/code\u003e - The attribute specified is not accessible in the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InvalidAttributeValueException.html\" title\u003d\"class in javax.management\"\u003eInvalidAttributeValueException\u003c/a\u003e\u003c/code\u003e - The value specified for the attribute is not valid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps an exception thrown by the MBean\u0027s setter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e thrown when trying to invoke the setter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or the attribute in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.AttributeList",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attributes"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setAttributes",
+      "comment": "Handles the method MBeanServerConnection.setAttributes(ObjectName, AttributeList). The AttributeList parameter is wrapped in a MarshalledObject.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#getAttributes(javax.management.ObjectName,java.lang.String%5B%5D,javax.security.auth.Subject)\"\u003e\u003ccode\u003egetAttributes(javax.management.ObjectName, java.lang.String[], javax.security.auth.Subject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean within which the attributes are to be set.",
+          "\u003ccode\u003eattributes\u003c/code\u003e - A list of attributes: The identification of the attributes to be set and the values they are to be set to, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred when trying to invoke the getAttributes method of a Dynamic MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null or attributes in parameter is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "The list of attributes that were set, with their new values."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "operationName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "params"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "signature"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invoke",
+      "comment": "Handles the method MBeanServerConnection.invoke(ObjectName, String, Object[], String[]). The Object[] parameter is wrapped in a MarshalledObject.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The object name of the MBean on which the method is to be invoked.",
+          "\u003ccode\u003eoperationName\u003c/code\u003e - The name of the operation to be invoked.",
+          "\u003ccode\u003eparams\u003c/code\u003e - An array containing the parameters to be set when the operation is invoked, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e. The encapsulated array can be null, equivalent to an empty array.",
+          "\u003ccode\u003esignature\u003c/code\u003e - An array containing the signature of the operation. The class objects will be loaded using the same class loader as the one used for loading the MBean on which the operation was invoked. Can be null, equivalent to an empty array.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps an exception thrown by the MBean\u0027s invoked method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.Exception\u003c/code\u003e thrown while trying to invoke the method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e when \n\u003ccode\u003ename\u003c/code\u003e or \n\u003ccode\u003eoperationName\u003c/code\u003e is null."
+        ],
+        "return": [
+          "The object returned by the operation, which represents the result of invoking the operation on the MBean specified."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDefaultDomain",
+      "comment": "Handles the method MBeanServerConnection.getDefaultDomain().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "the default domain."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDomains",
+      "comment": "Handles the method MBeanServerConnection.getDomains().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "the list of domains."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.MBeanInfo",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.IntrospectionException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ReflectionException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMBeanInfo",
+      "comment": "Handles the method MBeanServerConnection.getMBeanInfo(ObjectName).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean to analyze",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/IntrospectionException.html\" title\u003d\"class in javax.management\"\u003eIntrospectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred during introspection.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified was not found.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ReflectionException.html\" title\u003d\"class in javax.management\"\u003eReflectionException\u003c/a\u003e\u003c/code\u003e - An exception occurred when trying to invoke the getMBeanInfo of a Dynamic MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null."
+        ],
+        "return": [
+          "An instance of \n\u003ccode\u003eMBeanInfo\u003c/code\u003e allowing the retrieval of all attributes and operations of this MBean."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "className"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isInstanceOf",
+      "comment": "Handles the method MBeanServerConnection.isInstanceOf(ObjectName, String).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The \n\u003ccode\u003eObjectName\u003c/code\u003e of the MBean.",
+          "\u003ccode\u003eclassName\u003c/code\u003e - The name of the class.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean specified is not registered in the MBean server.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps a \n\u003ccode\u003ejava.lang.IllegalArgumentException\u003c/code\u003e: The object name in parameter is null."
+        ],
+        "return": [
+          "true if the MBean specified is an instance of the specified class according to the rules above, false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listener"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "filter"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "handback"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addNotificationListener",
+      "comment": "Handles the method MBeanServerConnection.addNotificationListener(ObjectName, ObjectName, NotificationFilter, Object). The NotificationFilter parameter is wrapped in a MarshalledObject. The Object (handback) parameter is also wrapped in a MarshalledObject.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#removeNotificationListener(javax.management.ObjectName,javax.management.ObjectName,javax.security.auth.Subject)\"\u003e\u003ccode\u003eremoveNotificationListener(ObjectName, ObjectName, Subject)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#removeNotificationListener(javax.management.ObjectName,javax.management.ObjectName,java.rmi.MarshalledObject,java.rmi.MarshalledObject,javax.security.auth.Subject)\"\u003e\u003ccode\u003eremoveNotificationListener(ObjectName, ObjectName, MarshalledObject, MarshalledObject, Subject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be added.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The object name of the listener which will handle the notifications emitted by the registered MBean.",
+          "\u003ccode\u003efilter\u003c/code\u003e - The filter object, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e. If filter encapsulated in the \n\u003ccode\u003eMarshalledObject\u003c/code\u003e has a null value, no filtering will be performed before handling notifications.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - The context to be sent to the listener when a notification is emitted, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name of the notification listener or of the notification broadcaster does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e. The MBean named by \n\u003ccode\u003elistener\u003c/code\u003e exists but does not implement the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationListener.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eNotificationListener\u003c/code\u003e\u003c/a\u003e interface, or \n\u003ccode\u003ename\u003c/code\u003e or \n\u003ccode\u003elistener\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listener"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListener",
+      "comment": "Handles the method MBeanServerConnection.removeNotificationListener(ObjectName, ObjectName).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#addNotificationListener(javax.management.ObjectName,javax.management.ObjectName,java.rmi.MarshalledObject,java.rmi.MarshalledObject,javax.security.auth.Subject)\"\u003e\u003ccode\u003eaddNotificationListener(javax.management.ObjectName, javax.management.ObjectName, java.rmi.MarshalledObject, java.rmi.MarshalledObject, javax.security.auth.Subject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be removed.",
+          "\u003ccode\u003elistener\u003c/code\u003e - The object name of the listener to be removed.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name provided does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - The listener is not registered in the MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e when \n\u003ccode\u003ename\u003c/code\u003e or \n\u003ccode\u003elistener\u003c/code\u003e is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listener"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "filter"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "handback"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListener",
+      "comment": "Handles the method MBeanServerConnection.removeNotificationListener(ObjectName, ObjectName, NotificationFilter, Object). The NotificationFilter parameter is wrapped in a MarshalledObject. The Object parameter is also wrapped in a MarshalledObject.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management.rmi/javax/management/remote/rmi/RMIConnection.html#addNotificationListener(javax.management.ObjectName,javax.management.ObjectName,java.rmi.MarshalledObject,java.rmi.MarshalledObject,javax.security.auth.Subject)\"\u003e\u003ccode\u003eaddNotificationListener(javax.management.ObjectName, javax.management.ObjectName, java.rmi.MarshalledObject, java.rmi.MarshalledObject, javax.security.auth.Subject)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the MBean on which the listener should be removed.",
+          "\u003ccode\u003elistener\u003c/code\u003e - A listener that was previously added to this MBean.",
+          "\u003ccode\u003efilter\u003c/code\u003e - The filter that was specified when the listener was added, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e.",
+          "\u003ccode\u003ehandback\u003c/code\u003e - The handback that was specified when the listener was added, encapsulated into a \n\u003ccode\u003eMarshalledObject\u003c/code\u003e.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - The MBean name provided does not match any of the registered MBeans.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - The listener is not registered in the MBean, or it is not registered with the given filter and handback.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to perform this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalArgumentException\u003c/code\u003e\u003c/a\u003e when \n\u003ccode\u003ename\u003c/code\u003e or \n\u003ccode\u003elistener\u003c/code\u003e is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Integer",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "names"
+          }
+        },
+        {
+          "type": {
+            "name": "java.rmi.MarshalledObject",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "filters"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "delegationSubjects"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addNotificationListeners",
+      "comment": "Handles the method MBeanServerConnection.addNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object). Register for notifications from the given MBeans that match the given filters. The remote client can subsequently retrieve the notifications using the fetchNotifications method. For each listener, the original NotificationListener and handback are kept on the client side; in order for the client to be able to identify them, the server generates and returns a unique listenerID. This listenerID is forwarded with the Notifications to the remote client. If any one of the given (name, filter) pairs cannot be registered, then the operation fails with an exception, and no names or filters are registered.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enames\u003c/code\u003e - the \n\u003ccode\u003eObjectNames\u003c/code\u003e identifying the MBeans emitting the Notifications.",
+          "\u003ccode\u003efilters\u003c/code\u003e - an array of marshalled representations of the \n\u003ccode\u003eNotificationFilters\u003c/code\u003e. Elements of this array can be null.",
+          "\u003ccode\u003edelegationSubjects\u003c/code\u003e - the \n\u003ccode\u003eSubjects\u003c/code\u003e on behalf of which the listeners are being added. Elements of this array can be null. Also, the \n\u003ccode\u003edelegationSubjects\u003c/code\u003e parameter itself can be null, which is equivalent to an array of null values with the same size as the \n\u003ccode\u003enames\u003c/code\u003e and \n\u003ccode\u003efilters\u003c/code\u003e arrays."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003enames\u003c/code\u003e or \n\u003ccode\u003efilters\u003c/code\u003e is null, or if \n\u003ccode\u003enames\u003c/code\u003e contains a null element, or if the three arrays do not all have the same size.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if one of the elements of \n\u003ccode\u003efilters\u003c/code\u003e unmarshalls as a non-null object that is not a \n\u003ccode\u003eNotificationFilter\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - if one of the \n\u003ccode\u003enames\u003c/code\u003e does not correspond to any registered MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if, for one of the MBeans, the client, or the delegated Subject if any, does not have permission to add a listener.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "an array of \n\u003ccode\u003elistenerIDs\u003c/code\u003e identifying the local listeners. This array has the same number of elements as the parameters."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.ListenerNotFoundException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.ObjectName",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Integer",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "listenerIDs"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delegationSubject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeNotificationListeners",
+      "comment": "Handles the removeNotificationListener(ObjectName, NotificationListener) and removeNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object) methods. This method removes one or more NotificationListeners from a given MBean in the MBean server. The NotificationListeners are identified by the IDs which were returned by the addNotificationListeners(ObjectName[], MarshalledObject[], Subject[]) method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the \n\u003ccode\u003eObjectName\u003c/code\u003e identifying the MBean emitting the Notifications.",
+          "\u003ccode\u003elistenerIDs\u003c/code\u003e - the list of the IDs corresponding to the listeners to remove.",
+          "\u003ccode\u003edelegationSubject\u003c/code\u003e - The \n\u003ccode\u003eSubject\u003c/code\u003e containing the delegation principals or \n\u003ccode\u003enull\u003c/code\u003e if the authentication principal is used instead."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - if the given \n\u003ccode\u003ename\u003c/code\u003e does not correspond to any registered MBean.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/ListenerNotFoundException.html\" title\u003d\"class in javax.management\"\u003eListenerNotFoundException\u003c/a\u003e\u003c/code\u003e - if one of the listeners was not found on the server side. This exception can happen if the MBean discarded a listener for some reason other than a call to \n\u003ccode\u003eMBeanServer.removeNotificationListener\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the client, or the delegated Subject if any, does not have permission to remove the listeners.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eObjectName\u003c/code\u003e or \n\u003ccode\u003elistenerIds\u003c/code\u003e is null or if \n\u003ccode\u003elistenerIds\u003c/code\u003e contains a null element."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.management.remote.NotificationResult",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "clientSequenceNumber"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxNotifications"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "timeout"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "fetchNotifications",
+      "comment": "Retrieves notifications from the connector server. This method can block until there is at least one notification or until the specified timeout is reached. The method can also return at any time with zero notifications. A notification can be included in the result if its sequence number is no less than clientSequenceNumber and this client has registered at least one listener for the MBean generating the notification, with a filter that accepts the notification. Each listener that is interested in the notification is identified by an Integer ID that was returned by addNotificationListeners(ObjectName[], MarshalledObject[], Subject[]).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclientSequenceNumber\u003c/code\u003e - the first sequence number that the client is interested in. If negative, it is interpreted as meaning the sequence number that the next notification will have.",
+          "\u003ccode\u003emaxNotifications\u003c/code\u003e - the maximum number of different notifications to return. The \n\u003ccode\u003eTargetedNotification\u003c/code\u003e array in the returned \n\u003ccode\u003eNotificationResult\u003c/code\u003e can have more elements than this if the same notification appears more than once. The behavior is unspecified if this parameter is negative.",
+          "\u003ccode\u003etimeout\u003c/code\u003e - the maximum time in milliseconds to wait for a notification to arrive. This can be 0 to indicate that the method should not wait if there are no notifications, but should return at once. It can be \n\u003ccode\u003eLong.MAX_VALUE\u003c/code\u003e to indicate that there is no timeout. The behavior is unspecified if this parameter is negative."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a general communication exception occurred."
+        ],
+        "return": [
+          "A \n\u003ccode\u003eNotificationResult\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.management.remote.rmi.RMIConnection",
+  "comment": "\u003cp\u003eRMI object used to forward an MBeanServer request from a client to its MBeanServer implementation on the server side. There is one Remote object implementing this interface for each remote client connected to an RMI connector.\u003c/p\u003e \n\u003cp\u003eUser code does not usually refer to this interface. It is specified as part of the public API so that different implementations of that API will interoperate.\u003c/p\u003e \n\u003cp\u003eTo ensure that client parameters will be deserialized at the server side with the correct classloader, client parameters such as parameters used to invoke a method are wrapped in a \u003ca href\u003d\"../../../../../java.rmi/java/rmi/MarshalledObject.html\" title\u003d\"class in java.rmi\"\u003e\u003ccode\u003eMarshalledObject\u003c/code\u003e\u003c/a\u003e. An implementation of this interface must first get the appropriate class loader for the operation and its target, then deserialize the marshalled parameters with this classloader. Except as noted, a parameter that is a \u003ccode\u003eMarshalledObject\u003c/code\u003e or \u003ccode\u003eMarshalledObject[]\u003c/code\u003e must not be null; the behavior is unspecified if it is.\u003c/p\u003e \n\u003cp\u003eClass loading aspects are detailed in the \u003ca href\u003d\"https://jcp.org/aboutJava/communityprocess/mrel/jsr160/index2.html\"\u003e JMX Specification, version 1.4\u003c/a\u003e\u003c/p\u003e \n\u003cp\u003eMost methods in this interface parallel methods in the \u003ca href\u003d\"../../../../../java.management/javax/management/MBeanServerConnection.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eMBeanServerConnection\u003c/code\u003e\u003c/a\u003e interface. Where an aspect of the behavior of a method is not specified here, it is the same as in the corresponding \u003ccode\u003eMBeanServerConnection\u003c/code\u003e method.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

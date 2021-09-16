@@ -1,0 +1,310 @@
+{
+  "packageName": "jdk.dynalink.linker.support",
+  "simpleName": "TypeUtilities",
+  "moduleName": "jdk.dynalink",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "sourceType"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "targetType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isMethodInvocationConvertible",
+      "comment": "Determines whether one type can be converted to another type using a method invocation conversion, as per JLS 5.3 \"Method Invocation Conversion\". This is basically all conversions allowed by subtyping (see isSubtype(Class, Class)) as well as boxing conversion (JLS 5.1.7) optionally followed by widening reference conversion, and unboxing conversion (JLS 5.1.8) optionally followed by widening primitive conversion.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esourceType\u003c/code\u003e - the type being converted from (call site type for parameter types, method type for return types)",
+          "\u003ccode\u003etargetType\u003c/code\u003e - the parameter type being converted to (method type for parameter types, call site type for return types)"
+        ],
+        "return": [
+          "true if source type is method invocation convertible to target type."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "sourceType"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "targetType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isConvertibleWithoutLoss",
+      "comment": "Determines whether a type can be converted to another without losing any precision. As a special case, void is considered convertible only to void and Object (either as null or as a custom value set in DynamicLinkerFactory.setAutoConversionStrategy(MethodTypeConversionStrategy)). Somewhat unintuitively, we consider anything to be convertible to void even though converting to void causes the ultimate loss of data. On the other hand, conversion to void essentially means that the value is of no interest and should be discarded, thus there\u0027s no expectation of preserving any precision.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esourceType\u003c/code\u003e - the source type",
+          "\u003ccode\u003etargetType\u003c/code\u003e - the target type"
+        ],
+        "return": [
+          "true if lossless conversion is possible"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "subType"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "superType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isSubtype",
+      "comment": "Determines whether one type is a subtype of another type, as per JLS 4.10 \"Subtyping\". Note: this is not strict or proper subtype, therefore true is also returned for identical types; to be completely precise, it allows identity conversion (JLS 5.1.1), widening primitive conversion (JLS 5.1.2) and widening reference conversion (JLS 5.1.5).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esubType\u003c/code\u003e - the supposed subtype",
+          "\u003ccode\u003esuperType\u003c/code\u003e - the supposed supertype of the subtype"
+        ],
+        "return": [
+          "true if subType can be converted by identity conversion, widening primitive conversion, or widening reference conversion to superType."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getPrimitiveTypeByName",
+      "comment": "Given a name of a primitive type returns the class representing it. I.e. when invoked with \"int\", returns Integer.TYPE.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the primitive type"
+        ],
+        "return": [
+          "the class representing the primitive type, or null if the name does not correspond to a primitive type."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "wrapperType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getPrimitiveType",
+      "comment": "When passed a class representing a wrapper for a primitive type, returns the class representing the corresponding primitive type. I.e. calling it with Integer.class will return Integer.TYPE. If passed a class that is not a wrapper for primitive type, returns null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ewrapperType\u003c/code\u003e - the class object representing a wrapper for a primitive type."
+        ],
+        "return": [
+          "the class object representing the primitive type, or null if the passed class is not a primitive wrapper."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "primitiveType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getWrapperType",
+      "comment": "When passed a class representing a primitive type, returns the class representing the corresponding wrapper type. I.e. calling it with int.class will return Integer.class. If passed a class that is not a primitive type, returns null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprimitiveType\u003c/code\u003e - the class object representing a primitive type"
+        ],
+        "return": [
+          "the class object representing the wrapper type, or null if the passed class is not a primitive."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "type"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "isWrapperType",
+      "comment": "Returns true if the passed type is a wrapper for a primitive type.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etype\u003c/code\u003e - the examined type"
+        ],
+        "return": [
+          "true if the passed type is a wrapper for a primitive type."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "jdk.dynalink.linker.support.TypeUtilities",
+  "comment": "Various static utility methods for working with Java types.",
+  "tagMap": {}
+}

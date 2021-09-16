@@ -1,0 +1,986 @@
+{
+  "packageName": "jdk.incubator.vector",
+  "simpleName": "VectorMask",
+  "moduleName": "jdk.incubator.vector",
+  "type": "CLASS",
+  "superClass": {
+    "name": "jdk.internal.vm.vector.VectorSupport.VectorMask",
+    "parameters": [
+      {
+        "name": "E",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorSpecies",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "vectorSpecies",
+      "comment": "Returns the vector species to which this mask applies. This mask applies to vectors of the same species, and the same number of lanes.",
+      "tagMap": {
+        "return": [
+          "the vector species of this mask"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "length",
+      "comment": "Returns the number of mask lanes. This mask applies to vectors of the same number of lanes, and the same species.",
+      "tagMap": {
+        "return": [
+          "the number of mask lanes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bits"
+          },
+          "varArgs": {}
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromValues",
+      "comment": "Returns a mask where each lane is set or unset according to given boolean values. For each mask lane, where N is the mask lane index, if the given boolean value at index N is true then the mask lane at index N is set, otherwise it is unset. The given species must have a number of lanes that is compatible with the given array.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#fromLong(jdk.incubator.vector.VectorSpecies,long)\"\u003e\u003ccode\u003efromLong(VectorSpecies, long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#fromArray(jdk.incubator.vector.VectorSpecies,boolean%5B%5D,int)\"\u003e\u003ccode\u003efromArray(VectorSpecies, boolean[], int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - vector species for the desired mask",
+          "\u003ccode\u003ebits\u003c/code\u003e - the given \n\u003ccode\u003eboolean\u003c/code\u003e values"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebits.length !\u003d species.length()\u003c/code\u003e"
+        ],
+        "return": [
+          "a mask where each lane is set or unset according to the given \n\u003ccode\u003eboolean\u003c/code\u003e value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "bits"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromArray",
+      "comment": "Loads a mask from a boolean array starting at an offset. For each mask lane, where N is the mask lane index, if the array element at index offset + N is true then the mask lane at index N is set, otherwise it is unset.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#fromLong(jdk.incubator.vector.VectorSpecies,long)\"\u003e\u003ccode\u003efromLong(VectorSpecies, long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#fromValues(jdk.incubator.vector.VectorSpecies,boolean...)\"\u003e\u003ccode\u003efromValues(VectorSpecies, boolean...)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - vector species for the desired mask",
+          "\u003ccode\u003ebits\u003c/code\u003e - the \n\u003ccode\u003eboolean\u003c/code\u003e array",
+          "\u003ccode\u003eoffset\u003c/code\u003e - the offset into the array"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoffset \u0026lt; 0\u003c/code\u003e, or \n\u003ccode\u003eoffset \u0026gt; bits.length - species.length()\u003c/code\u003e"
+        ],
+        "return": [
+          "the mask loaded from the \n\u003ccode\u003eboolean\u003c/code\u003e array"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bits"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromLong",
+      "comment": "Returns a mask where each lane is set or unset according to the bits in the given bitmask, starting with the least significant bit, and continuing up to the sign bit. For each mask lane, where N is the mask lane index, if the expression (bits\u003e\u003emin(63,N))\u00261 is non-zero, then the mask lane at index N is set, otherwise it is unset. If the given species has fewer than 64 lanes, the high 64-VLENGTH bits of the bit-mask are ignored. If the given species has more than 64 lanes, the sign bit is replicated into lane 64 and beyond.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#fromValues(jdk.incubator.vector.VectorSpecies,boolean...)\"\u003e\u003ccode\u003efromValues(VectorSpecies, boolean...)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#fromArray(jdk.incubator.vector.VectorSpecies,boolean%5B%5D,int)\"\u003e\u003ccode\u003efromArray(VectorSpecies, boolean[], int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - vector species for the desired mask",
+          "\u003ccode\u003ebits\u003c/code\u003e - the given mask bits, as a 64-bit signed integer"
+        ],
+        "return": [
+          "a mask where each lane is set or unset according to the bits in the given integer value"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "name": "F",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "F",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "F",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "cast",
+      "comment": "Converts this mask to a mask of the given species of element type F. The species.length() must be equal to the mask length. The various mask lane bits are unmodified. For each mask lane, where N is the lane index, if the mask lane at index N is set, then the mask lane at index N of the resulting mask is set, otherwise that mask lane is not set.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eF\u003c/code\u003e - the boxed element type of the species"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - vector species for the desired mask"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if this mask length and the species length differ"
+        ],
+        "return": [
+          "a mask converted by shape and element type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "toLong",
+      "comment": "Returns the lane elements of this mask packed into a long value for at most the first 64 lane elements. The lane elements are packed in the order of least significant bit to most significant bit. For each mask lane where N is the mask lane index, if the mask lane is set then the Nth bit is set to one in the resulting long value, otherwise the Nth bit is set to zero. The mask must have no more than 64 lanes.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if there are more than 64 lanes in this mask"
+        ],
+        "return": [
+          "the lane elements of this mask packed into a \n\u003ccode\u003elong\u003c/code\u003e value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "toArray",
+      "comment": "Returns an boolean array containing the lane elements of this mask. This method behaves as if it stores this mask into an allocated array (using intoArray(boolean[], int)) and returns that array as follows: \n boolean[] a \u003d new boolean[this.length()];\n this.intoArray(a, 0);\n return a;",
+      "tagMap": {
+        "return": [
+          "an array containing the the lane elements of this vector"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "a"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "intoArray",
+      "comment": "Stores this mask into a boolean array starting at offset. For each mask lane, where N is the mask lane index, the lane element at index N is stored into the array element a[offset+N].",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - the array, of type boolean[]",
+          "\u003ccode\u003eoffset\u003c/code\u003e - the offset into the array"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoffset \u0026lt; 0\u003c/code\u003e or \n\u003ccode\u003eoffset \u0026gt; a.length - this.length()\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "anyTrue",
+      "comment": "Returns true if any of the mask lanes are set.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if any of the mask lanes are set, otherwise \n\u003ccode\u003efalse\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "allTrue",
+      "comment": "Returns true if all of the mask lanes are set.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if all of the mask lanes are set, otherwise \n\u003ccode\u003efalse\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "trueCount",
+      "comment": "Returns the number of mask lanes that are set.",
+      "tagMap": {
+        "return": [
+          "the number of mask lanes that are set."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "firstTrue",
+      "comment": "Returns the index of the first mask lane that is set. Returns VLENGTH if none of them are set.",
+      "tagMap": {
+        "return": [
+          "the index of the first mask lane that is set, or \n\u003ccode\u003eVLENGTH\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "lastTrue",
+      "comment": "Returns the index of the last mask lane that is set. Returns -1 if none of them are set.",
+      "tagMap": {
+        "return": [
+          "the index of the last mask lane that is set, or \n\u003ccode\u003e-1\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorMask",
+            "parameters": [
+              {
+                "owner": "jdk.incubator.vector.VectorMask",
+                "name": "E",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "m"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "and",
+      "comment": "Computes the logical intersection (as a\u0026b) between this mask and a second input mask. This is a lane-wise binary operation which applies the logical AND operation (\u0026) to each corresponding pair of mask bits.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003em\u003c/code\u003e - the second input mask"
+        ],
+        "return": [
+          "the result of logically conjoining the two input masks"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorMask",
+            "parameters": [
+              {
+                "owner": "jdk.incubator.vector.VectorMask",
+                "name": "E",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "m"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "or",
+      "comment": "Computes the logical union (as a|b) of this mask and a second input mask. This is a lane-wise binary operation which applies the logical OR operation (|) to each corresponding pair of mask bits.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003em\u003c/code\u003e - the input mask"
+        ],
+        "return": [
+          "the result of logically disjoining the two input masks"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorMask",
+            "parameters": [
+              {
+                "owner": "jdk.incubator.vector.VectorMask",
+                "name": "E",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "m"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "eq",
+      "comment": "Determines logical equivalence of this mask to a second input mask (as boolean a\u003d\u003db or a^~b). This is a lane-wise binary operation tests each corresponding pair of mask bits for equality. It is also equivalent to a inverse XOR operation (^~) on the mask bits.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eequals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003em\u003c/code\u003e - the input mask"
+        ],
+        "return": [
+          "a mask showing where the two input masks were equal"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorMask",
+            "parameters": [
+              {
+                "owner": "jdk.incubator.vector.VectorMask",
+                "name": "E",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "m"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "andNot",
+      "comment": "Logically subtracts a second input mask from this mask (as a\u0026~b). This is a lane-wise binary operation which applies the logical ANDC operation (\u0026~) to each corresponding pair of mask bits.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003em\u003c/code\u003e - the second input mask"
+        ],
+        "return": [
+          "the result of logically subtracting the second mask from this mask"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "not",
+      "comment": "Logically negates this mask. This is a lane-wise binary operation which applies the logical NOT operation (~) to each mask bit.",
+      "tagMap": {
+        "return": [
+          "the result of logically negating this mask"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "limit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "indexInRange",
+      "comment": "Removes lanes numbered N from this mask where the adjusted index N+offset, is not in the range [0..limit-1]. In all cases the series of set and unset lanes is assigned as if by using infinite precision or VLENGTH-saturating additions or subtractions, without overflow or wrap-around.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorSpecies.html#indexInRange(int,int)\"\u003e\u003ccode\u003eVectorSpecies.indexInRange(int, int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "This method performs a SIMD emulation of the check performed by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Objects.html#checkIndex(long,long)\"\u003e\u003ccode\u003eObjects.checkIndex(int,int)\u003c/code\u003e\u003c/a\u003e, on the index numbers in the range \n\u003ccode\u003e[offset..offset+VLENGTH-1]\u003c/code\u003e. If an exception is desired, the resulting mask can be compared with the original mask; if they are not equal, then at least one lane was out of range, and exception processing can be performed. \n\u003cp\u003e A mask which is a series of \u003ccode\u003eN\u003c/code\u003e set lanes followed by a series of unset lanes can be obtained by calling \u003ccode\u003eallTrue.indexInRange(0, N)\u003c/code\u003e, where \u003ccode\u003eallTrue\u003c/code\u003e is a mask of all true bits. A mask of \u003ccode\u003eN1\u003c/code\u003e unset lanes followed by \u003ccode\u003eN2\u003c/code\u003e set lanes can be obtained by calling \u003ccode\u003eallTrue.indexInRange(-N1, N2)\u003c/code\u003e.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eoffset\u003c/code\u003e - the starting index",
+          "\u003ccode\u003elimit\u003c/code\u003e - the upper-bound (exclusive) of index range"
+        ],
+        "return": [
+          "the original mask, with out-of-range lanes unset"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.Vector",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorMask",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "toVector",
+      "comment": "Returns a vector representation of this mask, the lane bits of which are set or unset in correspondence to the mask bits. For each mask lane, where N is the mask lane index, if the mask lane is set at N then the specific non-default value -1 is placed into the resulting vector at lane index N. Otherwise the default element value 0 is placed into the resulting vector at lane index N. Whether the element type (ETYPE) of this mask is floating point or integral, the lane value, as selected by the mask, will be one of the two arithmetic values 0 or -1. For every ETYPE the most significant bit of the vector lane is set if and only if the mask lane is set. In addition, for integral types, all lane bits are set in lanes where the mask is set. The vector returned is the same as would be computed by ZERO.blend(MINUS_ONE, this), where ZERO and MINUS_ONE are vectors which replicate the default ETYPE value and the ETYPE value representing -1, respectively.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#check(java.lang.Class)\"\u003e\u003ccode\u003eVector.check(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#check(jdk.incubator.vector.VectorSpecies)\"\u003e\u003ccode\u003eVector.check(VectorSpecies)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "For the sake of static type checking, users may wish to check the resulting vector against the expected integral lane type or species. If the mask is for a float-point species, then the resulting vector will have the same shape and lane size, but an integral type. If the mask is for an integral species, the resulting vector will be of exactly that species."
+        ],
+        "return": [
+          "a vector representation of this mask"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "i"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "laneIsSet",
+      "comment": "Tests if the lane at index i is set",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ei\u003c/code\u003e - the lane index"
+        ],
+        "return": [
+          "true if the lane at index \n\u003ccode\u003ei\u003c/code\u003e is set, otherwise false"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "name": "F",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "F",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementType"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "F",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "check",
+      "comment": "Checks that this mask applies to vectors with the given element type, and returns this mask unchanged. The effect is similar to this pseudocode: elementType \u003d\u003d vectorSpecies().elementType() ? this : throw new ClassCastException().",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eF\u003c/code\u003e - the boxed element type of the required lane type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#check(java.lang.Class)\"\u003e\u003ccode\u003eVector.check(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#check(jdk.incubator.vector.VectorSpecies)\"\u003e\u003ccode\u003echeck(VectorSpecies)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eelementType\u003c/code\u003e - the required lane type"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the element type is wrong"
+        ],
+        "return": [
+          "the same mask"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "name": "F",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "F",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "F",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "check",
+      "comment": "Checks that this mask has the given species, and returns this mask unchanged. The effect is similar to this pseudocode: species \u003d\u003d vectorSpecies() ? this : throw new ClassCastException().",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eF\u003c/code\u003e - the boxed element type of the required species"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#check(java.lang.Class)\"\u003e\u003ccode\u003eVector.check(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#check(jdk.incubator.vector.VectorSpecies)\"\u003e\u003ccode\u003eVector.check(VectorSpecies)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - vector species required for this mask"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the species is wrong"
+        ],
+        "return": [
+          "the same mask"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "toString",
+      "comment": "Returns a string representation of this mask, of the form \"Mask[T.TT...]\", reporting the mask bit settings (as \u0027T\u0027 or \u0027.\u0027 characters) in lane order.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string of the form \n\u003ccode\u003e\"Mask[T.TT...]\"\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "equals",
+      "comment": "Indicates whether this mask is identical to some other object. Two masks are identical only if they have the same species and same source indexes, in the same order.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorMask.html#eq(jdk.incubator.vector.VectorMask)\"\u003e\u003ccode\u003eeq(jdk.incubator.vector.VectorMask\u0026lt;E\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the reference object with which to compare."
+        ],
+        "return": [
+          "whether this vector is identical to some other object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hashCode",
+      "comment": "Returns a hash code value for the mask, based on the mask bit settings and the vector species.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a hash code value for this mask"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "E",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "jdk.incubator.vector.VectorMask",
+  "comment": "A \n\u003ccode\u003eVectorMask\u003c/code\u003e represents an ordered immutable sequence of \n\u003ccode\u003eboolean\u003c/code\u003e values. \n\u003cp\u003e A \u003ccode\u003eVectorMask\u003c/code\u003e and \u003ccode\u003eVector\u003c/code\u003e of the same \u003ca href\u003d\"Vector.html#ETYPE\"\u003eelement type\u003c/a\u003e (\u003ccode\u003eETYPE\u003c/code\u003e) and \u003ca href\u003d\"VectorShape.html\" title\u003d\"enum class in jdk.incubator.vector\"\u003e\u003ccode\u003eshape\u003c/code\u003e\u003c/a\u003e have the same number of lanes, and are therefore compatible (specifically, their \u003ca href\u003d\"#vectorSpecies()\"\u003e\u003ccode\u003evector species\u003c/code\u003e\u003c/a\u003e are compatible). \u003c/p\u003e\n\u003cp\u003e Some vector operations accept (compatible) masks to control the selection and operation of lane elements of input vectors. \u003c/p\u003e\n\u003cp\u003e The number of values in the sequence is referred to as the \u003ccode\u003eVectorMask\u003c/code\u003e \u003ca href\u003d\"#length()\"\u003e\u003ccode\u003elength\u003c/code\u003e\u003c/a\u003e. The length also corresponds to the number of VectorMask lanes. The lane element at lane index \u003ccode\u003eN\u003c/code\u003e (from \u003ccode\u003e0\u003c/code\u003e, inclusive, to length, exclusive) corresponds to the \u003ccode\u003eN + 1\u003c/code\u003e\u0027th value in the sequence. \u003c/p\u003e\n\u003cp\u003e A lane is said to be \u003cem\u003eset\u003c/em\u003e if the lane element is \u003ccode\u003etrue\u003c/code\u003e, otherwise a lane is said to be \u003cem\u003eunset\u003c/em\u003e if the lane element is \u003ccode\u003efalse\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e VectorMask declares a limited set of unary, binary and reduction operations. \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e A lane-wise unary operation operates on one input mask and produces a result mask. For each lane of the input mask the lane element is operated on using the specified scalar unary operation and the boolean result is placed into the mask result at the same lane. The following pseudocode illustrates the behavior of this operation category: \u003cpre\u003e\u003ccode\u003e\n VectorMask\u0026lt;E\u0026gt; a \u003d ...;\n boolean[] ar \u003d new boolean[a.length()];\n for (int i \u003d 0; i \u0026lt; a.length(); i++) {\n     ar[i] \u003d scalar_unary_op(a.laneIsSet(i));\n }\n VectorMask\u0026lt;E\u0026gt; r \u003d VectorMask.fromArray(a.vectorSpecies(), ar, 0);\n \u003c/code\u003e\u003c/pre\u003e \u003c/li\u003e\n \u003cli\u003e A lane-wise binary operation operates on two input masks to produce a result mask. For each lane of the two input masks a and b, the corresponding lane elements from a and b are operated on using the specified scalar binary operation and the boolean result is placed into the mask result at the same lane. The following pseudocode illustrates the behavior of this operation category: \u003cpre\u003e\u003ccode\u003e\n VectorMask\u0026lt;E\u0026gt; a \u003d ...;\n VectorMask\u0026lt;E\u0026gt; b \u003d ...;\n boolean[] ar \u003d new boolean[a.length()];\n for (int i \u003d 0; i \u0026lt; a.length(); i++) {\n     ar[i] \u003d scalar_binary_op(a.laneIsSet(i), b.laneIsSet(i));\n }\n VectorMask\u0026lt;E\u0026gt; r \u003d VectorMask.fromArray(a.vectorSpecies(), ar, 0);\n \u003c/code\u003e\u003c/pre\u003e \u003c/li\u003e\n \u003cli\u003e A cross-lane reduction operation accepts an input mask and produces a scalar result. For each lane of the input mask the lane element is operated on, together with a scalar accumulation value, using the specified scalar binary operation. The scalar result is the final value of the accumulator. The following pseudocode illustrates the behaviour of this operation category: \u003cpre\u003e\u003ccode\u003e\n Mask\u0026lt;E\u0026gt; a \u003d ...;\n int acc \u003d zero_for_scalar_binary_op;  // 0, or 1 for \u0026amp;\n for (int i \u003d 0; i \u0026lt; a.length(); i++) {\n      acc \u003d scalar_binary_op(acc, a.laneIsSet(i) ? 1 : 0);  // \u0026amp; | +\n }\n return acc;  // maybe boolean (acc !\u003d 0)\n \u003c/code\u003e\u003c/pre\u003e \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {}
+}

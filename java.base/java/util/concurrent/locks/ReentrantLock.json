@@ -1,0 +1,495 @@
+{
+  "packageName": "java.util.concurrent.locks",
+  "simpleName": "ReentrantLock",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "lock",
+      "comment": "Acquires the lock. Acquires the lock if it is not held by another thread and returns immediately, setting the lock hold count to one. If the current thread already holds the lock then the hold count is incremented by one and the method returns immediately. If the lock is held by another thread then the current thread becomes disabled for thread scheduling purposes and lies dormant until the lock has been acquired, at which time the lock hold count is set to one.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html#lock()\"\u003elock\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003eLock\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "lockInterruptibly",
+      "comment": "Acquires the lock unless the current thread is interrupted. Acquires the lock if it is not held by another thread and returns immediately, setting the lock hold count to one. If the current thread already holds this lock then the hold count is incremented by one and the method returns immediately. If the lock is held by another thread then the current thread becomes disabled for thread scheduling purposes and lies dormant until one of two things happens: The lock is acquired by the current thread; or Some other thread interrupts the current thread. If the lock is acquired by the current thread then the lock hold count is set to one. If the current thread: has its interrupted status set on entry to this method; or is interrupted while acquiring the lock, then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. In this implementation, as this method is an explicit interruption point, preference is given to responding to the interrupt over normal or reentrant acquisition of the lock.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html#lockInterruptibly()\"\u003elockInterruptibly\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003eLock\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "tryLock",
+      "comment": "Acquires the lock only if it is not held by another thread at the time of invocation. Acquires the lock if it is not held by another thread and returns immediately with the value true, setting the lock hold count to one. Even when this lock has been set to use a fair ordering policy, a call to tryLock() will immediately acquire the lock if it is available, whether or not other threads are currently waiting for the lock. This \"barging\" behavior can be useful in certain circumstances, even though it breaks fairness. If you want to honor the fairness setting for this lock, then use tryLock(0, TimeUnit.SECONDS) which is almost equivalent (it also detects interruption). If the current thread already holds this lock then the hold count is incremented by one and the method returns true. If the lock is held by another thread then this method will return immediately with the value false.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html#tryLock()\"\u003etryLock\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003eLock\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the lock was free and was acquired by the current thread, or the lock was already held by the current thread; and \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "timeout"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "tryLock",
+      "comment": "Acquires the lock if it is not held by another thread within the given waiting time and the current thread has not been interrupted. Acquires the lock if it is not held by another thread and returns immediately with the value true, setting the lock hold count to one. If this lock has been set to use a fair ordering policy then an available lock will not be acquired if any other threads are waiting for the lock. This is in contrast to the tryLock() method. If you want a timed tryLock that does permit barging on a fair lock then combine the timed and un-timed forms together:  \n if (lock.tryLock() ||\n     lock.tryLock(timeout, unit)) {\n   ...\n } If the current thread already holds this lock then the hold count is incremented by one and the method returns true. If the lock is held by another thread then the current thread becomes disabled for thread scheduling purposes and lies dormant until one of three things happens: The lock is acquired by the current thread; or Some other thread interrupts the current thread; or The specified waiting time elapses If the lock is acquired then the value true is returned and the lock hold count is set to one. If the current thread: has its interrupted status set on entry to this method; or is interrupted while acquiring the lock, then InterruptedException is thrown and the current thread\u0027s interrupted status is cleared. If the specified waiting time elapses then the value false is returned. If the time is less than or equal to zero, the method will not wait at all. In this implementation, as this method is an explicit interruption point, preference is given to responding to the interrupt over normal or reentrant acquisition of the lock, and over reporting the elapse of the waiting time.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html#tryLock(long,java.util.concurrent.TimeUnit)\"\u003etryLock\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003eLock\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etimeout\u003c/code\u003e - the time to wait for the lock",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the timeout argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the time unit is null"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the lock was free and was acquired by the current thread, or the lock was already held by the current thread; and \n\u003ccode\u003efalse\u003c/code\u003e if the waiting time elapsed before the lock could be acquired"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "unlock",
+      "comment": "Attempts to release this lock. If the current thread is the holder of this lock then the hold count is decremented. If the hold count is now zero then the lock is released. If the current thread is not the holder of this lock then IllegalMonitorStateException is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html#unlock()\"\u003eunlock\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003eLock\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if the current thread does not hold this lock"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.locks.Condition",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "newCondition",
+      "comment": "Returns a Condition instance for use with this Lock instance. The returned Condition instance supports the same usages as do the Object monitor methods (wait, notify, and notifyAll) when used with the built-in monitor lock. If this lock is not held when any of the Condition waiting or signalling methods are called, then an IllegalMonitorStateException is thrown. When the condition waiting methods are called the lock is released and, before they return, the lock is reacquired and the lock hold count restored to what it was when the method was called. If a thread is interrupted while waiting then the wait will terminate, an InterruptedException will be thrown, and the thread\u0027s interrupted status will be cleared. Waiting threads are signalled in FIFO order. The ordering of lock reacquisition for threads returning from waiting methods is the same as for threads initially acquiring the lock, which is in the default case not specified, but for fair locks favors those threads that have been waiting the longest.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html#newCondition()\"\u003enewCondition\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/locks/Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003eLock\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the Condition object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getHoldCount",
+      "comment": "Queries the number of holds on this lock by the current thread. A thread has a hold on a lock for each lock action that is not matched by an unlock action. The hold count information is typically only used for testing and debugging purposes. For example, if a certain section of code should not be entered with the lock already held then we can assert that fact:  \n class X {\n   ReentrantLock lock \u003d new ReentrantLock();\n   // ...\n   public void m() {\n     assert lock.getHoldCount() \u003d\u003d 0;\n     lock.lock();\n     try {\n       // ... method body\n     } finally {\n       lock.unlock();\n     }\n   }\n }",
+      "tagMap": {
+        "return": [
+          "the number of holds on this lock by the current thread, or zero if this lock is not held by the current thread"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isHeldByCurrentThread",
+      "comment": "Queries if this lock is held by the current thread. Analogous to the Thread.holdsLock(Object) method for built-in monitor locks, this method is typically used for debugging and testing. For example, a method that should only be called while a lock is held can assert that this is the case:  \n class X {\n   ReentrantLock lock \u003d new ReentrantLock();\n   // ...\n\n   public void m() {\n       assert lock.isHeldByCurrentThread();\n       // ... method body\n   }\n } It can also be used to ensure that a reentrant lock is used in a non-reentrant manner, for example:  \n class X {\n   ReentrantLock lock \u003d new ReentrantLock();\n   // ...\n\n   public void m() {\n       assert !lock.isHeldByCurrentThread();\n       lock.lock();\n       try {\n           // ... method body\n       } finally {\n           lock.unlock();\n       }\n   }\n }",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if current thread holds this lock and \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isLocked",
+      "comment": "Queries if this lock is held by any thread. This method is designed for use in monitoring of the system state, not for synchronization control.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if any thread holds this lock and \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isFair",
+      "comment": "Returns true if this lock has fairness set true.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this lock has fairness set true"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Thread",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getOwner",
+      "comment": "Returns the thread that currently owns this lock, or null if not owned. When this method is called by a thread that is not the owner, the return value reflects a best-effort approximation of current lock status. For example, the owner may be momentarily null even if there are threads trying to acquire the lock but have not yet done so. This method is designed to facilitate construction of subclasses that provide more extensive lock monitoring facilities.",
+      "tagMap": {
+        "return": [
+          "the owner, or \n\u003ccode\u003enull\u003c/code\u003e if not owned"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hasQueuedThreads",
+      "comment": "Queries whether any threads are waiting to acquire this lock. Note that because cancellations may occur at any time, a true return does not guarantee that any other thread will ever acquire this lock. This method is designed primarily for use in monitoring of the system state.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if there may be other threads waiting to acquire the lock"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          },
+          "field": {
+            "name": "thread"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hasQueuedThread",
+      "comment": "Queries whether the given thread is waiting to acquire this lock. Note that because cancellations may occur at any time, a true return does not guarantee that this thread will ever acquire this lock. This method is designed primarily for use in monitoring of the system state.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ethread\u003c/code\u003e - the thread"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the thread is null"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the given thread is queued waiting for this lock"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getQueueLength",
+      "comment": "Returns an estimate of the number of threads waiting to acquire this lock. The value is only an estimate because the number of threads may change dynamically while this method traverses internal data structures. This method is designed for use in monitoring system state, not for synchronization control.",
+      "tagMap": {
+        "return": [
+          "the estimated number of threads waiting for this lock"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getQueuedThreads",
+      "comment": "Returns a collection containing threads that may be waiting to acquire this lock. Because the actual set of threads may change dynamically while constructing this result, the returned collection is only a best-effort estimate. The elements of the returned collection are in no particular order. This method is designed to facilitate construction of subclasses that provide more extensive monitoring facilities.",
+      "tagMap": {
+        "return": [
+          "the collection of threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.concurrent.locks.Condition",
+            "type": "Class"
+          },
+          "field": {
+            "name": "condition"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hasWaiters",
+      "comment": "Queries whether any threads are waiting on the given condition associated with this lock. Note that because timeouts and interrupts may occur at any time, a true return does not guarantee that a future signal will awaken any threads. This method is designed primarily for use in monitoring of the system state.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econdition\u003c/code\u003e - the condition"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if this lock is not held",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given condition is not associated with this lock",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the condition is null"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if there are any waiting threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.concurrent.locks.Condition",
+            "type": "Class"
+          },
+          "field": {
+            "name": "condition"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getWaitQueueLength",
+      "comment": "Returns an estimate of the number of threads waiting on the given condition associated with this lock. Note that because timeouts and interrupts may occur at any time, the estimate serves only as an upper bound on the actual number of waiters. This method is designed for use in monitoring of the system state, not for synchronization control.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econdition\u003c/code\u003e - the condition"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if this lock is not held",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given condition is not associated with this lock",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the condition is null"
+        ],
+        "return": [
+          "the estimated number of waiting threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Collection",
+        "parameters": [
+          {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.concurrent.locks.Condition",
+            "type": "Class"
+          },
+          "field": {
+            "name": "condition"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getWaitingThreads",
+      "comment": "Returns a collection containing those threads that may be waiting on the given condition associated with this lock. Because the actual set of threads may change dynamically while constructing this result, the returned collection is only a best-effort estimate. The elements of the returned collection are in no particular order. This method is designed to facilitate construction of subclasses that provide more extensive condition monitoring facilities.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econdition\u003c/code\u003e - the condition"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalMonitorStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalMonitorStateException\u003c/a\u003e\u003c/code\u003e - if this lock is not held",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the given condition is not associated with this lock",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the condition is null"
+        ],
+        "return": [
+          "the collection of threads"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns a string identifying this lock, as well as its lock state. The state, in brackets, includes either the String \"Unlocked\" or the String \"Locked by\" followed by the name of the owning thread.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string identifying this lock, as well as its lock state"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an instance of ReentrantLock. This is equivalent to using ReentrantLock(false).",
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fair"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an instance of ReentrantLock with the given fairness policy.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efair\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if this lock should use a fair ordering policy"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.util.concurrent.locks.ReentrantLock",
+  "comment": "A reentrant mutual exclusion \n\u003ca href\u003d\"Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003e\u003ccode\u003eLock\u003c/code\u003e\u003c/a\u003e with the same basic behavior and semantics as the implicit monitor lock accessed using \n\u003ccode\u003esynchronized\u003c/code\u003e methods and statements, but with extended capabilities. \n\u003cp\u003eA \u003ccode\u003eReentrantLock\u003c/code\u003e is \u003cem\u003eowned\u003c/em\u003e by the thread last successfully locking, but not yet unlocking it. A thread invoking \u003ccode\u003elock\u003c/code\u003e will return, successfully acquiring the lock, when the lock is not owned by another thread. The method will return immediately if the current thread already owns the lock. This can be checked using methods \u003ca href\u003d\"#isHeldByCurrentThread()\"\u003e\u003ccode\u003eisHeldByCurrentThread()\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#getHoldCount()\"\u003e\u003ccode\u003egetHoldCount()\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003eThe constructor for this class accepts an optional \u003cem\u003efairness\u003c/em\u003e parameter. When set \u003ccode\u003etrue\u003c/code\u003e, under contention, locks favor granting access to the longest-waiting thread. Otherwise this lock does not guarantee any particular access order. Programs using fair locks accessed by many threads may display lower overall throughput (i.e., are slower; often much slower) than those using the default setting, but have smaller variances in times to obtain locks and guarantee lack of starvation. Note however, that fairness of locks does not guarantee fairness of thread scheduling. Thus, one of many threads using a fair lock may obtain it multiple times in succession while other active threads are not progressing and not currently holding the lock. Also note that the untimed \u003ca href\u003d\"#tryLock()\"\u003e\u003ccode\u003etryLock()\u003c/code\u003e\u003c/a\u003e method does not honor the fairness setting. It will succeed if the lock is available even if other threads are waiting. \u003c/p\u003e\n\u003cp\u003eIt is recommended practice to \u003cem\u003ealways\u003c/em\u003e immediately follow a call to \u003ccode\u003elock\u003c/code\u003e with a \u003ccode\u003etry\u003c/code\u003e block, most typically in a before/after construction such as: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class X {\n   private final ReentrantLock lock \u003d new ReentrantLock();\n   // ...\n\n   public void m() {\n     lock.lock();  // block until condition holds\n     try {\n       // ... method body\n     } finally {\n       lock.unlock();\n     }\n   }\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eIn addition to implementing the \u003ca href\u003d\"Lock.html\" title\u003d\"interface in java.util.concurrent.locks\"\u003e\u003ccode\u003eLock\u003c/code\u003e\u003c/a\u003e interface, this class defines a number of \u003ccode\u003epublic\u003c/code\u003e and \u003ccode\u003eprotected\u003c/code\u003e methods for inspecting the state of the lock. Some of these methods are only useful for instrumentation and monitoring. \u003c/p\u003e\n\u003cp\u003eSerialization of this class behaves in the same way as built-in locks: a deserialized lock is in the unlocked state, regardless of its state when serialized. \u003c/p\u003e\n\u003cp\u003eThis lock supports a maximum of 2147483647 recursive locks by the same thread. Attempts to exceed this limit result in \u003ca href\u003d\"../../../lang/Error.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eError\u003c/code\u003e\u003c/a\u003e throws from locking methods.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.util.concurrent.locks.ReentrantLock\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

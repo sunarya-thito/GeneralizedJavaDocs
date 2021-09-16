@@ -1,0 +1,146 @@
+{
+  "packageName": "jdk.incubator.foreign",
+  "simpleName": "PathElement",
+  "moduleName": "jdk.incubator.foreign",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "groupElement",
+      "comment": "Returns a path element which selects a member layout with given name from a given group layout. The path element returned by this method does not alter the number of free dimensions of any path that is combined with such element.",
+      "tagMap": {
+        "implSpec": [
+          "in case multiple group elements with a matching name exist, the path element returned by this method will select the first one; that is, the group element with lowest offset from current path is selected."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the group element to be selected."
+        ],
+        "return": [
+          "a path element which selects the group element with given name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "sequenceElement",
+      "comment": "Returns a path element which selects the element layout at the specified position in a given the sequence layout. The path element returned by this method does not alter the number of free dimensions of any path that is combined with such element.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the index of the sequence element to be selected."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eindex \u0026lt; 0\u003c/code\u003e."
+        ],
+        "return": [
+          "a path element which selects the sequence element layout with given index."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "start"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "step"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "sequenceElement",
+      "comment": "Returns a path element which selects the element layout in a range of positions in a given the sequence layout, where the range is expressed as a pair of starting index (inclusive) S and step factor (which can also be negative) F. If a path with free dimensions n is combined with the path element returned by this method, the number of free dimensions of the resulting path will be 1 + n. If the free dimension associated with this path is bound by an index I, the resulting accessed offset can be obtained with the following formula: \nE * (S + I * F)\n where E is the size (in bytes) of the sequence element layout.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estart\u003c/code\u003e - the index of the first sequence element to be selected.",
+          "\u003ccode\u003estep\u003c/code\u003e - the step factor at which subsequence sequence elements are to be selected."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estart \u0026lt; 0\u003c/code\u003e, or \n\u003ccode\u003estep \u003d\u003d 0\u003c/code\u003e."
+        ],
+        "return": [
+          "a path element which selects the sequence element layout with given index."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "sequenceElement",
+      "comment": "Returns a path element which selects an unspecified element layout from a given sequence layout. If a path with free dimensions n is combined with the path element returned by this method, the number of free dimensions of the resulting path will be 1 + n.",
+      "tagMap": {
+        "return": [
+          "a path element which selects an unspecified sequence element layout."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+  "comment": "Instances of this class are used to form \n\u003ca href\u003d\"MemoryLayout.html#layout-paths\"\u003e\u003cem\u003elayout paths\u003c/em\u003e\u003c/a\u003e. There are two kinds of path elements: \n\u003cem\u003egroup path elements\u003c/em\u003e and \n\u003cem\u003esequence path elements\u003c/em\u003e. Group path elements are used to select a given named member layout within a \n\u003ca href\u003d\"GroupLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eGroupLayout\u003c/code\u003e\u003c/a\u003e. Sequence path elements are used to select a sequence element layout within a \n\u003ca href\u003d\"SequenceLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eSequenceLayout\u003c/code\u003e\u003c/a\u003e; selection of sequence element layout can be \n\u003cem\u003eexplicit\u003c/em\u003e (see \n\u003ca href\u003d\"#sequenceElement(long)\"\u003e\u003ccode\u003esequenceElement(long)\u003c/code\u003e\u003c/a\u003e) or \n\u003cem\u003eimplicit\u003c/em\u003e (see \n\u003ca href\u003d\"#sequenceElement()\"\u003e\u003ccode\u003esequenceElement()\u003c/code\u003e\u003c/a\u003e). When a path uses one or more implicit sequence path elements, it acquires additional \n\u003cem\u003efree dimensions\u003c/em\u003e. \n\u003cp\u003e Non-platform classes should not implement \u003ca href\u003d\"MemoryLayout.PathElement.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003eMemoryLayout.PathElement\u003c/a\u003e directly. \u003c/p\u003e\n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument, or an array argument containing one or more \u003ccode\u003enull\u003c/code\u003e elements to a method in this class causes a \u003ca href\u003d\"../../../../java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown. \u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "Implementations of this interface are immutable and thread-safe."
+    ],
+    "apiNote": [
+      "In the future, if the Java language permits, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryLayout.PathElement\u003c/code\u003e\u003c/a\u003e may become a \n\u003ccode\u003esealed\u003c/code\u003e interface, which would prohibit subclassing except by explicitly permitted types."
+    ]
+  }
+}

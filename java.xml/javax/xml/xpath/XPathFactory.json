@@ -1,0 +1,397 @@
+{
+  "packageName": "javax.xml.xpath",
+  "simpleName": "XPathFactory",
+  "moduleName": "java.xml",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "DEFAULT_PROPERTY_NAME",
+      "comment": "The default property name according to the JAXP spec.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.xml.xpath.XPathFactory.DEFAULT_PROPERTY_NAME\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "DEFAULT_OBJECT_MODEL_URI",
+      "comment": "Default Object Model URI.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.xml.xpath.XPathFactory.DEFAULT_OBJECT_MODEL_URI\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.xpath.XPathFactory",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "newDefaultInstance",
+      "comment": "Creates a new instance of the XPathFactory builtin system-default implementation.",
+      "tagMap": {
+        "implSpec": [
+          "The \n\u003ccode\u003eXPathFactory\u003c/code\u003e builtin system-default implementation is only required to support the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactory.html#DEFAULT_OBJECT_MODEL_URI\"\u003e\u003ccode\u003edefault object model\u003c/code\u003e\u003c/a\u003e, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/package-summary.html\"\u003eW3C DOM\u003c/a\u003e, but may support additional object models."
+        ],
+        "return": [
+          "A new instance of the \n\u003ccode\u003eXPathFactory\u003c/code\u003e builtin system-default implementation."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.xpath.XPathFactory",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "newInstance",
+      "comment": "Get a new XPathFactory instance using the default object model, DEFAULT_OBJECT_MODEL_URI, the W3C DOM. This method is functionally equivalent to:    newInstance(DEFAULT_OBJECT_MODEL_URI)\n Since the implementation for the W3C DOM is always available, this method will never fail.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimeException.html\" title\u003d\"class in java.lang\"\u003eRuntimeException\u003c/a\u003e\u003c/code\u003e - When there is a failure in creating an \n\u003ccode\u003eXPathFactory\u003c/code\u003e for the default object model."
+        ],
+        "return": [
+          "Instance of an \n\u003ccode\u003eXPathFactory\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.xpath.XPathFactory",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.xpath.XPathFactoryConfigurationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "uri"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "newInstance",
+      "comment": "Get a new XPathFactory instance using the specified object model. To find a XPathFactory object, this method looks the following places in the following order where \"the class loader\" refers to the context class loader: If the system property DEFAULT_PROPERTY_NAME + \":uri\" is present, where uri is the parameter to this method, then its value is read as a class name. The method will try to create a new instance of this class by using the class loader, and returns it if it is successfully created. Use the configuration file \"jaxp.properties\". The file is in standard Properties format and typically located in the conf directory of the Java installation. It contains the fully qualified name of the implementation class with the key being the system property defined above. The jaxp.properties file is read only once by the JAXP implementation and its values are then cached for future use. If the file does not exist when the first attempt is made to read from it, no further attempts are made to check for its existence. It is not possible to change the value of any property in jaxp.properties after it has been read for the first time. Use the service-provider loading facility, defined by the ServiceLoader class, to attempt to locate and load an implementation of the service using the default loading mechanism: the service-provider loading facility will use the current thread\u0027s context class loader to attempt to load the service. If the context class loader is null, the system class loader will be used. Each potential service provider is required to implement the method isObjectModelSupported(String objectModel). The first service provider found that supports the specified object model is returned. In case of ServiceConfigurationError an XPathFactoryConfigurationException will be thrown. Platform default XPathFactory is located in a platform specific way. There must be a platform default XPathFactory for the W3C DOM, i.e. DEFAULT_OBJECT_MODEL_URI. If everything fails, an XPathFactoryConfigurationException will be thrown. Tip for Trouble-shooting: See Properties.load(java.io.InputStream) for exactly how a property file is parsed. In particular, colons \u0027:\u0027 need to be escaped in a property file, so make sure the URIs are properly escaped in it. For example:    http\\://java.sun.com/jaxp/xpath/dom\u003dorg.acme.DomXPathFactory",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - Identifies the underlying object model. The specification only defines the URI \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactory.html#DEFAULT_OBJECT_MODEL_URI\"\u003e\u003ccode\u003eDEFAULT_OBJECT_MODEL_URI\u003c/code\u003e\u003c/a\u003e, \n\u003ccode\u003ehttp://java.sun.com/jaxp/xpath/dom\u003c/code\u003e for the W3C DOM, the org.w3c.dom package, and implementations are free to introduce other URIs for other object models."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactoryConfigurationException.html\" title\u003d\"class in javax.xml.xpath\"\u003eXPathFactoryConfigurationException\u003c/a\u003e\u003c/code\u003e - If the specified object model is unavailable, or if there is a configuration error.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003euri\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003euri\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or \n\u003ccode\u003euri.length() \u003d\u003d 0\u003c/code\u003e."
+        ],
+        "return": [
+          "Instance of an \n\u003ccode\u003eXPathFactory\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.xpath.XPathFactory",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.xpath.XPathFactoryConfigurationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "uri"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "factoryClassName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "classLoader"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "newInstance",
+      "comment": "Obtain a new instance of a XPathFactory from a factory class name. XPathFactory is returned if specified factory class supports the specified object model. This function is useful when there are multiple providers in the classpath. It gives more control to the application as it can specify which provider should be loaded. Tip for Trouble-shooting Setting the jaxp.debug system property will cause this method to print a lot of debug messages to System.err about what it is doing and where it is looking at. If you have problems try:  java -Djaxp.debug\u003d1 YourProgram ....",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactory.html#newInstance()\"\u003e\u003ccode\u003enewInstance()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactory.html#newInstance(java.lang.String)\"\u003e\u003ccode\u003enewInstance(String uri)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003euri\u003c/code\u003e - Identifies the underlying object model. The specification only defines the URI \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactory.html#DEFAULT_OBJECT_MODEL_URI\"\u003e\u003ccode\u003eDEFAULT_OBJECT_MODEL_URI\u003c/code\u003e\u003c/a\u003e,\n\u003ccode\u003ehttp://java.sun.com/jaxp/xpath/dom\u003c/code\u003e for the W3C DOM, the org.w3c.dom package, and implementations are free to introduce other URIs for other object models.",
+          "\u003ccode\u003efactoryClassName\u003c/code\u003e - fully qualified factory class name that provides implementation of \n\u003ccode\u003ejavax.xml.xpath.XPathFactory\u003c/code\u003e.",
+          "\u003ccode\u003eclassLoader\u003c/code\u003e - \n\u003ccode\u003eClassLoader\u003c/code\u003e used to load the factory class. If \n\u003ccode\u003enull\u003c/code\u003e current \n\u003ccode\u003eThread\u003c/code\u003e\u0027s context classLoader is used to load the factory class."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactoryConfigurationException.html\" title\u003d\"class in javax.xml.xpath\"\u003eXPathFactoryConfigurationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003efactoryClassName\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or the factory class cannot be loaded, instantiated or the factory class does not support the object model specified in the \n\u003ccode\u003euri\u003c/code\u003e parameter.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003euri\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003euri\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or \n\u003ccode\u003euri.length() \u003d\u003d 0\u003c/code\u003e."
+        ],
+        "return": [
+          "New instance of a \n\u003ccode\u003eXPathFactory\u003c/code\u003e"
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "objectModel"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isObjectModelSupported",
+      "comment": "Is specified object model supported by this XPathFactory?",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eobjectModel\u003c/code\u003e - Specifies the object model which the returned \n\u003ccode\u003eXPathFactory\u003c/code\u003e will understand."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eobjectModel\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eobjectModel.length() \u003d\u003d 0\u003c/code\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if \n\u003ccode\u003eXPathFactory\u003c/code\u003e supports \n\u003ccode\u003eobjectModel\u003c/code\u003e, else \n\u003ccode\u003efalse\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.xpath.XPathFactoryConfigurationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setFeature",
+      "comment": "Set a feature for this XPathFactory and XPaths created by this factory. Feature names are fully qualified URIs. Implementations may define their own features. An XPathFactoryConfigurationException is thrown if this XPathFactory or the XPaths it creates cannot support the feature. It is possible for an XPathFactory to expose a feature value but be unable to change its state. All implementations are required to support the XMLConstants.FEATURE_SECURE_PROCESSING feature. When the feature is true, any reference to an external function is an error. Under these conditions, the implementation must not call the XPathFunctionResolver and must throw an XPathFunctionException.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - Feature name.",
+          "\u003ccode\u003evalue\u003c/code\u003e - Is feature state \n\u003ccode\u003etrue\u003c/code\u003e or \n\u003ccode\u003efalse\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactoryConfigurationException.html\" title\u003d\"class in javax.xml.xpath\"\u003eXPathFactoryConfigurationException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eXPathFactory\u003c/code\u003e or the \n\u003ccode\u003eXPath\u003c/code\u003es it creates cannot support this feature.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.xpath.XPathFactoryConfigurationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getFeature",
+      "comment": "Get the state of the named feature. Feature names are fully qualified URIs. Implementations may define their own features. An XPathFactoryConfigurationException is thrown if this XPathFactory or the XPaths it creates cannot support the feature. It is possible for an XPathFactory to expose a feature value but be unable to change its state.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - Feature name."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/xpath/XPathFactoryConfigurationException.html\" title\u003d\"class in javax.xml.xpath\"\u003eXPathFactoryConfigurationException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eXPathFactory\u003c/code\u003e or the \n\u003ccode\u003eXPath\u003c/code\u003es it creates cannot support this feature.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "State of the named feature."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.xml.xpath.XPathVariableResolver",
+            "type": "Class"
+          },
+          "field": {
+            "name": "resolver"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setXPathVariableResolver",
+      "comment": "Establish a default variable resolver. Any XPath objects constructed from this factory will use the specified resolver by default. A NullPointerException is thrown if resolver is null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eresolver\u003c/code\u003e - Variable resolver."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eresolver\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.xml.xpath.XPathFunctionResolver",
+            "type": "Class"
+          },
+          "field": {
+            "name": "resolver"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setXPathFunctionResolver",
+      "comment": "Establish a default function resolver. Any XPath objects constructed from this factory will use the specified resolver by default. A NullPointerException is thrown if resolver is null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eresolver\u003c/code\u003e - XPath function resolver."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eresolver\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.xpath.XPath",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "newXPath",
+      "comment": "Return a new XPath using the underlying object model determined when the XPathFactory was instantiated.",
+      "tagMap": {
+        "return": [
+          "New instance of an \n\u003ccode\u003eXPath\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Protected constructor as newInstance() or newInstance(String uri) or newInstance(String uri, String factoryClassName, ClassLoader classLoader) should be used to create a new instance of an XPathFactory.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.xml.xpath.XPathFactory",
+  "comment": "\u003cp\u003eAn \u003ccode\u003eXPathFactory\u003c/code\u003e instance can be used to create \u003ca href\u003d\"XPath.html\" title\u003d\"interface in javax.xml.xpath\"\u003e\u003ccode\u003eXPath\u003c/code\u003e\u003c/a\u003e objects.\u003c/p\u003e \n\u003cp\u003eSee \u003ca href\u003d\"#newInstance(java.lang.String)\"\u003e\u003ccode\u003enewInstance(String uri)\u003c/code\u003e\u003c/a\u003e for lookup mechanism.\u003c/p\u003e \n\u003cp\u003eThe \u003ca href\u003d\"XPathFactory.html\" title\u003d\"class in javax.xml.xpath\"\u003e\u003ccode\u003eXPathFactory\u003c/code\u003e\u003c/a\u003e class is not thread-safe. In other words, it is the application\u0027s responsibility to ensure that at most one thread is using a \u003ca href\u003d\"XPathFactory.html\" title\u003d\"class in javax.xml.xpath\"\u003e\u003ccode\u003eXPathFactory\u003c/code\u003e\u003c/a\u003e object at any given moment. Implementations are encouraged to mark methods as \u003ccode\u003esynchronized\u003c/code\u003e to protect themselves from broken clients. \u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"XPathFactory.html\" title\u003d\"class in javax.xml.xpath\"\u003e\u003ccode\u003eXPathFactory\u003c/code\u003e\u003c/a\u003e is not re-entrant. While one of the \u003ccode\u003enewInstance\u003c/code\u003e methods is being invoked, applications may not attempt to recursively invoke a \u003ccode\u003enewInstance\u003c/code\u003e method, even from the same thread.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

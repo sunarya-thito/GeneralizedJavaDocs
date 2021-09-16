@@ -1,0 +1,76 @@
+{
+  "packageName": "jdk.dynalink.beans",
+  "simpleName": "StaticClass",
+  "moduleName": "jdk.dynalink",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "jdk.dynalink.beans.StaticClass",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "clazz"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "forClass",
+      "comment": "Retrieves the StaticClass instance for the specified class.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclazz\u003c/code\u003e - the class for which the static facet is requested."
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/beans/StaticClass.html\" title\u003d\"class in jdk.dynalink.beans\"\u003e\u003ccode\u003eStaticClass\u003c/code\u003e\u003c/a\u003e instance representing the specified class."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getRepresentedClass",
+      "comment": "Returns the represented Java class.",
+      "tagMap": {
+        "return": [
+          "the represented Java class."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "jdk.dynalink.beans.StaticClass",
+  "comment": "Object that allows access to the static members of a class (its static methods, properties, and fields), as well as construction of instances using \n\u003ca href\u003d\"../StandardOperation.html#NEW\"\u003e\u003ccode\u003eStandardOperation.NEW\u003c/code\u003e\u003c/a\u003e operation. In Dynalink, \n\u003ca href\u003d\"../../../../java.base/java/lang/Class.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClass\u003c/code\u003e\u003c/a\u003e objects are not treated specially and act as ordinary Java objects; you can use e.g. \n\u003ccode\u003eGET:PROPERTY:superclass\u003c/code\u003e as a property getter to invoke \n\u003ccode\u003eclazz.getSuperclass()\u003c/code\u003e. On the other hand, you can not use \n\u003ccode\u003eClass\u003c/code\u003e objects to access static members of a class, nor to create new instances of the class using \n\u003ccode\u003eNEW\u003c/code\u003e. This is consistent with how \n\u003ccode\u003eClass\u003c/code\u003e objects behave in Java: in Java, you write e.g. \n\u003ccode\u003enew BitSet()\u003c/code\u003e instead of \n\u003ccode\u003enew BitSet.class()\u003c/code\u003e. Similarly, you write \n\u003ccode\u003eSystem.out\u003c/code\u003e and not \n\u003ccode\u003eSystem.class.out\u003c/code\u003e. It is this aspect of using a class name as the constructor and a namespace for static members that \n\u003ccode\u003eStaticClass\u003c/code\u003e embodies. \n\u003cp\u003e Objects of this class are recognized by the \u003ca href\u003d\"BeansLinker.html\" title\u003d\"class in jdk.dynalink.beans\"\u003e\u003ccode\u003eBeansLinker\u003c/code\u003e\u003c/a\u003e as being special, and operations on them will be linked against the represented class\u0027 static members. The \u003ccode\u003e\"class\"\u003c/code\u003e synthetic property is additionally recognized and returns the Java \u003ca href\u003d\"../../../../java.base/java/lang/Class.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClass\u003c/code\u003e\u003c/a\u003e object, just as in Java \u003ccode\u003eSystem.class\u003c/code\u003e evaluates to the \u003ccode\u003eClass\u003c/code\u003e object for the System class. Conversely, \u003ca href\u003d\"../../../../java.base/java/lang/Class.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClass\u003c/code\u003e\u003c/a\u003e objects exposed through \u003ca href\u003d\"BeansLinker.html\" title\u003d\"class in jdk.dynalink.beans\"\u003e\u003ccode\u003eBeansLinker\u003c/code\u003e\u003c/a\u003e expose the \u003ccode\u003e\"static\"\u003c/code\u003e synthetic property which returns their \u003ccode\u003eStaticClass\u003c/code\u003e object (there is no equivalent to this in Java). \u003c/p\u003e\n\u003cp\u003e In summary, instances of this class act as namespaces for static members and as constructors for classes, much the same way as specifying a class name in Java language does, except that in Java this is just a syntactic element, while in Dynalink they are expressed as actual objects. \u003c/p\u003e\n\u003cp\u003e\u003ccode\u003eStaticClass\u003c/code\u003e objects representing Java array types will act as constructors taking a single int argument and create an array of the specified size. \u003c/p\u003e\n\u003cp\u003e If the class has several constructors, \u003ca href\u003d\"../StandardOperation.html#NEW\"\u003e\u003ccode\u003eStandardOperation.NEW\u003c/code\u003e\u003c/a\u003e on \u003ccode\u003eStaticClass\u003c/code\u003e will try to select the most specific applicable constructor. You might want to expose a mechanism in your language for selecting a constructor with an explicit signature through \u003ca href\u003d\"BeansLinker.html#getConstructorMethod(java.lang.Class,java.lang.String)\"\u003e\u003ccode\u003eBeansLinker.getConstructorMethod(Class, String)\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#jdk.dynalink.beans.StaticClass\"\u003eSerialized Form\u003c/a\u003e"
+    ]
+  }
+}

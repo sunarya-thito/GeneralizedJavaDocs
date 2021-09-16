@@ -1,0 +1,1369 @@
+{
+  "packageName": "jdk.incubator.foreign",
+  "simpleName": "MemorySegment",
+  "moduleName": "jdk.incubator.foreign",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "jdk.incubator.foreign.Addressable",
+      "type": "Class"
+    },
+    {
+      "name": "java.lang.AutoCloseable",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "READ",
+      "comment": "Read access mode; read operations are supported by a segment which supports this access mode.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#accessModes()\"\u003e\u003ccode\u003eaccessModes()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#withAccessModes(int)\"\u003e\u003ccode\u003ewithAccessModes(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.incubator.foreign.MemorySegment.READ\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "WRITE",
+      "comment": "Write access mode; write operations are supported by a segment which supports this access mode.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#accessModes()\"\u003e\u003ccode\u003eaccessModes()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#withAccessModes(int)\"\u003e\u003ccode\u003ewithAccessModes(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.incubator.foreign.MemorySegment.WRITE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "CLOSE",
+      "comment": "Close access mode; calling close() is supported by a segment which supports this access mode.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#accessModes()\"\u003e\u003ccode\u003eaccessModes()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#withAccessModes(int)\"\u003e\u003ccode\u003ewithAccessModes(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.incubator.foreign.MemorySegment.CLOSE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "SHARE",
+      "comment": "Share access mode; this segment support sharing with threads other than the owner thread (see share()).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#accessModes()\"\u003e\u003ccode\u003eaccessModes()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#withAccessModes(int)\"\u003e\u003ccode\u003ewithAccessModes(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.incubator.foreign.MemorySegment.SHARE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "HANDOFF",
+      "comment": "Handoff access mode; this segment support serial thread-confinement via thread ownership changes (see handoff(NativeScope) and handoff(Thread)).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#accessModes()\"\u003e\u003ccode\u003eaccessModes()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#withAccessModes(int)\"\u003e\u003ccode\u003ewithAccessModes(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.incubator.foreign.MemorySegment.HANDOFF\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "ALL_ACCESS",
+      "comment": "Default access mode; this is a union of all the access modes supported by memory segments.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#accessModes()\"\u003e\u003ccode\u003eaccessModes()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#withAccessModes(int)\"\u003e\u003ccode\u003ewithAccessModes(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.incubator.foreign.MemorySegment.ALL_ACCESS\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryAddress",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "address",
+      "comment": "The base memory address associated with this memory segment. The returned address is a checked memory address and can therefore be used in dereference operations (see MemoryAddress).",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/Addressable.html#address()\"\u003eaddress\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/Addressable.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003eAddressable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment"
+        ],
+        "return": [
+          "The base memory address."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Spliterator",
+        "parameters": [
+          {
+            "name": "jdk.incubator.foreign.MemorySegment",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.SequenceLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "spliterator",
+      "comment": "Returns a spliterator for this memory segment. The returned spliterator reports Spliterator.SIZED, Spliterator.SUBSIZED, Spliterator.IMMUTABLE, Spliterator.NONNULL and Spliterator.ORDERED characteristics. The returned spliterator splits this segment according to the specified sequence layout; that is, if the supplied layout is a sequence layout whose element count is N, then calling Spliterator.trySplit() will result in a spliterator serving approximatively N/2 elements (depending on whether N is even or not). As such, splitting is possible as long as N \u003e\u003d 2. The spliterator returns segments that feature the same access modes as the given segment less the CLOSE access mode. The returned spliterator effectively allows to slice this segment into disjoint sub-segments, which can then be processed in parallel by multiple threads (if the segment is shared).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout to be used for splitting."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment"
+        ],
+        "return": [
+          "the element spliterator for this segment"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Thread",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "ownerThread",
+      "comment": "The thread owning this segment.",
+      "tagMap": {
+        "return": [
+          "the thread owning this segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "byteSize",
+      "comment": "The size (in bytes) of this memory segment.",
+      "tagMap": {
+        "return": [
+          "The size (in bytes) of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "accessModes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "withAccessModes",
+      "comment": "Obtains a segment view with specific access modes. Supported access modes are READ, WRITE, CLOSE, SHARE and HANDOFF. It is generally not possible to go from a segment with stricter access modes to one with less strict access modes. For instance, attempting to add WRITE access mode to a read-only segment will be met with an exception.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eaccessModes\u003c/code\u003e - an ORed mask of zero or more access modes."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - when \n\u003ccode\u003emask\u003c/code\u003e is an access mask which is less strict than the one supported by this segment, or when \n\u003ccode\u003emask\u003c/code\u003e contains bits not associated with any of the supported access modes."
+        ],
+        "return": [
+          "a segment view with specific access modes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "accessModes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasAccessModes",
+      "comment": "Does this segment support a given set of access modes?",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eaccessModes\u003c/code\u003e - an ORed mask of zero or more access modes."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - when \n\u003ccode\u003emask\u003c/code\u003e contains bits not associated with any of the supported access modes."
+        ],
+        "return": [
+          "true, if the access modes in \n\u003ccode\u003eaccessModes\u003c/code\u003e are stricter than the ones supported by this segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "accessModes",
+      "comment": "Returns the access modes associated with this segment; the result is represented as ORed values from READ, WRITE, CLOSE, SHARE and HANDOFF.",
+      "tagMap": {
+        "return": [
+          "the access modes associated with this segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asSlice",
+      "comment": "Obtains a new memory segment view whose base address is the same as the base address of this segment plus a given offset, and whose new size is specified by the given argument.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(long)\"\u003e\u003ccode\u003easSlice(long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(jdk.incubator.foreign.MemoryAddress)\"\u003e\u003ccode\u003easSlice(MemoryAddress)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(jdk.incubator.foreign.MemoryAddress,long)\"\u003e\u003ccode\u003easSlice(MemoryAddress, long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eoffset\u003c/code\u003e - The new segment base offset (relative to the current segment base address), specified in bytes.",
+          "\u003ccode\u003enewSize\u003c/code\u003e - The new segment size, specified in bytes."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoffset \u0026lt; 0\u003c/code\u003e, \n\u003ccode\u003eoffset \u0026gt; byteSize()\u003c/code\u003e, \n\u003ccode\u003enewSize \u0026lt; 0\u003c/code\u003e, or \n\u003ccode\u003enewSize \u0026gt; byteSize() - offset\u003c/code\u003e"
+        ],
+        "return": [
+          "a new memory segment view with updated base/limit addresses."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newBase"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newSize"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asSlice",
+      "comment": "Obtains a new memory segment view whose base address is the given address, and whose new size is specified by the given argument. Equivalent to the following code: \n    asSlice(newBase.segmentOffset(this), newSize);",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(long)\"\u003e\u003ccode\u003easSlice(long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(jdk.incubator.foreign.MemoryAddress)\"\u003e\u003ccode\u003easSlice(MemoryAddress)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(long,long)\"\u003e\u003ccode\u003easSlice(long, long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enewBase\u003c/code\u003e - The new segment base address.",
+          "\u003ccode\u003enewSize\u003c/code\u003e - The new segment size, specified in bytes."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoffset \u0026lt; 0\u003c/code\u003e, \n\u003ccode\u003eoffset \u0026gt; byteSize()\u003c/code\u003e, \n\u003ccode\u003enewSize \u0026lt; 0\u003c/code\u003e, or \n\u003ccode\u003enewSize \u0026gt; byteSize() - offset\u003c/code\u003e"
+        ],
+        "return": [
+          "a new memory segment view with updated base/limit addresses."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asSlice",
+      "comment": "Obtains a new memory segment view whose base address is the same as the base address of this segment plus a given offset, and whose new size is computed by subtracting the specified offset from this segment size. Equivalent to the following code: \n    asSlice(offset, byteSize() - offset);",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(jdk.incubator.foreign.MemoryAddress)\"\u003e\u003ccode\u003easSlice(MemoryAddress)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(jdk.incubator.foreign.MemoryAddress,long)\"\u003e\u003ccode\u003easSlice(MemoryAddress, long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(long,long)\"\u003e\u003ccode\u003easSlice(long, long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eoffset\u003c/code\u003e - The new segment base offset (relative to the current segment base address), specified in bytes."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoffset \u0026lt; 0\u003c/code\u003e, or \n\u003ccode\u003eoffset \u0026gt; byteSize()\u003c/code\u003e."
+        ],
+        "return": [
+          "a new memory segment view with updated base/limit addresses."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newBase"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asSlice",
+      "comment": "Obtains a new memory segment view whose base address is the given address, and whose new size is computed by subtracting the address offset relative to this segment (see MemoryAddress.segmentOffset(MemorySegment)) from this segment size. Equivalent to the following code: \n    asSlice(newBase.segmentOffset(this));",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(long)\"\u003e\u003ccode\u003easSlice(long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(jdk.incubator.foreign.MemoryAddress,long)\"\u003e\u003ccode\u003easSlice(MemoryAddress, long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(long,long)\"\u003e\u003ccode\u003easSlice(long, long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enewBase\u003c/code\u003e - The new segment base offset (relative to the current segment base address), specified in bytes."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eaddress.segmentOffset(this) \u0026lt; 0\u003c/code\u003e, or \n\u003ccode\u003eaddress.segmentOffset(this) \u0026gt; byteSize()\u003c/code\u003e."
+        ],
+        "return": [
+          "a new memory segment view with updated base/limit addresses."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isMapped",
+      "comment": "Is this a mapped segment? Returns true if this segment is a mapped memory segment, created using the mapFile(Path, long, long, FileChannel.MapMode) factory, or a buffer segment derived from a MappedByteBuffer using the ofByteBuffer(ByteBuffer) factory.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this segment is a mapped segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isAlive",
+      "comment": "Is this segment alive?",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "true, if the segment is alive."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes this memory segment. This is a terminal operation; as a side-effect, if this operation completes without exceptions, this segment will be marked as not alive, and subsequent operations on this segment will fail with IllegalStateException. Depending on the kind of memory segment being closed, calling this method further triggers deallocation of all the resources associated with the memory segment.",
+      "tagMap": {
+        "apiNote": [
+          "This operation is not idempotent; that is, closing an already closed segment \n\u003cem\u003ealways\u003c/em\u003e results in an exception being thrown. This reflects a deliberate design choice: segment state transitions should be manifest in the client code; a failure in any of these transitions reveals a bug in the underlying application logic. This is especially useful when reasoning about the lifecycle of dependent segment views (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#asSlice(jdk.incubator.foreign.MemoryAddress)\"\u003e\u003ccode\u003easSlice(MemoryAddress)\u003c/code\u003e\u003c/a\u003e, where closing one segment might side-effect multiple segments. In such cases it might in fact not be obvious, looking at the code, as to whether a given segment is alive or not."
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment, or if this segment is shared and the segment is concurrently accessed while this method is called.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not support the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#CLOSE\"\u003e\u003ccode\u003eCLOSE\u003c/code\u003e\u003c/a\u003e access mode."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          },
+          "field": {
+            "name": "thread"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "handoff",
+      "comment": "Obtains a new confined memory segment backed by the same underlying memory region as this segment. The returned segment will be confined on the specified thread, and will feature the same spatial bounds and access modes (see accessModes()) as this segment. This is a terminal operation; as a side-effect, if this operation completes without exceptions, this segment will be marked as not alive, and subsequent operations on this segment will fail with IllegalStateException. In case where the owner thread of the returned segment differs from that of this segment, write accesses to this segment\u0027s content happens-before hand-over from the current owner thread to the new owner thread, which in turn happens before read accesses to the returned segment\u0027s contents on the new owner thread.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ethread\u003c/code\u003e - the new owner thread"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not support the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#HANDOFF\"\u003e\u003ccode\u003eHANDOFF\u003c/code\u003e\u003c/a\u003e access mode."
+        ],
+        "return": [
+          "a new confined memory segment whose owner thread is set to \n\u003ccode\u003ethread\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.NativeScope",
+            "type": "Class"
+          },
+          "field": {
+            "name": "nativeScope"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "handoff",
+      "comment": "Obtains a new confined memory segment backed by the same underlying memory region as this segment, but whose temporal bounds are controlled by the provided NativeScope instance. This is a terminal operation; as a side-effect, this segment will be marked as not alive, and subsequent operations on this segment will fail with IllegalStateException. The returned segment will feature only READ and WRITE access modes (assuming these were available in the original segment). As such the returned segment cannot be closed directly using close() - but it will be closed indirectly when this native scope is closed. The returned segment will also be confined by the same thread as the provided native scope (see NativeScope.ownerThread()). In case where the owner thread of the returned segment differs from that of this segment, write accesses to this segment\u0027s content happens-before hand-over from the current owner thread to the new owner thread, which in turn happens before read accesses to the returned segment\u0027s contents on the new owner thread.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enativeScope\u003c/code\u003e - the native scope."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not support the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#HANDOFF\"\u003e\u003ccode\u003eHANDOFF\u003c/code\u003e\u003c/a\u003e access mode."
+        ],
+        "return": [
+          "a new confined memory segment backed by the same underlying memory region as this segment, but whose life-cycle is tied to that of \n\u003ccode\u003enativeScope\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "share",
+      "comment": "Obtains a new shared memory segment backed by the same underlying memory region as this segment. The returned segment will not be confined on any thread and can therefore be accessed concurrently from multiple threads; moreover, the returned segment will feature the same spatial bounds and access modes (see accessModes()) as this segment. This is a terminal operation; as a side-effect, if this operation completes without exceptions, this segment will be marked as not alive, and subsequent operations on this segment will fail with IllegalStateException. Write accesses to this segment\u0027s content happens-before hand-over from the current owner thread to the new owner thread, which in turn happens before read accesses to the returned segment\u0027s contents on a new thread.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a new memory shared segment backed by the same underlying memory region as this segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.ref.Cleaner",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cleaner"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "registerCleaner",
+      "comment": "Register this memory segment instance against a Cleaner object, by returning a new memory segment backed by the same underlying memory region as this segment. The returned segment will feature the same confinement, spatial bounds and access modes (see accessModes()) as this segment. Moreover, the returned segment will be associated with the specified Cleaner object; this allows for the segment to be closed as soon as it becomes unreachable, which might be helpful in preventing native memory leaks. This is a terminal operation; as a side-effect, if this operation completes without exceptions, this segment will be marked as not alive, and subsequent operations on this segment will fail with IllegalStateException. The implicit deallocation behavior associated with the returned segment will be preserved under terminal operations such as handoff(Thread) and share().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecleaner\u003c/code\u003e - the cleaner object, responsible for implicit deallocation of the returned segment."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment, or if this segment is already associated with a cleaner.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not support the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#CLOSE\"\u003e\u003ccode\u003eCLOSE\u003c/code\u003e\u003c/a\u003e access mode."
+        ],
+        "return": [
+          "a new memory segment backed by the same underlying memory region as this segment, which features implicit deallocation."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "fill",
+      "comment": "Fills a value into this memory segment. More specifically, the given value is filled into each address of this segment. Equivalent to (but likely more efficient than) the following code: \nbyteHandle \u003d MemoryLayout.ofSequence(MemoryLayouts.JAVA_BYTE)\n         .varHandle(byte.class, MemoryLayout.PathElement.sequenceElement());\nfor (long l \u003d 0; l \u003c segment.byteSize(); l++) {\n     byteHandle.set(segment.address(), l, value);\n}\n without any regard or guarantees on the ordering of particular memory elements being set. Fill can be useful to initialize or reset the memory of a segment.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to fill into this segment"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment is not \n\u003cem\u003ealive\u003c/em\u003e, or if access occurs from a thread other than the thread owning this segment",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not support the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#WRITE\"\u003e\u003ccode\u003eWRITE\u003c/code\u003e\u003c/a\u003e access mode"
+        ],
+        "return": [
+          "this memory segment"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemorySegment",
+            "type": "Class"
+          },
+          "field": {
+            "name": "src"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "copyFrom",
+      "comment": "Performs a bulk copy from given source segment to this segment. More specifically, the bytes at offset 0 through src.byteSize() - 1 in the source segment are copied into this segment at offset 0 through src.byteSize() - 1. If the source segment overlaps with this segment, then the copying is performed as if the bytes at offset 0 through src.byteSize() - 1 in the source segment were first copied into a temporary segment with size bytes, and then the contents of the temporary segment were copied into this segment at offset 0 through src.byteSize() - 1. The result of a bulk copy is unspecified if, in the uncommon case, the source segment and this segment do not overlap, but refer to overlapping regions of the same backing storage using different addresses. For example, this may occur if the same file is mapped to two segments.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrc\u003c/code\u003e - the source segment."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esrc.byteSize() \u0026gt; this.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if either the source segment or this segment have been already closed, or if access occurs from a thread other than the thread owning either segment.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if either the source segment or this segment do not feature required access modes; more specifically, \n\u003ccode\u003esrc\u003c/code\u003e should feature at least the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, while this segment should feature at least the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#WRITE\"\u003e\u003ccode\u003eWRITE\u003c/code\u003e\u003c/a\u003e access mode."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemorySegment",
+            "type": "Class"
+          },
+          "field": {
+            "name": "other"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "mismatch",
+      "comment": "Finds and returns the offset, in bytes, of the first mismatch between this segment and a given other segment. The offset is relative to the base address of each segment and will be in the range of 0 (inclusive) up to the size (in bytes) of the smaller memory segment (exclusive). If the two segments share a common prefix then the returned offset is the length of the common prefix and it follows that there is a mismatch between the two segments at that offset within the respective segments. If one segment is a proper prefix of the other then the returned offset is the smaller of the segment sizes, and it follows that the offset is only valid for the larger segment. Otherwise, there is no mismatch and -1 is returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eother\u003c/code\u003e - the segment to be tested for a mismatch with this segment"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if either this segment of the other segment have been already closed, or if access occurs from a thread other than the thread owning either segment",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if either this segment or the other segment does not feature at least the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode"
+        ],
+        "return": [
+          "the relative offset, in bytes, of the first mismatch between this and the given other segment, otherwise -1 if no mismatch"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.ByteBuffer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asByteBuffer",
+      "comment": "Wraps this segment in a ByteBuffer. Some of the properties of the returned buffer are linked to the properties of this segment. For instance, if this segment is immutable (e.g. the segment has access mode READ but not WRITE), then the resulting buffer is read-only (see Buffer.isReadOnly(). Additionally, if this is a native memory segment, the resulting buffer is direct (see ByteBuffer.isDirect()). The returned buffer\u0027s position (see Buffer.position() is initially set to zero, while the returned buffer\u0027s capacity and limit (see Buffer.capacity() and Buffer.limit(), respectively) are set to this segment\u0027 size (see byteSize()). For this reason, a byte buffer cannot be returned if this segment\u0027 size is greater than Integer.MAX_VALUE. The life-cycle of the returned buffer will be tied to that of this segment. That means that if the this segment is closed (see close(), accessing the returned buffer will throw an IllegalStateException. If this segment is shared, calling certain I/O operations on the resulting buffer might result in an unspecified exception being thrown. Examples of such problematic operations are FileChannel.read(ByteBuffer), FileChannel.write(ByteBuffer), SocketChannel.read(ByteBuffer) and SocketChannel.write(ByteBuffer). Finally, the resulting buffer\u0027s byte order is ByteOrder.BIG_ENDIAN; this can be changed using ByteBuffer.order(java.nio.ByteOrder).",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment cannot be mapped onto a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/ByteBuffer.html\" title\u003d\"class in java.nio\"\u003e\u003ccode\u003eByteBuffer\u003c/code\u003e\u003c/a\u003e instance, e.g. because it models an heap-based segment that is not based on a \n\u003ccode\u003ebyte[]\u003c/code\u003e), or if its size is greater than \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html#MAX_VALUE\"\u003e\u003ccode\u003eInteger.MAX_VALUE\u003c/code\u003e\u003c/a\u003e, or if the segment does not support the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/ByteBuffer.html\" title\u003d\"class in java.nio\"\u003e\u003ccode\u003eByteBuffer\u003c/code\u003e\u003c/a\u003e view of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toByteArray",
+      "comment": "Copy the contents of this memory segment into a fresh byte array.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not feature the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, or if this segment\u0027s contents cannot be copied into a \n\u003ccode\u003ebyte\u003c/code\u003e instance, e.g. its size is greater than \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html#MAX_VALUE\"\u003e\u003ccode\u003eInteger.MAX_VALUE\u003c/code\u003e\u003c/a\u003e,",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment has been closed, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a fresh byte array copy of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "short",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toShortArray",
+      "comment": "Copy the contents of this memory segment into a fresh short array.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not feature the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, or if this segment\u0027s contents cannot be copied into a \n\u003ccode\u003eshort\u003c/code\u003e instance, e.g. because \n\u003ccode\u003ebyteSize() % 2 !\u003d 0\u003c/code\u003e, or \n\u003ccode\u003ebyteSize() / 2 \u0026gt; Integer#MAX_VALUE\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment has been closed, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a fresh short array copy of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "char",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toCharArray",
+      "comment": "Copy the contents of this memory segment into a fresh char array.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not feature the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, or if this segment\u0027s contents cannot be copied into a \n\u003ccode\u003echar\u003c/code\u003e instance, e.g. because \n\u003ccode\u003ebyteSize() % 2 !\u003d 0\u003c/code\u003e, or \n\u003ccode\u003ebyteSize() / 2 \u0026gt; Integer#MAX_VALUE\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment has been closed, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a fresh char array copy of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toIntArray",
+      "comment": "Copy the contents of this memory segment into a fresh int array.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not feature the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, or if this segment\u0027s contents cannot be copied into a \n\u003ccode\u003eint\u003c/code\u003e instance, e.g. because \n\u003ccode\u003ebyteSize() % 4 !\u003d 0\u003c/code\u003e, or \n\u003ccode\u003ebyteSize() / 4 \u0026gt; Integer#MAX_VALUE\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment has been closed, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a fresh int array copy of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toFloatArray",
+      "comment": "Copy the contents of this memory segment into a fresh float array.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not feature the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, or if this segment\u0027s contents cannot be copied into a \n\u003ccode\u003efloat\u003c/code\u003e instance, e.g. because \n\u003ccode\u003ebyteSize() % 4 !\u003d 0\u003c/code\u003e, or \n\u003ccode\u003ebyteSize() / 4 \u0026gt; Integer#MAX_VALUE\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment has been closed, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a fresh float array copy of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toLongArray",
+      "comment": "Copy the contents of this memory segment into a fresh long array.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not feature the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, or if this segment\u0027s contents cannot be copied into a \n\u003ccode\u003elong\u003c/code\u003e instance, e.g. because \n\u003ccode\u003ebyteSize() % 8 !\u003d 0\u003c/code\u003e, or \n\u003ccode\u003ebyteSize() / 8 \u0026gt; Integer#MAX_VALUE\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment has been closed, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a fresh long array copy of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "double",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toDoubleArray",
+      "comment": "Copy the contents of this memory segment into a fresh double array.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this segment does not feature the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e access mode, or if this segment\u0027s contents cannot be copied into a \n\u003ccode\u003edouble\u003c/code\u003e instance, e.g. because \n\u003ccode\u003ebyteSize() % 8 !\u003d 0\u003c/code\u003e, or \n\u003ccode\u003ebyteSize() / 8 \u0026gt; Integer#MAX_VALUE\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this segment has been closed, or if access occurs from a thread other than the thread owning this segment."
+        ],
+        "return": [
+          "a fresh double array copy of this memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bb"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofByteBuffer",
+      "comment": "Creates a new confined buffer memory segment that models the memory associated with the given byte buffer. The segment starts relative to the buffer\u0027s position (inclusive) and ends relative to the buffer\u0027s limit (exclusive). The segment will feature all access modes (see ALL_ACCESS), unless the given buffer is read-only in which case the segment will not feature the WRITE access mode, and its confinement thread is the current thread (see Thread.currentThread()). The resulting memory segment keeps a reference to the backing buffer, to ensure it remains reachable for the life-time of the segment.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebb\u003c/code\u003e - the byte buffer backing the buffer memory segment."
+        ],
+        "return": [
+          "a new confined buffer memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "arr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofArray",
+      "comment": "Creates a new confined array memory segment that models the memory associated with a given heap-allocated byte array. The resulting memory segment keeps a reference to the backing array, to ensure it remains reachable for the life-time of the segment. The segment will feature all access modes (see ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earr\u003c/code\u003e - the primitive array backing the array memory segment."
+        ],
+        "return": [
+          "a new confined array memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "char",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "arr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofArray",
+      "comment": "Creates a new confined array memory segment that models the memory associated with a given heap-allocated char array. The resulting memory segment keeps a reference to the backing array, to ensure it remains reachable for the life-time of the segment. The segment will feature all access modes (see ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earr\u003c/code\u003e - the primitive array backing the array memory segment."
+        ],
+        "return": [
+          "a new confined array memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "short",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "arr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofArray",
+      "comment": "Creates a new confined array memory segment that models the memory associated with a given heap-allocated short array. The resulting memory segment keeps a reference to the backing array, to ensure it remains reachable for the life-time of the segment. The segment will feature all access modes (see ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earr\u003c/code\u003e - the primitive array backing the array memory segment."
+        ],
+        "return": [
+          "a new confined array memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "arr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofArray",
+      "comment": "Creates a new confined array memory segment that models the memory associated with a given heap-allocated int array. The resulting memory segment keeps a reference to the backing array, to ensure it remains reachable for the life-time of the segment. The segment will feature all access modes (see ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earr\u003c/code\u003e - the primitive array backing the array memory segment."
+        ],
+        "return": [
+          "a new confined array memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "float",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "arr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofArray",
+      "comment": "Creates a new confined array memory segment that models the memory associated with a given heap-allocated float array. The resulting memory segment keeps a reference to the backing array, to ensure it remains reachable for the life-time of the segment. The segment will feature all access modes (see ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earr\u003c/code\u003e - the primitive array backing the array memory segment."
+        ],
+        "return": [
+          "a new confined array memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "arr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofArray",
+      "comment": "Creates a new confined array memory segment that models the memory associated with a given heap-allocated long array. The resulting memory segment keeps a reference to the backing array, to ensure it remains reachable for the life-time of the segment. The segment will feature all access modes (see ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earr\u003c/code\u003e - the primitive array backing the array memory segment."
+        ],
+        "return": [
+          "a new confined array memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "double",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "arr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofArray",
+      "comment": "Creates a new confined array memory segment that models the memory associated with a given heap-allocated double array. The resulting memory segment keeps a reference to the backing array, to ensure it remains reachable for the life-time of the segment. The segment will feature all access modes (see ALL_ACCESS).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003earr\u003c/code\u003e - the primitive array backing the array memory segment."
+        ],
+        "return": [
+          "a new confined array memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "allocateNative",
+      "comment": "Creates a new confined native memory segment that models a newly allocated block of off-heap memory with given layout. This is equivalent to the following code: \n    allocateNative(layout.bytesSize(), layout.bytesAlignment());",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the off-heap memory block backing the native memory segment."
+        ],
+        "implNote": [
+          "The block of off-heap memory associated with the returned native memory segment is initialized to zero. Moreover, a client is responsible to call the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e on a native memory segment, to make sure the backing off-heap memory block is deallocated accordingly. Failure to do so will result in off-heap memory leaks."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the specified layout has illegal size or alignment constraint."
+        ],
+        "return": [
+          "a new native memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "allocateNative",
+      "comment": "Creates a new confined native memory segment that models a newly allocated block of off-heap memory with given size (in bytes). This is equivalent to the following code: \nallocateNative(bytesSize, 1);",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytesSize\u003c/code\u003e - the size (in bytes) of the off-heap memory block backing the native memory segment."
+        ],
+        "implNote": [
+          "The block of off-heap memory associated with the returned native memory segment is initialized to zero. Moreover, a client is responsible to call the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e on a native memory segment, to make sure the backing off-heap memory block is deallocated accordingly. Failure to do so will result in off-heap memory leaks."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebytesSize \u0026lt; 0\u003c/code\u003e."
+        ],
+        "return": [
+          "a new confined native memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "path"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesOffset"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesSize"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.channels.FileChannel$MapMode",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mapMode"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "mapFile",
+      "comment": "Creates a new confined mapped memory segment that models a memory-mapped region of a file from a given path. The segment will feature all access modes (see ALL_ACCESS), unless the given mapping mode is READ_ONLY, in which case the segment will not feature the WRITE access mode, and its confinement thread is the current thread (see Thread.currentThread()). The content of a mapped memory segment can change at any time, for example if the content of the corresponding region of the mapped file is changed by this (or another) program. Whether or not such changes occur, and when they occur, is operating-system dependent and therefore unspecified. All or part of a mapped memory segment may become inaccessible at any time, for example if the backing mapped file is truncated. An attempt to access an inaccessible region of a mapped memory segment will not change the segment\u0027s content and will cause an unspecified exception to be thrown either at the time of the access or at some later time. It is therefore strongly recommended that appropriate precautions be taken to avoid the manipulation of a mapped file by this (or another) program, except to read or write the file\u0027s content.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the file to memory map.",
+          "\u003ccode\u003ebytesOffset\u003c/code\u003e - the offset (expressed in bytes) within the file at which the mapped segment is to start.",
+          "\u003ccode\u003ebytesSize\u003c/code\u003e - the size (in bytes) of the mapped memory backing the memory segment.",
+          "\u003ccode\u003emapMode\u003c/code\u003e - a file mapping mode, see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/FileChannel.html#map(java.nio.channels.FileChannel.MapMode,long,long)\"\u003e\u003ccode\u003eFileChannel.map(FileChannel.MapMode, long, long)\u003c/code\u003e\u003c/a\u003e; the chosen mapping mode might affect the behavior of the returned memory mapped segment (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MappedMemorySegments.html#force(jdk.incubator.foreign.MemorySegment)\"\u003e\u003ccode\u003eMappedMemorySegments.force(MemorySegment)\u003c/code\u003e\u003c/a\u003e)."
+        ],
+        "implNote": [
+          "When obtaining a mapped segment from a newly created file, the initialization state of the contents of the block of mapped memory associated with the returned mapped memory segment is unspecified and should not be relied upon."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebytesOffset \u0026lt; 0\u003c/code\u003e, \n\u003ccode\u003ebytesSize \u0026lt; 0\u003c/code\u003e, or if \n\u003ccode\u003epath\u003c/code\u003e is not associated with the default file system.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if an unsupported map mode is specified.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the specified path does not point to an existing file, or if some other I/O error occurs.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is installed and it denies an unspecified permission required by the implementation. In the case of the default provider, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkRead(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check read access if the file is opened for reading. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkWrite(String)\u003c/code\u003e\u003c/a\u003e method is invoked to check write access if the file is opened for writing."
+        ],
+        "return": [
+          "a new confined mapped memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesSize"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "alignmentBytes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "allocateNative",
+      "comment": "Creates a new confined native memory segment that models a newly allocated block of off-heap memory with given size and alignment constraint (in bytes). The segment will feature all access modes (see ALL_ACCESS), and its confinement thread is the current thread (see Thread.currentThread()).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytesSize\u003c/code\u003e - the size (in bytes) of the off-heap memory block backing the native memory segment.",
+          "\u003ccode\u003ealignmentBytes\u003c/code\u003e - the alignment constraint (in bytes) of the off-heap memory block backing the native memory segment."
+        ],
+        "implNote": [
+          "The block of off-heap memory associated with the returned native memory segment is initialized to zero. Moreover, a client is responsible to call the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e on a native memory segment, to make sure the backing off-heap memory block is deallocated accordingly. Failure to do so will result in off-heap memory leaks."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebytesSize \u0026lt; 0\u003c/code\u003e, \n\u003ccode\u003ealignmentBytes \u0026lt; 0\u003c/code\u003e, or if \n\u003ccode\u003ealignmentBytes\u003c/code\u003e is not a power of 2."
+        ],
+        "return": [
+          "a new confined native memory segment."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofNativeRestricted",
+      "comment": "Returns a shared native memory segment whose base address is MemoryAddress.NULL and whose size is Long.MAX_VALUE. This method can be very useful when dereferencing memory addresses obtained when interacting with native libraries. The segment will feature the READ and WRITE access modes. Equivalent to (but likely more efficient than) the following code: \n    MemoryAddress.NULL.asSegmentRestricted(Long.MAX_VALUE)\n                 .withOwnerThread(null)\n                 .withAccessModes(READ | WRITE);\n This method is restricted. Restricted methods are unsafe, and, if used incorrectly, their use might crash the JVM or, worse, silently result in memory corruption. Thus, clients should refrain from depending on restricted methods, and use safe and supported functionalities, where possible.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalAccessError.html\" title\u003d\"class in java.lang\"\u003eIllegalAccessError\u003c/a\u003e\u003c/code\u003e - if the runtime property \n\u003ccode\u003eforeign.restricted\u003c/code\u003e is not set to either \n\u003ccode\u003epermit\u003c/code\u003e, \n\u003ccode\u003ewarn\u003c/code\u003e or \n\u003ccode\u003edebug\u003c/code\u003e (the default value is set to \n\u003ccode\u003edeny\u003c/code\u003e)."
+        ],
+        "return": [
+          "a memory segment whose base address is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryAddress.html#NULL\"\u003e\u003ccode\u003eMemoryAddress.NULL\u003c/code\u003e\u003c/a\u003e and whose size is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Long.html#MAX_VALUE\"\u003e\u003ccode\u003eLong.MAX_VALUE\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.incubator.foreign.MemorySegment",
+  "comment": "A memory segment models a contiguous region of memory. A memory segment is associated with both spatial and temporal bounds. Spatial bounds ensure that memory access operations on a memory segment cannot affect a memory location which falls \n\u003cem\u003eoutside\u003c/em\u003e the boundaries of the memory segment being accessed. Temporal bounds ensure that memory access operations on a segment cannot occur after a memory segment has been closed (see \n\u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e). \n\u003cp\u003e All implementations of this interface must be \u003ca href\u003d\"../../../../java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e; programmers should treat instances that are equal as interchangeable and should not use instances for synchronization, or unpredictable behavior may occur. For example, in a future release, synchronization may fail. The \u003ccode\u003eequals\u003c/code\u003e method should be used for comparisons. \u003c/p\u003e\n\u003cp\u003e Non-platform classes should not implement \u003ca href\u003d\"MemorySegment.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003eMemorySegment\u003c/a\u003e directly. \u003c/p\u003e\n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument, or an array argument containing one or more \u003ccode\u003enull\u003c/code\u003e elements to a method in this class causes a \u003ca href\u003d\"../../../../java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown. \u003c/p\u003e \n\u003ch2\u003eConstructing memory segments\u003c/h2\u003e There are multiple ways to obtain a memory segment. First, memory segments backed by off-heap memory can be allocated using one of the many factory methods provided (see \n\u003ca href\u003d\"#allocateNative(jdk.incubator.foreign.MemoryLayout)\"\u003e\u003ccode\u003eallocateNative(MemoryLayout)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"#allocateNative(long)\"\u003e\u003ccode\u003eallocateNative(long)\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"#allocateNative(long,long)\"\u003e\u003ccode\u003eallocateNative(long, long)\u003c/code\u003e\u003c/a\u003e). Memory segments obtained in this way are called \n\u003cem\u003enative memory segments\u003c/em\u003e. \n\u003cp\u003e It is also possible to obtain a memory segment backed by an existing heap-allocated Java array, using one of the provided factory methods (e.g. \u003ca href\u003d\"#ofArray(int%5B%5D)\"\u003e\u003ccode\u003eofArray(int[])\u003c/code\u003e\u003c/a\u003e). Memory segments obtained in this way are called \u003cem\u003earray memory segments\u003c/em\u003e. \u003c/p\u003e\n\u003cp\u003e It is possible to obtain a memory segment backed by an existing Java byte buffer (see \u003ca href\u003d\"../../../../java.base/java/nio/ByteBuffer.html\" title\u003d\"class in java.nio\"\u003e\u003ccode\u003eByteBuffer\u003c/code\u003e\u003c/a\u003e), using the factory method \u003ca href\u003d\"#ofByteBuffer(java.nio.ByteBuffer)\"\u003e\u003ccode\u003eofByteBuffer(ByteBuffer)\u003c/code\u003e\u003c/a\u003e. Memory segments obtained in this way are called \u003cem\u003ebuffer memory segments\u003c/em\u003e. Note that buffer memory segments might be backed by native memory (as in the case of native memory segments) or heap memory (as in the case of array memory segments), depending on the characteristics of the byte buffer instance the segment is associated with. For instance, a buffer memory segment obtained from a byte buffer created with the \u003ca href\u003d\"../../../../java.base/java/nio/ByteBuffer.html#allocateDirect(int)\"\u003e\u003ccode\u003eByteBuffer.allocateDirect(int)\u003c/code\u003e\u003c/a\u003e method will be backed by native memory. \u003c/p\u003e\n\u003cp\u003e Finally, it is also possible to obtain a memory segment backed by a memory-mapped file using the factory method \u003ca href\u003d\"#mapFile(java.nio.file.Path,long,long,java.nio.channels.FileChannel.MapMode)\"\u003e\u003ccode\u003emapFile(Path, long, long, FileChannel.MapMode)\u003c/code\u003e\u003c/a\u003e. Such memory segments are called \u003cem\u003emapped memory segments\u003c/em\u003e; mapped memory segments are associated with an underlying file descriptor. For more operations on mapped memory segments, please refer to the \u003ca href\u003d\"MappedMemorySegments.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eMappedMemorySegments\u003c/code\u003e\u003c/a\u003e class. \u003c/p\u003e\n\u003cp\u003e Array and buffer segments are effectively \u003cem\u003eviews\u003c/em\u003e over existing memory regions which might outlive the lifecycle of the segments derived from them, and can even be manipulated directly (e.g. via array access, or direct use of the \u003ca href\u003d\"../../../../java.base/java/nio/ByteBuffer.html\" title\u003d\"class in java.nio\"\u003e\u003ccode\u003eByteBuffer\u003c/code\u003e\u003c/a\u003e API) by other clients. As a result, while sharing array or buffer segments is possible, it is strongly advised that clients wishing to do so take extra precautions to make sure that the underlying memory sources associated with such segments remain inaccessible, and that said memory sources are never aliased by more than one segment at a time - e.g. so as to prevent concurrent modifications of the contents of an array, or buffer segment. \u003c/p\u003e\n\u003ch2\u003eExplicit deallocation\u003c/h2\u003e Memory segments are closed explicitly (see \n\u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e). When a segment is closed, it is no longer \n\u003cem\u003ealive\u003c/em\u003e (see \n\u003ca href\u003d\"#isAlive()\"\u003e\u003ccode\u003eisAlive()\u003c/code\u003e\u003c/a\u003e, and subsequent operation on the segment (or on any \n\u003ca href\u003d\"MemoryAddress.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryAddress\u003c/code\u003e\u003c/a\u003e instance derived from it) will fail with \n\u003ca href\u003d\"../../../../java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalStateException\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e Closing a segment might trigger the releasing of the underlying memory resources associated with said segment, depending on the kind of memory segment being considered: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eclosing a native memory segment results in \u003cem\u003efreeing\u003c/em\u003e the native memory associated with it\u003c/li\u003e \n \u003cli\u003eclosing a mapped memory segment results in the backing memory-mapped file to be unmapped\u003c/li\u003e \n \u003cli\u003eclosing a buffer, or a heap segment does not have any side-effect, other than marking the segment as \u003cem\u003enot alive\u003c/em\u003e (see \u003ca href\u003d\"#isAlive()\"\u003e\u003ccode\u003eisAlive()\u003c/code\u003e\u003c/a\u003e). Also, since the buffer and heap segments might keep strong references to the original buffer or array instance, it is the responsibility of clients to ensure that these segments are discarded in a timely manner, so as not to prevent garbage collection to reclaim the underlying objects.\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003e\u003ca id\u003d\"access-modes\"\u003eAccess modes\u003c/a\u003e\u003c/h2\u003e Memory segments supports zero or more \n\u003cem\u003eaccess modes\u003c/em\u003e. Supported access modes are \n\u003ca href\u003d\"#READ\"\u003e\u003ccode\u003eREAD\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"#WRITE\"\u003e\u003ccode\u003eWRITE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"#CLOSE\"\u003e\u003ccode\u003eCLOSE\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"#SHARE\"\u003e\u003ccode\u003eSHARE\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"#HANDOFF\"\u003e\u003ccode\u003eHANDOFF\u003c/code\u003e\u003c/a\u003e. The set of access modes supported by a segment alters the set of operations that are supported by that segment. For instance, attempting to call \n\u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e on a segment which does not support the \n\u003ca href\u003d\"#CLOSE\"\u003e\u003ccode\u003eCLOSE\u003c/code\u003e\u003c/a\u003e access mode will result in an exception. \n\u003cp\u003e The set of supported access modes can only be made stricter (by supporting \u003cem\u003efewer\u003c/em\u003e access modes). This means that restricting the set of access modes supported by a segment before sharing it with other clients is generally a good practice if the creator of the segment wants to retain some control over how the segment is going to be accessed. \u003c/p\u003e\n\u003ch2\u003eMemory segment views\u003c/h2\u003e Memory segments support \n\u003cem\u003eviews\u003c/em\u003e. For instance, it is possible to alter the set of supported access modes, by creating an \n\u003cem\u003eimmutable\u003c/em\u003e view of a memory segment, as follows: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMemorySegment segment \u003d ...\nMemorySegment roSegment \u003d segment.withAccessModes(segment.accessModes() \u0026amp; ~WRITE);\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e It is also possible to create views whose spatial bounds are stricter than the ones of the original segment (see \n\u003ca href\u003d\"#asSlice(long,long)\"\u003e\u003ccode\u003easSlice(long, long)\u003c/code\u003e\u003c/a\u003e). \n\u003cp\u003e Temporal bounds of the original segment are inherited by the view; that is, closing a segment view, such as a sliced view, will cause the original segment to be closed; as such special care must be taken when sharing views between multiple clients. If a client want to protect itself against early closure of a segment by another actor, it is the responsibility of that client to take protective measures, such as removing \u003ca href\u003d\"#CLOSE\"\u003e\u003ccode\u003eCLOSE\u003c/code\u003e\u003c/a\u003e from the set of supported access modes, before sharing the view with another client. \u003c/p\u003e\n\u003cp\u003e To allow for interoperability with existing code, a byte buffer view can be obtained from a memory segment (see \u003ca href\u003d\"#asByteBuffer()\"\u003e\u003ccode\u003easByteBuffer()\u003c/code\u003e\u003c/a\u003e). This can be useful, for instance, for those clients that want to keep using the \u003ca href\u003d\"../../../../java.base/java/nio/ByteBuffer.html\" title\u003d\"class in java.nio\"\u003e\u003ccode\u003eByteBuffer\u003c/code\u003e\u003c/a\u003e API, but need to operate on large memory segments. Byte buffers obtained in such a way support the same spatial and temporal access restrictions associated to the memory segment from which they originated. \u003c/p\u003e\n\u003ch2\u003e\u003ca id\u003d\"thread-confinement\"\u003eThread confinement\u003c/a\u003e\u003c/h2\u003e Memory segments support strong thread-confinement guarantees. Upon creation, they are assigned an \n\u003cem\u003eowner thread\u003c/em\u003e, typically the thread which initiated the creation operation. After creation, only the owner thread will be allowed to directly manipulate the memory segment (e.g. close the memory segment) or access the underlying memory associated with the segment using a memory access var handle. Any attempt to perform such operations from a thread other than the owner thread will result in a runtime failure. \n\u003cp\u003e The \u003ca href\u003d\"#handoff(java.lang.Thread)\"\u003e\u003ccode\u003ehandoff(Thread)\u003c/code\u003e\u003c/a\u003e method can be used to change the thread-confinement properties of a memory segment. This method is, like \u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e, a \u003cem\u003eterminal operation\u003c/em\u003e which marks the original segment as not alive (see \u003ca href\u003d\"#isAlive()\"\u003e\u003ccode\u003eisAlive()\u003c/code\u003e\u003c/a\u003e) and creates a \u003cem\u003enew\u003c/em\u003e segment with the desired thread-confinement properties. Calling \u003ca href\u003d\"#handoff(java.lang.Thread)\"\u003e\u003ccode\u003ehandoff(Thread)\u003c/code\u003e\u003c/a\u003e is only possible if the segment features the corresponding \u003ca href\u003d\"#HANDOFF\"\u003e\u003ccode\u003eHANDOFF\u003c/code\u003e\u003c/a\u003e access mode. \u003c/p\u003e\n\u003cp\u003e For instance, if a client wants to transfer ownership of a segment to another (known) thread, it can do so as follows: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMemorySegment segment \u003d ...\nMemorySegment aSegment \u003d segment.handoff(threadA);\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e By doing so, the original segment is marked as not alive, and a new segment is returned whose owner thread is \n\u003ccode\u003ethreadA\u003c/code\u003e; this allows, for instance, for two threads \n\u003ccode\u003eA\u003c/code\u003e and \n\u003ccode\u003eB\u003c/code\u003e to share a segment in a controlled, cooperative and race-free fashion (also known as \n\u003cem\u003eserial thread confinement\u003c/em\u003e). \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Alternatively, the \u003ca href\u003d\"#share()\"\u003e\u003ccode\u003eshare()\u003c/code\u003e\u003c/a\u003e method can be used to remove thread ownership altogether; this is only possible if the segment features the corresponding \u003ca href\u003d\"#SHARE\"\u003e\u003ccode\u003eSHARE\u003c/code\u003e\u003c/a\u003e access mode. The following code shows how clients can obtain a shared segment: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMemorySegment segment \u003d ...\nMemorySegment sharedSegment \u003d segment.share();\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e Again here, the original segment is marked as not alive, and a new \n\u003cem\u003eshared\u003c/em\u003e segment is returned which features no owner thread (e.g. \n\u003ca href\u003d\"#ownerThread()\"\u003e\u003ccode\u003eownerThread()\u003c/code\u003e\u003c/a\u003e returns \n\u003ccode\u003enull\u003c/code\u003e). This might be useful when multiple threads need to process the contents of the same memory segment concurrently (e.g. in the case of parallel processing). For instance, a client might obtain a \n\u003ca href\u003d\"../../../../java.base/java/util/Spliterator.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eSpliterator\u003c/code\u003e\u003c/a\u003e from a shared segment, which can then be used to slice the segment and allow multiple threads to work in parallel on disjoint segment slices. The following code can be used to sum all int values in a memory segment in parallel: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nSequenceLayout SEQUENCE_LAYOUT \u003d MemoryLayout.ofSequence(1024, MemoryLayouts.JAVA_INT);\ntry (MemorySegment segment \u003d MemorySegment.allocateNative(SEQUENCE_LAYOUT).share()) {\n    VarHandle VH_int \u003d SEQUENCE_LAYOUT.elementLayout().varHandle(int.class);\n    int sum \u003d StreamSupport.stream(segment.spliterator(SEQUENCE_LAYOUT), true)\n                           .mapToInt(s -\u0026gt; (int)VH_int.get(s.address()))\n                           .sum();\n}\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e Once shared, a segment can be claimed back by a given thread (again using \n\u003ca href\u003d\"#handoff(java.lang.Thread)\"\u003e\u003ccode\u003ehandoff(Thread)\u003c/code\u003e\u003c/a\u003e); in fact, many threads can attempt to gain ownership of the same segment, concurrently, and only one of them is guaranteed to succeed. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e When using shared segments, clients should make sure that no other thread is accessing the segment while the segment is being closed. If one or more threads attempts to access a segment concurrently while the segment is being closed, an exception might occur on both the accessing and the closing threads. Clients should refrain from attempting to close a segment repeatedly (e.g. keep calling \u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e until no exception is thrown); such exceptions should instead be seen as an indication that the client code is lacking appropriate synchronization between the threads accessing/closing the segment. \u003c/p\u003e\n\u003ch2\u003eImplicit deallocation\u003c/h2\u003e Clients can register a memory segment against a \n\u003ca href\u003d\"../../../../java.base/java/lang/ref/Cleaner.html\" title\u003d\"class in java.lang.ref\"\u003e\u003ccode\u003eCleaner\u003c/code\u003e\u003c/a\u003e, to make sure that underlying resources associated with that segment will be released when the segment becomes \n\u003cem\u003eunreachable\u003c/em\u003e, which can be useful to prevent native memory leaks. This can be achieved using the \n\u003ca href\u003d\"#registerCleaner(java.lang.ref.Cleaner)\"\u003e\u003ccode\u003eregisterCleaner(Cleaner)\u003c/code\u003e\u003c/a\u003e method, as follows: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMemorySegment segment \u003d ...\nMemorySegment gcSegment \u003d segment.registerCleaner(cleaner);\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e Here, the original segment is marked as not alive, and a new segment is returned (the owner thread of the returned segment set is set to that of the current thread, see \n\u003ca href\u003d\"#ownerThread()\"\u003e\u003ccode\u003eownerThread()\u003c/code\u003e\u003c/a\u003e); the new segment will also be registered with the the \n\u003ca href\u003d\"../../../../java.base/java/lang/ref/Cleaner.html\" title\u003d\"class in java.lang.ref\"\u003e\u003ccode\u003eCleaner\u003c/code\u003e\u003c/a\u003e instance provided to the \n\u003ca href\u003d\"#registerCleaner(java.lang.ref.Cleaner)\"\u003e\u003ccode\u003eregisterCleaner(Cleaner)\u003c/code\u003e\u003c/a\u003e method; as such, if not closed explicitly (see \n\u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e), the new segment will be automatically closed by the cleaner.",
+  "tagMap": {
+    "implSpec": [
+      "Implementations of this interface are immutable, thread-safe and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e."
+    ],
+    "apiNote": [
+      "In the future, if the Java language permits, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemorySegment.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemorySegment\u003c/code\u003e\u003c/a\u003e may become a \n\u003ccode\u003esealed\u003c/code\u003e interface, which would prohibit subclassing except by other explicitly permitted subtypes."
+    ]
+  }
+}

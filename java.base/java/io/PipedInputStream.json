@@ -1,0 +1,428 @@
+{
+  "packageName": "java.io",
+  "simpleName": "PipedInputStream",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.io.InputStream",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "PIPE_SIZE",
+      "comment": "The default size of the pipe\u0027s circular input buffer.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.io.PipedInputStream.PIPE_SIZE\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "buffer",
+      "comment": "The circular buffer into which incoming data is placed.",
+      "tagMap": {
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "in",
+      "comment": "The index of the position in the circular buffer at which the next byte of data will be stored when received from the connected piped output stream. in \u003c 0 implies the buffer is empty, in \u003d\u003d out implies the buffer is full",
+      "tagMap": {
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "out",
+      "comment": "The index of the position in the circular buffer at which the next byte of data will be read by this piped input stream.",
+      "tagMap": {
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.PipedOutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "src"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "connect",
+      "comment": "Causes this piped input stream to be connected to the piped output stream src. If this object is already connected to some other piped output stream, an IOException is thrown. If src is an unconnected piped output stream and snk is an unconnected piped input stream, they may be connected by either the call: snk.connect(src) or the call: src.connect(snk) The two calls have the same effect.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrc\u003c/code\u003e - The piped output stream to connect to."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "b"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "receive",
+      "comment": "Receives a byte of data. This method will block if no input is available.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the byte being received"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If the pipe is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#BROKEN\"\u003e \u003ccode\u003ebroken\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#connect(java.io.PipedOutputStream)\"\u003e\u003ccode\u003eunconnected\u003c/code\u003e\u003c/a\u003e, closed, or if an I/O error occurs."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "read",
+      "comment": "Reads the next byte of data from this piped input stream. The value byte is returned as an int in the range 0 to 255. This method blocks until input data is available, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#read()\"\u003eread\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html\" title\u003d\"class in java.io\"\u003eInputStream\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the pipe is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#connect(java.io.PipedOutputStream)\"\u003e\u003ccode\u003eunconnected\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#BROKEN\"\u003e \u003ccode\u003ebroken\u003c/code\u003e\u003c/a\u003e, closed, or if an I/O error occurs."
+        ],
+        "return": [
+          "the next byte of data, or \n\u003ccode\u003e-1\u003c/code\u003e if the end of the stream is reached."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "off"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "read",
+      "comment": "Reads up to len bytes of data from this piped input stream into an array of bytes. Less than len bytes will be read if the end of the data stream is reached or if len exceeds the pipe\u0027s buffer size. If len is zero, then no bytes are read and 0 is returned; otherwise, the method blocks until at least 1 byte of input is available, end of the stream has been detected, or an exception is thrown.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#read()\"\u003e\u003ccode\u003eInputStream.read()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#read(byte%5B%5D,int,int)\"\u003eread\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html\" title\u003d\"class in java.io\"\u003eInputStream\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the buffer into which the data is read.",
+          "\u003ccode\u003eoff\u003c/code\u003e - the start offset in the destination array \n\u003ccode\u003eb\u003c/code\u003e",
+          "\u003ccode\u003elen\u003c/code\u003e - the maximum number of bytes read."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eb\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eoff\u003c/code\u003e is negative, \n\u003ccode\u003elen\u003c/code\u003e is negative, or \n\u003ccode\u003elen\u003c/code\u003e is greater than \n\u003ccode\u003eb.length - off\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the pipe is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#BROKEN\"\u003e \u003ccode\u003ebroken\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#connect(java.io.PipedOutputStream)\"\u003e\u003ccode\u003eunconnected\u003c/code\u003e\u003c/a\u003e, closed, or if an I/O error occurs."
+        ],
+        "return": [
+          "the total number of bytes read into the buffer, or \n\u003ccode\u003e-1\u003c/code\u003e if there is no more data because the end of the stream has been reached."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "available",
+      "comment": "Returns the number of bytes that can be read from this input stream without blocking.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#available()\"\u003eavailable\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html\" title\u003d\"class in java.io\"\u003eInputStream\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the number of bytes that can be read from this input stream without blocking, or \n\u003ccode\u003e0\u003c/code\u003e if this input stream has been closed by invoking its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e method, or if the pipe is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#connect(java.io.PipedOutputStream)\"\u003e\u003ccode\u003eunconnected\u003c/code\u003e\u003c/a\u003e, or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedInputStream.html#BROKEN\"\u003e \u003ccode\u003ebroken\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "since": [
+          "1.0.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "close",
+      "comment": "Closes this piped input stream and releases any system resources associated with the stream.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html\" title\u003d\"class in java.io\"\u003eInputStream\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.PipedOutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "src"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a PipedInputStream so that it is connected to the piped output stream src. Data bytes written to src will then be available as input from this stream.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrc\u003c/code\u003e - the stream to connect to."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.PipedOutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "src"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pipeSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a PipedInputStream so that it is connected to the piped output stream src and uses the specified pipe size for the pipe\u0027s buffer. Data bytes written to src will then be available as input from this stream.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrc\u003c/code\u003e - the stream to connect to.",
+          "\u003ccode\u003epipeSize\u003c/code\u003e - the size of the pipe\u0027s buffer."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epipeSize \u0026lt;\u003d 0\u003c/code\u003e."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a PipedInputStream so that it is not yet connected. It must be connected to a PipedOutputStream before being used.",
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pipeSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a PipedInputStream so that it is not yet connected and uses the specified pipe size for the pipe\u0027s buffer. It must be connected to a PipedOutputStream before being used.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epipeSize\u003c/code\u003e - the size of the pipe\u0027s buffer."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epipeSize \u0026lt;\u003d 0\u003c/code\u003e."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.io.PipedInputStream",
+  "comment": "A piped input stream should be connected to a piped output stream; the piped input stream then provides whatever data bytes are written to the piped output stream. Typically, data is read from a \n\u003ccode\u003ePipedInputStream\u003c/code\u003e object by one thread and data is written to the corresponding \n\u003ccode\u003ePipedOutputStream\u003c/code\u003e by some other thread. Attempting to use both objects from a single thread is not recommended, as it may deadlock the thread. The piped input stream contains a buffer, decoupling read operations from write operations, within limits. A pipe is said to be \n\u003ca id\u003d\"BROKEN\"\u003e \u003ci\u003ebroken\u003c/i\u003e \u003c/a\u003e if a thread that was providing data bytes to the connected piped output stream is no longer alive.",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/PipedOutputStream.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003ePipedOutputStream\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.0"
+    ]
+  }
+}

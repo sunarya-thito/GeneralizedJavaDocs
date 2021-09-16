@@ -1,0 +1,268 @@
+{
+  "packageName": "java.lang.module",
+  "simpleName": "ModuleReader",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.io.Closeable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.net.URI",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "find",
+      "comment": "Finds a resource, returning a URI to the resource in the module. If the module reader can determine that the name locates a directory then the resulting URI will end with a slash (\u0027/\u0027).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getResource(java.lang.String)\"\u003e\u003ccode\u003eClassLoader.getResource(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the resource to open for reading"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs or the module reader is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If denied by the security manager"
+        ],
+        "return": [
+          "A URI to the resource; an empty \n\u003ccode\u003eOptional\u003c/code\u003e if the resource is not found or a URI cannot be constructed to locate the resource"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "open",
+      "comment": "Opens a resource, returning an input stream to read the resource in the module. The behavior of the input stream when used after the module reader is closed is implementation specific and therefore not specified.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation invokes the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleReader.html#find(java.lang.String)\"\u003e\u003ccode\u003efind\u003c/code\u003e\u003c/a\u003e method to get a URI to the resource. If found, then it attempts to construct a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eURL\u003c/code\u003e\u003c/a\u003e and open a connection to the resource."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the resource to open for reading"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs or the module reader is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If denied by the security manager"
+        ],
+        "return": [
+          "An input stream to read the resource or an empty \n\u003ccode\u003eOptional\u003c/code\u003e if not found"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "read",
+      "comment": "Reads a resource, returning a byte buffer with the contents of the resource. The element at the returned buffer\u0027s position is the first byte of the resource, the element at the buffer\u0027s limit is the last byte of the resource. Once consumed, the release method must be invoked. Failure to invoke the release method may result in a resource leak.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation invokes the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleReader.html#open(java.lang.String)\"\u003e\u003ccode\u003eopen\u003c/code\u003e\u003c/a\u003e method and reads all bytes from the input stream into a byte buffer."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#defineClass(java.lang.String,java.nio.ByteBuffer,java.security.ProtectionDomain)\"\u003e\u003ccode\u003eClassLoader.defineClass(String, ByteBuffer, java.security.ProtectionDomain)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "This method is intended for high-performance class loading. It is not capable (or intended) to read arbitrary large resources that could potentially be 2GB or larger. The rationale for using this method in conjunction with the \n\u003ccode\u003erelease\u003c/code\u003e method is to allow module reader implementations manage buffers in an efficient manner."
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the resource to read"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs or the module reader is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If denied by the security manager",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - If the resource is larger than \n\u003ccode\u003eInteger.MAX_VALUE\u003c/code\u003e, the maximum capacity of a byte buffer"
+        ],
+        "return": [
+          "A byte buffer containing the contents of the resource or an empty \n\u003ccode\u003eOptional\u003c/code\u003e if not found"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bb"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "release",
+      "comment": "Releases a byte buffer. This method should be invoked after consuming the contents of the buffer returned by the read method. The behavior of this method when invoked to release a buffer that has already been released, or the behavior when invoked to release a buffer after a ModuleReader is closed is implementation specific and therefore not specified.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation doesn\u0027t do anything except check if the byte buffer is null."
+        ],
+        "param": [
+          "\u003ccode\u003ebb\u003c/code\u003e - The byte buffer to release"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "list",
+      "comment": "Lists the contents of the module, returning a stream of elements that are the names of all resources in the module. Whether the stream of elements includes names corresponding to directories in the module is module reader specific. In lazy implementations then an IOException may be thrown when using the stream to list the module contents. If this occurs then the IOException will be wrapped in an UncheckedIOException and thrown from the method that caused the access to be attempted. SecurityException may also be thrown when using the stream to list the module contents and access is denied by the security manager. The behavior of the stream when used after the module reader is closed is implementation specific and therefore not specified.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs or the module reader is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If denied by the security manager"
+        ],
+        "return": [
+          "A stream of elements that are the names of all resources in the module"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes the module reader. Once closed then subsequent calls to locate or read a resource will fail by throwing IOException. A module reader is not required to be asynchronously closeable. If a thread is reading a resource and another thread invokes the close method, then the second thread may block until the read operation is complete.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.lang.module.ModuleReader",
+  "comment": "Provides access to the content of a module. \n\u003cp\u003e A module reader is intended for cases where access to the resources in a module is required, regardless of whether the module has been loaded. A framework that scans a collection of packaged modules on the file system, for example, may use a module reader to access a specific resource in each module. A module reader is also intended to be used by \u003ccode\u003eClassLoader\u003c/code\u003e implementations that load classes and resources from modules. \u003c/p\u003e \n\u003cp\u003e A resource in a module is identified by an abstract name that is a \u0027\u003ccode\u003e/\u003c/code\u003e\u0027-separated path string. For example, module \u003ccode\u003ejava.base\u003c/code\u003e may have a resource \"\u003ccode\u003ejava/lang/Object.class\u003c/code\u003e\" that, by convention, is the class file for \u003ccode\u003ejava.lang.Object\u003c/code\u003e. A module reader may treat directories in the module content as resources (whether it does or not is module reader specific). Where the module content contains a directory that can be located as a resource then its name ends with a slash (\u0027/\u0027). The directory can also be located with a name that drops the trailing slash. \u003c/p\u003e \n\u003cp\u003e A \u003ccode\u003eModuleReader\u003c/code\u003e is \u003ca href\u003d\"ModuleReference.html#open()\"\u003eopen\u003c/a\u003e upon creation and is closed by invoking the \u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose\u003c/code\u003e\u003c/a\u003e method. Failure to close a module reader may result in a resource leak. The \u003ccode\u003e try-with-resources\u003c/code\u003e statement provides a useful construct to ensure that module readers are closed. \u003c/p\u003e \n\u003cp\u003e A \u003ccode\u003eModuleReader\u003c/code\u003e implementation may require permissions to access resources in the module. Consequently the \u003ca href\u003d\"#find(java.lang.String)\"\u003e\u003ccode\u003efind\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#open(java.lang.String)\"\u003e\u003ccode\u003eopen\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#read(java.lang.String)\"\u003e\u003ccode\u003eread\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#list()\"\u003e\u003ccode\u003elist\u003c/code\u003e\u003c/a\u003e methods may throw \u003ccode\u003e SecurityException\u003c/code\u003e if access is denied by the security manager. \u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "Implementations of \n\u003ccode\u003eModuleReader\u003c/code\u003e should take great care when translating an abstract resource name to the location of a resource in a packaged module or on the file system. Implementations are advised to treat resource names with elements such as \u0027\n\u003ccode\u003e.\u003c/code\u003e, \u0027\n\u003ccode\u003e..\u003c/code\u003e\u0027, elements containing file separators, or empty elements as \"not found\". More generally, if the resource name is not in the stream of elements that the \n\u003ccode\u003elist\u003c/code\u003e method returns then the resource should be treated as \"not found\" to avoid inconsistencies."
+    ],
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/module/ModuleReference.html\" title\u003d\"class in java.lang.module\"\u003e\u003ccode\u003eModuleReference\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

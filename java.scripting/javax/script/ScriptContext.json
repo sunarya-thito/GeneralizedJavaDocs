@@ -1,0 +1,473 @@
+{
+  "packageName": "javax.script",
+  "simpleName": "ScriptContext",
+  "moduleName": "java.scripting",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "ENGINE_SCOPE",
+      "comment": "EngineScope attributes are visible during the lifetime of a single ScriptEngine and a set of attributes is maintained for each engine.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.script.ScriptContext.ENGINE_SCOPE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "GLOBAL_SCOPE",
+      "comment": "GlobalScope attributes are visible to all engines created by same ScriptEngineFactory.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.script.ScriptContext.GLOBAL_SCOPE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.script.Bindings",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bindings"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "scope"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setBindings",
+      "comment": "Associates a Bindings instance with a particular scope in this ScriptContext. Calls to the getAttribute and setAttribute methods must map to the get and put methods of the Bindings for the specified scope.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebindings\u003c/code\u003e - The \n\u003ccode\u003eBindings\u003c/code\u003e to associate with the given scope",
+          "\u003ccode\u003escope\u003c/code\u003e - The scope"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If no \n\u003ccode\u003eBindings\u003c/code\u003e is defined for the specified scope value in ScriptContexts of this type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if value of scope is \n\u003ccode\u003eENGINE_SCOPE\u003c/code\u003e and the specified \n\u003ccode\u003eBindings\u003c/code\u003e is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.script.Bindings",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "scope"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getBindings",
+      "comment": "Gets the Bindings associated with the given scope in this ScriptContext.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003escope\u003c/code\u003e - The scope"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If no \n\u003ccode\u003eBindings\u003c/code\u003e is defined for the specified scope value in \n\u003ccode\u003eScriptContext\u003c/code\u003e of this type."
+        ],
+        "return": [
+          "The associated \n\u003ccode\u003eBindings\u003c/code\u003e. Returns \n\u003ccode\u003enull\u003c/code\u003e if it has not been set."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "scope"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setAttribute",
+      "comment": "Sets the value of an attribute in a given scope. If the scope is GLOBAL_SCOPE and no Bindings is set for GLOBAL_SCOPE, then setAttribute call is a no-op.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the attribute to set",
+          "\u003ccode\u003evalue\u003c/code\u003e - The value of the attribute",
+          "\u003ccode\u003escope\u003c/code\u003e - The scope in which to set the attribute"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the name is empty or if the scope is invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the name is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "scope"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttribute",
+      "comment": "Gets the value of an attribute in a given scope.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the attribute to retrieve.",
+          "\u003ccode\u003escope\u003c/code\u003e - The scope in which to retrieve the attribute."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the name is empty or if the value of scope is invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the name is null."
+        ],
+        "return": [
+          "The value of the attribute. Returns \n\u003ccode\u003enull\u003c/code\u003e is the name does not exist in the given scope."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "scope"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeAttribute",
+      "comment": "Remove an attribute in a given scope.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the attribute to remove",
+          "\u003ccode\u003escope\u003c/code\u003e - The scope in which to remove the attribute"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the name is empty or if the scope is invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the name is null."
+        ],
+        "return": [
+          "The removed value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttribute",
+      "comment": "Retrieves the value of the attribute with the given name in the scope occurring earliest in the search order. The order is determined by the numeric value of the scope parameter (lowest scope values first.)",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the attribute to retrieve."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the name is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the name is empty."
+        ],
+        "return": [
+          "The value of the attribute in the lowest scope for which an attribute with the given name is defined. Returns null if no attribute with the name exists in any scope."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAttributesScope",
+      "comment": "Get the lowest scope in which an attribute is defined.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - Name of the attribute ."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if name is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if name is empty."
+        ],
+        "return": [
+          "The lowest scope. Returns -1 if no attribute with the given name is defined in any scope."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.Writer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWriter",
+      "comment": "Returns the Writer for scripts to use when displaying output.",
+      "tagMap": {
+        "return": [
+          "The \n\u003ccode\u003eWriter\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.Writer",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getErrorWriter",
+      "comment": "Returns the Writer used to display error output.",
+      "tagMap": {
+        "return": [
+          "The \n\u003ccode\u003eWriter\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.Writer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "writer"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setWriter",
+      "comment": "Sets the Writer for scripts to use when displaying output.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ewriter\u003c/code\u003e - The new \n\u003ccode\u003eWriter\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.Writer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "writer"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setErrorWriter",
+      "comment": "Sets the Writer used to display error output.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ewriter\u003c/code\u003e - The \n\u003ccode\u003eWriter\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.Reader",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getReader",
+      "comment": "Returns a Reader to be used by the script to read input.",
+      "tagMap": {
+        "return": [
+          "The \n\u003ccode\u003eReader\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.Reader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "reader"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setReader",
+      "comment": "Sets the Reader for scripts to read input .",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereader\u003c/code\u003e - The new \n\u003ccode\u003eReader\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.Integer",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getScopes",
+      "comment": "Returns immutable List of all the valid values for scope in the ScriptContext.",
+      "tagMap": {
+        "return": [
+          "list of scope values"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.script.ScriptContext",
+  "comment": "The interface whose implementing classes are used to connect Script Engines with objects, such as scoped Bindings, in hosting applications. Each scope is a set of named attributes whose values can be set and retrieved using the \n\u003ccode\u003eScriptContext\u003c/code\u003e methods. ScriptContexts also expose Readers and Writers that can be used by the ScriptEngines for input and output.",
+  "tagMap": {
+    "since": [
+      "1.6"
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "packageName": "org.w3c.dom",
+  "simpleName": "Text",
+  "moduleName": "java.xml",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "org.w3c.dom.CharacterData",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Text",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "splitText",
+      "comment": "Breaks this node into two nodes at the specified offset, keeping both in the tree as siblings. After being split, this node will contain all the content up to the offset point. A new node of the same type, which contains all the content at and after the offset point, is returned. If the original node had a parent node, the new node is inserted as the next sibling of the original node. When the offset is equal to the length of this node, the new node has no data.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eoffset\u003c/code\u003e - The 16-bit unit offset at which to split, starting from \n\u003ccode\u003e0\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - INDEX_SIZE_ERR: Raised if the specified offset is negative or greater than the number of 16-bit units in \n\u003ccode\u003edata\u003c/code\u003e. \n\u003cbr\u003eNO_MODIFICATION_ALLOWED_ERR: Raised if this node is readonly."
+        ],
+        "return": [
+          "The new node, of the same type as this node."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isElementContentWhitespace",
+      "comment": "Returns whether this text node contains element content whitespace, often abusively called \"ignorable whitespace\". The text node is determined to contain whitespace in element content during the load of the document or if validation occurs while using Document.normalizeDocument().",
+      "tagMap": {
+        "since": [
+          "1.5, DOM Level 3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWholeText",
+      "comment": "Returns all text of Text nodes logically-adjacent text nodes to this node, concatenated in document order. For instance, in the example below wholeText on the Text node that contains \"bar\" returns \"barfoo\", while on the Text node that contains \"foo\" it returns \"barfoo\".                      +-----+\n                     | \u003cp\u003e |\n                     +-----+\n                       /\\\n                      /  \\\n               /-----\\    +-------+\n               | bar |    | \u0026ent; |\n               \\-----/    +-------+\n                              |\n                              |\n                           /-----\\\n                           | foo |\n                           \\-----/\n Figure: barTextNode.wholeText value is \"barfoo\"",
+      "tagMap": {
+        "since": [
+          "1.5, DOM Level 3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.Text",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.w3c.dom.DOMException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "content"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "replaceWholeText",
+      "comment": "Replaces the text of the current node and all logically-adjacent text nodes with the specified text. All logically-adjacent text nodes are removed including the current node unless it was the recipient of the replacement text. This method returns the node which received the replacement text. The returned node is: null, when the replacement text is the empty string; the current node, except when the current node is read-only; a new Text node of the same type ( Text or CDATASection) as the current node inserted at the location of the replacement. For instance, in the above example calling replaceWholeText on the Text node that contains \"bar\" with \"yo\" in argument results in the following:                      +-----+\n                     | \u003cp\u003e |\n                     +-----+\n                        |\n                        |\n                     /-----\\\n                     | yo  |\n                     \\-----/\n Figure: barTextNode.replaceWholeText(\"yo\") modifies the textual content of barTextNode with \"yo\" Where the nodes to be removed are read-only descendants of an EntityReference, the EntityReference must be removed instead of the read-only nodes. If any EntityReference to be removed has descendants that are not EntityReference, Text, or CDATASection nodes, the replaceWholeText method must fail before performing any modification of the document, raising a DOMException with the code NO_MODIFICATION_ALLOWED_ERR. For instance, in the example below calling replaceWholeText on the Text node that contains \"bar\" fails, because the EntityReference node \"ent\" contains an Element node which cannot be removed.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econtent\u003c/code\u003e - The content of the replacing \n\u003ccode\u003eText\u003c/code\u003e node."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/DOMException.html\" title\u003d\"class in org.w3c.dom\"\u003eDOMException\u003c/a\u003e\u003c/code\u003e - NO_MODIFICATION_ALLOWED_ERR: Raised if one of the \n\u003ccode\u003eText\u003c/code\u003e nodes being replaced is readonly."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eText\u003c/code\u003e node created with the specified content."
+        ],
+        "since": [
+          "1.5, DOM Level 3"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "org.w3c.dom.Text",
+  "comment": "The \n\u003ccode\u003eText\u003c/code\u003e interface inherits from \n\u003ccode\u003eCharacterData\u003c/code\u003e and represents the textual content (termed \n\u003ca href\u003d\"http://www.w3.org/TR/2004/REC-xml-20040204#syntax\"\u003echaracter data\u003c/a\u003e in XML) of an \n\u003ccode\u003eElement\u003c/code\u003e or \n\u003ccode\u003eAttr\u003c/code\u003e. If there is no markup inside an element\u0027s content, the text is contained in a single object implementing the \n\u003ccode\u003eText\u003c/code\u003e interface that is the only child of the element. If there is markup, it is parsed into the information items (elements, comments, etc.) and \n\u003ccode\u003eText\u003c/code\u003e nodes that form the list of children of the element. \n\u003cp\u003eWhen a document is first made available via the DOM, there is only one \u003ccode\u003eText\u003c/code\u003e node for each block of text. Users may create adjacent \u003ccode\u003eText\u003c/code\u003e nodes that represent the contents of a given element without any intervening markup, but should be aware that there is no way to represent the separations between these nodes in XML or HTML, so they will not (in general) persist between DOM editing sessions. The \u003ccode\u003eNode.normalize()\u003c/code\u003e method merges any such adjacent \u003ccode\u003eText\u003c/code\u003e objects into a single node for each block of text. \u003c/p\u003e\n\u003cp\u003e No lexical check is done on the content of a \u003ccode\u003eText\u003c/code\u003e node and, depending on its position in the document, some characters must be escaped during serialization using character references; e.g. the characters \"\u0026lt;\u0026amp;\" if the textual content is part of an element or of an attribute, the character sequence \"]]\u0026gt;\" when part of an element, the quotation mark character \" or the apostrophe character \u0027 when part of an attribute. \u003c/p\u003e\n\u003cp\u003eSee also the \u003ca href\u003d\"http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407\"\u003eDocument Object Model (DOM) Level 3 Core Specification\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {}
+}

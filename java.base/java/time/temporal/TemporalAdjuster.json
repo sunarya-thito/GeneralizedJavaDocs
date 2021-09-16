@@ -1,0 +1,63 @@
+{
+  "packageName": "java.time.temporal",
+  "simpleName": "TemporalAdjuster",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.time.temporal.Temporal",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.temporal.Temporal",
+            "type": "Class"
+          },
+          "field": {
+            "name": "temporal"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "adjustInto",
+      "comment": "Adjusts the specified temporal object. This adjusts the specified temporal object using the logic encapsulated in the implementing class. Examples might be an adjuster that sets the date avoiding weekends, or one that sets the date to the last day of the month. There are two equivalent ways of using this method. The first is to invoke this method directly. The second is to use Temporal.with(TemporalAdjuster):    // these two lines are equivalent, but the second approach is recommended\n   temporal \u003d thisAdjuster.adjustInto(temporal);\n   temporal \u003d temporal.with(thisAdjuster);\n It is recommended to use the second approach, with(TemporalAdjuster), as it is a lot clearer to read in code.",
+      "tagMap": {
+        "implSpec": [
+          "The implementation must take the input object and adjust it. The implementation defines the logic of the adjustment and is responsible for documenting that logic. It may use any method on \n\u003ccode\u003eTemporal\u003c/code\u003e to query the temporal object and perform the adjustment. The returned object must have the same observable type as the input object \n\u003cp\u003e The input object must not be altered. Instead, an adjusted copy of the original must be returned. This provides equivalent, safe behavior for immutable and mutable temporal objects. \u003c/p\u003e\n\u003cp\u003e The input temporal object may be in a calendar system other than ISO. Implementations may choose to document compatibility with other calendar systems, or reject non-ISO temporal objects by \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/TemporalQueries.html#chronology()\"\u003e\u003ccode\u003equerying the chronology\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e This method may be called from multiple threads in parallel. It must be thread-safe when invoked.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etemporal\u003c/code\u003e - the temporal object to adjust, not null"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/DateTimeException.html\" title\u003d\"class in java.time\"\u003eDateTimeException\u003c/a\u003e\u003c/code\u003e - if unable to make the adjustment",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArithmeticException.html\" title\u003d\"class in java.lang\"\u003eArithmeticException\u003c/a\u003e\u003c/code\u003e - if numeric overflow occurs"
+        ],
+        "return": [
+          "an object of the same observable type with the adjustment made, not null"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.time.temporal.TemporalAdjuster",
+  "comment": "Strategy for adjusting a temporal object. \n\u003cp\u003e Adjusters are a key tool for modifying temporal objects. They exist to externalize the process of adjustment, permitting different approaches, as per the strategy design pattern. Examples might be an adjuster that sets the date avoiding weekends, or one that sets the date to the last day of the month. \u003c/p\u003e\n\u003cp\u003e There are two equivalent ways of using a \u003ccode\u003eTemporalAdjuster\u003c/code\u003e. The first is to invoke the method on this interface directly. The second is to use \u003ca href\u003d\"Temporal.html#with(java.time.temporal.TemporalAdjuster)\"\u003e\u003ccode\u003eTemporal.with(TemporalAdjuster)\u003c/code\u003e\u003c/a\u003e: \u003c/p\u003e\n\u003cpre\u003e   // these two lines are equivalent, but the second approach is recommended\n   temporal \u003d thisAdjuster.adjustInto(temporal);\n   temporal \u003d temporal.with(thisAdjuster);\n \u003c/pre\u003e It is recommended to use the second approach, \n\u003ccode\u003ewith(TemporalAdjuster)\u003c/code\u003e, as it is a lot clearer to read in code. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"TemporalAdjusters.html\" title\u003d\"class in java.time.temporal\"\u003e\u003ccode\u003eTemporalAdjusters\u003c/code\u003e\u003c/a\u003e class contains a standard set of adjusters, available as static methods. These include: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003efinding the first or last day of the month \u003c/li\u003e\n \u003cli\u003efinding the first day of next month \u003c/li\u003e\n \u003cli\u003efinding the first or last day of the year \u003c/li\u003e\n \u003cli\u003efinding the first day of next year \u003c/li\u003e\n \u003cli\u003efinding the first or last day-of-week within a month, such as \"first Wednesday in June\" \u003c/li\u003e\n \u003cli\u003efinding the next or previous day-of-week, such as \"next Thursday\" \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "implSpec": [
+      "This interface places no restrictions on the mutability of implementations, however immutability is strongly recommended."
+    ],
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/time/temporal/TemporalAdjusters.html\" title\u003d\"class in java.time.temporal\"\u003e\u003ccode\u003eTemporalAdjusters\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "packageName": "javax.sql.rowset.spi",
+  "simpleName": "TransactionalWriter",
+  "moduleName": "java.sql.rowset",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "javax.sql.RowSetWriter",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "commit",
+      "comment": "Makes permanent all changes that have been performed by the acceptChanges method since the last call to either the commit or rollback methods. This method should be used only when auto-commit mode has been disabled.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the \n\u003ccode\u003eConnection\u003c/code\u003e object within this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object is in auto-commit mode"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "rollback",
+      "comment": "Undoes all changes made in the current transaction. This method should be used only when auto-commit mode has been disabled.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the \n\u003ccode\u003eConnection\u003c/code\u003e object within this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object is in auto-commit mode"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.sql.SQLException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.sql.Savepoint",
+            "type": "Class"
+          },
+          "field": {
+            "name": "s"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "rollback",
+      "comment": "Undoes all changes made in the current transaction made prior to the given Savepoint object. This method should be used only when auto-commit mode has been disabled.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003es\u003c/code\u003e - a \n\u003ccode\u003eSavepoint\u003c/code\u003e object marking a savepoint in the current transaction. All changes made before \n\u003ci\u003es\u003c/i\u003e was set will be undone. All changes made after \n\u003ci\u003es\u003c/i\u003e was set will be made permanent."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql/java/sql/SQLException.html\" title\u003d\"class in java.sql\"\u003eSQLException\u003c/a\u003e\u003c/code\u003e - if a database access error occurs or the \n\u003ccode\u003eConnection\u003c/code\u003e object within this \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object is in auto-commit mode"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.sql.rowset.spi.TransactionalWriter",
+  "comment": "A specialized interface that facilitates an extension of the standard \n\u003ccode\u003eSyncProvider\u003c/code\u003e abstract class so that it has finer grained transaction control. \n\u003cp\u003e If one or more disconnected \u003ccode\u003eRowSet\u003c/code\u003e objects are participating in a global transaction, they may wish to coordinate their synchronization commits to preserve data integrity and reduce the number of synchronization exceptions. If this is the case, an application should set the \u003ccode\u003eCachedRowSet\u003c/code\u003e constant \u003ccode\u003eCOMMIT_ON_ACCEPT_CHANGES\u003c/code\u003e to \u003ccode\u003efalse\u003c/code\u003e and use the \u003ccode\u003ecommit\u003c/code\u003e and \u003ccode\u003erollback\u003c/code\u003e methods defined in this interface to manage transaction boundaries.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

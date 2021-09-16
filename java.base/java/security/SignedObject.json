@@ -1,0 +1,202 @@
+{
+  "packageName": "java.security",
+  "simpleName": "SignedObject",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "java.lang.ClassNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getObject",
+      "comment": "Retrieves the encapsulated object. The encapsulated object is de-serialized before it is returned.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during de-serialization",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassNotFoundException.html\" title\u003d\"class in java.lang\"\u003eClassNotFoundException\u003c/a\u003e\u003c/code\u003e - if an error occurs during de-serialization"
+        ],
+        "return": [
+          "the encapsulated object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSignature",
+      "comment": "Retrieves the signature on the signed object, in the form of a byte array.",
+      "tagMap": {
+        "return": [
+          "the signature. Returns a new array each time this method is called."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAlgorithm",
+      "comment": "Retrieves the name of the signature algorithm.",
+      "tagMap": {
+        "return": [
+          "the signature algorithm name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.PublicKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "verificationKey"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.Signature",
+            "type": "Class"
+          },
+          "field": {
+            "name": "verificationEngine"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "verify",
+      "comment": "Verifies that the signature in this SignedObject is the valid signature for the object stored inside, with the given verification key, using the designated verification engine.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003everificationKey\u003c/code\u003e - the public key for verification.",
+          "\u003ccode\u003everificationEngine\u003c/code\u003e - the signature verification engine."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if signature verification failed (an exception prevented the signature verification engine from completing normally).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if the verification key is invalid."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the signature is valid, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.Serializable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "object"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PrivateKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "signingKey"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.Signature",
+            "type": "Class"
+          },
+          "field": {
+            "name": "signingEngine"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a SignedObject from any Serializable object. The given object is signed with the given signing key, using the designated signature engine.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eobject\u003c/code\u003e - the object to be signed.",
+          "\u003ccode\u003esigningKey\u003c/code\u003e - the private key for signing.",
+          "\u003ccode\u003esigningEngine\u003c/code\u003e - the signature signing engine."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurs during serialization",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if the key is invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if signing fails."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "java.security.SignedObject",
+  "comment": "\u003cp\u003e SignedObject is a class for the purpose of creating authentic runtime objects whose integrity cannot be compromised without being detected. \u003c/p\u003e\n\u003cp\u003e More specifically, a SignedObject contains another Serializable object, the (to-be-)signed object and its signature. \u003c/p\u003e\n\u003cp\u003e The signed object is a \"deep copy\" (in serialized form) of an original object. Once the copy is made, further manipulation of the original object has no side effect on the copy. \u003c/p\u003e\n\u003cp\u003e The underlying signing algorithm is designated by the Signature object passed to the constructor and the \u003ccode\u003everify\u003c/code\u003e method. A typical usage for signing is the following: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n Signature signingEngine \u003d Signature.getInstance(algorithm,\n                                                 provider);\n SignedObject so \u003d new SignedObject(myobject, signingKey,\n                                    signingEngine);\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A typical usage for verification is the following (having received SignedObject \u003ccode\u003eso\u003c/code\u003e): \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n Signature verificationEngine \u003d\n     Signature.getInstance(algorithm, provider);\n if (so.verify(publickey, verificationEngine))\n     try {\n         Object myobj \u003d so.getObject();\n     } catch (java.lang.ClassNotFoundException e) {};\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Several points are worth noting. First, there is no need to initialize the signing or verification engine, as it will be re-initialized inside the constructor and the \u003ccode\u003everify\u003c/code\u003e method. Secondly, for verification to succeed, the specified public key must be the public key corresponding to the private key used to generate the SignedObject. \u003c/p\u003e\n\u003cp\u003e More importantly, for flexibility reasons, the constructor and \u003ccode\u003everify\u003c/code\u003e method allow for customized signature engines, which can implement signature algorithms that are not installed formally as part of a crypto provider. However, it is crucial that the programmer writing the verifier code be aware what \u003ccode\u003eSignature\u003c/code\u003e engine is being used, as its own implementation of the \u003ccode\u003everify\u003c/code\u003e method is invoked to verify a signature. In other words, a malicious \u003ccode\u003eSignature\u003c/code\u003e may choose to always return true on verification in an attempt to bypass a security check. \u003c/p\u003e\n\u003cp\u003e The signature algorithm can be, among others, the NIST standard DSA, using DSA and SHA-256. The algorithm is specified using the same convention as that for signatures. The DSA algorithm using the SHA-256 message digest algorithm can be specified, for example, as \"SHA256withDSA\". In the case of RSA the signing algorithm could be specified as, for example, \"SHA256withRSA\". The algorithm name must be specified, as there is no default. \u003c/p\u003e\n\u003cp\u003e The name of the Cryptography Package Provider is designated also by the Signature parameter to the constructor and the \u003ccode\u003everify\u003c/code\u003e method. If the provider is not specified, the default provider is used. Each installation can be configured to use a particular provider as default. \u003c/p\u003e\n\u003cp\u003e Potential applications of SignedObject include: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e It can be used internally to any Java runtime as an unforgeable authorization token -- one that can be passed around without the fear that the token can be maliciously modified without being detected. \u003c/li\u003e\n \u003cli\u003e It can be used to sign and serialize data/object for storage outside the Java runtime (e.g., storing critical access control data on disk). \u003c/li\u003e\n \u003cli\u003e Nested SignedObjects can be used to construct a logical sequence of signatures, resembling a chain of authorization and delegation. \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Signature.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eSignature\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.security.SignedObject\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.2"
+    ]
+  }
+}

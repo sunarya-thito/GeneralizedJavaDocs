@@ -1,0 +1,155 @@
+{
+  "packageName": "javax.sound.midi",
+  "simpleName": "Track",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.sound.midi.MidiEvent",
+            "type": "Class"
+          },
+          "field": {
+            "name": "event"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "add",
+      "comment": "Adds a new event to the track. However, if the event is already contained in the track, it is not added again. The list of events is kept in time order, meaning that this event inserted at the appropriate place in the list, not necessarily at the end.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - the event to add"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the event did not already exist in the track and was added, otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.sound.midi.MidiEvent",
+            "type": "Class"
+          },
+          "field": {
+            "name": "event"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "remove",
+      "comment": "Removes the specified event from the track.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eevent\u003c/code\u003e - the event to remove"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the event existed in the track and was removed, otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.MidiEvent",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.ArrayIndexOutOfBoundsException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "get",
+      "comment": "Obtains the event at the specified index.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Track.html#size()\"\u003e\u003ccode\u003esize()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the location of the desired event in the event vector"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArrayIndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eArrayIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the specified index is negative or not less than the current size of this track"
+        ],
+        "return": [
+          "the event at the specified index"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "size",
+      "comment": "Obtains the number of events in this track.",
+      "tagMap": {
+        "return": [
+          "the size of the track\u0027s event vector"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "ticks",
+      "comment": "Obtains the length of the track, expressed in MIDI ticks. (The duration of a tick in seconds is determined by the timing resolution of the Sequence containing this track, and also by the tempo of the music as set by the sequencer.)",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Sequence.html#%3Cinit%3E(float,int)\"\u003e\u003ccode\u003eSequence(float, int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Sequencer.html#setTempoInBPM(float)\"\u003e\u003ccode\u003eSequencer.setTempoInBPM(float)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Sequencer.html#getTickPosition()\"\u003e\u003ccode\u003eSequencer.getTickPosition()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the duration, in ticks"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.sound.midi.Track",
+  "comment": "A MIDI track is an independent stream of MIDI events (time-stamped MIDI data) that can be stored along with other tracks in a standard MIDI file. The MIDI specification allows only 16 channels of MIDI data, but tracks are a way to get around this limitation. A MIDI file can contain any number of tracks, each containing its own stream of up to 16 channels of MIDI data. \n\u003cp\u003e A \u003ccode\u003eTrack\u003c/code\u003e occupies a middle level in the hierarchy of data played by a \u003ca href\u003d\"Sequencer.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eSequencer\u003c/code\u003e\u003c/a\u003e: sequencers play sequences, which contain tracks, which contain MIDI events. A sequencer may provide controls that mute or solo individual tracks. \u003c/p\u003e\n\u003cp\u003e The timing information and resolution for a track is controlled by and stored in the sequence containing the track. A given \u003ccode\u003eTrack\u003c/code\u003e is considered to belong to the particular \u003ca href\u003d\"Sequence.html\" title\u003d\"class in javax.sound.midi\"\u003e\u003ccode\u003eSequence\u003c/code\u003e\u003c/a\u003e that maintains its timing. For this reason, a new (empty) track is created by calling the \u003ca href\u003d\"Sequence.html#createTrack()\"\u003e\u003ccode\u003eSequence.createTrack()\u003c/code\u003e\u003c/a\u003e method, rather than by directly invoking a \u003ccode\u003eTrack\u003c/code\u003e constructor. \u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003eTrack\u003c/code\u003e class provides methods to edit the track by adding or removing \u003ccode\u003eMidiEvent\u003c/code\u003e objects from it. These operations keep the event list in the correct time order. Methods are also included to obtain the track\u0027s size, in terms of either the number of events it contains or its duration in ticks.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Sequencer.html#setTrackMute(int,boolean)\"\u003e\u003ccode\u003eSequencer.setTrackMute(int, boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Sequencer.html#setTrackSolo(int,boolean)\"\u003e\u003ccode\u003eSequencer.setTrackSolo(int, boolean)\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

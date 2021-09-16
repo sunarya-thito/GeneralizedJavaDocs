@@ -1,0 +1,109 @@
+{
+  "packageName": "java.awt.print",
+  "simpleName": "Printable",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "PAGE_EXISTS",
+      "comment": "Returned from print(Graphics, PageFormat, int) to signify that the requested page was rendered.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.awt.print.Printable.PAGE_EXISTS\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "NO_SUCH_PAGE",
+      "comment": "Returned from print to signify that the pageIndex is too large and that the requested page does not exist.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.awt.print.Printable.NO_SUCH_PAGE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.awt.print.PrinterException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.Graphics",
+            "type": "Class"
+          },
+          "field": {
+            "name": "graphics"
+          }
+        },
+        {
+          "type": {
+            "name": "java.awt.print.PageFormat",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pageFormat"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pageIndex"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "print",
+      "comment": "Prints the page at the specified index into the specified Graphics context in the specified format. A PrinterJob calls the Printable interface to request that a page be rendered into the context specified by graphics. The format of the page to be drawn is specified by pageFormat. The zero based index of the requested page is specified by pageIndex. If the requested page does not exist then this method returns NO_SUCH_PAGE; otherwise PAGE_EXISTS is returned. The Graphics class or subclass implements the PrinterGraphics interface to provide additional information. If the Printable object aborts the print job then it throws a PrinterException.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003egraphics\u003c/code\u003e - the context into which the page is drawn",
+          "\u003ccode\u003epageFormat\u003c/code\u003e - the size and orientation of the page being drawn",
+          "\u003ccode\u003epageIndex\u003c/code\u003e - the zero based index of the page to be drawn"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterException.html\" title\u003d\"class in java.awt.print\"\u003ePrinterException\u003c/a\u003e\u003c/code\u003e - thrown when the print job is terminated."
+        ],
+        "return": [
+          "PAGE_EXISTS if the page is rendered successfully or NO_SUCH_PAGE if \n\u003ccode\u003epageIndex\u003c/code\u003e specifies a non-existent page."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.awt.print.Printable",
+  "comment": "The \n\u003ccode\u003ePrintable\u003c/code\u003e interface is implemented by the \n\u003ccode\u003eprint\u003c/code\u003e methods of the current page painter, which is called by the printing system to render a page. When building a \n\u003ca href\u003d\"Pageable.html\" title\u003d\"interface in java.awt.print\"\u003e\u003ccode\u003ePageable\u003c/code\u003e\u003c/a\u003e, pairs of \n\u003ca href\u003d\"PageFormat.html\" title\u003d\"class in java.awt.print\"\u003e\u003ccode\u003ePageFormat\u003c/code\u003e\u003c/a\u003e instances and instances that implement this interface are used to describe each page. The instance implementing \n\u003ccode\u003ePrintable\u003c/code\u003e is called to print the page\u0027s graphics. \n\u003cp\u003e A \u003ccode\u003ePrintable(..)\u003c/code\u003e may be set on a \u003ccode\u003ePrinterJob\u003c/code\u003e. When the client subsequently initiates printing by calling \u003ccode\u003ePrinterJob.print(..)\u003c/code\u003e control \u003c/p\u003e\n\u003cp\u003e is handed to the printing system until all pages have been printed. It does this by calling \u003ccode\u003ePrintable.print(..)\u003c/code\u003e until all pages in the document have been printed. In using the \u003ccode\u003ePrintable\u003c/code\u003e interface the printing commits to image the contents of a page whenever requested by the printing system. \u003c/p\u003e\n\u003cp\u003e The parameters to \u003ccode\u003ePrintable.print(..)\u003c/code\u003e include a \u003ccode\u003ePageFormat\u003c/code\u003e which describes the printable area of the page, needed for calculating the contents that will fit the page, and the page index, which specifies the zero-based print stream index of the requested page. \u003c/p\u003e\n\u003cp\u003e For correct printing behaviour, the following points should be observed: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e The printing system may request a page index more than once. On each occasion equal PageFormat parameters will be supplied. \u003c/li\u003e\n \u003cli\u003eThe printing system will call \u003ccode\u003ePrintable.print(..)\u003c/code\u003e with page indexes which increase monotonically, although as noted above, the \u003ccode\u003ePrintable\u003c/code\u003e should expect multiple calls for a page index and that page indexes may be skipped, when page ranges are specified by the client, or by a user through a print dialog. \u003c/li\u003e\n \u003cli\u003eIf multiple collated copies of a document are requested, and the printer cannot natively support this, then the document may be imaged multiple times. Printing will start each copy from the lowest print stream page index page. \u003c/li\u003e\n \u003cli\u003eWith the exception of re-imaging an entire document for multiple collated copies, the increasing page index order means that when page N is requested if a client needs to calculate page break position, it may safely discard any state related to pages \u0026lt; N, and make current that for page N. \"State\" usually is just the calculated position in the document that corresponds to the start of the page. \u003c/li\u003e\n \u003cli\u003eWhen called by the printing system the \u003ccode\u003ePrintable\u003c/code\u003e must inspect and honour the supplied PageFormat parameter as well as the page index. The format of the page to be drawn is specified by the supplied PageFormat. The size, orientation and imageable area of the page is therefore already determined and rendering must be within this imageable area. This is key to correct printing behaviour, and it has the implication that the client has the responsibility of tracking what content belongs on the specified page. \u003c/li\u003e\n \u003cli\u003eWhen the \u003ccode\u003ePrintable\u003c/code\u003e is obtained from a client-supplied \u003ccode\u003ePageable\u003c/code\u003e then the client may provide different PageFormats for each page index. Calculations of page breaks must account for this. \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/Pageable.html\" title\u003d\"interface in java.awt.print\"\u003e\u003ccode\u003ePageable\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PageFormat.html\" title\u003d\"class in java.awt.print\"\u003e\u003ccode\u003ePageFormat\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/print/PrinterJob.html\" title\u003d\"class in java.awt.print\"\u003e\u003ccode\u003ePrinterJob\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

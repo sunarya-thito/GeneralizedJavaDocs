@@ -1,0 +1,122 @@
+{
+  "packageName": "java.lang.ref",
+  "simpleName": "SoftReference",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.ref.Reference",
+    "parameters": [
+      {
+        "name": "T",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "owner": "java.lang.ref.SoftReference",
+        "name": "T",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "get",
+      "comment": "Returns this reference object\u0027s referent. If this reference object has been cleared, either by the program or by the garbage collector, then this method returns null.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html#refersTo(T)\"\u003e\u003ccode\u003eReference.refersTo(T)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html#get()\"\u003eget\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html\" title\u003d\"class in java.lang.ref\"\u003eReference\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/SoftReference.html\" title\u003d\"type parameter in SoftReference\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "return": [
+          "The object to which this reference refers, or \n\u003ccode\u003enull\u003c/code\u003e if this reference object has been cleared"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.lang.ref.SoftReference",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "referent"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new soft reference that refers to the given object. The new reference is not registered with any queue.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereferent\u003c/code\u003e - object the new soft reference will refer to"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.lang.ref.SoftReference",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "referent"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ref.ReferenceQueue",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.lang.ref.SoftReference",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "q"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new soft reference that refers to the given object and is registered with the given queue.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereferent\u003c/code\u003e - object the new soft reference will refer to",
+          "\u003ccode\u003eq\u003c/code\u003e - the queue with which the reference is to be registered, or \n\u003ccode\u003enull\u003c/code\u003e if registration is not required"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.lang.ref.SoftReference",
+  "comment": "Soft reference objects, which are cleared at the discretion of the garbage collector in response to memory demand. Soft references are most often used to implement memory-sensitive caches. \n\u003cp\u003e Suppose that the garbage collector determines at a certain point in time that an object is \u003ca href\u003d\"package-summary.html#reachability\"\u003esoftly reachable\u003c/a\u003e. At that time it may choose to clear atomically all soft references to that object and all soft references to any other softly-reachable objects from which that object is reachable through a chain of strong references. At the same time or at some later time it will enqueue those newly-cleared soft references that are registered with reference queues. \u003c/p\u003e\n\u003cp\u003e All soft references to softly-reachable objects are guaranteed to have been cleared before the virtual machine throws an \u003ccode\u003eOutOfMemoryError\u003c/code\u003e. Otherwise no constraints are placed upon the time at which a soft reference will be cleared or the order in which a set of such references to different objects will be cleared. Virtual machine implementations are, however, encouraged to bias against clearing recently-created or recently-used soft references. \u003c/p\u003e\n\u003cp\u003e Direct instances of this class may be used to implement simple caches; this class or derived subclasses may also be used in larger data structures to implement more sophisticated caches. As long as the referent of a soft reference is strongly reachable, that is, is actually in use, the soft reference will not be cleared. Thus a sophisticated cache can, for example, prevent its most recently used entries from being discarded by keeping strong referents to those entries, leaving the remaining entries to be discarded at the discretion of the garbage collector.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.2"
+    ]
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "packageName": "java.security",
+  "simpleName": "MessageDigestSpi",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "engineGetDigestLength",
+      "comment": "Returns the digest length in bytes. This concrete method has been added to this previously-defined abstract class. (For backwards compatibility, it cannot be abstract.) The default behavior is to return 0. This method may be overridden by a provider to return the digest length.",
+      "tagMap": {
+        "return": [
+          "the digest length in bytes."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class"
+          },
+          "field": {
+            "name": "input"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "engineUpdate",
+      "comment": "Updates the digest using the specified byte.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - the byte to use for the update."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "input"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "engineUpdate",
+      "comment": "Updates the digest using the specified array of bytes, starting at the specified offset.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - the array of bytes to use for the update.",
+          "\u003ccode\u003eoffset\u003c/code\u003e - the offset to start from in the array of bytes.",
+          "\u003ccode\u003elen\u003c/code\u003e - the number of bytes to use, starting at \n\u003ccode\u003eoffset\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "input"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "engineUpdate",
+      "comment": "Update the digest using the specified ByteBuffer. The digest is updated using the input.remaining() bytes starting at input.position(). Upon return, the buffer\u0027s position will be equal to its limit; its limit will not have changed.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einput\u003c/code\u003e - the ByteBuffer"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "engineDigest",
+      "comment": "Completes the hash computation by performing final operations such as padding. Once engineDigest has been called, the engine should be reset (see engineReset). Resetting is the responsibility of the engine implementor.",
+      "tagMap": {
+        "return": [
+          "the array of bytes for the resulting hash value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.DigestException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "buf"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "engineDigest",
+      "comment": "Completes the hash computation by performing final operations such as padding. Once engineDigest has been called, the engine should be reset (see engineReset). Resetting is the responsibility of the engine implementor. This method should be abstract, but we leave it concrete for binary compatibility. Knowledgeable providers should override this method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebuf\u003c/code\u003e - the output buffer in which to store the digest",
+          "\u003ccode\u003eoffset\u003c/code\u003e - offset to start from in the output buffer",
+          "\u003ccode\u003elen\u003c/code\u003e - number of bytes within buf allotted for the digest. Both this default implementation and the SUN provider do not return partial digests. The presence of this parameter is solely for consistency in our API\u0027s. If the value of this parameter is less than the actual digest length, the method will throw a DigestException. This parameter is ignored if its value is greater than or equal to the actual digest length."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/DigestException.html\" title\u003d\"class in java.security\"\u003eDigestException\u003c/a\u003e\u003c/code\u003e - if an error occurs."
+        ],
+        "return": [
+          "the length of the digest stored in the output buffer."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "engineReset",
+      "comment": "Resets the digest for further use.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.CloneNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clone",
+      "comment": "Returns a clone if the implementation is cloneable.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Cloneable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eCloneable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#clone()\"\u003eclone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/CloneNotSupportedException.html\" title\u003d\"class in java.lang\"\u003eCloneNotSupportedException\u003c/a\u003e\u003c/code\u003e - if this is called on an implementation that does not support \n\u003ccode\u003eCloneable\u003c/code\u003e."
+        ],
+        "return": [
+          "a clone if the implementation is cloneable."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructor for subclasses to call.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.security.MessageDigestSpi",
+  "comment": "This class defines the \n\u003ci\u003eService Provider Interface\u003c/i\u003e (\n\u003cb\u003eSPI\u003c/b\u003e) for the \n\u003ccode\u003eMessageDigest\u003c/code\u003e class, which provides the functionality of a message digest algorithm, such as MD5 or SHA. Message digests are secure one-way hash functions that take arbitrary-sized data and output a fixed-length hash value. \n\u003cp\u003e All the abstract methods in this class must be implemented by a cryptographic service provider who wishes to supply the implementation of a particular message digest algorithm. \u003c/p\u003e\n\u003cp\u003e Implementations are free to implement the Cloneable interface.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/MessageDigest.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eMessageDigest\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.2"
+    ]
+  }
+}

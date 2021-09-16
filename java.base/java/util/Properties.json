@@ -1,0 +1,794 @@
+{
+  "packageName": "java.util",
+  "simpleName": "Properties",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.util.Hashtable",
+    "parameters": [
+      {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      {
+        "name": "java.lang.Object",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.util.Properties",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 68,
+      "name": "defaults",
+      "comment": "A property list that contains default values for any keys not found in this property list.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setProperty",
+      "comment": "Calls the Hashtable method put. Provided for parallelism with the getProperty method. Enforces use of strings for property keys and values. The value returned is the result of the Hashtable call to put.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#getProperty(java.lang.String)\"\u003e\u003ccode\u003egetProperty(java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - the key to be placed into this property list.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value corresponding to \n\u003ccode\u003ekey\u003c/code\u003e."
+        ],
+        "return": [
+          "the previous value of the specified key in this property list, or \n\u003ccode\u003enull\u003c/code\u003e if it did not have one."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.Reader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "reader"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "load",
+      "comment": "Reads a property list (key and element pairs) from the input character stream in a simple line-oriented format. Properties are processed in terms of lines. There are two kinds of line, natural lines and logical lines. A natural line is defined as a line of characters that is terminated either by a set of line terminator characters (\\n or \\r or \\r\\n) or by the end of the stream. A natural line may be either a blank line, a comment line, or hold all or some of a key-element pair. A logical line holds all the data of a key-element pair, which may be spread out across several adjacent natural lines by escaping the line terminator sequence with a backslash character \\. Note that a comment line cannot be extended in this manner; every natural line that is a comment must have its own comment indicator, as described below. Lines are read from input until the end of the stream is reached. A natural line that contains only white space characters is considered blank and is ignored. A comment line has an ASCII \u0027#\u0027 or \u0027!\u0027 as its first non-white space character; comment lines are also ignored and do not encode key-element information. In addition to line terminators, this format considers the characters space (\u0027 \u0027, \u0027\\u0020\u0027), tab (\u0027\\t\u0027, \u0027\\u0009\u0027), and form feed (\u0027\\f\u0027, \u0027\\u000C\u0027) to be white space. If a logical line is spread across several natural lines, the backslash escaping the line terminator sequence, the line terminator sequence, and any white space at the start of the following line have no affect on the key or element values. The remainder of the discussion of key and element parsing (when loading) will assume all the characters constituting the key and element appear on a single natural line after line continuation characters have been removed. Note that it is not sufficient to only examine the character preceding a line terminator sequence to decide if the line terminator is escaped; there must be an odd number of contiguous backslashes for the line terminator to be escaped. Since the input is processed from left to right, a non-zero even number of 2n contiguous backslashes before a line terminator (or elsewhere) encodes n backslashes after escape processing. The key contains all of the characters in the line starting with the first non-white space character and up to, but not including, the first unescaped \u0027\u003d\u0027, \u0027:\u0027, or white space character other than a line terminator. All of these key termination characters may be included in the key by escaping them with a preceding backslash character; for example, \\:\\\u003d would be the two-character key \":\u003d\". Line terminator characters can be included using \\r and \\n escape sequences. Any white space after the key is skipped; if the first non-white space character after the key is \u0027\u003d\u0027 or \u0027:\u0027, then it is ignored and any white space characters after it are also skipped. All remaining characters on the line become part of the associated element string; if there are no remaining characters, the element is the empty string \"\". Once the raw character sequences constituting the key and element are identified, escape processing is performed as described above. As an example, each of the following three lines specifies the key \"Truth\" and the associated element value \"Beauty\":  Truth \u003d Beauty\n  Truth:Beauty\n Truth                    :Beauty\n As another example, the following three lines specify a single property:  fruits                           apple, banana, pear, \\\n                                  cantaloupe, watermelon, \\\n                                  kiwi, mango\n The key is \"fruits\" and the associated element is: \"apple, banana, pear, cantaloupe, watermelon, kiwi, mango\" Note that a space appears before each \\ so that a space will appear after each comma in the final result; the \\, line terminator, and leading white space on the continuation line are merely discarded and are not replaced by one or more other characters. As a third example, the line: cheeses\n specifies that the key is \"cheeses\" and the associated element is the empty string \"\". Characters in keys and elements can be represented in escape sequences similar to those used for character and string literals (see sections 3.3 and 3.10.6 of The Java Language Specification). The differences from the character escape sequences and Unicode escapes used for characters and strings are: Octal escapes are not recognized. The character sequence \\b does not represent a backspace character. The method does not treat a backslash character, \\, before a non-valid escape character as an error; the backslash is silently dropped. For example, in a Java string the sequence \"\\z\" would cause a compile time error. In contrast, this method silently drops the backslash. Therefore, this method treats the two character sequence \"\\b\" as equivalent to the single character \u0027b\u0027. Escapes are not necessary for single and double quotes; however, by the rule above, single and double quote characters preceded by a backslash still yield single and double quote characters, respectively. Only a single \u0027u\u0027 character is allowed in a Unicode escape sequence. The specified stream remains open after this method returns.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereader\u003c/code\u003e - the input character stream."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurred when reading from the input stream.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if a malformed Unicode escape appears in the input.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ereader\u003c/code\u003e is null."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "inStream"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "load",
+      "comment": "Reads a property list (key and element pairs) from the input byte stream. The input stream is in a simple line-oriented format as specified in load(Reader) and is assumed to use the ISO 8859-1 character encoding; that is each byte is one Latin1 character. Characters not in Latin1, and certain special characters, are represented in keys and elements using Unicode escapes as defined in section 3.3 of The Java Language Specification. The specified stream remains open after this method returns.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einStream\u003c/code\u003e - the input stream."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error occurred when reading from the input stream.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the input stream contains a malformed Unicode escape sequence.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003einStream\u003c/code\u003e is null."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "comments"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "save",
+      "comment": "Calls the store(OutputStream out, String comments) method and suppresses IOExceptions that were thrown.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - an output stream.",
+          "\u003ccode\u003ecomments\u003c/code\u003e - a description of the property list."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eProperties\u003c/code\u003e object contains any keys or values that are not \n\u003ccode\u003eStrings\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.Writer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "writer"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "comments"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "store",
+      "comment": "Writes this property list (key and element pairs) in this Properties table to the output character stream in a format suitable for using the load(Reader) method. Properties from the defaults table of this Properties table (if any) are not written out by this method. If the comments argument is not null, then an ASCII # character, the comments string, and a line separator are first written to the output stream. Thus, the comments can serve as an identifying comment. Any one of a line feed (\u0027\\n\u0027), a carriage return (\u0027\\r\u0027), or a carriage return followed immediately by a line feed in comments is replaced by a line separator generated by the Writer and if the next character in comments is not character # or character ! then an ASCII # is written out after that line separator. Next, a comment line is always written, consisting of an ASCII # character, the current date and time (as if produced by the toString method of Date for the current time), and a line separator as generated by the Writer. Then every entry in this Properties table is written out, one per line. For each entry the key string is written, then an ASCII \u003d, then the associated element string. For the key, all space characters are written with a preceding \\ character. For the element, leading space characters, but not embedded or trailing space characters, are written with a preceding \\ character. The key and element characters #, !, \u003d, and : are written with a preceding backslash to ensure that they are properly loaded. After the entries have been written, the output stream is flushed. The output stream remains open after this method returns.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ewriter\u003c/code\u003e - an output character stream writer.",
+          "\u003ccode\u003ecomments\u003c/code\u003e - a description of the property list."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if writing this property list to the specified output stream throws an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eProperties\u003c/code\u003e object contains any keys or values that are not \n\u003ccode\u003eStrings\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ewriter\u003c/code\u003e is null."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "comments"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "store",
+      "comment": "Writes this property list (key and element pairs) in this Properties table to the output stream in a format suitable for loading into a Properties table using the load(InputStream) method. Properties from the defaults table of this Properties table (if any) are not written out by this method. This method outputs the comments, properties keys and values in the same format as specified in store(Writer), with the following differences: The stream is written using the ISO 8859-1 character encoding. Characters not in Latin-1 in the comments are written as \\uxxxx for their appropriate unicode hexadecimal value xxxx. Characters less than \\u0020 and characters greater than \\u007E in property keys or values are written as \\uxxxx for the appropriate hexadecimal value xxxx. After the entries have been written, the output stream is flushed. The output stream remains open after this method returns.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - an output stream.",
+          "\u003ccode\u003ecomments\u003c/code\u003e - a description of the property list."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if writing this property list to the specified output stream throws an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eProperties\u003c/code\u003e object contains any keys or values that are not \n\u003ccode\u003eStrings\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eout\u003c/code\u003e is null."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.InvalidPropertiesFormatException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "in"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "loadFromXML",
+      "comment": "Loads all of the properties represented by the XML document on the specified input stream into this properties table. The XML document must have the following DOCTYPE declaration:  \u003c!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\"\u003e\n Furthermore, the document must satisfy the properties DTD described above. An implementation is required to read XML documents that use the \"UTF-8\" or \"UTF-16\" encoding. An implementation may support additional encodings. The specified stream is closed after this method returns.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#storeToXML(java.io.OutputStream,java.lang.String,java.lang.String)\"\u003e\u003ccode\u003estoreToXML(OutputStream, String, String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"http://www.w3.org/TR/REC-xml/#charencoding\"\u003eCharacter Encoding in Entities\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ein\u003c/code\u003e - the input stream from which to read the XML document."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if reading from the specified input stream results in an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/UnsupportedEncodingException.html\" title\u003d\"class in java.io\"\u003eUnsupportedEncodingException\u003c/a\u003e\u003c/code\u003e - if the document\u0027s encoding declaration can be read and it specifies an encoding that is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/InvalidPropertiesFormatException.html\" title\u003d\"class in java.util\"\u003eInvalidPropertiesFormatException\u003c/a\u003e\u003c/code\u003e - Data on input stream does not constitute a valid XML document with the mandated document type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ein\u003c/code\u003e is null."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "os"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "comment"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "storeToXML",
+      "comment": "Emits an XML document representing all of the properties contained in this table. An invocation of this method of the form props.storeToXML(os, comment) behaves in exactly the same way as the invocation props.storeToXML(os, comment, \"UTF-8\");.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#loadFromXML(java.io.InputStream)\"\u003e\u003ccode\u003eloadFromXML(InputStream)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eos\u003c/code\u003e - the output stream on which to emit the XML document.",
+          "\u003ccode\u003ecomment\u003c/code\u003e - a description of the property list, or \n\u003ccode\u003enull\u003c/code\u003e if no comment is desired."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if writing to the specified output stream results in an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eos\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eProperties\u003c/code\u003e object contains any keys or values that are not \n\u003ccode\u003eStrings\u003c/code\u003e."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "os"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "comment"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "encoding"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "storeToXML",
+      "comment": "Emits an XML document representing all of the properties contained in this table, using the specified encoding. The XML document will have the following DOCTYPE declaration:  \u003c!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\"\u003e\n If the specified comment is null then no comment will be stored in the document. An implementation is required to support writing of XML documents that use the \"UTF-8\" or \"UTF-16\" encoding. An implementation may support additional encodings. The specified stream remains open after this method returns. This method behaves the same as storeToXML(OutputStream os, String comment, Charset charset) except that it will look up the charset using the given encoding name.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#loadFromXML(java.io.InputStream)\"\u003e\u003ccode\u003eloadFromXML(InputStream)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"http://www.w3.org/TR/REC-xml/#charencoding\"\u003eCharacter Encoding in Entities\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eos\u003c/code\u003e - the output stream on which to emit the XML document.",
+          "\u003ccode\u003ecomment\u003c/code\u003e - a description of the property list, or \n\u003ccode\u003enull\u003c/code\u003e if no comment is desired.",
+          "\u003ccode\u003eencoding\u003c/code\u003e - the name of a supported \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/package-summary.html#charenc\"\u003e character encoding\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if writing to the specified output stream results in an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/UnsupportedEncodingException.html\" title\u003d\"class in java.io\"\u003eUnsupportedEncodingException\u003c/a\u003e\u003c/code\u003e - if the encoding is not supported by the implementation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eos\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or if \n\u003ccode\u003eencoding\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eProperties\u003c/code\u003e object contains any keys or values that are not \n\u003ccode\u003eStrings\u003c/code\u003e."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "os"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "comment"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.charset.Charset",
+            "type": "Class"
+          },
+          "field": {
+            "name": "charset"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "storeToXML",
+      "comment": "Emits an XML document representing all of the properties contained in this table, using the specified encoding. The XML document will have the following DOCTYPE declaration:  \u003c!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\"\u003e\n If the specified comment is null then no comment will be stored in the document. An implementation is required to support writing of XML documents that use the \"UTF-8\" or \"UTF-16\" encoding. An implementation may support additional encodings. Unmappable characters for the specified charset will be encoded as numeric character references. The specified stream remains open after this method returns.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#loadFromXML(java.io.InputStream)\"\u003e\u003ccode\u003eloadFromXML(InputStream)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"http://www.w3.org/TR/REC-xml/#charencoding\"\u003eCharacter Encoding in Entities\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eos\u003c/code\u003e - the output stream on which to emit the XML document.",
+          "\u003ccode\u003ecomment\u003c/code\u003e - a description of the property list, or \n\u003ccode\u003enull\u003c/code\u003e if no comment is desired.",
+          "\u003ccode\u003echarset\u003c/code\u003e - the charset"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if writing to the specified output stream results in an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eos\u003c/code\u003e or \n\u003ccode\u003echarset\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if this \n\u003ccode\u003eProperties\u003c/code\u003e object contains any keys or values that are not \n\u003ccode\u003eStrings\u003c/code\u003e."
+        ],
+        "since": [
+          "10"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getProperty",
+      "comment": "Searches for the property with the specified key in this property list. If the key is not found in this property list, the default property list, and its defaults, recursively, are then checked. The method returns null if the property is not found.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#setProperty(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003esetProperty(java.lang.String, java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#defaults\"\u003e\u003ccode\u003edefaults\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - the property key."
+        ],
+        "return": [
+          "the value in this property list with the specified key value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "defaultValue"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getProperty",
+      "comment": "Searches for the property with the specified key in this property list. If the key is not found in this property list, the default property list, and its defaults, recursively, are then checked. The method returns the default value argument if the property is not found.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#setProperty(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003esetProperty(java.lang.String, java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#defaults\"\u003e\u003ccode\u003edefaults\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - the hashtable key.",
+          "\u003ccode\u003edefaultValue\u003c/code\u003e - a default value."
+        ],
+        "return": [
+          "the value in this property list with the specified key value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Enumeration",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "propertyNames",
+      "comment": "Returns an enumeration of all the keys in this property list, including distinct keys in the default property list if a key of the same name has not already been found from the main properties list.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Enumeration.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eEnumeration\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#defaults\"\u003e\u003ccode\u003edefaults\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#stringPropertyNames()\"\u003e\u003ccode\u003estringPropertyNames()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if any key in this property list is not a string."
+        ],
+        "return": [
+          "an enumeration of all the keys in this property list, including the keys in the default property list."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "stringPropertyNames",
+      "comment": "Returns an unmodifiable set of keys from this property list where the key and its corresponding value are strings, including distinct keys in the default property list if a key of the same name has not already been found from the main properties list. Properties whose key or value is not of type String are omitted. The returned set is not backed by this Properties object. Changes to this Properties object are not reflected in the returned set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Properties.html#defaults\"\u003e\u003ccode\u003edefaults\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an unmodifiable set of keys in this property list where the key and its corresponding value are strings, including the keys in the default property list."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.PrintStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "list",
+      "comment": "Prints this property list out to the specified output stream. This method is useful for debugging.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - an output stream."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if any key in this property list is not a string."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.PrintWriter",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "list",
+      "comment": "Prints this property list out to the specified output stream. This method is useful for debugging.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - an output stream."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if any key in this property list is not a string."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an empty property list with no default values.",
+      "tagMap": {
+        "implNote": [
+          "The initial capacity of a \n\u003ccode\u003eProperties\u003c/code\u003e object created with this constructor is unspecified."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "initialCapacity"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an empty property list with no default values, and with an initial size accommodating the specified number of elements without the need to dynamically resize.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003einitialCapacity\u003c/code\u003e - the \n\u003ccode\u003eProperties\u003c/code\u003e will be sized to accommodate this many elements"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the initial capacity is less than zero."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Properties",
+            "type": "Class"
+          },
+          "field": {
+            "name": "defaults"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an empty property list with the specified defaults.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edefaults\u003c/code\u003e - the defaults."
+        ],
+        "implNote": [
+          "The initial capacity of a \n\u003ccode\u003eProperties\u003c/code\u003e object created with this constructor is unspecified."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.util.Properties",
+  "comment": "The \n\u003ccode\u003eProperties\u003c/code\u003e class represents a persistent set of properties. The \n\u003ccode\u003eProperties\u003c/code\u003e can be saved to a stream or loaded from a stream. Each key and its corresponding value in the property list is a string. \n\u003cp\u003e A property list can contain another property list as its \"defaults\"; this second property list is searched if the property key is not found in the original property list. \u003c/p\u003e\n\u003cp\u003e Because \u003ccode\u003eProperties\u003c/code\u003e inherits from \u003ccode\u003eHashtable\u003c/code\u003e, the \u003ccode\u003eput\u003c/code\u003e and \u003ccode\u003eputAll\u003c/code\u003e methods can be applied to a \u003ccode\u003eProperties\u003c/code\u003e object. Their use is strongly discouraged as they allow the caller to insert entries whose keys or values are not \u003ccode\u003eStrings\u003c/code\u003e. The \u003ccode\u003esetProperty\u003c/code\u003e method should be used instead. If the \u003ccode\u003estore\u003c/code\u003e or \u003ccode\u003esave\u003c/code\u003e method is called on a \"compromised\" \u003ccode\u003eProperties\u003c/code\u003e object that contains a non-\u003ccode\u003eString\u003c/code\u003e key or value, the call will fail. Similarly, the call to the \u003ccode\u003epropertyNames\u003c/code\u003e or \u003ccode\u003elist\u003c/code\u003e method will fail if it is called on a \"compromised\" \u003ccode\u003eProperties\u003c/code\u003e object that contains a non-\u003ccode\u003eString\u003c/code\u003e key. \u003c/p\u003e\n\u003cp\u003e The iterators returned by the \u003ccode\u003eiterator\u003c/code\u003e method of this class\u0027s \"collection views\" (that is, \u003ccode\u003eentrySet()\u003c/code\u003e, \u003ccode\u003ekeySet()\u003c/code\u003e, and \u003ccode\u003evalues()\u003c/code\u003e) may not fail-fast (unlike the Hashtable implementation). These iterators are guaranteed to traverse elements as they existed upon construction exactly once, and may (but are not guaranteed to) reflect any modifications subsequent to construction. \u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"#load(java.io.Reader)\"\u003e\u003ccode\u003eload(Reader)\u003c/code\u003e\u003c/a\u003e \u003ccode\u003e/\u003c/code\u003e \u003ca href\u003d\"#store(java.io.Writer,java.lang.String)\"\u003e\u003ccode\u003estore(Writer, String)\u003c/code\u003e\u003c/a\u003e methods load and store properties from and to a character based stream in a simple line-oriented format specified below. The \u003ca href\u003d\"#load(java.io.InputStream)\"\u003e\u003ccode\u003eload(InputStream)\u003c/code\u003e\u003c/a\u003e \u003ccode\u003e/\u003c/code\u003e \u003ca href\u003d\"#store(java.io.OutputStream,java.lang.String)\"\u003e\u003ccode\u003estore(OutputStream, String)\u003c/code\u003e\u003c/a\u003e methods work the same way as the load(Reader)/store(Writer, String) pair, except the input/output stream is encoded in ISO 8859-1 character encoding. Characters that cannot be directly represented in this encoding can be written using Unicode escapes as defined in section \u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-3.html#jls-3.3\"\u003e3.3\u003c/a\u003e of \u003ccite\u003eThe Java Language Specification\u003c/cite\u003e; only a single \u0027u\u0027 character is allowed in an escape sequence. \u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"#loadFromXML(java.io.InputStream)\"\u003e\u003ccode\u003eloadFromXML(InputStream)\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#storeToXML(java.io.OutputStream,java.lang.String,java.lang.String)\"\u003e\u003ccode\u003estoreToXML(OutputStream, String, String)\u003c/code\u003e\u003c/a\u003e methods load and store properties in a simple XML format. By default the UTF-8 character encoding is used, however a specific encoding may be specified if required. Implementations are required to support UTF-8 and UTF-16 and may support other encodings. An XML properties document has the following DOCTYPE declaration: \u003c/p\u003e\n\u003cpre\u003e \u0026lt;!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\"\u0026gt;\n \u003c/pre\u003e Note that the system URI (http://java.sun.com/dtd/properties.dtd) is \n\u003ci\u003enot\u003c/i\u003e accessed when exporting or importing properties; it merely serves as a string to uniquely identify the DTD, which is: \n\u003cpre\u003e    \u0026lt;?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u0026gt;\n\n    \u0026lt;!-- DTD for properties --\u0026gt;\n\n    \u0026lt;!ELEMENT properties ( comment?, entry* ) \u0026gt;\n\n    \u0026lt;!ATTLIST properties version CDATA #FIXED \"1.0\"\u0026gt;\n\n    \u0026lt;!ELEMENT comment (#PCDATA) \u0026gt;\n\n    \u0026lt;!ELEMENT entry (#PCDATA) \u0026gt;\n\n    \u0026lt;!ATTLIST entry key CDATA #REQUIRED\u0026gt;\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eThis class is thread-safe: multiple threads can share a single \u003ccode\u003eProperties\u003c/code\u003e object without the need for external synchronization.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.util.Properties\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "apiNote": [
+      "The \n\u003ccode\u003eProperties\u003c/code\u003e class does not inherit the concept of a load factor from its superclass, \n\u003ccode\u003eHashtable\u003c/code\u003e."
+    ],
+    "since": [
+      "1.0"
+    ]
+  }
+}

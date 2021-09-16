@@ -1,0 +1,200 @@
+{
+  "packageName": "jdk.javadoc.doclet",
+  "simpleName": "Taglet",
+  "moduleName": "jdk.javadoc",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "jdk.javadoc.doclet.Taglet$Location",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAllowedLocations",
+      "comment": "Returns the set of supported locations for block tags.",
+      "tagMap": {
+        "return": [
+          "the set of supported locations for block tags"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isInlineTag",
+      "comment": "Indicates whether this taglet supports inline tags.",
+      "tagMap": {
+        "return": [
+          "true if this taglet supports inline tags"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isBlockTag",
+      "comment": "Indicates whether this taglet supports block tags.",
+      "tagMap": {
+        "implSpec": [
+          "This implementation returns the inverse result to \n\u003ccode\u003eisInlineTag\u003c/code\u003e."
+        ],
+        "return": [
+          "true if this taglet supports block tags"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getName",
+      "comment": "Returns the name of the tag supported by this taglet.",
+      "tagMap": {
+        "return": [
+          "the name of this tag"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.javadoc.doclet.DocletEnvironment",
+            "type": "Class"
+          },
+          "field": {
+            "name": "env"
+          }
+        },
+        {
+          "type": {
+            "name": "jdk.javadoc.doclet.Doclet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "doclet"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "init",
+      "comment": "Initializes this taglet with the given doclet environment and doclet.",
+      "tagMap": {
+        "implSpec": [
+          "This implementation does nothing."
+        ],
+        "apiNote": [
+          "The environment may be used to access utility classes for \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Elements.html\" title\u003d\"interface in javax.lang.model.util\"\u003e\u003ccode\u003eelements\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/lang/model/util/Types.html\" title\u003d\"interface in javax.lang.model.util\"\u003e\u003ccode\u003etypes\u003c/code\u003e\u003c/a\u003e if needed."
+        ],
+        "param": [
+          "\u003ccode\u003eenv\u003c/code\u003e - the environment in which the doclet and taglet are running",
+          "\u003ccode\u003edoclet\u003c/code\u003e - the doclet that instantiated this taglet"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "com.sun.source.doctree.DocTree",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "tags"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.lang.model.element.Element",
+            "type": "Class"
+          },
+          "field": {
+            "name": "element"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toString",
+      "comment": "Returns the string representation of a series of instances of this tag to be included in the generated output. If this taglet supports inline tags, it will be called once per instance of the inline tag, each time with a singleton list. If this taglet supports block tags, it will be called once for each comment containing instances of block tags, with a list of all the instances of the block tag in that comment.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.javadoc/jdk/javadoc/doclet/StandardDoclet.html#user-defined-taglets\"\u003eUser-Defined Taglets for the Standard Doclet\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etags\u003c/code\u003e - the list of instances of this tag",
+          "\u003ccode\u003eelement\u003c/code\u003e - the element to which the enclosing comment belongs"
+        ],
+        "return": [
+          "the string representation of the tags to be included in the generated output"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "jdk.javadoc.doclet.Taglet$Location"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.javadoc.doclet.Taglet",
+  "comment": "The interface for a custom taglet supported by doclets such as the \n\u003ca href\u003d\"StandardDoclet.html\" title\u003d\"class in jdk.javadoc.doclet\"\u003e\u003ccode\u003estandard doclet\u003c/code\u003e\u003c/a\u003e. Custom taglets are used to handle custom tags in documentation comments; custom tags can be instantiated individually as either \n\u003ci\u003eblock tags\u003c/i\u003e, which appear at the end of a comment, or \n\u003ci\u003einline tags\u003c/i\u003e, which can appear within the main body of a documentation comment. \n\u003cp\u003e Each implementation of a taglet must provide a public no-argument constructor to be used by doclets to instantiate the taglet. A doclet will interact with classes implementing this interface as follows: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003e The doclet will create an instance of a taglet using the no-arg constructor of the taglet class. \u003c/li\u003e\n \u003cli\u003e Next, the doclet calls the \u003ca href\u003d\"#init(jdk.javadoc.doclet.DocletEnvironment,jdk.javadoc.doclet.Doclet)\"\u003e\u003ccode\u003einit\u003c/code\u003e\u003c/a\u003e method with an appropriate environment and doclet. \u003c/li\u003e\n \u003cli\u003e Afterwards, the doclet calls \u003ca href\u003d\"#getName()\"\u003e\u003ccode\u003egetName\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#getAllowedLocations()\"\u003e\u003ccode\u003egetAllowedLocations\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#isInlineTag()\"\u003e\u003ccode\u003eisInlineTag\u003c/code\u003e\u003c/a\u003e, to determine the characteristics of the tags supported by the taglet. \u003c/li\u003e\n \u003cli\u003e As appropriate, the doclet calls the \u003ca href\u003d\"#toString(java.util.List,javax.lang.model.element.Element)\"\u003e\u003ccode\u003etoString\u003c/code\u003e\u003c/a\u003e method on the taglet object, giving it a list of tags and the element for which the tags are part of the element\u0027s documentation comment, from which the taglet can determine the string to be included in the documentation. The doclet will typically specify any requirements on the contents of the string that is returned. \u003c/li\u003e\n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eIf a taglet object is created and used without the above protocol being followed, then the taglet\u0027s behavior is not defined by this interface specification.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.javadoc/jdk/javadoc/doclet/StandardDoclet.html#user-defined-taglets\"\u003eUser-Defined Taglets for the Standard Doclet\u003c/a\u003e"
+    ],
+    "apiNote": [
+      "It is typical for a taglet to be designed to work in conjunction with a specific doclet."
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

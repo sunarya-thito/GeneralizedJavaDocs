@@ -1,0 +1,22 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "SafeVarargs",
+  "moduleName": "java.base",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.lang.SafeVarargs",
+  "comment": "A programmer assertion that the body of the annotated method or constructor does not perform potentially unsafe operations on its varargs parameter. Applying this annotation to a method or constructor suppresses unchecked warnings about a \n\u003ci\u003enon-reifiable\u003c/i\u003e variable arity (vararg) type and suppresses unchecked warnings about parameterized array creation at call sites. \n\u003cp\u003e In addition to the usage restrictions imposed by its \u003ca href\u003d\"annotation/Target.html\" title\u003d\"annotation in java.lang.annotation\"\u003e\u003ccode\u003e@Target\u003c/code\u003e\u003c/a\u003e meta-annotation, compilers are required to implement additional usage restrictions on this annotation type; it is a compile-time error if a method or constructor declaration is annotated with a \u003ccode\u003e@SafeVarargs\u003c/code\u003e annotation, and either: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e the declaration is a fixed arity method or constructor \u003c/li\u003e\n \u003cli\u003e the declaration is a variable arity method that is neither \u003ccode\u003estatic\u003c/code\u003e nor \u003ccode\u003efinal\u003c/code\u003e nor \u003ccode\u003eprivate\u003c/code\u003e. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Compilers are encouraged to issue warnings when this annotation type is applied to a method or constructor declaration where: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e The variable arity parameter has a reifiable element type, which includes primitive types, \u003ccode\u003eObject\u003c/code\u003e, and \u003ccode\u003eString\u003c/code\u003e. (The unchecked warnings this annotation type suppresses already do not occur for a reifiable element type.) \u003c/li\u003e\n \u003cli\u003e The body of the method or constructor declaration performs potentially unsafe operations, such as an assignment to an element of the variable arity parameter\u0027s array that generates an unchecked warning. Some unsafe operations do not trigger an unchecked warning. For example, the aliasing in \n  \u003cblockquote\u003e\n   \u003cpre\u003e @SafeVarargs // Not actually safe!\n static void m(List\u0026lt;String\u0026gt;... stringLists) {\n   Object[] array \u003d stringLists;\n   List\u0026lt;Integer\u0026gt; tmpList \u003d Arrays.asList(42);\n   array[0] \u003d tmpList; // Semantically invalid, but compiles without warnings\n   String s \u003d stringLists[0].get(0); // Oh no, ClassCastException at runtime!\n }\n \u003c/pre\u003e\n  \u003c/blockquote\u003e leads to a \u003ccode\u003eClassCastException\u003c/code\u003e at runtime. \u003cp\u003eFuture versions of the platform may mandate compiler errors for such unsafe operations. \u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "See Java Language Specification:": [
+      "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-4.html#jls-4.7\"\u003e4.7 Reifiable Types\u003c/a\u003e\n\u003cbr\u003e\n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-8.html#jls-8.4.1\"\u003e8.4.1 Formal Parameters\u003c/a\u003e\n\u003cbr\u003e\n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-9.html#jls-9.6.4.7\"\u003e9.6.4.7 @SafeVarargs\u003c/a\u003e\n\u003cbr\u003e"
+    ],
+    "since": [
+      "1.7"
+    ]
+  }
+}

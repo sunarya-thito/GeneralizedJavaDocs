@@ -1,0 +1,156 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "LoggerFinder",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.System$Logger",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "module"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getLogger",
+      "comment": "Returns an instance of Logger for the given module.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the logger.",
+          "\u003ccode\u003emodule\u003c/code\u003e - the module for which the logger is being requested."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or \n\u003ccode\u003emodule\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is present and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method doesn\u0027t allow the \n\u003ccode\u003eRuntimePermission(\"loggerFinder\")\u003c/code\u003e."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.Logger.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003elogger\u003c/code\u003e\u003c/a\u003e suitable for use within the given module."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.System$Logger",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.ResourceBundle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bundle"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Module",
+            "type": "Class"
+          },
+          "field": {
+            "name": "module"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getLocalizedLogger",
+      "comment": "Returns a localizable instance of Logger for the given module. The returned logger will use the provided resource bundle for message localization.",
+      "tagMap": {
+        "implSpec": [
+          "By default, this method calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.LoggerFinder.html#getLogger(java.lang.String,java.lang.Module)\"\u003e\u003ccode\u003ethis.getLogger(name, module)\u003c/code\u003e\u003c/a\u003e to obtain a logger, then wraps that logger in a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.Logger.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eSystem.Logger\u003c/code\u003e\u003c/a\u003e instance where all methods that do not take a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ResourceBundle.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eResourceBundle\u003c/code\u003e\u003c/a\u003e as parameter are redirected to one which does - passing the given \n\u003ccode\u003ebundle\u003c/code\u003e for localization. So for instance, a call to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.Logger.html#log(java.lang.System.Logger.Level,java.lang.Object)\"\u003e\u003ccode\u003eLogger.log(Level.INFO, msg)\u003c/code\u003e\u003c/a\u003e will end up as a call to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.Logger.html#log(java.lang.System.Logger.Level,java.util.ResourceBundle,java.lang.String,java.lang.Object...)\"\u003e\u003ccode\u003eLogger.log(Level.INFO, bundle, msg, (Object[])null)\u003c/code\u003e\u003c/a\u003e on the wrapped logger instance. Note however that by default, string messages returned by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Supplier.html\" title\u003d\"interface in java.util.function\"\u003e\u003ccode\u003eSupplier\u0026lt;String\u0026gt;\u003c/code\u003e\u003c/a\u003e will not be localized, as it is assumed that such strings are messages which are already constructed, rather than keys in a resource bundle. \n\u003cp\u003e An implementation of \u003ccode\u003eLoggerFinder\u003c/code\u003e may override this method, for example, when the underlying logging backend provides its own mechanism for localizing log messages, then such a \u003ccode\u003eLoggerFinder\u003c/code\u003e would be free to return a logger that makes direct use of the mechanism provided by the backend.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the logger.",
+          "\u003ccode\u003ebundle\u003c/code\u003e - a resource bundle; can be \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003emodule\u003c/code\u003e - the module for which the logger is being requested."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or \n\u003ccode\u003emodule\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is present and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method doesn\u0027t allow the \n\u003ccode\u003eRuntimePermission(\"loggerFinder\")\u003c/code\u003e."
+        ],
+        "return": [
+          "an instance of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.Logger.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eLogger\u003c/code\u003e\u003c/a\u003e which will use the provided resource bundle for message localization."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.System$LoggerFinder",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getLoggerFinder",
+      "comment": "Returns the LoggerFinder instance. There is one single system-wide LoggerFinder instance in the Java Runtime. See the class specification of how the LoggerFinder implementation is located and loaded.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is present and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method doesn\u0027t allow the \n\u003ccode\u003eRuntimePermission(\"loggerFinder\")\u003c/code\u003e."
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.LoggerFinder.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eLoggerFinder\u003c/code\u003e\u003c/a\u003e instance."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new instance of LoggerFinder.",
+      "tagMap": {
+        "implNote": [
+          "It is recommended that a \n\u003ccode\u003eLoggerFinder\u003c/code\u003e service implementation does not perform any heavy initialization in its constructor, in order to avoid possible risks of deadlock or class loading cycles during the instantiation of the service provider."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is present and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method doesn\u0027t allow the \n\u003ccode\u003eRuntimePermission(\"loggerFinder\")\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1033,
+  "name": "java.lang.System$LoggerFinder",
+  "comment": "The \n\u003ccode\u003eLoggerFinder\u003c/code\u003e service is responsible for creating, managing, and configuring loggers to the underlying framework it uses. A logger finder is a concrete implementation of this class that has a zero-argument constructor and implements the abstract methods defined by this class. The loggers returned from a logger finder are capable of routing log messages to the logging backend this provider supports. A given invocation of the Java Runtime maintains a single system-wide LoggerFinder instance that is loaded as follows: \n\u003cul\u003e \n \u003cli\u003eFirst it finds any custom \u003ccode\u003eLoggerFinder\u003c/code\u003e provider using the \u003ca href\u003d\"../util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e facility with the \u003ca href\u003d\"ClassLoader.html#getSystemClassLoader()\"\u003esystem class loader\u003c/a\u003e.\u003c/li\u003e \n \u003cli\u003eIf no \u003ccode\u003eLoggerFinder\u003c/code\u003e provider is found, the system default \u003ccode\u003eLoggerFinder\u003c/code\u003e implementation will be used.\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e An application can replace the logging backend \u003ci\u003eeven when the java.logging module is present\u003c/i\u003e, by simply providing and declaring an implementation of the \u003ca href\u003d\"System.LoggerFinder.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSystem.LoggerFinder\u003c/code\u003e\u003c/a\u003e service. \u003c/p\u003e\n\u003cp\u003e \u003cb\u003eDefault Implementation\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003e The system default \u003ccode\u003eLoggerFinder\u003c/code\u003e implementation uses \u003ccode\u003ejava.util.logging\u003c/code\u003e as the backend framework when the \u003ccode\u003ejava.logging\u003c/code\u003e module is present. It returns a \u003ca href\u003d\"System.Logger.html\" title\u003d\"interface in java.lang\"\u003elogger\u003c/a\u003e instance that will route log messages to a \u003ca href\u003d\"../../../java.logging/java/util/logging/Logger.html\" title\u003d\"class in java.util.logging\"\u003e\u003ccode\u003ejava.util.logging.Logger\u003c/code\u003e\u003c/a\u003e. Otherwise, if \u003ccode\u003ejava.logging\u003c/code\u003e is not present, the default implementation will return a simple logger instance that will route log messages of \u003ccode\u003eINFO\u003c/code\u003e level and above to the console (\u003ccode\u003eSystem.err\u003c/code\u003e). \u003c/p\u003e\n\u003cp\u003e \u003cb\u003eLogging Configuration\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003e \u003ca href\u003d\"System.Logger.html\" title\u003d\"interface in java.lang\"\u003eLogger\u003c/a\u003e instances obtained from the \u003ccode\u003eLoggerFinder\u003c/code\u003e factory methods are not directly configurable by the application. Configuration is the responsibility of the underlying logging backend, and usually requires using APIs specific to that backend. \u003c/p\u003e\n\u003cp\u003eFor the default \u003ccode\u003eLoggerFinder\u003c/code\u003e implementation using \u003ccode\u003ejava.util.logging\u003c/code\u003e as its backend, refer to \u003ca href\u003d\"../../../java.logging/java/util/logging/package-summary.html\"\u003e\u003ccode\u003ejava.util.logging\u003c/code\u003e\u003c/a\u003e for logging configuration. For the default \u003ccode\u003eLoggerFinder\u003c/code\u003e implementation returning simple loggers when the \u003ccode\u003ejava.logging\u003c/code\u003e module is absent, the configuration is implementation dependent. \u003c/p\u003e\n\u003cp\u003e Usually an application that uses a logging framework will log messages through a logger facade defined (or supported) by that framework. Applications that wish to use an external framework should log through the facade associated with that framework. \u003c/p\u003e\n\u003cp\u003e A system class that needs to log messages will typically obtain a \u003ca href\u003d\"System.Logger.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eSystem.Logger\u003c/code\u003e\u003c/a\u003e instance to route messages to the logging framework selected by the application. \u003c/p\u003e\n\u003cp\u003e Libraries and classes that only need loggers to produce log messages should not attempt to configure loggers by themselves, as that would make them dependent from a specific implementation of the \u003ccode\u003eLoggerFinder\u003c/code\u003e service. \u003c/p\u003e\n\u003cp\u003e In addition, when a security manager is present, loggers provided to system classes should not be directly configurable through the logging backend without requiring permissions. \u003cbr\u003e It is the responsibility of the provider of the concrete \u003ccode\u003eLoggerFinder\u003c/code\u003e implementation to ensure that these loggers are not configured by untrusted code without proper permission checks, as configuration performed on such loggers usually affects all applications in the same Java Runtime. \u003c/p\u003e\n\u003cp\u003e \u003cb\u003eMessage Levels and Mapping to backend levels\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003e A logger finder is responsible for mapping from a \u003ccode\u003e System.Logger.Level\u003c/code\u003e to a level supported by the logging backend it uses. \u003cbr\u003eThe default LoggerFinder using \u003ccode\u003ejava.util.logging\u003c/code\u003e as the backend maps \u003ccode\u003eSystem.Logger\u003c/code\u003e levels to \u003ca href\u003d\"../../../java.logging/java/util/logging/Level.html\" title\u003d\"class in java.util.logging\"\u003ejava.util.logging\u003c/a\u003e levels of corresponding severity - as described in \u003ca href\u003d\"System.Logger.Level.html\" title\u003d\"enum class in java.lang\"\u003e\u003ccode\u003eLogger.Level\u003c/code\u003e\u003c/a\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSystem\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.Logger.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eSystem.Logger\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

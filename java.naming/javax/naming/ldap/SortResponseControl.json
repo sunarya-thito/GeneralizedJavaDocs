@@ -1,0 +1,156 @@
+{
+  "packageName": "javax.naming.ldap",
+  "simpleName": "SortResponseControl",
+  "moduleName": "java.naming",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.naming.ldap.BasicControl",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "OID",
+      "comment": "The server-side sort response control\u0027s assigned object identifier is 1.2.840.113556.1.4.474.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.naming.ldap.SortResponseControl.OID\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isSorted",
+      "comment": "Determines if the search results have been successfully sorted. If an error occurred during sorting a NamingException is thrown.",
+      "tagMap": {
+        "return": [
+          "true if the search results have been sorted."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getResultCode",
+      "comment": "Retrieves the LDAP result code of the sort operation.",
+      "tagMap": {
+        "return": [
+          "The result code. A zero value indicates success."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getAttributeID",
+      "comment": "Retrieves the ID of the attribute that caused the sort to fail. Returns null if no ID was returned by the server.",
+      "tagMap": {
+        "return": [
+          "The possibly null ID of the bad attribute."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.naming.NamingException",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getException",
+      "comment": "Retrieves the NamingException appropriate for the result code.",
+      "tagMap": {
+        "return": [
+          "A NamingException or null if the result code indicates success."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "id"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "criticality"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a control to indicate the outcome of a sort request.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - The control\u0027s object identifier string.",
+          "\u003ccode\u003ecriticality\u003c/code\u003e - The control\u0027s criticality.",
+          "\u003ccode\u003evalue\u003c/code\u003e - The control\u0027s ASN.1 BER encoded value. It is not cloned - any changes to value will affect the contents of the control."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an error is encountered while decoding the control\u0027s value."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "javax.naming.ldap.SortResponseControl",
+  "comment": "Indicates whether the requested sort of search results was successful or not. When the result code indicates success then the results have been sorted as requested. Otherwise the sort was unsuccessful and additional details regarding the cause of the error may have been provided by the server. \n\u003cp\u003e The code sample in \u003ca href\u003d\"SortControl.html\" title\u003d\"class in javax.naming.ldap\"\u003e\u003ccode\u003eSortControl\u003c/code\u003e\u003c/a\u003e shows how this class may be used. \u003c/p\u003e\n\u003cp\u003e This class implements the LDAPv3 Response Control for server-side sorting as defined in \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2891.txt\"\u003eRFC 2891\u003c/a\u003e. The control\u0027s value has the following ASN.1 definition: \u003c/p\u003e\n\u003cpre\u003e\n     SortResult ::\u003d SEQUENCE {\n        sortResult  ENUMERATED {\n            success                   (0), -- results are sorted\n            operationsError           (1), -- server internal failure\n            timeLimitExceeded         (3), -- timelimit reached before\n                                           -- sorting was completed\n            strongAuthRequired        (8), -- refused to return sorted\n                                           -- results via insecure\n                                           -- protocol\n            adminLimitExceeded       (11), -- too many matching entries\n                                           -- for the server to sort\n            noSuchAttribute          (16), -- unrecognized attribute\n                                           -- type in sort key\n            inappropriateMatching    (18), -- unrecognized or inappro-\n                                           -- priate matching rule in\n                                           -- sort key\n            insufficientAccessRights (50), -- refused to return sorted\n                                           -- results to this client\n            busy                     (51), -- too busy to process\n            unwillingToPerform       (53), -- unable to sort\n            other                    (80)\n            },\n      attributeType [0] AttributeType OPTIONAL }\n\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/ldap/SortControl.html\" title\u003d\"class in javax.naming.ldap\"\u003e\u003ccode\u003eSortControl\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.naming.ldap.SortResponseControl\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

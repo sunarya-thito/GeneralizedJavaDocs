@@ -1,0 +1,168 @@
+{
+  "packageName": "java.beans",
+  "simpleName": "PropertyEditorManager",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "targetType"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "editorClass"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "registerEditor",
+      "comment": "Registers an editor class to edit values of the given target class. If the editor class is null, then any existing definition will be removed. Thus this method can be used to cancel the registration. The registration is canceled automatically if either the target or editor class is unloaded. If there is a security manager, its checkPropertiesAccess method is called. This could result in a SecurityException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPropertiesAccess()\"\u003e\u003ccode\u003eSecurityManager.checkPropertiesAccess()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etargetType\u003c/code\u003e - the class object of the type to be edited",
+          "\u003ccode\u003eeditorClass\u003c/code\u003e - the class object of the editor class"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPropertiesAccess\u003c/code\u003e method doesn\u0027t allow setting of system properties"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.beans.PropertyEditor",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "targetType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "findEditor",
+      "comment": "Locate a value editor for a given target type.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etargetType\u003c/code\u003e - The Class object for the type to be edited"
+        ],
+        "return": [
+          "An editor object for the given target class. The result is null if no suitable editor can be found."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getEditorSearchPath",
+      "comment": "Gets the package names that will be searched for property editors.",
+      "tagMap": {
+        "return": [
+          "The array of package names that will be searched in order to find property editors. \n\u003cp\u003e The default value for this array is implementation-dependent, e.g. Sun implementation initially sets to {\"sun.beans.editors\"}.\u003c/p\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "path"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setEditorSearchPath",
+      "comment": "Change the list of package names that will be used for finding property editors. First, if there is a security manager, its checkPropertiesAccess method is called. This could result in a SecurityException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPropertiesAccess()\"\u003e\u003ccode\u003eSecurityManager.checkPropertiesAccess()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - Array of package names."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPropertiesAccess\u003c/code\u003e method doesn\u0027t allow setting of system properties."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a PropertyEditorManager.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.beans.PropertyEditorManager",
+  "comment": "The PropertyEditorManager can be used to locate a property editor for any given type name. This property editor must support the java.beans.PropertyEditor interface for editing a given object. \n\u003cp\u003e The PropertyEditorManager uses three techniques for locating an editor for a given type. First, it provides a registerEditor method to allow an editor to be specifically registered for a given type. Second it tries to locate a suitable class by adding \"Editor\" to the full qualified classname of the given type (e.g. \"foo.bah.FozEditor\"). Finally it takes the simple classname (without the package name) adds \"Editor\" to it and looks in a search-path of packages for a matching class. \u003c/p\u003e\n\u003cp\u003e So for an input class foo.bah.Fred, the PropertyEditorManager would first look in its tables to see if an editor had been registered for foo.bah.Fred and if so use that. Then it will look for a foo.bah.FredEditor class. Then it will look for (say) standardEditorsPackage.FredEditor class. \u003c/p\u003e\n\u003cp\u003e Default PropertyEditors will be provided for the Java primitive types \"boolean\", \"byte\", \"short\", \"int\", \"long\", \"float\", and \"double\"; and for the classes java.lang.String. java.awt.Color, and java.awt.Font.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.1"
+    ]
+  }
+}

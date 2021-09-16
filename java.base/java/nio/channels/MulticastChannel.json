@@ -1,0 +1,164 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "MulticastChannel",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.nio.channels.NetworkChannel",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes this channel. If the channel is a member of a multicast group then the membership is dropped. Upon return, the membership-key will be invalid. This method otherwise behaves exactly as specified by the Channel interface.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/Channel.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/Channel.html\" title\u003d\"interface in java.nio.channels\"\u003eChannel\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.MembershipKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.InetAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "group"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.NetworkInterface",
+            "type": "Class"
+          },
+          "field": {
+            "name": "interf"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "join",
+      "comment": "Joins a multicast group to begin receiving all datagrams sent to the group, returning a membership key. If this channel is currently a member of the group on the given interface to receive all datagrams then the membership key, representing that membership, is returned. Otherwise this channel joins the group and the resulting new membership key is returned. The resulting membership key is not source-specific. A multicast channel may join several multicast groups, including the same group on more than one interface. An implementation may impose a limit on the number of groups that may be joined at the same time.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003egroup\u003c/code\u003e - The multicast address to join",
+          "\u003ccode\u003einterf\u003c/code\u003e - The network interface on which to join the group"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the group parameter is not a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/InetAddress.html#isMulticastAddress()\"\u003e\u003ccode\u003emulticast\u003c/code\u003e\u003c/a\u003e address, or the group parameter is an address type that is not supported by this channel",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If the channel already has source-specific membership of the group on the interface",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - If the channel\u0027s socket is not an Internet Protocol socket, or the platform does not support multicasting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is set, and its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkMulticast(java.net.InetAddress)\"\u003e\u003ccode\u003echeckMulticast\u003c/code\u003e\u003c/a\u003e method denies access to the multicast group"
+        ],
+        "return": [
+          "The membership key"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.MembershipKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.InetAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "group"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.NetworkInterface",
+            "type": "Class"
+          },
+          "field": {
+            "name": "interf"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.InetAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "source"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "join",
+      "comment": "Joins a multicast group to begin receiving datagrams sent to the group from a given source address. If this channel is currently a member of the group on the given interface to receive datagrams from the given source address then the membership key, representing that membership, is returned. Otherwise this channel joins the group and the resulting new membership key is returned. The resulting membership key is source-specific. Membership is cumulative and this method may be invoked again with the same group and interface to allow receiving datagrams sent by other source addresses to the group.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003egroup\u003c/code\u003e - The multicast address to join",
+          "\u003ccode\u003einterf\u003c/code\u003e - The network interface on which to join the group",
+          "\u003ccode\u003esource\u003c/code\u003e - The source address"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the group parameter is not a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/InetAddress.html#isMulticastAddress()\"\u003e\u003ccode\u003emulticast\u003c/code\u003e\u003c/a\u003e address, the source parameter is not a unicast address, the group parameter is an address type that is not supported by this channel, or the source parameter is not the same address type as the group",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If the channel is currently a member of the group on the given interface to receive all datagrams",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - If the channel\u0027s socket is not an Internet Protocol socket, or source filtering is not supported, or the platform does not support multicasting",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is set, and its \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkMulticast(java.net.InetAddress)\"\u003e\u003ccode\u003echeckMulticast\u003c/code\u003e\u003c/a\u003e method denies access to the multicast group"
+        ],
+        "return": [
+          "The membership key"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.channels.MulticastChannel",
+  "comment": "A network channel that supports Internet Protocol (IP) multicasting. \n\u003cp\u003e IP multicasting is the transmission of IP datagrams to members of a \u003cem\u003egroup\u003c/em\u003e that is zero or more hosts identified by a single destination address. \u003c/p\u003e\n\u003cp\u003e In the case of a channel to an \u003ca href\u003d\"../../net/StandardProtocolFamily.html#INET\"\u003e\u003ccode\u003eIPv4\u003c/code\u003e\u003c/a\u003e socket, the underlying operating system optionally supports \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2236.txt\"\u003e \u003ci\u003eRFC\u0026nbsp;2236: Internet Group Management Protocol, Version 2 (IGMPv2)\u003c/i\u003e\u003c/a\u003e. When IGMPv2 is supported then the operating system may additionally support source filtering as specified by \u003ca href\u003d\"http://www.ietf.org/rfc/rfc3376.txt\"\u003e \u003ci\u003eRFC\u0026nbsp;3376: Internet Group Management Protocol, Version 3 (IGMPv3)\u003c/i\u003e\u003c/a\u003e. For channels to an \u003ca href\u003d\"../../net/StandardProtocolFamily.html#INET6\"\u003e\u003ccode\u003eIPv6\u003c/code\u003e\u003c/a\u003e socket, the equivalent standards are \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2710.txt\"\u003e \u003ci\u003eRFC\u0026nbsp;2710: Multicast Listener Discovery (MLD) for IPv6\u003c/i\u003e\u003c/a\u003e and \u003ca href\u003d\"http://www.ietf.org/rfc/rfc3810.txt\"\u003e \u003ci\u003eRFC\u0026nbsp;3810: Multicast Listener Discovery Version 2 (MLDv2) for IPv6\u003c/i\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"#join(java.net.InetAddress,java.net.NetworkInterface)\"\u003e\u003ccode\u003ejoin(InetAddress,NetworkInterface)\u003c/code\u003e\u003c/a\u003e method is used to join a group and receive all multicast datagrams sent to the group. A channel may join several multicast groups and may join the same group on several \u003ca href\u003d\"../../net/NetworkInterface.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003einterfaces\u003c/code\u003e\u003c/a\u003e. Membership is dropped by invoking the \u003ca href\u003d\"MembershipKey.html#drop()\"\u003e\u003ccode\u003edrop\u003c/code\u003e\u003c/a\u003e method on the returned \u003ca href\u003d\"MembershipKey.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eMembershipKey\u003c/code\u003e\u003c/a\u003e. If the underlying platform supports source filtering then the \u003ca href\u003d\"MembershipKey.html#block(java.net.InetAddress)\"\u003e\u003ccode\u003eblock\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"MembershipKey.html#unblock(java.net.InetAddress)\"\u003e\u003ccode\u003eunblock\u003c/code\u003e\u003c/a\u003e methods can be used to block or unblock multicast datagrams from particular source addresses. \u003c/p\u003e\n\u003cp\u003e The \u003ca href\u003d\"#join(java.net.InetAddress,java.net.NetworkInterface,java.net.InetAddress)\"\u003e\u003ccode\u003ejoin(InetAddress,NetworkInterface,InetAddress)\u003c/code\u003e\u003c/a\u003e method is used to begin receiving datagrams sent to a group whose source address matches a given source address. This method throws \u003ca href\u003d\"../../lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e if the underlying platform does not support source filtering. Membership is \u003cem\u003ecumulative\u003c/em\u003e and this method may be invoked again with the same group and interface to allow receiving datagrams from other source addresses. The method returns a \u003ca href\u003d\"MembershipKey.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eMembershipKey\u003c/code\u003e\u003c/a\u003e that represents membership to receive datagrams from the given source address. Invoking the key\u0027s \u003ca href\u003d\"MembershipKey.html#drop()\"\u003e\u003ccode\u003edrop\u003c/code\u003e\u003c/a\u003e method drops membership so that datagrams from the source address can no longer be received. \u003c/p\u003e\n\u003ch2\u003ePlatform dependencies\u003c/h2\u003e The multicast implementation is intended to map directly to the native multicasting facility. Consequently, the following items should be considered when developing an application that receives IP multicast datagrams: \n\u003col\u003e \n \u003cli\u003e\u003cp\u003e The creation of the channel should specify the \u003ca href\u003d\"../../net/ProtocolFamily.html\" title\u003d\"interface in java.net\"\u003e\u003ccode\u003eProtocolFamily\u003c/code\u003e\u003c/a\u003e that corresponds to the address type of the multicast groups that the channel will join. There is no guarantee that a channel to a socket in one protocol family can join and receive multicast datagrams when the address of the multicast group corresponds to another protocol family. For example, it is implementation specific if a channel to an \u003ca href\u003d\"../../net/StandardProtocolFamily.html#INET6\"\u003e\u003ccode\u003eIPv6\u003c/code\u003e\u003c/a\u003e socket can join an \u003ca href\u003d\"../../net/StandardProtocolFamily.html#INET\"\u003e\u003ccode\u003eIPv4\u003c/code\u003e\u003c/a\u003e multicast group and receive multicast datagrams sent to the group. \u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e\u003cp\u003e The channel\u0027s socket should be bound to the \u003ca href\u003d\"../../net/InetAddress.html#isAnyLocalAddress()\"\u003e\u003ccode\u003ewildcard\u003c/code\u003e\u003c/a\u003e address. If the socket is bound to a specific address, rather than the wildcard address then it is implementation specific if multicast datagrams are received by the socket. \u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e\u003cp\u003e The \u003ca href\u003d\"../../net/StandardSocketOptions.html#SO_REUSEADDR\"\u003e\u003ccode\u003eSO_REUSEADDR\u003c/code\u003e\u003c/a\u003e option should be enabled prior to \u003ca href\u003d\"NetworkChannel.html#bind(java.net.SocketAddress)\"\u003e\u003ccode\u003ebinding\u003c/code\u003e\u003c/a\u003e the socket. This is required to allow multiple members of the group to bind to the same address. \u003c/p\u003e\u003c/li\u003e \n\u003c/ol\u003e \n\u003cp\u003e \u003cb\u003eUsage Example:\u003c/b\u003e \u003c/p\u003e\n\u003cpre\u003e     // join multicast group on this interface, and also use this\n     // interface for outgoing multicast datagrams\n     NetworkInterface ni \u003d NetworkInterface.getByName(\"hme0\");\n\n     DatagramChannel dc \u003d DatagramChannel.open(StandardProtocolFamily.INET)\n         .setOption(StandardSocketOptions.SO_REUSEADDR, true)\n         .bind(new InetSocketAddress(5000))\n         .setOption(StandardSocketOptions.IP_MULTICAST_IF, ni);\n\n     InetAddress group \u003d InetAddress.getByName(\"225.4.5.6\");\n\n     MembershipKey key \u003d dc.join(group, ni);\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "packageName": "java.io",
+  "simpleName": "ObjectInputFilter",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.io.ObjectInputFilter$Status",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.ObjectInputFilter$FilterInfo",
+            "type": "Class"
+          },
+          "field": {
+            "name": "filterInfo"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "checkInput",
+      "comment": "Check the class, array length, number of object references, depth, stream size, and other available filtering information. Implementations of this method check the contents of the object graph being created during deserialization. The filter returns Status.ALLOWED, Status.REJECTED, or Status.UNDECIDED.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efilterInfo\u003c/code\u003e - provides information about the current object being deserialized, if any, and the status of the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/ObjectInputStream.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eObjectInputStream\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/ObjectInputFilter.Status.html#ALLOWED\"\u003e\u003ccode\u003eStatus.ALLOWED\u003c/code\u003e\u003c/a\u003e if accepted, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/ObjectInputFilter.Status.html#REJECTED\"\u003e\u003ccode\u003eStatus.REJECTED\u003c/code\u003e\u003c/a\u003e if rejected, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/ObjectInputFilter.Status.html#UNDECIDED\"\u003e\u003ccode\u003eStatus.UNDECIDED\u003c/code\u003e\u003c/a\u003e if undecided."
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "java.io.ObjectInputFilter$FilterInfo",
+    "java.io.ObjectInputFilter$Config",
+    "java.io.ObjectInputFilter$Status"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.io.ObjectInputFilter",
+  "comment": "Filter classes, array lengths, and graph metrics during deserialization. \n\u003cp\u003e\u003cstrong\u003eWarning: Deserialization of untrusted data is inherently dangerous and should be avoided. Untrusted data should be carefully validated according to the \"Serialization and Deserialization\" section of the \u003ca href\u003d\"https://docs.oracle.com/pls/topic/lookup?ctx\u003djavase16\u0026amp;id\u003dsecure_coding_guidelines_javase\"\u003eSecure Coding Guidelines for Java SE\u003c/a\u003e. \u003ca href\u003d\"https://docs.oracle.com/pls/topic/lookup?ctx\u003djavase16\u0026amp;id\u003dserialization_filter_guide\"\u003eSerialization Filtering\u003c/a\u003e describes best practices for defensive use of serial filters. \u003c/strong\u003e\u003c/p\u003e If set on an \n\u003ca href\u003d\"ObjectInputStream.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eObjectInputStream\u003c/code\u003e\u003c/a\u003e, the \n\u003ca href\u003d\"#checkInput(java.io.ObjectInputFilter.FilterInfo)\"\u003e\u003ccode\u003echeckInput(FilterInfo)\u003c/code\u003e\u003c/a\u003e method is called to validate classes, the length of each array, the number of objects being read from the stream, the depth of the graph, and the total number of bytes read from the stream. \n\u003cp\u003e A filter can be set via \u003ca href\u003d\"ObjectInputStream.html#setObjectInputFilter(java.io.ObjectInputFilter)\"\u003e\u003ccode\u003esetObjectInputFilter\u003c/code\u003e\u003c/a\u003e for an individual ObjectInputStream. A filter can be set via \u003ca href\u003d\"ObjectInputFilter.Config.html#setSerialFilter(java.io.ObjectInputFilter)\"\u003e\u003ccode\u003eConfig.setSerialFilter\u003c/code\u003e\u003c/a\u003e to affect every \u003ccode\u003eObjectInputStream\u003c/code\u003e that does not otherwise set a filter. \u003c/p\u003e\n\u003cp\u003e A filter determines whether the arguments are \u003ca href\u003d\"ObjectInputFilter.Status.html#ALLOWED\"\u003e\u003ccode\u003eALLOWED\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"ObjectInputFilter.Status.html#REJECTED\"\u003e\u003ccode\u003eREJECTED\u003c/code\u003e\u003c/a\u003e and should return the appropriate status. If the filter cannot determine the status it should return \u003ca href\u003d\"ObjectInputFilter.Status.html#UNDECIDED\"\u003e\u003ccode\u003eUNDECIDED\u003c/code\u003e\u003c/a\u003e. Filters should be designed for the specific use case and expected types. A filter designed for a particular use may be passed a class that is outside of the scope of the filter. If the purpose of the filter is to black-list classes then it can reject a candidate class that matches and report UNDECIDED for others. A filter may be called with class equals \u003ccode\u003enull\u003c/code\u003e, \u003ccode\u003earrayLength\u003c/code\u003e equal -1, the depth, number of references, and stream size and return a status that reflects only one or only some of the values. This allows a filter to specific about the choice it is reporting and to use other filters without forcing either allowed or rejected status. \u003c/p\u003e\n\u003cp\u003e Typically, a custom filter should check if a system-wide filter is configured and defer to it if so. For example, \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n ObjectInputFilter.Status checkInput(FilterInfo info) {\n     ObjectInputFilter serialFilter \u003d ObjectInputFilter.Config.getSerialFilter();\n     if (serialFilter !\u003d null) {\n         ObjectInputFilter.Status status \u003d serialFilter.checkInput(info);\n         if (status !\u003d ObjectInputFilter.Status.UNDECIDED) {\n             // The system-wide filter overrides this filter\n             return status;\n         }\n     }\n     if (info.serialClass() !\u003d null \u0026amp;\u0026amp;\n         Remote.class.isAssignableFrom(info.serialClass())) {\n         return Status.REJECTED;      // Do not allow Remote objects\n     }\n     return Status.UNDECIDED;\n }\n\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Unless otherwise noted, passing a \u003ccode\u003enull\u003c/code\u003e argument to a method in this interface and its nested classes will cause a \u003ca href\u003d\"../lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/ObjectInputStream.html#setObjectInputFilter(java.io.ObjectInputFilter)\"\u003e\u003ccode\u003eObjectInputStream.setObjectInputFilter(ObjectInputFilter)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

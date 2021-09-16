@@ -1,0 +1,766 @@
+{
+  "packageName": "java.util",
+  "simpleName": "Random",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "seed"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setSeed",
+      "comment": "Sets the seed of this random number generator using a single long seed. The general contract of setSeed is that it alters the state of this random number generator object so as to be in exactly the same state as if it had just been created with the argument seed as a seed. The method setSeed is implemented by class Random by atomically updating the seed to (seed ^ 0x5DEECE66DL) \u0026 ((1L \u003c\u003c 48) - 1) and clearing the haveNextNextGaussian flag used by nextGaussian(). The implementation of setSeed by class Random happens to use only 48 bits of the given seed. In general, however, an overriding method may use all 64 bits of the long argument as a seed value.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eseed\u003c/code\u003e - the initial seed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bits"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "next",
+      "comment": "Generates the next pseudorandom number. Subclasses should override this, as this is used by all other methods. The general contract of next is that it returns an int value and if the argument bits is between 1 and 32 (inclusive), then that many low-order bits of the returned value will be (approximately) independently chosen bit values, each of which is (approximately) equally likely to be 0 or 1. The method next is implemented by class Random by atomically updating the seed to (seed * 0x5DEECE66DL + 0xBL) \u0026 ((1L \u003c\u003c 48) - 1) and returning (int)(seed \u003e\u003e\u003e (48 - bits)). This is a linear congruential pseudorandom number generator, as defined by D. H. Lehmer and described by Donald E. Knuth in The Art of Computer Programming, Volume 2: Seminumerical Algorithms, section 3.2.1.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebits\u003c/code\u003e - random bits"
+        ],
+        "return": [
+          "the next pseudorandom value from this random number generator\u0027s sequence"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "bytes"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextBytes",
+      "comment": "Generates random bytes and places them into a user-supplied byte array. The number of random bytes produced is equal to the length of the byte array. The method nextBytes is implemented by class Random as if by:  \n public void nextBytes(byte[] bytes) {\n   for (int i \u003d 0; i \u003c bytes.length; )\n     for (int rnd \u003d nextInt(), n \u003d Math.min(bytes.length - i, 4);\n          n-- \u003e 0; rnd \u003e\u003e\u003d 8)\n       bytes[i++] \u003d (byte)rnd;\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytes\u003c/code\u003e - the byte array to fill with random bytes"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the byte array is null"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextInt",
+      "comment": "Returns the next pseudorandom, uniformly distributed int value from this random number generator\u0027s sequence. The general contract of nextInt is that one int value is pseudorandomly generated and returned. All 232 possible int values are produced with (approximately) equal probability. The method nextInt is implemented by class Random as if by:  \n public int nextInt() {\n   return next(32);\n }",
+      "tagMap": {
+        "return": [
+          "the next pseudorandom, uniformly distributed \n\u003ccode\u003eint\u003c/code\u003e value from this random number generator\u0027s sequence"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextInt",
+      "comment": "Returns a pseudorandom, uniformly distributed int value between 0 (inclusive) and the specified value (exclusive), drawn from this random number generator\u0027s sequence. The general contract of nextInt is that one int value in the specified range is pseudorandomly generated and returned. All bound possible int values are produced with (approximately) equal probability. The method nextInt(int bound) is implemented by class Random as if by:  \n public int nextInt(int bound) {\n   if (bound \u003c\u003d 0)\n     throw new IllegalArgumentException(\"bound must be positive\");\n\n   if ((bound \u0026 -bound) \u003d\u003d bound)  // i.e., bound is a power of 2\n     return (int)((bound * (long)next(31)) \u003e\u003e 31);\n\n   int bits, val;\n   do {\n       bits \u003d next(31);\n       val \u003d bits % bound;\n   } while (bits - val + (bound-1) \u003c 0);\n   return val;\n } The hedge \"approximately\" is used in the foregoing description only because the next method is only approximately an unbiased source of independently chosen bits. If it were a perfect source of randomly chosen bits, then the algorithm shown would choose int values from the stated range with perfect uniformity. The algorithm is slightly tricky. It rejects values that would result in an uneven distribution (due to the fact that 2^31 is not divisible by n). The probability of a value being rejected depends on n. The worst case is n\u003d2^30+1, for which the probability of a reject is 1/2, and the expected number of iterations before the loop terminates is 2. The algorithm treats the case where n is a power of two specially: it returns the correct number of high-order bits from the underlying pseudo-random number generator. In the absence of special treatment, the correct number of low-order bits would be returned. Linear congruential pseudo-random number generators such as the one implemented by this class are known to have short periods in the sequence of values of their low-order bits. Thus, this special case greatly increases the length of the sequence of values returned by successive calls to this method if n is a small power of two.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebound\u003c/code\u003e - the upper bound (exclusive). Must be positive."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if bound is not positive"
+        ],
+        "return": [
+          "the next pseudorandom, uniformly distributed \n\u003ccode\u003eint\u003c/code\u003e value between zero (inclusive) and \n\u003ccode\u003ebound\u003c/code\u003e (exclusive) from this random number generator\u0027s sequence"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextLong",
+      "comment": "Returns the next pseudorandom, uniformly distributed long value from this random number generator\u0027s sequence. The general contract of nextLong is that one long value is pseudorandomly generated and returned. The method nextLong is implemented by class Random as if by:  \n public long nextLong() {\n   return ((long)next(32) \u003c\u003c 32) + next(32);\n } Because class Random uses a seed with only 48 bits, this algorithm will not return all possible long values.",
+      "tagMap": {
+        "return": [
+          "the next pseudorandom, uniformly distributed \n\u003ccode\u003elong\u003c/code\u003e value from this random number generator\u0027s sequence"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextBoolean",
+      "comment": "Returns the next pseudorandom, uniformly distributed boolean value from this random number generator\u0027s sequence. The general contract of nextBoolean is that one boolean value is pseudorandomly generated and returned. The values true and false are produced with (approximately) equal probability. The method nextBoolean is implemented by class Random as if by:  \n public boolean nextBoolean() {\n   return next(1) !\u003d 0;\n }",
+      "tagMap": {
+        "return": [
+          "the next pseudorandom, uniformly distributed \n\u003ccode\u003eboolean\u003c/code\u003e value from this random number generator\u0027s sequence"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextFloat",
+      "comment": "Returns the next pseudorandom, uniformly distributed float value between 0.0 and 1.0 from this random number generator\u0027s sequence. The general contract of nextFloat is that one float value, chosen (approximately) uniformly from the range 0.0f (inclusive) to 1.0f (exclusive), is pseudorandomly generated and returned. All 224 possible float values of the form m x 2-24, where m is a positive integer less than 224, are produced with (approximately) equal probability. The method nextFloat is implemented by class Random as if by:  \n public float nextFloat() {\n   return next(24) / ((float)(1 \u003c\u003c 24));\n } The hedge \"approximately\" is used in the foregoing description only because the next method is only approximately an unbiased source of independently chosen bits. If it were a perfect source of randomly chosen bits, then the algorithm shown would choose float values from the stated range with perfect uniformity. [In early versions of Java, the result was incorrectly calculated as:  \n   return next(30) / ((float)(1 \u003c\u003c 30)); This might seem to be equivalent, if not better, but in fact it introduced a slight nonuniformity because of the bias in the rounding of floating-point numbers: it was slightly more likely that the low-order bit of the significand would be 0 than that it would be 1.]",
+      "tagMap": {
+        "return": [
+          "the next pseudorandom, uniformly distributed \n\u003ccode\u003efloat\u003c/code\u003e value between \n\u003ccode\u003e0.0\u003c/code\u003e and \n\u003ccode\u003e1.0\u003c/code\u003e from this random number generator\u0027s sequence"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "double",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextDouble",
+      "comment": "Returns the next pseudorandom, uniformly distributed double value between 0.0 and 1.0 from this random number generator\u0027s sequence. The general contract of nextDouble is that one double value, chosen (approximately) uniformly from the range 0.0d (inclusive) to 1.0d (exclusive), is pseudorandomly generated and returned. The method nextDouble is implemented by class Random as if by:  \n public double nextDouble() {\n   return (((long)next(26) \u003c\u003c 27) + next(27))\n     / (double)(1L \u003c\u003c 53);\n } The hedge \"approximately\" is used in the foregoing description only because the next method is only approximately an unbiased source of independently chosen bits. If it were a perfect source of randomly chosen bits, then the algorithm shown would choose double values from the stated range with perfect uniformity. [In early versions of Java, the result was incorrectly calculated as:  \n   return (((long)next(27) \u003c\u003c 27) + next(27))\n     / (double)(1L \u003c\u003c 54); This might seem to be equivalent, if not better, but in fact it introduced a large nonuniformity because of the bias in the rounding of floating-point numbers: it was three times as likely that the low-order bit of the significand would be 0 than that it would be 1! This nonuniformity probably doesn\u0027t matter much in practice, but we strive for perfection.]",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Math.html#random()\"\u003e\u003ccode\u003eMath.random()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the next pseudorandom, uniformly distributed \n\u003ccode\u003edouble\u003c/code\u003e value between \n\u003ccode\u003e0.0\u003c/code\u003e and \n\u003ccode\u003e1.0\u003c/code\u003e from this random number generator\u0027s sequence"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "double",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "nextGaussian",
+      "comment": "Returns the next pseudorandom, Gaussian (\"normally\") distributed double value with mean 0.0 and standard deviation 1.0 from this random number generator\u0027s sequence. The general contract of nextGaussian is that one double value, chosen from (approximately) the usual normal distribution with mean 0.0 and standard deviation 1.0, is pseudorandomly generated and returned. The method nextGaussian is implemented by class Random as if by a threadsafe version of the following:  \n private double nextNextGaussian;\n private boolean haveNextNextGaussian \u003d false;\n\n public double nextGaussian() {\n   if (haveNextNextGaussian) {\n     haveNextNextGaussian \u003d false;\n     return nextNextGaussian;\n   } else {\n     double v1, v2, s;\n     do {\n       v1 \u003d 2 * nextDouble() - 1;   // between -1.0 and 1.0\n       v2 \u003d 2 * nextDouble() - 1;   // between -1.0 and 1.0\n       s \u003d v1 * v1 + v2 * v2;\n     } while (s \u003e\u003d 1 || s \u003d\u003d 0);\n     double multiplier \u003d StrictMath.sqrt(-2 * StrictMath.log(s)/s);\n     nextNextGaussian \u003d v2 * multiplier;\n     haveNextNextGaussian \u003d true;\n     return v1 * multiplier;\n   }\n } This uses the polar method of G. E. P. Box, M. E. Muller, and G. Marsaglia, as described by Donald E. Knuth in The Art of Computer Programming, Volume 2: Seminumerical Algorithms, section 3.4.1, subsection C, algorithm P. Note that it generates two independent values at the cost of only one call to StrictMath.log and one call to StrictMath.sqrt.",
+      "tagMap": {
+        "return": [
+          "the next pseudorandom, Gaussian (\"normally\") distributed \n\u003ccode\u003edouble\u003c/code\u003e value with mean \n\u003ccode\u003e0.0\u003c/code\u003e and standard deviation \n\u003ccode\u003e1.0\u003c/code\u003e from this random number generator\u0027s sequence"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.IntStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "streamSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "ints",
+      "comment": "Returns a stream producing the given streamSize number of pseudorandom int values. A pseudorandom int value is generated as if it\u0027s the result of calling the method nextInt().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamSize\u003c/code\u003e - the number of values to generate"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estreamSize\u003c/code\u003e is less than zero"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003eint\u003c/code\u003e values"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.IntStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "ints",
+      "comment": "Returns an effectively unlimited stream of pseudorandom int values. A pseudorandom int value is generated as if it\u0027s the result of calling the method nextInt().",
+      "tagMap": {
+        "implNote": [
+          "This method is implemented to be equivalent to \n\u003ccode\u003e ints(Long.MAX_VALUE)\u003c/code\u003e."
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003eint\u003c/code\u003e values"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.IntStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "streamSize"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberOrigin"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberBound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "ints",
+      "comment": "Returns a stream producing the given streamSize number of pseudorandom int values, each conforming to the given origin (inclusive) and bound (exclusive). A pseudorandom int value is generated as if it\u0027s the result of calling the following method with the origin and bound:  \n int nextInt(int origin, int bound) {\n   int n \u003d bound - origin;\n   if (n \u003e 0) {\n     return nextInt(n) + origin;\n   }\n   else {  // range not representable as int\n     int r;\n     do {\n       r \u003d nextInt();\n     } while (r \u003c origin || r \u003e\u003d bound);\n     return r;\n   }\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamSize\u003c/code\u003e - the number of values to generate",
+          "\u003ccode\u003erandomNumberOrigin\u003c/code\u003e - the origin (inclusive) of each random value",
+          "\u003ccode\u003erandomNumberBound\u003c/code\u003e - the bound (exclusive) of each random value"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estreamSize\u003c/code\u003e is less than zero, or \n\u003ccode\u003erandomNumberOrigin\u003c/code\u003e is greater than or equal to \n\u003ccode\u003erandomNumberBound\u003c/code\u003e"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003eint\u003c/code\u003e values, each with the given origin (inclusive) and bound (exclusive)"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.IntStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberOrigin"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberBound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "ints",
+      "comment": "Returns an effectively unlimited stream of pseudorandom int values, each conforming to the given origin (inclusive) and bound (exclusive). A pseudorandom int value is generated as if it\u0027s the result of calling the following method with the origin and bound:  \n int nextInt(int origin, int bound) {\n   int n \u003d bound - origin;\n   if (n \u003e 0) {\n     return nextInt(n) + origin;\n   }\n   else {  // range not representable as int\n     int r;\n     do {\n       r \u003d nextInt();\n     } while (r \u003c origin || r \u003e\u003d bound);\n     return r;\n   }\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erandomNumberOrigin\u003c/code\u003e - the origin (inclusive) of each random value",
+          "\u003ccode\u003erandomNumberBound\u003c/code\u003e - the bound (exclusive) of each random value"
+        ],
+        "implNote": [
+          "This method is implemented to be equivalent to \n\u003ccode\u003e ints(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003erandomNumberOrigin\u003c/code\u003e is greater than or equal to \n\u003ccode\u003erandomNumberBound\u003c/code\u003e"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003eint\u003c/code\u003e values, each with the given origin (inclusive) and bound (exclusive)"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.LongStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "streamSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "longs",
+      "comment": "Returns a stream producing the given streamSize number of pseudorandom long values. A pseudorandom long value is generated as if it\u0027s the result of calling the method nextLong().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamSize\u003c/code\u003e - the number of values to generate"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estreamSize\u003c/code\u003e is less than zero"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003elong\u003c/code\u003e values"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.LongStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "longs",
+      "comment": "Returns an effectively unlimited stream of pseudorandom long values. A pseudorandom long value is generated as if it\u0027s the result of calling the method nextLong().",
+      "tagMap": {
+        "implNote": [
+          "This method is implemented to be equivalent to \n\u003ccode\u003e longs(Long.MAX_VALUE)\u003c/code\u003e."
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003elong\u003c/code\u003e values"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.LongStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "streamSize"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberOrigin"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberBound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "longs",
+      "comment": "Returns a stream producing the given streamSize number of pseudorandom long, each conforming to the given origin (inclusive) and bound (exclusive). A pseudorandom long value is generated as if it\u0027s the result of calling the following method with the origin and bound:  \n long nextLong(long origin, long bound) {\n   long r \u003d nextLong();\n   long n \u003d bound - origin, m \u003d n - 1;\n   if ((n \u0026 m) \u003d\u003d 0L)  // power of two\n     r \u003d (r \u0026 m) + origin;\n   else if (n \u003e 0L) {  // reject over-represented candidates\n     for (long u \u003d r \u003e\u003e\u003e 1;            // ensure nonnegative\n          u + m - (r \u003d u % n) \u003c 0L;    // rejection check\n          u \u003d nextLong() \u003e\u003e\u003e 1) // retry\n         ;\n     r +\u003d origin;\n   }\n   else {              // range not representable as long\n     while (r \u003c origin || r \u003e\u003d bound)\n       r \u003d nextLong();\n   }\n   return r;\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamSize\u003c/code\u003e - the number of values to generate",
+          "\u003ccode\u003erandomNumberOrigin\u003c/code\u003e - the origin (inclusive) of each random value",
+          "\u003ccode\u003erandomNumberBound\u003c/code\u003e - the bound (exclusive) of each random value"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estreamSize\u003c/code\u003e is less than zero, or \n\u003ccode\u003erandomNumberOrigin\u003c/code\u003e is greater than or equal to \n\u003ccode\u003erandomNumberBound\u003c/code\u003e"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003elong\u003c/code\u003e values, each with the given origin (inclusive) and bound (exclusive)"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.LongStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberOrigin"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberBound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "longs",
+      "comment": "Returns an effectively unlimited stream of pseudorandom long values, each conforming to the given origin (inclusive) and bound (exclusive). A pseudorandom long value is generated as if it\u0027s the result of calling the following method with the origin and bound:  \n long nextLong(long origin, long bound) {\n   long r \u003d nextLong();\n   long n \u003d bound - origin, m \u003d n - 1;\n   if ((n \u0026 m) \u003d\u003d 0L)  // power of two\n     r \u003d (r \u0026 m) + origin;\n   else if (n \u003e 0L) {  // reject over-represented candidates\n     for (long u \u003d r \u003e\u003e\u003e 1;            // ensure nonnegative\n          u + m - (r \u003d u % n) \u003c 0L;    // rejection check\n          u \u003d nextLong() \u003e\u003e\u003e 1) // retry\n         ;\n     r +\u003d origin;\n   }\n   else {              // range not representable as long\n     while (r \u003c origin || r \u003e\u003d bound)\n       r \u003d nextLong();\n   }\n   return r;\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erandomNumberOrigin\u003c/code\u003e - the origin (inclusive) of each random value",
+          "\u003ccode\u003erandomNumberBound\u003c/code\u003e - the bound (exclusive) of each random value"
+        ],
+        "implNote": [
+          "This method is implemented to be equivalent to \n\u003ccode\u003e longs(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003erandomNumberOrigin\u003c/code\u003e is greater than or equal to \n\u003ccode\u003erandomNumberBound\u003c/code\u003e"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003elong\u003c/code\u003e values, each with the given origin (inclusive) and bound (exclusive)"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.DoubleStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "streamSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "doubles",
+      "comment": "Returns a stream producing the given streamSize number of pseudorandom double values, each between zero (inclusive) and one (exclusive). A pseudorandom double value is generated as if it\u0027s the result of calling the method nextDouble().",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamSize\u003c/code\u003e - the number of values to generate"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estreamSize\u003c/code\u003e is less than zero"
+        ],
+        "return": [
+          "a stream of \n\u003ccode\u003edouble\u003c/code\u003e values"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.DoubleStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "doubles",
+      "comment": "Returns an effectively unlimited stream of pseudorandom double values, each between zero (inclusive) and one (exclusive). A pseudorandom double value is generated as if it\u0027s the result of calling the method nextDouble().",
+      "tagMap": {
+        "implNote": [
+          "This method is implemented to be equivalent to \n\u003ccode\u003e doubles(Long.MAX_VALUE)\u003c/code\u003e."
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003edouble\u003c/code\u003e values"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.DoubleStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "streamSize"
+          }
+        },
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberOrigin"
+          }
+        },
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberBound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "doubles",
+      "comment": "Returns a stream producing the given streamSize number of pseudorandom double values, each conforming to the given origin (inclusive) and bound (exclusive). A pseudorandom double value is generated as if it\u0027s the result of calling the following method with the origin and bound:  \n double nextDouble(double origin, double bound) {\n   double r \u003d nextDouble();\n   r \u003d r * (bound - origin) + origin;\n   if (r \u003e\u003d bound) // correct for rounding\n     r \u003d Math.nextDown(bound);\n   return r;\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estreamSize\u003c/code\u003e - the number of values to generate",
+          "\u003ccode\u003erandomNumberOrigin\u003c/code\u003e - the origin (inclusive) of each random value",
+          "\u003ccode\u003erandomNumberBound\u003c/code\u003e - the bound (exclusive) of each random value"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estreamSize\u003c/code\u003e is less than zero",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003erandomNumberOrigin\u003c/code\u003e is greater than or equal to \n\u003ccode\u003erandomNumberBound\u003c/code\u003e"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003edouble\u003c/code\u003e values, each with the given origin (inclusive) and bound (exclusive)"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.DoubleStream",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberOrigin"
+          }
+        },
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "randomNumberBound"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "doubles",
+      "comment": "Returns an effectively unlimited stream of pseudorandom double values, each conforming to the given origin (inclusive) and bound (exclusive). A pseudorandom double value is generated as if it\u0027s the result of calling the following method with the origin and bound:  \n double nextDouble(double origin, double bound) {\n   double r \u003d nextDouble();\n   r \u003d r * (bound - origin) + origin;\n   if (r \u003e\u003d bound) // correct for rounding\n     r \u003d Math.nextDown(bound);\n   return r;\n }",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erandomNumberOrigin\u003c/code\u003e - the origin (inclusive) of each random value",
+          "\u003ccode\u003erandomNumberBound\u003c/code\u003e - the bound (exclusive) of each random value"
+        ],
+        "implNote": [
+          "This method is implemented to be equivalent to \n\u003ccode\u003e doubles(Long.MAX_VALUE, randomNumberOrigin, randomNumberBound)\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003erandomNumberOrigin\u003c/code\u003e is greater than or equal to \n\u003ccode\u003erandomNumberBound\u003c/code\u003e"
+        ],
+        "return": [
+          "a stream of pseudorandom \n\u003ccode\u003edouble\u003c/code\u003e values, each with the given origin (inclusive) and bound (exclusive)"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new random number generator. This constructor sets the seed of the random number generator to a value very likely to be distinct from any other invocation of this constructor.",
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "seed"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new random number generator using a single long seed. The seed is the initial value of the internal state of the pseudorandom number generator which is maintained by method next(int). The invocation new Random(seed) is equivalent to:  \n Random rnd \u003d new Random();\n rnd.setSeed(seed);",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Random.html#setSeed(long)\"\u003e\u003ccode\u003esetSeed(long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eseed\u003c/code\u003e - the initial seed"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.util.Random",
+  "comment": "An instance of this class is used to generate a stream of pseudorandom numbers. The class uses a 48-bit seed, which is modified using a linear congruential formula. (See Donald Knuth, \n\u003ci\u003eThe Art of Computer Programming, Volume 2\u003c/i\u003e, Section 3.2.1.) \n\u003cp\u003e If two instances of \u003ccode\u003eRandom\u003c/code\u003e are created with the same seed, and the same sequence of method calls is made for each, they will generate and return identical sequences of numbers. In order to guarantee this property, particular algorithms are specified for the class \u003ccode\u003eRandom\u003c/code\u003e. Java implementations must use all the algorithms shown here for the class \u003ccode\u003eRandom\u003c/code\u003e, for the sake of absolute portability of Java code. However, subclasses of class \u003ccode\u003eRandom\u003c/code\u003e are permitted to use other algorithms, so long as they adhere to the general contracts for all the methods. \u003c/p\u003e\n\u003cp\u003e The algorithms implemented by class \u003ccode\u003eRandom\u003c/code\u003e use a \u003ccode\u003eprotected\u003c/code\u003e utility method that on each invocation can supply up to 32 pseudorandomly generated bits. \u003c/p\u003e\n\u003cp\u003e Many applications will find the method \u003ca href\u003d\"../lang/Math.html#random()\"\u003e\u003ccode\u003eMath.random()\u003c/code\u003e\u003c/a\u003e simpler to use. \u003c/p\u003e\n\u003cp\u003eInstances of \u003ccode\u003ejava.util.Random\u003c/code\u003e are threadsafe. However, the concurrent use of the same \u003ccode\u003ejava.util.Random\u003c/code\u003e instance across threads may encounter contention and consequent poor performance. Consider instead using \u003ca href\u003d\"concurrent/ThreadLocalRandom.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eThreadLocalRandom\u003c/code\u003e\u003c/a\u003e in multithreaded designs. \u003c/p\u003e\n\u003cp\u003eInstances of \u003ccode\u003ejava.util.Random\u003c/code\u003e are not cryptographically secure. Consider instead using \u003ca href\u003d\"../security/SecureRandom.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eSecureRandom\u003c/code\u003e\u003c/a\u003e to get a cryptographically secure pseudo-random number generator for use by security-sensitive applications.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.util.Random\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.0"
+    ]
+  }
+}

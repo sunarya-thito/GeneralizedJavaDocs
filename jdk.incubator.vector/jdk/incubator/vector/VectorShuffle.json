@@ -1,0 +1,993 @@
+{
+  "packageName": "jdk.incubator.vector",
+  "simpleName": "VectorShuffle",
+  "moduleName": "jdk.incubator.vector",
+  "type": "CLASS",
+  "superClass": {
+    "name": "jdk.internal.vm.vector.VectorSupport.VectorShuffle",
+    "parameters": [
+      {
+        "name": "E",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorSpecies",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorShuffle",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "vectorSpecies",
+      "comment": "Returns the species of this shuffle.",
+      "tagMap": {
+        "return": [
+          "the species of this shuffle"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "length",
+      "comment": "Returns the number of lanes processed by this shuffle. This is the same as the VLENGTH of any vector it operates on.",
+      "tagMap": {
+        "return": [
+          "the number of shuffle lanes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "F",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "F",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "F",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "cast",
+      "comment": "Converts this shuffle to a shuffle of the given species of element type F. The various lane source indexes are unmodified. Exceptional source indexes remain exceptional and valid indexes remain valid.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eF\u003c/code\u003e - the boxed element type of the species"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - the species of desired shuffle"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if this shuffle length and the species length differ"
+        ],
+        "return": [
+          "a shuffle converted by shape and element type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "F",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "F",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "F",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "check",
+      "comment": "Checks that this shuffle has the given species, and returns this shuffle unchanged. The effect is similar to this pseudocode: species \u003d\u003d vectorSpecies() ? this : throw new ClassCastException().",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eF\u003c/code\u003e - the boxed element type of the required species"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#check(java.lang.Class)\"\u003e\u003ccode\u003eVector.check(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#check(jdk.incubator.vector.VectorSpecies)\"\u003e\u003ccode\u003eVector.check(VectorSpecies)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - the required species"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if the shuffle species is wrong"
+        ],
+        "return": [
+          "the same shuffle"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "checkIndex",
+      "comment": "Validation function for lane indexes which may be out of the valid range of [0..VLENGTH-1]. If index is in this range, it is returned unchanged. Otherwise, an IndexOutOfBoundsException is thrown.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#wrapIndex(int)\"\u003e\u003ccode\u003ewrapIndex(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#checkIndexes()\"\u003e\u003ccode\u003echeckIndexes()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the lane index"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003eindex\u003c/code\u003e is not less than \n\u003ccode\u003eVLENGTH\u003c/code\u003e, or is negative"
+        ],
+        "return": [
+          "\u003ccode\u003eindex\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "wrapIndex",
+      "comment": "Validation function for lane indexes which may be out of the valid range of [0..VLENGTH-1]. The index is forced into this range by adding or subtracting a suitable multiple of VLENGTH. Specifically, the index is reduced into the required range by computing the value of length-floor, where floor\u003dvectorSpecies().loopBound(length) is the next lower multiple of VLENGTH. As long as VLENGTH is a power of two, then the reduced index also equal to index \u0026 (VLENGTH - 1).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorSpecies.html#loopBound(int)\"\u003e\u003ccode\u003eVectorSpecies.loopBound(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#checkIndex(int)\"\u003e\u003ccode\u003echeckIndex(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#wrapIndexes()\"\u003e\u003ccode\u003ewrapIndexes()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - the lane index"
+        ],
+        "return": [
+          "\u003ccode\u003eindex\u003c/code\u003e, adjusted to the range \n\u003ccode\u003e[0..VLENGTH-1\u003c/code\u003e} by an appropriate multiple of \n\u003ccode\u003eVLENGTH\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorShuffle",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "checkIndexes",
+      "comment": "Apply the checkIndex() validation function to all lanes, throwing IndexOutOfBoundsException if there are any exceptional indexes in this shuffle.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#checkIndex(int)\"\u003e\u003ccode\u003echeckIndex(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#wrapIndexes()\"\u003e\u003ccode\u003ewrapIndexes()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if any lanes in this shuffle contain exceptional indexes"
+        ],
+        "return": [
+          "the current shuffle, unchanged"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorShuffle",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "wrapIndexes",
+      "comment": "Apply the wrapIndex() validation function to all lanes, replacing any exceptional indexes with wrapped normal indexes.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#wrapIndex(int)\"\u003e\u003ccode\u003ewrapIndex(int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#checkIndexes()\"\u003e\u003ccode\u003echeckIndexes()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the current shuffle, with all exceptional indexes wrapped"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorMask",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorShuffle",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "laneIsValid",
+      "comment": "Find all lanes containing valid indexes (non-negative values) and return a mask where exactly those lanes are set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#checkIndexes()\"\u003e\u003ccode\u003echeckIndexes()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "a mask of lanes containing valid source indexes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sourceIndexes"
+          },
+          "varArgs": {}
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromValues",
+      "comment": "Creates a shuffle for a given species from a series of source indexes. For each shuffle lane, where N is the shuffle lane index, the Nth index value is validated against the species VLENGTH, and (if invalid) is partially wrapped to an exceptional index in the range [-VLENGTH..-1].",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorSpecies.html#shuffleFromValues(int...)\"\u003e\u003ccode\u003eVectorSpecies.shuffleFromValues(int...)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - shuffle species",
+          "\u003ccode\u003esourceIndexes\u003c/code\u003e - the source indexes which the shuffle will draw from"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esourceIndexes.length !\u003d VLENGTH\u003c/code\u003e"
+        ],
+        "return": [
+          "a shuffle where each lane\u0027s source index is set to the given \n\u003ccode\u003eint\u003c/code\u003e value, partially wrapped if exceptional"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "sourceIndexes"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromArray",
+      "comment": "Creates a shuffle for a given species from an int array starting at an offset. For each shuffle lane, where N is the shuffle lane index, the array element at index offset + N is validated against the species VLENGTH, and (if invalid) is partially wrapped to an exceptional index in the range [-VLENGTH..-1].",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorSpecies.html#shuffleFromArray(int%5B%5D,int)\"\u003e\u003ccode\u003eVectorSpecies.shuffleFromArray(int[], int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - shuffle species",
+          "\u003ccode\u003esourceIndexes\u003c/code\u003e - the source indexes which the shuffle will draw from",
+          "\u003ccode\u003eoffset\u003c/code\u003e - the offset into the array"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoffset \u0026lt; 0\u003c/code\u003e, or \n\u003ccode\u003eoffset \u0026gt; sourceIndexes.length - VLENGTH\u003c/code\u003e"
+        ],
+        "return": [
+          "a shuffle where each lane\u0027s source index is set to the given \n\u003ccode\u003eint\u003c/code\u003e value, partially wrapped if exceptional"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.function.IntUnaryOperator",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fn"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "fromOp",
+      "comment": "Creates a shuffle for a given species from the successive values of an operator applied to the range [0..VLENGTH-1]. For each shuffle lane, where N is the shuffle lane index, the Nth index value is validated against the species VLENGTH, and (if invalid) is partially wrapped to an exceptional index in the range [-VLENGTH..-1]. Care should be taken to ensure VectorShuffle values produced from this method are consumed as constants to ensure optimal generation of code. For example, shuffle values can be held in static final fields or loop-invariant local variables. This method behaves as if a shuffle is created from an array of mapped indexes as follows: \n   int[] a \u003d new int[species.length()];\n   for (int i \u003d 0; i \u003c a.length; i++) {\n       a[i] \u003d fn.applyAsInt(i);\n   }\n   return VectorShuffle.fromArray(a, 0);",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorSpecies.html#shuffleFromOp(java.util.function.IntUnaryOperator)\"\u003e\u003ccode\u003eVectorSpecies.shuffleFromOp(IntUnaryOperator)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - shuffle species",
+          "\u003ccode\u003efn\u003c/code\u003e - the lane index mapping function"
+        ],
+        "return": [
+          "a shuffle of mapped indexes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "start"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "step"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "wrap"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "iota",
+      "comment": "Creates a shuffle using source indexes set to sequential values starting from start and stepping by the given step. This method returns the value of the expression VectorShuffle.fromOp(species, i -\u003e R(start + i * step)), where R is wrapIndex if wrap is true, and is the identity function otherwise. If wrap is false each index is validated against the species VLENGTH, and (if invalid) is partially wrapped to an exceptional index in the range [-VLENGTH..-1]. Otherwise, if wrap is true, also reduce each index, as if by wrapIndex, to the valid range [0..VLENGTH-1].",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorSpecies.html#iotaShuffle(int,int,boolean)\"\u003e\u003ccode\u003eVectorSpecies.iotaShuffle(int,int,boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "The \n\u003ccode\u003ewrap\u003c/code\u003e parameter should be set to \n\u003ccode\u003e true\u003c/code\u003e if invalid source indexes should be wrapped. Otherwise, setting it to \n\u003ccode\u003efalse\u003c/code\u003e allows invalid source indexes to be range-checked by later operations such as \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#rearrange(jdk.incubator.vector.VectorShuffle)\"\u003e\u003ccode\u003eunary rearrange\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - shuffle species",
+          "\u003ccode\u003estart\u003c/code\u003e - the starting value of the source index sequence",
+          "\u003ccode\u003estep\u003c/code\u003e - the difference between adjacent source indexes",
+          "\u003ccode\u003ewrap\u003c/code\u003e - whether to wrap resulting indexes"
+        ],
+        "return": [
+          "a shuffle of sequential lane indexes, possibly wrapped"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "part"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "makeZip",
+      "comment": "Creates a shuffle which will zip together two vectors, alternatively selecting lanes from one or the other. The logical result of a zip is twice the size of either input, and so the expanded result is broken into two physical parts, selected by a part number. For example, zipping two vectors [a,b,c,d] and [1,2,3,4] will yield the expanded logical result [a,1,b,2,c,3,d,4] which must be obtained in two parts, [a,1,b,2] and [c,3,d,4]. This method returns the value of the expression VectorShuffle.fromOp(species, i -\u003e i/2 + (i%2)*VLENGTH + P, where P is part*VLENGTH/2. s Note that the source indexes in the odd lanes of the shuffle will be invalid indexes (\u003e\u003d VLENGTH, or \u003c 0 after partial normalization), which will select from the second vector.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#makeUnzip(jdk.incubator.vector.VectorSpecies,int)\"\u003e\u003ccode\u003emakeUnzip(VectorSpecies, int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#rearrange(jdk.incubator.vector.VectorShuffle,jdk.incubator.vector.Vector)\"\u003e\u003ccode\u003eVector.rearrange(VectorShuffle,Vector)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - the shuffle species",
+          "\u003ccode\u003epart\u003c/code\u003e - the part number of the result (either zero or one)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArrayIndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eArrayIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epart\u003c/code\u003e is not zero or one"
+        ],
+        "return": [
+          "a shuffle which zips two vectors into \n\u003ccode\u003e2*VLENGTH\u003c/code\u003e lanes, returning the selected part"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "name": "E",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorSpecies",
+            "parameters": [
+              {
+                "name": "E",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "species"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "part"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "E",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "makeUnzip",
+      "comment": "Creates a shuffle which will unzip the concatenation of two vectors, alternatively storing input lanes into one or the other output vector. Since the logical result of an unzip is twice the size of either input, the expanded result is broken into two physical parts, selected by a part number. For example, unzipping two vectors [a,1,b,2][c,3,d,4] will yield a result in two parts, [a,b,c,d] and [1,2,3,4]. This method returns the value of the expression VectorShuffle.fromOp(species, i -\u003e i*2+part. Note that the source indexes in upper half of the shuffle will be invalid indexes (\u003e\u003d VLENGTH, or \u003c 0 after partial normalization), which will select from the second vector.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eE\u003c/code\u003e - the boxed element type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/VectorShuffle.html#makeZip(jdk.incubator.vector.VectorSpecies,int)\"\u003e\u003ccode\u003emakeZip(VectorSpecies,int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.vector/jdk/incubator/vector/Vector.html#rearrange(jdk.incubator.vector.VectorShuffle,jdk.incubator.vector.Vector)\"\u003e\u003ccode\u003eVector.rearrange(VectorShuffle,Vector)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003especies\u003c/code\u003e - the shuffle species",
+          "\u003ccode\u003epart\u003c/code\u003e - the part number of the result (either zero or one)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ArrayIndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eArrayIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epart\u003c/code\u003e is not zero or one"
+        ],
+        "return": [
+          "a shuffle which unzips \n\u003ccode\u003e2*VLENGTH\u003c/code\u003e lanes into two vectors, returning the selected part"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "toArray",
+      "comment": "Returns an int array containing the lane source indexes of this shuffle. This method behaves as if it stores this shuffle into an allocated array (using intoArray) and returns that array as follows: \n   int[] a \u003d new int[this.length()];\n   VectorShuffle.intoArray(a, 0);\n   return a;",
+      "tagMap": {
+        "apiNote": [
+          "Shuffle source indexes are always in the range from \n\u003ccode\u003e-VLENGTH\u003c/code\u003e to \n\u003ccode\u003eVLENGTH-1\u003c/code\u003e. A source index is exceptional if and only if it is negative."
+        ],
+        "return": [
+          "an array containing the lane source indexes of this shuffle"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "a"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "intoArray",
+      "comment": "Stores this shuffle into an int array starting at offset. For each shuffle lane N, the lane source index stored for that lane element is stored into the array element a[offset+N].",
+      "tagMap": {
+        "apiNote": [
+          "Shuffle source indexes are always in the range from \n\u003ccode\u003e-VLENGTH\u003c/code\u003e to \n\u003ccode\u003eVLENGTH-1\u003c/code\u003e."
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - the array, of type \n\u003ccode\u003eint[]\u003c/code\u003e",
+          "\u003ccode\u003eoffset\u003c/code\u003e - the offset into the array"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoffset \u0026lt; 0\u003c/code\u003e or \n\u003ccode\u003eoffset \u0026gt; a.length - this.length()\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.Vector",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorShuffle",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "toVector",
+      "comment": "Converts this shuffle into a vector, creating a vector of integral values corresponding to the lane source indexes of the shuffle. This method behaves as if it returns the result of creating a vector given an int array obtained from this shuffle\u0027s lane elements, as follows: \n   int[] sa \u003d this.toArray();\n   $type$[] va \u003d new $type$[a.length];\n   for (int i \u003d 0; i \u003c a.length; i++) {\n       va[i] \u003d ($type$) sa[i];\n   }\n   return IntVector.fromArray(va, 0);",
+      "tagMap": {
+        "apiNote": [
+          "Shuffle source indexes are always in the range from \n\u003ccode\u003e-VLENGTH\u003c/code\u003e to \n\u003ccode\u003eVLENGTH-1\u003c/code\u003e. These values are converted to the \n\u003ccode\u003eETYPE\u003c/code\u003e of the resulting vector, even if it is a floating point type."
+        ],
+        "return": [
+          "a vector representation of this shuffle"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "i"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "laneSource",
+      "comment": "Gets the int lane element at lane index i",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ei\u003c/code\u003e - the lane index"
+        ],
+        "return": [
+          "the \n\u003ccode\u003eint\u003c/code\u003e lane element at lane index \n\u003ccode\u003ei\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.vector.VectorShuffle",
+        "parameters": [
+          {
+            "owner": "jdk.incubator.vector.VectorShuffle",
+            "name": "E",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.vector.VectorShuffle",
+            "parameters": [
+              {
+                "owner": "jdk.incubator.vector.VectorShuffle",
+                "name": "E",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "s"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "rearrange",
+      "comment": "Rearranges the lane elements of this shuffle selecting lane indexes controlled by another shuffle. For each lane of the specified shuffle, at lane index N with lane element I, the lane element at I from this shuffle is selected and placed into the resulting shuffle at N.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003es\u003c/code\u003e - the shuffle controlling lane index selection"
+        ],
+        "return": [
+          "the rearrangement of the lane elements of this shuffle"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "toString",
+      "comment": "Returns a string representation of this shuffle, of the form \"Shuffle[0,1,2...]\", reporting the source indexes in lane order.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string of the form \n\u003ccode\u003e\"Shuffle[0,1,2...]\"\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "equals",
+      "comment": "Indicates whether this shuffle is identical to some other object. Two shuffles are identical only if they have the same species and same source indexes, in the same order.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the reference object with which to compare."
+        ],
+        "return": [
+          "whether this vector is identical to some other object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "hashCode",
+      "comment": "Returns a hash code value for the shuffle, based on the lane source indexes and the vector species.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a hash code value for this shuffle"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "E",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "jdk.incubator.vector.VectorShuffle",
+  "comment": "A \n\u003ccode\u003eVectorShuffle\u003c/code\u003e represents an ordered immutable sequence of \n\u003ccode\u003eint\u003c/code\u003e values called \n\u003cem\u003esource indexes\u003c/em\u003e, where each source index numerically selects a source lane from a compatible \n\u003ca href\u003d\"Vector.html\" title\u003d\"class in jdk.incubator.vector\"\u003e\u003ccode\u003eVector\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e A \u003ccode\u003eVectorShuffle\u003c/code\u003e and \u003ccode\u003eVector\u003c/code\u003e of the same \u003ca href\u003d\"Vector.html#ETYPE\"\u003eelement type\u003c/a\u003e (\u003ccode\u003eETYPE\u003c/code\u003e) and \u003ca href\u003d\"VectorShape.html\" title\u003d\"enum class in jdk.incubator.vector\"\u003e\u003ccode\u003eshape\u003c/code\u003e\u003c/a\u003e have the same number of lanes, and are therefore compatible (specifically, their \u003ca href\u003d\"#vectorSpecies()\"\u003e\u003ccode\u003evector species\u003c/code\u003e\u003c/a\u003e are compatible). \u003c/p\u003e\n\u003cp\u003e A shuffle is applied to a (compatible) source vector with the \u003ca href\u003d\"Vector.html#rearrange(jdk.incubator.vector.VectorShuffle)\"\u003e\u003ccode\u003erearrange\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e A shuffle has a lane structure derived from its vector species, but it stores lane indexes, as \u003ccode\u003eint\u003c/code\u003es, rather than lane values. \u003c/p\u003e\n\u003cp\u003e This method gathers lane values by random access to the source vector, selecting lanes by consulting the source indexes. If a source index appears more than once in a shuffle, then the selected lane\u0027s value is copied more than once into the result. If a particular lane is never selected by a source index, that lane\u0027s value is ignored. The resulting vector contains all the source lane values selected by the source indexes of the shuffle. The resulting lane values are ordered according to the shuffle\u0027s source indexes, not according to the original vector\u0027s lane order. \u003c/p\u003e\n\u003cp\u003e Each shuffle has a \u003ca href\u003d\"#vectorSpecies()\"\u003e\u003ccode\u003evectorSpecies()\u003c/code\u003e\u003c/a\u003e property which determines the compatibility of vectors the shuffle operates on. This ensures that the \u003ca href\u003d\"#length()\"\u003e\u003ccode\u003elength()\u003c/code\u003e\u003c/a\u003e of a shuffle is always equal to the \u003ca href\u003d\"Vector.html#length()\"\u003eVLENGTH\u003c/a\u003e of any vector it operates on. The element type and shape of the shuffle\u0027s species are not directly relevant to the behavior of the shuffle. Shuffles can easily be \u003ca href\u003d\"#cast(jdk.incubator.vector.VectorSpecies)\"\u003econverted\u003c/a\u003e to other lane types, as long as the lane count stays constant. \u003c/p\u003e\n\u003cp\u003e In its internal state, a shuffle always holds integral values in a narrow range from \u003ccode\u003e[-VLENGTH..VLENGTH-1]\u003c/code\u003e. The positive numbers are self-explanatory; they are lane numbers applied to any source vector. The negative numbers, when present, are a sign that the shuffle was created from a raw integer value which was not a valid lane index. \u003c/p\u003e\n\u003cp\u003e An invalid source index, represented in a shuffle by a negative number, is called an \u003cem\u003eexceptional index\u003c/em\u003e. \u003c/p\u003e\n\u003cp\u003e Exceptional indexes are processed in a variety of ways: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e Unless documented otherwise, shuffle-using methods will throw \u003ccode\u003eArrayIndexOutOfBoundsException\u003c/code\u003e when a lane is processed by an exceptional index. \u003c/li\u003e\n \u003cli\u003e When an invalid source index (negative or not) is first loaded into a shuffle, it is partially normalized to the negative range of \u003ccode\u003e[-VLENGTH..-1]\u003c/code\u003e as if by \u003ca href\u003d\"#wrapIndex(int)\"\u003e\u003ccode\u003ewrapIndex()\u003c/code\u003e\u003c/a\u003e. This treatment of exceptional indexes is called \u003cem\u003epartial wrapping\u003c/em\u003e, because it preserves the distinction between normal and exceptional indexes, while wrapping them into adjacent ranges of positive and non-positive numbers. A partially wrapped index can later on be fully wrapped into the positive range by adding a final offset of \u003ccode\u003eVLENGTH\u003c/code\u003e. \u003c/li\u003e\n \u003cli\u003e In some applications, exceptional indexes used to \"steer\" access to a second source vector. In those cases, the exception index values, which are in the range \u003ccode\u003e[-VLENGTH..-1]\u003c/code\u003e, are cycled up to the valid range \u003ccode\u003e[0..VLENGTH-1]\u003c/code\u003e and used on the second source vector. \u003c/li\u003e\n \u003cli\u003e When a shuffle is cast from another shuffle species with a smaller \u003ccode\u003eVLENGTH\u003c/code\u003e, all indexes are re-validated against the new \u003ccode\u003eVLENGTH\u003c/code\u003e, and some may be converted to exceptional indexes. In any case, shuffle casting never converts exceptional indexes to normal ones. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003eValue-based classes and identity operations\u003c/h2\u003e \n\u003ccode\u003eVectorShuffle\u003c/code\u003e, along with \n\u003ccode\u003eVector\u003c/code\u003e is a \n\u003ca href\u003d\"../../../../java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e class. Identity-sensitive operations such as \n\u003ccode\u003e\u003d\u003d\u003c/code\u003e may yield unpredictable results, or reduced performance. Also, vector shuffle objects can be stored in locals and parameters and as \n\u003ccode\u003estatic final\u003c/code\u003e constants, but storing them in other Java fields or in array elements, while semantically valid, may incur performance penalties. Finally, vector shuffles should not be computed in loops, when possible, but instead should be stored in loop-invariant locals or as \n\u003ccode\u003estatic final\u003c/code\u003e constants.",
+  "tagMap": {}
+}

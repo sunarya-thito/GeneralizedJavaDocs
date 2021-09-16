@@ -1,0 +1,161 @@
+{
+  "packageName": "java.security.cert",
+  "simpleName": "PolicyNode",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.security.cert.PolicyNode",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getParent",
+      "comment": "Returns the parent of this node, or null if this is the root node.",
+      "tagMap": {
+        "return": [
+          "the parent of this node, or \n\u003ccode\u003enull\u003c/code\u003e if this is the root node"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "java.security.cert.PolicyNode",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getChildren",
+      "comment": "Returns an iterator over the children of this node. Any attempts to modify the children of this node through the Iterator\u0027s remove method must throw an UnsupportedOperationException.",
+      "tagMap": {
+        "return": [
+          "an iterator over the children of this node"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDepth",
+      "comment": "Returns the depth of this node in the valid policy tree.",
+      "tagMap": {
+        "return": [
+          "the depth of this node (0 for the root node, 1 for its children, and so on)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValidPolicy",
+      "comment": "Returns the valid policy represented by this node.",
+      "tagMap": {
+        "return": [
+          "the \n\u003ccode\u003eString\u003c/code\u003e OID of the valid policy represented by this node. For the root node, this method always returns the special anyPolicy OID: \"2.5.29.32.0\"."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "java.security.cert.PolicyQualifierInfo",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPolicyQualifiers",
+      "comment": "Returns the set of policy qualifiers associated with the valid policy represented by this node.",
+      "tagMap": {
+        "return": [
+          "an immutable \n\u003ccode\u003eSet\u003c/code\u003e of \n\u003ccode\u003ePolicyQualifierInfo\u003c/code\u003es. For the root node, this is always an empty \n\u003ccode\u003eSet\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Set",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getExpectedPolicies",
+      "comment": "Returns the set of expected policies that would satisfy this node\u0027s valid policy in the next certificate to be processed.",
+      "tagMap": {
+        "return": [
+          "an immutable \n\u003ccode\u003eSet\u003c/code\u003e of expected policy \n\u003ccode\u003eString\u003c/code\u003e OIDs. For the root node, this method always returns a \n\u003ccode\u003eSet\u003c/code\u003e with one element, the special anyPolicy OID: \"2.5.29.32.0\"."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isCritical",
+      "comment": "Returns the criticality indicator of the certificate policy extension in the most recently processed certificate.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if extension marked critical, \n\u003ccode\u003efalse\u003c/code\u003e otherwise. For the root node, \n\u003ccode\u003efalse\u003c/code\u003e is always returned."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.security.cert.PolicyNode",
+  "comment": "An immutable valid policy tree node as defined by the PKIX certification path validation algorithm. \n\u003cp\u003eOne of the outputs of the PKIX certification path validation algorithm is a valid policy tree, which includes the policies that were determined to be valid, how this determination was reached, and any policy qualifiers encountered. This tree is of depth \u003ci\u003en\u003c/i\u003e, where \u003ci\u003en\u003c/i\u003e is the length of the certification path that has been validated. \u003c/p\u003e\n\u003cp\u003eMost applications will not need to examine the valid policy tree. They can achieve their policy processing goals by setting the policy-related parameters in \u003ccode\u003ePKIXParameters\u003c/code\u003e. However, the valid policy tree is available for more sophisticated applications, especially those that process policy qualifiers. \u003c/p\u003e\n\u003cp\u003e\u003ca href\u003d\"PKIXCertPathValidatorResult.html#getPolicyTree()\"\u003e\u003ccode\u003ePKIXCertPathValidatorResult.getPolicyTree\u003c/code\u003e\u003c/a\u003e returns the root node of the valid policy tree. The tree can be traversed using the \u003ca href\u003d\"#getChildren()\"\u003e\u003ccode\u003egetChildren\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#getParent()\"\u003e\u003ccode\u003egetParent\u003c/code\u003e\u003c/a\u003e methods. Data about a particular node can be retrieved using other methods of \u003ccode\u003ePolicyNode\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e\u003cb\u003eConcurrent Access\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003eAll \u003ccode\u003ePolicyNode\u003c/code\u003e objects must be immutable and thread-safe. Multiple threads may concurrently invoke the methods defined in this class on a single \u003ccode\u003ePolicyNode\u003c/code\u003e object (or more than one) with no ill effects. This stipulation applies to all public fields and methods of this class and any added or overridden by subclasses.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

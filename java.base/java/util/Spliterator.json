@@ -1,0 +1,418 @@
+{
+  "packageName": "java.util",
+  "simpleName": "Spliterator",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "ORDERED",
+      "comment": "Characteristic value signifying that an encounter order is defined for elements. If so, this Spliterator guarantees that method trySplit() splits a strict prefix of elements, that method tryAdvance(java.util.function.Consumer\u003c? super T\u003e) steps by one element in prefix order, and that forEachRemaining(java.util.function.Consumer\u003c? super T\u003e) performs actions in encounter order. A Collection has an encounter order if the corresponding Collection.iterator() documents an order. If so, the encounter order is the same as the documented order. Otherwise, a collection does not have an encounter order.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.ORDERED\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "Encounter order is guaranteed to be ascending index order for any \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/List.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eList\u003c/code\u003e\u003c/a\u003e. But no order is guaranteed for hash-based collections such as \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashSet.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashSet\u003c/code\u003e\u003c/a\u003e. Clients of a Spliterator that reports \n\u003ccode\u003eORDERED\u003c/code\u003e are expected to preserve ordering constraints in non-commutative parallel computations."
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "DISTINCT",
+      "comment": "Characteristic value signifying that, for each pair of encountered elements x, y, !x.equals(y). This applies for example, to a Spliterator based on a Set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.DISTINCT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "SORTED",
+      "comment": "Characteristic value signifying that encounter order follows a defined sort order. If so, method getComparator() returns the associated Comparator, or null if all elements are Comparable and are sorted by their natural ordering. A Spliterator that reports SORTED must also report ORDERED.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.SORTED\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "The spliterators for \n\u003ccode\u003eCollection\u003c/code\u003e classes in the JDK that implement \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/NavigableSet.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eNavigableSet\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/SortedSet.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eSortedSet\u003c/code\u003e\u003c/a\u003e report \n\u003ccode\u003eSORTED\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "SIZED",
+      "comment": "Characteristic value signifying that the value returned from estimateSize() prior to traversal or splitting represents a finite size that, in the absence of structural source modification, represents an exact count of the number of elements that would be encountered by a complete traversal.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.SIZED\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "Most Spliterators for Collections, that cover all elements of a \n\u003ccode\u003eCollection\u003c/code\u003e report this characteristic. Sub-spliterators, such as those for \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashSet.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashSet\u003c/code\u003e\u003c/a\u003e, that cover a sub-set of elements and approximate their reported size do not."
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "NONNULL",
+      "comment": "Characteristic value signifying that the source guarantees that encountered elements will not be null. (This applies, for example, to most concurrent collections, queues, and maps.)",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.NONNULL\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "IMMUTABLE",
+      "comment": "Characteristic value signifying that the element source cannot be structurally modified; that is, elements cannot be added, replaced, or removed, so such changes cannot occur during traversal. A Spliterator that does not report IMMUTABLE or CONCURRENT is expected to have a documented policy (for example throwing ConcurrentModificationException) concerning structural interference detected during traversal.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.IMMUTABLE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "CONCURRENT",
+      "comment": "Characteristic value signifying that the element source may be safely concurrently modified (allowing additions, replacements, and/or removals) by multiple threads without external synchronization. If so, the Spliterator is expected to have a documented policy concerning the impact of modifications during traversal. A top-level Spliterator should not report both CONCURRENT and SIZED, since the finite size, if known, may change if the source is concurrently modified during traversal. Such a Spliterator is inconsistent and no guarantees can be made about any computation using that Spliterator. Sub-spliterators may report SIZED if the sub-split size is known and additions or removals to the source are not reflected when traversing. A top-level Spliterator should not report both CONCURRENT and IMMUTABLE, since they are mutually exclusive. Such a Spliterator is inconsistent and no guarantees can be made about any computation using that Spliterator. Sub-spliterators may report IMMUTABLE if additions or removals to the source are not reflected when traversing.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.CONCURRENT\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "Most concurrent collections maintain a consistency policy guaranteeing accuracy with respect to elements present at the point of Spliterator construction, but possibly not reflecting subsequent additions or removals."
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "SUBSIZED",
+      "comment": "Characteristic value signifying that all Spliterators resulting from trySplit() will be both SIZED and SUBSIZED. (This means that all child Spliterators, whether direct or indirect, will be SIZED.) A Spliterator that does not report SIZED as required by SUBSIZED is inconsistent and no guarantees can be made about any computation using that Spliterator.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.Spliterator.SUBSIZED\"\u003eConstant Field Values\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "Some spliterators, such as the top-level spliterator for an approximately balanced binary tree, will report \n\u003ccode\u003eSIZED\u003c/code\u003e but not \n\u003ccode\u003eSUBSIZED\u003c/code\u003e, since it is common to know the size of the entire tree but not the exact sizes of subtrees."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.function.Consumer",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.Spliterator",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "action"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "tryAdvance",
+      "comment": "If a remaining element exists, performs the given action on it, returning true; else returns false. If this Spliterator is ORDERED the action is performed on the next element in encounter order. Exceptions thrown by the action are relayed to the caller.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eaction\u003c/code\u003e - The action"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified action is null"
+        ],
+        "return": [
+          "\u003ccode\u003efalse\u003c/code\u003e if no remaining elements existed upon entry to this method, else \n\u003ccode\u003etrue\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.function.Consumer",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.Spliterator",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "action"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "forEachRemaining",
+      "comment": "Performs the given action for each remaining element, sequentially in the current thread, until all elements have been processed or the action throws an exception. If this Spliterator is ORDERED, actions are performed in encounter order. Exceptions thrown by the action are relayed to the caller.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation repeatedly invokes \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Spliterator.html#tryAdvance(java.util.function.Consumer)\"\u003e\u003ccode\u003etryAdvance(java.util.function.Consumer\u0026lt;? super T\u0026gt;)\u003c/code\u003e\u003c/a\u003e until it returns \n\u003ccode\u003efalse\u003c/code\u003e. It should be overridden whenever possible."
+        ],
+        "param": [
+          "\u003ccode\u003eaction\u003c/code\u003e - The action"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified action is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Spliterator",
+        "parameters": [
+          {
+            "owner": "java.util.Spliterator",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "trySplit",
+      "comment": "If this spliterator can be partitioned, returns a Spliterator covering elements, that will, upon return from this method, not be covered by this Spliterator. If this Spliterator is ORDERED, the returned Spliterator must cover a strict prefix of the elements. Unless this Spliterator covers an infinite number of elements, repeated calls to trySplit() must eventually return null. Upon non-null return: the value reported for estimateSize() before splitting, must, after splitting, be greater than or equal to estimateSize() for this and the returned Spliterator; and if this Spliterator is SUBSIZED, then estimateSize() for this spliterator before splitting must be equal to the sum of estimateSize() for this and the returned Spliterator after splitting. This method may return null for any reason, including emptiness, inability to split after traversal has commenced, data structure constraints, and efficiency considerations.",
+      "tagMap": {
+        "apiNote": [
+          "An ideal \n\u003ccode\u003etrySplit\u003c/code\u003e method efficiently (without traversal) divides its elements exactly in half, allowing balanced parallel computation. Many departures from this ideal remain highly effective; for example, only approximately splitting an approximately balanced tree, or for a tree in which leaf nodes may contain either one or two elements, failing to further split these nodes. However, large deviations in balance and/or overly inefficient \n\u003ccode\u003e trySplit\u003c/code\u003e mechanics typically result in poor parallel performance."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSpliterator\u003c/code\u003e covering some portion of the elements, or \n\u003ccode\u003enull\u003c/code\u003e if this spliterator cannot be split"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "estimateSize",
+      "comment": "Returns an estimate of the number of elements that would be encountered by a forEachRemaining(java.util.function.Consumer\u003c? super T\u003e) traversal, or returns Long.MAX_VALUE if infinite, unknown, or too expensive to compute. If this Spliterator is SIZED and has not yet been partially traversed or split, or this Spliterator is SUBSIZED and has not yet been partially traversed, this estimate must be an accurate count of elements that would be encountered by a complete traversal. Otherwise, this estimate may be arbitrarily inaccurate, but must decrease as specified across invocations of trySplit().",
+      "tagMap": {
+        "apiNote": [
+          "Even an inexact estimate is often useful and inexpensive to compute. For example, a sub-spliterator of an approximately balanced binary tree may return a value that estimates the number of elements to be half of that of its parent; if the root Spliterator does not maintain an accurate count, it could estimate size to be the power of two corresponding to its maximum depth."
+        ],
+        "return": [
+          "the estimated size, or \n\u003ccode\u003eLong.MAX_VALUE\u003c/code\u003e if infinite, unknown, or too expensive to compute."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getExactSizeIfKnown",
+      "comment": "Convenience method that returns estimateSize() if this Spliterator is SIZED, else -1.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation returns the result of \n\u003ccode\u003eestimateSize()\u003c/code\u003e if the Spliterator reports a characteristic of \n\u003ccode\u003eSIZED\u003c/code\u003e, and \n\u003ccode\u003e-1\u003c/code\u003e otherwise."
+        ],
+        "return": [
+          "the exact size, if known, else \n\u003ccode\u003e-1\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "characteristics",
+      "comment": "Returns a set of characteristics of this Spliterator and its elements. The result is represented as ORed values from ORDERED, DISTINCT, SORTED, SIZED, NONNULL, IMMUTABLE, CONCURRENT, SUBSIZED. Repeated calls to characteristics() on a given spliterator, prior to or in-between calls to trySplit, should always return the same result. If a Spliterator reports an inconsistent set of characteristics (either those returned from a single invocation or across multiple invocations), no guarantees can be made about any computation using this Spliterator.",
+      "tagMap": {
+        "apiNote": [
+          "The characteristics of a given spliterator before splitting may differ from the characteristics after splitting. For specific examples see the characteristic values \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Spliterator.html#SIZED\"\u003e\u003ccode\u003eSIZED\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Spliterator.html#SUBSIZED\"\u003e\u003ccode\u003eSUBSIZED\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Spliterator.html#CONCURRENT\"\u003e\u003ccode\u003eCONCURRENT\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "return": [
+          "a representation of characteristics"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "characteristics"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasCharacteristics",
+      "comment": "Returns true if this Spliterator\u0027s characteristics() contain all of the given characteristics.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation returns true if the corresponding bits of the given characteristics are set."
+        ],
+        "param": [
+          "\u003ccode\u003echaracteristics\u003c/code\u003e - the characteristics to check for"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if all the specified characteristics are present, else \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Comparator",
+        "parameters": [
+          {
+            "lowerBounds": [
+              {
+                "owner": "java.util.Spliterator",
+                "name": "T",
+                "type": "Variable"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getComparator",
+      "comment": "If this Spliterator\u0027s source is SORTED by a Comparator, returns that Comparator. If the source is SORTED in natural order, returns null. Otherwise, if the source is not SORTED, throws IllegalStateException.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation always throws \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eIllegalStateException\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the spliterator does not report a characteristic of \n\u003ccode\u003eSORTED\u003c/code\u003e."
+        ],
+        "return": [
+          "a Comparator, or \n\u003ccode\u003enull\u003c/code\u003e if the elements are sorted in the natural order."
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "java.util.Spliterator$OfInt",
+    "java.util.Spliterator$OfLong",
+    "java.util.Spliterator$OfDouble",
+    "java.util.Spliterator$OfPrimitive"
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.util.Spliterator",
+  "comment": "An object for traversing and partitioning elements of a source. The source of elements covered by a Spliterator could be, for example, an array, a \n\u003ca href\u003d\"Collection.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eCollection\u003c/code\u003e\u003c/a\u003e, an IO channel, or a generator function. \n\u003cp\u003eA Spliterator may traverse elements individually (\u003ca href\u003d\"#tryAdvance(java.util.function.Consumer)\"\u003e\u003ccode\u003etryAdvance()\u003c/code\u003e\u003c/a\u003e) or sequentially in bulk (\u003ca href\u003d\"#forEachRemaining(java.util.function.Consumer)\"\u003e\u003ccode\u003eforEachRemaining()\u003c/code\u003e\u003c/a\u003e). \u003c/p\u003e\n\u003cp\u003eA Spliterator may also partition off some of its elements (using \u003ca href\u003d\"#trySplit()\"\u003e\u003ccode\u003etrySplit()\u003c/code\u003e\u003c/a\u003e) as another Spliterator, to be used in possibly-parallel operations. Operations using a Spliterator that cannot split, or does so in a highly imbalanced or inefficient manner, are unlikely to benefit from parallelism. Traversal and splitting exhaust elements; each Spliterator is useful for only a single bulk computation. \u003c/p\u003e\n\u003cp\u003eA Spliterator also reports a set of \u003ca href\u003d\"#characteristics()\"\u003e\u003ccode\u003echaracteristics()\u003c/code\u003e\u003c/a\u003e of its structure, source, and elements from among \u003ca href\u003d\"#ORDERED\"\u003e\u003ccode\u003eORDERED\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#DISTINCT\"\u003e\u003ccode\u003eDISTINCT\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#SORTED\"\u003e\u003ccode\u003eSORTED\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#SIZED\"\u003e\u003ccode\u003eSIZED\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#NONNULL\"\u003e\u003ccode\u003eNONNULL\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#IMMUTABLE\"\u003e\u003ccode\u003eIMMUTABLE\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#CONCURRENT\"\u003e\u003ccode\u003eCONCURRENT\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#SUBSIZED\"\u003e\u003ccode\u003eSUBSIZED\u003c/code\u003e\u003c/a\u003e. These may be employed by Spliterator clients to control, specialize or simplify computation. For example, a Spliterator for a \u003ca href\u003d\"Collection.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eCollection\u003c/code\u003e\u003c/a\u003e would report \u003ccode\u003eSIZED\u003c/code\u003e, a Spliterator for a \u003ca href\u003d\"Set.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eSet\u003c/code\u003e\u003c/a\u003e would report \u003ccode\u003eDISTINCT\u003c/code\u003e, and a Spliterator for a \u003ca href\u003d\"SortedSet.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eSortedSet\u003c/code\u003e\u003c/a\u003e would also report \u003ccode\u003eSORTED\u003c/code\u003e. Characteristics are reported as a simple unioned bit set. Some characteristics additionally constrain method behavior; for example if \u003ccode\u003eORDERED\u003c/code\u003e, traversal methods must conform to their documented ordering. New characteristics may be defined in the future, so implementors should not assign meanings to unlisted values. \u003c/p\u003e\n\u003cp\u003e\u003ca id\u003d\"binding\"\u003eA Spliterator that does not report \u003ccode\u003eIMMUTABLE\u003c/code\u003e or \u003ccode\u003eCONCURRENT\u003c/code\u003e is expected to have a documented policy concerning: when the spliterator \u003cem\u003ebinds\u003c/em\u003e to the element source; and detection of structural interference of the element source detected after binding.\u003c/a\u003e A \u003cem\u003elate-binding\u003c/em\u003e Spliterator binds to the source of elements at the point of first traversal, first split, or first query for estimated size, rather than at the time the Spliterator is created. A Spliterator that is not \u003cem\u003elate-binding\u003c/em\u003e binds to the source of elements at the point of construction or first invocation of any method. Modifications made to the source prior to binding are reflected when the Spliterator is traversed. After binding a Spliterator should, on a best-effort basis, throw \u003ca href\u003d\"ConcurrentModificationException.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eConcurrentModificationException\u003c/code\u003e\u003c/a\u003e if structural interference is detected. Spliterators that do this are called \u003cem\u003efail-fast\u003c/em\u003e. The bulk traversal method (\u003ca href\u003d\"#forEachRemaining(java.util.function.Consumer)\"\u003e\u003ccode\u003eforEachRemaining()\u003c/code\u003e\u003c/a\u003e) of a Spliterator may optimize traversal and check for structural interference after all elements have been traversed, rather than checking per-element and failing immediately. \u003c/p\u003e\n\u003cp\u003eSpliterators can provide an estimate of the number of remaining elements via the \u003ca href\u003d\"#estimateSize()\"\u003e\u003ccode\u003eestimateSize()\u003c/code\u003e\u003c/a\u003e method. Ideally, as reflected in characteristic \u003ca href\u003d\"#SIZED\"\u003e\u003ccode\u003eSIZED\u003c/code\u003e\u003c/a\u003e, this value corresponds exactly to the number of elements that would be encountered in a successful traversal. However, even when not exactly known, an estimated value may still be useful to operations being performed on the source, such as helping to determine whether it is preferable to split further or traverse the remaining elements sequentially. \u003c/p\u003e\n\u003cp\u003eDespite their obvious utility in parallel algorithms, spliterators are not expected to be thread-safe; instead, implementations of parallel algorithms using spliterators should ensure that the spliterator is only used by one thread at a time. This is generally easy to attain via \u003cem\u003eserial thread-confinement\u003c/em\u003e, which often is a natural consequence of typical parallel algorithms that work by recursive decomposition. A thread calling \u003ca href\u003d\"#trySplit()\"\u003e\u003ccode\u003etrySplit()\u003c/code\u003e\u003c/a\u003e may hand over the returned Spliterator to another thread, which in turn may traverse or further split that Spliterator. The behaviour of splitting and traversal is undefined if two or more threads operate concurrently on the same spliterator. If the original thread hands a spliterator off to another thread for processing, it is best if that handoff occurs before any elements are consumed with \u003ca href\u003d\"#tryAdvance(java.util.function.Consumer)\"\u003e\u003ccode\u003etryAdvance()\u003c/code\u003e\u003c/a\u003e, as certain guarantees (such as the accuracy of \u003ca href\u003d\"#estimateSize()\"\u003e\u003ccode\u003eestimateSize()\u003c/code\u003e\u003c/a\u003e for \u003ccode\u003eSIZED\u003c/code\u003e spliterators) are only valid before traversal has begun. \u003c/p\u003e\n\u003cp\u003ePrimitive subtype specializations of \u003ccode\u003eSpliterator\u003c/code\u003e are provided for \u003ca href\u003d\"Spliterator.OfInt.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eint\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"Spliterator.OfLong.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003elong\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"Spliterator.OfDouble.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003edouble\u003c/code\u003e\u003c/a\u003e values. The subtype default implementations of \u003ca href\u003d\"#tryAdvance(java.util.function.Consumer)\"\u003e\u003ccode\u003etryAdvance(java.util.function.Consumer)\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#forEachRemaining(java.util.function.Consumer)\"\u003e\u003ccode\u003eforEachRemaining(java.util.function.Consumer)\u003c/code\u003e\u003c/a\u003e box primitive values to instances of their corresponding wrapper class. Such boxing may undermine any performance advantages gained by using the primitive specializations. To avoid boxing, the corresponding primitive-based methods should be used. For example, \u003ca href\u003d\"Spliterator.OfPrimitive.html#tryAdvance(T_CONS)\"\u003e\u003ccode\u003eSpliterator.OfPrimitive.tryAdvance(java.util.function.IntConsumer)\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"Spliterator.OfPrimitive.html#forEachRemaining(T_CONS)\"\u003e\u003ccode\u003eSpliterator.OfPrimitive.forEachRemaining(java.util.function.IntConsumer)\u003c/code\u003e\u003c/a\u003e should be used in preference to \u003ca href\u003d\"Spliterator.OfInt.html#tryAdvance(java.util.function.Consumer)\"\u003e\u003ccode\u003eSpliterator.OfInt.tryAdvance(java.util.function.Consumer)\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"Spliterator.OfInt.html#forEachRemaining(java.util.function.Consumer)\"\u003e\u003ccode\u003eSpliterator.OfInt.forEachRemaining(java.util.function.Consumer)\u003c/code\u003e\u003c/a\u003e. Traversal of primitive values using boxing-based methods \u003ca href\u003d\"#tryAdvance(java.util.function.Consumer)\"\u003e\u003ccode\u003etryAdvance()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#forEachRemaining(java.util.function.Consumer)\"\u003e\u003ccode\u003eforEachRemaining()\u003c/code\u003e\u003c/a\u003e does not affect the order in which the values, transformed to boxed values, are encountered.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html\" title\u003d\"interface in java.util\"\u003e\u003ccode\u003eCollection\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "apiNote": [
+      "\u003cp\u003eSpliterators, like \u003ccode\u003eIterator\u003c/code\u003es, are for traversing the elements of a source. The \u003ccode\u003eSpliterator\u003c/code\u003e API was designed to support efficient parallel traversal in addition to sequential traversal, by supporting decomposition as well as single-element iteration. In addition, the protocol for accessing elements via a Spliterator is designed to impose smaller per-element overhead than \u003ccode\u003eIterator\u003c/code\u003e, and to avoid the inherent race involved in having separate methods for \u003ccode\u003ehasNext()\u003c/code\u003e and \u003ccode\u003enext()\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003eFor mutable sources, arbitrary and non-deterministic behavior may occur if the source is structurally interfered with (elements added, replaced, or removed) between the time that the Spliterator binds to its data source and the end of traversal. For example, such interference will produce arbitrary, non-deterministic results when using the \u003ccode\u003ejava.util.stream\u003c/code\u003e framework. \u003c/p\u003e\n\u003cp\u003eStructural interference of a source can be managed in the following ways (in approximate order of decreasing desirability): \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eThe source cannot be structurally interfered with. \u003cbr\u003eFor example, an instance of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CopyOnWriteArrayList.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCopyOnWriteArrayList\u003c/code\u003e\u003c/a\u003e is an immutable source. A Spliterator created from the source reports a characteristic of \u003ccode\u003eIMMUTABLE\u003c/code\u003e.\u003c/li\u003e \n \u003cli\u003eThe source manages concurrent modifications. \u003cbr\u003eFor example, a key set of a \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eConcurrentHashMap\u003c/code\u003e\u003c/a\u003e is a concurrent source. A Spliterator created from the source reports a characteristic of \u003ccode\u003eCONCURRENT\u003c/code\u003e.\u003c/li\u003e \n \u003cli\u003eThe mutable source provides a late-binding and fail-fast Spliterator. \u003cbr\u003eLate binding narrows the window during which interference can affect the calculation; fail-fast detects, on a best-effort basis, that structural interference has occurred after traversal has commenced and throws \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ConcurrentModificationException.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eConcurrentModificationException\u003c/code\u003e\u003c/a\u003e. For example, \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ArrayList.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eArrayList\u003c/code\u003e\u003c/a\u003e, and many other non-concurrent \u003ccode\u003eCollection\u003c/code\u003e classes in the JDK, provide a late-binding, fail-fast spliterator.\u003c/li\u003e \n \u003cli\u003eThe mutable source provides a non-late-binding but fail-fast Spliterator. \u003cbr\u003eThe source increases the likelihood of throwing \u003ccode\u003eConcurrentModificationException\u003c/code\u003e since the window of potential interference is larger.\u003c/li\u003e \n \u003cli\u003eThe mutable source provides a late-binding and non-fail-fast Spliterator. \u003cbr\u003eThe source risks arbitrary, non-deterministic behavior after traversal has commenced since interference is not detected. \u003c/li\u003e \n \u003cli\u003eThe mutable source provides a non-late-binding and non-fail-fast Spliterator. \u003cbr\u003eThe source increases the risk of arbitrary, non-deterministic behavior since non-detected interference may occur after construction. \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e\u003cb\u003eExample.\u003c/b\u003e Here is a class (not a very useful one, except for illustration) that maintains an array in which the actual data are held in even locations, and unrelated tag data are held in odd locations. Its Spliterator ignores the tags. \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class TaggedArray\u0026lt;T\u0026gt; {\n   private final Object[] elements; // immutable after construction\n   TaggedArray(T[] data, Object[] tags) {\n     int size \u003d data.length;\n     if (tags.length !\u003d size) throw new IllegalArgumentException();\n     this.elements \u003d new Object[2 * size];\n     for (int i \u003d 0, j \u003d 0; i \u0026lt; size; ++i) {\n       elements[j++] \u003d data[i];\n       elements[j++] \u003d tags[i];\n     }\n   }\n\n   public Spliterator\u0026lt;T\u0026gt; spliterator() {\n     return new TaggedArraySpliterator\u0026lt;\u0026gt;(elements, 0, elements.length);\n   }\n\n   static class TaggedArraySpliterator\u0026lt;T\u0026gt; implements Spliterator\u0026lt;T\u0026gt; {\n     private final Object[] array;\n     private int origin; // current index, advanced on split or traversal\n     private final int fence; // one past the greatest index\n\n     TaggedArraySpliterator(Object[] array, int origin, int fence) {\n       this.array \u003d array; this.origin \u003d origin; this.fence \u003d fence;\n     }\n\n     public void forEachRemaining(Consumer\u0026lt;? super T\u0026gt; action) {\n       for (; origin \u0026lt; fence; origin +\u003d 2)\n         action.accept((T) array[origin]);\n     }\n\n     public boolean tryAdvance(Consumer\u0026lt;? super T\u0026gt; action) {\n       if (origin \u0026lt; fence) {\n         action.accept((T) array[origin]);\n         origin +\u003d 2;\n         return true;\n       }\n       else // cannot advance\n         return false;\n     }\n\n     public Spliterator\u0026lt;T\u0026gt; trySplit() {\n       int lo \u003d origin; // divide range in half\n       int mid \u003d ((lo + fence) \u0026gt;\u0026gt;\u0026gt; 1) \u0026amp; ~1; // force midpoint to be even\n       if (lo \u0026lt; mid) { // split out left half\n         origin \u003d mid; // reset this Spliterator\u0027s origin\n         return new TaggedArraySpliterator\u0026lt;\u0026gt;(array, lo, mid);\n       }\n       else       // too small to split\n         return null;\n     }\n\n     public long estimateSize() {\n       return (long)((fence - origin) / 2);\n     }\n\n     public int characteristics() {\n       return ORDERED | SIZED | IMMUTABLE | SUBSIZED;\n     }\n   }\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eAs an example how a parallel computation framework, such as the \u003ccode\u003ejava.util.stream\u003c/code\u003e package, would use Spliterator in a parallel computation, here is one way to implement an associated parallel forEach, that illustrates the primary usage idiom of splitting off subtasks until the estimated amount of work is small enough to perform sequentially. Here we assume that the order of processing across subtasks doesn\u0027t matter; different (forked) tasks may further split and process elements concurrently in undetermined order. This example uses a \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CountedCompleter.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eCountedCompleter\u003c/code\u003e\u003c/a\u003e; similar usages apply to other parallel task constructions. \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n static \u0026lt;T\u0026gt; void parEach(TaggedArray\u0026lt;T\u0026gt; a, Consumer\u0026lt;T\u0026gt; action) {\n   Spliterator\u0026lt;T\u0026gt; s \u003d a.spliterator();\n   long targetBatchSize \u003d s.estimateSize() / (ForkJoinPool.getCommonPoolParallelism() * 8);\n   new ParEach(null, s, action, targetBatchSize).invoke();\n }\n\n static class ParEach\u0026lt;T\u0026gt; extends CountedCompleter\u0026lt;Void\u0026gt; {\n   final Spliterator\u0026lt;T\u0026gt; spliterator;\n   final Consumer\u0026lt;T\u0026gt; action;\n   final long targetBatchSize;\n\n   ParEach(ParEach\u0026lt;T\u0026gt; parent, Spliterator\u0026lt;T\u0026gt; spliterator,\n           Consumer\u0026lt;T\u0026gt; action, long targetBatchSize) {\n     super(parent);\n     this.spliterator \u003d spliterator; this.action \u003d action;\n     this.targetBatchSize \u003d targetBatchSize;\n   }\n\n   public void compute() {\n     Spliterator\u0026lt;T\u0026gt; sub;\n     while (spliterator.estimateSize() \u0026gt; targetBatchSize \u0026amp;\u0026amp;\n            (sub \u003d spliterator.trySplit()) !\u003d null) {\n       addToPendingCount(1);\n       new ParEach\u0026lt;\u0026gt;(this, sub, action, targetBatchSize).fork();\n     }\n     spliterator.forEachRemaining(action);\n     propagateCompletion();\n   }\n }\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+    ],
+    "implNote": [
+      "If the boolean system property \n\u003ccode\u003e\u003cspan id\u003d\"org.openjdk.java.util.stream.tripwire\" class\u003d\"search-tag-result\"\u003eorg.openjdk.java.util.stream.tripwire\u003c/span\u003e\u003c/code\u003e is set to \n\u003ccode\u003etrue\u003c/code\u003e then diagnostic warnings are reported if boxing of primitive values occur when operating on primitive subtype specializations."
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "packageName": "javax.management",
+  "simpleName": "PersistentMBean",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.RuntimeOperationsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "load",
+      "comment": "Instantiates thisMBean instance with the data found for the MBean in the persistent store. The data loaded could include attribute and operation values. This method should be called during construction or initialization of this instance, and before the MBean is registered with the MBeanServer.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps another exception or persistence is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps exceptions from the persistence mechanism",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - Could not find or load this MBean from persistent storage"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.management.MBeanException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.RuntimeOperationsException",
+          "type": "Class"
+        },
+        {
+          "name": "javax.management.InstanceNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "store",
+      "comment": "Captures the current state of this MBean instance and writes it out to the persistent store. The state stored could include attribute and operation values. If one of these methods of persistence is not supported a \"serviceNotFound\" exception will be thrown. Persistence policy from the MBean and attribute descriptor is used to guide execution of this method. The MBean should be stored if \u0027persistPolicy\u0027 field is:  !\u003d \"never\"\n   \u003d \"always\"\n   \u003d \"onTimer\" and now \u003e \u0027lastPersistTime\u0027 + \u0027persistPeriod\u0027\n   \u003d \"NoMoreOftenThan\" and now \u003e \u0027lastPersistTime\u0027 + \u0027persistPeriod\u0027\n   \u003d \"onUnregister\"\n Do not store the MBean if \u0027persistPolicy\u0027 field is:     \u003d \"never\"\n    \u003d \"onUpdate\"\n    \u003d \"onTimer\" \u0026\u0026 now \u003c \u0027lastPersistTime\u0027 + \u0027persistPeriod\u0027",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/MBeanException.html\" title\u003d\"class in javax.management\"\u003eMBeanException\u003c/a\u003e\u003c/code\u003e - Wraps another exception or persistence is not supported",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/RuntimeOperationsException.html\" title\u003d\"class in javax.management\"\u003eRuntimeOperationsException\u003c/a\u003e\u003c/code\u003e - Wraps exceptions from the persistence mechanism",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/InstanceNotFoundException.html\" title\u003d\"class in javax.management\"\u003eInstanceNotFoundException\u003c/a\u003e\u003c/code\u003e - Could not find/access the persistent store"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.management.PersistentMBean",
+  "comment": "This class is the interface to be implemented by MBeans that are meant to be persistent. MBeans supporting this interface should call the load method during construction in order to prime the MBean from the persistent store. In the case of a ModelMBean, the store method should be called by the MBeanServer based on the descriptors in the ModelMBean or by the MBean itself during normal processing of the ModelMBean.",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

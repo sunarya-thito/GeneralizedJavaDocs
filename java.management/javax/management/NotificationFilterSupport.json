@@ -1,0 +1,158 @@
+{
+  "packageName": "javax.management",
+  "simpleName": "NotificationFilterSupport",
+  "moduleName": "java.management",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.Notification",
+            "type": "Class"
+          },
+          "field": {
+            "name": "notification"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isNotificationEnabled",
+      "comment": "Invoked before sending the specified notification to the listener. This filter compares the type of the specified notification with each enabled type. If the notification type matches one of the enabled types, the notification should be sent to the listener and this method returns true.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationFilter.html#isNotificationEnabled(javax.management.Notification)\"\u003eisNotificationEnabled\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationFilter.html\" title\u003d\"interface in javax.management\"\u003eNotificationFilter\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enotification\u003c/code\u003e - The notification to be sent."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the notification should be sent to the listener, \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.IllegalArgumentException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "prefix"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "enableType",
+      "comment": "Enables all the notifications the type of which starts with the specified prefix to be sent to the listener. If the specified prefix is already in the list of enabled notification types, this method has no effect. Example:  // Enables all notifications the type of which starts with \"my_example\" to be sent.\n myFilter.enableType(\"my_example\");\n // Enables all notifications the type of which is \"my_example.my_type\" to be sent.\n myFilter.enableType(\"my_example.my_type\");\n Note that: myFilter.enableType(\"my_example.*\"); will no match any notification type.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprefix\u003c/code\u003e - The prefix."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - The prefix parameter is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "prefix"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "disableType",
+      "comment": "Removes the given prefix from the prefix list. If the specified prefix is not in the list of enabled notification types, this method has no effect.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprefix\u003c/code\u003e - The prefix."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "disableAllTypes",
+      "comment": "Disables all notification types.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.util.Vector",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getEnabledTypes",
+      "comment": "Gets all the enabled notification types for this filter.",
+      "tagMap": {
+        "return": [
+          "The list containing all the enabled notification types."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a NotificationFilterSupport.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.management.NotificationFilterSupport",
+  "comment": "Provides an implementation of the \n\u003ca href\u003d\"NotificationFilter.html\" title\u003d\"interface in javax.management\"\u003e\u003ccode\u003eNotificationFilter\u003c/code\u003e\u003c/a\u003e interface. The filtering is performed on the notification type attribute. \n\u003cp\u003e Manages a list of enabled notification types. A method allows users to enable/disable as many notification types as required. \u003c/p\u003e\n\u003cp\u003e Then, before sending a notification to a listener registered with a filter, the notification broadcaster compares this notification type with all notification types enabled by the filter. The notification will be sent to the listener only if its filter enables this notification type. \u003c/p\u003e\n\u003cp\u003e Example: \u003c/p\u003e\n\u003cblockquote\u003e \n \u003cpre\u003e NotificationFilterSupport myFilter \u003d new NotificationFilterSupport();\n myFilter.enableType(\"my_example.my_type\");\n myBroadcaster.addListener(myListener, myFilter, null);\n \u003c/pre\u003e \n\u003c/blockquote\u003e The listener \n\u003ccode\u003emyListener\u003c/code\u003e will only receive notifications the type of which equals/starts with \"my_example.my_type\".\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/NotificationBroadcaster.html#addNotificationListener(javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object)\"\u003e\u003ccode\u003eNotificationBroadcaster.addNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.management.NotificationFilterSupport\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

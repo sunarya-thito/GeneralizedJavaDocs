@@ -1,0 +1,821 @@
+{
+  "packageName": "javax.tools",
+  "simpleName": "StandardJavaFileManager",
+  "moduleName": "java.compiler",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "javax.tools.JavaFileManager",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "b"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSameFile",
+      "comment": "Compares two file objects and return true if they represent the same canonical file, zip file entry, or entry in any file system based container.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html#isSameFile(javax.tools.FileObject,javax.tools.FileObject)\"\u003eisSameFile\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/JavaFileManager.html\" title\u003d\"interface in javax.tools\"\u003eJavaFileManager\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - a file object",
+          "\u003ccode\u003eb\u003c/code\u003e - a file object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either of the arguments were created with another file manager implementation"
+        ],
+        "return": [
+          "true if the given file objects represent the same canonical file, zip file entry or path; false otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.tools.JavaFileObject",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Iterable",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.io.File",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "files"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileObjectsFromFiles",
+      "comment": "Returns file objects representing the given files.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efiles\u003c/code\u003e - a list of files"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the list of files includes a directory"
+        ],
+        "return": [
+          "a list of file objects"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.tools.JavaFileObject",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Collection",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.Path",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "paths"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileObjectsFromPaths",
+      "comment": "Returns file objects representing the given paths.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation converts each path to a file and calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#getJavaFileObjectsFromFiles(java.lang.Iterable)\"\u003e\u003ccode\u003egetJavaObjectsFromFiles\u003c/code\u003e\u003c/a\u003e. IllegalArgumentException will be thrown if any of the paths cannot be converted to a file."
+        ],
+        "param": [
+          "\u003ccode\u003epaths\u003c/code\u003e - a list of paths"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the list of paths includes a directory or if this file manager does not support any of the given paths."
+        ],
+        "return": [
+          "a list of file objects"
+        ],
+        "since": [
+          "13"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.tools.JavaFileObject",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Iterable",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.Path",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "paths"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileObjectsFromPaths",
+      "comment": "Returns file objects representing the given paths.",
+      "annotations": [
+        {
+          "type": "Deprecated",
+          "values": [
+            {
+              "name": "since",
+              "value": "13"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "implSpec": [
+          "The default implementation converts each path to a file and calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#getJavaFileObjectsFromFiles(java.lang.Iterable)\"\u003e\u003ccode\u003egetJavaObjectsFromFiles\u003c/code\u003e\u003c/a\u003e. IllegalArgumentException will be thrown if any of the paths cannot be converted to a file."
+        ],
+        "param": [
+          "\u003ccode\u003epaths\u003c/code\u003e - a list of paths"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the list of paths includes a directory or if this file manager does not support any of the given paths."
+        ],
+        "return": [
+          "a list of file objects"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.tools.JavaFileObject",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.File",
+            "type": "Class"
+          },
+          "field": {
+            "name": "files"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileObjects",
+      "comment": "Returns file objects representing the given files. Convenience method equivalent to:      getJavaFileObjectsFromFiles(Arrays.asList(files))",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efiles\u003c/code\u003e - an array of files"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the array of files includes a directory",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the given array contains null elements"
+        ],
+        "return": [
+          "a list of file objects"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.tools.JavaFileObject",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "paths"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileObjects",
+      "comment": "Returns file objects representing the given paths. Convenience method equivalent to:      getJavaFileObjectsFromPaths(Arrays.asList(paths))",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epaths\u003c/code\u003e - an array of paths"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the array of files includes a directory",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the given array contains null elements"
+        ],
+        "return": [
+          "a list of file objects"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.tools.JavaFileObject",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Iterable",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "names"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileObjectsFromStrings",
+      "comment": "Returns file objects representing the given file names.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enames\u003c/code\u003e - a list of file names"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the list of file names includes a directory"
+        ],
+        "return": [
+          "a list of file objects"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "javax.tools.JavaFileObject",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "names"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getJavaFileObjects",
+      "comment": "Returns file objects representing the given file names. Convenience method equivalent to:      getJavaFileObjectsFromStrings(Arrays.asList(names))",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enames\u003c/code\u003e - a list of file names"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the array of file names includes a directory",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the given array contains null elements"
+        ],
+        "return": [
+          "a list of file objects"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "field": {
+            "name": "location"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Iterable",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.io.File",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "files"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setLocation",
+      "comment": "Associates the given search path with the given location. Any previous value will be discarded. If the location is a module-oriented or output location, any module-specific associations set up by setLocationForModule will be cancelled.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#getLocation(javax.tools.JavaFileManager.Location)\"\u003e\u003ccode\u003egetLocation(javax.tools.JavaFileManager.Location)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location",
+          "\u003ccode\u003efiles\u003c/code\u003e - a list of files, if \n\u003ccode\u003enull\u003c/code\u003e use the default search path for this location"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elocation\u003c/code\u003e is an output location and \n\u003ccode\u003efiles\u003c/code\u003e does not contain exactly one element",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elocation\u003c/code\u003e is an output location and does not represent an existing directory"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "field": {
+            "name": "location"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Collection",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.Path",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "paths"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setLocationFromPaths",
+      "comment": "Associates the given search path with the given location. Any previous value will be discarded. If the location is a module-oriented or output location, any module-specific associations set up by setLocationForModule will be cancelled.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation converts each path to a file and calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#getJavaFileObjectsFromFiles(java.lang.Iterable)\"\u003e\u003ccode\u003egetJavaObjectsFromFiles\u003c/code\u003e\u003c/a\u003e. \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e will be thrown if any of the paths cannot be converted to a file."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#getLocation(javax.tools.JavaFileManager.Location)\"\u003e\u003ccode\u003egetLocation(javax.tools.JavaFileManager.Location)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location",
+          "\u003ccode\u003epaths\u003c/code\u003e - a list of paths, if \n\u003ccode\u003enull\u003c/code\u003e use the default search path for this location"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elocation\u003c/code\u003e is an output location and \n\u003ccode\u003epaths\u003c/code\u003e does not contain exactly one element or if this file manager does not support any of the given paths",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elocation\u003c/code\u003e is an output location and \n\u003ccode\u003epaths\u003c/code\u003e does not represent an existing directory"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "field": {
+            "name": "location"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "moduleName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Collection",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.Path",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "paths"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setLocationForModule",
+      "comment": "Associates the given search path with the given module and location, which must be a module-oriented or output location. Any previous value will be discarded. This overrides any default association derived from the search path associated with the location itself. All such module-specific associations will be cancelled if a new search path is associated with the location by calling setLocation or setLocationFromPaths.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#setLocation(javax.tools.JavaFileManager.Location,java.lang.Iterable)\"\u003e\u003ccode\u003esetLocation(javax.tools.JavaFileManager.Location, java.lang.Iterable\u0026lt;? extends java.io.File\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#setLocationFromPaths(javax.tools.JavaFileManager.Location,java.util.Collection)\"\u003e\u003ccode\u003esetLocationFromPaths(javax.tools.JavaFileManager.Location, java.util.Collection\u0026lt;? extends java.nio.file.Path\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - the location",
+          "\u003ccode\u003emoduleName\u003c/code\u003e - the name of the module",
+          "\u003ccode\u003epaths\u003c/code\u003e - the search path to associate with the location and module."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the location is not a module-oriented or output location.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this operation is not supported by this file manager.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elocation\u003c/code\u003e is an output location and \n\u003ccode\u003epaths\u003c/code\u003e does not represent an existing directory"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "java.io.File",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "field": {
+            "name": "location"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLocation",
+      "comment": "Returns the search path associated with the given location.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#setLocation(javax.tools.JavaFileManager.Location,java.lang.Iterable)\"\u003e\u003ccode\u003esetLocation(javax.tools.JavaFileManager.Location, java.lang.Iterable\u0026lt;? extends java.io.File\u0026gt;)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Path.html#toFile()\"\u003e\u003ccode\u003ePath.toFile()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if any element of the search path cannot be converted to a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/File.html\" title\u003d\"class in java.io\"\u003eFile\u003c/a\u003e, or if the search path cannot be represented as a simple series of files."
+        ],
+        "return": [
+          "a list of files or \n\u003ccode\u003enull\u003c/code\u003e if this location has no associated search path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Iterable",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "java.nio.file.Path",
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.JavaFileManager$Location",
+            "type": "Class"
+          },
+          "field": {
+            "name": "location"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLocationAsPaths",
+      "comment": "Returns the search path associated with the given location.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation calls \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#getLocation(javax.tools.JavaFileManager.Location)\"\u003e\u003ccode\u003egetLocation\u003c/code\u003e\u003c/a\u003e and then returns an \n\u003ccode\u003eIterable\u003c/code\u003e formed by calling \n\u003ccode\u003etoPath()\u003c/code\u003e on each \n\u003ccode\u003eFile\u003c/code\u003e returned from \n\u003ccode\u003egetLocation\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/tools/StandardJavaFileManager.html#setLocationFromPaths(javax.tools.JavaFileManager.Location,java.util.Collection)\"\u003e\u003ccode\u003esetLocationFromPaths(javax.tools.JavaFileManager.Location, java.util.Collection\u0026lt;? extends java.nio.file.Path\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elocation\u003c/code\u003e - a location"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the search path cannot be represented as a simple series of paths."
+        ],
+        "return": [
+          "a list of paths or \n\u003ccode\u003enull\u003c/code\u003e if this location has no associated search path"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.FileObject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "asPath",
+      "comment": "Returns the path, if any, underlying this file object (optional operation). File objects derived from a FileSystem, including the default file system, typically have a corresponding underlying Path object. In such cases, this method may be used to access that object.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation throws \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e for all files."
+        ],
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - a file object"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the file object does not have an underlying path",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the operation is not supported by this file manager"
+        ],
+        "return": [
+          "a path representing the same underlying file system artifact"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.tools.StandardJavaFileManager$PathFactory",
+            "type": "Class"
+          },
+          "field": {
+            "name": "f"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setPathFactory",
+      "comment": "Specify a factory that can be used to generate a path from a string, or series of strings. If this method is not called, a factory whose getPath method is equivalent to calling java.nio.file.Paths.get(first, more) will be used.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method ignores the factory that is provided."
+        ],
+        "param": [
+          "\u003ccode\u003ef\u003c/code\u003e - the factory"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.tools.StandardJavaFileManager$PathFactory"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.tools.StandardJavaFileManager",
+  "comment": "File manager based on \n\u003ca href\u003d\"../../../java.base/java/io/File.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003ejava.io.File\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"../../../java.base/java/nio/file/Path.html\" title\u003d\"interface in java.nio.file\"\u003e\u003ccode\u003ejava.nio.file.Path\u003c/code\u003e\u003c/a\u003e. A common way to obtain an instance of this class is using \n\u003ca href\u003d\"JavaCompiler.html#getStandardFileManager(javax.tools.DiagnosticListener,java.util.Locale,java.nio.charset.Charset)\"\u003egetStandardFileManager\u003c/a\u003e, for example: \n\u003cpre\u003e   JavaCompiler compiler \u003d ToolProvider.getSystemJavaCompiler();\n   \u003ccode\u003eDiagnosticCollector\u0026lt;JavaFileObject\u0026gt;\u003c/code\u003e diagnostics \u003d\n       new \u003ccode\u003eDiagnosticCollector\u0026lt;JavaFileObject\u0026gt;()\u003c/code\u003e;\n   StandardJavaFileManager fm \u003d compiler.getStandardFileManager(diagnostics, null, null);\n \u003c/pre\u003e This file manager creates file objects representing regular \n\u003ca href\u003d\"../../../java.base/java/io/File.html\" title\u003d\"class in java.io\"\u003efiles\u003c/a\u003e, \n\u003ca href\u003d\"../../../java.base/java/util/zip/ZipEntry.html\" title\u003d\"class in java.util.zip\"\u003ezip file entries\u003c/a\u003e, or entries in similar file system based containers. Any file object returned from a file manager implementing this interface must observe the following behavior: \n\u003cul\u003e \n \u003cli\u003e File names need not be canonical. \u003c/li\u003e \n \u003cli\u003e For file objects representing regular files \n  \u003cul\u003e \n   \u003cli\u003e the method \u003ccode\u003e\u003ca href\u003d\"FileObject.html#delete()\"\u003eFileObject.delete()\u003c/a\u003e\u003c/code\u003e is equivalent to \u003ccode\u003e\u003ca href\u003d\"../../../java.base/java/io/File.html#delete()\"\u003eFile.delete()\u003c/a\u003e\u003c/code\u003e, \u003c/li\u003e \n   \u003cli\u003e the method \u003ccode\u003e\u003ca href\u003d\"FileObject.html#getLastModified()\"\u003eFileObject.getLastModified()\u003c/a\u003e\u003c/code\u003e is equivalent to \u003ccode\u003e\u003ca href\u003d\"../../../java.base/java/io/File.html#lastModified()\"\u003eFile.lastModified()\u003c/a\u003e\u003c/code\u003e, \u003c/li\u003e \n   \u003cli\u003e the methods \u003ccode\u003e\u003ca href\u003d\"FileObject.html#getCharContent(boolean)\"\u003eFileObject.getCharContent(boolean)\u003c/a\u003e\u003c/code\u003e, \u003ccode\u003e\u003ca href\u003d\"FileObject.html#openInputStream()\"\u003eFileObject.openInputStream()\u003c/a\u003e\u003c/code\u003e, and \u003ccode\u003e\u003ca href\u003d\"FileObject.html#openReader(boolean)\"\u003eFileObject.openReader(boolean)\u003c/a\u003e\u003c/code\u003e must succeed if the following would succeed (ignoring encoding issues): \n    \u003cblockquote\u003e \n     \u003cpre\u003enew \u003ca href\u003d\"../../../java.base/java/io/FileInputStream.html#%3Cinit%3E(java.io.File)\"\u003eFileInputStream\u003c/a\u003e(new \u003ca href\u003d\"../../../java.base/java/io/File.html#%3Cinit%3E(java.net.URI)\"\u003eFile\u003c/a\u003e(\u003ca href\u003d\"FileObject.html\" title\u003d\"interface in javax.tools\"\u003efileObject\u003c/a\u003e.\u003ca href\u003d\"FileObject.html#toUri()\"\u003etoUri\u003c/a\u003e()))\u003c/pre\u003e \n    \u003c/blockquote\u003e \u003c/li\u003e \n   \u003cli\u003e and the methods \u003ccode\u003e\u003ca href\u003d\"FileObject.html#openOutputStream()\"\u003eFileObject.openOutputStream()\u003c/a\u003e\u003c/code\u003e, and \u003ccode\u003e\u003ca href\u003d\"FileObject.html#openWriter()\"\u003eFileObject.openWriter()\u003c/a\u003e\u003c/code\u003e must succeed if the following would succeed (ignoring encoding issues): \n    \u003cblockquote\u003e \n     \u003cpre\u003enew \u003ca href\u003d\"../../../java.base/java/io/FileOutputStream.html#%3Cinit%3E(java.io.File)\"\u003eFileOutputStream\u003c/a\u003e(new \u003ca href\u003d\"../../../java.base/java/io/File.html#%3Cinit%3E(java.net.URI)\"\u003eFile\u003c/a\u003e(\u003ca href\u003d\"FileObject.html\" title\u003d\"interface in javax.tools\"\u003efileObject\u003c/a\u003e.\u003ca href\u003d\"FileObject.html#toUri()\"\u003etoUri\u003c/a\u003e()))\u003c/pre\u003e \n    \u003c/blockquote\u003e \u003c/li\u003e \n  \u003c/ul\u003e \u003c/li\u003e \n \u003cli\u003e The \u003ca href\u003d\"../../../java.base/java/net/URI.html\" title\u003d\"class in java.net\"\u003eURI\u003c/a\u003e returned from \u003ccode\u003e\u003ca href\u003d\"FileObject.html#toUri()\"\u003eFileObject.toUri()\u003c/a\u003e\u003c/code\u003e \n  \u003cul\u003e \n   \u003cli\u003e must be \u003ca href\u003d\"../../../java.base/java/net/URI.html#isAbsolute()\"\u003eabsolute\u003c/a\u003e (have a schema), and \u003c/li\u003e \n   \u003cli\u003e must have a \u003ca href\u003d\"../../../java.base/java/net/URI.html#normalize()\"\u003enormalized\u003c/a\u003e \u003ca href\u003d\"../../../java.base/java/net/URI.html#getPath()\"\u003epath component\u003c/a\u003e which can be resolved without any process-specific context such as the current directory (file names must be absolute). \u003c/li\u003e \n  \u003c/ul\u003e \u003c/li\u003e \n\u003c/ul\u003e According to these rules, the following URIs, for example, are allowed: \n\u003cul\u003e \n \u003cli\u003e \u003ccode\u003efile:///C:/Documents%20and%20Settings/UncleBob/BobsApp/Test.java\u003c/code\u003e \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003ejar:///C:/Documents%20and%20Settings/UncleBob/lib/vendorA.jar!/com/vendora/LibraryClass.class\u003c/code\u003e \u003c/li\u003e \n\u003c/ul\u003e Whereas these are not (reason in parentheses): \n\u003cul\u003e \n \u003cli\u003e \u003ccode\u003efile:BobsApp/Test.java\u003c/code\u003e (the file name is relative and depend on the current directory) \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003ejar:lib/vendorA.jar!/com/vendora/LibraryClass.class\u003c/code\u003e (the first half of the path depends on the current directory, whereas the component after ! is legal) \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003eTest.java\u003c/code\u003e (this URI depends on the current directory and does not have a schema) \u003c/li\u003e \n \u003cli\u003e \u003ccode\u003ejar:///C:/Documents%20and%20Settings/UncleBob/BobsApp/../lib/vendorA.jar!com/vendora/LibraryClass.class\u003c/code\u003e (the path is not normalized) \u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003eAll implementations of this interface must support Path objects representing files in the \u003ca href\u003d\"../../../java.base/java/nio/file/FileSystems.html#getDefault()\"\u003edefault file system.\u003c/a\u003e It is recommended that implementations should support Path objects from any filesystem.\u003c/p\u003e",
+  "tagMap": {
+    "apiNote": [
+      "Some methods on this interface take a \n\u003ccode\u003eCollection\u0026lt;? extends Path\u0026gt;\u003c/code\u003e instead of \n\u003ccode\u003eIterable\u0026lt;? extends Path\u0026gt;\u003c/code\u003e. This is to prevent the possibility of accidentally calling the method with a single \n\u003ccode\u003ePath\u003c/code\u003e as such an argument, because although \n\u003ccode\u003ePath\u003c/code\u003e implements \n\u003ccode\u003eIterable\u0026lt;Path\u0026gt;\u003c/code\u003e, it would almost never be correct to call these methods with a single \n\u003ccode\u003ePath\u003c/code\u003e and have it be treated as an \n\u003ccode\u003eIterable\u003c/code\u003e of its components."
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

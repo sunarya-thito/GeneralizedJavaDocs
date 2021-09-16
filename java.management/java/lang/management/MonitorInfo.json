@@ -1,0 +1,139 @@
+{
+  "packageName": "java.lang.management",
+  "simpleName": "MonitorInfo",
+  "moduleName": "java.management",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.management.LockInfo",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getLockedStackDepth",
+      "comment": "Returns the depth in the stack trace where the object monitor was locked. The depth is the index to the StackTraceElement array returned in the ThreadInfo.getStackTrace() method.",
+      "tagMap": {
+        "return": [
+          "the depth in the stack trace where the object monitor was locked, or a negative number if not available."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.StackTraceElement",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getLockedStackFrame",
+      "comment": "Returns the stack frame that locked the object monitor.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003eStackTraceElement\u003c/code\u003e that locked the object monitor, or \n\u003ccode\u003enull\u003c/code\u003e if not available."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.MonitorInfo",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.management.openmbean.CompositeData",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cd"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "from",
+      "comment": "Returns a MonitorInfo object represented by the given CompositeData. The given CompositeData must contain the following attributes as well as the attributes specified in the mapped type for the LockInfo class: The attributes and their types the given CompositeData contains Attribute Name Type lockedStackFrame CompositeData for StackTraceElement as specified in ThreadInfo.from(CompositeData) method. lockedStackDepth java.lang.Integer",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecd\u003c/code\u003e - \n\u003ccode\u003eCompositeData\u003c/code\u003e representing a \n\u003ccode\u003eMonitorInfo\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecd\u003c/code\u003e does not represent a \n\u003ccode\u003eMonitorInfo\u003c/code\u003e with the attributes described above."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eMonitorInfo\u003c/code\u003e object represented by \n\u003ccode\u003ecd\u003c/code\u003e if \n\u003ccode\u003ecd\u003c/code\u003e is not \n\u003ccode\u003enull\u003c/code\u003e; \n\u003ccode\u003enull\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "className"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "identityHashCode"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stackDepth"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.StackTraceElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stackFrame"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Construct a MonitorInfo object.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eclassName\u003c/code\u003e - the fully qualified name of the class of the lock object.",
+          "\u003ccode\u003eidentityHashCode\u003c/code\u003e - the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eidentity hash code\u003c/code\u003e\u003c/a\u003e of the lock object.",
+          "\u003ccode\u003estackDepth\u003c/code\u003e - the depth in the stack trace where the object monitor was locked.",
+          "\u003ccode\u003estackFrame\u003c/code\u003e - the stack frame that locked the object monitor."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003estackDepth\u003c/code\u003e ≥ 0 but \n\u003ccode\u003estackFrame\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or \n\u003ccode\u003estackDepth\u003c/code\u003e \u0026lt; 0 but \n\u003ccode\u003estackFrame\u003c/code\u003e is not \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.lang.management.MonitorInfo",
+  "comment": "Information about an object monitor lock. An object monitor is locked when entering a synchronization block or method on that object. \n\u003ch2\u003eMXBean Mapping\u003c/h2\u003e \n\u003ccode\u003eMonitorInfo\u003c/code\u003e is mapped to a \n\u003ca href\u003d\"../../../javax/management/openmbean/CompositeData.html\" title\u003d\"interface in javax.management.openmbean\"\u003e\u003ccode\u003eCompositeData\u003c/code\u003e\u003c/a\u003e with attributes as specified in the \n\u003ca href\u003d\"#from(javax.management.openmbean.CompositeData)\"\u003e\u003ccode\u003efrom\u003c/code\u003e\u003c/a\u003e method.",
+  "tagMap": {
+    "since": [
+      "1.6"
+    ]
+  }
+}

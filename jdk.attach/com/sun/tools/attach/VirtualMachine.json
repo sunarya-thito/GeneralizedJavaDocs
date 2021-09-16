@@ -1,0 +1,734 @@
+{
+  "packageName": "com.sun.tools.attach",
+  "simpleName": "VirtualMachine",
+  "moduleName": "jdk.attach",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.tools.attach.VirtualMachineDescriptor",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "list",
+      "comment": "Return a list of Java virtual machines. This method returns a list of Java VirtualMachineDescriptor elements. The list is an aggregation of the virtual machine descriptor lists obtained by invoking the listVirtualMachines method of all installed attach providers. If there are no Java virtual machines known to any provider then an empty list is returned.",
+      "tagMap": {
+        "return": [
+          "The list of virtual machine descriptors."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.tools.attach.VirtualMachine",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AttachNotSupportedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "id"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "attach",
+      "comment": "Attaches to a Java virtual machine. This method obtains the list of attach providers by invoking the AttachProvider.providers() method. It then iterates overs the list and invokes each provider\u0027s attachVirtualMachine method in turn. If a provider successfully attaches then the iteration terminates, and the VirtualMachine created by the provider that successfully attached is returned by this method. If the attachVirtualMachine method of all providers throws AttachNotSupportedException then this method also throws AttachNotSupportedException. This means that AttachNotSupportedException is thrown when the identifier provided to this method is invalid, or the identifier corresponds to a Java virtual machine that does not exist, or none of the providers can attach to it. This exception is also thrown if AttachProvider.providers() returns an empty list.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - The abstract identifier that identifies the Java virtual machine."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager has been installed and it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachPermission.html\" title\u003d\"class in com.sun.tools.attach\"\u003e\u003ccode\u003eAttachPermission\u003c/code\u003e\u003c/a\u003e \n\u003ccode\u003e(\"attachVirtualMachine\")\u003c/code\u003e, or another permission required by the implementation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachNotSupportedException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAttachNotSupportedException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eattachVirtualmachine\u003c/code\u003e method of all installed providers throws \n\u003ccode\u003eAttachNotSupportedException\u003c/code\u003e, or there aren\u0027t any providers installed.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eid\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "A VirtualMachine representing the target VM."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.tools.attach.VirtualMachine",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AttachNotSupportedException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.tools.attach.VirtualMachineDescriptor",
+            "type": "Class"
+          },
+          "field": {
+            "name": "vmd"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "attach",
+      "comment": "Attaches to a Java virtual machine. This method first invokes the provider() method of the given virtual machine descriptor to obtain the attach provider. It then invokes the attach provider\u0027s attachVirtualMachine to attach to the target VM.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evmd\u003c/code\u003e - The virtual machine descriptor."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager has been installed and it denies \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachPermission.html\" title\u003d\"class in com.sun.tools.attach\"\u003e\u003ccode\u003eAttachPermission\u003c/code\u003e\u003c/a\u003e \n\u003ccode\u003e(\"attachVirtualMachine\")\u003c/code\u003e, or another permission required by the implementation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachNotSupportedException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAttachNotSupportedException\u003c/a\u003e\u003c/code\u003e - If the attach provider\u0027s \n\u003ccode\u003eattachVirtualmachine\u003c/code\u003e throws \n\u003ccode\u003eAttachNotSupportedException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003evmd\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "A VirtualMachine representing the target VM."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "detach",
+      "comment": "Detach from the virtual machine. After detaching from the virtual machine, any further attempt to invoke operations on that virtual machine will cause an IOException to be thrown. If an operation (such as loadAgent for example) is in progress when this method is invoked then the behaviour is implementation dependent. In other words, it is implementation specific if the operation completes or throws IOException. If already detached from the virtual machine then invoking this method has no effect.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.tools.attach.spi.AttachProvider",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "provider",
+      "comment": "Returns the provider that created this virtual machine.",
+      "tagMap": {
+        "return": [
+          "The provider that created this virtual machine."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "id",
+      "comment": "Returns the identifier for this Java virtual machine.",
+      "tagMap": {
+        "return": [
+          "The identifier for this Java virtual machine."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AgentLoadException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.tools.attach.AgentInitializationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "agentLibrary"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "loadAgentLibrary",
+      "comment": "Loads an agent library. A JVM TI client is called an agent. It is developed in a native language. A JVM TI agent is deployed in a platform specific manner but it is typically the platform equivalent of a dynamic library. Alternatively, it may be statically linked into the VM. This method causes the given agent library to be loaded into the target VM (if not already loaded or if not statically linked into the VM). It then causes the target VM to invoke the Agent_OnAttach function or, for a statically linked agent named \u0027L\u0027, the Agent_OnAttach_L function as specified in the JVM Tools Interface specification. Note that the Agent_OnAttach[_L] function is invoked even if the agent library was loaded prior to invoking this method. The agent library provided is the name of the agent library. It is interpreted in the target virtual machine in an implementation-dependent manner. Typically an implementation will expand the library name into an operating system specific file name. For example, on UNIX systems, the name L might be expanded to libL.so, and located using the search path specified by the LD_LIBRARY_PATH environment variable. If the agent named \u0027L\u0027 is statically linked into the VM then the VM must export a function named Agent_OnAttach_L. If the Agent_OnAttach[_L] function in the agent library returns an error then an AgentInitializationException is thrown. The return value from the Agent_OnAttach[_L] can then be obtained by invoking the returnValue method on the exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html#returnValue()\"\u003e\u003ccode\u003eAgentInitializationException.returnValue()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eagentLibrary\u003c/code\u003e - The name of the agent library.",
+          "\u003ccode\u003eoptions\u003c/code\u003e - The options to provide to the \n\u003ccode\u003eAgent_OnAttach[_L]\u003c/code\u003e function (can be \n\u003ccode\u003enull\u003c/code\u003e)."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentLoadException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentLoadException\u003c/a\u003e\u003c/code\u003e - If the agent library does not exist, the agent library is not statically linked with the VM, or the agent library cannot be loaded for another reason.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentInitializationException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eAgent_OnAttach[_L]\u003c/code\u003e function returns an error.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eagentLibrary\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AgentLoadException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.tools.attach.AgentInitializationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "agentLibrary"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "loadAgentLibrary",
+      "comment": "Loads an agent library. This convenience method works as if by invoking: loadAgentLibrary(agentLibrary, null);",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eagentLibrary\u003c/code\u003e - The name of the agent library."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentLoadException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentLoadException\u003c/a\u003e\u003c/code\u003e - If the agent library does not exist, the agent library is not statically linked with the VM, or the agent library cannot be loaded for another reason.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentInitializationException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eAgent_OnAttach[_L]\u003c/code\u003e function returns an error.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eagentLibrary\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AgentLoadException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.tools.attach.AgentInitializationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "agentPath"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "loadAgentPath",
+      "comment": "Load a native agent library by full pathname. A JVM TI client is called an agent. It is developed in a native language. A JVM TI agent is deployed in a platform specific manner but it is typically the platform equivalent of a dynamic library. Alternatively, the native library specified by the agentPath parameter may be statically linked with the VM. The parsing of the agentPath parameter into a statically linked library name is done in a platform specific manner in the VM. For example, in UNIX, an agentPath parameter of /a/b/libL.so would name a library \u0027L\u0027. See the JVM TI Specification for more details. This method causes the given agent library to be loaded into the target VM (if not already loaded or if not statically linked into the VM). It then causes the target VM to invoke the Agent_OnAttach function or, for a statically linked agent named \u0027L\u0027, the Agent_OnAttach_L function as specified in the JVM Tools Interface specification. Note that the Agent_OnAttach[_L] function is invoked even if the agent library was loaded prior to invoking this method. The agent library provided is the absolute path from which to load the agent library. Unlike loadAgentLibrary, the library name is not expanded in the target virtual machine. If the Agent_OnAttach[_L] function in the agent library returns an error then an AgentInitializationException is thrown. The return value from the Agent_OnAttach[_L] can then be obtained by invoking the returnValue method on the exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html#returnValue()\"\u003e\u003ccode\u003eAgentInitializationException.returnValue()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eagentPath\u003c/code\u003e - The full path of the agent library.",
+          "\u003ccode\u003eoptions\u003c/code\u003e - The options to provide to the \n\u003ccode\u003eAgent_OnAttach[_L]\u003c/code\u003e function (can be \n\u003ccode\u003enull\u003c/code\u003e)."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentLoadException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentLoadException\u003c/a\u003e\u003c/code\u003e - If the agent library does not exist, the agent library is not statically linked with the VM, or the agent library cannot be loaded for another reason.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentInitializationException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eAgent_OnAttach[_L]\u003c/code\u003e function returns an error.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eagentPath\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AgentLoadException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.tools.attach.AgentInitializationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "agentPath"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "loadAgentPath",
+      "comment": "Load a native agent library by full pathname. This convenience method works as if by invoking: loadAgentPath(agentLibrary, null);",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eagentPath\u003c/code\u003e - The full path to the agent library."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentLoadException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentLoadException\u003c/a\u003e\u003c/code\u003e - If the agent library does not exist, the agent library is not statically linked with the VM, or the agent library cannot be loaded for another reason.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentInitializationException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eAgent_OnAttach[_L]\u003c/code\u003e function returns an error.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eagentPath\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AgentLoadException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.tools.attach.AgentInitializationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "agent"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "loadAgent",
+      "comment": "Loads an agent. The agent provided to this method is a path name to a JAR file on the file system of the target virtual machine. This path is passed to the target virtual machine where it is interpreted. The target virtual machine attempts to start the agent as specified by the java.lang.instrument specification. That is, the specified JAR file is added to the system class path (of the target virtual machine), and the agentmain method of the agent class, specified by the Agent-Class attribute in the JAR manifest, is invoked. This method completes when the agentmain method completes.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eagent\u003c/code\u003e - Path to the JAR file containing the agent.",
+          "\u003ccode\u003eoptions\u003c/code\u003e - The options to provide to the agent\u0027s \n\u003ccode\u003eagentmain\u003c/code\u003e method (can be \n\u003ccode\u003enull\u003c/code\u003e)."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentLoadException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentLoadException\u003c/a\u003e\u003c/code\u003e - If the agent does not exist, or cannot be started in the manner specified in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/package-summary.html\"\u003e\u003ccode\u003ejava.lang.instrument\u003c/code\u003e\u003c/a\u003e specification.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentInitializationException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eagentmain\u003c/code\u003e throws an exception",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eagent\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.tools.attach.AgentLoadException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.tools.attach.AgentInitializationException",
+          "type": "Class"
+        },
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "agent"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "loadAgent",
+      "comment": "Loads an agent. This convenience method works as if by invoking: loadAgent(agent, null);",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eagent\u003c/code\u003e - Path to the JAR file containing the agent."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentLoadException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentLoadException\u003c/a\u003e\u003c/code\u003e - If the agent does not exist, or cannot be started in the manner specified in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.instrument/java/lang/instrument/package-summary.html\"\u003e\u003ccode\u003ejava.lang.instrument\u003c/code\u003e\u003c/a\u003e specification.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AgentInitializationException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAgentInitializationException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003eagentmain\u003c/code\u003e throws an exception",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eagent\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Properties",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getSystemProperties",
+      "comment": "Returns the current system properties in the target virtual machine. This method returns the system properties in the target virtual machine. Properties whose key or value is not a String are omitted. The method is approximately equivalent to the invocation of the method System.getProperties in the target virtual machine except that properties with a key or value that is not a String are not included. This method is typically used to decide which agent to load into the target virtual machine with loadAgent, or loadAgentLibrary. For example, the java.home or user.dir properties might be use to create the path to the agent library or JAR file.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#getProperties()\"\u003e\u003ccode\u003eSystem.getProperties()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/VirtualMachine.html#loadAgentLibrary(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgentLibrary(java.lang.String, java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/VirtualMachine.html#loadAgent(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgent(java.lang.String, java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachOperationFailedException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAttachOperationFailedException\u003c/a\u003e\u003c/code\u003e - If the target virtual machine is unable to complete the attach operation. A more specific error message will be given by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html#getMessage()\"\u003e\u003ccode\u003eThrowable.getMessage()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs, a communication error for example, that cannot be identified as an error to indicate that the operation failed in the target VM."
+        ],
+        "return": [
+          "The system properties"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Properties",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getAgentProperties",
+      "comment": "Returns the current agent properties in the target virtual machine. The target virtual machine can maintain a list of properties on behalf of agents. The manner in which this is done, the names of the properties, and the types of values that are allowed, is implementation specific. Agent properties are typically used to store communication end-points and other agent configuration details. For example, a debugger agent might create an agent property for its transport address. This method returns the agent properties whose key and value is a String. Properties whose key or value is not a String are omitted. If there are no agent properties maintained in the target virtual machine then an empty property list is returned.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachOperationFailedException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAttachOperationFailedException\u003c/a\u003e\u003c/code\u003e - If the target virtual machine is unable to complete the attach operation. A more specific error message will be given by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html#getMessage()\"\u003e\u003ccode\u003eThrowable.getMessage()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs, a communication error for example, that cannot be identified as an error to indicate that the operation failed in the target VM."
+        ],
+        "return": [
+          "The agent properties"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Properties",
+            "type": "Class"
+          },
+          "field": {
+            "name": "agentProperties"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "startManagementAgent",
+      "comment": "Starts the JMX management agent in the target virtual machine. The configuration properties are the same as those specified on the command line when starting the JMX management agent. In the same way as on the command line, you need to specify at least the com.sun.management.jmxremote.port property. See the online documentation for Monitoring and Management Using JMX Technology for further details.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eagentProperties\u003c/code\u003e - A Properties object containing the configuration properties for the agent."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachOperationFailedException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAttachOperationFailedException\u003c/a\u003e\u003c/code\u003e - If the target virtual machine is unable to complete the attach operation. A more specific error message will be given by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html#getMessage()\"\u003e\u003ccode\u003eThrowable.getMessage()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs, a communication error for example, that cannot be identified as an error to indicate that the operation failed in the target VM.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If keys or values in agentProperties are invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If agentProperties is null."
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "startLocalManagementAgent",
+      "comment": "Starts the local JMX management agent in the target virtual machine. See the online documentation for Monitoring and Management Using JMX Technology for further details.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.attach/com/sun/tools/attach/AttachOperationFailedException.html\" title\u003d\"class in com.sun.tools.attach\"\u003eAttachOperationFailedException\u003c/a\u003e\u003c/code\u003e - If the target virtual machine is unable to complete the attach operation. A more specific error message will be given by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html#getMessage()\"\u003e\u003ccode\u003eThrowable.getMessage()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs, a communication error for example, that cannot be identified as an error to indicate that the operation failed in the target VM."
+        ],
+        "return": [
+          "The String representation of the local connector\u0027s service address. The value can be parsed by the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/remote/JMXServiceURL.html#%3Cinit%3E(java.lang.String)\"\u003e\u003ccode\u003eJMXServiceURL(String)\u003c/code\u003e\u003c/a\u003e constructor."
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hashCode",
+      "comment": "Returns a hash-code value for this VirtualMachine. The hash code is based upon the VirtualMachine\u0027s components, and satifies the general contract of the Object.hashCode method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "A hash-code value for this virtual machine"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ob"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "equals",
+      "comment": "Tests this VirtualMachine for equality with another object. If the given object is not a VirtualMachine then this method returns false. For two VirtualMachines to be considered equal requires that they both reference the same provider, and their identifiers are equal. This method satisfies the general contract of the Object.equals method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eob\u003c/code\u003e - The object to which this object is to be compared"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, the given object is a VirtualMachine that is equal to this VirtualMachine."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns the string representation of the VirtualMachine.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of the object."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.tools.attach.spi.AttachProvider",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "id"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Initializes a new instance of this class.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprovider\u003c/code\u003e - The attach provider creating this class.",
+          "\u003ccode\u003eid\u003c/code\u003e - The abstract identifier that identifies the Java virtual machine."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eprovider\u003c/code\u003e or \n\u003ccode\u003eid\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "com.sun.tools.attach.VirtualMachine",
+  "comment": "A Java virtual machine. \n\u003cp\u003e A \u003ccode\u003eVirtualMachine\u003c/code\u003e represents a Java virtual machine to which this Java virtual machine has attached. The Java virtual machine to which it is attached is sometimes called the \u003ci\u003etarget virtual machine\u003c/i\u003e, or \u003ci\u003etarget VM\u003c/i\u003e. An application (typically a tool such as a managemet console or profiler) uses a VirtualMachine to load an agent into the target VM. For example, a profiler tool written in the Java Language might attach to a running application and load its profiler agent to profile the running application. \u003c/p\u003e \n\u003cp\u003e A VirtualMachine is obtained by invoking the \u003ca href\u003d\"#attach(java.lang.String)\"\u003e\u003ccode\u003eattach\u003c/code\u003e\u003c/a\u003e method with an identifier that identifies the target virtual machine. The identifier is implementation-dependent but is typically the process identifier (or pid) in environments where each Java virtual machine runs in its own operating system process. Alternatively, a \u003ccode\u003eVirtualMachine\u003c/code\u003e instance is obtained by invoking the \u003ca href\u003d\"#attach(com.sun.tools.attach.VirtualMachineDescriptor)\"\u003e\u003ccode\u003eattach\u003c/code\u003e\u003c/a\u003e method with a \u003ca href\u003d\"VirtualMachineDescriptor.html\" title\u003d\"class in com.sun.tools.attach\"\u003e\u003ccode\u003eVirtualMachineDescriptor\u003c/code\u003e\u003c/a\u003e obtained from the list of virtual machine descriptors returned by the \u003ca href\u003d\"#list()\"\u003e\u003ccode\u003elist\u003c/code\u003e\u003c/a\u003e method. Once a reference to a virtual machine is obtained, the \u003ca href\u003d\"#loadAgent(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgent\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#loadAgentLibrary(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgentLibrary\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#loadAgentPath(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgentPath\u003c/code\u003e\u003c/a\u003e methods are used to load agents into target virtual machine. The \u003ca href\u003d\"#loadAgent(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgent\u003c/code\u003e\u003c/a\u003e method is used to load agents that are written in the Java Language and deployed in a \u003ca href\u003d\"../../../../../java.base/java/util/jar/JarFile.html\" title\u003d\"class in java.util.jar\"\u003e\u003ccode\u003eJAR file\u003c/code\u003e\u003c/a\u003e. (See \u003ca href\u003d\"../../../../../java.instrument/java/lang/instrument/package-summary.html\"\u003e\u003ccode\u003ejava.lang.instrument\u003c/code\u003e\u003c/a\u003e for a detailed description on how these agents are loaded and started). The \u003ca href\u003d\"#loadAgentLibrary(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgentLibrary\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#loadAgentPath(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eloadAgentPath\u003c/code\u003e\u003c/a\u003e methods are used to load agents that are deployed either in a dynamic library or statically linked into the VM and make use of the \u003ca href\u003d\"../../../../../../specs/jvmti.html\"\u003eJVM Tools Interface\u003c/a\u003e. \u003c/p\u003e \n\u003cp\u003e In addition to loading agents a VirtualMachine provides read access to the \u003ca href\u003d\"../../../../../java.base/java/lang/System.html#getProperties()\"\u003e\u003ccode\u003esystem properties\u003c/code\u003e\u003c/a\u003e in the target VM. This can be useful in some environments where properties such as \u003ccode\u003ejava.home\u003c/code\u003e, \u003ccode\u003eos.name\u003c/code\u003e, or \u003ccode\u003eos.arch\u003c/code\u003e are used to construct the path to agent that will be loaded into the target VM. \u003c/p\u003e\n\u003cp\u003e The following example demonstrates how VirtualMachine may be used:\u003c/p\u003e \n\u003cpre\u003e\n      // attach to target VM\n      VirtualMachine vm \u003d VirtualMachine.attach(\"2177\");\n\n      // start management agent\n      Properties props \u003d new Properties();\n      props.put(\"com.sun.management.jmxremote.port\", \"5000\");\n      vm.startManagementAgent(props);\n\n      // detach\n      vm.detach();\n\n \u003c/pre\u003e \n\u003cp\u003e In this example we attach to a Java virtual machine that is identified by the process identifier \u003ccode\u003e2177\u003c/code\u003e. Then the JMX management agent is started in the target process using the supplied arguments. Finally, the client detaches from the target VM. \u003c/p\u003e \n\u003cp\u003e A VirtualMachine is safe for use by multiple concurrent threads. \u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.6"
+    ]
+  }
+}

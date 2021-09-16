@@ -1,0 +1,207 @@
+{
+  "packageName": "java.lang.ref",
+  "simpleName": "Reference",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "owner": "java.lang.ref.Reference",
+        "name": "T",
+        "type": "Variable"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "get",
+      "comment": "Returns this reference object\u0027s referent. If this reference object has been cleared, either by the program or by the garbage collector, then this method returns null.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html#refersTo(T)\"\u003e\u003ccode\u003erefersTo(T)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "apiNote": [
+          "This method returns a strong reference to the referent. This may cause the garbage collector to treat it as strongly reachable until some later collection cycle. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/Reference.html#refersTo(T)\"\u003e\u003ccode\u003erefersTo\u003c/code\u003e\u003c/a\u003e method can be used to avoid such strengthening when testing whether some object is the referent of a reference object; that is, use \n\u003ccode\u003eref.refersTo(obj)\u003c/code\u003e rather than \n\u003ccode\u003eref.get() \u003d\u003d obj\u003c/code\u003e."
+        ],
+        "return": [
+          "The object to which this reference refers, or \n\u003ccode\u003enull\u003c/code\u003e if this reference object has been cleared"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.lang.ref.Reference",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "refersTo",
+      "comment": "Tests if the referent of this reference object is obj. Using a null obj returns true if the reference object has been cleared.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the object to compare with this reference object\u0027s referent"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if \n\u003ccode\u003eobj\u003c/code\u003e is the referent of this reference object"
+        ],
+        "since": [
+          "16"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clear",
+      "comment": "Clears this reference object. Invoking this method will not cause this object to be enqueued. This method is invoked only by Java code; when the garbage collector clears references it does so directly, without invoking this method.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isEnqueued",
+      "comment": "Tests if this reference object is in its associated queue, if any. This method returns true only if all of the following conditions are met: this reference object was registered with a queue when it was created; and the garbage collector has added this reference object to the queue or enqueue() is called; and this reference object is not yet removed from the queue. Otherwise, this method returns false. This method may return false if this reference object has been cleared but not enqueued due to the race condition.",
+      "annotations": [
+        {
+          "type": "Deprecated",
+          "values": [
+            {
+              "name": "since",
+              "value": "16"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if and only if this reference object is in its associated queue (if any)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "enqueue",
+      "comment": "Clears this reference object and adds it to the queue with which it is registered, if any. This method is invoked only by Java code; when the garbage collector enqueues references it does so directly, without invoking this method.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this reference object was successfully enqueued; \n\u003ccode\u003efalse\u003c/code\u003e if it was already enqueued or if it was not registered with a queue when it was created"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.CloneNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "clone",
+      "comment": "Throws CloneNotSupportedException. A Reference cannot be meaningfully cloned. Construct a new Reference instead.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Cloneable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eCloneable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#clone()\"\u003eclone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/CloneNotSupportedException.html\" title\u003d\"class in java.lang\"\u003eCloneNotSupportedException\u003c/a\u003e\u003c/code\u003e - always"
+        ],
+        "return": [
+          "never returns normally"
+        ],
+        "since": [
+          "11"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ref"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "reachabilityFence",
+      "comment": "Ensures that the object referenced by the given reference remains strongly reachable, regardless of any prior actions of the program that might otherwise cause the object to become unreachable; thus, the referenced object is not reclaimable by garbage collection at least until after the invocation of this method. Invocation of this method does not itself initiate garbage collection or finalization. This method establishes an ordering for strong reachability with respect to garbage collection. It controls relations that are otherwise only implicit in a program -- the reachability conditions triggering garbage collection. This method is designed for use in uncommon situations of premature finalization where using synchronized blocks or methods, or using other synchronization facilities are not possible or do not provide the desired control. This method is applicable only when reclamation may have visible effects, which is possible for objects with finalizers (See Section 12.6 of The Java Language Specification) that are implemented in ways that rely on ordering control for correctness.",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-12.html#jls-12.6\"\u003e12.6 Finalization of Class Instances\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "apiNote": [
+          "Finalization may occur whenever the virtual machine detects that no reference to an object will ever be stored in the heap: The garbage collector may reclaim an object even if the fields of that object are still in use, so long as the object has otherwise become unreachable. This may have surprising and undesirable effects in cases such as the following example in which the bookkeeping associated with a class is managed through array indices. Here, method \n\u003ccode\u003eaction\u003c/code\u003e uses a \n\u003ccode\u003ereachabilityFence\u003c/code\u003e to ensure that the \n\u003ccode\u003eResource\u003c/code\u003e object is not reclaimed before bookkeeping on an associated \n\u003ccode\u003eExternalResource\u003c/code\u003e has been performed; in particular here, to ensure that the array slot holding the \n\u003ccode\u003eExternalResource\u003c/code\u003e is not nulled out in method \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#finalize()\"\u003e\u003ccode\u003eObject.finalize()\u003c/code\u003e\u003c/a\u003e, which may otherwise run concurrently. \n\u003cpre\u003e \u003ccode\u003e\n class Resource {\n   private static ExternalResource[] externalResourceArray \u003d ...\n\n   int myIndex;\n   Resource(...) {\n     myIndex \u003d ...\n     externalResourceArray[myIndex] \u003d ...;\n     ...\n   }\n   protected void finalize() {\n     externalResourceArray[myIndex] \u003d null;\n     ...\n   }\n   public void action() {\n     try {\n       // ...\n       int i \u003d myIndex;\n       Resource.update(externalResourceArray[i]);\n     } finally {\n       Reference.reachabilityFence(this);\n     }\n   }\n   private static void update(ExternalResource ext) {\n     ext.status \u003d ...;\n   }\n }\u003c/code\u003e\u003c/pre\u003e Here, the invocation of \n\u003ccode\u003ereachabilityFence\u003c/code\u003e is nonintuitively placed \n\u003cem\u003eafter\u003c/em\u003e the call to \n\u003ccode\u003eupdate\u003c/code\u003e, to ensure that the array slot is not nulled out by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#finalize()\"\u003e\u003ccode\u003eObject.finalize()\u003c/code\u003e\u003c/a\u003e before the update, even if the call to \n\u003ccode\u003eaction\u003c/code\u003e was the last use of this object. This might be the case if, for example a usage in a user program had the form \n\u003ccode\u003enew Resource().action();\u003c/code\u003e which retains no other reference to this \n\u003ccode\u003eResource\u003c/code\u003e. While probably overkill here, \n\u003ccode\u003ereachabilityFence\u003c/code\u003e is placed in a \n\u003ccode\u003efinally\u003c/code\u003e block to ensure that it is invoked across all paths in the method. In a method with more complex control paths, you might need further precautions to ensure that \n\u003ccode\u003ereachabilityFence\u003c/code\u003e is encountered along all of them. \n\u003cp\u003e It is sometimes possible to better encapsulate use of \u003ccode\u003ereachabilityFence\u003c/code\u003e. Continuing the above example, if it were acceptable for the call to method \u003ccode\u003eupdate\u003c/code\u003e to proceed even if the finalizer had already executed (nulling out slot), then you could localize use of \u003ccode\u003ereachabilityFence\u003c/code\u003e: \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n public void action2() {\n   // ...\n   Resource.update(getExternalResource());\n }\n private ExternalResource getExternalResource() {\n   ExternalResource ext \u003d externalResourceArray[myIndex];\n   Reference.reachabilityFence(this);\n   return ext;\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Method \u003ccode\u003ereachabilityFence\u003c/code\u003e is not required in constructions that themselves ensure reachability. For example, because objects that are locked cannot, in general, be reclaimed, it would suffice if all accesses of the object, in all methods of class \u003ccode\u003eResource\u003c/code\u003e (including \u003ccode\u003efinalize\u003c/code\u003e) were enclosed in \u003ccode\u003esynchronized (this)\u003c/code\u003e blocks. (Further, such blocks must not include infinite loops, or themselves be unreachable, which fall into the corner case exceptions to the \"in general\" disclaimer.) However, method \u003ccode\u003ereachabilityFence\u003c/code\u003e remains a better option in cases where this approach is not as efficient, desirable, or possible; for example because it would encounter deadlock.\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eref\u003c/code\u003e - the reference. If \n\u003ccode\u003enull\u003c/code\u003e, this method has no effect."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.lang.ref.Reference",
+  "comment": "Abstract base class for reference objects. This class defines the operations common to all reference objects. Because reference objects are implemented in close cooperation with the garbage collector, this class may not be subclassed directly.",
+  "tagMap": {
+    "since": [
+      "1.2"
+    ]
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "packageName": "com.sun.jdi.connect.spi",
+  "simpleName": "TransportService",
+  "moduleName": "jdk.jdi",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "name",
+      "comment": "Returns a name to identify the transport service.",
+      "tagMap": {
+        "return": [
+          "The name of the transport service"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "description",
+      "comment": "Returns a description of the transport service.",
+      "tagMap": {
+        "return": [
+          "The description of the transport service"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.connect.spi.TransportService$Capabilities",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "capabilities",
+      "comment": "Returns the capabilities of the transport service.",
+      "tagMap": {
+        "return": [
+          "the transport service capabilities"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.connect.spi.Connection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "address"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attachTimeout"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "handshakeTimeout"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "attach",
+      "comment": "Attaches to the specified address. Attaches to the specified address and returns a connection representing the bi-directional communication channel to the target VM. Attaching to the target VM involves two steps: First, a connection is established to specified address. This is followed by a handshake to ensure that the connection is to a target VM. The handshake involves the exchange of a string JDWP-Handshake as specified in the Java Debug Wire Protocol specification.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.Capabilities.html#supportsAttachTimeout()\"\u003e\u003ccode\u003eTransportService.Capabilities.supportsAttachTimeout()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eaddress\u003c/code\u003e - The address of the target VM.",
+          "\u003ccode\u003eattachTimeout\u003c/code\u003e - If this transport service supports an attach timeout, and if \n\u003ccode\u003eattachTimeout\u003c/code\u003e is positive, then it specifies the timeout, in milliseconds (more or less), to use when attaching to the target VM. If the transport service does not support an attach timeout, or if \n\u003ccode\u003eattachTimeout\u003c/code\u003e is specified as zero then attach without any timeout.",
+          "\u003ccode\u003ehandshakeTimeout\u003c/code\u003e - If this transport service supports a handshake timeout, and if \n\u003ccode\u003ehandshakeTimeout\u003c/code\u003e is positive, then it specifies the timeout, in milliseconds (more or less), to use when handshaking with the target VM. The exact usage of the timeout are specific to the transport service. A transport service may, for example, use the handshake timeout as the inter-character timeout while waiting for the \n\u003ci\u003eJDWP-Handshake\u003c/i\u003e message from the target VM. Alternatively, a transport service may, for example, use the handshakeTimeout as a timeout for the duration of the handshake exchange. If the transport service does not support a handshake timeout, or if \n\u003ccode\u003ehandshakeTimeout\u003c/code\u003e is specified as zero then the handshake does not timeout if there isn\u0027t a response from the target VM."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/TransportTimeoutException.html\" title\u003d\"class in com.sun.jdi.connect\"\u003eTransportTimeoutException\u003c/a\u003e\u003c/code\u003e - If a timeout occurs while establishing the connection.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs (including a timeout when handshaking).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the address is invalid or the value of the attach timeout or handshake timeout is negative."
+        ],
+        "return": [
+          "The Connection representing the bi-directional communication channel to the target VM."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.connect.spi.TransportService$ListenKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "address"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "startListening",
+      "comment": "Listens on the specified address for inbound connections. This method starts the transport service listening on the specified address so that it can subsequently accept an inbound connection. It does not wait until an inbound connection is established.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eaddress\u003c/code\u003e - The address to start listening for connections, or \n\u003ccode\u003enull\u003c/code\u003e to listen on an address chosen by the transport service."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the specific address is invalid"
+        ],
+        "return": [
+          "a listen key to be used in subsequent calls to be \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#accept(com.sun.jdi.connect.spi.TransportService.ListenKey,long,long)\"\u003e\u003ccode\u003eaccept\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#stopListening(com.sun.jdi.connect.spi.TransportService.ListenKey)\"\u003e\u003ccode\u003estopListening\u003c/code\u003e\u003c/a\u003e methods."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.connect.spi.TransportService$ListenKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "startListening",
+      "comment": "Listens on an address chosen by the transport service. This convenience method works as if by invoking startListening(null).",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs."
+        ],
+        "return": [
+          "a listen key to be used in subsequent calls to be \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#accept(com.sun.jdi.connect.spi.TransportService.ListenKey,long,long)\"\u003e\u003ccode\u003eaccept\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#stopListening(com.sun.jdi.connect.spi.TransportService.ListenKey)\"\u003e\u003ccode\u003estopListening\u003c/code\u003e\u003c/a\u003e methods."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.connect.spi.TransportService$ListenKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listenKey"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "stopListening",
+      "comment": "Stop listening for inbound connections. Invoking this method while another thread is blocked in accept, with the same listen key, waiting to accept a connection will cause that thread to throw an IOException. If the thread blocked in accept has already accepted a connection from a target VM and is in the process of handshaking with the target VM then invoking this method will not cause the thread to throw an exception.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elistenKey\u003c/code\u003e - The listen key obtained from a previous call to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#startListening(java.lang.String)\"\u003e\u003ccode\u003estartListening(String)\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#startListening()\"\u003e\u003ccode\u003estartListening()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the listen key is invalid",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.connect.spi.Connection",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.connect.spi.TransportService$ListenKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "listenKey"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "acceptTimeout"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "handshakeTimeout"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "accept",
+      "comment": "Accept a connection from a target VM. Waits (indefinitely or with timeout) to accept a connection from a target VM. Returns a connection representing the bi-directional communication channel to the target VM. Accepting a connection from a target VM involves two steps. First, the transport service waits to accept the connection from the target VM. Once the connection is established a handshake is performed to ensure that the connection is indeed to a target VM. The handshake involves the exchange of a string JDWP-Handshake as specified in the Java Debug Wire Protocol specification.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.Capabilities.html#supportsAcceptTimeout()\"\u003e\u003ccode\u003eTransportService.Capabilities.supportsAcceptTimeout()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elistenKey\u003c/code\u003e - A listen key obtained from a previous call to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#startListening(java.lang.String)\"\u003e\u003ccode\u003estartListening(String)\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#startListening()\"\u003e\u003ccode\u003estartListening()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003eacceptTimeout\u003c/code\u003e - if this transport service supports an accept timeout, and if \n\u003ccode\u003eacceptTimeout\u003c/code\u003e is positive then block for up to \n\u003ccode\u003eacceptTimeout\u003c/code\u003e milliseconds, more or less, while waiting for the target VM to connect. If the transport service does not support an accept timeout or if \n\u003ccode\u003eacceptTimeout\u003c/code\u003e is zero then block indefinitely for a target VM to connect.",
+          "\u003ccode\u003ehandshakeTimeout\u003c/code\u003e - If this transport service supports a handshake timeout, and if \n\u003ccode\u003ehandshakeTimeout\u003c/code\u003e is positive, then it specifies the timeout, in milliseconds (more or less), to use when handshaking with the target VM. The exact usage of the timeout is specific to the transport service. A transport service may, for example, use the handshake timeout as the inter-character timeout while waiting for the \n\u003ci\u003eJDWP-Handshake\u003c/i\u003e message from the target VM. Alternatively, a transport service may, for example, use the timeout as a timeout for the duration of the handshake exchange. If the transport service does not support a handshake timeout, of if \n\u003ccode\u003ehandshakeTimeout\u003c/code\u003e is specified as zero then the handshake does not timeout if there isn\u0027t a response from the target VM."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/TransportTimeoutException.html\" title\u003d\"class in com.sun.jdi.connect\"\u003eTransportTimeoutException\u003c/a\u003e\u003c/code\u003e - If a timeout occurs while waiting for a target VM to connect.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs (including a timeout when handshaking).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the value of the acceptTimeout argument, or handshakeTimeout is negative, or an invalid listen key is provided.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/connect/spi/TransportService.html#stopListening(com.sun.jdi.connect.spi.TransportService.ListenKey)\"\u003e\u003ccode\u003estopListening\u003c/code\u003e\u003c/a\u003e has already been called with this listen key and the transport service is no longer listening for inbound connections."
+        ],
+        "return": [
+          "The Connection representing the bi-directional communication channel to the target VM."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructor for subclasses to call.",
+      "tagMap": {}
+    }
+  ],
+  "innerClasses": [
+    "com.sun.jdi.connect.spi.TransportService$ListenKey",
+    "com.sun.jdi.connect.spi.TransportService$Capabilities"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "com.sun.jdi.connect.spi.TransportService",
+  "comment": "A transport service for connections between a debugger and a target VM. \n\u003cp\u003e A transport service is a concrete subclass of this class that has a zero-argument constructor and implements the abstract methods specified below. It is the underlying service used by a \u003ca href\u003d\"../Transport.html\" title\u003d\"interface in com.sun.jdi.connect\"\u003e\u003ccode\u003eTransport\u003c/code\u003e\u003c/a\u003e for connections between a debugger and a target VM. \u003c/p\u003e\n\u003cp\u003e A transport service is used to establish a connection between a debugger and a target VM, and to transport Java Debug Wire Protocol (JDWP) packets over an underlying communication protocol. In essence a transport service implementation binds JDWP (as specified in the \u003ca href\u003d\"../../../../../../../specs/jdwp/jdwp-spec.html\"\u003e JDWP specification\u003c/a\u003e) to an underlying communication protocol. A transport service implementation provides a reliable JDWP packet transportation service. JDWP packets are sent to and from the target VM without duplication or data loss. A transport service implementation may be based on an underlying communication protocol that is reliable or unreliable. If the underlying communication protocol is reliable then the transport service implementation may be relatively simple and may only need to transport JDWP packets as payloads of the underlying communication protocol. In the case of an unreliable communication protocol the transport service implementation may include additional protocol support in order to ensure that packets are not duplicated and that there is no data loss. The details of such protocols are specific to the implementation but may involve techniques such as the \u003ci\u003epositive acknowledgment with retransmission\u003c/i\u003e technique used in protocols such as the Transmission Control Protocol (TCP) (see \u003ca href\u003d\"http://www.ietf.org/rfc/rfc0793.txt\"\u003e RFC 793 \u003c/a\u003e). \u003c/p\u003e\n\u003cp\u003e A transport service can be used to initiate a connection to a target VM. This is done by invoking the \u003ca href\u003d\"#attach(java.lang.String,long,long)\"\u003e\u003ccode\u003eattach(java.lang.String, long, long)\u003c/code\u003e\u003c/a\u003e method. Alternatively, a transport service can listen and accept connections initiated by a target VM. This is done by invoking the \u003ca href\u003d\"#startListening(java.lang.String)\"\u003e\u003ccode\u003estartListening(String)\u003c/code\u003e\u003c/a\u003e method to put the transport into listen mode. Then the \u003ca href\u003d\"#accept(com.sun.jdi.connect.spi.TransportService.ListenKey,long,long)\"\u003e\u003ccode\u003eaccept(com.sun.jdi.connect.spi.TransportService.ListenKey, long, long)\u003c/code\u003e\u003c/a\u003e method is used to accept a connection initiated by a target VM.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

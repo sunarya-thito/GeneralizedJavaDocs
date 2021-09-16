@@ -1,0 +1,144 @@
+{
+  "packageName": "java.nio.file",
+  "simpleName": "WatchService",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.io.Closeable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes this watch service. If a thread is currently blocked in the take or poll methods waiting for a key to be queued then it immediately receives a ClosedWatchServiceException. Any valid keys associated with this watch service are invalidated. After a watch service is closed, any further attempt to invoke operations upon it will throw ClosedWatchServiceException. If this watch service is already closed then invoking this method has no effect.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.WatchKey",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "poll",
+      "comment": "Retrieves and removes the next watch key, or null if none are present.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedWatchServiceException.html\" title\u003d\"class in java.nio.file\"\u003eClosedWatchServiceException\u003c/a\u003e\u003c/code\u003e - if this watch service is closed"
+        ],
+        "return": [
+          "the next watch key, or \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.WatchKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "timeout"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "poll",
+      "comment": "Retrieves and removes the next watch key, waiting if necessary up to the specified wait time if none are yet present.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etimeout\u003c/code\u003e - how to wait before giving up, in units of unit",
+          "\u003ccode\u003eunit\u003c/code\u003e - a \n\u003ccode\u003eTimeUnit\u003c/code\u003e determining how to interpret the timeout parameter"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedWatchServiceException.html\" title\u003d\"class in java.nio.file\"\u003eClosedWatchServiceException\u003c/a\u003e\u003c/code\u003e - if this watch service is closed, or it is closed while waiting for the next key",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting"
+        ],
+        "return": [
+          "the next watch key, or \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.WatchKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "take",
+      "comment": "Retrieves and removes next watch key, waiting if none are yet present.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedWatchServiceException.html\" title\u003d\"class in java.nio.file\"\u003eClosedWatchServiceException\u003c/a\u003e\u003c/code\u003e - if this watch service is closed, or it is closed while waiting for the next key",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if interrupted while waiting"
+        ],
+        "return": [
+          "the next watch key"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.file.WatchService",
+  "comment": "A watch service that \n\u003cem\u003ewatches\u003c/em\u003e registered objects for changes and events. For example a file manager may use a watch service to monitor a directory for changes so that it can update its display of the list of files when files are created or deleted. \n\u003cp\u003e A \u003ca href\u003d\"Watchable.html\" title\u003d\"interface in java.nio.file\"\u003e\u003ccode\u003eWatchable\u003c/code\u003e\u003c/a\u003e object is registered with a watch service by invoking its \u003ca href\u003d\"Watchable.html#register(java.nio.file.WatchService,java.nio.file.WatchEvent.Kind%5B%5D,java.nio.file.WatchEvent.Modifier...)\"\u003e\u003ccode\u003eregister\u003c/code\u003e\u003c/a\u003e method, returning a \u003ca href\u003d\"WatchKey.html\" title\u003d\"interface in java.nio.file\"\u003e\u003ccode\u003eWatchKey\u003c/code\u003e\u003c/a\u003e to represent the registration. When an event for an object is detected the key is \u003cem\u003esignalled\u003c/em\u003e, and if not currently signalled, it is queued to the watch service so that it can be retrieved by consumers that invoke the \u003ca href\u003d\"#poll()\"\u003e\u003ccode\u003epoll\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"#take()\"\u003e\u003ccode\u003etake\u003c/code\u003e\u003c/a\u003e methods to retrieve keys and process events. Once the events have been processed the consumer invokes the key\u0027s \u003ca href\u003d\"WatchKey.html#reset()\"\u003e\u003ccode\u003ereset\u003c/code\u003e\u003c/a\u003e method to reset the key which allows the key to be signalled and re-queued with further events. \u003c/p\u003e\n\u003cp\u003e Registration with a watch service is cancelled by invoking the key\u0027s \u003ca href\u003d\"WatchKey.html#cancel()\"\u003e\u003ccode\u003ecancel\u003c/code\u003e\u003c/a\u003e method. A key that is queued at the time that it is cancelled remains in the queue until it is retrieved. Depending on the object, a key may be cancelled automatically. For example, suppose a directory is watched and the watch service detects that it has been deleted or its file system is no longer accessible. When a key is cancelled in this manner it is signalled and queued, if not currently signalled. To ensure that the consumer is notified the return value from the \u003ccode\u003ereset\u003c/code\u003e method indicates if the key is valid. \u003c/p\u003e\n\u003cp\u003e A watch service is safe for use by multiple concurrent consumers. To ensure that only one consumer processes the events for a particular object at any time then care should be taken to ensure that the key\u0027s \u003ccode\u003ereset\u003c/code\u003e method is only invoked after its events have been processed. The \u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose\u003c/code\u003e\u003c/a\u003e method may be invoked at any time to close the service causing any threads waiting to retrieve keys, to throw \u003ccode\u003e ClosedWatchServiceException\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e File systems may report events faster than they can be retrieved or processed and an implementation may impose an unspecified limit on the number of events that it may accumulate. Where an implementation \u003cem\u003eknowingly\u003c/em\u003e discards events then it arranges for the key\u0027s \u003ca href\u003d\"WatchKey.html#pollEvents()\"\u003e\u003ccode\u003epollEvents\u003c/code\u003e\u003c/a\u003e method to return an element with an event type of \u003ca href\u003d\"StandardWatchEventKinds.html#OVERFLOW\"\u003e\u003ccode\u003eOVERFLOW\u003c/code\u003e\u003c/a\u003e. This event can be used by the consumer as a trigger to re-examine the state of the object. \u003c/p\u003e\n\u003cp\u003e When an event is reported to indicate that a file in a watched directory has been modified then there is no guarantee that the program (or programs) that have modified the file have completed. Care should be taken to coordinate access with other programs that may be updating the file. The \u003ca href\u003d\"../channels/FileChannel.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eFileChannel\u003c/code\u003e\u003c/a\u003e class defines methods to lock regions of a file against access by other programs. \u003c/p\u003e\n\u003ch2\u003ePlatform dependencies\u003c/h2\u003e \n\u003cp\u003e The implementation that observes events from the file system is intended to map directly on to the native file event notification facility where available, or to use a primitive mechanism, such as polling, when a native facility is not available. Consequently, many of the details on how events are detected, their timeliness, and whether their ordering is preserved are highly implementation specific. For example, when a file in a watched directory is modified then it may result in a single \u003ca href\u003d\"StandardWatchEventKinds.html#ENTRY_MODIFY\"\u003e\u003ccode\u003eENTRY_MODIFY\u003c/code\u003e\u003c/a\u003e event in some implementations but several events in other implementations. Short-lived files (meaning files that are deleted very quickly after they are created) may not be detected by primitive implementations that periodically poll the file system to detect changes. \u003c/p\u003e\n\u003cp\u003e If a watched file is not located on a local storage device then it is implementation specific if changes to the file can be detected. In particular, it is not required that changes to files carried out on remote systems be detected.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileSystem.html#newWatchService()\"\u003e\u003ccode\u003eFileSystem.newWatchService()\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.7"
+    ]
+  }
+}

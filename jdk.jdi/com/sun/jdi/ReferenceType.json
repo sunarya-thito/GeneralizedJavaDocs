@@ -1,0 +1,1215 @@
+{
+  "packageName": "com.sun.jdi",
+  "simpleName": "ReferenceType",
+  "moduleName": "jdk.jdi",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "com.sun.jdi.Type",
+      "type": "Class"
+    },
+    {
+      "name": "java.lang.Comparable",
+      "parameters": [
+        {
+          "name": "com.sun.jdi.ReferenceType",
+          "type": "Class"
+        }
+      ],
+      "type": "Class"
+    },
+    {
+      "name": "com.sun.jdi.Accessible",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Returns the name of this ReferenceType object. The returned name is of the same form as the name returned by Class.getName().",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Class.html#getName()\"\u003e\u003ccode\u003eClass.getName()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Type.html#name()\"\u003ename\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Type.html\" title\u003d\"interface in com.sun.jdi\"\u003eType\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string containing the type name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "genericSignature",
+      "comment": "Gets the generic signature for this type if there is one. Generic signatures are described in the The Java Virtual Machine Specification.",
+      "tagMap": {
+        "return": [
+          "a string containing the generic signature, or \n\u003ccode\u003enull\u003c/code\u003e if there is no generic signature."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ClassLoaderReference",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "classLoader",
+      "comment": "Gets the classloader object which loaded the class corresponding to this type.",
+      "tagMap": {
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassLoaderReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eClassLoaderReference\u003c/code\u003e\u003c/a\u003e which mirrors the classloader, or \n\u003ccode\u003enull\u003c/code\u003e if the class was loaded through the bootstrap class loader."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ModuleReference",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "module",
+      "comment": "Gets the module object which contains the class corresponding to this type. Not all target virtual machines support this operation. Use VirtualMachine.canGetModuleInfo() to determine if the operation is supported.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ModuleReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eModuleReference\u003c/code\u003e\u003c/a\u003e which mirrors the module in the target VM."
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sourceName",
+      "comment": "Gets an identifying name for the source corresponding to the declaration of this type. Interpretation of this string is the responsibility of the source repository mechanism. The returned name is dependent on VM\u0027s default stratum (VirtualMachine.getDefaultStratum()). In the reference implementation, when using the base stratum, the returned string is the unqualified name of the source file containing the declaration of this type. In other strata the returned source name is the first source name for that stratum. Since other languages may have more than one source name for a reference type, the use of Location.sourceName() or sourceNames(String) is preferred. For arrays (ArrayType) and primitive classes, AbsentInformationException is always thrown.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if the source name is not known"
+        ],
+        "return": [
+          "the string source file name"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stratum"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sourceNames",
+      "comment": "Gets the identifying names for all the source corresponding to the declaration of this type. Interpretation of these names is the responsibility of the source repository mechanism. The returned names are for the specified stratum (see Location for a description of strata). In the reference implementation, when using the Java programming language stratum, the returned List contains one element: a String which is the unqualified name of the source file containing the declaration of this type. In other strata the returned source names are all the source names defined for that stratum.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estratum\u003c/code\u003e - The stratum to retrieve information from or \n\u003ccode\u003enull\u003c/code\u003e for the declaring type\u0027s default stratum."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if the source names are not known. \n\u003cp\u003e For arrays (\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ArrayType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eArrayType\u003c/code\u003e\u003c/a\u003e) and primitive classes, AbsentInformationException is always thrown.\u003c/p\u003e"
+        ],
+        "return": [
+          "a List of String objects each representing a source name"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stratum"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sourcePaths",
+      "comment": "Gets the paths to the source corresponding to the declaration of this type. Interpretation of these paths is the responsibility of the source repository mechanism. The returned paths are for the specified stratum (see Location for a description of strata). In the reference implementation, for strata which do not explicitly specify source path (the Java programming language stratum never does), the returned strings are the sourceNames(String) prefixed by the package name of this ReferenceType converted to a platform dependent path. For example, on a Windows platform, java.lang.Thread would return a List containing one element: \"java\\lang\\Thread.java\".",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estratum\u003c/code\u003e - The stratum to retrieve information from or \n\u003ccode\u003enull\u003c/code\u003e for the declaring type\u0027s default stratum."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if the source names are not known. \n\u003cp\u003e For arrays (\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ArrayType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eArrayType\u003c/code\u003e\u003c/a\u003e) and primitive classes, AbsentInformationException is always thrown.\u003c/p\u003e"
+        ],
+        "return": [
+          "a List of String objects each representing a source path"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "sourceDebugExtension",
+      "comment": "Get the source debug extension of this type. Not all target virtual machines support this operation. Use canGetSourceDebugExtension() to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if the extension is not specified",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetSourceDebugExtension()\"\u003e\u003ccode\u003ecanGetSourceDebugExtension()\u003c/code\u003e\u003c/a\u003e,"
+        ],
+        "return": [
+          "as a string the source debug extension attribute"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isStatic",
+      "comment": "Determines if this type was declared static. Only nested types, can be declared static, so false is returned for any package-level type, array type, or primitive class.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this type is static; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isAbstract",
+      "comment": "Determines if this type was declared abstract. For arrays (ArrayType) and primitive classes, the return value is undefined.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this type is abstract; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isFinal",
+      "comment": "Determines if this type was declared final. For arrays (ArrayType) and primitive classes, the return value is always true.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this type is final; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isPrepared",
+      "comment": "Determines if this type has been prepared. See the JVM specification for a definition of class preparation. For arrays (ArrayType) and primitive classes, the return value is undefined.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this type is prepared; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isVerified",
+      "comment": "Determines if this type has been verified. See the JVM specification for a definition of class verification. For arrays (ArrayType) and primitive classes, the return value is undefined.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this type is verified; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isInitialized",
+      "comment": "Determines if this type has been initialized. See the JVM specification for a definition of class verification. For InterfaceType, this method always returns the same value as isPrepared(). For arrays (ArrayType) and primitive classes, the return value is undefined.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this type is initialized; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "failedToInitialize",
+      "comment": "Determines if initialization failed for this class. See the JVM specification for details on class initialization. For arrays (ArrayType) and primitive classes, the return value is undefined.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if initialization was attempted and failed; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "fields",
+      "comment": "Returns a list containing each Field declared in this type. Inherited fields are not included. Any synthetic fields created by the compiler are included in the list. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a list \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e objects; the list has length 0 if no fields exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "visibleFields",
+      "comment": "Returns a list containing each unhidden and unambiguous Field in this type. Each field that can be accessed from the class or its instances with its simple name is included. Fields that are ambiguously multiply inherited or fields that are hidden by fields with the same name in a more recently inherited class cannot be accessed by their simple names and are not included in the returned list. All other inherited fields are included. See JLS section 8.3 for details. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e objects; the list has length 0 if no visible fields exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allFields",
+      "comment": "Returns a list containing each Field declared in this type, and its superclasses, implemented interfaces, and/or superinterfaces. All declared and inherited fields are included, regardless of whether they are hidden or multiply inherited. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e objects; the list has length 0 if no fields exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.Field",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fieldName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "fieldByName",
+      "comment": "Finds the visible Field with the given non-ambiguous name. This method follows the inheritance rules specified in the JLS (8.3.3) to determine visibility. For arrays (ArrayType) and primitive classes, the returned value is always null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efieldName\u003c/code\u003e - a String containing the name of desired field."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e object which mirrors the found field, or null if there is no field with the given name or if the given name is ambiguous."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Method",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "methods",
+      "comment": "Returns a list containing each Method declared directly in this type. Inherited methods are not included. Constructors, the initialization method if any, and any synthetic methods created by the compiler are included in the list. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a list \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMethod\u003c/code\u003e\u003c/a\u003e objects; the list has length 0 if no methods exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Method",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "visibleMethods",
+      "comment": "Returns a list containing each Method declared or inherited by this type. Methods from superclasses or superinterfaces that that have been hidden or overridden are not included. Note that despite this exclusion, multiple inherited methods with the same signature can be present in the returned list, but at most one can be a member of a ClassType. See JLS section 8.4.6 for details. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMethod\u003c/code\u003e\u003c/a\u003e objects; the list has length 0 if no visible methods exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Method",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allMethods",
+      "comment": "Returns a list containing each Method declared in this type, and its superclasses, implemented interfaces, and/or superinterfaces. All declared and inherited methods are included, regardless of whether they are hidden or overridden. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMethod\u003c/code\u003e\u003c/a\u003e objects; the list has length 0 if no methods exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Method",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "methodsByName",
+      "comment": "Returns a List containing each visible Method that has the given name. This is most commonly used to find overloaded methods. Overridden and hidden methods are not included. See JLS (8.4.6) for details. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the method to find."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMethod\u003c/code\u003e\u003c/a\u003e objects that match the given name; the list has length 0 if no matching methods are found."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Method",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "signature"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "methodsByName",
+      "comment": "Returns a List containing each visible Method that has the given name and signature. The signature string is the JNI signature for the target method: ()V ([Ljava/lang/String;)V (IIII)Z This method follows the inheritance rules specified in the JLS (8.4.6) to determine visibility. At most one method in the list is a concrete method and a component of ClassType; any other methods in the list are abstract. Use ClassType.concreteMethodByName(java.lang.String, java.lang.String) to retrieve only the matching concrete method. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the method to find.",
+          "\u003ccode\u003esignature\u003c/code\u003e - the signature of the method to find"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMethod\u003c/code\u003e\u003c/a\u003e objects that match the given name and signature; the list has length 0 if no matching methods are found."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.ReferenceType",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "nestedTypes",
+      "comment": "Returns a List containing ReferenceType objects that are declared within this type and are currently loaded into the Virtual Machine. Both static nested types and non-static nested types (that is, inner types) are included. Local inner types (declared within a code block somewhere in this reference type) are also included in the returned list. For arrays (ArrayType) and primitive classes, the returned list is always empty.",
+      "tagMap": {
+        "return": [
+          "a List of nested \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eReferenceType\u003c/code\u003e\u003c/a\u003e objects; the list has 0 length if there are no nested types."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.Value",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          },
+          "field": {
+            "name": "field"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValue",
+      "comment": "Gets the Value of a given static Field in this type. The Field must be valid for this type; that is, it must be declared in this type, a superclass, a superinterface, or an implemented interface.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efield\u003c/code\u003e - the field containing the requested value"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field is not valid for this object\u0027s class."
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e of the instance field."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          },
+          {
+            "name": "com.sun.jdi.Value",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "com.sun.jdi.Field",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "fields"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValues",
+      "comment": "Returns a map containing the Value of each static Field in the given list. The Fields must be valid for this type; that is, they must be declared in this type, a superclass, a superinterface, or an implemented interface.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efields\u003c/code\u003e - a list of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e objects containing the requested values."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any field is not valid for this object\u0027s class.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMMismatchException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMMismatchException\u003c/a\u003e\u003c/code\u003e - if a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Mirror.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMirror\u003c/code\u003e\u003c/a\u003e argument and this mirror do not belong to the same \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eVirtualMachine\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "return": [
+          "a Map of the requested \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e objects with their \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ClassObjectReference",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "classObject",
+      "comment": "Returns the class object that corresponds to this type in the target VM. The VM creates class objects for every kind of ReferenceType: classes, interfaces, and array types.",
+      "tagMap": {
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eClassObjectReference\u003c/code\u003e\u003c/a\u003e for this reference type in the target VM."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Location",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allLineLocations",
+      "comment": "Returns a list containing a Location object for each executable source line in this reference type. This method is equivalent to allLineLocations(vm.getDefaultStratum(),null) - see allLineLocations(String,String) for more information.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if there is no line number information for this class and there are non-native, non-abstract executable members of this class.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Location",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stratum"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sourceName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allLineLocations",
+      "comment": "Returns a list containing a Location object for each executable source line in this reference type. Each location maps a source line to a range of code indices. The beginning of the range can be determined through Location.codeIndex(). The returned list may contain multiple locations for a particular line number, if the compiler and/or VM has mapped that line to two or more disjoint code index ranges. Note that it is possible for the same source line to represent different code index ranges in different methods. For arrays (ArrayType) and primitive classes, the returned list is always empty. For interfaces (InterfaceType), the returned list will be non-empty only if the interface has executable code in its class initialization. Returned list is for the specified stratum (see Location for a description of strata).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estratum\u003c/code\u003e - The stratum to retrieve information from or \n\u003ccode\u003enull\u003c/code\u003e for the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html#defaultStratum()\"\u003e\u003ccode\u003edefaultStratum()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003esourceName\u003c/code\u003e - Return locations only within this source file or \n\u003ccode\u003enull\u003c/code\u003e to return locations."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if there is no line number information for this class and there are non-native, non-abstract executable members of this class. Or if \n\u003ci\u003esourceName\u003c/i\u003e is non-\n\u003ccode\u003enull\u003c/code\u003e and source name information is not present.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of all source line \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Location.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocation\u003c/code\u003e\u003c/a\u003e objects."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Location",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lineNumber"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "locationsOfLine",
+      "comment": "Returns a List containing all Location objects that map to the given line number. This method is equivalent to locationsOfLine(vm.getDefaultStratum(), null, lineNumber) - see locationsOfLine(java.lang.String,java.lang.String,int) for more information.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#getDefaultStratum()\"\u003e\u003ccode\u003eVirtualMachine.getDefaultStratum()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elineNumber\u003c/code\u003e - the line number"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if there is no line number information for this class.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of all \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Location.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocation\u003c/code\u003e\u003c/a\u003e objects that map to the given line."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Location",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.AbsentInformationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stratum"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sourceName"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lineNumber"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "locationsOfLine",
+      "comment": "Returns a List containing all Location objects that map to the given line number. For arrays (ArrayType) and primitive classes, the returned list is always empty. For interfaces (InterfaceType), the returned list will be non-empty only if the interface has executable code in its class initialization at the specified line number. An empty list will be returned if there is no executable code at the specified line number. Returned list is for the specified stratum (see Location for a description of strata).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estratum\u003c/code\u003e - the stratum to use for comparing line number and source name, or \n\u003ccode\u003enull\u003c/code\u003e to use the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html#defaultStratum()\"\u003e\u003ccode\u003edefaultStratum()\u003c/code\u003e\u003c/a\u003e.",
+          "\u003ccode\u003esourceName\u003c/code\u003e - the source name containing the line number, or \n\u003ccode\u003enull\u003c/code\u003e to match all source names",
+          "\u003ccode\u003elineNumber\u003c/code\u003e - the line number"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/AbsentInformationException.html\" title\u003d\"class in com.sun.jdi\"\u003eAbsentInformationException\u003c/a\u003e\u003c/code\u003e - if there is no line number information for this class. Or if \n\u003ci\u003esourceName\u003c/i\u003e is non-\n\u003ccode\u003enull\u003c/code\u003e and source name information is not present.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotPreparedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotPreparedException\u003c/a\u003e\u003c/code\u003e - if this class not yet been prepared."
+        ],
+        "return": [
+          "a List of all \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Location.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocation\u003c/code\u003e\u003c/a\u003e objects that map to the given line."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "availableStrata",
+      "comment": "Return the available strata for this reference type. See the Location for a description of strata.",
+      "tagMap": {
+        "return": [
+          "List of \n\u003ccode\u003ejava.lang.String\u003c/code\u003e, each representing a stratum"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "defaultStratum",
+      "comment": "Returns the default stratum for this reference type. This value is specified in the class file and cannot be set by the user. If the class file does not specify a default stratum the base stratum (\"Java\") will be returned. See the Location for a description of strata.",
+      "tagMap": {
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.ObjectReference",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxInstances"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "instances",
+      "comment": "Returns instances of this ReferenceType. Only instances that are reachable for the purposes of garbage collection are returned. Not all target virtual machines support this operation. Use VirtualMachine.canGetInstanceInfo() to determine if the operation is supported.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#instanceCounts(java.util.List)\"\u003e\u003ccode\u003eVirtualMachine.instanceCounts(List)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html#referringObjects(long)\"\u003e\u003ccode\u003eObjectReference.referringObjects(long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emaxInstances\u003c/code\u003e - the maximum number of instances to return. Must be non-negative. If zero, all instances are returned."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetInstanceInfo()\"\u003e\u003ccode\u003ecanGetInstanceInfo()\u003c/code\u003e\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if maxInstances is less than zero."
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e objects. If there are no instances of this ReferenceType, a zero-length list is returned."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "equals",
+      "comment": "Compares the specified Object with this ReferenceType for equality.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the reference object with which to compare."
+        ],
+        "return": [
+          "true if the Object is a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eReferenceType\u003c/code\u003e\u003c/a\u003e, if the ReferenceTypes belong to the same VM, and if they mirror classes which correspond to the same instance of java.lang.Class in that VM."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hashCode",
+      "comment": "Returns the hash code value for this ObjectReference.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the integer hash code"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "majorVersion",
+      "comment": "Returns the class major version number, as defined in the class file format of the Java Virtual Machine Specification. For arrays (ArrayType) and primitive classes, the returned major version number value is zero. Not all target virtual machines support this operation. Use VirtualMachine.canGetClassFileVersion() to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetClassFileVersion()\"\u003e\u003ccode\u003ecanGetClassFileVersion()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the major version number of the class."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "minorVersion",
+      "comment": "Returns the class minor version number, as defined in the class file format of the Java Virtual Machine Specification. For arrays (ArrayType) and primitive classes, the returned minor version number value is zero. Not all target virtual machines support this operation. Use VirtualMachine.canGetClassFileVersion() to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetClassFileVersion()\"\u003e\u003ccode\u003ecanGetClassFileVersion()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the minor version number of the class."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "constantPoolCount",
+      "comment": "Returns the number of entries in the constant pool plus one. This corresponds to the constant_pool_count item of the Class File Format in the Java Virtual Machine Specification. For arrays (ArrayType) and primitive classes, the returned constant pool count value is zero. Not all target virtual machines support this operation. Use VirtualMachine.canGetConstantPool() to determine if the operation is supported.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html#constantPool()\"\u003e\u003ccode\u003econstantPool()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetConstantPool()\"\u003e\u003ccode\u003ecanGetConstantPool()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "total number of constant pool entries for a class plus one."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "constantPool",
+      "comment": "Returns the raw bytes of the constant pool in the format of the constant_pool item of the Class File Format in the Java Virtual Machine Specification. The format of the constant pool may differ between versions of the Class File Format, so, the minor and major class version numbers should be checked for compatibility. For arrays (ArrayType) and primitive classes, a zero length byte array is returned. Not all target virtual machines support this operation. Use VirtualMachine.canGetConstantPool() to determine if the operation is supported.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html#constantPoolCount()\"\u003e\u003ccode\u003econstantPoolCount()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetConstantPool()\"\u003e\u003ccode\u003ecanGetConstantPool()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the raw bytes of constant pool."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "com.sun.jdi.ReferenceType",
+  "comment": "The type of an object in a target VM. ReferenceType encompasses classes, interfaces, and array types as defined in \n\u003ccite\u003eThe Java Language Specification\u003c/cite\u003e. All ReferenceType objects belong to one of the following subinterfaces: \n\u003ca href\u003d\"ClassType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eClassType\u003c/code\u003e\u003c/a\u003e for classes, \n\u003ca href\u003d\"InterfaceType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eInterfaceType\u003c/code\u003e\u003c/a\u003e for interfaces, and \n\u003ca href\u003d\"ArrayType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eArrayType\u003c/code\u003e\u003c/a\u003e for arrays. Note that primitive classes (for example, the \n\u003ca href\u003d\"ClassObjectReference.html#reflectedType()\"\u003e\u003ccode\u003ereflected type\u003c/code\u003e\u003c/a\u003e of \n\u003ca href\u003d\"../../../../java.base/java/lang/Integer.html#TYPE\"\u003e\u003ccode\u003eInteger.TYPE\u003c/code\u003e\u003c/a\u003e) are represented as ClassType. The VM creates Class objects for all three, so from the VM perspective, each ReferenceType maps to a distinct Class object. \n\u003cp\u003e ReferenceTypes can be obtained by querying a particular \u003ca href\u003d\"ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e for its type or by getting a list of all reference types from the \u003ca href\u003d\"VirtualMachine.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eVirtualMachine\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e ReferenceType provides access to static type information such as methods and fields and provides access to dynamic type information such as the corresponding Class object and the classloader. \u003c/p\u003e\n\u003cp\u003e Any method on \u003ccode\u003eReferenceType\u003c/code\u003e which directly or indirectly takes \u003ccode\u003eReferenceType\u003c/code\u003e as an parameter may throw \u003ca href\u003d\"VMDisconnectedException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eVMDisconnectedException\u003c/code\u003e\u003c/a\u003e if the target VM is disconnected and the \u003ca href\u003d\"event/VMDisconnectEvent.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eVMDisconnectEvent\u003c/code\u003e\u003c/a\u003e has been or is available to be read from the \u003ca href\u003d\"event/EventQueue.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eEventQueue\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e Any method on \u003ccode\u003eReferenceType\u003c/code\u003e which directly or indirectly takes \u003ccode\u003eReferenceType\u003c/code\u003e as an parameter may throw \u003ca href\u003d\"VMOutOfMemoryException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eVMOutOfMemoryException\u003c/code\u003e\u003c/a\u003e if the target VM has run out of memory. \u003c/p\u003e\n\u003cp\u003e Any method on \u003ccode\u003eReferenceType\u003c/code\u003e or which directly or indirectly takes \u003ccode\u003eReferenceType\u003c/code\u003e as parameter may throw \u003ca href\u003d\"ObjectCollectedException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eObjectCollectedException\u003c/code\u003e\u003c/a\u003e if the mirrored type has been unloaded.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html#referenceType()\"\u003e\u003ccode\u003eObjectReference.referenceType()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eVirtualMachine\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#allClasses()\"\u003e\u003ccode\u003eVirtualMachine.allClasses()\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

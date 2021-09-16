@@ -1,0 +1,110 @@
+{
+  "packageName": "javax.xml.crypto.dsig.keyinfo",
+  "simpleName": "RetrievalMethod",
+  "moduleName": "java.xml.crypto",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "javax.xml.crypto.URIReference",
+      "type": "Class"
+    },
+    {
+      "name": "javax.xml.crypto.XMLStructure",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "javax.xml.crypto.dsig.Transform",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTransforms",
+      "comment": "Returns an unmodifiable list of Transforms of this RetrievalMethod.",
+      "tagMap": {
+        "return": [
+          "an unmodifiable list of \n\u003ccode\u003eTransform\u003c/code\u003e objects (may be empty but never \n\u003ccode\u003enull\u003c/code\u003e)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getURI",
+      "comment": "Returns the URI of the referenced KeyInfo information.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/URIReference.html#getURI()\"\u003egetURI\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/URIReference.html\" title\u003d\"interface in javax.xml.crypto\"\u003eURIReference\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the URI of the referenced \n\u003ccode\u003eKeyInfo\u003c/code\u003e information in RFC 2396 format (never \n\u003ccode\u003enull\u003c/code\u003e)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.crypto.Data",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.crypto.URIReferenceException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.xml.crypto.XMLCryptoContext",
+            "type": "Class"
+          },
+          "field": {
+            "name": "context"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "dereference",
+      "comment": "Dereferences the KeyInfo information referenced by this RetrievalMethod and applies the specified Transforms.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econtext\u003c/code\u003e - an \n\u003ccode\u003eXMLCryptoContext\u003c/code\u003e that may contain additional useful information for dereferencing the URI. The context\u0027s \n\u003ccode\u003ebaseURI\u003c/code\u003e and \n\u003ccode\u003edereferencer\u003c/code\u003e parameters (if specified) are used to resolve and dereference this \n\u003ccode\u003eRetrievalMethod\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003econtext\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/URIReferenceException.html\" title\u003d\"class in javax.xml.crypto\"\u003eURIReferenceException\u003c/a\u003e\u003c/code\u003e - if there is an error while dereferencing"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eData\u003c/code\u003e object representing the raw contents of the \n\u003ccode\u003eKeyInfo\u003c/code\u003e information referenced by this \n\u003ccode\u003eRetrievalMethod\u003c/code\u003e. It is the caller\u0027s responsibility to convert the returned data to an appropriate \n\u003ccode\u003eKeyInfo\u003c/code\u003e object."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.xml.crypto.dsig.keyinfo.RetrievalMethod",
+  "comment": "A representation of the XML \n\u003ccode\u003eRetrievalMethod\u003c/code\u003e element as defined in the \n\u003ca href\u003d\"http://www.w3.org/TR/xmldsig-core/\"\u003e W3C Recommendation for XML-Signature Syntax and Processing\u003c/a\u003e. A \n\u003ccode\u003eRetrievalMethod\u003c/code\u003e object is used to convey a reference to \n\u003ccode\u003eKeyInfo\u003c/code\u003e information that is stored at another location. The XML schema definition is defined as: \n\u003cpre\u003e   \u0026lt;element name\u003d\"RetrievalMethod\" type\u003d\"ds:RetrievalMethodType\"/\u0026gt;\n   \u0026lt;complexType name\u003d\"RetrievalMethodType\"\u0026gt;\n     \u0026lt;sequence\u0026gt;\n       \u0026lt;element name\u003d\"Transforms\" type\u003d\"ds:TransformsType\" minOccurs\u003d\"0\"/\u0026gt;\n     \u0026lt;/sequence\u0026gt;\n     \u0026lt;attribute name\u003d\"URI\" type\u003d\"anyURI\"/\u0026gt;\n     \u0026lt;attribute name\u003d\"Type\" type\u003d\"anyURI\" use\u003d\"optional\"/\u0026gt;\n   \u0026lt;/complexType\u0026gt;\n \u003c/pre\u003e A \n\u003ccode\u003eRetrievalMethod\u003c/code\u003e instance may be created by invoking one of the \n\u003ca href\u003d\"KeyInfoFactory.html#newRetrievalMethod(java.lang.String)\"\u003e\u003ccode\u003enewRetrievalMethod\u003c/code\u003e\u003c/a\u003e methods of the \n\u003ca href\u003d\"KeyInfoFactory.html\" title\u003d\"class in javax.xml.crypto.dsig.keyinfo\"\u003e\u003ccode\u003eKeyInfoFactory\u003c/code\u003e\u003c/a\u003e class, and passing it the URI identifying the location of the KeyInfo, an optional type URI identifying the type of KeyInfo, and an optional list of \n\u003ca href\u003d\"../Transform.html\" title\u003d\"interface in javax.xml.crypto.dsig\"\u003e\u003ccode\u003eTransform\u003c/code\u003e\u003c/a\u003es; for example: \n\u003cpre\u003e   KeyInfoFactory factory \u003d KeyInfoFactory.getInstance(\"DOM\");\n   RetrievalMethod rm \u003d factory.newRetrievalMethod\n      (\"#KeyValue-1\", KeyValue.DSA_TYPE, Collections.singletonList(Transform.BASE64));\n \u003c/pre\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/dsig/keyinfo/KeyInfoFactory.html#newRetrievalMethod(java.lang.String)\"\u003e\u003ccode\u003eKeyInfoFactory.newRetrievalMethod(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/dsig/keyinfo/KeyInfoFactory.html#newRetrievalMethod(java.lang.String,java.lang.String,java.util.List)\"\u003e\u003ccode\u003eKeyInfoFactory.newRetrievalMethod(String, String, List)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

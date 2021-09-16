@@ -1,0 +1,300 @@
+{
+  "packageName": "javax.security.sasl",
+  "simpleName": "SaslClient",
+  "moduleName": "java.security.sasl",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMechanismName",
+      "comment": "Returns the IANA-registered mechanism name of this SASL client. (e.g. \"CRAM-MD5\", \"GSSAPI\").",
+      "tagMap": {
+        "return": [
+          "A non-null string representing the IANA-registered mechanism name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasInitialResponse",
+      "comment": "Determines whether this mechanism has an optional initial response. If true, caller should call evaluateChallenge() with an empty array to get the initial response.",
+      "tagMap": {
+        "return": [
+          "true if this mechanism has an initial response."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.security.sasl.SaslException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "challenge"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "evaluateChallenge",
+      "comment": "Evaluates the challenge data and generates a response. If a challenge is received from the server during the authentication process, this method is called to prepare an appropriate next response to submit to the server.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003echallenge\u003c/code\u003e - The non-null challenge sent from the server. The challenge array may have zero length."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/SaslException.html\" title\u003d\"class in javax.security.sasl\"\u003eSaslException\u003c/a\u003e\u003c/code\u003e - If an error occurred while processing the challenge or generating a response."
+        ],
+        "return": [
+          "The possibly null response to send to the server. It is null if the challenge accompanied a \"SUCCESS\" status and the challenge only contains data for the client to update its state and no response needs to be sent to the server. The response is a zero-length byte array if the client is to send a response with no data."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isComplete",
+      "comment": "Determines whether the authentication exchange has completed. This method may be called at any time, but typically, it will not be called until the caller has received indication from the server (in a protocol-specific manner) that the exchange has completed.",
+      "tagMap": {
+        "return": [
+          "true if the authentication exchange has completed; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.security.sasl.SaslException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "incoming"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "unwrap",
+      "comment": "Unwraps a byte array received from the server. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true) and only if the authentication exchange has negotiated integrity and/or privacy as the quality of protection; otherwise, an IllegalStateException is thrown. incoming is the contents of the SASL buffer as defined in RFC 2222 without the leading four octet field that represents the length. offset and len specify the portion of incoming to use.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eincoming\u003c/code\u003e - A non-null byte array containing the encoded bytes from the server.",
+          "\u003ccode\u003eoffset\u003c/code\u003e - The starting position at \n\u003ccode\u003eincoming\u003c/code\u003e of the bytes to use.",
+          "\u003ccode\u003elen\u003c/code\u003e - The number of bytes from \n\u003ccode\u003eincoming\u003c/code\u003e to use."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/SaslException.html\" title\u003d\"class in javax.security.sasl\"\u003eSaslException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eincoming\u003c/code\u003e cannot be successfully unwrapped.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the authentication exchange has not completed, or if the negotiated quality of protection has neither integrity nor privacy."
+        ],
+        "return": [
+          "A non-null byte array containing the decoded bytes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.security.sasl.SaslException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "outgoing"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "wrap",
+      "comment": "Wraps a byte array to be sent to the server. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true) and only if the authentication exchange has negotiated integrity and/or privacy as the quality of protection; otherwise, an IllegalStateException is thrown. The result of this method will make up the contents of the SASL buffer as defined in RFC 2222 without the leading four octet field that represents the length. offset and len specify the portion of outgoing to use.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eoutgoing\u003c/code\u003e - A non-null byte array containing the bytes to encode.",
+          "\u003ccode\u003eoffset\u003c/code\u003e - The starting position at \n\u003ccode\u003eoutgoing\u003c/code\u003e of the bytes to use.",
+          "\u003ccode\u003elen\u003c/code\u003e - The number of bytes from \n\u003ccode\u003eoutgoing\u003c/code\u003e to use."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/SaslException.html\" title\u003d\"class in javax.security.sasl\"\u003eSaslException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoutgoing\u003c/code\u003e cannot be successfully wrapped.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the authentication exchange has not completed, or if the negotiated quality of protection has neither integrity nor privacy."
+        ],
+        "return": [
+          "A non-null byte array containing the encoded bytes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "propName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getNegotiatedProperty",
+      "comment": "Retrieves the negotiated property. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true); otherwise, an IllegalStateException is thrown. The Sasl class includes several well-known property names (For example, Sasl.QOP). A SASL provider can support other properties which are specific to the vendor and/or a mechanism.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epropName\u003c/code\u003e - The non-null property name."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this authentication exchange has not completed"
+        ],
+        "return": [
+          "The value of the negotiated property. If null, the property was not negotiated or is not applicable to this mechanism."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.security.sasl.SaslException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "dispose",
+      "comment": "Disposes of any system resources or security-sensitive information the SaslClient might be using. Invoking this method invalidates the SaslClient instance. This method is idempotent.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/SaslException.html\" title\u003d\"class in javax.security.sasl\"\u003eSaslException\u003c/a\u003e\u003c/code\u003e - If a problem was encountered while disposing the resources."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.security.sasl.SaslClient",
+  "comment": "Performs SASL authentication as a client. \n\u003cp\u003e A protocol library such as one for LDAP gets an instance of this class in order to perform authentication defined by a specific SASL mechanism. Invoking methods on the \u003ccode\u003eSaslClient\u003c/code\u003e instance process challenges and create responses according to the SASL mechanism implemented by the \u003ccode\u003eSaslClient\u003c/code\u003e. As the authentication proceeds, the instance encapsulates the state of a SASL client\u0027s authentication exchange. \u003c/p\u003e\n\u003cp\u003e Here\u0027s an example of how an LDAP library might use a \u003ccode\u003eSaslClient\u003c/code\u003e. It first gets an instance of a \u003ccode\u003eSaslClient\u003c/code\u003e: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\n SaslClient sc \u003d Sasl.createSaslClient(mechanisms,\n     authorizationId, protocol, serverName, props, callbackHandler);\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e It can then proceed to use the client for authentication. For example, an LDAP library might use the client as follows: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\n // Get initial response and send to server\n byte[] response \u003d (sc.hasInitialResponse() ? sc.evaluateChallenge(new byte[0]) :\n     null);\n LdapResult res \u003d ldap.sendBindRequest(dn, sc.getName(), response);\n while (!sc.isComplete() \u0026amp;\u0026amp;\n     (res.status \u003d\u003d SASL_BIND_IN_PROGRESS || res.status \u003d\u003d SUCCESS)) {\n     response \u003d sc.evaluateChallenge(res.getBytes());\n     if (res.status \u003d\u003d SUCCESS) {\n         // we\u0027re done; don\u0027t expect to send another BIND\n         if (response !\u003d null) {\n             throw new SaslException(\n                 \"Protocol error: attempting to send response after completion\");\n         }\n         break;\n     }\n     res \u003d ldap.sendBindRequest(dn, sc.getName(), response);\n }\n if (sc.isComplete() \u0026amp;\u0026amp; res.status \u003d\u003d SUCCESS) {\n    String qop \u003d (String) sc.getNegotiatedProperty(Sasl.QOP);\n    if (qop !\u003d null\n        \u0026amp;\u0026amp; (qop.equalsIgnoreCase(\"auth-int\")\n            || qop.equalsIgnoreCase(\"auth-conf\"))) {\n\n      // Use SaslClient.wrap() and SaslClient.unwrap() for future\n      // communication with server\n      ldap.in \u003d new SecureInputStream(sc, ldap.in);\n      ldap.out \u003d new SecureOutputStream(sc, ldap.out);\n    }\n }\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e If the mechanism has an initial response, the library invokes \n\u003ccode\u003eevaluateChallenge()\u003c/code\u003e with an empty challenge and to get initial response. Protocols such as IMAP4, which do not include an initial response with their first authentication command to the server, initiates the authentication without first calling \n\u003ccode\u003ehasInitialResponse()\u003c/code\u003e or \n\u003ccode\u003eevaluateChallenge()\u003c/code\u003e. When the server responds to the command, it sends an initial challenge. For a SASL mechanism in which the client sends data first, the server should have issued a challenge with no data. This will then result in a call (on the client) to \n\u003ccode\u003eevaluateChallenge()\u003c/code\u003e with an empty challenge.\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/Sasl.html\" title\u003d\"class in javax.security.sasl\"\u003e\u003ccode\u003eSasl\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/SaslClientFactory.html\" title\u003d\"interface in javax.security.sasl\"\u003e\u003ccode\u003eSaslClientFactory\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

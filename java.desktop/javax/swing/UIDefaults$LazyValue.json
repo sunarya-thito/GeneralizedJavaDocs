@@ -1,0 +1,50 @@
+{
+  "packageName": "javax.swing",
+  "simpleName": "LazyValue",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.UIDefaults",
+            "type": "Class"
+          },
+          "field": {
+            "name": "table"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createValue",
+      "comment": "Creates the actual value retrieved from the UIDefaults table. When an object that implements this interface is retrieved from the table, this method is used to create the real value, which is then stored in the table and returned to the calling method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etable\u003c/code\u003e - a \n\u003ccode\u003eUIDefaults\u003c/code\u003e table"
+        ],
+        "return": [
+          "the created \n\u003ccode\u003eObject\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "javax.swing.UIDefaults$LazyValue",
+  "comment": "This class enables one to store an entry in the defaults table that isn\u0027t constructed until the first time it\u0027s looked up with one of the \n\u003ccode\u003egetXXX(key)\u003c/code\u003e methods. Lazy values are useful for defaults that are expensive to construct or are seldom retrieved. The first time a \n\u003ccode\u003eLazyValue\u003c/code\u003e is retrieved its \"real value\" is computed by calling \n\u003ccode\u003eLazyValue.createValue()\u003c/code\u003e and the real value is used to replace the \n\u003ccode\u003eLazyValue\u003c/code\u003e in the \n\u003ccode\u003eUIDefaults\u003c/code\u003e table. Subsequent lookups for the same key return the real value. Here\u0027s an example of a \n\u003ccode\u003eLazyValue\u003c/code\u003e that constructs a \n\u003ccode\u003eBorder\u003c/code\u003e: \n\u003cpre\u003e  Object borderLazyValue \u003d new UIDefaults.LazyValue() {\n      public Object createValue(UIDefaults table) {\n          return new BorderFactory.createLoweredBevelBorder();\n      }\n  };\n\n  uiDefaultsTable.put(\"MyBorder\", borderLazyValue);\n \u003c/pre\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/UIDefaults.html#get(java.lang.Object)\"\u003e\u003ccode\u003eUIDefaults.get(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

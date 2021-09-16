@@ -1,0 +1,443 @@
+{
+  "packageName": "java.nio.file",
+  "simpleName": "SecureDirectoryStream",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.nio.file.DirectoryStream",
+    "parameters": [
+      {
+        "name": "T",
+        "type": "Class"
+      }
+    ],
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.nio.file.SecureDirectoryStream",
+        "parameters": [
+          {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "path"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.file.LinkOption",
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "newDirectoryStream",
+      "comment": "Opens the directory identified by the given path, returning a SecureDirectoryStream to iterate over the entries in the directory. This method works in exactly the manner specified by the newDirectoryStream method for the case that the path parameter is an absolute path. When the parameter is a relative path then the directory to open is relative to this open directory. The NOFOLLOW_LINKS option may be used to ensure that this method fails if the file is a symbolic link. The new directory stream, once created, is not dependent upon the directory stream used to create it. Closing this directory stream has no effect upon newly created directory stream.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path to the directory to open",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options indicating how symbolic links are handled"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedDirectoryStreamException.html\" title\u003d\"class in java.nio.file\"\u003eClosedDirectoryStreamException\u003c/a\u003e\u003c/code\u003e - if the directory stream is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NotDirectoryException.html\" title\u003d\"class in java.nio.file\"\u003eNotDirectoryException\u003c/a\u003e\u003c/code\u003e - if the file could not otherwise be opened because it is not a directory \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the directory."
+        ],
+        "return": [
+          "a new and open \n\u003ccode\u003eSecureDirectoryStream\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SeekableByteChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "path"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Set",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "java.nio.file.OpenOption",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.file.attribute.FileAttribute",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "attrs"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "newByteChannel",
+      "comment": "Opens or creates a file in this directory, returning a seekable byte channel to access the file. This method works in exactly the manner specified by the Files.newByteChannel method for the case that the path parameter is an absolute path. When the parameter is a relative path then the file to open or create is relative to this open directory. In addition to the options defined by the Files.newByteChannel method, the NOFOLLOW_LINKS option may be used to ensure that this method fails if the file is a symbolic link. The channel, once created, is not dependent upon the directory stream used to create it. Closing this directory stream has no effect upon the channel.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path of the file to open or create",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options specifying how the file is opened",
+          "\u003ccode\u003eattrs\u003c/code\u003e - an optional list of attributes to set atomically when creating the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedDirectoryStreamException.html\" title\u003d\"class in java.nio.file\"\u003eClosedDirectoryStreamException\u003c/a\u003e\u003c/code\u003e - if the directory stream is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the set contains an invalid combination of options",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if an unsupported open option is specified or the array contains attributes that cannot be set atomically when creating the file",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if a file of that name already exists and the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/StandardOpenOption.html#CREATE_NEW\"\u003e\u003ccode\u003eCREATE_NEW\u003c/code\u003e\u003c/a\u003e option is specified \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e method is invoked to check read access to the path if the file is opened for reading. The \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method is invoked to check write access to the path if the file is opened for writing."
+        ],
+        "return": [
+          "the seekable byte channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "path"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "deleteFile",
+      "comment": "Deletes a file. Unlike the delete() method, this method does not first examine the file to determine if the file is a directory. Whether a directory is deleted by this method is system dependent and therefore not specified. If the file is a symbolic link, then the link itself, not the final target of the link, is deleted. When the parameter is a relative path then the file to delete is relative to this open directory.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path of the file to delete"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedDirectoryStreamException.html\" title\u003d\"class in java.nio.file\"\u003eClosedDirectoryStreamException\u003c/a\u003e\u003c/code\u003e - if the directory stream is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NoSuchFileException.html\" title\u003d\"class in java.nio.file\"\u003eNoSuchFileException\u003c/a\u003e\u003c/code\u003e - if the file does not exist \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkDelete(java.lang.String)\"\u003e\u003ccode\u003echeckDelete\u003c/code\u003e\u003c/a\u003e method is invoked to check delete access to the file"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "path"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "deleteDirectory",
+      "comment": "Deletes a directory. Unlike the delete() method, this method does not first examine the file to determine if the file is a directory. Whether non-directories are deleted by this method is system dependent and therefore not specified. When the parameter is a relative path then the directory to delete is relative to this open directory.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path of the directory to delete"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedDirectoryStreamException.html\" title\u003d\"class in java.nio.file\"\u003eClosedDirectoryStreamException\u003c/a\u003e\u003c/code\u003e - if the directory stream is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/NoSuchFileException.html\" title\u003d\"class in java.nio.file\"\u003eNoSuchFileException\u003c/a\u003e\u003c/code\u003e - if the directory does not exist \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/DirectoryNotEmptyException.html\" title\u003d\"class in java.nio.file\"\u003eDirectoryNotEmptyException\u003c/a\u003e\u003c/code\u003e - if the directory could not otherwise be deleted because it is not empty \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkDelete(java.lang.String)\"\u003e\u003ccode\u003echeckDelete\u003c/code\u003e\u003c/a\u003e method is invoked to check delete access to the directory"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "srcpath"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.file.SecureDirectoryStream",
+            "parameters": [
+              {
+                "owner": "java.nio.file.SecureDirectoryStream",
+                "name": "T",
+                "type": "Variable"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "targetdir"
+          }
+        },
+        {
+          "type": {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "targetpath"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "move",
+      "comment": "Move a file from this directory to another directory. This method works in a similar manner to move method when the ATOMIC_MOVE option is specified. That is, this method moves a file as an atomic file system operation. If the srcpath parameter is an absolute path then it locates the source file. If the parameter is a relative path then it is located relative to this open directory. If the targetpath parameter is absolute then it locates the target file (the targetdir parameter is ignored). If the parameter is a relative path it is located relative to the open directory identified by the targetdir parameter. In all cases, if the target file exists then it is implementation specific if it is replaced or this method fails.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrcpath\u003c/code\u003e - the name of the file to move",
+          "\u003ccode\u003etargetdir\u003c/code\u003e - the destination directory",
+          "\u003ccode\u003etargetpath\u003c/code\u003e - the name to give the file in the destination directory"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/ClosedDirectoryStreamException.html\" title\u003d\"class in java.nio.file\"\u003eClosedDirectoryStreamException\u003c/a\u003e\u003c/code\u003e - if this or the target directory stream is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/FileAlreadyExistsException.html\" title\u003d\"class in java.nio.file\"\u003eFileAlreadyExistsException\u003c/a\u003e\u003c/code\u003e - if the file already exists in the target directory and cannot be replaced \n\u003ci\u003e(optional specific exception)\u003c/i\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/AtomicMoveNotSupportedException.html\" title\u003d\"class in java.nio.file\"\u003eAtomicMoveNotSupportedException\u003c/a\u003e\u003c/code\u003e - if the file cannot be moved as an atomic file system operation",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - In the case of the default provider, and a security manager is installed, the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003echeckWrite\u003c/code\u003e\u003c/a\u003e method is invoked to check write access to both the source and target file."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "V",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "V",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "type"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "V",
+          "upperBounds": [
+            {
+              "name": "java.nio.file.attribute.FileAttributeView",
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFileAttributeView",
+      "comment": "Returns a new file attribute view to access the file attributes of this directory. The resulting file attribute view can be used to read or update the attributes of this (open) directory. The type parameter specifies the type of the attribute view and the method returns an instance of that type if supported. Invoking this method to obtain a BasicFileAttributeView always returns an instance of that class that is bound to this open directory. The state of resulting file attribute view is intimately connected to this directory stream. Once the directory stream is closed, then all methods to read or update attributes will throw ClosedDirectoryStreamException.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eV\u003c/code\u003e - The \n\u003ccode\u003eFileAttributeView\u003c/code\u003e type"
+        ],
+        "param": [
+          "\u003ccode\u003etype\u003c/code\u003e - the \n\u003ccode\u003eClass\u003c/code\u003e object corresponding to the file attribute view"
+        ],
+        "return": [
+          "a new file attribute view of the specified type bound to this directory stream, or \n\u003ccode\u003enull\u003c/code\u003e if the attribute view type is not available"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "V",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.nio.file.SecureDirectoryStream",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "path"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "V",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "type"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.file.LinkOption",
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          },
+          "varArgs": {}
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "V",
+          "upperBounds": [
+            {
+              "name": "java.nio.file.attribute.FileAttributeView",
+              "type": "Class"
+            }
+          ],
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getFileAttributeView",
+      "comment": "Returns a new file attribute view to access the file attributes of a file in this directory. The resulting file attribute view can be used to read or update the attributes of file in this directory. The type parameter specifies the type of the attribute view and the method returns an instance of that type if supported. Invoking this method to obtain a BasicFileAttributeView always returns an instance of that class that is bound to the file in the directory. The state of resulting file attribute view is intimately connected to this directory stream. Once the directory stream closed, then all methods to read or update attributes will throw ClosedDirectoryStreamException. The file is not required to exist at the time that the file attribute view is created but methods to read or update attributes of the file will fail when invoked and the file does not exist.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eV\u003c/code\u003e - The \n\u003ccode\u003eFileAttributeView\u003c/code\u003e type"
+        ],
+        "param": [
+          "\u003ccode\u003epath\u003c/code\u003e - the path of the file",
+          "\u003ccode\u003etype\u003c/code\u003e - the \n\u003ccode\u003eClass\u003c/code\u003e object corresponding to the file attribute view",
+          "\u003ccode\u003eoptions\u003c/code\u003e - options indicating how symbolic links are handled"
+        ],
+        "return": [
+          "a new file attribute view of the specified type bound to a this directory stream, or \n\u003ccode\u003enull\u003c/code\u003e if the attribute view type is not available"
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.file.SecureDirectoryStream",
+  "comment": "A \n\u003ccode\u003eDirectoryStream\u003c/code\u003e that defines operations on files that are located relative to an open directory. A \n\u003ccode\u003eSecureDirectoryStream\u003c/code\u003e is intended for use by sophisticated or security sensitive applications requiring to traverse file trees or otherwise operate on directories in a race-free manner. Race conditions can arise when a sequence of file operations cannot be carried out in isolation. Each of the file operations defined by this interface specify a relative path. All access to the file is relative to the open directory irrespective of if the directory is moved or replaced by an attacker while the directory is open. A \n\u003ccode\u003eSecureDirectoryStream\u003c/code\u003e may also be used as a virtual \n\u003cem\u003eworking directory\u003c/em\u003e. \n\u003cp\u003e A \u003ccode\u003eSecureDirectoryStream\u003c/code\u003e requires corresponding support from the underlying operating system. Where an implementation supports this features then the \u003ccode\u003eDirectoryStream\u003c/code\u003e returned by the \u003ca href\u003d\"Files.html#newDirectoryStream(java.nio.file.Path)\"\u003e\u003ccode\u003enewDirectoryStream\u003c/code\u003e\u003c/a\u003e method will be a \u003ccode\u003eSecureDirectoryStream\u003c/code\u003e and must be cast to that type in order to invoke the methods defined by this interface. \u003c/p\u003e\n\u003cp\u003e In the case of the default \u003ca href\u003d\"spi/FileSystemProvider.html\" title\u003d\"class in java.nio.file.spi\"\u003e\u003ccode\u003eprovider\u003c/code\u003e\u003c/a\u003e, and a security manager is set, then the permission checks are performed using the path obtained by resolving the given relative path against the \u003ci\u003eoriginal path\u003c/i\u003e of the directory (irrespective of if the directory is moved since it was opened).\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

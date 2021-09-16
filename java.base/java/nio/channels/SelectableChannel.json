@@ -1,0 +1,296 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "SelectableChannel",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.nio.channels.spi.AbstractInterruptibleChannel",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.nio.channels.spi.SelectorProvider",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "provider",
+      "comment": "Returns the provider that created this channel.",
+      "tagMap": {
+        "return": [
+          "The provider that created this channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "validOps",
+      "comment": "Returns an operation set identifying this channel\u0027s supported operations. The bits that are set in this integer value denote exactly the operations that are valid for this channel. This method always returns the same value for a given concrete channel class.",
+      "tagMap": {
+        "return": [
+          "The valid-operation set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isRegistered",
+      "comment": "Tells whether or not this channel is currently registered with any selectors. A newly-created channel is not registered. Due to the inherent delay between key cancellation and channel deregistration, a channel may remain registered for some time after all of its keys have been cancelled. A channel may also remain registered for some time after it is closed.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, this channel is registered"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SelectionKey",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.channels.Selector",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sel"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "keyFor",
+      "comment": "Retrieves the key representing the channel\u0027s registration with the given selector.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esel\u003c/code\u003e - The selector"
+        ],
+        "return": [
+          "The key returned when this channel was last registered with the given selector, or \n\u003ccode\u003enull\u003c/code\u003e if this channel is not currently registered with that selector"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SelectionKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.nio.channels.ClosedChannelException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.channels.Selector",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sel"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ops"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "att"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "register",
+      "comment": "Registers this channel with the given selector, returning a selection key. If this channel is currently registered with the given selector then the selection key representing that registration is returned. The key\u0027s interest set will have been changed to ops, as if by invoking the interestOps(int) method. If the att argument is not null then the key\u0027s attachment will have been set to that value. A CancelledKeyException will be thrown if the key has already been cancelled. Otherwise this channel has not yet been registered with the given selector, so it is registered and the resulting new key is returned. The key\u0027s initial interest set will be ops and its attachment will be att. This method may be invoked at any time. If this method is invoked while a selection operation is in progress then it has no effect upon that operation; the new registration or change to the key\u0027s interest set will be seen by the next selection operation. If this method is invoked while an invocation of configureBlocking is in progress then it will block until the channel\u0027s blocking mode has been adjusted. If this channel is closed while this operation is in progress then the key returned by this method will have been cancelled and will therefore be invalid.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esel\u003c/code\u003e - The selector with which this channel is to be registered",
+          "\u003ccode\u003eops\u003c/code\u003e - The interest set for the resulting key",
+          "\u003ccode\u003eatt\u003c/code\u003e - The attachment for the resulting key; may be \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedSelectorException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedSelectorException\u003c/a\u003e\u003c/code\u003e - If the selector is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/IllegalBlockingModeException.html\" title\u003d\"class in java.nio.channels\"\u003eIllegalBlockingModeException\u003c/a\u003e\u003c/code\u003e - If this channel is in blocking mode",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/IllegalSelectorException.html\" title\u003d\"class in java.nio.channels\"\u003eIllegalSelectorException\u003c/a\u003e\u003c/code\u003e - If this channel was not created by the same provider as the given selector",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this channel is currently registered with the given selector but the corresponding key has already been cancelled",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If a bit in the \n\u003ccode\u003eops\u003c/code\u003e set does not correspond to an operation that is supported by this channel, that is, if \n\u003ccode\u003eset \u0026amp; ~validOps() !\u003d 0\u003c/code\u003e"
+        ],
+        "return": [
+          "A key representing the registration of this channel with the given selector"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SelectionKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.nio.channels.ClosedChannelException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.channels.Selector",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sel"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ops"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "register",
+      "comment": "Registers this channel with the given selector, returning a selection key. An invocation of this convenience method of the form sc.register(sel, ops) behaves in exactly the same way as the invocation sc.register(sel, ops, null)",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esel\u003c/code\u003e - The selector with which this channel is to be registered",
+          "\u003ccode\u003eops\u003c/code\u003e - The interest set for the resulting key"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedSelectorException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedSelectorException\u003c/a\u003e\u003c/code\u003e - If the selector is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/IllegalBlockingModeException.html\" title\u003d\"class in java.nio.channels\"\u003eIllegalBlockingModeException\u003c/a\u003e\u003c/code\u003e - If this channel is in blocking mode",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/IllegalSelectorException.html\" title\u003d\"class in java.nio.channels\"\u003eIllegalSelectorException\u003c/a\u003e\u003c/code\u003e - If this channel was not created by the same provider as the given selector",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this channel is currently registered with the given selector but the corresponding key has already been cancelled",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If a bit in \n\u003ccode\u003eops\u003c/code\u003e does not correspond to an operation that is supported by this channel, that is, if \n\u003ccode\u003eset \u0026amp; ~validOps() !\u003d 0\u003c/code\u003e"
+        ],
+        "return": [
+          "A key representing the registration of this channel with the given selector"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SelectableChannel",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "block"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "configureBlocking",
+      "comment": "Adjusts this channel\u0027s blocking mode. If this channel is registered with one or more selectors then an attempt to place it into blocking mode will cause an IllegalBlockingModeException to be thrown. This method may be invoked at any time. The new blocking mode will only affect I/O operations that are initiated after this method returns. For some implementations this may require blocking until all pending I/O operations are complete. If this method is invoked while another invocation of this method or of the register method is in progress then it will first block until the other operation is complete.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eblock\u003c/code\u003e - If \n\u003ccode\u003etrue\u003c/code\u003e then this channel will be placed in blocking mode; if \n\u003ccode\u003efalse\u003c/code\u003e then it will be placed non-blocking mode"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/IllegalBlockingModeException.html\" title\u003d\"class in java.nio.channels\"\u003eIllegalBlockingModeException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eblock\u003c/code\u003e is \n\u003ccode\u003etrue\u003c/code\u003e and this channel is registered with one or more selectors",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "return": [
+          "This selectable channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isBlocking",
+      "comment": "Tells whether or not every I/O operation on this channel will block until it completes. A newly-created channel is always in blocking mode. If this channel is closed then the value returned by this method is not specified.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, this channel is in blocking mode"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "blockingLock",
+      "comment": "Retrieves the object upon which the configureBlocking and register methods synchronize. This is often useful in the implementation of adaptors that require a specific blocking mode to be maintained for a short period of time.",
+      "tagMap": {
+        "return": [
+          "The blocking-mode lock object"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Initializes a new instance of this class.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.nio.channels.SelectableChannel",
+  "comment": "A channel that can be multiplexed via a \n\u003ca href\u003d\"Selector.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelector\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e In order to be used with a selector, an instance of this class must first be \u003ci\u003eregistered\u003c/i\u003e via the \u003ca href\u003d\"#register(java.nio.channels.Selector,int,java.lang.Object)\"\u003e\u003ccode\u003eregister\u003c/code\u003e\u003c/a\u003e method. This method returns a new \u003ca href\u003d\"SelectionKey.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelectionKey\u003c/code\u003e\u003c/a\u003e object that represents the channel\u0027s registration with the selector. \u003c/p\u003e\n\u003cp\u003e Once registered with a selector, a channel remains registered until it is \u003ci\u003ederegistered\u003c/i\u003e. This involves deallocating whatever resources were allocated to the channel by the selector. \u003c/p\u003e\n\u003cp\u003e A channel cannot be deregistered directly; instead, the key representing its registration must be \u003ci\u003ecancelled\u003c/i\u003e. Cancelling a key requests that the channel be deregistered during the selector\u0027s next selection operation. A key may be cancelled explicitly by invoking its \u003ca href\u003d\"SelectionKey.html#cancel()\"\u003e\u003ccode\u003ecancel\u003c/code\u003e\u003c/a\u003e method. All of a channel\u0027s keys are cancelled implicitly when the channel is closed, whether by invoking its \u003ca href\u003d\"Channel.html#close()\"\u003e\u003ccode\u003eclose\u003c/code\u003e\u003c/a\u003e method or by interrupting a thread blocked in an I/O operation upon the channel. \u003c/p\u003e\n\u003cp\u003e If the selector itself is closed then the channel will be deregistered, and the key representing its registration will be invalidated, without further delay. \u003c/p\u003e\n\u003cp\u003e A channel may be registered at most once with any particular selector. \u003c/p\u003e\n\u003cp\u003e Whether or not a channel is registered with one or more selectors may be determined by invoking the \u003ca href\u003d\"#isRegistered()\"\u003e\u003ccode\u003eisRegistered\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e Selectable channels are safe for use by multiple concurrent threads. \u003c/p\u003e \n\u003ca id\u003d\"bm\"\u003e\u003c/a\u003e \n\u003ch2\u003eBlocking mode\u003c/h2\u003e A selectable channel is either in \n\u003ci\u003eblocking\u003c/i\u003e mode or in \n\u003ci\u003enon-blocking\u003c/i\u003e mode. In blocking mode, every I/O operation invoked upon the channel will block until it completes. In non-blocking mode an I/O operation will never block and may transfer fewer bytes than were requested or possibly no bytes at all. The blocking mode of a selectable channel may be determined by invoking its \n\u003ca href\u003d\"#isBlocking()\"\u003e\u003ccode\u003eisBlocking\u003c/code\u003e\u003c/a\u003e method. \n\u003cp\u003e Newly-created selectable channels are always in blocking mode. Non-blocking mode is most useful in conjunction with selector-based multiplexing. A channel must be placed into non-blocking mode before being registered with a selector, and may not be returned to blocking mode until it has been deregistered.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/SelectionKey.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelectionKey\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/Selector.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelector\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

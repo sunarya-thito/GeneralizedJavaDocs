@@ -1,0 +1,367 @@
+{
+  "packageName": "javax.sql.rowset.spi",
+  "simpleName": "SyncFactory",
+  "moduleName": "java.sql.rowset",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "ROWSET_SYNC_PROVIDER",
+      "comment": "The standard property-id for a synchronization provider implementation name.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.spi.SyncFactory.ROWSET_SYNC_PROVIDER\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "ROWSET_SYNC_VENDOR",
+      "comment": "The standard property-id for a synchronization provider implementation vendor name.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.spi.SyncFactory.ROWSET_SYNC_VENDOR\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "ROWSET_SYNC_PROVIDER_VERSION",
+      "comment": "The standard property-id for a synchronization provider implementation version tag.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.sql.rowset.spi.SyncFactory.ROWSET_SYNC_PROVIDER_VERSION\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncFactoryException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "providerID"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "registerProvider",
+      "comment": "Adds the given synchronization provider to the factory register. Guidelines are provided in the SyncProvider specification for the required naming conventions for SyncProvider implementations. Synchronization providers bound to a JNDI context can be registered by binding a SyncProvider instance to a JNDI namespace.  \n SyncProvider p \u003d new MySyncProvider();\n InitialContext ic \u003d new InitialContext();\n ic.bind (\"jdbc/rowset/MySyncProvider\", p);\n  Furthermore, an initial JNDI context should be set with the SyncFactory using the setJNDIContext method. The SyncFactory leverages this context to search for available SyncProvider objects bound to the JNDI context and its child nodes.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactory.html#setJNDIContext(javax.naming.Context)\"\u003e\u003ccode\u003esetJNDIContext(javax.naming.Context)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eproviderID\u003c/code\u003e - A \n\u003ccode\u003eString\u003c/code\u003e object with the unique ID of the synchronization provider being registered"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactoryException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncFactoryException\u003c/a\u003e\u003c/code\u003e - if an attempt is made to supply an empty or null provider name"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.spi.SyncFactory",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getSyncFactory",
+      "comment": "Returns the SyncFactory singleton.",
+      "tagMap": {
+        "return": [
+          "the \n\u003ccode\u003eSyncFactory\u003c/code\u003e instance"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncFactoryException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "providerID"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "unregisterProvider",
+      "comment": "Removes the designated currently registered synchronization provider from the Factory SPI register.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eproviderID\u003c/code\u003e - The unique-id of the synchronization provider"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactoryException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncFactoryException\u003c/a\u003e\u003c/code\u003e - If an attempt is made to unregister a SyncProvider implementation that was not registered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sql.rowset.spi.SyncProvider",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncFactoryException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "providerID"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getInstance",
+      "comment": "Returns the SyncProvider instance identified by providerID.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eproviderID\u003c/code\u003e - the unique identifier of the provider"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactoryException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncFactoryException\u003c/a\u003e\u003c/code\u003e - If the SyncProvider cannot be found, the providerID is \n\u003ccode\u003enull\u003c/code\u003e, or some error was encountered when trying to invoke this provider."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eSyncProvider\u003c/code\u003e implementation"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Enumeration",
+        "parameters": [
+          {
+            "name": "javax.sql.rowset.spi.SyncProvider",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncFactoryException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getRegisteredProviders",
+      "comment": "Returns an Enumeration of currently registered synchronization providers. A RowSet implementation may use any provider in the enumeration as its SyncProvider object. At a minimum, the reference synchronization provider allowing RowSet content data to be stored using a JDBC driver should be possible.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactoryException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncFactoryException\u003c/a\u003e\u003c/code\u003e - If an error occurs obtaining the registered providers"
+        ],
+        "return": [
+          "Enumeration A enumeration of available synchronization providers that are registered with this Factory"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.logging.Logger",
+            "type": "Class"
+          },
+          "field": {
+            "name": "logger"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setLogger",
+      "comment": "Sets the logging object to be used by the SyncProvider implementation provided by the SyncFactory. All SyncProvider implementations can log their events to this object and the application can retrieve a handle to this object using the getLogger method. This method checks to see that there is an SQLPermission object which grants the permission setSyncFactory before allowing the method to succeed. If a SecurityManager exists and its checkPermission method denies calling setLogger, this method throws a java.lang.SecurityException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eSecurityManager.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elogger\u003c/code\u003e - A Logger object instance"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method denies calling \n\u003ccode\u003esetLogger\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the logger is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.logging.Logger",
+            "type": "Class"
+          },
+          "field": {
+            "name": "logger"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.logging.Level",
+            "type": "Class"
+          },
+          "field": {
+            "name": "level"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setLogger",
+      "comment": "Sets the logging object that is used by SyncProvider implementations provided by the SyncFactory SPI. All SyncProvider implementations can log their events to this object and the application can retrieve a handle to this object using the getLogger method. This method checks to see that there is an SQLPermission object which grants the permission setSyncFactory before allowing the method to succeed. If a SecurityManager exists and its checkPermission method denies calling setLogger, this method throws a java.lang.SecurityException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eSecurityManager.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.logging/java/util/logging/LoggingPermission.html\" title\u003d\"class in java.util.logging\"\u003e\u003ccode\u003eLoggingPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elogger\u003c/code\u003e - a Logger object instance",
+          "\u003ccode\u003elevel\u003c/code\u003e - a Level object instance indicating the degree of logging required"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method denies calling \n\u003ccode\u003esetLogger\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the logger is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.logging.Logger",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncFactoryException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getLogger",
+      "comment": "Returns the logging object for applications to retrieve synchronization events posted by SyncProvider implementations.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactoryException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncFactoryException\u003c/a\u003e\u003c/code\u003e - if no logging object has been set."
+        ],
+        "return": [
+          "The \n\u003ccode\u003eLogger\u003c/code\u003e that has been specified for use by \n\u003ccode\u003eSyncProvider\u003c/code\u003e implementations"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sql.rowset.spi.SyncFactoryException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.naming.Context",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ctx"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "setJNDIContext",
+      "comment": "Sets the initial JNDI context from which SyncProvider implementations can be retrieved from a JNDI namespace This method checks to see that there is an SQLPermission object which grants the permission setSyncFactory before allowing the method to succeed. If a SecurityManager exists and its checkPermission method denies calling setJNDIContext, this method throws a java.lang.SecurityException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eSecurityManager.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ectx\u003c/code\u003e - a valid JNDI context"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactoryException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003eSyncFactoryException\u003c/a\u003e\u003c/code\u003e - if the supplied JNDI context is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method denies calling \n\u003ccode\u003esetJNDIContext\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.sql.rowset.spi.SyncFactory",
+  "comment": "The Service Provider Interface (SPI) mechanism that generates \n\u003ccode\u003eSyncProvider\u003c/code\u003e instances to be used by disconnected \n\u003ccode\u003eRowSet\u003c/code\u003e objects. The \n\u003ccode\u003eSyncProvider\u003c/code\u003e instances in turn provide the \n\u003ccode\u003ejavax.sql.RowSetReader\u003c/code\u003e object the \n\u003ccode\u003eRowSet\u003c/code\u003e object needs to populate itself with data and the \n\u003ccode\u003ejavax.sql.RowSetWriter\u003c/code\u003e object it needs to propagate changes to its data back to the underlying data source. \n\u003cp\u003e Because the methods in the \u003ccode\u003eSyncFactory\u003c/code\u003e class are all static, there is only one \u003ccode\u003eSyncFactory\u003c/code\u003e object per Java VM at any one time. This ensures that there is a single source from which a \u003ccode\u003eRowSet\u003c/code\u003e implementation can obtain its \u003ccode\u003eSyncProvider\u003c/code\u003e implementation. \u003c/p\u003e\n\u003ch2\u003e1.0 Overview\u003c/h2\u003e The \n\u003ccode\u003eSyncFactory\u003c/code\u003e class provides an internal registry of available synchronization provider implementations (\n\u003ccode\u003eSyncProvider\u003c/code\u003e objects). This registry may be queried to determine which synchronization providers are available. The following line of code gets an enumeration of the providers currently registered. \n\u003cpre\u003e     java.util.Enumeration e \u003d SyncFactory.getRegisteredProviders();\n \u003c/pre\u003e All standard \n\u003ccode\u003eRowSet\u003c/code\u003e implementations must provide at least two providers: \n\u003cul\u003e \n \u003cli\u003ean optimistic provider for use with a \u003ccode\u003eCachedRowSet\u003c/code\u003e implementation or an implementation derived from it \u003c/li\u003e\n \u003cli\u003ean XML provider, which is used for reading and writing XML, such as with \u003ccode\u003eWebRowSet\u003c/code\u003e objects \u003c/li\u003e\n\u003c/ul\u003e Note that the JDBC RowSet Implementations include the \n\u003ccode\u003eSyncProvider\u003c/code\u003e implementations \n\u003ccode\u003eRIOptimisticProvider\u003c/code\u003e and \n\u003ccode\u003eRIXmlProvider\u003c/code\u003e, which satisfy this requirement. \n\u003cp\u003e The \u003ccode\u003eSyncFactory\u003c/code\u003e class provides accessor methods to assist applications in determining which synchronization providers are currently registered with the \u003ccode\u003eSyncFactory\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e Other methods let \u003ccode\u003eRowSet\u003c/code\u003e persistence providers be registered or de-registered with the factory mechanism. This allows additional synchronization provider implementations to be made available to \u003ccode\u003eRowSet\u003c/code\u003e objects at run time. \u003c/p\u003e\n\u003cp\u003e Applications can apply a degree of filtering to determine the level of synchronization that a \u003ccode\u003eSyncProvider\u003c/code\u003e implementation offers. The following criteria determine whether a provider is made available to a \u003ccode\u003eRowSet\u003c/code\u003e object: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003eIf a particular provider is specified by a \u003ccode\u003eRowSet\u003c/code\u003e object, and the \u003ccode\u003eSyncFactory\u003c/code\u003e does not contain a reference to this provider, a \u003ccode\u003eSyncFactoryException\u003c/code\u003e is thrown stating that the synchronization provider could not be found. \u003c/li\u003e\n \u003cli\u003eIf a \u003ccode\u003eRowSet\u003c/code\u003e implementation is instantiated with a specified provider and the specified provider has been properly registered, the requested provider is supplied. Otherwise a \u003ccode\u003eSyncFactoryException\u003c/code\u003e is thrown. \u003c/li\u003e\n \u003cli\u003eIf a \u003ccode\u003eRowSet\u003c/code\u003e object does not specify a \u003ccode\u003eSyncProvider\u003c/code\u003e implementation and no additional \u003ccode\u003eSyncProvider\u003c/code\u003e implementations are available, the reference implementation providers are supplied. \u003c/li\u003e\n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003e2.0 Registering \u003ccode\u003eSyncProvider\u003c/code\u003e Implementations\u003c/h2\u003e \n\u003cp\u003e Both vendors and developers can register \u003ccode\u003eSyncProvider\u003c/code\u003e implementations using one of the following mechanisms. \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003cb\u003eUsing the command line\u003c/b\u003e\u003cbr\u003e The name of the provider is supplied on the command line, which will add the provider to the system properties. For example: \u003cpre\u003e    -Drowset.provider.classname\u003dcom.fred.providers.HighAvailabilityProvider\n \u003c/pre\u003e \u003c/li\u003e\n \u003cli\u003e\u003cb\u003eUsing the Standard Properties File\u003c/b\u003e\u003cbr\u003e The reference implementation is targeted to ship with J2SE 1.5, which will include an additional resource file that may be edited by hand. Here is an example of the properties file included in the reference implementation: \u003cpre\u003e   #Default JDBC RowSet sync providers listing\n   #\n\n   # Optimistic synchronization provider\n   rowset.provider.classname.0\u003dcom.sun.rowset.providers.RIOptimisticProvider\n   rowset.provider.vendor.0\u003dOracle Corporation\n   rowset.provider.version.0\u003d1.0\n\n   # XML Provider using standard XML schema\n   rowset.provider.classname.1\u003dcom.sun.rowset.providers.RIXMLProvider\n   rowset.provider.vendor.1\u003dOracle Corporation\n   rowset.provider.version.1\u003d1.0\n \u003c/pre\u003e The \u003ccode\u003eSyncFactory\u003c/code\u003e checks this file and registers the \u003ccode\u003eSyncProvider\u003c/code\u003e implementations that it contains. A developer or vendor can add other implementations to this file. For example, here is a possible addition: \u003cpre\u003e     rowset.provider.classname.2\u003dcom.fred.providers.HighAvailabilityProvider\n     rowset.provider.vendor.2\u003dFred, Inc.\n     rowset.provider.version.2\u003d1.0\n \u003c/pre\u003e \u003c/li\u003e\n \u003cli\u003e\u003cb\u003eUsing a JNDI Context\u003c/b\u003e\u003cbr\u003e Available providers can be registered on a JNDI context, and the \u003ccode\u003eSyncFactory\u003c/code\u003e will attempt to load \u003ccode\u003eSyncProvider\u003c/code\u003e implementations from that JNDI context. For example, the following code fragment registers a provider implementation on a JNDI context. This is something a deployer would normally do. In this example, \u003ccode\u003eMyProvider\u003c/code\u003e is being registered on a CosNaming namespace, which is the namespace used by J2EE resources. \u003cpre\u003e    import javax.naming.*;\n\n    Hashtable svrEnv \u003d new  Hashtable();\n    srvEnv.put(Context.INITIAL_CONTEXT_FACTORY, \"CosNaming\");\n\n    Context ctx \u003d new InitialContext(svrEnv);\n    com.fred.providers.MyProvider \u003d new MyProvider();\n    ctx.rebind(\"providers/MyProvider\", syncProvider);\n \u003c/pre\u003e \u003c/li\u003e\n\u003c/ul\u003e Next, an application will register the JNDI context with the \n\u003ccode\u003eSyncFactory\u003c/code\u003e instance. This allows the \n\u003ccode\u003eSyncFactory\u003c/code\u003e to browse within the JNDI context looking for \n\u003ccode\u003eSyncProvider\u003c/code\u003e implementations. \n\u003cpre\u003e    Hashtable appEnv \u003d new Hashtable();\n    appEnv.put(Context.INITIAL_CONTEXT_FACTORY, \"CosNaming\");\n    appEnv.put(Context.PROVIDER_URL, \"iiop://hostname/providers\");\n    Context ctx \u003d new InitialContext(appEnv);\n\n    SyncFactory.registerJNDIContext(ctx);\n \u003c/pre\u003e If a \n\u003ccode\u003eRowSet\u003c/code\u003e object attempts to obtain a \n\u003ccode\u003eMyProvider\u003c/code\u003e object, the \n\u003ccode\u003eSyncFactory\u003c/code\u003e will try to locate it. First it searches for it in the system properties, then it looks in the resource files, and finally it checks the JNDI context that has been set. The \n\u003ccode\u003eSyncFactory\u003c/code\u003e instance verifies that the requested provider is a valid extension of the \n\u003ccode\u003eSyncProvider\u003c/code\u003e abstract class and then gives it to the \n\u003ccode\u003eRowSet\u003c/code\u003e object. In the following code fragment, a new \n\u003ccode\u003eCachedRowSet\u003c/code\u003e object is created and initialized with \n\u003ci\u003eenv\u003c/i\u003e, which contains the binding to \n\u003ccode\u003eMyProvider\u003c/code\u003e. \n\u003cpre\u003e    Hashtable env \u003d new Hashtable();\n    env.put(SyncFactory.ROWSET_SYNC_PROVIDER, \"com.fred.providers.MyProvider\");\n    CachedRowSet crs \u003d new com.sun.rowset.CachedRowSetImpl(env);\n \u003c/pre\u003e Further details on these mechanisms are available in the \n\u003ccode\u003ejavax.sql.rowset.spi\u003c/code\u003e package specification.\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncProvider.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncProvider\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.sql.rowset/javax/sql/rowset/spi/SyncFactoryException.html\" title\u003d\"class in javax.sql.rowset.spi\"\u003e\u003ccode\u003eSyncFactoryException\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "MembershipKey",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isValid",
+      "comment": "Tells whether or not this membership is valid. A multicast group membership is valid upon creation and remains valid until the membership is dropped by invoking the drop method, or the channel is closed.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this membership key is valid, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "drop",
+      "comment": "Drop membership. If the membership key represents a membership to receive all datagrams then the membership is dropped and the channel will no longer receive any datagrams sent to the group. If the membership key is source-specific then the channel will no longer receive datagrams sent to the group from that source address. After membership is dropped it may still be possible to receive datagrams sent to the group. This can arise when datagrams are waiting to be received in the socket\u0027s receive buffer. After membership is dropped then the channel may join the group again in which case a new membership key is returned. Upon return, this membership object will be invalid. If the multicast group membership is already invalid then invoking this method has no effect. Once a multicast group membership is invalid, it remains invalid forever.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.MembershipKey",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.InetAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "source"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "block",
+      "comment": "Block multicast datagrams from the given source address. If this membership key is not source-specific, and the underlying operating system supports source filtering, then this method blocks multicast datagrams from the given source address. If the given source address is already blocked then this method has no effect. After a source address is blocked it may still be possible to receive datagrams from that source. This can arise when datagrams are waiting to be received in the socket\u0027s receive buffer.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esource\u003c/code\u003e - The source address to block"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If the \n\u003ccode\u003esource\u003c/code\u003e parameter is not a unicast address or is not the same address type as the multicast group",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If this membership key is source-specific or is no longer valid",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - If the underlying operating system does not support source filtering",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "return": [
+          "This membership key"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.MembershipKey",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.InetAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "source"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "unblock",
+      "comment": "Unblock multicast datagrams from the given source address that was previously blocked using the block method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esource\u003c/code\u003e - The source address to unblock"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If the given source address is not currently blocked or the membership key is no longer valid"
+        ],
+        "return": [
+          "This membership key"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.MulticastChannel",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "channel",
+      "comment": "Returns the channel for which this membership key was created. This method will continue to return the channel even after the membership becomes invalid.",
+      "tagMap": {
+        "return": [
+          "the channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.InetAddress",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "group",
+      "comment": "Returns the multicast group for which this membership key was created. This method will continue to return the group even after the membership becomes invalid.",
+      "tagMap": {
+        "return": [
+          "the multicast group"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.NetworkInterface",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "networkInterface",
+      "comment": "Returns the network interface for which this membership key was created. This method will continue to return the network interface even after the membership becomes invalid.",
+      "tagMap": {
+        "return": [
+          "the network interface"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.InetAddress",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "sourceAddress",
+      "comment": "Returns the source address if this membership key is source-specific, or null if this membership is not source-specific.",
+      "tagMap": {
+        "return": [
+          "The source address if this membership key is source-specific, otherwise \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Initializes a new instance of this class.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.nio.channels.MembershipKey",
+  "comment": "A token representing the membership of an Internet Protocol (IP) multicast group. \n\u003cp\u003e A membership key may represent a membership to receive all datagrams sent to the group, or it may be \u003cem\u003esource-specific\u003c/em\u003e, meaning that it represents a membership that receives only datagrams from a specific source address. Whether or not a membership key is source-specific may be determined by invoking its \u003ca href\u003d\"#sourceAddress()\"\u003e\u003ccode\u003esourceAddress\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e A membership key is valid upon creation and remains valid until the membership is dropped by invoking the \u003ca href\u003d\"#drop()\"\u003e\u003ccode\u003edrop\u003c/code\u003e\u003c/a\u003e method, or the channel is closed. The validity of the membership key may be tested by invoking its \u003ca href\u003d\"#isValid()\"\u003e\u003ccode\u003eisValid\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e Where a membership key is not source-specific and the underlying operation system supports source filtering, then the \u003ca href\u003d\"#block(java.net.InetAddress)\"\u003e\u003ccode\u003eblock\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#unblock(java.net.InetAddress)\"\u003e\u003ccode\u003eunblock\u003c/code\u003e\u003c/a\u003e methods can be used to block or unblock multicast datagrams from particular source addresses.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/MulticastChannel.html\" title\u003d\"interface in java.nio.channels\"\u003e\u003ccode\u003eMulticastChannel\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.7"
+    ]
+  }
+}

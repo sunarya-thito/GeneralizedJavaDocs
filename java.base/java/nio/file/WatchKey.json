@@ -1,0 +1,108 @@
+{
+  "packageName": "java.nio.file",
+  "simpleName": "WatchKey",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isValid",
+      "comment": "Tells whether or not this watch key is valid. A watch key is valid upon creation and remains until it is cancelled, or its watch service is closed.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, this watch key is valid"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.nio.file.WatchEvent",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "pollEvents",
+      "comment": "Retrieves and removes all pending events for this watch key, returning a List of the events that were retrieved. Note that this method does not wait if there are no events pending.",
+      "tagMap": {
+        "return": [
+          "the list of the events retrieved; may be empty"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "reset",
+      "comment": "Resets this watch key. If this watch key has been cancelled or this watch key is already in the ready state then invoking this method has no effect. Otherwise if there are pending events for the object then this watch key is immediately re-queued to the watch service. If there are no pending events then the watch key is put into the ready state and will remain in that state until an event is detected or the watch key is cancelled.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the watch key is valid and has been reset, and \n\u003ccode\u003efalse\u003c/code\u003e if the watch key could not be reset because it is no longer \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/WatchKey.html#isValid()\"\u003e\u003ccode\u003evalid\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "cancel",
+      "comment": "Cancels the registration with the watch service. Upon return the watch key will be invalid. If the watch key is enqueued, waiting to be retrieved from the watch service, then it will remain in the queue until it is removed. Pending events, if any, remain pending and may be retrieved by invoking the pollEvents method after the key is cancelled. If this watch key has already been cancelled then invoking this method has no effect. Once cancelled, a watch key remains forever invalid.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Watchable",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "watchable",
+      "comment": "Returns the object for which this watch key was created. This method will continue to return the object even after the key is cancelled. As the WatchService is intended to map directly on to the native file event notification facility (where available) then many of details on how registered objects are watched is highly implementation specific. When watching a directory for changes for example, and the directory is moved or renamed in the file system, there is no guarantee that the watch key will be cancelled and so the object returned by this method may no longer be a valid path to the directory.",
+      "tagMap": {
+        "return": [
+          "the object for which this watch key was created"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.file.WatchKey",
+  "comment": "A token representing the registration of a \n\u003ca href\u003d\"Watchable.html\" title\u003d\"interface in java.nio.file\"\u003e\u003ccode\u003ewatchable\u003c/code\u003e\u003c/a\u003e object with a \n\u003ca href\u003d\"WatchService.html\" title\u003d\"interface in java.nio.file\"\u003e\u003ccode\u003eWatchService\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e A watch key is created when a watchable object is registered with a watch service. The key remains \u003ca href\u003d\"#isValid()\"\u003e\u003ccode\u003evalid\u003c/code\u003e\u003c/a\u003e until: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003e It is cancelled, explicitly, by invoking its \u003ca href\u003d\"#cancel()\"\u003e\u003ccode\u003ecancel\u003c/code\u003e\u003c/a\u003e method, or\u003c/li\u003e \n \u003cli\u003e Cancelled implicitly, because the object is no longer accessible, or \u003c/li\u003e \n \u003cli\u003e By \u003ca href\u003d\"WatchService.html#close()\"\u003e\u003ccode\u003eclosing\u003c/code\u003e\u003c/a\u003e the watch service. \u003c/li\u003e \n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A watch key has a state. When initially created the key is said to be \u003cem\u003eready\u003c/em\u003e. When an event is detected then the key is \u003cem\u003esignalled\u003c/em\u003e and queued so that it can be retrieved by invoking the watch service\u0027s \u003ca href\u003d\"WatchService.html#poll()\"\u003e\u003ccode\u003epoll\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"WatchService.html#take()\"\u003e\u003ccode\u003etake\u003c/code\u003e\u003c/a\u003e methods. Once signalled, a key remains in this state until its \u003ca href\u003d\"#reset()\"\u003e\u003ccode\u003ereset\u003c/code\u003e\u003c/a\u003e method is invoked to return the key to the ready state. Events detected while the key is in the signalled state are queued but do not cause the key to be re-queued for retrieval from the watch service. Events are retrieved by invoking the key\u0027s \u003ca href\u003d\"#pollEvents()\"\u003e\u003ccode\u003epollEvents\u003c/code\u003e\u003c/a\u003e method. This method retrieves and removes all events accumulated for the object. When initially created, a watch key has no pending events. Typically events are retrieved when the key is in the signalled state leading to the following idiom: \u003c/p\u003e\n\u003cpre\u003e     for (;;) {\n         // retrieve key\n         WatchKey key \u003d watcher.take();\n\n         // process events\n         for (WatchEvent\u0026lt;?\u0026gt; event: key.pollEvents()) {\n             :\n         }\n\n         // reset the key\n         boolean valid \u003d key.reset();\n         if (!valid) {\n             // object no longer registered\n         }\n     }\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Watch keys are safe for use by multiple concurrent threads. Where there are several threads retrieving signalled keys from a watch service then care should be taken to ensure that the \u003ccode\u003ereset\u003c/code\u003e method is only invoked after the events for the object have been processed. This ensures that one thread is processing the events for an object at any time.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.7"
+    ]
+  }
+}

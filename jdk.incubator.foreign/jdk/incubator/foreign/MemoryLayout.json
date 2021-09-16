@@ -1,0 +1,933 @@
+{
+  "packageName": "jdk.incubator.foreign",
+  "simpleName": "MemoryLayout",
+  "moduleName": "jdk.incubator.foreign",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.constant.Constable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "LAYOUT_NAME",
+      "comment": "Attribute name used to specify the name property of a memory layout (see name() and withName(String)).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#jdk.incubator.foreign.MemoryLayout.LAYOUT_NAME\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "upperBounds": [
+              {
+                "name": "java.lang.constant.DynamicConstantDesc",
+                "parameters": [
+                  {
+                    "upperBounds": [
+                      {
+                        "name": "jdk.incubator.foreign.MemoryLayout",
+                        "type": "Class"
+                      }
+                    ],
+                    "type": "Wildcard"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "describeConstable",
+      "comment": "Returns an Optional containing the nominal descriptor for this layout, if one can be constructed, or an empty Optional if one cannot be constructed.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/constant/Constable.html#describeConstable()\"\u003edescribeConstable\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/constant/Constable.html\" title\u003d\"interface in java.lang.constant\"\u003eConstable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "An \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Optional.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eOptional\u003c/code\u003e\u003c/a\u003e containing the resulting nominal descriptor, or an empty \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Optional.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eOptional\u003c/code\u003e\u003c/a\u003e if one cannot be constructed."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasSize",
+      "comment": "Does this layout have a specified size? A layout does not have a specified size if it is (or contains) a sequence layout whose size is unspecified (see SequenceLayout.elementCount()). Value layouts (see ValueLayout) and padding layouts (see ofPaddingBits(long)) always have a specified size, therefore this method always returns true in these cases.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e, if this layout has a specified size."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "bitSize",
+      "comment": "Computes the layout size, in bits.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the layout is, or contains, a sequence layout with unspecified size (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/SequenceLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eSequenceLayout\u003c/code\u003e\u003c/a\u003e)."
+        ],
+        "return": [
+          "the layout size, in bits."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "byteSize",
+      "comment": "Computes the layout size, in bytes.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the layout is, or contains, a sequence layout with unspecified size (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/SequenceLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eSequenceLayout\u003c/code\u003e\u003c/a\u003e), or if \n\u003ccode\u003ebitSize()\u003c/code\u003e is not a multiple of 8."
+        ],
+        "return": [
+          "the layout size, in bytes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "name",
+      "comment": "Return the name (if any) associated with this layout. This is equivalent to the following code: \n    attribute(LAYOUT_NAME).map(String.class::cast);",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.html#withName(java.lang.String)\"\u003e\u003ccode\u003ewithName(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the layout \n\u003cem\u003ename\u003c/em\u003e (if any)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "withName",
+      "comment": "Creates a new layout which features the desired layout name. This is equivalent to the following code: \n    withAttribute(LAYOUT_NAME, name);",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.html#name()\"\u003e\u003ccode\u003ename()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the layout name."
+        ],
+        "return": [
+          "a new layout which is the same as this layout, except for the \n\u003cem\u003ename\u003c/em\u003e associated to it."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "bitAlignment",
+      "comment": "Returns the alignment constraint associated with this layout, expressed in bits. Layout alignment defines a power of two A which is the bit-wise alignment of the layout. If A \u003c\u003d 8 then A/8 is the number of bytes that must be aligned for any pointer that correctly points to this layout. Thus: A\u003d8 means unaligned (in the usual sense), which is common in packets. A\u003d64 means word aligned (on LP64), A\u003d32 int aligned, A\u003d16 short aligned, etc. A\u003d512 is the most strict alignment required by the x86/SV ABI (for AVX-512 data). If no explicit alignment constraint was set on this layout (see withBitAlignment(long)), then this method returns the natural alignment constraint (in bits) associated with this layout.",
+      "tagMap": {
+        "return": [
+          "the layout alignment constraint, in bits."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "byteAlignment",
+      "comment": "Returns the alignment constraint associated with this layout, expressed in bytes. Layout alignment defines a power of two A which is the byte-wise alignment of the layout, where A is the number of bytes that must be aligned for any pointer that correctly points to this layout. Thus: A\u003d1 means unaligned (in the usual sense), which is common in packets. A\u003d8 means word aligned (on LP64), A\u003d4 int aligned, A\u003d2 short aligned, etc. A\u003d64 is the most strict alignment required by the x86/SV ABI (for AVX-512 data). If no explicit alignment constraint was set on this layout (see withBitAlignment(long)), then this method returns the natural alignment constraint (in bytes) associated with this layout.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebitAlignment()\u003c/code\u003e is not a multiple of 8."
+        ],
+        "return": [
+          "the layout alignment constraint, in bytes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bitAlignment"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "withBitAlignment",
+      "comment": "Creates a new layout which features the desired alignment constraint.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebitAlignment\u003c/code\u003e - the layout alignment constraint, expressed in bits."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ebitAlignment\u003c/code\u003e is not a power of two, or if it\u0027s less than than 8."
+        ],
+        "return": [
+          "a new layout which is the same as this layout, except for the alignment constraint associated to it."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Optional",
+        "parameters": [
+          {
+            "name": "java.lang.constant.Constable",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "attribute",
+      "comment": "Returns the attribute with the given name (if it exists).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the attribute name"
+        ],
+        "return": [
+          "the attribute with the given name (if it exists)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.constant.Constable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "withAttribute",
+      "comment": "Returns a new memory layout which features the same attributes as this layout, plus the newly specified attribute. If this layout already contains an attribute with the same name, the existing attribute value is overwritten in the returned layout.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the attribute name.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the attribute value."
+        ],
+        "return": [
+          "a new memory layout which features the same attributes as this layout, plus the newly specified attribute."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "attributes",
+      "comment": "Returns a stream of the attribute names associated with this layout.",
+      "tagMap": {
+        "return": [
+          "a stream of the attribute names associated with this layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "bitOffset",
+      "comment": "Computes the offset, in bits, of the layout selected by a given layout path, where the path is considered rooted in this layout.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelements\u003c/code\u003e - the layout path elements."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the layout path does not select any layout nested in this layout, or if the layout path contains one or more path elements that select multiple sequence element indices (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement()\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement()\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long,long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long, long)\u003c/code\u003e\u003c/a\u003e).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if one of the layouts traversed by the layout path has unspecified size."
+        ],
+        "return": [
+          "The offset, in bits, of the layout selected by the layout path in \n\u003ccode\u003eelements\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "bitOffsetHandle",
+      "comment": "Creates a method handle that can be used to compute the offset, in bits, of the layout selected by a given layout path, where the path is considered rooted in this layout. The returned method handle has a return type of long, and features as many long parameter types as there are free dimensions in the provided layout path (see MemoryLayout.PathElement.sequenceElement(), where the order of the parameters corresponds to the order of the path elements. The returned method handle can be used to compute a layout offset similar to bitOffset(PathElement...), but where some sequence indices are specified only when invoking the method handle. The final offset returned by the method handle is computed as follows: \n    offset \u003d c_1 + c_2 + ... + c_m + (x_1 * s_1) + (x_2 * s_2) + ... + (x_n * s_n)\n where x_1, x_2, ... x_n are dynamic values provided as long arguments, whereas c_1, c_2, ... c_m and s_0, s_1, ... s_n are static stride constants which are derived from the layout path.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelements\u003c/code\u003e - the layout path elements."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the layout path contains one or more path elements that select multiple sequence element indices (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long,long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long, long)\u003c/code\u003e\u003c/a\u003e).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if one of the layouts traversed by the layout path has unspecified size."
+        ],
+        "return": [
+          "a method handle that can be used to compute the bit offset of the layout element specified by the given layout path elements, when supplied with the missing sequence element indices."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "byteOffset",
+      "comment": "Computes the offset, in bytes, of the layout selected by a given layout path, where the path is considered rooted in this layout.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelements\u003c/code\u003e - the layout path elements."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the layout path does not select any layout nested in this layout, or if the layout path contains one or more path elements that select multiple sequence element indices (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement()\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement()\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long,long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long, long)\u003c/code\u003e\u003c/a\u003e).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if one of the layouts traversed by the layout path has unspecified size, or if \n\u003ccode\u003ebitOffset(elements)\u003c/code\u003e is not a multiple of 8."
+        ],
+        "return": [
+          "The offset, in bytes, of the layout selected by the layout path in \n\u003ccode\u003eelements\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "byteOffsetHandle",
+      "comment": "Creates a method handle that can be used to compute the offset, in bytes, of the layout selected by a given layout path, where the path is considered rooted in this layout. The returned method handle has a return type of long, and features as many long parameter types as there are free dimensions in the provided layout path (see MemoryLayout.PathElement.sequenceElement(), where the order of the parameters corresponds to the order of the path elements. The returned method handle can be used to compute a layout offset similar to byteOffset(PathElement...), but where some sequence indices are specified only when invoking the method handle. The final offset returned by the method handle is computed as follows: \n    bitOffset \u003d c_1 + c_2 + ... + c_m + (x_1 * s_1) + (x_2 * s_2) + ... + (x_n * s_n)\n    offset \u003d bitOffset / 8\n where x_1, x_2, ... x_n are dynamic values provided as long arguments, whereas c_1, c_2, ... c_m and s_0, s_1, ... s_n are static stride constants which are derived from the layout path. The method handle will throw an UnsupportedOperationException if the computed offset in bits is not a multiple of 8.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelements\u003c/code\u003e - the layout path elements."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the layout path contains one or more path elements that select multiple sequence element indices (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long,long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long, long)\u003c/code\u003e\u003c/a\u003e).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if one of the layouts traversed by the layout path has unspecified size."
+        ],
+        "return": [
+          "a method handle that can be used to compute the byte offset of the layout element specified by the given layout path elements, when supplied with the missing sequence element indices."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.VarHandle",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "carrier"
+          }
+        },
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "varHandle",
+      "comment": "Creates a memory access var handle that can be used to dereference memory at the layout selected by a given layout path, where the path is considered rooted in this layout. The final memory location accessed by the returned memory access var handle can be computed as follows: \n    address \u003d base + offset\n where base denotes the base address expressed by the MemorySegment access coordinate (see MemorySegment.address() and MemoryAddress.toRawLongValue()) and offset can be expressed in the following form: \n    offset \u003d c_1 + c_2 + ... + c_m + (x_1 * s_1) + (x_2 * s_2) + ... + (x_n * s_n)\n where x_1, x_2, ... x_n are dynamic values provided as optional long access coordinates, whereas c_1, c_2, ... c_m and s_0, s_1, ... s_n are static stride constants which are derived from the layout path.",
+      "tagMap": {
+        "apiNote": [
+          "the resulting var handle will feature an additional \n\u003ccode\u003elong\u003c/code\u003e access coordinate for every unspecified sequence access component contained in this layout path. Moreover, the resulting var handle features certain \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryHandles.html#memaccess-mode\"\u003eaccess mode restrictions\u003c/a\u003e, which are common to all memory access var handles."
+        ],
+        "param": [
+          "\u003ccode\u003ecarrier\u003c/code\u003e - the var handle carrier type.",
+          "\u003ccode\u003eelements\u003c/code\u003e - the layout path elements."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the layout path has one or more elements with incompatible alignment constraints, or if one of the layouts traversed by the layout path has unspecified size.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the carrier does not represent a primitive type, if the carrier is \n\u003ccode\u003evoid\u003c/code\u003e, \n\u003ccode\u003eboolean\u003c/code\u003e, or if the layout path in \n\u003ccode\u003eelements\u003c/code\u003e does not select a value layout (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/ValueLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eValueLayout\u003c/code\u003e\u003c/a\u003e), or if the selected value layout has a size that that does not match that of the specified carrier type."
+        ],
+        "return": [
+          "a var handle which can be used to dereference memory at the (possibly nested) layout selected by the layout path in \n\u003ccode\u003eelements\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "select",
+      "comment": "Selects the layout from a path rooted in this layout.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelements\u003c/code\u003e - the layout path elements."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the layout path does not select any layout nested in this layout, or if the layout path contains one or more path elements that select one or more sequence element indices (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long)\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long,long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long, long)\u003c/code\u003e\u003c/a\u003e)."
+        ],
+        "return": [
+          "the layout selected by the layout path in \n\u003ccode\u003eelements\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.function.UnaryOperator",
+            "parameters": [
+              {
+                "name": "jdk.incubator.foreign.MemoryLayout",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "op"
+          }
+        },
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout$PathElement",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "map",
+      "comment": "Creates a transformed copy of this layout where a selected layout, from a path rooted in this layout, is replaced with the result of applying the given operation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eop\u003c/code\u003e - the unary operation to be applied to the selected layout.",
+          "\u003ccode\u003eelements\u003c/code\u003e - the layout path elements."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the layout path does not select any layout nested in this layout, or if the layout path contains one or more path elements that select one or more sequence element indices (see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long)\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.PathElement.html#sequenceElement(long,long)\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement(long, long)\u003c/code\u003e\u003c/a\u003e)."
+        ],
+        "return": [
+          "a new layout where the layout selected by the layout path in \n\u003ccode\u003eelements\u003c/code\u003e, has been replaced by the result of applying \n\u003ccode\u003eop\u003c/code\u003e to the selected layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isPadding",
+      "comment": "Is this a padding layout (e.g. a layout created from ofPaddingBits(long)) ?",
+      "tagMap": {
+        "return": [
+          "true, if this layout is a padding layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "that"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "equals",
+      "comment": "Compares the specified object with this layout for equality. Returns true if and only if the specified object is also a layout, and it is equal to this layout. Two layouts are considered equal if they are of the same kind, have the same size, name and alignment constraints. Furthermore, depending on the layout kind, additional conditions must be satisfied: two value layouts are considered equal if they have the same byte order (see ValueLayout.order()) two sequence layouts are considered equal if they have the same element count (see SequenceLayout.elementCount()), and if their element layouts (see SequenceLayout.elementLayout()) are also equal two group layouts are considered equal if they are of the same kind (see GroupLayout.isStruct(), GroupLayout.isUnion()) and if their member layouts (see GroupLayout.memberLayouts()) are also equal",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ethat\u003c/code\u003e - the object to be compared for equality with this layout."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the specified object is equal to this layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hashCode",
+      "comment": "Returns the hash code value for this layout.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the hash code value for this layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "toString",
+      "comment": "Returns a string representation of this layout.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of this layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemoryLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "size"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofPaddingBits",
+      "comment": "Create a new padding layout with given size.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - the padding size in bits."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esize \u0026lt;\u003d 0\u003c/code\u003e."
+        ],
+        "return": [
+          "the new selector layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.ValueLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "size"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.ByteOrder",
+            "type": "Class"
+          },
+          "field": {
+            "name": "order"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofValueBits",
+      "comment": "Create a value layout of given byte order and size.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - the value layout size.",
+          "\u003ccode\u003eorder\u003c/code\u003e - the value layout\u0027s byte order."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003esize \u0026lt;\u003d 0\u003c/code\u003e."
+        ],
+        "return": [
+          "a new value layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.SequenceLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementCount"
+          }
+        },
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofSequence",
+      "comment": "Create a new sequence layout with given element layout and element count.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementCount\u003c/code\u003e - the sequence element count.",
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the sequence element layout."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementCount \u0026lt; 0\u003c/code\u003e."
+        ],
+        "return": [
+          "the new sequence layout with given element layout and size."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.SequenceLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofSequence",
+      "comment": "Create a new sequence layout, with unbounded element count and given element layout.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the sequence layout."
+        ],
+        "return": [
+          "the new sequence layout with given element layout."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.GroupLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofStruct",
+      "comment": "Create a new struct group layout with given member layouts.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelements\u003c/code\u003e - The member layouts of the \n\u003cem\u003estruct\u003c/em\u003e group layout."
+        ],
+        "return": [
+          "a new \n\u003cem\u003estruct\u003c/em\u003e group layout with given member layouts."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.GroupLayout",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elements"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "ofUnion",
+      "comment": "Create a new union group layout with given member layouts.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelements\u003c/code\u003e - The member layouts of the \n\u003cem\u003eunion\u003c/em\u003e layout."
+        ],
+        "return": [
+          "a new \n\u003cem\u003eunion\u003c/em\u003e group layout with given member layouts."
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "jdk.incubator.foreign.MemoryLayout$PathElement"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.incubator.foreign.MemoryLayout",
+  "comment": "A memory layout can be used to describe the contents of a memory segment in a \n\u003cem\u003elanguage neutral\u003c/em\u003e fashion. There are two leaves in the layout hierarchy, \n\u003cem\u003evalue layouts\u003c/em\u003e, which are used to represent values of given size and kind (see \n\u003ca href\u003d\"ValueLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eValueLayout\u003c/code\u003e\u003c/a\u003e) and \n\u003cem\u003epadding layouts\u003c/em\u003e which are used, as the name suggests, to represent a portion of a memory segment whose contents should be ignored, and which are primarily present for alignment reasons (see \n\u003ca href\u003d\"#ofPaddingBits(long)\"\u003e\u003ccode\u003eofPaddingBits(long)\u003c/code\u003e\u003c/a\u003e). Some common value layout constants are defined in the \n\u003ca href\u003d\"MemoryLayouts.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryLayouts\u003c/code\u003e\u003c/a\u003e class. \n\u003cp\u003e More complex layouts can be derived from simpler ones: a \u003cem\u003esequence layout\u003c/em\u003e denotes a repetition of one or more element layout (see \u003ca href\u003d\"SequenceLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eSequenceLayout\u003c/code\u003e\u003c/a\u003e); a \u003cem\u003egroup layout\u003c/em\u003e denotes an aggregation of (typically) heterogeneous member layouts (see \u003ca href\u003d\"GroupLayout.html\" title\u003d\"class in jdk.incubator.foreign\"\u003e\u003ccode\u003eGroupLayout\u003c/code\u003e\u003c/a\u003e). \u003c/p\u003e\n\u003cp\u003e For instance, consider the following struct declaration in C: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\n typedef struct {\n     char kind;\n     int value;\n } TaggedValues[5];\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e The above declaration can be modelled using a layout object, as follows: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nSequenceLayout taggedValues \u003d MemoryLayout.ofSequence(5,\n    MemoryLayout.ofStruct(\n        MemoryLayout.ofValueBits(8, ByteOrder.nativeOrder()).withName(\"kind\"),\n        MemoryLayout.ofPaddingBits(24),\n        MemoryLayout.ofValueBits(32, ByteOrder.nativeOrder()).withName(\"value\")\n    )\n).withName(\"TaggedValues\");\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e All implementations of this interface must be \u003ca href\u003d\"../../../../java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e; programmers should treat instances that are \u003ca href\u003d\"#equals(java.lang.Object)\"\u003eequal\u003c/a\u003e as interchangeable and should not use instances for synchronization, or unpredictable behavior may occur. For example, in a future release, synchronization may fail. The \u003ccode\u003eequals\u003c/code\u003e method should be used for comparisons. \u003c/p\u003e\n\u003cp\u003e Non-platform classes should not implement \u003ca href\u003d\"MemoryLayout.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003eMemoryLayout\u003c/a\u003e directly. \u003c/p\u003e\n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument, or an array argument containing one or more \u003ccode\u003enull\u003c/code\u003e elements to a method in this class causes a \u003ca href\u003d\"../../../../java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown. \u003c/p\u003e \n\u003ch2\u003e\u003ca id\u003d\"layout-align\"\u003eSize, alignment and byte order\u003c/a\u003e\u003c/h2\u003e All layouts have a size; layout size for value and padding layouts is always explicitly denoted; this means that a layout description always has the same size in bits, regardless of the platform in which it is used. For derived layouts, the size is computed as follows: \n\u003cul\u003e \n \u003cli\u003efor a \u003cem\u003efinite\u003c/em\u003e sequence layout \u003cem\u003eS\u003c/em\u003e whose element layout is \u003cem\u003eE\u003c/em\u003e and size is L, the size of \u003cem\u003eS\u003c/em\u003e is that of \u003cem\u003eE\u003c/em\u003e, multiplied by \u003cem\u003eL\u003c/em\u003e\u003c/li\u003e \n \u003cli\u003ethe size of an \u003cem\u003eunbounded\u003c/em\u003e sequence layout is \u003cem\u003eunknown\u003c/em\u003e\u003c/li\u003e \n \u003cli\u003efor a group layout \u003cem\u003eG\u003c/em\u003e with member layouts \u003cem\u003eM1\u003c/em\u003e, \u003cem\u003eM2\u003c/em\u003e, ... \u003cem\u003eMn\u003c/em\u003e whose sizes are \u003cem\u003eS1\u003c/em\u003e, \u003cem\u003eS2\u003c/em\u003e, ... \u003cem\u003eSn\u003c/em\u003e, respectively, the size of \u003cem\u003eG\u003c/em\u003e is either \u003cem\u003eS1 + S2 + ... + Sn\u003c/em\u003e or \u003cem\u003emax(S1, S2, ... Sn)\u003c/em\u003e depending on whether the group is a \u003cem\u003estruct\u003c/em\u003e or an \u003cem\u003eunion\u003c/em\u003e, respectively\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e Furthermore, all layouts feature a \u003cem\u003enatural alignment\u003c/em\u003e which can be inferred as follows: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003efor a padding layout \u003cem\u003eL\u003c/em\u003e, the natural alignment is 1, regardless of its size; that is, in the absence of an explicit alignment constraint, a padding layout should not affect the alignment constraint of the group layout it is nested into\u003c/li\u003e \n \u003cli\u003efor a value layout \u003cem\u003eL\u003c/em\u003e whose size is \u003cem\u003eN\u003c/em\u003e, the natural alignment of \u003cem\u003eL\u003c/em\u003e is \u003cem\u003eN\u003c/em\u003e\u003c/li\u003e \n \u003cli\u003efor a sequence layout \u003cem\u003eS\u003c/em\u003e whose element layout is \u003cem\u003eE\u003c/em\u003e, the natural alignment of \u003cem\u003eS\u003c/em\u003e is that of \u003cem\u003eE\u003c/em\u003e\u003c/li\u003e \n \u003cli\u003efor a group layout \u003cem\u003eG\u003c/em\u003e with member layouts \u003cem\u003eM1\u003c/em\u003e, \u003cem\u003eM2\u003c/em\u003e, ... \u003cem\u003eMn\u003c/em\u003e whose alignments are \u003cem\u003eA1\u003c/em\u003e, \u003cem\u003eA2\u003c/em\u003e, ... \u003cem\u003eAn\u003c/em\u003e, respectively, the natural alignment of \u003cem\u003eG\u003c/em\u003e is \u003cem\u003emax(A1, A2 ... An)\u003c/em\u003e\u003c/li\u003e \n\u003c/ul\u003e A layout\u0027s natural alignment can be overridden if needed (see \n\u003ca href\u003d\"#withBitAlignment(long)\"\u003e\u003ccode\u003ewithBitAlignment(long)\u003c/code\u003e\u003c/a\u003e), which can be useful to describe hyper-aligned layouts. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e All value layouts have an \u003cem\u003eexplicit\u003c/em\u003e byte order (see \u003ca href\u003d\"../../../../java.base/java/nio/ByteOrder.html\" title\u003d\"class in java.nio\"\u003e\u003ccode\u003eByteOrder\u003c/code\u003e\u003c/a\u003e) which is set when the layout is created. \u003c/p\u003e\n\u003ch2\u003e\u003ca id\u003d\"layout-paths\"\u003eLayout paths\u003c/a\u003e\u003c/h2\u003e A \n\u003cem\u003elayout path\u003c/em\u003e originates from a \n\u003cem\u003eroot\u003c/em\u003e layout (typically a group or a sequence layout) and terminates at a layout nested within the root layout - this is the layout \n\u003cem\u003eselected\u003c/em\u003e by the layout path. Layout paths are typically expressed as a sequence of one or more \n\u003ca href\u003d\"MemoryLayout.PathElement.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryLayout.PathElement\u003c/code\u003e\u003c/a\u003e instances. \n\u003cp\u003e Layout paths are for example useful in order to obtain offsets of arbitrarily nested layouts inside another layout (see \u003ca href\u003d\"#bitOffset(jdk.incubator.foreign.MemoryLayout.PathElement...)\"\u003e\u003ccode\u003ebitOffset(PathElement...)\u003c/code\u003e\u003c/a\u003e), to quickly obtain a memory access handle corresponding to the selected layout (see \u003ca href\u003d\"#varHandle(java.lang.Class,jdk.incubator.foreign.MemoryLayout.PathElement...)\"\u003e\u003ccode\u003evarHandle(Class, PathElement...)\u003c/code\u003e\u003c/a\u003e), to select an arbitrarily nested layout inside another layout (see \u003ca href\u003d\"#select(jdk.incubator.foreign.MemoryLayout.PathElement...)\"\u003e\u003ccode\u003eselect(PathElement...)\u003c/code\u003e\u003c/a\u003e, or to transform a nested layout element inside another layout (see \u003ca href\u003d\"#map(java.util.function.UnaryOperator,jdk.incubator.foreign.MemoryLayout.PathElement...)\"\u003e\u003ccode\u003emap(UnaryOperator, PathElement...)\u003c/code\u003e\u003c/a\u003e). \u003c/p\u003e\n\u003cp\u003e Such \u003cem\u003elayout paths\u003c/em\u003e can be constructed programmatically using the methods in this class. For instance, given the \u003ccode\u003etaggedValues\u003c/code\u003e layout instance constructed as above, we can obtain the offset, in bits, of the member layout named \u003ccode\u003evalue\u003c/code\u003e in the \u003cem\u003efirst\u003c/em\u003e sequence element, as follows: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nlong valueOffset \u003d taggedValues.bitOffset(PathElement.sequenceElement(0),\n                                          PathElement.groupElement(\"value\")); // yields 32\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e Similarly, we can select the member layout named \n\u003ccode\u003evalue\u003c/code\u003e, as follows: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMemoryLayout value \u003d taggedValues.select(PathElement.sequenceElement(),\n                                         PathElement.groupElement(\"value\"));\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e And, we can also replace the layout named \n\u003ccode\u003evalue\u003c/code\u003e with another layout, as follows: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMemoryLayout taggedValuesWithHole \u003d taggedValues.map(l -\u0026gt; MemoryLayout.ofPadding(32),\n                                            PathElement.sequenceElement(), PathElement.groupElement(\"value\"));\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e That is, the above declaration is identical to the following, more verbose one: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMemoryLayout taggedValuesWithHole \u003d MemoryLayout.ofSequence(5,\n    MemoryLayout.ofStruct(\n        MemoryLayout.ofValueBits(8, ByteOrder.nativeOrder()).withName(\"kind\").\n        MemoryLayout.ofPaddingBits(32),\n        MemoryLayout.ofPaddingBits(32)\n));\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e Layout paths can feature one or more \n\u003cem\u003efree dimensions\u003c/em\u003e. For instance, a layout path traversing an unspecified sequence element (that is, where one of the path component was obtained with the \n\u003ca href\u003d\"MemoryLayout.PathElement.html#sequenceElement()\"\u003e\u003ccode\u003eMemoryLayout.PathElement.sequenceElement()\u003c/code\u003e\u003c/a\u003e method) features an additional free dimension, which will have to be bound at runtime. This is important when obtaining memory access var handle from layouts, as in the following code: \n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nVarHandle valueHandle \u003d taggedValues.varHandle(int.class,\n                                               PathElement.sequenceElement(),\n                                               PathElement.groupElement(\"value\"));\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e Since the layout path constructed in the above example features exactly one free dimension (as it doesn\u0027t specify \n\u003cem\u003ewhich\u003c/em\u003e member layout named \n\u003ccode\u003evalue\u003c/code\u003e should be selected from the enclosing sequence layout), it follows that the memory access var handle \n\u003ccode\u003evalueHandle\u003c/code\u003e will feature an \n\u003cem\u003eadditional\u003c/em\u003e \n\u003ccode\u003elong\u003c/code\u003e access coordinate. \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eA layout path with free dimensions can also be used to create an offset-computing method handle, using the \u003ca href\u003d\"#bitOffset(jdk.incubator.foreign.MemoryLayout.PathElement...)\"\u003e\u003ccode\u003ebitOffset(PathElement...)\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"#byteOffsetHandle(jdk.incubator.foreign.MemoryLayout.PathElement...)\"\u003e\u003ccode\u003ebyteOffsetHandle(PathElement...)\u003c/code\u003e\u003c/a\u003e method. Again, free dimensions are translated into \u003ccode\u003elong\u003c/code\u003e parameters of the created method handle. The method handle can be used to compute the offsets of elements of a sequence at different indices, by supplying these indices when invoking the method handle. For instance: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\nMethodHandle offsetHandle \u003d taggedValues.byteOffsetHandle(PathElement.sequenceElement(),\n                                                          PathElement.groupElement(\"kind\"));\nlong offset1 \u003d (long) offsetHandle.invokeExact(1L); // 8\nlong offset2 \u003d (long) offsetHandle.invokeExact(2L); // 16\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003eLayout attributes\u003c/h2\u003e Layouts can be optionally associated with one or more \n\u003cem\u003eattributes\u003c/em\u003e. A layout attribute forms a \n\u003cem\u003ename/value\u003c/em\u003e pair, where the name is a \n\u003ca href\u003d\"../../../../java.base/java/lang/String.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eString\u003c/code\u003e\u003c/a\u003e and the value is a \n\u003ca href\u003d\"../../../../java.base/java/lang/constant/Constable.html\" title\u003d\"interface in java.lang.constant\"\u003e\u003ccode\u003eConstable\u003c/code\u003e\u003c/a\u003e. The most common form of layout attribute is the \n\u003cem\u003elayout name\u003c/em\u003e (see \n\u003ca href\u003d\"#LAYOUT_NAME\"\u003e\u003ccode\u003eLAYOUT_NAME\u003c/code\u003e\u003c/a\u003e), a custom name that can be associated to memory layouts and that can be referred to when constructing \n\u003ca href\u003d\"MemoryLayout.html#layout-paths\"\u003e\u003cem\u003elayout paths\u003c/em\u003e\u003c/a\u003e.",
+  "tagMap": {
+    "implSpec": [
+      "Implementations of this interface are immutable, thread-safe and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/doc-files/ValueBased.html\"\u003evalue-based\u003c/a\u003e."
+    ],
+    "apiNote": [
+      "In the future, if the Java language permits, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/MemoryLayout.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemoryLayout\u003c/code\u003e\u003c/a\u003e may become a \n\u003ccode\u003esealed\u003c/code\u003e interface, which would prohibit subclassing except by explicitly permitted types."
+    ]
+  }
+}

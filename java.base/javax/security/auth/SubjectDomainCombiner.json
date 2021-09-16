@@ -1,0 +1,112 @@
+{
+  "packageName": "javax.security.auth",
+  "simpleName": "SubjectDomainCombiner",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.security.auth.Subject",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSubject",
+      "comment": "Get the Subject associated with this SubjectDomainCombiner.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the caller does not have permission to get the \n\u003ccode\u003eSubject\u003c/code\u003e associated with this \n\u003ccode\u003eSubjectDomainCombiner\u003c/code\u003e."
+        ],
+        "return": [
+          "the \n\u003ccode\u003eSubject\u003c/code\u003e associated with this \n\u003ccode\u003eSubjectDomainCombiner\u003c/code\u003e, or \n\u003ccode\u003enull\u003c/code\u003e if no \n\u003ccode\u003eSubject\u003c/code\u003e is associated with this \n\u003ccode\u003eSubjectDomainCombiner\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.ProtectionDomain",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.ProtectionDomain",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "currentDomains"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.ProtectionDomain",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "assignedDomains"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "combine",
+      "comment": "Update the relevant ProtectionDomains with the Principals from the Subject associated with this SubjectDomainCombiner. A new ProtectionDomain instance is created for each non-static ProtectionDomain ( (staticPermissionsOnly() \u003d\u003d false) in the currentDomains array. Each new ProtectionDomain instance is created using the CodeSource, Permissions and ClassLoader from the corresponding ProtectionDomain in currentDomains, as well as with the Principals from the Subject associated with this SubjectDomainCombiner. Static ProtectionDomains are combined as-is and no new instance is created. All of the ProtectionDomains (static and newly instantiated) are combined into a new array. The ProtectionDomains from the assignedDomains array are appended to this new array, and the result is returned. Note that optimizations such as the removal of duplicate ProtectionDomains may have occurred. In addition, caching of ProtectionDomains may be permitted.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/DomainCombiner.html#combine(java.security.ProtectionDomain%5B%5D,java.security.ProtectionDomain%5B%5D)\"\u003ecombine\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/DomainCombiner.html\" title\u003d\"interface in java.security\"\u003eDomainCombiner\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecurrentDomains\u003c/code\u003e - the ProtectionDomains associated with the current execution Thread, up to the most recent privileged \n\u003ccode\u003eProtectionDomain\u003c/code\u003e. The ProtectionDomains are listed in order of execution, with the most recently executing \n\u003ccode\u003eProtectionDomain\u003c/code\u003e residing at the beginning of the array. This parameter may be \n\u003ccode\u003enull\u003c/code\u003e if the current execution Thread has no associated ProtectionDomains.",
+          "\u003ccode\u003eassignedDomains\u003c/code\u003e - the ProtectionDomains inherited from the parent Thread, or the ProtectionDomains from the privileged \n\u003ccode\u003econtext\u003c/code\u003e, if a call to \n\u003ccode\u003eAccessController.doPrivileged(..., context)\u003c/code\u003e had occurred This parameter may be \n\u003ccode\u003enull\u003c/code\u003e if there were no ProtectionDomains inherited from the parent Thread, or from the privileged \n\u003ccode\u003econtext\u003c/code\u003e."
+        ],
+        "return": [
+          "a new array consisting of the updated ProtectionDomains, or \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.Subject",
+            "type": "Class"
+          },
+          "field": {
+            "name": "subject"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Associate the provided Subject with this SubjectDomainCombiner.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esubject\u003c/code\u003e - the \n\u003ccode\u003eSubject\u003c/code\u003e to be associated with this \n\u003ccode\u003eSubjectDomainCombiner\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.security.auth.SubjectDomainCombiner",
+  "comment": "A \n\u003ccode\u003eSubjectDomainCombiner\u003c/code\u003e updates ProtectionDomains with Principals from the \n\u003ccode\u003eSubject\u003c/code\u003e associated with this \n\u003ccode\u003eSubjectDomainCombiner\u003c/code\u003e.",
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "ScatteringByteChannel",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.nio.channels.ReadableByteChannel",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "dsts"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "length"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "read",
+      "comment": "Reads a sequence of bytes from this channel into a subsequence of the given buffers. An invocation of this method attempts to read up to r bytes from this channel, where r is the total number of bytes remaining the specified subsequence of the given buffer array, that is,  dsts[offset].remaining()\n     + dsts[offset+1].remaining()\n     + ... + dsts[offset+length-1].remaining() at the moment that this method is invoked. Suppose that a byte sequence of length n is read, where 0 \u003c\u003d n \u003c\u003d r. Up to the first dsts[offset].remaining() bytes of this sequence are transferred into buffer dsts[offset], up to the next dsts[offset+1].remaining() bytes are transferred into buffer dsts[offset+1], and so forth, until the entire byte sequence is transferred into the given buffers. As many bytes as possible are transferred into each buffer, hence the final position of each updated buffer, except the last updated buffer, is guaranteed to be equal to that buffer\u0027s limit. This method may be invoked at any time. If another thread has already initiated a read operation upon this channel, however, then an invocation of this method will block until the first operation is complete.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edsts\u003c/code\u003e - The buffers into which bytes are to be transferred",
+          "\u003ccode\u003eoffset\u003c/code\u003e - The offset within the buffer array of the first buffer into which bytes are to be transferred; must be non-negative and no larger than \n\u003ccode\u003edsts.length\u003c/code\u003e",
+          "\u003ccode\u003elength\u003c/code\u003e - The maximum number of buffers to be accessed; must be non-negative and no larger than \n\u003ccode\u003edsts.length\u003c/code\u003e\u0026nbsp;-\u0026nbsp;\n\u003ccode\u003eoffset\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If the preconditions on the \n\u003ccode\u003eoffset\u003c/code\u003e and \n\u003ccode\u003elength\u003c/code\u003e parameters do not hold",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If any of the buffers is read-only",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/NonReadableChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eNonReadableChannelException\u003c/a\u003e\u003c/code\u003e - If this channel was not opened for reading",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/AsynchronousCloseException.html\" title\u003d\"class in java.nio.channels\"\u003eAsynchronousCloseException\u003c/a\u003e\u003c/code\u003e - If another thread closes this channel while the read operation is in progress",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedByInterruptException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedByInterruptException\u003c/a\u003e\u003c/code\u003e - If another thread interrupts the current thread while the read operation is in progress, thereby closing the channel and setting the current thread\u0027s interrupt status",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If some other I/O error occurs"
+        ],
+        "return": [
+          "The number of bytes read, possibly zero, or \n\u003ccode\u003e-1\u003c/code\u003e if the channel has reached end-of-stream"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "dsts"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "read",
+      "comment": "Reads a sequence of bytes from this channel into the given buffers. An invocation of this method of the form c.read(dsts) behaves in exactly the same manner as the invocation  c.read(dsts, 0, dsts.length);",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edsts\u003c/code\u003e - The buffers into which bytes are to be transferred"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If any of the buffers is read-only",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/NonReadableChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eNonReadableChannelException\u003c/a\u003e\u003c/code\u003e - If this channel was not opened for reading",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/AsynchronousCloseException.html\" title\u003d\"class in java.nio.channels\"\u003eAsynchronousCloseException\u003c/a\u003e\u003c/code\u003e - If another thread closes this channel while the read operation is in progress",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedByInterruptException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedByInterruptException\u003c/a\u003e\u003c/code\u003e - If another thread interrupts the current thread while the read operation is in progress, thereby closing the channel and setting the current thread\u0027s interrupt status",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If some other I/O error occurs"
+        ],
+        "return": [
+          "The number of bytes read, possibly zero, or \n\u003ccode\u003e-1\u003c/code\u003e if the channel has reached end-of-stream"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.channels.ScatteringByteChannel",
+  "comment": "A channel that can read bytes into a sequence of buffers. \n\u003cp\u003e A \u003ci\u003escattering\u003c/i\u003e read operation reads, in a single invocation, a sequence of bytes into one or more of a given sequence of buffers. Scattering reads are often useful when implementing network protocols or file formats that, for example, group data into segments consisting of one or more fixed-length headers followed by a variable-length body. Similar \u003ci\u003egathering\u003c/i\u003e write operations are defined in the \u003ca href\u003d\"GatheringByteChannel.html\" title\u003d\"interface in java.nio.channels\"\u003e\u003ccode\u003eGatheringByteChannel\u003c/code\u003e\u003c/a\u003e interface. \u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

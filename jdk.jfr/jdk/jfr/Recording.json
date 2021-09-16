@@ -1,0 +1,912 @@
+{
+  "packageName": "jdk.jfr",
+  "simpleName": "Recording",
+  "moduleName": "jdk.jfr",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "start",
+      "comment": "Starts this recording. It\u0027s recommended that the recording options and event settings are configured before calling this method. The benefits of doing so are a more consistent state when analyzing the recorded data, and improved performance because the configuration can be applied atomically. After a successful invocation of this method, this recording is in the RUNNING state.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if recording is already started or is in the \n\u003ccode\u003eCLOSED\u003c/code\u003e state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.Duration",
+            "type": "Class"
+          },
+          "field": {
+            "name": "delay"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "scheduleStart",
+      "comment": "Starts this recording after a delay. After a successful invocation of this method, this recording is in the DELAYED state.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edelay\u003c/code\u003e - the time to wait before starting this recording, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the recording is not it the \n\u003ccode\u003eNEW\u003c/code\u003e state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "stop",
+      "comment": "Stops this recording. When a recording is stopped it can\u0027t be restarted. If this recording has a destination, data is written to that destination and the recording is closed. After a recording is closed, the data is no longer available. After a successful invocation of this method, this recording will be in the STOPPED state.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html#setDestination(java.nio.file.Path)\"\u003e\u003ccode\u003esetDestination(Path)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the recording is not started or is already stopped",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller doesn\u0027t have \n\u003ccode\u003eFilePermission\u003c/code\u003e to write to the destination path"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if recording is stopped, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          {
+            "name": "java.lang.String",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSettings",
+      "comment": "Returns settings used by this recording. Modifying the returned Map will not change the settings for this recording. If no settings are set for this recording, an empty Map is returned.",
+      "tagMap": {
+        "return": [
+          "recording settings, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSize",
+      "comment": "Returns the current size of this recording in the disk repository, measured in bytes. The size is updated when recording buffers are flushed. If the recording is not written to the disk repository the returned size is always 0.",
+      "tagMap": {
+        "return": [
+          "amount of recorded data, measured in bytes, or \n\u003ccode\u003e0\u003c/code\u003e if the recording is not written to the disk repository"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.Instant",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getStopTime",
+      "comment": "Returns the time when this recording was stopped.",
+      "tagMap": {
+        "return": [
+          "the time, or \n\u003ccode\u003enull\u003c/code\u003e if this recording is not stopped"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.Instant",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getStartTime",
+      "comment": "Returns the time when this recording was started.",
+      "tagMap": {
+        "return": [
+          "the time, or \n\u003ccode\u003enull\u003c/code\u003e if this recording is not started"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMaxSize",
+      "comment": "Returns the maximum size, measured in bytes, at which data is no longer kept in the disk repository.",
+      "tagMap": {
+        "return": [
+          "maximum size in bytes, or \n\u003ccode\u003e0\u003c/code\u003e if no maximum size is set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.Duration",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMaxAge",
+      "comment": "Returns the length of time that the data is kept in the disk repository before it is removed.",
+      "tagMap": {
+        "return": [
+          "maximum length of time, or \n\u003ccode\u003enull\u003c/code\u003e if no maximum length of time has been set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getName",
+      "comment": "Returns the name of this recording. By default, the name is the same as the recording ID.",
+      "tagMap": {
+        "return": [
+          "the recording name, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "settings"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setSettings",
+      "comment": "Replaces all settings for this recording. The following example shows how to set event settings for a recording.      Map\u003cString, String\u003e settings \u003d new HashMap\u003c\u003e();\n     settings.putAll(EventSettings.enabled(\"jdk.CPUSample\").withPeriod(Duration.ofSeconds(2)).toMap());\n     settings.putAll(EventSettings.enabled(MyEvent.class).withThreshold(Duration.ofSeconds(2)).withoutStackTrace().toMap());\n     settings.put(\"jdk.ExecutionSample#period\", \"10 ms\");\n     recording.setSettings(settings);\n The following example shows how to merge settings.      Map\u003cString, String\u003e settings \u003d recording.getSettings();\n     settings.putAll(additionalSettings);\n     recording.setSettings(settings);",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esettings\u003c/code\u003e - the settings to set, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.RecordingState",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getState",
+      "comment": "Returns the recording state that this recording is currently in.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/RecordingState.html\" title\u003d\"enum class in jdk.jfr\"\u003e\u003ccode\u003eRecordingState\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the recording state, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "close",
+      "comment": "Releases all data that is associated with this recording. After a successful invocation of this method, this recording is in the CLOSED state.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.Recording",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "stop"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "copy",
+      "comment": "Returns a clone of this recording, with a new recording ID and name. Clones are useful for dumping data without stopping the recording. After a clone is created, the amount of data to copy is constrained with the setMaxAge(Duration) method and the setMaxSize(long)method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estop\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if the newly created copy should be stopped immediately, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ],
+        "return": [
+          "the recording copy, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "destination"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "dump",
+      "comment": "Writes recording data to a file. Recording must be started, but not necessarily stopped.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edestination\u003c/code\u003e - the location where recording data is written, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the recording can\u0027t be copied to the specified location",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller doesn\u0027t have \n\u003ccode\u003eFilePermission\u003c/code\u003e to write to the destination path"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isToDisk",
+      "comment": "Returns true if this recording uses the disk repository, false otherwise. If no value is set, true is returned.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the recording uses the disk repository, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxSize"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setMaxSize",
+      "comment": "Determines how much data is kept in the disk repository. To control the amount of recording data that is stored on disk, the maximum amount of data to retain can be specified. When the maximum limit is exceeded, the Java Virtual Machine (JVM) removes the oldest chunk to make room for a more recent chunk. If neither maximum limit or the maximum age is set, the size of the recording may grow indefinitely.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emaxSize\u003c/code\u003e - the amount of data to retain, \n\u003ccode\u003e0\u003c/code\u003e if infinite"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emaxSize\u003c/code\u003e is negative",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the recording is in \n\u003ccode\u003eCLOSED\u003c/code\u003e state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.Duration",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxAge"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setMaxAge",
+      "comment": "Determines how far back data is kept in the disk repository. To control the amount of recording data stored on disk, the maximum length of time to retain the data can be specified. Data stored on disk that is older than the specified length of time is removed by the Java Virtual Machine (JVM). If neither maximum limit or the maximum age is set, the size of the recording may grow indefinitely.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emaxAge\u003c/code\u003e - the length of time that data is kept, or \n\u003ccode\u003enull\u003c/code\u003e if infinite"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emaxAge\u003c/code\u003e is negative",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the recording is in the \n\u003ccode\u003eCLOSED\u003c/code\u003e state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.file.Path",
+            "type": "Class"
+          },
+          "field": {
+            "name": "destination"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setDestination",
+      "comment": "Sets a location where data is written on recording stop, or null if data is not to be dumped. If a destination is set, this recording is automatically closed after data is successfully copied to the destination path. If a destination is not set, Flight Recorder retains the recording data until this recording is closed. Use the dump(Path) method to manually write data to a file.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edestination\u003c/code\u003e - the destination path, or \n\u003ccode\u003enull\u003c/code\u003e if recording should not be dumped at stop"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if recording is in the \n\u003ccode\u003eSTOPPED\u003c/code\u003e or \n\u003ccode\u003eCLOSED\u003c/code\u003e state.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller doesn\u0027t have \n\u003ccode\u003eFilePermission\u003c/code\u003e to read, write, and delete the \n\u003ccode\u003edestination\u003c/code\u003e file",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if the path is not writable"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.file.Path",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDestination",
+      "comment": "Returns the destination file, where recording data is written when the recording stops, or null if no destination is set.",
+      "tagMap": {
+        "return": [
+          "the destination file, or \n\u003ccode\u003enull\u003c/code\u003e if not set."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getId",
+      "comment": "Returns a unique ID for this recording.",
+      "tagMap": {
+        "return": [
+          "the recording ID"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setName",
+      "comment": "Sets a human-readable name (for example, \"My Recording\").",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the recording name, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if the recording is in \n\u003ccode\u003eCLOSED\u003c/code\u003e state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "dumpOnExit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setDumpOnExit",
+      "comment": "Sets whether this recording is dumped to disk when the JVM exits.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edumpOnExit\u003c/code\u003e - if this recording should be dumped when the JVM exits"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDumpOnExit",
+      "comment": "Returns whether this recording is dumped to disk when the JVM exits. If dump on exit is not set, false is returned.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the recording is dumped on exit, \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "disk"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setToDisk",
+      "comment": "Determines whether this recording is continuously flushed to the disk repository or data is constrained to what is available in memory buffers.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edisk\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if this recording is written to disk, \n\u003ccode\u003efalse\u003c/code\u003e if in-memory"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.Instant",
+            "type": "Class"
+          },
+          "field": {
+            "name": "start"
+          }
+        },
+        {
+          "type": {
+            "name": "java.time.Instant",
+            "type": "Class"
+          },
+          "field": {
+            "name": "end"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getStream",
+      "comment": "Creates a data stream for a specified interval. The stream may contain some data outside the specified range. If the recording is not to disk, a stream can\u0027t be created and null is returned.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Recording.html#setToDisk(boolean)\"\u003e\u003ccode\u003esetToDisk(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estart\u003c/code\u003e - the start time for the stream, or \n\u003ccode\u003enull\u003c/code\u003e to get data from start time of the recording",
+          "\u003ccode\u003eend\u003c/code\u003e - the end time for the stream, or \n\u003ccode\u003enull\u003c/code\u003e to get data until the present time."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eend\u003c/code\u003e happens before \n\u003ccode\u003estart\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if a stream can\u0027t be opened"
+        ],
+        "return": [
+          "an input stream, or \n\u003ccode\u003enull\u003c/code\u003e if no data is available in the interval, or the recording was not recorded to disk"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.Duration",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDuration",
+      "comment": "Returns the specified duration for this recording, or null if no duration is set. The duration can be set only when the recording is in the RecordingState.NEW state.",
+      "tagMap": {
+        "return": [
+          "the desired duration of the recording, or \n\u003ccode\u003enull\u003c/code\u003e if no duration has been set."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.Duration",
+            "type": "Class"
+          },
+          "field": {
+            "name": "duration"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setDuration",
+      "comment": "Sets a duration for how long a recording runs before it stops. By default, a recording has no duration (null).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eduration\u003c/code\u003e - the duration, or \n\u003ccode\u003enull\u003c/code\u003e if no duration is set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if recording is in the \n\u003ccode\u003eSTOPPED\u003c/code\u003e or \n\u003ccode\u003eCLOSED\u003c/code\u003e state"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.EventSettings",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "enable",
+      "comment": "Enables the event with the specified name. If multiple events have the same name (for example, the same class is loaded in different class loaders), then all events that match the name are enabled. To enable a specific class, use the enable(Class) method or a String representation of the event type ID.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/EventType.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEventType\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the settings for the event, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "an event setting for further configuration, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.EventSettings",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "disable",
+      "comment": "Disables event with the specified name. If multiple events with same name (for example, the same class is loaded in different class loaders), then all events that match the name is disabled. To disable a specific class, use the disable(Class) method or a String representation of the event type ID.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the settings for the event, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "an event setting for further configuration, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.EventSettings",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "jdk.jfr.Event",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "eventClass"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "enable",
+      "comment": "Enables event.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eeventClass\u003c/code\u003e - the event to enable, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eeventClass\u003c/code\u003e is an abstract class or not a subclass of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Event.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEvent\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an event setting for further configuration, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.EventSettings",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "jdk.jfr.Event",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "eventClass"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "disable",
+      "comment": "Disables event.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eeventClass\u003c/code\u003e - the event to enable, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eeventClass\u003c/code\u003e is an abstract class or not a subclass of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Event.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eEvent\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an event setting for further configuration, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "settings"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a recording with settings from a map of name-value pairs. A newly created recording is in the RecordingState.NEW state. To start the recording, invoke the start() method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/package-summary.html\"\u003e\u003ccode\u003ejdk.jfr\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esettings\u003c/code\u003e - settings as a map of name-value pairs, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if Flight Recorder can\u0027t be created (for example, if the Java Virtual Machine (JVM) lacks Flight Recorder support, or if the file repository can\u0027t be created or accessed)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is used and FlightRecorderPermission \"accessFlightRecorder\" is not set."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a recording without any settings. A newly created recording is in the RecordingState.NEW state. To start the recording, invoke the start() method.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if Flight Recorder can\u0027t be created (for example, if the Java Virtual Machine (JVM) lacks Flight Recorder support, or if the file repository can\u0027t be created or accessed)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is used and FlightRecorderPermission \"accessFlightRecorder\" is not set."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.jfr.Configuration",
+            "type": "Class"
+          },
+          "field": {
+            "name": "configuration"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a recording with settings from a configuration. The following example shows how create a recording that uses a predefined configuration.  Recording r \u003d new Recording(Configuration.getConfiguration(\"default\"));\n The newly created recording is in the RecordingState.NEW state. To start the recording, invoke the start() method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/Configuration.html\" title\u003d\"class in jdk.jfr\"\u003e\u003ccode\u003eConfiguration\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003econfiguration\u003c/code\u003e - configuration that contains the settings to be use, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if Flight Recorder can\u0027t be created (for example, if the Java Virtual Machine (JVM) lacks Flight Recorder support, or if the file repository can\u0027t be created or accessed)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is used and FlightRecorderPermission \"accessFlightRecorder\" is not set."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "jdk.jfr.Recording",
+  "comment": "Provides means to configure, start, stop and dump recording data to disk. \n\u003cp\u003e The following example shows how configure, start, stop and dump recording data to disk. \u003c/p\u003e\n\u003cpre\u003e   Configuration c \u003d Configuration.getConfiguration(\"default\");\n   Recording r \u003d new Recording(c);\n   r.start();\n   System.gc();\n   Thread.sleep(5000);\n   r.stop();\n   r.dump(Files.createTempFile(\"my-recording\", \".jfr\"));\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

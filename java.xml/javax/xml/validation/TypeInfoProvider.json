@@ -1,0 +1,149 @@
+{
+  "packageName": "javax.xml.validation",
+  "simpleName": "TypeInfoProvider",
+  "moduleName": "java.xml",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "org.w3c.dom.TypeInfo",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getElementTypeInfo",
+      "comment": "Returns the immutable TypeInfo object for the current element. The method may only be called by the startElement event or the endElement event of the ContentHandler that the application sets to the ValidatorHandler. When W3C XML Schema validation is being performed, in the case where an element has a union type, the TypeInfo returned by a call to getElementTypeInfo() from the startElement event will be the union type. The TypeInfo returned by a call from the endElement event will be the actual member type used to validate the element.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If this method is called from other \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e methods."
+        ],
+        "return": [
+          "An immutable \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/TypeInfo.html\" title\u003d\"interface in org.w3c.dom\"\u003e\u003ccode\u003eTypeInfo\u003c/code\u003e\u003c/a\u003e object that represents the type of the current element. Note that the caller can keep references to the obtained \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/TypeInfo.html\" title\u003d\"interface in org.w3c.dom\"\u003e\u003ccode\u003eTypeInfo\u003c/code\u003e\u003c/a\u003e longer than the callback scope. Otherwise, this method returns null if the validator is unable to determine the type of the current element for some reason (for example, if the validator is recovering from an earlier error.)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.TypeInfo",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getAttributeTypeInfo",
+      "comment": "Returns the immutable TypeInfo object for the specified attribute of the current element. The method may only be called by the startElement event of the ContentHandler that the application sets to the ValidatorHandler.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index of the attribute. The same index for the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/Attributes.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eAttributes\u003c/code\u003e\u003c/a\u003e object passed to the \n\u003ccode\u003estartElement\u003c/code\u003e callback."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If the index is invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If this method is called from other \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e methods."
+        ],
+        "return": [
+          "An immutable \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/TypeInfo.html\" title\u003d\"interface in org.w3c.dom\"\u003e\u003ccode\u003eTypeInfo\u003c/code\u003e\u003c/a\u003e object that represents the type of the specified attribute. Note that the caller can keep references to the obtained \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/TypeInfo.html\" title\u003d\"interface in org.w3c.dom\"\u003e\u003ccode\u003eTypeInfo\u003c/code\u003e\u003c/a\u003e longer than the callback scope. Otherwise, this method returns null if the validator is unable to determine the type."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isIdAttribute",
+      "comment": "Returns true if the specified attribute is determined to be ID. Exacly how an attribute is \"determined to be ID\" is up to the schema language. In case of W3C XML Schema, this means that the actual type of the attribute is the built-in ID type or its derived type. A DocumentBuilder uses this information to properly implement Attr.isId(). The method may only be called by the startElement event of the ContentHandler that the application sets to the ValidatorHandler.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index of the attribute. The same index for the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/Attributes.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eAttributes\u003c/code\u003e\u003c/a\u003e object passed to the \n\u003ccode\u003estartElement\u003c/code\u003e callback."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If the index is invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If this method is called from other \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e methods."
+        ],
+        "return": [
+          "true if the type of the specified attribute is ID."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isSpecified",
+      "comment": "Returns false if the attribute was added by the validator. This method provides information necessary for a DocumentBuilder to determine what the DOM tree should return from the Attr.getSpecified() method. The method may only be called by the startElement event of the ContentHandler that the application sets to the ValidatorHandler. A general guideline for validators is to return true if the attribute was originally present in the pipeline, and false if it was added by the validator.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - The index of the attribute. The same index for the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/Attributes.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eAttributes\u003c/code\u003e\u003c/a\u003e object passed to the \n\u003ccode\u003estartElement\u003c/code\u003e callback."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If the index is invalid.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - If this method is called from other \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e methods."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the attribute was present before the validator processes input. \n\u003ccode\u003efalse\u003c/code\u003e if the attribute was added by the validator."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructor for the derived class. The constructor does nothing.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.xml.validation.TypeInfoProvider",
+  "comment": "This class provides access to the type information determined by \n\u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e Some schema languages, such as W3C XML Schema, encourages a validator to report the \"type\" it assigns to each attribute/element. Those applications who wish to access this type information can invoke methods defined on this \"interface\" to access such type information. \u003c/p\u003e\n\u003cp\u003e Implementation of this \"interface\" can be obtained through the \u003ca href\u003d\"ValidatorHandler.html#getTypeInfoProvider()\"\u003e\u003ccode\u003eValidatorHandler.getTypeInfoProvider()\u003c/code\u003e\u003c/a\u003e method.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/TypeInfo.html\" title\u003d\"interface in org.w3c.dom\"\u003e\u003ccode\u003eTypeInfo\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

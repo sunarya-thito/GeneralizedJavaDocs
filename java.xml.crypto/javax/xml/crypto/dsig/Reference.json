@@ -1,0 +1,193 @@
+{
+  "packageName": "javax.xml.crypto.dsig",
+  "simpleName": "Reference",
+  "moduleName": "java.xml.crypto",
+  "type": "INTERFACE",
+  "interfaces": [
+    {
+      "name": "javax.xml.crypto.URIReference",
+      "type": "Class"
+    },
+    {
+      "name": "javax.xml.crypto.XMLStructure",
+      "type": "Class"
+    }
+  ],
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "javax.xml.crypto.dsig.Transform",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTransforms",
+      "comment": "Returns an unmodifiable list of Transforms that are contained in this Reference.",
+      "tagMap": {
+        "return": [
+          "an unmodifiable list of \n\u003ccode\u003eTransform\u003c/code\u003es (may be empty but never \n\u003ccode\u003enull\u003c/code\u003e)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.crypto.dsig.DigestMethod",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDigestMethod",
+      "comment": "Returns the digest method of this Reference.",
+      "tagMap": {
+        "return": [
+          "the digest method"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getId",
+      "comment": "Returns the optional Id attribute of this Reference, which permits this reference to be referenced from elsewhere.",
+      "tagMap": {
+        "return": [
+          "the \n\u003ccode\u003eId\u003c/code\u003e attribute (may be \n\u003ccode\u003enull\u003c/code\u003e if not specified)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDigestValue",
+      "comment": "Returns the digest value of this Reference.",
+      "tagMap": {
+        "return": [
+          "the raw digest value, or \n\u003ccode\u003enull\u003c/code\u003e if this reference has not been digested yet. Each invocation of this method returns a new clone to protect against subsequent modification."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCalculatedDigestValue",
+      "comment": "Returns the calculated digest value of this Reference after a validation operation. This method is useful for debugging if the reference fails to validate.",
+      "tagMap": {
+        "return": [
+          "the calculated digest value, or \n\u003ccode\u003enull\u003c/code\u003e if this reference has not been validated yet. Each invocation of this method returns a new clone to protect against subsequent modification."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.xml.crypto.dsig.XMLSignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.xml.crypto.dsig.XMLValidateContext",
+            "type": "Class"
+          },
+          "field": {
+            "name": "validateContext"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "validate",
+      "comment": "Validates this reference. This method verifies the digest of this reference. This method only validates the reference the first time it is invoked. On subsequent invocations, it returns a cached result.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003evalidateContext\u003c/code\u003e - the validating context"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003evalidateContext\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/dsig/XMLSignatureException.html\" title\u003d\"class in javax.xml.crypto.dsig\"\u003eXMLSignatureException\u003c/a\u003e\u003c/code\u003e - if an unexpected exception occurs while validating the reference"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this reference was validated successfully; \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.crypto.Data",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDereferencedData",
+      "comment": "Returns the dereferenced data, if reference caching is enabled. This is the result of dereferencing the URI of this reference during a validation or generation operation.",
+      "tagMap": {
+        "return": [
+          "the dereferenced data, or \n\u003ccode\u003enull\u003c/code\u003e if reference caching is not enabled or this reference has not been generated or validated"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDigestInputStream",
+      "comment": "Returns the pre-digested input stream, if reference caching is enabled. This is the input to the digest operation during a validation or signing operation.",
+      "tagMap": {
+        "return": [
+          "an input stream containing the pre-digested input, or \n\u003ccode\u003enull\u003c/code\u003e if reference caching is not enabled or this reference has not been generated or validated"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.xml.crypto.dsig.Reference",
+  "comment": "A representation of the \n\u003ccode\u003eReference\u003c/code\u003e element as defined in the \n\u003ca href\u003d\"http://www.w3.org/TR/xmldsig-core/\"\u003e W3C Recommendation for XML-Signature Syntax and Processing\u003c/a\u003e. The XML schema is defined as: \n\u003cpre\u003e \u0026lt;element name\u003d\"Reference\" type\u003d\"ds:ReferenceType\"/\u0026gt;\n \u0026lt;complexType name\u003d\"ReferenceType\"\u0026gt;\n   \u0026lt;sequence\u0026gt;\n     \u0026lt;element ref\u003d\"ds:Transforms\" minOccurs\u003d\"0\"/\u0026gt;\n     \u0026lt;element ref\u003d\"ds:DigestMethod\"/\u0026gt;\n     \u0026lt;element ref\u003d\"ds:DigestValue\"/\u0026gt;\n   \u0026lt;/sequence\u0026gt;\n   \u0026lt;attribute name\u003d\"Id\" type\u003d\"ID\" use\u003d\"optional\"/\u0026gt;\n   \u0026lt;attribute name\u003d\"URI\" type\u003d\"anyURI\" use\u003d\"optional\"/\u0026gt;\n   \u0026lt;attribute name\u003d\"Type\" type\u003d\"anyURI\" use\u003d\"optional\"/\u0026gt;\n \u0026lt;/complexType\u0026gt;\n\n \u0026lt;element name\u003d\"DigestValue\" type\u003d\"ds:DigestValueType\"/\u0026gt;\n \u0026lt;simpleType name\u003d\"DigestValueType\"\u0026gt;\n   \u0026lt;restriction base\u003d\"base64Binary\"/\u0026gt;\n \u0026lt;/simpleType\u0026gt;\n \u003c/pre\u003e \n\u003cp\u003eA \u003ccode\u003eReference\u003c/code\u003e instance may be created by invoking one of the \u003ca href\u003d\"XMLSignatureFactory.html#newReference(java.lang.String,javax.xml.crypto.dsig.DigestMethod)\"\u003e\u003ccode\u003enewReference\u003c/code\u003e\u003c/a\u003e methods of the \u003ca href\u003d\"XMLSignatureFactory.html\" title\u003d\"class in javax.xml.crypto.dsig\"\u003e\u003ccode\u003eXMLSignatureFactory\u003c/code\u003e\u003c/a\u003e class; for example: \u003c/p\u003e\n\u003cpre\u003e   XMLSignatureFactory factory \u003d XMLSignatureFactory.getInstance(\"DOM\");\n   Reference ref \u003d factory.newReference\n     (\"http://www.ietf.org/rfc/rfc3275.txt\",\n      factory.newDigestMethod(DigestMethod.SHA1, null));\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/dsig/XMLSignatureFactory.html#newReference(java.lang.String,javax.xml.crypto.dsig.DigestMethod)\"\u003e\u003ccode\u003eXMLSignatureFactory.newReference(String, DigestMethod)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml.crypto/javax/xml/crypto/dsig/XMLSignatureFactory.html#newReference(java.lang.String,javax.xml.crypto.dsig.DigestMethod,java.util.List,java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eXMLSignatureFactory.newReference(String, DigestMethod, List, String, String)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.6"
+    ]
+  }
+}

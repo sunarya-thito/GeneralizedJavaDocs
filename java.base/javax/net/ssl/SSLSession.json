@@ -1,0 +1,516 @@
+{
+  "packageName": "javax.net.ssl",
+  "simpleName": "SSLSession",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getId",
+      "comment": "Returns the identifier assigned to this Session.",
+      "tagMap": {
+        "return": [
+          "the Session identifier"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.net.ssl.SSLSessionContext",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getSessionContext",
+      "comment": "Returns the context in which this session is bound. This context may be unavailable in some environments, in which case this method returns null. If the context is available and there is a security manager installed, the caller may require permission to access it or a security exception may be thrown. In a Java environment, the security manager\u0027s checkPermission method is called with a SSLPermission(\"getSSLSessionContext\") permission.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to get SSL session context."
+        ],
+        "return": [
+          "the session context used for this session, or null if the context is unavailable."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCreationTime",
+      "comment": "Returns the time at which this Session representation was created, in milliseconds since midnight, January 1, 1970 UTC.",
+      "tagMap": {
+        "return": [
+          "the time this Session was created"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLastAccessedTime",
+      "comment": "Returns the last time this Session representation was accessed by the session level infrastructure, in milliseconds since midnight, January 1, 1970 UTC. Access indicates a new connection being established using session data. Application level operations, such as getting or setting a value associated with the session, are not reflected in this access time. This information is particularly useful in session management policies. For example, a session manager thread could leave all sessions in a given context which haven\u0027t been used in a long time; or, the sessions might be sorted according to age to optimize some task.",
+      "tagMap": {
+        "return": [
+          "the last time this Session was accessed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invalidate",
+      "comment": "Invalidates the session. Future connections will not be able to resume or join this session. However, any existing connection using this session can continue to use the session until the connection is closed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#isValid()\"\u003e\u003ccode\u003eisValid()\u003c/code\u003e\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isValid",
+      "comment": "Returns whether this session is valid and available for resuming or joining.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#invalidate()\"\u003e\u003ccode\u003einvalidate()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "true if this session may be rejoined."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "putValue",
+      "comment": "Binds the specified value object into the session\u0027s application layer data with the given name. Any existing binding using the same name is replaced. If the new (or existing) value implements the SSLSessionBindingListener interface, the object represented by value is notified appropriately. For security reasons, the same named values may not be visible across different access control contexts.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name to which the data object will be bound. This may not be null.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the data object to be bound. This may not be null."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either argument is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValue",
+      "comment": "Returns the object bound to the given name in the session\u0027s application layer data. Returns null if there is no such binding. For security reasons, the same named values may not be visible across different access control contexts.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the binding to find."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the argument is null."
+        ],
+        "return": [
+          "the value bound to that name, or null if the binding does not exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeValue",
+      "comment": "Removes the object bound to the given name in the session\u0027s application layer data. Does nothing if there is no object bound to the given name. If the bound existing object implements the SSLSessionBindingListener interface, it is notified appropriately. For security reasons, the same named values may not be visible across different access control contexts.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the name of the object to remove visible across different access control contexts"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the argument is null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValueNames",
+      "comment": "Returns an array of the names of all the application layer data objects bound into the Session. For security reasons, the same named values may not be visible across different access control contexts.",
+      "tagMap": {
+        "return": [
+          "a non-null (possibly empty) array of names of the objects bound to this Session."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.cert.Certificate",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.net.ssl.SSLPeerUnverifiedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPeerCertificates",
+      "comment": "Returns the identity of the peer which was established as part of defining the session. Note: This method can be used only when using certificate-based cipher suites; using it with non-certificate-based cipher suites, such as Kerberos, will throw an SSLPeerUnverifiedException. Note: The returned value may not be a valid certificate chain and should not be relied on for trust decisions.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#getPeerPrincipal()\"\u003e\u003ccode\u003egetPeerPrincipal()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLPeerUnverifiedException.html\" title\u003d\"class in javax.net.ssl\"\u003eSSLPeerUnverifiedException\u003c/a\u003e\u003c/code\u003e - if the peer\u0027s identity has not been verified"
+        ],
+        "return": [
+          "an ordered array of peer certificates, with the peer\u0027s own certificate first followed by any certificate authorities."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.cert.Certificate",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLocalCertificates",
+      "comment": "Returns the certificate(s) that were sent to the peer during handshaking. Note: This method is useful only when using certificate-based cipher suites. When multiple certificates are available for use in a handshake, the implementation chooses what it considers the \"best\" certificate chain available, and transmits that to the other side. This method allows the caller to know which certificate chain was actually used.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#getLocalPrincipal()\"\u003e\u003ccode\u003egetLocalPrincipal()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an ordered array of certificates, with the local certificate first followed by any certificate authorities. If no certificates were sent, then null is returned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.security.cert.X509Certificate",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.net.ssl.SSLPeerUnverifiedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPeerCertificateChain",
+      "comment": "Returns the identity of the peer which was identified as part of defining the session. Note: This method can be used only when using certificate-based cipher suites; using it with non-certificate-based cipher suites, such as Kerberos, will throw an SSLPeerUnverifiedException. Note: The returned value may not be a valid certificate chain and should not be relied on for trust decisions. Note: this method exists for compatibility with previous releases. New applications should use getPeerCertificates() instead.",
+      "annotations": [
+        {
+          "type": "Deprecated",
+          "values": [
+            {
+              "name": "since",
+              "value": "9"
+            },
+            {
+              "name": "orRemoval",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "implSpec": [
+          "This default implementation throws UnsupportedOperationException."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#getPeerPrincipal()\"\u003e\u003ccode\u003egetPeerPrincipal()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLPeerUnverifiedException.html\" title\u003d\"class in javax.net.ssl\"\u003eSSLPeerUnverifiedException\u003c/a\u003e\u003c/code\u003e - if the peer\u0027s identity has not been verified.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the underlying provider does not implement the operation."
+        ],
+        "return": [
+          "an ordered array of peer X.509 certificates, with the peer\u0027s own certificate first followed by any certificate authorities. (The certificates are in the original JSSE certificate \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/security/cert/X509Certificate.html\" title\u003d\"class in javax.security.cert\"\u003e\u003ccode\u003eX509Certificate\u003c/code\u003e\u003c/a\u003e format.)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.Principal",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.net.ssl.SSLPeerUnverifiedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPeerPrincipal",
+      "comment": "Returns the identity of the peer which was established as part of defining the session.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#getPeerCertificates()\"\u003e\u003ccode\u003egetPeerCertificates()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#getLocalPrincipal()\"\u003e\u003ccode\u003egetLocalPrincipal()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLPeerUnverifiedException.html\" title\u003d\"class in javax.net.ssl\"\u003eSSLPeerUnverifiedException\u003c/a\u003e\u003c/code\u003e - if the peer\u0027s identity has not been verified"
+        ],
+        "return": [
+          "the peer\u0027s principal. Returns an X500Principal of the end-entity certificate for X509-based cipher suites, and KerberosPrincipal for Kerberos cipher suites."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.Principal",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getLocalPrincipal",
+      "comment": "Returns the principal that was sent to the peer during handshaking.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#getLocalCertificates()\"\u003e\u003ccode\u003egetLocalCertificates()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLSession.html#getPeerPrincipal()\"\u003e\u003ccode\u003egetPeerPrincipal()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the principal sent to the peer. Returns an X500Principal of the end-entity certificate for X509-based cipher suites, and KerberosPrincipal for Kerberos cipher suites. If no principal was sent, then null is returned."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCipherSuite",
+      "comment": "Returns the name of the SSL cipher suite which is used for all connections in the session. This defines the level of protection provided to the data sent on the connection, including the kind of encryption used and most aspects of how authentication is done.",
+      "tagMap": {
+        "return": [
+          "the name of the session\u0027s cipher suite"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getProtocol",
+      "comment": "Returns the standard name of the protocol used for all connections in the session. This defines the protocol used in the connection.",
+      "tagMap": {
+        "return": [
+          "the standard name of the protocol used for all connections in the session."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPeerHost",
+      "comment": "Returns the host name of the peer in this session. For the server, this is the client\u0027s host; and for the client, it is the server\u0027s host. The name may not be a fully qualified host name or even a host name at all as it may represent a string encoding of the peer\u0027s network address. If such a name is desired, it might be resolved through a name service based on the value returned by this method. This value is not authenticated and should not be relied upon. It is mainly used as a hint for SSLSession caching strategies.",
+      "tagMap": {
+        "return": [
+          "the host name of the peer host, or null if no information is available."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPeerPort",
+      "comment": "Returns the port number of the peer in this session. For the server, this is the client\u0027s port number; and for the client, it is the server\u0027s port number. This value is not authenticated and should not be relied upon. It is mainly used as a hint for SSLSession caching strategies.",
+      "tagMap": {
+        "return": [
+          "the port number of the peer host, or -1 if no information is available."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPacketBufferSize",
+      "comment": "Gets the current size of the largest SSL/TLS/DTLS packet that is expected when using this session. An SSLEngine using this session may generate SSL/TLS/DTLS packets of any size up to and including the value returned by this method. All SSLEngine network buffers should be sized at least this large to avoid insufficient space problems when performing wrap and unwrap calls.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLEngine.html#wrap(java.nio.ByteBuffer%5B%5D,java.nio.ByteBuffer)\"\u003e\u003ccode\u003eSSLEngine.wrap(ByteBuffer, ByteBuffer)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLEngine.html#unwrap(java.nio.ByteBuffer,java.nio.ByteBuffer%5B%5D)\"\u003e\u003ccode\u003eSSLEngine.unwrap(ByteBuffer, ByteBuffer)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the current maximum expected network packet size"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getApplicationBufferSize",
+      "comment": "Gets the current size of the largest application data that is expected when using this session. SSLEngine application data buffers must be large enough to hold the application data from any inbound network application data packet received. Typically, outbound application data buffers can be of any size.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLEngine.html#wrap(java.nio.ByteBuffer%5B%5D,java.nio.ByteBuffer)\"\u003e\u003ccode\u003eSSLEngine.wrap(ByteBuffer, ByteBuffer)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/net/ssl/SSLEngine.html#unwrap(java.nio.ByteBuffer,java.nio.ByteBuffer%5B%5D)\"\u003e\u003ccode\u003eSSLEngine.unwrap(ByteBuffer, ByteBuffer)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the current maximum expected application packet size"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.net.ssl.SSLSession",
+  "comment": "In SSL, sessions are used to describe an ongoing relationship between two entities. Each SSL connection involves one session at a time, but that session may be used on many connections between those entities, simultaneously or sequentially. The session used on a connection may also be replaced by a different session. Sessions are created, or rejoined, as part of the SSL handshaking protocol. Sessions may be invalidated due to policies affecting security or resource usage, or by an application explicitly calling \n\u003ccode\u003einvalidate\u003c/code\u003e. Session management policies are typically used to tune performance. \n\u003cp\u003e In addition to the standard session attributes, SSL sessions expose these read-only attributes: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e \u003cem\u003ePeer Identity.\u003c/em\u003e Sessions are between a particular client and a particular server. The identity of the peer may have been established as part of session setup. Peers are generally identified by X.509 certificate chains. \u003c/li\u003e\n \u003cli\u003e \u003cem\u003eCipher Suite Name.\u003c/em\u003e Cipher suites describe the kind of cryptographic protection that\u0027s used by connections in a particular session. \u003c/li\u003e\n \u003cli\u003e \u003cem\u003ePeer Host.\u003c/em\u003e All connections in a session are between the same two hosts. The address of the host on the other side of the connection is available. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e Sessions may be explicitly invalidated. Invalidation may also be done implicitly, when faced with certain kinds of errors.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

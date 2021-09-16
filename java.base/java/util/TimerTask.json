@@ -1,0 +1,82 @@
+{
+  "packageName": "java.util",
+  "simpleName": "TimerTask",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "run",
+      "comment": "The action to be performed by this timer task.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#run()\"\u003e\u003ccode\u003eThread.run()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runnable.html#run()\"\u003erun\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runnable.html\" title\u003d\"interface in java.lang\"\u003eRunnable\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "cancel",
+      "comment": "Cancels this timer task. If the task has been scheduled for one-time execution and has not yet run, or has not yet been scheduled, it will never run. If the task has been scheduled for repeated execution, it will never run again. (If the task is running when this call occurs, the task will run to completion, but will never run again.) Note that calling this method from within the run method of a repeating timer task absolutely guarantees that the timer task will not run again. This method may be called repeatedly; the second and subsequent calls have no effect.",
+      "tagMap": {
+        "return": [
+          "true if this task is scheduled for one-time execution and has not yet run, or this task is scheduled for repeated execution. Returns false if the task was scheduled for one-time execution and has already run, or if the task was never scheduled, or if the task was already cancelled. (Loosely speaking, this method returns \n\u003ccode\u003etrue\u003c/code\u003e if it prevents one or more scheduled executions from taking place.)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "scheduledExecutionTime",
+      "comment": "Returns the scheduled execution time of the most recent actual execution of this task. (If this method is invoked while task execution is in progress, the return value is the scheduled execution time of the ongoing task execution.) This method is typically invoked from within a task\u0027s run method, to determine whether the current execution of the task is sufficiently timely to warrant performing the scheduled activity: \n   public void run() {\n       if (System.currentTimeMillis() - scheduledExecutionTime() \u003e\u003d\n           MAX_TARDINESS)\n               return;  // Too late; skip this execution.\n       // Perform the task\n   }\n This method is typically not used in conjunction with fixed-delay execution repeating tasks, as their scheduled execution times are allowed to drift over time, and so are not terribly significant.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Date.html#getTime()\"\u003e\u003ccode\u003eDate.getTime()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the time at which the most recent execution of this task was scheduled to occur, in the format returned by Date.getTime(). The return value is undefined if the task has yet to commence its first execution."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a new timer task.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.util.TimerTask",
+  "comment": "A task that can be scheduled for one-time or repeated execution by a \n\u003ca href\u003d\"Timer.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eTimer\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003eA timer task is \u003cem\u003enot\u003c/em\u003e reusable. Once a task has been scheduled for execution on a \u003ccode\u003eTimer\u003c/code\u003e or cancelled, subsequent attempts to schedule it for execution will throw \u003ccode\u003eIllegalStateException\u003c/code\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.3"
+    ]
+  }
+}

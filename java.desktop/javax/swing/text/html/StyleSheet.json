@@ -1,0 +1,1186 @@
+{
+  "packageName": "javax.swing.text.html",
+  "simpleName": "StyleSheet",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.swing.text.StyleContext",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.swing.text.Style",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.html.HTML$Tag",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.swing.text.Element",
+            "type": "Class"
+          },
+          "field": {
+            "name": "e"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getRule",
+      "comment": "Fetches the style to use to render the given type of HTML tag. The element given is representing the tag and can be used to determine the nesting for situations where the attributes will differ if nesting inside of elements.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the type to translate to visual attributes",
+          "\u003ccode\u003ee\u003c/code\u003e - the element representing the tag; the element can be used to determine the nesting for situations where the attributes will differ if nested inside of other elements"
+        ],
+        "return": [
+          "the set of CSS attributes to use to render the tag"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.Style",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "selector"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getRule",
+      "comment": "Fetches the rule that best matches the selector given in string form. Where selector is a space separated String of the element names. For example, selector might be \u0027html body tr td\u0027\u0027 The attributes of the returned Style will change as rules are added and removed. That is if you to ask for a rule with a selector \"table p\" and a new rule was added with a selector of \"p\" the returned Style would include the new attributes from the rule \"p\".",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eselector\u003c/code\u003e - a space separated String of the element names."
+        ],
+        "return": [
+          "the rule that best matches the selector."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "rule"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addRule",
+      "comment": "Adds a set of rules to the sheet. The rules are expected to be in valid CSS format. Typically this would be called as a result of parsing a \u003cstyle\u003e tag.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erule\u003c/code\u003e - a set of rules"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "decl"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDeclaration",
+      "comment": "Translates a CSS declaration to an AttributeSet that represents the CSS declaration. Typically this would be called as a result of encountering an HTML style attribute.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edecl\u003c/code\u003e - a CSS declaration"
+        ],
+        "return": [
+          "a set of attributes that represents the CSS declaration."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.Reader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "in"
+          }
+        },
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ref"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "loadRules",
+      "comment": "Loads a set of rules that have been specified in terms of CSS1 grammar. If there are collisions with existing rules, the newly specified rule will win.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ein\u003c/code\u003e - the stream to read the CSS grammar from",
+          "\u003ccode\u003eref\u003c/code\u003e - the reference URL. This value represents the location of the stream and may be null. All relative URLs specified in the stream will be based upon this parameter."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if I/O error occured."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.View",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getViewAttributes",
+      "comment": "Fetches a set of attributes to use in the view for displaying. This is basically a set of attributes that can be used for View.getAttributes.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a view"
+        ],
+        "return": [
+          "the of attributes"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "nm"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeStyle",
+      "comment": "Removes a named style previously added to the document.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#removeStyle(java.lang.String)\"\u003eremoveStyle\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003enm\u003c/code\u003e - the name of the style to remove"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.html.StyleSheet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ss"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addStyleSheet",
+      "comment": "Adds the rules from the StyleSheet ss to those of the receiver. ss\u0027s rules will override the rules of any previously added style sheets. An added StyleSheet will never override the rules of the receiving style sheet.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ess\u003c/code\u003e - a StyleSheet"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.html.StyleSheet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ss"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeStyleSheet",
+      "comment": "Removes the StyleSheet ss from those of the receiver.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ess\u003c/code\u003e - a StyleSheet"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.html.StyleSheet",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getStyleSheets",
+      "comment": "Returns an array of the linked StyleSheets. Will return null if there are no linked StyleSheets.",
+      "tagMap": {
+        "return": [
+          "an array of StyleSheets."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "url"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "importStyleSheet",
+      "comment": "Imports a style sheet from url. The resulting rules are directly added to the receiver. If you do not want the rules to become part of the receiver, create a new StyleSheet and use addStyleSheet to link it in.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eurl\u003c/code\u003e - an url"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.URL",
+            "type": "Class"
+          },
+          "field": {
+            "name": "base"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setBase",
+      "comment": "Sets the base. All import statements that are relative, will be relative to base.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebase\u003c/code\u003e - a base."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.net.URL",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getBase",
+      "comment": "Returns the base.",
+      "tagMap": {
+        "return": [
+          "the base."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.MutableAttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attr"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.swing.text.html.CSS$Attribute",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addCSSAttribute",
+      "comment": "Adds a CSS attribute to the given set.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eattr\u003c/code\u003e - a set of attributes",
+          "\u003ccode\u003ekey\u003c/code\u003e - a CSS property",
+          "\u003ccode\u003evalue\u003c/code\u003e - an HTML attribute value"
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.MutableAttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attr"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.swing.text.html.CSS$Attribute",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addCSSAttributeFromHTML",
+      "comment": "Adds a CSS attribute to the given set.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eattr\u003c/code\u003e - a set of attributes",
+          "\u003ccode\u003ekey\u003c/code\u003e - a CSS property",
+          "\u003ccode\u003evalue\u003c/code\u003e - an HTML attribute value"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if an HTML attribute \n\u003ccode\u003evalue\u003c/code\u003e can be converted to a CSS attribute, false otherwise."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "htmlAttrSet"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "translateHTMLToCSS",
+      "comment": "Converts a set of HTML attributes to an equivalent set of CSS attributes.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ehtmlAttrSet\u003c/code\u003e - AttributeSet containing the HTML attributes."
+        ],
+        "return": [
+          "the set of CSS attributes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "old"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addAttribute",
+      "comment": "Adds an attribute to the given set, and returns the new representative set. This is reimplemented to convert StyleConstant attributes to CSS prior to forwarding to the superclass behavior. The StyleConstants attribute has no corresponding CSS entry, the StyleConstants attribute is stored (but will likely be unused).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/MutableAttributeSet.html#addAttribute(java.lang.Object,java.lang.Object)\"\u003e\u003ccode\u003eMutableAttributeSet.addAttribute(java.lang.Object, java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#addAttribute(javax.swing.text.AttributeSet,java.lang.Object,java.lang.Object)\"\u003eaddAttribute\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html#addAttribute(javax.swing.text.AttributeSet,java.lang.Object,java.lang.Object)\"\u003eaddAttribute\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html\" title\u003d\"interface in javax.swing.text\"\u003eAbstractDocument.AttributeContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eold\u003c/code\u003e - the old attribute set",
+          "\u003ccode\u003ekey\u003c/code\u003e - the non-null attribute key",
+          "\u003ccode\u003evalue\u003c/code\u003e - the attribute value"
+        ],
+        "return": [
+          "the updated attribute set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "old"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "addAttributes",
+      "comment": "Adds a set of attributes to the element. If any of these attributes are StyleConstants attributes, they will be converted to CSS prior to forwarding to the superclass behavior.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/MutableAttributeSet.html#addAttribute(java.lang.Object,java.lang.Object)\"\u003e\u003ccode\u003eMutableAttributeSet.addAttribute(java.lang.Object, java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#addAttributes(javax.swing.text.AttributeSet,javax.swing.text.AttributeSet)\"\u003eaddAttributes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html#addAttributes(javax.swing.text.AttributeSet,javax.swing.text.AttributeSet)\"\u003eaddAttributes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html\" title\u003d\"interface in javax.swing.text\"\u003eAbstractDocument.AttributeContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eold\u003c/code\u003e - the old attribute set",
+          "\u003ccode\u003eattr\u003c/code\u003e - the attributes to add"
+        ],
+        "return": [
+          "the updated attribute set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "old"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeAttribute",
+      "comment": "Removes an attribute from the set. If the attribute is a StyleConstants attribute, the request will be converted to a CSS attribute prior to forwarding to the superclass behavior.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/MutableAttributeSet.html#removeAttribute(java.lang.Object)\"\u003e\u003ccode\u003eMutableAttributeSet.removeAttribute(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#removeAttribute(javax.swing.text.AttributeSet,java.lang.Object)\"\u003eremoveAttribute\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html#removeAttribute(javax.swing.text.AttributeSet,java.lang.Object)\"\u003eremoveAttribute\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html\" title\u003d\"interface in javax.swing.text\"\u003eAbstractDocument.AttributeContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eold\u003c/code\u003e - the old set of attributes",
+          "\u003ccode\u003ekey\u003c/code\u003e - the non-null attribute name"
+        ],
+        "return": [
+          "the updated attribute set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "old"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Enumeration",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "names"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeAttributes",
+      "comment": "Removes a set of attributes for the element. If any of the attributes is a StyleConstants attribute, the request will be converted to a CSS attribute prior to forwarding to the superclass behavior.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/MutableAttributeSet.html#removeAttributes(java.util.Enumeration)\"\u003e\u003ccode\u003eMutableAttributeSet.removeAttributes(java.util.Enumeration\u0026lt;?\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#removeAttributes(javax.swing.text.AttributeSet,java.util.Enumeration)\"\u003eremoveAttributes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html#removeAttributes(javax.swing.text.AttributeSet,java.util.Enumeration)\"\u003eremoveAttributes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html\" title\u003d\"interface in javax.swing.text\"\u003eAbstractDocument.AttributeContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eold\u003c/code\u003e - the old attribute set",
+          "\u003ccode\u003enames\u003c/code\u003e - the attribute names"
+        ],
+        "return": [
+          "the updated attribute set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.AttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "old"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "attrs"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "removeAttributes",
+      "comment": "Removes a set of attributes. If any of the attributes is a StyleConstants attribute, the request will be converted to a CSS attribute prior to forwarding to the superclass behavior.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/MutableAttributeSet.html#removeAttributes(java.util.Enumeration)\"\u003e\u003ccode\u003eMutableAttributeSet.removeAttributes(java.util.Enumeration\u0026lt;?\u0026gt;)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#removeAttributes(javax.swing.text.AttributeSet,javax.swing.text.AttributeSet)\"\u003eremoveAttributes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html#removeAttributes(javax.swing.text.AttributeSet,javax.swing.text.AttributeSet)\"\u003eremoveAttributes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/AbstractDocument.AttributeContext.html\" title\u003d\"interface in javax.swing.text\"\u003eAbstractDocument.AttributeContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eold\u003c/code\u003e - the old attribute set",
+          "\u003ccode\u003eattrs\u003c/code\u003e - the attributes"
+        ],
+        "return": [
+          "the updated attribute set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.StyleContext$SmallAttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "createSmallAttributeSet",
+      "comment": "Creates a compact set of attributes that might be shared. This is a hook for subclasses that want to alter the behavior of SmallAttributeSet. This can be reimplemented to return an AttributeSet that provides some sort of attribute conversion.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#createSmallAttributeSet(javax.swing.text.AttributeSet)\"\u003ecreateSmallAttributeSet\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - The set of attributes to be represented in the the compact form."
+        ],
+        "return": [
+          "a compact set of attributes that might be shared"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.MutableAttributeSet",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "createLargeAttributeSet",
+      "comment": "Creates a large set of attributes that should trade off space for time. This set will not be shared. This is a hook for subclasses that want to alter the behavior of the larger attribute storage format (which is SimpleAttributeSet by default). This can be reimplemented to return a MutableAttributeSet that provides some sort of attribute conversion.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#createLargeAttributeSet(javax.swing.text.AttributeSet)\"\u003ecreateLargeAttributeSet\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - The set of attributes to be represented in the the larger form."
+        ],
+        "return": [
+          "a large set of attributes that should trade off space for time"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Font",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFont",
+      "comment": "Fetches the font to use for the given set of attributes.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#getFont(javax.swing.text.AttributeSet)\"\u003egetFont\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - the attribute set"
+        ],
+        "return": [
+          "the font"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getForeground",
+      "comment": "Takes a set of attributes and turn it into a foreground color specification. This might be used to specify things like brighter, more hue, etc.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#getForeground(javax.swing.text.AttributeSet)\"\u003egetForeground\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - the set of attributes"
+        ],
+        "return": [
+          "the color"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getBackground",
+      "comment": "Takes a set of attributes and turn it into a background color specification. This might be used to specify things like brighter, more hue, etc.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html#getBackground(javax.swing.text.AttributeSet)\"\u003egetBackground\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/swing/text/StyleContext.html\" title\u003d\"class in javax.swing.text\"\u003eStyleContext\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - the set of attributes"
+        ],
+        "return": [
+          "the color"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.html.StyleSheet$BoxPainter",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getBoxPainter",
+      "comment": "Fetches the box formatter to use for the given set of CSS attributes.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - a set of CSS attributes"
+        ],
+        "return": [
+          "the box formatter."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.swing.text.html.StyleSheet$ListPainter",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.swing.text.AttributeSet",
+            "type": "Class"
+          },
+          "field": {
+            "name": "a"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getListPainter",
+      "comment": "Fetches the list formatter to use for the given set of CSS attributes.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ea\u003c/code\u003e - a set of CSS attributes"
+        ],
+        "return": [
+          "the list formatter."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sz"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setBaseFontSize",
+      "comment": "Sets the base font size, with valid values between 1 and 7.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esz\u003c/code\u003e - a font size."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "size"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setBaseFontSize",
+      "comment": "Sets the base font size from the passed in String. The string can either identify a specific font size, with legal values between 1 and 7, or identify a relative font size such as +1 or -2.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - a font size."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pt"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getIndexOfSize",
+      "comment": "Returns the index of HTML/CSS size model.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ept\u003c/code\u003e - a size of point"
+        ],
+        "return": [
+          "the index of HTML/CSS size model."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "index"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPointSize",
+      "comment": "Returns the point size, given a size index.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eindex\u003c/code\u003e - a size index"
+        ],
+        "return": [
+          "the point size value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "size"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPointSize",
+      "comment": "Given a string such as \"+2\", \"-2\", or \"2\", returns a point size value.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - a CSS string describing font size"
+        ],
+        "return": [
+          "the point size value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Color",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "string"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "stringToColor",
+      "comment": "Converts a color string such as \"RED\" or \"#NNNNNN\" to a Color. Note: This will only convert the HTML3.2 color strings or a string of length 7; otherwise, it will return null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003estring\u003c/code\u003e - color string such as \"RED\" or \"#NNNNNN\""
+        ],
+        "return": [
+          "the color"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Construct a StyleSheet",
+      "tagMap": {}
+    }
+  ],
+  "innerClasses": [
+    "javax.swing.text.html.StyleSheet$ListPainter",
+    "javax.swing.text.html.StyleSheet$BoxPainter"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.swing.text.html.StyleSheet",
+  "comment": "Support for defining the visual characteristics of HTML views being rendered. The StyleSheet is used to translate the HTML model into visual characteristics. This enables views to be customized by a look-and-feel, multiple views over the same model can be rendered differently, etc. This can be thought of as a CSS rule repository. The key for CSS attributes is an object of type CSS.Attribute. The type of the value is up to the StyleSheet implementation, but the \n\u003ccode\u003etoString\u003c/code\u003e method is required to return a string representation of CSS value. \n\u003cp\u003e The primary entry point for HTML View implementations to get their attributes is the \u003ca href\u003d\"#getViewAttributes(javax.swing.text.View)\"\u003e\u003ccode\u003egetViewAttributes\u003c/code\u003e\u003c/a\u003e method. This should be implemented to establish the desired policy used to associate attributes with the view. Each HTMLEditorKit (i.e. and therefore each associated JEditorPane) can have its own StyleSheet, but by default one sheet will be shared by all of the HTMLEditorKit instances. HTMLDocument instance can also have a StyleSheet, which holds the document-specific CSS specifications. \u003c/p\u003e\n\u003cp\u003e In order for Views to store less state and therefore be more lightweight, the StyleSheet can act as a factory for painters that handle some of the rendering tasks. This allows implementations to determine what they want to cache and have the sharing potentially at the level that a selector is common to multiple views. Since the StyleSheet may be used by views over multiple documents and typically the HTML attributes don\u0027t effect the selector being used, the potential for sharing is significant. \u003c/p\u003e\n\u003cp\u003e The rules are stored as named styles, and other information is stored to translate the context of an element to a rule quickly. The following code fragment will display the named styles, and therefore the CSS rules contained. \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n \u0026nbsp;\n \u0026nbsp; import java.util.*;\n \u0026nbsp; import javax.swing.text.*;\n \u0026nbsp; import javax.swing.text.html.*;\n \u0026nbsp;\n \u0026nbsp; public class ShowStyles {\n \u0026nbsp;\n \u0026nbsp;     public static void main(String[] args) {\n \u0026nbsp;       HTMLEditorKit kit \u003d new HTMLEditorKit();\n \u0026nbsp;       HTMLDocument doc \u003d (HTMLDocument) kit.createDefaultDocument();\n \u0026nbsp;       StyleSheet styles \u003d doc.getStyleSheet();\n \u0026nbsp;\n \u0026nbsp;       Enumeration rules \u003d styles.getStyleNames();\n \u0026nbsp;       while (rules.hasMoreElements()) {\n \u0026nbsp;           String name \u003d (String) rules.nextElement();\n \u0026nbsp;           Style rule \u003d styles.getStyle(name);\n \u0026nbsp;           System.out.println(rule.toString());\n \u0026nbsp;       }\n \u0026nbsp;       System.exit(0);\n \u0026nbsp;     }\n \u0026nbsp; }\n \u0026nbsp;\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The semantics for when a CSS style should overide visual attributes defined by an element are not well defined. For example, the html \u003ccode\u003e\u0026lt;body bgcolor\u003dred\u0026gt;\u003c/code\u003e makes the body have a red background. But if the html file also contains the CSS rule \u003ccode\u003ebody { background: blue }\u003c/code\u003e it becomes less clear as to what color the background of the body should be. The current implementation gives visual attributes defined in the element the highest precedence, that is they are always checked before any styles. Therefore, in the previous example the background would have a red color as the body element defines the background color to be red. \u003c/p\u003e\n\u003cp\u003e As already mentioned this supports CSS. We don\u0027t support the full CSS spec. Refer to the javadoc of the CSS class to see what properties we support. The two major CSS parsing related concepts we do not currently support are pseudo selectors, such as \u003ccode\u003eA:link { color: red }\u003c/code\u003e, and the \u003ccode\u003eimportant\u003c/code\u003e modifier.\u003c/p\u003e",
+  "tagMap": {
+    "implNote": [
+      "This implementation is currently incomplete. It can be replaced with alternative implementations that are complete. Future versions of this class will provide better CSS support."
+    ]
+  }
+}

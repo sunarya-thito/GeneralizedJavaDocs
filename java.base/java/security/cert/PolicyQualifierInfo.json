@@ -1,0 +1,127 @@
+{
+  "packageName": "java.security.cert",
+  "simpleName": "PolicyQualifierInfo",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getPolicyQualifierId",
+      "comment": "Returns the policyQualifierId field of this PolicyQualifierInfo. The policyQualifierId is an Object Identifier (OID) represented by a set of nonnegative integers separated by periods.",
+      "tagMap": {
+        "return": [
+          "the OID (never \n\u003ccode\u003enull\u003c/code\u003e)"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getEncoded",
+      "comment": "Returns the ASN.1 DER encoded form of this PolicyQualifierInfo.",
+      "tagMap": {
+        "return": [
+          "the ASN.1 DER encoded bytes (never \n\u003ccode\u003enull\u003c/code\u003e). Note that a copy is returned, so the data is cloned each time this method is called."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getPolicyQualifier",
+      "comment": "Returns the ASN.1 DER encoded form of the qualifier field of this PolicyQualifierInfo.",
+      "tagMap": {
+        "return": [
+          "the ASN.1 DER encoded bytes of the \n\u003ccode\u003equalifier\u003c/code\u003e field. Note that a copy is returned, so the data is cloned each time this method is called."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Return a printable representation of this PolicyQualifierInfo.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eString\u003c/code\u003e describing the contents of this \n\u003ccode\u003ePolicyQualifierInfo\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "encoded"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an instance of PolicyQualifierInfo from the encoded bytes. The encoded byte array is copied on construction.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eencoded\u003c/code\u003e - a byte array containing the qualifier in DER encoding"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - thrown if the byte array does not represent a valid and parsable policy qualifier"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.security.cert.PolicyQualifierInfo",
+  "comment": "An immutable policy qualifier represented by the ASN.1 PolicyQualifierInfo structure. \n\u003cp\u003eThe ASN.1 definition is as follows: \u003c/p\u003e\n\u003cpre\u003e   PolicyQualifierInfo ::\u003d SEQUENCE {\n        policyQualifierId       PolicyQualifierId,\n        qualifier               ANY DEFINED BY policyQualifierId }\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A certificate policies extension, if present in an X.509 version 3 certificate, contains a sequence of one or more policy information terms, each of which consists of an object identifier (OID) and optional qualifiers. In an end-entity certificate, these policy information terms indicate the policy under which the certificate has been issued and the purposes for which the certificate may be used. In a CA certificate, these policy information terms limit the set of policies for certification paths which include this certificate. \u003c/p\u003e\n\u003cp\u003e A \u003ccode\u003eSet\u003c/code\u003e of \u003ccode\u003ePolicyQualifierInfo\u003c/code\u003e objects are returned by the \u003ca href\u003d\"PolicyNode.html#getPolicyQualifiers()\"\u003e\u003ccode\u003ePolicyNode.getPolicyQualifiers\u003c/code\u003e\u003c/a\u003e method. This allows applications with specific policy requirements to process and validate each policy qualifier. Applications that need to process policy qualifiers should explicitly set the \u003ccode\u003epolicyQualifiersRejected\u003c/code\u003e flag to false (by calling the \u003ca href\u003d\"PKIXParameters.html#setPolicyQualifiersRejected(boolean)\"\u003e\u003ccode\u003ePKIXParameters.setPolicyQualifiersRejected\u003c/code\u003e\u003c/a\u003e method) before validating a certification path. \u003c/p\u003e\n\u003cp\u003eNote that the PKIX certification path validation algorithm specifies that any policy qualifier in a certificate policies extension that is marked critical must be processed and validated. Otherwise the certification path must be rejected. If the \u003ccode\u003epolicyQualifiersRejected\u003c/code\u003e flag is set to false, it is up to the application to validate all policy qualifiers in this manner in order to be PKIX compliant. \u003c/p\u003e\n\u003cp\u003e\u003cb\u003eConcurrent Access\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003eAll \u003ccode\u003ePolicyQualifierInfo\u003c/code\u003e objects must be immutable and thread-safe. That is, multiple threads may concurrently invoke the methods defined in this class on a single \u003ccode\u003ePolicyQualifierInfo\u003c/code\u003e object (or more than one) with no ill effects. Requiring \u003ccode\u003ePolicyQualifierInfo\u003c/code\u003e objects to be immutable and thread-safe allows them to be passed around to various pieces of code without worrying about coordinating access.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "packageName": "javax.sound.midi",
+  "simpleName": "MidiDevice",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.AutoCloseable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.sound.midi.MidiDevice$Info",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDeviceInfo",
+      "comment": "Obtains information about the device, including its Java class and Strings containing its name, vendor, and description.",
+      "tagMap": {
+        "return": [
+          "device info"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "open",
+      "comment": "Opens the device, indicating that it should now acquire any system resources it requires and become operational. An application opening a device explicitly with this call has to close the device by calling close(). This is necessary to release system resources and allow applications to exit cleanly. Note that some devices, once closed, cannot be reopened. Attempts to reopen such a device will always result in a MidiUnavailableException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiDevice.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiDevice.html#isOpen()\"\u003e\u003ccode\u003eisOpen()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - thrown if the device cannot be opened due to resource restrictions",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - thrown if the device cannot be opened due to security restrictions"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Closes the device, indicating that the device should now release any system resources it is using. All Receiver and Transmitter instances open from this device are closed. This includes instances retrieved via MidiSystem.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiDevice.html#open()\"\u003e\u003ccode\u003eopen()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiDevice.html#isOpen()\"\u003e\u003ccode\u003eisOpen()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isOpen",
+      "comment": "Reports whether the device is open.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiDevice.html#open()\"\u003e\u003ccode\u003eopen()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiDevice.html#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the device is open, otherwise \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMicrosecondPosition",
+      "comment": "Obtains the current time-stamp of the device, in microseconds. If a device supports time-stamps, it should start counting at 0 when the device is opened and continue incrementing its time-stamp in microseconds until the device is closed. If it does not support time-stamps, it should always return -1.",
+      "tagMap": {
+        "return": [
+          "the current time-stamp of the device in microseconds, or -1 if time-stamping is not supported by the device"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMaxReceivers",
+      "comment": "Obtains the maximum number of MIDI IN connections available on this MIDI device for receiving MIDI data.",
+      "tagMap": {
+        "return": [
+          "maximum number of MIDI IN connections, or -1 if an unlimited number of connections is available"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMaxTransmitters",
+      "comment": "Obtains the maximum number of MIDI OUT connections available on this MIDI device for transmitting MIDI data.",
+      "tagMap": {
+        "return": [
+          "maximum number of MIDI OUT connections, or -1 if an unlimited number of connections is available"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Receiver",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getReceiver",
+      "comment": "Obtains a MIDI IN receiver through which the MIDI device may receive MIDI data. The returned receiver must be closed when the application has finished using it. Usually the returned receiver implements the MidiDeviceReceiver interface. Obtaining a Receiver with this method does not open the device. To be able to use the device, it has to be opened explicitly by calling open(). Also, closing the Receiver does not close the device. It has to be closed explicitly by calling close().",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Receiver.html#close()\"\u003e\u003ccode\u003eReceiver.close()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - thrown if a receiver is not available due to resource restrictions"
+        ],
+        "return": [
+          "a receiver for the device"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "javax.sound.midi.Receiver",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getReceivers",
+      "comment": "Returns all currently active, non-closed receivers connected with this MidiDevice. A receiver can be removed from the device by closing it. Usually the returned receivers implement the MidiDeviceReceiver interface.",
+      "tagMap": {
+        "return": [
+          "an unmodifiable list of the open receivers"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.sound.midi.Transmitter",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.sound.midi.MidiUnavailableException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTransmitter",
+      "comment": "Obtains a MIDI OUT connection from which the MIDI device will transmit MIDI data. The returned transmitter must be closed when the application has finished using it. Usually the returned transmitter implements the MidiDeviceTransmitter interface. Obtaining a Transmitter with this method does not open the device. To be able to use the device, it has to be opened explicitly by calling open(). Also, closing the Transmitter does not close the device. It has to be closed explicitly by calling close().",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Transmitter.html#close()\"\u003e\u003ccode\u003eTransmitter.close()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/MidiUnavailableException.html\" title\u003d\"class in javax.sound.midi\"\u003eMidiUnavailableException\u003c/a\u003e\u003c/code\u003e - thrown if a transmitter is not available due to resource restrictions"
+        ],
+        "return": [
+          "a MIDI OUT transmitter for the device"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "javax.sound.midi.Transmitter",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTransmitters",
+      "comment": "Returns all currently active, non-closed transmitters connected with this MidiDevice. A transmitter can be removed from the device by closing it. Usually the returned transmitters implement the MidiDeviceTransmitter interface.",
+      "tagMap": {
+        "return": [
+          "an unmodifiable list of the open transmitters"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.sound.midi.MidiDevice$Info"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.sound.midi.MidiDevice",
+  "comment": "\u003ccode\u003eMidiDevice\u003c/code\u003e is the base interface for all MIDI devices. Common devices include synthesizers, sequencers, MIDI input ports, and MIDI output ports. \n\u003cp\u003e A \u003ccode\u003eMidiDevice\u003c/code\u003e can be a transmitter or a receiver of MIDI events, or both. Therefore, it can provide \u003ca href\u003d\"Transmitter.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eTransmitter\u003c/code\u003e\u003c/a\u003e or \u003ca href\u003d\"Receiver.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eReceiver\u003c/code\u003e\u003c/a\u003e instances (or both). Typically, MIDI IN ports provide transmitters, MIDI OUT ports and synthesizers provide receivers. A Sequencer typically provides transmitters for playback and receivers for recording. \u003c/p\u003e\n\u003cp\u003e A \u003ccode\u003eMidiDevice\u003c/code\u003e can be opened and closed explicitly as well as implicitly. Explicit opening is accomplished by calling \u003ca href\u003d\"#open()\"\u003e\u003ccode\u003eopen()\u003c/code\u003e\u003c/a\u003e, explicit closing is done by calling \u003ca href\u003d\"#close()\"\u003e\u003ccode\u003eclose()\u003c/code\u003e\u003c/a\u003e on the \u003ccode\u003eMidiDevice\u003c/code\u003e instance. If an application opens a \u003ccode\u003eMidiDevice\u003c/code\u003e explicitly, it has to close it explicitly to free system resources and enable the application to exit cleanly. Implicit opening is done by calling \u003ca href\u003d\"MidiSystem.html#getReceiver()\"\u003e\u003ccode\u003eMidiSystem.getReceiver()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"MidiSystem.html#getTransmitter()\"\u003e\u003ccode\u003eMidiSystem.getTransmitter()\u003c/code\u003e\u003c/a\u003e. The \u003ccode\u003eMidiDevice\u003c/code\u003e used by \u003ccode\u003eMidiSystem.getReceiver\u003c/code\u003e and \u003ccode\u003eMidiSystem.getTransmitter\u003c/code\u003e is implementation-dependent unless the properties \u003ccode\u003ejavax.sound.midi.Receiver\u003c/code\u003e and \u003ccode\u003ejavax.sound.midi.Transmitter\u003c/code\u003e are used (see the description of properties to select default providers in \u003ca href\u003d\"MidiSystem.html\" title\u003d\"class in javax.sound.midi\"\u003e\u003ccode\u003eMidiSystem\u003c/code\u003e\u003c/a\u003e). A \u003ccode\u003eMidiDevice\u003c/code\u003e that was opened implicitly, is closed implicitly by closing the \u003ccode\u003eReceiver\u003c/code\u003e or \u003ccode\u003eTransmitter\u003c/code\u003e that resulted in opening it. If more than one implicitly opening \u003ccode\u003eReceiver\u003c/code\u003e or \u003ccode\u003eTransmitter\u003c/code\u003e were obtained by the application, the device is closed after the last \u003ccode\u003eReceiver\u003c/code\u003e or \u003ccode\u003eTransmitter\u003c/code\u003e has been closed. On the other hand, calling \u003ccode\u003egetReceiver\u003c/code\u003e or \u003ccode\u003egetTransmitter\u003c/code\u003e on the device instance directly does not open the device implicitly. Closing these \u003ccode\u003eTransmitter\u003c/code\u003es and \u003ccode\u003eReceiver\u003c/code\u003es does not close the device implicitly. To use a device with \u003ccode\u003eReceiver\u003c/code\u003es or \u003ccode\u003eTransmitter\u003c/code\u003es obtained this way, the device has to be opened and closed explicitly. \u003c/p\u003e\n\u003cp\u003e If implicit and explicit opening and closing are mixed on the same \u003ccode\u003eMidiDevice\u003c/code\u003e instance, the following rules apply: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eAfter an explicit open (either before or after implicit opens), the device will not be closed by implicit closing. The only way to close an explicitly opened device is an explicit close. \u003c/li\u003e\n \u003cli\u003eAn explicit close always closes the device, even if it also has been opened implicitly. A subsequent implicit close has no further effect. \u003c/li\u003e\n\u003c/ul\u003e To detect if a MidiDevice represents a hardware MIDI port, the following programming technique can be used: \n\u003cpre\u003e\u003ccode\u003e\n MidiDevice device \u003d ...;\n if (!(device instanceof Sequencer) \u0026amp;\u0026amp; !(device instanceof Synthesizer)) {\n   // we\u0027re now sure that device represents a MIDI port\n   // ...\n }\n \u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A \u003ccode\u003eMidiDevice\u003c/code\u003e includes a \u003ca href\u003d\"MidiDevice.Info.html\" title\u003d\"class in javax.sound.midi\"\u003e\u003ccode\u003eMidiDevice.Info\u003c/code\u003e\u003c/a\u003e object to provide manufacturer information and so on.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Synthesizer.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eSynthesizer\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Sequencer.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eSequencer\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Receiver.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eReceiver\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/sound/midi/Transmitter.html\" title\u003d\"interface in javax.sound.midi\"\u003e\u003ccode\u003eTransmitter\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "packageName": "java.awt.image",
+  "simpleName": "WritableRenderedImage",
+  "moduleName": "java.desktop",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.awt.image.RenderedImage",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.image.TileObserver",
+            "type": "Class"
+          },
+          "field": {
+            "name": "to"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "addTileObserver",
+      "comment": "Adds an observer. If the observer is already present, it will receive multiple notifications.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eto\u003c/code\u003e - the specified \n\u003ccode\u003eTileObserver\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.image.TileObserver",
+            "type": "Class"
+          },
+          "field": {
+            "name": "to"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "removeTileObserver",
+      "comment": "Removes an observer. If the observer was not registered, nothing happens. If the observer was registered for multiple notifications, it will now be registered for one fewer.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eto\u003c/code\u003e - the specified \n\u003ccode\u003eTileObserver\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.image.WritableRaster",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "tileX"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "tileY"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWritableTile",
+      "comment": "Checks out a tile for writing. The WritableRenderedImage is responsible for notifying all of its TileObservers when a tile goes from having no writers to having one writer.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etileX\u003c/code\u003e - the X index of the tile.",
+          "\u003ccode\u003etileY\u003c/code\u003e - the Y index of the tile."
+        ],
+        "return": [
+          "a writable tile."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "tileX"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "tileY"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "releaseWritableTile",
+      "comment": "Relinquishes the right to write to a tile. If the caller continues to write to the tile, the results are undefined. Calls to this method should only appear in matching pairs with calls to getWritableTile; any other use will lead to undefined results. The WritableRenderedImage is responsible for notifying all of its TileObservers when a tile goes from having one writer to having no writers.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etileX\u003c/code\u003e - the X index of the tile.",
+          "\u003ccode\u003etileY\u003c/code\u003e - the Y index of the tile."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "tileX"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "tileY"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isTileWritable",
+      "comment": "Returns whether a tile is currently checked out for writing.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etileX\u003c/code\u003e - the X index of the tile.",
+          "\u003ccode\u003etileY\u003c/code\u003e - the Y index of the tile."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if specified tile is checked out for writing; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.awt.Point",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getWritableTileIndices",
+      "comment": "Returns an array of Point objects indicating which tiles are checked out for writing. Returns null if none are checked out.",
+      "tagMap": {
+        "return": [
+          "an array containing the locations of tiles that are checked out for writing."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hasTileWriters",
+      "comment": "Returns whether any tile is checked out for writing. Semantically equivalent to (getWritableTileIndices() !\u003d null).",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if any tiles are checked out for writing; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.awt.image.Raster",
+            "type": "Class"
+          },
+          "field": {
+            "name": "r"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setData",
+      "comment": "Sets a rect of the image to the contents of the Raster r, which is assumed to be in the same coordinate space as the WritableRenderedImage. The operation is clipped to the bounds of the WritableRenderedImage.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003er\u003c/code\u003e - the specified \n\u003ccode\u003eRaster\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.awt.image.WritableRenderedImage",
+  "comment": "WritableRenderedImage is a common interface for objects which contain or can produce image data in the form of Rasters and which can be modified and/or written over. The image data may be stored/produced as a single tile or a regular array of tiles. \n\u003cp\u003e WritableRenderedImage provides notification to other interested objects when a tile is checked out for writing (via the getWritableTile method) and when the last writer of a particular tile relinquishes its access (via a call to releaseWritableTile). Additionally, it allows any caller to determine whether any tiles are currently checked out (via hasTileWriters), and to obtain a list of such tiles (via getWritableTileIndices, in the form of a Vector of Point objects). \u003c/p\u003e\n\u003cp\u003e Objects wishing to be notified of changes in tile writability must implement the TileObserver interface, and are added by a call to addTileObserver. Multiple calls to addTileObserver for the same object will result in multiple notifications. An existing observer may reduce its notifications by calling removeTileObserver; if the observer had no notifications the operation is a no-op. \u003c/p\u003e\n\u003cp\u003e It is necessary for a WritableRenderedImage to ensure that notifications occur only when the first writer acquires a tile and the last writer releases it.\u003c/p\u003e",
+  "tagMap": {}
+}

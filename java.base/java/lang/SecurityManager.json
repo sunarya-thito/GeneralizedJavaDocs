@@ -1,0 +1,1040 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "SecurityManager",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Class",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "name": "getClassContext",
+      "comment": "Returns the current execution stack as an array of classes. The length of the array is the number of methods on the execution stack. The element at index 0 is the class of the currently executing method, the element at index 1 is the class of that method\u0027s caller, and so on.",
+      "tagMap": {
+        "return": [
+          "the execution stack."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSecurityContext",
+      "comment": "Creates an object that encapsulates the current execution environment. The result of this method is used, for example, by the three-argument checkConnect method and by the two-argument checkRead method. These methods are needed because a trusted method may be called on to read a file or open a socket on behalf of another method. The trusted method needs to determine if the other (possibly untrusted) method would be allowed to perform the operation on its own. The default implementation of this method is to return an AccessControlContext object.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkConnect(java.lang.String,int,java.lang.Object)\"\u003e\u003ccode\u003echeckConnect\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String,java.lang.Object)\"\u003e\u003ccode\u003echeckRead\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessControlContext.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eAccessControlContext\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "an implementation-dependent object that encapsulates sufficient information about the current execution environment to perform some security checks later."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.Permission",
+            "type": "Class"
+          },
+          "field": {
+            "name": "perm"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkPermission",
+      "comment": "Throws a SecurityException if the requested access, specified by the given permission, is not permitted based on the security policy currently in effect. This method calls AccessController.checkPermission with the given permission.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eperm\u003c/code\u003e - the requested permission."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if access is not permitted based on the current security policy.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the permission argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.Permission",
+            "type": "Class"
+          },
+          "field": {
+            "name": "perm"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "context"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkPermission",
+      "comment": "Throws a SecurityException if the specified security context is denied access to the resource specified by the given permission. The context must be a security context returned by a previous call to getSecurityContext and the access control decision is based upon the configured security policy for that security context. If context is an instance of AccessControlContext then the AccessControlContext.checkPermission method is invoked with the specified permission. If context is not an instance of AccessControlContext then a SecurityException is thrown.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#getSecurityContext()\"\u003e\u003ccode\u003egetSecurityContext()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessControlContext.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eAccessControlContext.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eperm\u003c/code\u003e - the specified permission",
+          "\u003ccode\u003econtext\u003c/code\u003e - a system-dependent security context."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the specified security context is not an instance of \n\u003ccode\u003eAccessControlContext\u003c/code\u003e (e.g., is \n\u003ccode\u003enull\u003c/code\u003e), or is denied access to the resource specified by the given permission.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the permission argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkCreateClassLoader",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to create a new class loader. This method calls checkPermission with the RuntimePermission(\"createClassLoader\") permission. If you override this method, then you should make a call to super.checkCreateClassLoader at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#%3Cinit%3E()\"\u003e\u003ccode\u003eClassLoader()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to create a new class loader."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Thread",
+            "type": "Class"
+          },
+          "field": {
+            "name": "t"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkAccess",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to modify the thread argument. This method is invoked for the current security manager by the stop, suspend, resume, setPriority, setName, and setDaemon methods of class Thread. If the thread argument is a system thread (belongs to the thread group with a null parent) then this method calls checkPermission with the RuntimePermission(\"modifyThread\") permission. If the thread argument is not a system thread, this method just returns silently. Applications that want a stricter policy should override this method. If this method is overridden, the method that overrides it should additionally check to see if the calling thread has the RuntimePermission(\"modifyThread\") permission, and if so, return silently. This is to ensure that code granted that permission (such as the JDK itself) is allowed to manipulate any thread. If this method is overridden, then super.checkAccess should be called by the first statement in the overridden method, or the equivalent security check should be placed in the overridden method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#resume()\"\u003e\u003ccode\u003eresume\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#setDaemon(boolean)\"\u003e\u003ccode\u003esetDaemon\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#setName(java.lang.String)\"\u003e\u003ccode\u003esetName\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#setPriority(int)\"\u003e\u003ccode\u003esetPriority\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#stop()\"\u003e\u003ccode\u003estop\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#suspend()\"\u003e\u003ccode\u003esuspend\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003et\u003c/code\u003e - the thread to be checked."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to modify the thread.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the thread argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.ThreadGroup",
+            "type": "Class"
+          },
+          "field": {
+            "name": "g"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkAccess",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to modify the thread group argument. This method is invoked for the current security manager when a new child thread or child thread group is created, and by the setDaemon, setMaxPriority, stop, suspend, resume, and destroy methods of class ThreadGroup. If the thread group argument is the system thread group ( has a null parent) then this method calls checkPermission with the RuntimePermission(\"modifyThreadGroup\") permission. If the thread group argument is not the system thread group, this method just returns silently. Applications that want a stricter policy should override this method. If this method is overridden, the method that overrides it should additionally check to see if the calling thread has the RuntimePermission(\"modifyThreadGroup\") permission, and if so, return silently. This is to ensure that code granted that permission (such as the JDK itself) is allowed to manipulate any thread. If this method is overridden, then super.checkAccess should be called by the first statement in the overridden method, or the equivalent security check should be placed in the overridden method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadGroup.html#destroy()\"\u003e\u003ccode\u003edestroy\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadGroup.html#resume()\"\u003e\u003ccode\u003eresume\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadGroup.html#setDaemon(boolean)\"\u003e\u003ccode\u003esetDaemon\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadGroup.html#setMaxPriority(int)\"\u003e\u003ccode\u003esetMaxPriority\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadGroup.html#stop()\"\u003e\u003ccode\u003estop\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadGroup.html#suspend()\"\u003e\u003ccode\u003esuspend\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eg\u003c/code\u003e - the thread group to be checked."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to modify the thread group.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the thread group argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "status"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkExit",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to cause the Java Virtual Machine to halt with the specified status code. This method is invoked for the current security manager by the exit method of class Runtime. A status of 0 indicates success; other values indicate various errors. This method calls checkPermission with the RuntimePermission(\"exitVM.\"+status) permission. If you override this method, then you should make a call to super.checkExit at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runtime.html#exit(int)\"\u003e\u003ccode\u003eexit\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estatus\u003c/code\u003e - the exit status."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to halt the Java Virtual Machine with the specified status."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cmd"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkExec",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to create a subprocess. This method is invoked for the current security manager by the exec methods of class Runtime. This method calls checkPermission with the FilePermission(cmd,\"execute\") permission if cmd is an absolute path, otherwise it calls checkPermission with FilePermission(\"\u003c\u003cALL FILES\u003e\u003e\",\"execute\"). If you override this method, then you should make a call to super.checkExec at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runtime.html#exec(java.lang.String)\"\u003e\u003ccode\u003eRuntime.exec(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runtime.html#exec(java.lang.String,java.lang.String%5B%5D)\"\u003e\u003ccode\u003eRuntime.exec(java.lang.String, java.lang.String[])\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runtime.html#exec(java.lang.String%5B%5D)\"\u003e\u003ccode\u003eRuntime.exec(java.lang.String[])\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runtime.html#exec(java.lang.String%5B%5D,java.lang.String%5B%5D)\"\u003e\u003ccode\u003eRuntime.exec(java.lang.String[], java.lang.String[])\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ecmd\u003c/code\u003e - the specified system command."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to create a subprocess.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ecmd\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lib"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkLink",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to dynamic link the library code specified by the string argument file. The argument is either a simple library name or a complete filename. This method is invoked for the current security manager by methods load and loadLibrary of class Runtime. This method calls checkPermission with the RuntimePermission(\"loadLibrary.\"+lib) permission. If you override this method, then you should make a call to super.checkLink at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runtime.html#load(java.lang.String)\"\u003e\u003ccode\u003eRuntime.load(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runtime.html#loadLibrary(java.lang.String)\"\u003e\u003ccode\u003eRuntime.loadLibrary(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elib\u003c/code\u003e - the name of the library."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to dynamically link the library.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003elib\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.FileDescriptor",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fd"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkRead",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to read from the specified file descriptor. This method calls checkPermission with the RuntimePermission(\"readFileDescriptor\") permission. If you override this method, then you should make a call to super.checkRead at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/FileDescriptor.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eFileDescriptor\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efd\u003c/code\u003e - the system-dependent file descriptor."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to access the specified file descriptor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the file descriptor argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkRead",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to read the file specified by the string argument. This method calls checkPermission with the FilePermission(file,\"read\") permission. If you override this method, then you should make a call to super.checkRead at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the system-dependent file name."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to access the specified file.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003efile\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "context"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkRead",
+      "comment": "Throws a SecurityException if the specified security context is not allowed to read the file specified by the string argument. The context must be a security context returned by a previous call to getSecurityContext. If context is an instance of AccessControlContext then the AccessControlContext.checkPermission method will be invoked with the FilePermission(file,\"read\") permission. If context is not an instance of AccessControlContext then a SecurityException is thrown. If you override this method, then you should make a call to super.checkRead at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#getSecurityContext()\"\u003e\u003ccode\u003egetSecurityContext()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessControlContext.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eAccessControlContext.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the system-dependent filename.",
+          "\u003ccode\u003econtext\u003c/code\u003e - a system-dependent security context."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the specified security context is not an instance of \n\u003ccode\u003eAccessControlContext\u003c/code\u003e (e.g., is \n\u003ccode\u003enull\u003c/code\u003e), or does not have permission to read the specified file.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003efile\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.FileDescriptor",
+            "type": "Class"
+          },
+          "field": {
+            "name": "fd"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkWrite",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to write to the specified file descriptor. This method calls checkPermission with the RuntimePermission(\"writeFileDescriptor\") permission. If you override this method, then you should make a call to super.checkWrite at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/FileDescriptor.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eFileDescriptor\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efd\u003c/code\u003e - the system-dependent file descriptor."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to access the specified file descriptor.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the file descriptor argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkWrite",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to write to the file specified by the string argument. This method calls checkPermission with the FilePermission(file,\"write\") permission. If you override this method, then you should make a call to super.checkWrite at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the system-dependent filename."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to access the specified file.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003efile\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkDelete",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to delete the specified file. This method is invoked for the current security manager by the delete method of class File. This method calls checkPermission with the FilePermission(file,\"delete\") permission. If you override this method, then you should make a call to super.checkDelete at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/File.html#delete()\"\u003e\u003ccode\u003eFile.delete()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the system-dependent filename."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to delete the file.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003efile\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "host"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "port"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkConnect",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to open a socket connection to the specified host and port number. A port number of -1 indicates that the calling method is attempting to determine the IP address of the specified host name. This method calls checkPermission with the SocketPermission(host+\":\"+port,\"connect\") permission if the port is not equal to -1. If the port is equal to -1, then it calls checkPermission with the SocketPermission(host,\"resolve\") permission. If you override this method, then you should make a call to super.checkConnect at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ehost\u003c/code\u003e - the host name port to connect to.",
+          "\u003ccode\u003eport\u003c/code\u003e - the protocol port to connect to."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to open a socket connection to the specified \n\u003ccode\u003ehost\u003c/code\u003e and \n\u003ccode\u003eport\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ehost\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "host"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "port"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "context"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkConnect",
+      "comment": "Throws a SecurityException if the specified security context is not allowed to open a socket connection to the specified host and port number. A port number of -1 indicates that the calling method is attempting to determine the IP address of the specified host name. If context is not an instance of AccessControlContext then a SecurityException is thrown. Otherwise, the port number is checked. If it is not equal to -1, the context\u0027s checkPermission method is called with a SocketPermission(host+\":\"+port,\"connect\") permission. If the port is equal to -1, then the context\u0027s checkPermission method is called with a SocketPermission(host,\"resolve\") permission. If you override this method, then you should make a call to super.checkConnect at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#getSecurityContext()\"\u003e\u003ccode\u003egetSecurityContext()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessControlContext.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003eAccessControlContext.checkPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ehost\u003c/code\u003e - the host name port to connect to.",
+          "\u003ccode\u003eport\u003c/code\u003e - the protocol port to connect to.",
+          "\u003ccode\u003econtext\u003c/code\u003e - a system-dependent security context."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the specified security context is not an instance of \n\u003ccode\u003eAccessControlContext\u003c/code\u003e (e.g., is \n\u003ccode\u003enull\u003c/code\u003e), or does not have permission to open a socket connection to the specified \n\u003ccode\u003ehost\u003c/code\u003e and \n\u003ccode\u003eport\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ehost\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "port"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkListen",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to wait for a connection request on the specified local port number. This method calls checkPermission with the SocketPermission(\"localhost:\"+port,\"listen\"). If you override this method, then you should make a call to super.checkListen at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eport\u003c/code\u003e - the local port."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to listen on the specified port."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "host"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "port"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkAccept",
+      "comment": "Throws a SecurityException if the calling thread is not permitted to accept a socket connection from the specified host and port number. This method is invoked for the current security manager by the accept method of class ServerSocket. This method calls checkPermission with the SocketPermission(host+\":\"+port,\"accept\") permission. If you override this method, then you should make a call to super.checkAccept at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/ServerSocket.html#accept()\"\u003e\u003ccode\u003eServerSocket.accept()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ehost\u003c/code\u003e - the host name of the socket connection.",
+          "\u003ccode\u003eport\u003c/code\u003e - the port number of the socket connection."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to accept the connection.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ehost\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.InetAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maddr"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkMulticast",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to use (join/leave/send/receive) IP multicast. This method calls checkPermission with the java.net.SocketPermission(maddr.getHostAddress(), \"accept,connect\") permission. If you override this method, then you should make a call to super.checkMulticast at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emaddr\u003c/code\u003e - Internet group address to be used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread is not allowed to use (join/leave/send/receive) IP multicast.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the address argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.InetAddress",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maddr"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ttl"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkMulticast",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to use (join/leave/send/receive) IP multicast. This method calls checkPermission with the java.net.SocketPermission(maddr.getHostAddress(), \"accept,connect\") permission. If you override this method, then you should make a call to super.checkMulticast at the point the overridden method would normally throw an exception.",
+      "annotations": [
+        {
+          "type": "Deprecated",
+          "values": [
+            {
+              "name": "since",
+              "value": "1.4"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emaddr\u003c/code\u003e - Internet group address to be used.",
+          "\u003ccode\u003ettl\u003c/code\u003e - value in use, if it is multicast send. Note: this particular implementation does not use the ttl parameter."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread is not allowed to use (join/leave/send/receive) IP multicast.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the address argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkPropertiesAccess",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to access or modify the system properties. This method is used by the getProperties and setProperties methods of class System. This method calls checkPermission with the PropertyPermission(\"*\", \"read,write\") permission. If you override this method, then you should make a call to super.checkPropertiesAccess at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#getProperties()\"\u003e\u003ccode\u003eSystem.getProperties()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#setProperties(java.util.Properties)\"\u003e\u003ccode\u003eSystem.setProperties(java.util.Properties)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to access or modify the system properties."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkPropertyAccess",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to access the system property with the specified key name. This method is used by the getProperty method of class System. This method calls checkPermission with the PropertyPermission(key, \"read\") permission. If you override this method, then you should make a call to super.checkPropertyAccess at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#getProperty(java.lang.String)\"\u003e\u003ccode\u003eSystem.getProperty(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - a system property key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to access the specified system property.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003ekey\u003c/code\u003e argument is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is empty."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkPrintJobAccess",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to initiate a print job request. This method calls checkPermission with the RuntimePermission(\"queuePrintJob\") permission. If you override this method, then you should make a call to super.checkPrintJobAccess at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to initiate a print job request."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pkg"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkPackageAccess",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to access the specified package. During class loading, this method may be called by the loadClass method of class loaders and by the Java Virtual Machine to ensure that the caller is allowed to access the package of the class that is being loaded. This method checks if the specified package starts with or equals any of the packages in the package.access Security Property. An implementation may also check the package against an additional list of restricted packages as noted below. If the package is restricted, checkPermission(Permission) is called with a RuntimePermission(\"accessClassInPackage.\"+pkg) permission. If this method is overridden, then super.checkPackageAccess should be called as the first line in the overridden method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#loadClass(java.lang.String,boolean)\"\u003e\u003ccode\u003eloadClass\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Security.html#getProperty(java.lang.String)\"\u003e\u003ccode\u003egetProperty\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epkg\u003c/code\u003e - the package name."
+        ],
+        "implNote": [
+          "This implementation also restricts all non-exported packages of modules loaded by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getPlatformClassLoader()\"\u003ethe platform class loader\u003c/a\u003e or its ancestors. A \"non-exported package\" refers to a package that is not exported to all modules. Specifically, it refers to a package that either is not exported at all by its containing module or is exported in a qualified fashion by its containing module."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to access the specified package.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the package name argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pkg"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkPackageDefinition",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to define classes in the specified package. This method is called by the loadClass method of some class loaders. This method checks if the specified package starts with or equals any of the packages in the package.definition Security Property. An implementation may also check the package against an additional list of restricted packages as noted below. If the package is restricted, checkPermission(Permission) is called with a RuntimePermission(\"defineClassInPackage.\"+pkg) permission. If this method is overridden, then super.checkPackageDefinition should be called as the first line in the overridden method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#loadClass(java.lang.String,boolean)\"\u003e\u003ccode\u003eClassLoader.loadClass(String, boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Security.html#getProperty(java.lang.String)\"\u003e\u003ccode\u003egetProperty\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epkg\u003c/code\u003e - the package name."
+        ],
+        "implNote": [
+          "This implementation also restricts all non-exported packages of modules loaded by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getPlatformClassLoader()\"\u003ethe platform class loader\u003c/a\u003e or its ancestors. A \"non-exported package\" refers to a package that is not exported to all modules. Specifically, it refers to a package that either is not exported at all by its containing module or is exported in a qualified fashion by its containing module."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to define classes in the specified package.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the package name argument is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkSetFactory",
+      "comment": "Throws a SecurityException if the calling thread is not allowed to set the socket factory used by ServerSocket or Socket, or the stream handler factory used by URL. This method calls checkPermission with the RuntimePermission(\"setFactory\") permission. If you override this method, then you should make a call to super.checkSetFactory at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/ServerSocket.html#setSocketFactory(java.net.SocketImplFactory)\"\u003e\u003ccode\u003esetSocketFactory\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/Socket.html#setSocketImplFactory(java.net.SocketImplFactory)\"\u003e\u003ccode\u003esetSocketImplFactory\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/URL.html#setURLStreamHandlerFactory(java.net.URLStreamHandlerFactory)\"\u003e\u003ccode\u003esetURLStreamHandlerFactory\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission to specify a socket factory or a stream handler factory."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "target"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "checkSecurityAccess",
+      "comment": "Determines whether the permission with the specified permission target name should be granted or denied. If the requested permission is allowed, this method returns quietly. If denied, a SecurityException is raised. This method creates a SecurityPermission object for the given permission target name and calls checkPermission with it. See the documentation for SecurityPermission for a list of possible permission target names. If you override this method, then you should make a call to super.checkSecurityAccess at the point the overridden method would normally throw an exception.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003etarget\u003c/code\u003e - the target name of the \n\u003ccode\u003eSecurityPermission\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if the calling thread does not have permission for the requested access.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003etarget\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003etarget\u003c/code\u003e is empty."
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ThreadGroup",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getThreadGroup",
+      "comment": "Returns the thread group into which to instantiate any new thread being created at the time this is being called. By default, it returns the thread group of the current thread. This should be overridden by a specific security manager to return the appropriate thread group.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ThreadGroup.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eThreadGroup\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "ThreadGroup that new threads are instantiated into"
+        ],
+        "since": [
+          "1.1"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a new SecurityManager. If there is a security manager already installed, this method first calls the security manager\u0027s checkPermission method with the RuntimePermission(\"createSecurityManager\") permission to ensure the calling thread has permission to create a new security manager. This may result in throwing a SecurityException.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#getSecurityManager()\"\u003e\u003ccode\u003eSystem.getSecurityManager()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager already exists and its \n\u003ccode\u003echeckPermission\u003c/code\u003e method doesn\u0027t allow creation of a new security manager."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.lang.SecurityManager",
+  "comment": "The security manager is a class that allows applications to implement a security policy. It allows an application to determine, before performing a possibly unsafe or sensitive operation, what the operation is and whether it is being attempted in a security context that allows the operation to be performed. The application can allow or disallow the operation. \n\u003cp\u003e The \u003ccode\u003eSecurityManager\u003c/code\u003e class contains many methods with names that begin with the word \u003ccode\u003echeck\u003c/code\u003e. These methods are called by various methods in the Java libraries before those methods perform certain potentially sensitive operations. The invocation of such a \u003ccode\u003echeck\u003c/code\u003e method typically looks like this: \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e     SecurityManager security \u003d System.getSecurityManager();\n     if (security !\u003d null) {\n         security.check\u003ci\u003eXXX\u003c/i\u003e(argument, \u0026nbsp;.\u0026nbsp;.\u0026nbsp;.\u0026nbsp;);\n     }\n \u003c/pre\u003e\n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The security manager is thereby given an opportunity to prevent completion of the operation by throwing an exception. A security manager routine simply returns if the operation is permitted, but throws a \u003ccode\u003eSecurityException\u003c/code\u003e if the operation is not permitted. \u003c/p\u003e\n\u003cp\u003e Environments using a security manager will typically set the security manager at startup. In the JDK implementation, this is done by setting the system property \u003ccode\u003ejava.security.manager\u003c/code\u003e on the command line to the class name of the security manager. It can also be set to the empty String (\"\") or the special token \"\u003ccode\u003edefault\u003c/code\u003e\" to use the default \u003ccode\u003ejava.lang.SecurityManager\u003c/code\u003e. If a class name is specified, it must be \u003ccode\u003ejava.lang.SecurityManager\u003c/code\u003e or a public subclass and have a public no-arg constructor. The class is loaded by the \u003ca href\u003d\"ClassLoader.html#getSystemClassLoader()\"\u003ebuilt-in system class loader\u003c/a\u003e if it is not \u003ccode\u003ejava.lang.SecurityManager\u003c/code\u003e. If the \u003ccode\u003ejava.security.manager\u003c/code\u003e system property is not set, the default value is \u003ccode\u003enull\u003c/code\u003e, which means a security manager will not be set at startup. \u003c/p\u003e\n\u003cp\u003e The Java run-time may also allow, but is not required to allow, the security manager to be set dynamically by invoking the \u003ca href\u003d\"System.html#setSecurityManager(java.lang.SecurityManager)\"\u003e\u003ccode\u003esetSecurityManager\u003c/code\u003e\u003c/a\u003e method. In the JDK implementation, if the Java virtual machine is started with the \u003ccode\u003ejava.security.manager\u003c/code\u003e system property set to the special token \"\u003ccode\u003edisallow\u003c/code\u003e\" then a security manager will not be set at startup and cannot be set dynamically (the \u003ca href\u003d\"System.html#setSecurityManager(java.lang.SecurityManager)\"\u003e\u003ccode\u003esetSecurityManager\u003c/code\u003e\u003c/a\u003e method will throw an \u003ccode\u003eUnsupportedOperationException\u003c/code\u003e). If the \u003ccode\u003ejava.security.manager\u003c/code\u003e system property is not set or is set to the special token \"\u003ccode\u003eallow\u003c/code\u003e\", then a security manager will not be set at startup but can be set dynamically. Finally, if the \u003ccode\u003ejava.security.manager\u003c/code\u003e system property is set to the class name of the security manager, or to the empty String (\"\") or the special token \"\u003ccode\u003edefault\u003c/code\u003e\", then a security manager is set at startup (as described previously) and can also be subsequently replaced (or disabled) dynamically (subject to the policy of the currently installed security manager). The following table illustrates the behavior of the JDK implementation for the different settings of the \u003ccode\u003ejava.security.manager\u003c/code\u003e system property: \u003c/p\u003e\n\u003ctable class\u003d\"striped\"\u003e \n \u003ccaption style\u003d\"display:none\"\u003e\n  property value, the SecurityManager set at startup, can dynamically set a SecurityManager \n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"col\"\u003eProperty Value\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eThe SecurityManager set at startup\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eSystem.setSecurityManager run-time behavior\u003c/th\u003e \n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003enull\u003c/th\u003e \n   \u003ctd\u003eNone\u003c/td\u003e \n   \u003ctd\u003eSuccess or throws \u003ccode\u003eSecurityException\u003c/code\u003e if not permitted by the currently installed security manager\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003eempty String (\"\")\u003c/th\u003e \n   \u003ctd\u003e\u003ccode\u003ejava.lang.SecurityManager\u003c/code\u003e\u003c/td\u003e \n   \u003ctd\u003eSuccess or throws \u003ccode\u003eSecurityException\u003c/code\u003e if not permitted by the currently installed security manager\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\"default\"\u003c/th\u003e \n   \u003ctd\u003e\u003ccode\u003ejava.lang.SecurityManager\u003c/code\u003e\u003c/td\u003e \n   \u003ctd\u003eSuccess or throws \u003ccode\u003eSecurityException\u003c/code\u003e if not permitted by the currently installed security manager\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\"disallow\"\u003c/th\u003e \n   \u003ctd\u003eNone\u003c/td\u003e \n   \u003ctd\u003eAlways throws \u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003e\"allow\"\u003c/th\u003e \n   \u003ctd\u003eNone\u003c/td\u003e \n   \u003ctd\u003eSuccess or throws \u003ccode\u003eSecurityException\u003c/code\u003e if not permitted by the currently installed security manager\u003c/td\u003e \n  \u003c/tr\u003e \n  \u003ctr\u003e \n   \u003cth scope\u003d\"row\"\u003ea class name\u003c/th\u003e \n   \u003ctd\u003ethe named class\u003c/td\u003e \n   \u003ctd\u003eSuccess or throws \u003ccode\u003eSecurityException\u003c/code\u003e if not permitted by the currently installed security manager\u003c/td\u003e \n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A future release of the JDK may change the default value of the \u003ccode\u003ejava.security.manager\u003c/code\u003e system property to \"\u003ccode\u003edisallow\u003c/code\u003e\". \u003c/p\u003e\n\u003cp\u003e The current security manager is returned by the \u003ca href\u003d\"System.html#getSecurityManager()\"\u003e\u003ccode\u003egetSecurityManager\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e The special method \u003ca href\u003d\"#checkPermission(java.security.Permission)\"\u003e\u003ccode\u003echeckPermission(java.security.Permission)\u003c/code\u003e\u003c/a\u003e determines whether an access request indicated by a specified permission should be granted or denied. The default implementation calls \u003c/p\u003e\n\u003cpre\u003e   AccessController.checkPermission(perm);\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e If a requested access is allowed, \u003ccode\u003echeckPermission\u003c/code\u003e returns quietly. If denied, a \u003ccode\u003eSecurityException\u003c/code\u003e is thrown. \u003c/p\u003e\n\u003cp\u003e The default implementation of each of the other \u003ccode\u003echeck\u003c/code\u003e methods in \u003ccode\u003eSecurityManager\u003c/code\u003e is to call the \u003ccode\u003eSecurityManager checkPermission\u003c/code\u003e method to determine if the calling thread has permission to perform the requested operation. \u003c/p\u003e\n\u003cp\u003e Note that the \u003ccode\u003echeckPermission\u003c/code\u003e method with just a single permission argument always performs security checks within the context of the currently executing thread. Sometimes a security check that should be made within a given context will actually need to be done from within a \u003ci\u003edifferent\u003c/i\u003e context (for example, from within a worker thread). The \u003ca href\u003d\"#getSecurityContext()\"\u003e\u003ccode\u003egetSecurityContext\u003c/code\u003e\u003c/a\u003e method and the \u003ca href\u003d\"#checkPermission(java.security.Permission,java.lang.Object)\"\u003e\u003ccode\u003echeckPermission\u003c/code\u003e\u003c/a\u003e method that includes a context argument are provided for this situation. The \u003ccode\u003egetSecurityContext\u003c/code\u003e method returns a \"snapshot\" of the current calling context. (The default implementation returns an AccessControlContext object.) A sample call is the following: \u003c/p\u003e\n\u003cpre\u003e   Object context \u003d null;\n   SecurityManager sm \u003d System.getSecurityManager();\n   if (sm !\u003d null) context \u003d sm.getSecurityContext();\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e The \u003ccode\u003echeckPermission\u003c/code\u003e method that takes a context object in addition to a permission makes access decisions based on that context, rather than on that of the current execution thread. Code within a different context can thus call that method, passing the permission and the previously-saved context object. A sample call, using the SecurityManager \u003ccode\u003esm\u003c/code\u003e obtained as in the previous example, is the following: \u003c/p\u003e\n\u003cpre\u003e   if (sm !\u003d null) sm.checkPermission(permission, context);\n \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003ePermissions fall into these categories: File, Socket, Net, Security, Runtime, Property, AWT, Reflect, and Serializable. The classes managing these various permission categories are \u003ccode\u003ejava.io.FilePermission\u003c/code\u003e, \u003ccode\u003ejava.net.SocketPermission\u003c/code\u003e, \u003ccode\u003ejava.net.NetPermission\u003c/code\u003e, \u003ccode\u003ejava.security.SecurityPermission\u003c/code\u003e, \u003ccode\u003ejava.lang.RuntimePermission\u003c/code\u003e, \u003ccode\u003ejava.util.PropertyPermission\u003c/code\u003e, \u003ccode\u003ejava.awt.AWTPermission\u003c/code\u003e, \u003ccode\u003ejava.lang.reflect.ReflectPermission\u003c/code\u003e, and \u003ccode\u003ejava.io.SerializablePermission\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003eAll but the first two (FilePermission and SocketPermission) are subclasses of \u003ccode\u003ejava.security.BasicPermission\u003c/code\u003e, which itself is an abstract subclass of the top-level class for permissions, which is \u003ccode\u003ejava.security.Permission\u003c/code\u003e. BasicPermission defines the functionality needed for all permissions that contain a name that follows the hierarchical property naming convention (for example, \"exitVM\", \"setFactory\", \"queuePrintJob\", etc). An asterisk may appear at the end of the name, following a \".\", or by itself, to signify a wildcard match. For example: \"a.*\" or \"*\" is valid, \"*a\" or \"a*b\" is not valid. \u003c/p\u003e\n\u003cp\u003eFilePermission and SocketPermission are subclasses of the top-level class for permissions (\u003ccode\u003ejava.security.Permission\u003c/code\u003e). Classes like these that have a more complicated name syntax than that used by BasicPermission subclass directly from Permission rather than from BasicPermission. For example, for a \u003ccode\u003ejava.io.FilePermission\u003c/code\u003e object, the permission name is the path name of a file (or directory). \u003c/p\u003e\n\u003cp\u003eSome of the permission classes have an \"actions\" list that tells the actions that are permitted for the object. For example, for a \u003ccode\u003ejava.io.FilePermission\u003c/code\u003e object, the actions list (such as \"read, write\") specifies which actions are granted for the specified file (or for files in the specified directory). \u003c/p\u003e\n\u003cp\u003eOther permission classes are for \"named\" permissions - ones that contain a name but no actions list; you either have the named permission or you don\u0027t. \u003c/p\u003e\n\u003cp\u003eNote: There is also a \u003ccode\u003ejava.security.AllPermission\u003c/code\u003e permission that implies all permissions. It exists to simplify the work of system administrators who might need to perform multiple tasks that require all (or numerous) permissions. \u003c/p\u003e\n\u003cp\u003e See \u003ca href\u003d\"https://docs.oracle.com/pls/topic/lookup?ctx\u003djavase16\u0026amp;id\u003dsecurity_guide_permissions\"\u003ePermissions in the Java Development Kit (JDK)\u003c/a\u003e for permission-related information. This document includes a table listing the various SecurityManager \u003ccode\u003echeck\u003c/code\u003e methods and the permission(s) the default implementation of each such method requires. It also contains a table of the methods that require permissions, and for each such method tells which permission it requires.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eClassLoader\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSecurityException\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#getSecurityManager()\"\u003e\u003ccode\u003egetSecurityManager\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#setSecurityManager(java.lang.SecurityManager)\"\u003e\u003ccode\u003esetSecurityManager\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessController.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eAccessController\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessControlContext.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eAccessControlContext\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/AccessControlException.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eAccessControlException\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Permission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/BasicPermission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eBasicPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/FilePermission.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eFilePermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/net/SocketPermission.html\" title\u003d\"class in java.net\"\u003e\u003ccode\u003eSocketPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/PropertyPermission.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003ePropertyPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Policy.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003ePolicy\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SecurityPermission.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eSecurityPermission\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/ProtectionDomain.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eProtectionDomain\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.0"
+    ]
+  }
+}

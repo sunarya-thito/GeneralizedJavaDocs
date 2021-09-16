@@ -1,0 +1,556 @@
+{
+  "packageName": "com.sun.jdi",
+  "simpleName": "ObjectReference",
+  "moduleName": "jdk.jdi",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "com.sun.jdi.Value",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "INVOKE_SINGLE_THREADED",
+      "comment": "Perform method invocation with only the invoking thread resumed",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ObjectReference.INVOKE_SINGLE_THREADED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 24,
+      "name": "INVOKE_NONVIRTUAL",
+      "comment": "Perform non-virtual method invocation",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#com.sun.jdi.ObjectReference.INVOKE_NONVIRTUAL\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ReferenceType",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "referenceType",
+      "comment": "Gets the ReferenceType that mirrors the type of this object. The type may be a subclass or implementor of the declared type of any field or variable which currently holds it. For example, right after the following statement. Object obj \u003d new String(\"Hello, world!\"); The ReferenceType of obj will mirror java.lang.String and not java.lang.Object. The type of an object never changes, so this method will always return the same ReferenceType over the lifetime of the mirrored object. The returned ReferenceType will be a ClassType or ArrayType and never an InterfaceType.",
+      "tagMap": {
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eReferenceType\u003c/code\u003e\u003c/a\u003e for this object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.Value",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          },
+          "field": {
+            "name": "sig"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValue",
+      "comment": "Gets the value of a given instance or static field in this object. The Field must be valid for this ObjectReference; that is, it must be from the mirrored object\u0027s class or a superclass of that class.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esig\u003c/code\u003e - the field containing the requested value"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field is not valid for this object\u0027s class."
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e of the instance field."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Map",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          },
+          {
+            "name": "com.sun.jdi.Value",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "com.sun.jdi.Field",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "fields"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getValues",
+      "comment": "Gets the value of multiple instance and/or static fields in this object. The Fields must be valid for this ObjectReference; that is, they must be from the mirrored object\u0027s class or a superclass of that class.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efields\u003c/code\u003e - a list of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e objects containing the requested values."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any field is not valid for this object\u0027s class."
+        ],
+        "return": [
+          "a Map of the requested \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e objects with their \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.InvalidTypeException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.jdi.ClassNotLoadedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.Field",
+            "type": "Class"
+          },
+          "field": {
+            "name": "field"
+          }
+        },
+        {
+          "type": {
+            "name": "com.sun.jdi.Value",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setValue",
+      "comment": "Sets the value of a given instance or static field in this object. The Field must be valid for this ObjectReference; that is, it must be from the mirrored object\u0027s class or a superclass of that class. If static, the field must not be final. Object values must be assignment compatible with the field type (This implies that the field type must be loaded through the enclosing class\u0027s class loader). Primitive values must be either assignment compatible with the field type or must be convertible to the field type without loss of information. See section 5.2 of The Java Language Specification for more information on assignment compatibility.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efield\u003c/code\u003e - the field containing the requested value",
+          "\u003ccode\u003evalue\u003c/code\u003e - the new value to assign"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field is not valid for this object\u0027s class.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidTypeException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidTypeException\u003c/a\u003e\u003c/code\u003e - if the value\u0027s type does not match the field\u0027s type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotLoadedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotLoadedException\u003c/a\u003e\u003c/code\u003e - if \u0027value\u0027 is not null, and the field type has not yet been loaded through the appropriate class loader.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.Value",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.InvalidTypeException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.jdi.ClassNotLoadedException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        },
+        {
+          "name": "com.sun.jdi.InvocationException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "com.sun.jdi.ThreadReference",
+            "type": "Class"
+          },
+          "field": {
+            "name": "thread"
+          }
+        },
+        {
+          "type": {
+            "name": "com.sun.jdi.Method",
+            "type": "Class"
+          },
+          "field": {
+            "name": "method"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.List",
+            "parameters": [
+              {
+                "upperBounds": [
+                  {
+                    "name": "com.sun.jdi.Value",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "arguments"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "options"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "invokeMethod",
+      "comment": "Invokes the specified Method on this object in the target VM. The specified method can be defined in this object\u0027s class, in a superclass of this object\u0027s class, or in an interface implemented by this object. The method may be a static method or an instance method, but not a static initializer or constructor. Use ClassType.newInstance(com.sun.jdi.ThreadReference, com.sun.jdi.Method, java.util.List\u003c? extends com.sun.jdi.Value\u003e, int) to create a new object and run its constructor. The method invocation will occur in the specified thread. Method invocation can occur only if the specified thread has been suspended by an event which occurred in that thread. Method invocation is not supported when the target VM has been suspended through VirtualMachine.suspend() or when the specified thread is suspended through ThreadReference.suspend(). The specified method is invoked with the arguments in the specified argument list. The method invocation is synchronous; this method does not return until the invoked method returns in the target VM. If the invoked method throws an exception, this method will throw an InvocationException which contains a mirror to the exception object thrown. Object arguments must be assignment compatible with the argument type (This implies that the argument type must be loaded through the enclosing class\u0027s class loader). Primitive arguments must be either assignment compatible with the argument type or must be convertible to the argument type without loss of information. If the method being called accepts a variable number of arguments, then the last argument type is an array of some component type. The argument in the matching position can be omitted, or can be null, an array of the same component type, or an argument of the component type followed by any number of other arguments of the same type. If the argument is omitted, then a 0 length array of the component type is passed. The component type can be a primitive type. Autoboxing is not supported. See section 5.2 of The Java Language Specification for more information on assignment compatibility. By default, the method is invoked using dynamic lookup as documented in section 15.12.4.4 of The Java Language Specification in particular, overriding based on the runtime type of the object mirrored by this ObjectReference will occur. This behavior can be changed by specifying the INVOKE_NONVIRTUAL bit flag in the options argument. If this flag is set, the specified method is invoked whether or not it is overridden for this object\u0027s runtime type. The method, in this case, must have an implementation, either in a class or an interface. This option is useful for performing method invocations like those done with the super keyword in the Java programming language. By default, all threads in the target VM are resumed while the method is being invoked if they were previously suspended by an event or by VirtualMachine.suspend() or ThreadReference.suspend(). This is done to prevent the deadlocks that will occur if any of the threads own monitors that will be needed by the invoked method. Note, however, that this implicit resume acts exactly like ThreadReference.resume(), so if the thread\u0027s suspend count is greater than 1, it will remain in a suspended state during the invocation and thus a deadlock could still occur. By default, when the invocation completes, all threads in the target VM are suspended, regardless their state before the invocation. It is possible that breakpoints or other events might occur during the invocation. This can cause deadlocks as described above. It can also cause a deadlock if invokeMethod is called from the client\u0027s event handler thread. In this case, this thread will be waiting for the invokeMethod to complete and won\u0027t read the EventSet that comes in for the new event. If this new EventSet is SUSPEND_ALL, then a deadlock will occur because no one will resume the EventSet. To avoid this, all EventRequests should be disabled before doing the invokeMethod, or the invokeMethod should not be done from the client\u0027s event handler thread. The resumption of other threads during the invocation can be prevented by specifying the INVOKE_SINGLE_THREADED bit flag in the options argument; however, there is no protection against or recovery from the deadlocks described above, so this option should be used with great caution. Only the specified thread will be resumed (as described for all threads above). Upon completion of a single threaded invoke, the invoking thread will be suspended once again. Note that any threads started during the single threaded invocation will not be suspended when the invocation completes. If the target VM is disconnected during the invoke (for example, through VirtualMachine.dispose()) the method invocation continues.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ethread\u003c/code\u003e - the thread in which to invoke.",
+          "\u003ccode\u003emethod\u003c/code\u003e - the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Method.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eMethod\u003c/code\u003e\u003c/a\u003e to invoke.",
+          "\u003ccode\u003earguments\u003c/code\u003e - the list of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e arguments bound to the invoked method. Values from the list are assigned to arguments in the order they appear in the method signature.",
+          "\u003ccode\u003eoptions\u003c/code\u003e - the integer bit flag options."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the method is not a member of this object\u0027s class, if the size of the argument list does not match the number of declared arguments for the method, if the method is a constructor or static initializer, or if \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html#INVOKE_NONVIRTUAL\"\u003e\u003ccode\u003eINVOKE_NONVIRTUAL\u003c/code\u003e\u003c/a\u003e is specified and the method is abstract.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ClassNotLoadedException.html\" title\u003d\"class in com.sun.jdi\"\u003eClassNotLoadedException\u003c/a\u003e\u003c/code\u003e - if any argument type has not yet been loaded through the appropriate class loader.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the specified thread has not been suspended by an event.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvocationException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvocationException\u003c/a\u003e\u003c/code\u003e - if the method invocation resulted in an exception in the target VM.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/InvalidTypeException.html\" title\u003d\"class in com.sun.jdi\"\u003eInvalidTypeException\u003c/a\u003e\u003c/code\u003e - If the arguments do not meet this requirement -- Object arguments must be assignment compatible with the argument type. This implies that the argument type must be loaded through the enclosing class\u0027s class loader. Primitive arguments must be either assignment compatible with the argument type or must be convertible to the argument type without loss of information. See JLS section 5.2 for more information on assignment compatibility.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/Value.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eValue\u003c/code\u003e\u003c/a\u003e mirror of the invoked method\u0027s return value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "disableCollection",
+      "comment": "Prevents garbage collection for this object. By default all ObjectReference values returned by JDI may be collected at any time the target VM is running. A call to this method guarantees that the object will not be collected. enableCollection() can be used to allow collection once again. Calls to this method are counted. Every call to this method requires a corresponding call to enableCollection() before garbage collection is re-enabled. Note that while the target VM is suspended, no garbage collection will occur because all threads are suspended. The typical examination of variables, fields, and arrays during the suspension is safe without explicitly disabling garbage collection. This method should be used sparingly, as it alters the pattern of garbage collection in the target VM and, consequently, may result in application behavior under the debugger that differs from its non-debugged behavior.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only -see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "enableCollection",
+      "comment": "Permits garbage collection for this object. By default all ObjectReference values returned by JDI may be collected at any time the target VM is running. A call to this method is necessary only if garbage collection was previously disabled with disableCollection().",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only -see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isCollected",
+      "comment": "Determines if this object has been garbage collected in the target VM.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VMCannotBeModifiedException.html\" title\u003d\"class in com.sun.jdi\"\u003eVMCannotBeModifiedException\u003c/a\u003e\u003c/code\u003e - if the VirtualMachine is read-only -see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canBeModified()\"\u003e\u003ccode\u003eVirtualMachine.canBeModified()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e has been collected; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "uniqueID",
+      "comment": "Returns a unique identifier for this ObjectReference. It is guaranteed to be unique among all ObjectReferences from the same VM that have not yet been disposed. The guarantee applies as long as this ObjectReference has not yet been disposed.",
+      "tagMap": {
+        "return": [
+          "a long unique ID"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.ThreadReference",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "waitingThreads",
+      "comment": "Returns a List containing a ThreadReference for each thread currently waiting for this object\u0027s monitor. See ThreadReference.currentContendedMonitor() for information about when a thread is considered to be waiting for a monitor. Not all target VMs support this operation. See VirtualMachine#canGetMonitorInfo to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target VM does not support this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if any waiting thread is not suspended in the target VM"
+        ],
+        "return": [
+          "a List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eThreadReference\u003c/code\u003e\u003c/a\u003e objects. The list has zero length if no threads are waiting for the monitor."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "com.sun.jdi.ThreadReference",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "owningThread",
+      "comment": "Returns an ThreadReference for the thread, if any, which currently owns this object\u0027s monitor. See ThreadReference.ownedMonitors() for a definition of ownership. Not all target VMs support this operation. See VirtualMachine#canGetMonitorInfo to determine if the operation is supported.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target VM does not support this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the owning thread is not suspended in the target VM"
+        ],
+        "return": [
+          "the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ThreadReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eThreadReference\u003c/code\u003e\u003c/a\u003e which currently owns the monitor, or null if it is unowned."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "com.sun.jdi.IncompatibleThreadStateException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "entryCount",
+      "comment": "Returns the number times this object\u0027s monitor has been entered by the current owning thread. See ThreadReference.ownedMonitors() for a definition of ownership. Not all target VMs support this operation. See VirtualMachine#canGetMonitorInfo to determine if the operation is supported.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html#owningThread()\"\u003e\u003ccode\u003eowningThread()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target VM does not support this operation.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/IncompatibleThreadStateException.html\" title\u003d\"class in com.sun.jdi\"\u003eIncompatibleThreadStateException\u003c/a\u003e\u003c/code\u003e - if the owning thread is not suspended in the target VM"
+        ],
+        "return": [
+          "the integer count of the number of entries."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "com.sun.jdi.ObjectReference",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxReferrers"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "referringObjects",
+      "comment": "Returns objects that directly reference this object. Only objects that are reachable for the purposes of garbage collection are returned. Note that an object can also be referenced in other ways, such as from a local variable in a stack frame, or from a JNI global reference. Such non-object referrers are not returned by this method. Not all target virtual machines support this operation. Use VirtualMachine.canGetInstanceInfo() to determine if the operation is supported.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#instanceCounts(java.util.List)\"\u003e\u003ccode\u003eVirtualMachine.instanceCounts(List)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ReferenceType.html#instances(long)\"\u003e\u003ccode\u003eReferenceType.instances(long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003emaxReferrers\u003c/code\u003e - The maximum number of referring objects to return. Must be non-negative. If zero, all referring objects are returned."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the target virtual machine does not support this operation - see \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/VirtualMachine.html#canGetInstanceInfo()\"\u003e\u003ccode\u003ecanGetInstanceInfo()\u003c/code\u003e\u003c/a\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if maxReferrers is less than zero."
+        ],
+        "return": [
+          "a of List of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jdi/com/sun/jdi/ObjectReference.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eObjectReference\u003c/code\u003e\u003c/a\u003e objects. If there are no objects that reference this object, a zero-length list is returned.."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "obj"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "equals",
+      "comment": "Compares the specified Object with this ObjectReference for equality.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobj\u003c/code\u003e - the reference object with which to compare."
+        ],
+        "return": [
+          "true if the Object is an ObjectReference, if the ObjectReferences belong to the same VM, and if applying the \"\u003d\u003d\" operator on the mirrored objects in that VM evaluates to true."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "hashCode",
+      "comment": "Returns the hash code value for this ObjectReference.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the integer hash code"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "com.sun.jdi.ObjectReference",
+  "comment": "An object that currently exists in the target VM. An ObjectReference mirrors only the object itself and is not specific to any \n\u003ca href\u003d\"Field.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eField\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"LocalVariable.html\" title\u003d\"interface in com.sun.jdi\"\u003e\u003ccode\u003eLocalVariable\u003c/code\u003e\u003c/a\u003e to which it is currently assigned. An ObjectReference can have 0 or more references from field(s) and/or variable(s). \n\u003cp\u003e Any method on \u003ccode\u003eObjectReference\u003c/code\u003e which directly or indirectly takes \u003ccode\u003eObjectReference\u003c/code\u003e as a parameter may throw \u003ca href\u003d\"VMDisconnectedException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eVMDisconnectedException\u003c/code\u003e\u003c/a\u003e if the target VM is disconnected and the \u003ca href\u003d\"event/VMDisconnectEvent.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eVMDisconnectEvent\u003c/code\u003e\u003c/a\u003e has been or is available to be read from the \u003ca href\u003d\"event/EventQueue.html\" title\u003d\"interface in com.sun.jdi.event\"\u003e\u003ccode\u003eEventQueue\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e Any method on \u003ccode\u003eObjectReference\u003c/code\u003e which directly or indirectly takes \u003ccode\u003eObjectReference\u003c/code\u003e as a parameter may throw \u003ca href\u003d\"VMOutOfMemoryException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eVMOutOfMemoryException\u003c/code\u003e\u003c/a\u003e if the target VM has run out of memory. \u003c/p\u003e\n\u003cp\u003e Any method on \u003ccode\u003eObjectReference\u003c/code\u003e or which directly or indirectly takes \u003ccode\u003eObjectReference\u003c/code\u003e as parameter may throw \u003ca href\u003d\"ObjectCollectedException.html\" title\u003d\"class in com.sun.jdi\"\u003e\u003ccode\u003eObjectCollectedException\u003c/code\u003e\u003c/a\u003e if the mirrored object has been garbage collected.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.3"
+    ]
+  }
+}

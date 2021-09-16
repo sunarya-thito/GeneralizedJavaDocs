@@ -1,0 +1,1009 @@
+{
+  "packageName": "jdk.incubator.foreign",
+  "simpleName": "NativeScope",
+  "moduleName": "jdk.incubator.foreign",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.AutoCloseable",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.OptionalLong",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "byteSize",
+      "comment": "If this native scope is bounded, returns the size, in bytes, of this native scope.",
+      "tagMap": {
+        "return": [
+          "the size, in bytes, of this native scope (if available)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Thread",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "ownerThread",
+      "comment": "The thread owning this native scope.",
+      "tagMap": {
+        "return": [
+          "the thread owning this native scope."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocatedBytes",
+      "comment": "Returns the number of allocated bytes in this native scope.",
+      "tagMap": {
+        "return": [
+          "the number of allocated bytes in this native scope."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given byte value. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize()\u003c/code\u003e does not conform to the size of a byte value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "char",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given char value. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize()\u003c/code\u003e does not conform to the size of a char value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "short",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given short value. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize()\u003c/code\u003e does not conform to the size of a short value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given int value. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize()\u003c/code\u003e does not conform to the size of a int value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given float value. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize()\u003c/code\u003e does not conform to the size of a float value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given long value. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize()\u003c/code\u003e does not conform to the size of a long value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given double value. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize()\u003c/code\u003e does not conform to the size of a double value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        },
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.Addressable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given address value (expressed as an Addressable instance). The address value might be narrowed according to the platform address size (see MemoryLayouts.ADDRESS). The segment returned by this method cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the value to be set on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize() !\u003d MemoryLayouts.ADDRESS.byteSize()\u003c/code\u003e."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given byte array. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementLayout.byteSize()\u003c/code\u003e does not conform to the size of a byte value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "short",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given short array. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementLayout.byteSize()\u003c/code\u003e does not conform to the size of a short value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "char",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given char array. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementLayout.byteSize()\u003c/code\u003e does not conform to the size of a char value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given int array. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementLayout.byteSize()\u003c/code\u003e does not conform to the size of a int value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "float",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given float array. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementLayout.byteSize()\u003c/code\u003e does not conform to the size of a float value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given long array. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementLayout.byteSize()\u003c/code\u003e does not conform to the size of a long value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "double",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given double array. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eelementLayout.byteSize()\u003c/code\u003e does not conform to the size of a double value."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.ValueLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.Addressable",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "array"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory in this native scope with given layout and initialize it with given address array. The address value of each array element might be narrowed according to the platform address size (see MemoryLayouts.ADDRESS). The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the element layout of the array to be allocated.",
+          "\u003ccode\u003earray\u003c/code\u003e - the array to be copied on the newly allocated memory block."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * array.length)\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003elayout.byteSize() !\u003d MemoryLayouts.ADDRESS.byteSize()\u003c/code\u003e."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "layout"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given layout. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elayout\u003c/code\u003e - the layout of the block of memory to be allocated."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; layout.byteSize()\u003c/code\u003e."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.incubator.foreign.MemoryLayout",
+            "type": "Class"
+          },
+          "field": {
+            "name": "elementLayout"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "count"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocateArray",
+      "comment": "Allocate a block of memory corresponding to an array with given element layout and size. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must conform to the layout alignment constraints. This is equivalent to the following code: \n    allocate(MemoryLayout.ofSequence(size, elementLayout));",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eelementLayout\u003c/code\u003e - the array element layout.",
+          "\u003ccode\u003ecount\u003c/code\u003e - the array element count."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if this is a bounded allocation scope, and \n\u003ccode\u003ebyteSize().getAsLong() - allocatedBytes() \u0026lt; (elementLayout.byteSize() * count)\u003c/code\u003e."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesSize"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given size. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must be aligned to size.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytesSize\u003c/code\u003e - the size (in bytes) of the block of memory to be allocated."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if \n\u003ccode\u003elimit() - size() \u0026lt; bytesSize\u003c/code\u003e."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.MemorySegment",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesSize"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "bytesAlignment"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "allocate",
+      "comment": "Allocate a block of memory in this native scope with given size and alignment constraint. The segment returned by this method is associated with a segment which cannot be closed. Moreover, the returned segment must be aligned to alignment.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ebytesSize\u003c/code\u003e - the size (in bytes) of the block of memory to be allocated.",
+          "\u003ccode\u003ebytesAlignment\u003c/code\u003e - the alignment (in bytes) of the block of memory to be allocated."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/OutOfMemoryError.html\" title\u003d\"class in java.lang\"\u003eOutOfMemoryError\u003c/a\u003e\u003c/code\u003e - if there is not enough space left in this native scope, that is, if \n\u003ccode\u003elimit() - size() \u0026lt; bytesSize\u003c/code\u003e."
+        ],
+        "return": [
+          "a segment for the newly allocated memory block."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "close",
+      "comment": "Close this native scope; calling this method will render any segment obtained through this native scope unusable and might release any backing memory resources associated with this native scope.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.NativeScope",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "size"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "boundedScope",
+      "comment": "Creates a new bounded native scope, backed by off-heap memory.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esize\u003c/code\u003e - the size of the native scope."
+        ],
+        "return": [
+          "a new bounded native scope, with given size (in bytes)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.incubator.foreign.NativeScope",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 8,
+      "name": "unboundedScope",
+      "comment": "Creates a new unbounded native scope, backed by off-heap memory.",
+      "tagMap": {
+        "return": [
+          "a new unbounded native scope."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.incubator.foreign.NativeScope",
+  "comment": "A native scope is an abstraction which provides shared temporal bounds for one or more allocations, backed by off-heap memory. Native scopes can be either \n\u003cem\u003ebounded\u003c/em\u003e or \n\u003cem\u003eunbounded\u003c/em\u003e, depending on whether the size of the native scope is known statically. If an application knows before-hand how much memory it needs to allocate, then using a \n\u003cem\u003ebounded\u003c/em\u003e native scope will typically provide better performance than independently allocating the memory for each value (e.g. using \n\u003ca href\u003d\"MemorySegment.html#allocateNative(long)\"\u003e\u003ccode\u003eMemorySegment.allocateNative(long)\u003c/code\u003e\u003c/a\u003e), or using an \n\u003cem\u003eunbounded\u003c/em\u003e native scope. For this reason, using a bounded native scope is recommended in cases where programs might need to emulate native stack allocation. \n\u003cp\u003e Allocation scopes are thread-confined (see \u003ca href\u003d\"#ownerThread()\"\u003e\u003ccode\u003eownerThread()\u003c/code\u003e\u003c/a\u003e; as such, the resulting \u003ca href\u003d\"MemorySegment.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eMemorySegment\u003c/code\u003e\u003c/a\u003e instances returned by the native scope will be backed by memory segments confined by the same owner thread as the native scope\u0027s owner thread. \u003c/p\u003e\n\u003cp\u003e To allow for more usability, it is possible for a native scope to reclaim ownership of an existing memory segment (see \u003ca href\u003d\"MemorySegment.html#handoff(jdk.incubator.foreign.NativeScope)\"\u003e\u003ccode\u003eMemorySegment.handoff(NativeScope)\u003c/code\u003e\u003c/a\u003e). This might be useful to allow one or more segments which were independently created to share the same life-cycle as a given native scope - which in turns enables a client to group all memory allocation and usage under a single \u003cem\u003etry-with-resources block\u003c/em\u003e. \u003c/p\u003e\n\u003cp\u003e Unless otherwise specified, passing a \u003ccode\u003enull\u003c/code\u003e argument, or an array argument containing one or more \u003ccode\u003enull\u003c/code\u003e elements to a method in this class causes a \u003ca href\u003d\"../../../../java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eNullPointerException\u003c/code\u003e\u003c/a\u003e to be thrown. \u003c/p\u003e",
+  "tagMap": {
+    "apiNote": [
+      "In the future, if the Java language permits, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.incubator.foreign/jdk/incubator/foreign/NativeScope.html\" title\u003d\"interface in jdk.incubator.foreign\"\u003e\u003ccode\u003eNativeScope\u003c/code\u003e\u003c/a\u003e may become a \n\u003ccode\u003esealed\u003c/code\u003e interface, which would prohibit subclassing except by explicitly permitted types."
+    ]
+  }
+}

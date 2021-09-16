@@ -1,0 +1,152 @@
+{
+  "packageName": "javax.security.sasl",
+  "simpleName": "SaslServerFactory",
+  "moduleName": "java.security.sasl",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.security.sasl.SaslServer",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.security.sasl.SaslException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mechanism"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "protocol"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "serverName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "props"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.security.auth.callback.CallbackHandler",
+            "type": "Class"
+          },
+          "field": {
+            "name": "cbh"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createSaslServer",
+      "comment": "Creates a SaslServer using the parameters supplied. It returns null if no SaslServer can be created using the parameters supplied. Throws SaslException if it cannot create a SaslServer because of an error.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emechanism\u003c/code\u003e - The non-null IANA-registered name of a SASL mechanism. (e.g. \"GSSAPI\", \"CRAM-MD5\").",
+          "\u003ccode\u003eprotocol\u003c/code\u003e - The non-null string name of the protocol for which the authentication is being performed (e.g., \"ldap\").",
+          "\u003ccode\u003eserverName\u003c/code\u003e - The fully qualified host name of the server to authenticate to, or null if the server is not bound to any specific host name. If the mechanism does not allow an unbound server, a \n\u003ccode\u003eSaslException\u003c/code\u003e will be thrown.",
+          "\u003ccode\u003eprops\u003c/code\u003e - The possibly null set of properties used to select the SASL mechanism and to configure the authentication exchange of the selected mechanism. See the \n\u003ccode\u003eSasl\u003c/code\u003e class for a list of standard properties. Other, possibly mechanism-specific, properties can be included. Properties not relevant to the selected mechanism are ignored, including any map entries with non-String keys.",
+          "\u003ccode\u003ecbh\u003c/code\u003e - The possibly null callback handler to used by the SASL mechanisms to get further information from the application/library to complete the authentication. For example, a SASL mechanism might require the authentication ID, password and realm from the caller. The authentication ID is requested by using a \n\u003ccode\u003eNameCallback\u003c/code\u003e. The password is requested by using a \n\u003ccode\u003ePasswordCallback\u003c/code\u003e. The realm is requested by using a \n\u003ccode\u003eRealmChoiceCallback\u003c/code\u003e if there is a list of realms to choose from, and by using a \n\u003ccode\u003eRealmCallback\u003c/code\u003e if the realm must be entered."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/SaslException.html\" title\u003d\"class in javax.security.sasl\"\u003eSaslException\u003c/a\u003e\u003c/code\u003e - If cannot create a \n\u003ccode\u003eSaslServer\u003c/code\u003e because of an error."
+        ],
+        "return": [
+          "A possibly null \n\u003ccode\u003eSaslServer\u003c/code\u003e created using the parameters supplied. If null, this factory cannot produce a \n\u003ccode\u003eSaslServer\u003c/code\u003e using the parameters supplied."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Map",
+            "parameters": [
+              {
+                "name": "java.lang.String",
+                "type": "Class"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "props"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getMechanismNames",
+      "comment": "Returns an array of names of mechanisms that match the specified mechanism selection policies.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprops\u003c/code\u003e - The possibly null set of properties used to specify the security policy of the SASL mechanisms. For example, if \n\u003ccode\u003eprops\u003c/code\u003e contains the \n\u003ccode\u003eSasl.POLICY_NOPLAINTEXT\u003c/code\u003e property with the value \n\u003ccode\u003e\"true\"\u003c/code\u003e, then the factory must not return any SASL mechanisms that are susceptible to simple plain passive attacks. See the \n\u003ccode\u003eSasl\u003c/code\u003e class for a complete list of policy properties. Non-policy related properties, if present in \n\u003ccode\u003eprops\u003c/code\u003e, are ignored, including any map entries with non-String keys."
+        ],
+        "return": [
+          "A non-null array containing a IANA-registered SASL mechanism names."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "javax.security.sasl.SaslServerFactory",
+  "comment": "An interface for creating instances of \n\u003ccode\u003eSaslServer\u003c/code\u003e. A class that implements this interface must be thread-safe and handle multiple simultaneous requests. It must also have a public constructor that accepts no argument. \n\u003cp\u003e This interface is not normally accessed directly by a server, which will use the \u003ccode\u003eSasl\u003c/code\u003e static methods instead. However, a particular environment may provide and install a new or different \u003ccode\u003eSaslServerFactory\u003c/code\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/SaslServer.html\" title\u003d\"interface in javax.security.sasl\"\u003e\u003ccode\u003eSaslServer\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.security.sasl/javax/security/sasl/Sasl.html\" title\u003d\"class in javax.security.sasl\"\u003e\u003ccode\u003eSasl\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

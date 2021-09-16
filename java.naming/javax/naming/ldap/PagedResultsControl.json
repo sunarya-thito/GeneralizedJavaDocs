@@ -1,0 +1,132 @@
+{
+  "packageName": "javax.naming.ldap",
+  "simpleName": "PagedResultsControl",
+  "moduleName": "java.naming",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.naming.ldap.BasicControl",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "OID",
+      "comment": "The paged-results control\u0027s assigned object identifier is 1.2.840.113556.1.4.319.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#javax.naming.ldap.PagedResultsControl.OID\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pageSize"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "criticality"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a control to set the number of entries to be returned per page of results.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epageSize\u003c/code\u003e - The number of entries to return in a page.",
+          "\u003ccode\u003ecriticality\u003c/code\u003e - If true then the server must honor the control and return search results as indicated by pageSize or refuse to perform the search. If false, then the server need not honor the control."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an error was encountered while encoding the supplied arguments into a control."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pageSize"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "cookie"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "criticality"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a control to set the number of entries to be returned per page of results. The cookie is provided by the server and may be obtained from the paged-results response control. A sequence of paged-results can be abandoned by setting the pageSize to zero and setting the cookie to the last cookie received from the server.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epageSize\u003c/code\u003e - The number of entries to return in a page.",
+          "\u003ccode\u003ecookie\u003c/code\u003e - A possibly null server-generated cookie.",
+          "\u003ccode\u003ecriticality\u003c/code\u003e - If true then the server must honor the control and return search results as indicated by pageSize or refuse to perform the search. If false, then the server need not honor the control."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an error was encountered while encoding the supplied arguments into a control."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "javax.naming.ldap.PagedResultsControl",
+  "comment": "Requests that the results of a search operation be returned by the LDAP server in batches of a specified size. The requestor controls the rate at which batches are returned by the rate at which it invokes search operations. \n\u003cp\u003e The following code sample shows how the class may be used: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n\n     // Open an LDAP association\n     LdapContext ctx \u003d new InitialLdapContext();\n\n     // Activate paged results\n     int pageSize \u003d 20; // 20 entries per page\n     byte[] cookie \u003d null;\n     int total;\n     ctx.setRequestControls(new Control[]{\n         new PagedResultsControl(pageSize, Control.CRITICAL) });\n\n     do {\n         // Perform the search\n         NamingEnumeration results \u003d\n             ctx.search(\"\", \"(objectclass\u003d*)\", new SearchControls());\n\n         // Iterate over a batch of search results\n         while (results !\u003d null \u0026amp;\u0026amp; results.hasMore()) {\n             // Display an entry\n             SearchResult entry \u003d (SearchResult)results.next();\n             System.out.println(entry.getName());\n             System.out.println(entry.getAttributes());\n\n             // Handle the entry\u0027s response controls (if any)\n             if (entry instanceof HasControls) {\n                 // ((HasControls)entry).getControls();\n             }\n         }\n         // Examine the paged results control response\n         Control[] controls \u003d ctx.getResponseControls();\n         if (controls !\u003d null) {\n             for (int i \u003d 0; i \u0026lt; controls.length; i++) {\n                 if (controls[i] instanceof PagedResultsResponseControl) {\n                     PagedResultsResponseControl prrc \u003d\n                         (PagedResultsResponseControl)controls[i];\n                     total \u003d prrc.getResultSize();\n                     cookie \u003d prrc.getCookie();\n                 } else {\n                     // Handle other response controls (if any)\n                 }\n             }\n         }\n\n         // Re-activate paged results\n         ctx.setRequestControls(new Control[]{\n             new PagedResultsControl(pageSize, cookie, Control.CRITICAL) });\n     } while (cookie !\u003d null);\n\n     // Close the LDAP association\n     ctx.close();\n     ...\n\n \u003c/code\u003e \u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e This class implements the LDAPv3 Control for paged-results as defined in \u003ca href\u003d\"http://www.ietf.org/rfc/rfc2696.txt\"\u003eRFC 2696\u003c/a\u003e. The control\u0027s value has the following ASN.1 definition: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n\n     realSearchControlValue ::\u003d SEQUENCE {\n         size      INTEGER (0..maxInt),\n                           -- requested page size from client\n                           -- result set size estimate from server\n         cookie    OCTET STRING\n     }\n\n \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/ldap/PagedResultsResponseControl.html\" title\u003d\"class in javax.naming.ldap\"\u003e\u003ccode\u003ePagedResultsResponseControl\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.naming.ldap.PagedResultsControl\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

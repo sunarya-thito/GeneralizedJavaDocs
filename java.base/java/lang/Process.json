@@ -1,0 +1,427 @@
+{
+  "packageName": "java.lang",
+  "simpleName": "Process",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.io.OutputStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getOutputStream",
+      "comment": "Returns the output stream connected to the normal input of the process. Output to the stream is piped into the standard input of the process represented by this Process object. If the standard input of the process has been redirected using ProcessBuilder.redirectInput then this method will return a null output stream. Implementation note: It is a good idea for the returned output stream to be buffered.",
+      "tagMap": {
+        "return": [
+          "the output stream connected to the normal input of the process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getInputStream",
+      "comment": "Returns the input stream connected to the normal output of the process. The stream obtains data piped from the standard output of the process represented by this Process object. If the standard output of the process has been redirected using ProcessBuilder.redirectOutput then this method will return a null input stream. Otherwise, if the standard error of the process has been redirected using ProcessBuilder.redirectErrorStream then the input stream returned by this method will receive the merged standard output and the standard error of the process. Implementation note: It is a good idea for the returned input stream to be buffered.",
+      "tagMap": {
+        "return": [
+          "the input stream connected to the normal output of the process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.io.InputStream",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getErrorStream",
+      "comment": "Returns the input stream connected to the error output of the process. The stream obtains data piped from the error output of the process represented by this Process object. If the standard error of the process has been redirected using ProcessBuilder.redirectError or ProcessBuilder.redirectErrorStream then this method will return a null input stream. Implementation note: It is a good idea for the returned input stream to be buffered.",
+      "tagMap": {
+        "return": [
+          "the input stream connected to the error output of the process"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "waitFor",
+      "comment": "Causes the current thread to wait, if necessary, until the process represented by this Process object has terminated. This method returns immediately if the process has already terminated. If the process has not yet terminated, the calling thread will be blocked until the process exits.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Thread.html#interrupt()\"\u003einterrupted\u003c/a\u003e by another thread while it is waiting, then the wait is ended and an \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eInterruptedException\u003c/code\u003e\u003c/a\u003e is thrown."
+        ],
+        "return": [
+          "the exit value of the process represented by this \n\u003ccode\u003eProcess\u003c/code\u003e object. By convention, the value \n\u003ccode\u003e0\u003c/code\u003e indicates normal termination."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.InterruptedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "timeout"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "waitFor",
+      "comment": "Causes the current thread to wait, if necessary, until the process represented by this Process object has terminated, or the specified waiting time elapses. If the process has already terminated then this method returns immediately with the value true. If the process has not terminated and the timeout value is less than, or equal to, zero, then this method returns immediately with the value false. The default implementation of this methods polls the exitValue to check if the process has terminated. Concrete implementations of this class are strongly encouraged to override this method with a more efficient implementation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etimeout\u003c/code\u003e - the maximum time to wait",
+          "\u003ccode\u003eunit\u003c/code\u003e - the time unit of the \n\u003ccode\u003etimeout\u003c/code\u003e argument"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html\" title\u003d\"class in java.lang\"\u003eInterruptedException\u003c/a\u003e\u003c/code\u003e - if the current thread is interrupted while waiting.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if unit is null"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the process has exited and \n\u003ccode\u003efalse\u003c/code\u003e if the waiting time elapsed before the process has exited."
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "exitValue",
+      "comment": "Returns the exit value for the process.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalThreadStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalThreadStateException\u003c/a\u003e\u003c/code\u003e - if the process represented by this \n\u003ccode\u003eProcess\u003c/code\u003e object has not yet terminated"
+        ],
+        "return": [
+          "the exit value of the process represented by this \n\u003ccode\u003eProcess\u003c/code\u003e object. By convention, the value \n\u003ccode\u003e0\u003c/code\u003e indicates normal termination."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "destroy",
+      "comment": "Kills the process. Whether the process represented by this Process object is normally terminated or not is implementation dependent. Forcible process destruction is defined as the immediate termination of a process, whereas normal termination allows the process to shut down cleanly. If the process is not alive, no action is taken. The CompletableFuture from onExit() is completed when the process has terminated.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Process",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "destroyForcibly",
+      "comment": "Kills the process forcibly. The process represented by this Process object is forcibly terminated. Forcible process destruction is defined as the immediate termination of a process, whereas normal termination allows the process to shut down cleanly. If the process is not alive, no action is taken. The CompletableFuture from onExit() is completed when the process has terminated. Invoking this method on Process objects returned by ProcessBuilder.start() and Runtime.exec(java.lang.String) forcibly terminate the process.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method invokes \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#destroy()\"\u003e\u003ccode\u003edestroy()\u003c/code\u003e\u003c/a\u003e and so may not forcibly terminate the process."
+        ],
+        "apiNote": [
+          "The process may not terminate immediately. i.e. \n\u003ccode\u003eisAlive()\u003c/code\u003e may return true for a brief period after \n\u003ccode\u003edestroyForcibly()\u003c/code\u003e is called. This method may be chained to \n\u003ccode\u003ewaitFor()\u003c/code\u003e if needed."
+        ],
+        "implNote": [
+          "Concrete implementations of this class are strongly encouraged to override this method with a compliant implementation."
+        ],
+        "return": [
+          "the \n\u003ccode\u003eProcess\u003c/code\u003e object representing the process forcibly destroyed"
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "supportsNormalTermination",
+      "comment": "Returns true if the implementation of destroy() is to normally terminate the process, Returns false if the implementation of destroy forcibly and immediately terminates the process. Invoking this method on Process objects returned by ProcessBuilder.start() and Runtime.exec(java.lang.String) return true or false depending on the platform implementation.",
+      "tagMap": {
+        "implSpec": [
+          "This implementation throws an instance of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e and performs no other action."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Process implementation does not support this operation"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the implementation of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#destroy()\"\u003e\u003ccode\u003edestroy()\u003c/code\u003e\u003c/a\u003e is to normally terminate the process; otherwise, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#destroy()\"\u003e\u003ccode\u003edestroy()\u003c/code\u003e\u003c/a\u003e forcibly terminates the process"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isAlive",
+      "comment": "Tests whether the process represented by this Process is alive.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the process represented by this \n\u003ccode\u003eProcess\u003c/code\u003e object has not yet terminated."
+        ],
+        "since": [
+          "1.8"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "pid",
+      "comment": "Returns the native process ID of the process. The native process ID is an identification number that the operating system assigns to the process.",
+      "tagMap": {
+        "implSpec": [
+          "The implementation of this method returns the process id as: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#toHandle()\"\u003e\u003ccode\u003etoHandle().pid()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Process implementation does not support this operation"
+        ],
+        "return": [
+          "the native process id of the process"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.lang.Process",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "onExit",
+      "comment": "Returns a CompletableFuture\u003cProcess\u003e for the termination of the Process. The CompletableFuture provides the ability to trigger dependent functions or actions that may be run synchronously or asynchronously upon process termination. When the process has terminated the CompletableFuture is completed regardless of the exit status of the process. Calling onExit().get() waits for the process to terminate and returns the Process. The future can be used to check if the process is done or to wait for it to terminate. Cancelling the CompletableFuture does not affect the Process. Processes returned from ProcessBuilder.start() override the default implementation to provide an efficient mechanism to wait for process exit.",
+      "tagMap": {
+        "implSpec": [
+          "This implementation executes \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#waitFor()\"\u003e\u003ccode\u003ewaitFor()\u003c/code\u003e\u003c/a\u003e in a separate thread repeatedly until it returns successfully. If the execution of \n\u003ccode\u003ewaitFor\u003c/code\u003e is interrupted, the thread\u0027s interrupt status is preserved. \n\u003cp\u003e When \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#waitFor()\"\u003e\u003ccode\u003ewaitFor()\u003c/code\u003e\u003c/a\u003e returns successfully the CompletableFuture is \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/CompletableFuture.html#complete(T)\"\u003ecompleted\u003c/a\u003e regardless of the exit status of the process. This implementation may consume a lot of memory for thread stacks if a large number of processes are waited for concurrently. \u003c/p\u003e\n\u003cp\u003e External implementations should override this method and provide a more efficient implementation. For example, to delegate to the underlying process, it can do the following: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n    public CompletableFuture\u0026lt;Process\u0026gt; onExit() {\n       return delegate.onExit().thenApply(p -\u0026gt; this);\n    }\n \u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "apiNote": [
+          "Using \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#onExit()\"\u003e\u003ccode\u003eonExit\u003c/code\u003e\u003c/a\u003e is an alternative to \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#waitFor()\"\u003e\u003ccode\u003ewaitFor\u003c/code\u003e\u003c/a\u003e that enables both additional concurrency and convenient access to the result of the Process. Lambda expressions can be used to evaluate the result of the Process execution. If there is other processing to be done before the value is used then \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#onExit()\"\u003eonExit\u003c/a\u003e is a convenient mechanism to free the current thread and block only if and when the value is needed. \n\u003cbr\u003e For example, launching a process to compare two files and get a boolean if they are identical: \n\u003cpre\u003e \u003ccode\u003e  Process p \u003d new ProcessBuilder(\"cmp\", \"f1\", \"f2\").start();\n    Future\u0026lt;Boolean\u0026gt; identical \u003d p.onExit().thenApply(p1 -\u0026gt; p1.exitValue() \u003d\u003d 0);\n    ...\n    if (identical.get()) { ... }\n \u003c/code\u003e\u003c/pre\u003e, The process may be observed to have terminated with \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#isAlive()\"\u003e\u003ccode\u003eisAlive()\u003c/code\u003e\u003c/a\u003e before the ComputableFuture is completed and dependent actions are invoked."
+        ],
+        "return": [
+          "a new \n\u003ccode\u003eCompletableFuture\u0026lt;Process\u0026gt;\u003c/code\u003e for the Process"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ProcessHandle",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toHandle",
+      "comment": "Returns a ProcessHandle for the Process. Process objects returned by ProcessBuilder.start() and Runtime.exec(java.lang.String) implement toHandle as the equivalent of ProcessHandle.of(pid) including the check for a SecurityManager and RuntimePermission(\"manageProcess\").",
+      "tagMap": {
+        "implSpec": [
+          "This implementation throws an instance of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e\u003c/a\u003e and performs no other action. Subclasses should override this method to provide a ProcessHandle for the process. The methods \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#pid()\"\u003e\u003ccode\u003epid()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#info()\"\u003e\u003ccode\u003einfo()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#children()\"\u003e\u003ccode\u003echildren()\u003c/code\u003e\u003c/a\u003e, and \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#descendants()\"\u003e\u003ccode\u003edescendants()\u003c/code\u003e\u003c/a\u003e, unless overridden, operate on the ProcessHandle."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Process implementation does not support this operation",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")"
+        ],
+        "return": [
+          "Returns a ProcessHandle for the Process"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.ProcessHandle$Info",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "info",
+      "comment": "Returns a snapshot of information about the process. A ProcessHandle.Info instance has accessor methods that return information about the process if it is available.",
+      "tagMap": {
+        "implSpec": [
+          "This implementation returns information about the process as: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#toHandle()\"\u003e\u003ccode\u003etoHandle().info()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Process implementation does not support this operation"
+        ],
+        "return": [
+          "a snapshot of information about the process, always non-null"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "children",
+      "comment": "Returns a snapshot of the direct children of the process. The parent of a direct child process is the process. Typically, a process that is not alive has no children. Note that processes are created and terminate asynchronously. There is no guarantee that a process is alive.",
+      "tagMap": {
+        "implSpec": [
+          "This implementation returns the direct children as: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#toHandle()\"\u003e\u003ccode\u003etoHandle().children()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Process implementation does not support this operation",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")"
+        ],
+        "return": [
+          "a sequential Stream of ProcessHandles for processes that are direct children of the process"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.stream.Stream",
+        "parameters": [
+          {
+            "name": "java.lang.ProcessHandle",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "descendants",
+      "comment": "Returns a snapshot of the descendants of the process. The descendants of a process are the children of the process plus the descendants of those children, recursively. Typically, a process that is not alive has no children. Note that processes are created and terminate asynchronously. There is no guarantee that a process is alive.",
+      "tagMap": {
+        "implSpec": [
+          "This implementation returns all children as: \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Process.html#toHandle()\"\u003e\u003ccode\u003etoHandle().descendants()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Process implementation does not support this operation",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager has been installed and it denies RuntimePermission(\"manageProcess\")"
+        ],
+        "return": [
+          "a sequential Stream of ProcessHandles for processes that are descendants of the process"
+        ],
+        "since": [
+          "9"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Default constructor for Process.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.lang.Process",
+  "comment": "\u003ccode\u003eProcess\u003c/code\u003e provides control of native processes started by ProcessBuilder.start and Runtime.exec. The class provides methods for performing input from the process, performing output to the process, waiting for the process to complete, checking the exit status of the process, and destroying (killing) the process. The \n\u003ca href\u003d\"ProcessBuilder.html#start()\"\u003e\u003ccode\u003eProcessBuilder.start()\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"Runtime.html#exec(java.lang.String%5B%5D,java.lang.String%5B%5D,java.io.File)\"\u003e\u003ccode\u003eRuntime.exec\u003c/code\u003e\u003c/a\u003e methods create a native process and return an instance of a subclass of \n\u003ccode\u003eProcess\u003c/code\u003e that can be used to control the process and obtain information about it. \n\u003cp\u003eThe methods that create processes may not work well for special processes on certain native platforms, such as native windowing processes, daemon processes, Win16/DOS processes on Microsoft Windows, or shell scripts. \u003c/p\u003e\n\u003cp\u003eBy default, the created process does not have its own terminal or console. All its standard I/O (i.e. stdin, stdout, stderr) operations will be redirected to the parent process, where they can be accessed via the streams obtained using the methods \u003ca href\u003d\"#getOutputStream()\"\u003e\u003ccode\u003egetOutputStream()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#getInputStream()\"\u003e\u003ccode\u003egetInputStream()\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#getErrorStream()\"\u003e\u003ccode\u003egetErrorStream()\u003c/code\u003e\u003c/a\u003e. The parent process uses these streams to feed input to and get output from the process. Because some native platforms only provide limited buffer size for standard input and output streams, failure to promptly write the input stream or read the output stream of the process may cause the process to block, or even deadlock. \u003c/p\u003e\n\u003cp\u003eWhere desired, \u003ca href\u003d\"ProcessBuilder.html#redirect-input\"\u003e process I/O can also be redirected\u003c/a\u003e using methods of the \u003ca href\u003d\"ProcessBuilder.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eProcessBuilder\u003c/code\u003e\u003c/a\u003e class. \u003c/p\u003e\n\u003cp\u003eThe process is not killed when there are no more references to the \u003ccode\u003eProcess\u003c/code\u003e object, but rather the process continues executing asynchronously. \u003c/p\u003e\n\u003cp\u003eThere is no requirement that the process represented by a \u003ccode\u003e Process\u003c/code\u003e object execute asynchronously or concurrently with respect to the Java process that owns the \u003ccode\u003eProcess\u003c/code\u003e object. \u003c/p\u003e\n\u003cp\u003eAs of 1.5, \u003ca href\u003d\"ProcessBuilder.html#start()\"\u003e\u003ccode\u003eProcessBuilder.start()\u003c/code\u003e\u003c/a\u003e is the preferred way to create a \u003ccode\u003eProcess\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003eSubclasses of Process should override the \u003ca href\u003d\"#onExit()\"\u003e\u003ccode\u003eonExit()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#toHandle()\"\u003e\u003ccode\u003etoHandle()\u003c/code\u003e\u003c/a\u003e methods to provide a fully functional Process including the \u003ca href\u003d\"#pid()\"\u003eprocess id\u003c/a\u003e, \u003ca href\u003d\"#info()\"\u003einformation about the process\u003c/a\u003e, \u003ca href\u003d\"#children()\"\u003edirect children\u003c/a\u003e, and \u003ca href\u003d\"#descendants()\"\u003edirect children plus descendants of those children\u003c/a\u003e of the process. Delegating to the underlying Process or ProcessHandle is typically easiest and most efficient.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.0"
+    ]
+  }
+}

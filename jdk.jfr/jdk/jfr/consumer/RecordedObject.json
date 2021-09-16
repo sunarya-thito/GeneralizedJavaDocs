@@ -1,0 +1,593 @@
+{
+  "packageName": "jdk.jfr.consumer",
+  "simpleName": "RecordedObject",
+  "moduleName": "jdk.jfr",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hasField",
+      "comment": "Returns true if a field with the given name exists, false otherwise. It\u0027s possible to index into a nested field by using \".\" (for instance \"thread.group.parent.name\").",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getFields()\"\u003e\u003ccode\u003egetFields()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - name of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the field exists, \n\u003ccode\u003efalse\u003c/code\u003e otherwise"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getValue",
+      "comment": "Returns the value of the field with the given name. The return type may be a primitive type or a subclass of RecordedObject. It\u0027s possible to index into a nested object by using \".\" (for instance \"thread.group.parent.name\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access. Example  if (event.hasField(\"intValue\")) {\n   int intValue \u003d event.getValue(\"intValue\");\n   System.out.println(\"Int value: \" + intValue);\n }\n\n if (event.hasField(\"objectClass\")) {\n   RecordedClass clazz \u003d event.getValue(\"objectClass\");\n   System.out.println(\"Class name: \" + clazz.getName());\n }\n\n if (event.hasField(\"sampledThread\")) {\n   RecordedThread sampledThread \u003d event.getValue(\"sampledThread\");\n   System.out.println(\"Sampled thread: \" + sampledThread.getJavaName());\n }",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the return type"
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if no field called \n\u003ccode\u003ename\u003c/code\u003e exists"
+        ],
+        "return": [
+          "the value, can be \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "jdk.jfr.ValueDescriptor",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFields",
+      "comment": "Returns an immutable list of the fields for this object.",
+      "tagMap": {
+        "return": [
+          "the fields, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getBoolean",
+      "comment": "Returns the value of a field of type boolean. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - name of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field is not of type \n\u003ccode\u003eboolean\u003c/code\u003e"
+        ],
+        "return": [
+          "the value of the field, \n\u003ccode\u003etrue\u003c/code\u003e or \n\u003ccode\u003efalse\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getByte",
+      "comment": "Returns the value of a field of type byte. It\u0027s possible to index into a nested object using \".\" (for example, \"foo.bar\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field is not of type \n\u003ccode\u003ebyte\u003c/code\u003e"
+        ],
+        "return": [
+          "the value of the field"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "char",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getChar",
+      "comment": "Returns the value of a field of type char. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field is not of type \n\u003ccode\u003echar\u003c/code\u003e"
+        ],
+        "return": [
+          "the value of the field as a \n\u003ccode\u003echar\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "short",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getShort",
+      "comment": "Returns the value of a field of type short or of another primitive type convertible to type short by a widening conversion. This method can be used on the following types: short and byte. If the field has the @Unsigned annotation and is of a narrower type than short, then the value is returned as an unsigned. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field value can\u0027t be converted to the type \n\u003ccode\u003eshort\u003c/code\u003e by a widening conversion"
+        ],
+        "return": [
+          "the value of the field converted to type \n\u003ccode\u003eshort\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getInt",
+      "comment": "Returns the value of a field of type int or of another primitive type that is convertible to type int by a widening conversion. This method can be used on fields of the following types: int, short, char, and byte. If the field has the @Unsigned annotation and is of a narrower type than int, then the value will be returned as an unsigned. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field value can\u0027t be converted to the type \n\u003ccode\u003eint\u003c/code\u003e by a widening conversion"
+        ],
+        "return": [
+          "the value of the field converted to type \n\u003ccode\u003eint\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getFloat",
+      "comment": "Returns the value of a field of type float or of another primitive type convertible to type float by a widening conversion. This method can be used on fields of the following types: float, long, int, short, char, and byte. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field value can\u0027t be converted to the type \n\u003ccode\u003efloat\u003c/code\u003e by a widening conversion"
+        ],
+        "return": [
+          "the value of the field converted to type \n\u003ccode\u003efloat\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getLong",
+      "comment": "Returns the value of a field of type long or of another primitive type that is convertible to type long by a widening conversion. This method can be used on fields of the following types: long, int, short, char, and byte. If the field has the @Unsigned annotation and is of a narrower type than long, then the value will be returned as an unsigned. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field value can\u0027t be converted to the type \n\u003ccode\u003elong\u003c/code\u003e via a widening conversion"
+        ],
+        "return": [
+          "the value of the field converted to type \n\u003ccode\u003elong\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "double",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getDouble",
+      "comment": "Returns the value of a field of type double or of another primitive type that is convertible to type double by a widening conversion. This method can be used on fields of the following types: double, float, long, int, short, char, and byte. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field value can\u0027t be converted to the type \n\u003ccode\u003edouble\u003c/code\u003e by a widening conversion"
+        ],
+        "return": [
+          "the value of the field converted to type \n\u003ccode\u003edouble\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getString",
+      "comment": "Returns the value of a field of type String. It\u0027s possible to index into a nested object using \".\" (for example, \"foo.bar\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field isn\u0027t of type \n\u003ccode\u003eString\u003c/code\u003e"
+        ],
+        "return": [
+          "the value of the field as a \n\u003ccode\u003eString\u003c/code\u003e, can be \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.Duration",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getDuration",
+      "comment": "Returns the value of a timespan field. This method can be used on fields annotated with @Timespan, and of the following types: long, int, short, char, and byte. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field value can\u0027t be converted to a \n\u003ccode\u003eDuration\u003c/code\u003e object"
+        ],
+        "return": [
+          "a time span represented as a \n\u003ccode\u003eDuration\u003c/code\u003e, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.Instant",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getInstant",
+      "comment": "Returns the value of a timestamp field. This method can be used on fields annotated with @Timestamp, and of the following types: long, int, short, char and byte. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field value can\u0027t be converted to an \n\u003ccode\u003eInstant\u003c/code\u003e object"
+        ],
+        "return": [
+          "a timstamp represented as an \n\u003ccode\u003eInstant\u003c/code\u003e, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.consumer.RecordedClass",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getClass",
+      "comment": "Returns the value of a field of type Class. It\u0027s possible to index into a nested object using \".\" (for example, \"aaa.bbb\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field isn\u0027t of type \n\u003ccode\u003eClass\u003c/code\u003e"
+        ],
+        "return": [
+          "the value of the field as a \n\u003ccode\u003eRecordedClass\u003c/code\u003e, can be \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.jfr.consumer.RecordedThread",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getThread",
+      "comment": "Returns the value of a field of type Thread. It\u0027s possible to index into a nested object using \".\" (for example, \"foo.bar\"). A field might change or be removed in a future JDK release. A best practice for callers of this method is to validate the field before attempting access.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#hasField(java.lang.String)\"\u003e\u003ccode\u003ehasField(String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.jfr/jdk/jfr/consumer/RecordedObject.html#getValue(java.lang.String)\"\u003e\u003ccode\u003egetValue(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - of the field to get, not \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the field doesn\u0027t exist, or the field isn\u0027t of type \n\u003ccode\u003eThread\u003c/code\u003e"
+        ],
+        "return": [
+          "the value of the field as a \n\u003ccode\u003eRecordedThread\u003c/code\u003e object, can be \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "toString",
+      "comment": "Returns a textual representation of this object.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "textual description of this object"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "jdk.jfr.consumer.RecordedObject",
+  "comment": "A complex data type that consists of one or more fields. \n\u003cp\u003e This class provides methods to select and query nested objects by passing a dot \u003ccode\u003e\".\"\u003c/code\u003e delimited \u003ccode\u003eString\u003c/code\u003e object (for instance, \u003ccode\u003e\"aaa.bbb\"\u003c/code\u003e). A method evaluates a nested object from left to right, and if a part is \u003ccode\u003enull\u003c/code\u003e, it throws \u003ccode\u003eNullPointerException\u003c/code\u003e.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "packageName": "java.time.temporal",
+  "simpleName": "WeekFields",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "java.time.temporal.WeekFields",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "ISO",
+      "comment": "The ISO-8601 definition, where a week starts on Monday and the first week has a minimum of 4 days. The ISO-8601 standard defines a calendar system based on weeks. It uses the week-based-year and week-of-week-based-year concepts to split up the passage of days instead of the standard year/month/day. Note that the first week may start in the previous calendar year. Note also that the first few days of a calendar year may be in the week-based-year corresponding to the previous calendar year.",
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.time.temporal.WeekFields",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "SUNDAY_START",
+      "comment": "The common definition of a week that starts on Sunday and the first week has a minimum of 1 day. Defined as starting on Sunday and with a minimum of 1 day in the month. This week definition is in use in the US and other European countries.",
+      "tagMap": {}
+    },
+    {
+      "type": {
+        "name": "java.time.temporal.TemporalUnit",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "WEEK_BASED_YEARS",
+      "comment": "The unit that represents week-based-years for the purpose of addition and subtraction. This allows a number of week-based-years to be added to, or subtracted from, a date. The unit is equal to either 52 or 53 weeks. The estimated duration of a week-based-year is the same as that of a standard ISO year at 365.2425 Days. The rules for addition add the number of week-based-years to the existing value for the week-based-year field retaining the week-of-week-based-year and day-of-week, unless the week number it too large for the target year. In that case, the week is set to the last week of the year with the same day-of-week. This unit is an immutable and thread-safe singleton.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.WeekFields",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Locale",
+            "type": "Class"
+          },
+          "field": {
+            "name": "locale"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "of",
+      "comment": "Obtains an instance of WeekFields appropriate for a locale. This will look up appropriate values from the provider of localization data. If the locale contains \"fw\" (First day of week) and/or \"rg\" (Region Override) Unicode extensions, returned instance will reflect the values specified with those extensions. If both \"fw\" and \"rg\" are specified, the value from the \"fw\" extension supersedes the implicit one from the \"rg\" extension.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elocale\u003c/code\u003e - the locale to use, not null"
+        ],
+        "return": [
+          "the week-definition, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.WeekFields",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.time.DayOfWeek",
+            "type": "Class"
+          },
+          "field": {
+            "name": "firstDayOfWeek"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "minimalDaysInFirstWeek"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "of",
+      "comment": "Obtains an instance of WeekFields from the first day-of-week and minimal days. The first day-of-week defines the ISO DayOfWeek that is day 1 of the week. The minimal number of days in the first week defines how many days must be present in a month or year, starting from the first day-of-week, before the week is counted as the first week. A value of 1 will count the first day of the month or year as part of the first week, whereas a value of 7 will require the whole seven days to be in the new month or year. WeekFields instances are singletons; for each unique combination of firstDayOfWeek and minimalDaysInFirstWeek the same instance will be returned.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003efirstDayOfWeek\u003c/code\u003e - the first day of the week, not null",
+          "\u003ccode\u003eminimalDaysInFirstWeek\u003c/code\u003e - the minimal number of days in the first week, from 1 to 7"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the minimal days value is less than one or greater than 7"
+        ],
+        "return": [
+          "the week-definition, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.DayOfWeek",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFirstDayOfWeek",
+      "comment": "Gets the first day-of-week. The first day-of-week varies by culture. For example, the US uses Sunday, while France and the ISO-8601 standard use Monday. This method returns the first day using the standard DayOfWeek enum.",
+      "tagMap": {
+        "return": [
+          "the first day-of-week, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMinimalDaysInFirstWeek",
+      "comment": "Gets the minimal number of days in the first week. The number of days considered to define the first week of a month or year varies by culture. For example, the ISO-8601 requires 4 days (more than half a week) to be present before counting the first week.",
+      "tagMap": {
+        "return": [
+          "the minimal number of days in the first week of a month or year, from 1 to 7"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.TemporalField",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "dayOfWeek",
+      "comment": "Returns a field to access the day of week based on this WeekFields. This is similar to ChronoField.DAY_OF_WEEK but uses values for the day-of-week based on this WeekFields. The days are numbered from 1 to 7 where the first day-of-week is assigned the value 1. For example, if the first day-of-week is Sunday, then that will have the value 1, with other days ranging from Monday as 2 to Saturday as 7. In the resolving phase of parsing, a localized day-of-week will be converted to a standardized ChronoField day-of-week. The day-of-week must be in the valid range 1 to 7. Other fields in this class build dates using the standardized day-of-week.",
+      "tagMap": {
+        "return": [
+          "a field providing access to the day-of-week with localized numbering, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.TemporalField",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "weekOfMonth",
+      "comment": "Returns a field to access the week of month based on this WeekFields. This represents the concept of the count of weeks within the month where weeks start on a fixed day-of-week, such as Monday. This field is typically used with dayOfWeek(). Week one (1) is the week starting on the getFirstDayOfWeek() where there are at least getMinimalDaysInFirstWeek() days in the month. Thus, week one may start up to minDays days before the start of the month. If the first week starts after the start of the month then the period before is week zero (0). For example: - if the 1st day of the month is a Monday, week one starts on the 1st and there is no week zero - if the 2nd day of the month is a Monday, week one starts on the 2nd and the 1st is in week zero - if the 4th day of the month is a Monday, week one starts on the 4th and the 1st to 3rd is in week zero - if the 5th day of the month is a Monday, week two starts on the 5th and the 1st to 4th is in week one This field can be used with any calendar system. In the resolving phase of parsing, a date can be created from a year, week-of-month, month-of-year and day-of-week. In strict mode, all four fields are validated against their range of valid values. The week-of-month field is validated to ensure that the resulting month is the month requested. In smart mode, all four fields are validated against their range of valid values. The week-of-month field is validated from 0 to 6, meaning that the resulting date can be in a different month to that specified. In lenient mode, the year and day-of-week are validated against the range of valid values. The resulting date is calculated equivalent to the following four stage approach. First, create a date on the first day of the first week of January in the requested year. Then take the month-of-year, subtract one, and add the amount in months to the date. Then take the week-of-month, subtract one, and add the amount in weeks to the date. Finally, adjust to the correct day-of-week within the localized week.",
+      "tagMap": {
+        "return": [
+          "a field providing access to the week-of-month, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.TemporalField",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "weekOfYear",
+      "comment": "Returns a field to access the week of year based on this WeekFields. This represents the concept of the count of weeks within the year where weeks start on a fixed day-of-week, such as Monday. This field is typically used with dayOfWeek(). Week one(1) is the week starting on the getFirstDayOfWeek() where there are at least getMinimalDaysInFirstWeek() days in the year. Thus, week one may start up to minDays days before the start of the year. If the first week starts after the start of the year then the period before is week zero (0). For example: - if the 1st day of the year is a Monday, week one starts on the 1st and there is no week zero - if the 2nd day of the year is a Monday, week one starts on the 2nd and the 1st is in week zero - if the 4th day of the year is a Monday, week one starts on the 4th and the 1st to 3rd is in week zero - if the 5th day of the year is a Monday, week two starts on the 5th and the 1st to 4th is in week one This field can be used with any calendar system. In the resolving phase of parsing, a date can be created from a year, week-of-year and day-of-week. In strict mode, all three fields are validated against their range of valid values. The week-of-year field is validated to ensure that the resulting year is the year requested. In smart mode, all three fields are validated against their range of valid values. The week-of-year field is validated from 0 to 54, meaning that the resulting date can be in a different year to that specified. In lenient mode, the year and day-of-week are validated against the range of valid values. The resulting date is calculated equivalent to the following three stage approach. First, create a date on the first day of the first week in the requested year. Then take the week-of-year, subtract one, and add the amount in weeks to the date. Finally, adjust to the correct day-of-week within the localized week.",
+      "tagMap": {
+        "return": [
+          "a field providing access to the week-of-year, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.TemporalField",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "weekOfWeekBasedYear",
+      "comment": "Returns a field to access the week of a week-based-year based on this WeekFields. This represents the concept of the count of weeks within the year where weeks start on a fixed day-of-week, such as Monday and each week belongs to exactly one year. This field is typically used with dayOfWeek() and weekBasedYear(). Week one(1) is the week starting on the getFirstDayOfWeek() where there are at least getMinimalDaysInFirstWeek() days in the year. If the first week starts after the start of the year then the period before is in the last week of the previous year. For example: - if the 1st day of the year is a Monday, week one starts on the 1st - if the 2nd day of the year is a Monday, week one starts on the 2nd and the 1st is in the last week of the previous year - if the 4th day of the year is a Monday, week one starts on the 4th and the 1st to 3rd is in the last week of the previous year - if the 5th day of the year is a Monday, week two starts on the 5th and the 1st to 4th is in week one This field can be used with any calendar system. In the resolving phase of parsing, a date can be created from a week-based-year, week-of-year and day-of-week. In strict mode, all three fields are validated against their range of valid values. The week-of-year field is validated to ensure that the resulting week-based-year is the week-based-year requested. In smart mode, all three fields are validated against their range of valid values. The week-of-week-based-year field is validated from 1 to 53, meaning that the resulting date can be in the following week-based-year to that specified. In lenient mode, the year and day-of-week are validated against the range of valid values. The resulting date is calculated equivalent to the following three stage approach. First, create a date on the first day of the first week in the requested week-based-year. Then take the week-of-week-based-year, subtract one, and add the amount in weeks to the date. Finally, adjust to the correct day-of-week within the localized week.",
+      "tagMap": {
+        "return": [
+          "a field providing access to the week-of-week-based-year, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.time.temporal.TemporalField",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "weekBasedYear",
+      "comment": "Returns a field to access the year of a week-based-year based on this WeekFields. This represents the concept of the year where weeks start on a fixed day-of-week, such as Monday and each week belongs to exactly one year. This field is typically used with dayOfWeek() and weekOfWeekBasedYear(). Week one(1) is the week starting on the getFirstDayOfWeek() where there are at least getMinimalDaysInFirstWeek() days in the year. Thus, week one may start before the start of the year. If the first week starts after the start of the year then the period before is in the last week of the previous year. This field can be used with any calendar system. In the resolving phase of parsing, a date can be created from a week-based-year, week-of-year and day-of-week. In strict mode, all three fields are validated against their range of valid values. The week-of-year field is validated to ensure that the resulting week-based-year is the week-based-year requested. In smart mode, all three fields are validated against their range of valid values. The week-of-week-based-year field is validated from 1 to 53, meaning that the resulting date can be in the following week-based-year to that specified. In lenient mode, the year and day-of-week are validated against the range of valid values. The resulting date is calculated equivalent to the following three stage approach. First, create a date on the first day of the first week in the requested week-based-year. Then take the week-of-week-based-year, subtract one, and add the amount in weeks to the date. Finally, adjust to the correct day-of-week within the localized week.",
+      "tagMap": {
+        "return": [
+          "a field providing access to the week-based-year, not null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "object"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "equals",
+      "comment": "Checks if this WeekFields is equal to the specified object. The comparison is based on the entire state of the rules, which is the first day-of-week and minimal days.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003e\u003ccode\u003eObject.hashCode()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/HashMap.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eHashMap\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003eequals\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eobject\u003c/code\u003e - the other rules to compare to, null returns false"
+        ],
+        "return": [
+          "true if this is equal to the specified rules"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hashCode",
+      "comment": "A hash code for this WeekFields.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)\"\u003e\u003ccode\u003eObject.equals(java.lang.Object)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/System.html#identityHashCode(java.lang.Object)\"\u003e\u003ccode\u003eSystem.identityHashCode(java.lang.Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()\"\u003ehashCode\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a suitable hash code"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "A string representation of this WeekFields instance.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "the string representation, not null"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "java.time.temporal.WeekFields",
+  "comment": "Localized definitions of the day-of-week, week-of-month and week-of-year fields. \n\u003cp\u003e A standard week is seven days long, but cultures have different definitions for some other aspects of a week. This class represents the definition of the week, for the purpose of providing \u003ca href\u003d\"TemporalField.html\" title\u003d\"interface in java.time.temporal\"\u003e\u003ccode\u003eTemporalField\u003c/code\u003e\u003c/a\u003e instances. \u003c/p\u003e\n\u003cp\u003e WeekFields provides five fields, \u003ca href\u003d\"#dayOfWeek()\"\u003e\u003ccode\u003edayOfWeek()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#weekOfMonth()\"\u003e\u003ccode\u003eweekOfMonth()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#weekOfYear()\"\u003e\u003ccode\u003eweekOfYear()\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"#weekOfWeekBasedYear()\"\u003e\u003ccode\u003eweekOfWeekBasedYear()\u003c/code\u003e\u003c/a\u003e, and \u003ca href\u003d\"#weekBasedYear()\"\u003e\u003ccode\u003eweekBasedYear()\u003c/code\u003e\u003c/a\u003e that provide access to the values from any \u003ca href\u003d\"Temporal.html\" title\u003d\"interface in java.time.temporal\"\u003etemporal object\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e The computations for day-of-week, week-of-month, and week-of-year are based on the \u003ca href\u003d\"ChronoField.html#YEAR\"\u003eproleptic-year\u003c/a\u003e, \u003ca href\u003d\"ChronoField.html#MONTH_OF_YEAR\"\u003emonth-of-year\u003c/a\u003e, \u003ca href\u003d\"ChronoField.html#DAY_OF_MONTH\"\u003eday-of-month\u003c/a\u003e, and \u003ca href\u003d\"ChronoField.html#DAY_OF_WEEK\"\u003eISO day-of-week\u003c/a\u003e which are based on the \u003ca href\u003d\"ChronoField.html#EPOCH_DAY\"\u003eepoch-day\u003c/a\u003e and the chronology. The values may not be aligned with the \u003ca href\u003d\"ChronoField.html#YEAR_OF_ERA\"\u003eyear-of-Era\u003c/a\u003e depending on the Chronology. \u003c/p\u003e\n\u003cp\u003eA week is defined by: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eThe first day-of-week. For example, the ISO-8601 standard considers Monday to be the first day-of-week. \u003c/li\u003e\n \u003cli\u003eThe minimal number of days in the first week. For example, the ISO-8601 standard counts the first week as needing at least 4 days. \u003c/li\u003e\n\u003c/ul\u003e Together these two values allow a year or month to be divided into weeks. \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003eWeek of Month\u003c/h2\u003e One field is used: week-of-month. The calculation ensures that weeks never overlap a month boundary. The month is divided into periods where each period starts on the defined first day-of-week. The earliest period is referred to as week 0 if it has less than the minimal number of days and week 1 if it has at least the minimal number of days. \n\u003ctable class\u003d\"striped\" style\u003d\"text-align: left\"\u003e \n \u003ccaption\u003e\n  Examples of WeekFields\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"col\"\u003eDate\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eDay-of-week\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eFirst day: Monday\u003cbr\u003eMinimal days: 4\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eFirst day: Monday\u003cbr\u003eMinimal days: 5\u003c/th\u003e\n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2008-12-31\u003c/th\u003e\n   \u003ctd\u003eWednesday\u003c/td\u003e \n   \u003ctd\u003eWeek 5 of December 2008\u003c/td\u003e\n   \u003ctd\u003eWeek 5 of December 2008\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2009-01-01\u003c/th\u003e\n   \u003ctd\u003eThursday\u003c/td\u003e \n   \u003ctd\u003eWeek 1 of January 2009\u003c/td\u003e\n   \u003ctd\u003eWeek 0 of January 2009\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2009-01-04\u003c/th\u003e\n   \u003ctd\u003eSunday\u003c/td\u003e \n   \u003ctd\u003eWeek 1 of January 2009\u003c/td\u003e\n   \u003ctd\u003eWeek 0 of January 2009\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2009-01-05\u003c/th\u003e\n   \u003ctd\u003eMonday\u003c/td\u003e \n   \u003ctd\u003eWeek 2 of January 2009\u003c/td\u003e\n   \u003ctd\u003eWeek 1 of January 2009\u003c/td\u003e\n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e \n\u003ch2\u003eWeek of Year\u003c/h2\u003e One field is used: week-of-year. The calculation ensures that weeks never overlap a year boundary. The year is divided into periods where each period starts on the defined first day-of-week. The earliest period is referred to as week 0 if it has less than the minimal number of days and week 1 if it has at least the minimal number of days. \n\u003ch2\u003eWeek Based Year\u003c/h2\u003e Two fields are used for week-based-year, one for the \n\u003ca href\u003d\"#weekOfWeekBasedYear()\"\u003e\u003ccode\u003eweek-of-week-based-year\u003c/code\u003e\u003c/a\u003e and one for \n\u003ca href\u003d\"#weekBasedYear()\"\u003e\u003ccode\u003eweek-based-year\u003c/code\u003e\u003c/a\u003e. In a week-based-year, each week belongs to only a single year. Week 1 of a year is the first week that starts on the first day-of-week and has at least the minimum number of days. The first and last weeks of a year may contain days from the previous calendar year or next calendar year respectively. \n\u003ctable class\u003d\"striped\" style\u003d\"text-align: left;\"\u003e \n \u003ccaption\u003e\n  Examples of WeekFields for week-based-year\n \u003c/caption\u003e \n \u003cthead\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"col\"\u003eDate\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eDay-of-week\u003c/th\u003e \n   \u003cth scope\u003d\"col\"\u003eFirst day: Monday\u003cbr\u003eMinimal days: 4\u003c/th\u003e\n   \u003cth scope\u003d\"col\"\u003eFirst day: Monday\u003cbr\u003eMinimal days: 5\u003c/th\u003e\n  \u003c/tr\u003e \n \u003c/thead\u003e \n \u003ctbody\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2008-12-31\u003c/th\u003e\n   \u003ctd\u003eWednesday\u003c/td\u003e \n   \u003ctd\u003eWeek 1 of 2009\u003c/td\u003e\n   \u003ctd\u003eWeek 53 of 2008\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2009-01-01\u003c/th\u003e\n   \u003ctd\u003eThursday\u003c/td\u003e \n   \u003ctd\u003eWeek 1 of 2009\u003c/td\u003e\n   \u003ctd\u003eWeek 53 of 2008\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2009-01-04\u003c/th\u003e\n   \u003ctd\u003eSunday\u003c/td\u003e \n   \u003ctd\u003eWeek 1 of 2009\u003c/td\u003e\n   \u003ctd\u003eWeek 53 of 2008\u003c/td\u003e\n  \u003c/tr\u003e \n  \u003ctr\u003e\n   \u003cth scope\u003d\"row\"\u003e2009-01-05\u003c/th\u003e\n   \u003ctd\u003eMonday\u003c/td\u003e \n   \u003ctd\u003eWeek 2 of 2009\u003c/td\u003e\n   \u003ctd\u003eWeek 1 of 2009\u003c/td\u003e\n  \u003c/tr\u003e \n \u003c/tbody\u003e \n\u003c/table\u003e",
+  "tagMap": {
+    "implSpec": [
+      "This class is immutable and thread-safe."
+    ],
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#java.time.temporal.WeekFields\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.8"
+    ]
+  }
+}

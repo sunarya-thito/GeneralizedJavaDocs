@@ -1,0 +1,69 @@
+{
+  "packageName": "jdk.dynalink.beans",
+  "simpleName": "MissingMemberHandlerFactory",
+  "moduleName": "jdk.dynalink",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.invoke.MethodHandle",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Exception",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.dynalink.linker.LinkRequest",
+            "type": "Class"
+          },
+          "field": {
+            "name": "linkRequest"
+          }
+        },
+        {
+          "type": {
+            "name": "jdk.dynalink.linker.LinkerServices",
+            "type": "Class"
+          },
+          "field": {
+            "name": "linkerServices"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "createMissingMemberHandler",
+      "comment": "Returns a method handle suitable for implementing missing member behavior for a particular link request. See the class description for details.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003elinkRequest\u003c/code\u003e - the current link request",
+          "\u003ccode\u003elinkerServices\u003c/code\u003e - the current link services"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Exception.html\" title\u003d\"class in java.lang\"\u003eException\u003c/a\u003e\u003c/code\u003e - if the operation fails for any reason. Please observe the class documentation notes for implementing exception-throwing missing member behavior."
+        ],
+        "return": [
+          "a method handle that can be invoked if the property, element, or method being addressed by an operation is missing. The return value can be null."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.dynalink.beans.MissingMemberHandlerFactory",
+  "comment": "A factory for creating method handles for linking missing member behavior in \n\u003ca href\u003d\"BeansLinker.html\" title\u003d\"class in jdk.dynalink.beans\"\u003e\u003ccode\u003eBeansLinker\u003c/code\u003e\u003c/a\u003e. BeansLinker links these method handles into guarded invocations for link requests specifying \n\u003ccode\u003eGET_*\u003c/code\u003e and \n\u003ccode\u003eSET_*\u003c/code\u003e \n\u003ca href\u003d\"../StandardOperation.html\" title\u003d\"enum class in jdk.dynalink\"\u003e\u003ccode\u003eStandardOperation\u003c/code\u003e\u003c/a\u003es when it is either certain or possible that the requested member (property, method, or element) is missing. They will be linked both for \n\u003ca href\u003d\"../NamedOperation.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003enamed\u003c/code\u003e\u003c/a\u003e and unnamed operations. The implementer must ensure that the parameter types of the returned method handle match the parameter types of the call site described in the link request. The return types can differ, though, to allow \n\u003ca href\u003d\"../DynamicLinkerFactory.html#setPrelinkTransformer(jdk.dynalink.linker.GuardedInvocationTransformer)\"\u003e\u003ccode\u003eDynamicLinkerFactory.setPrelinkTransformer(jdk.dynalink.linker.GuardedInvocationTransformer)\u003c/code\u003e\u003c/a\u003e late return type transformations}. It is allowed to return \n\u003ccode\u003enull\u003c/code\u003e for a method handle if the default behavior is sufficient. \n\u003ch2\u003eDefault missing member behavior\u003c/h2\u003e When a \n\u003ca href\u003d\"BeansLinker.html\" title\u003d\"class in jdk.dynalink.beans\"\u003e\u003ccode\u003eBeansLinker\u003c/code\u003e\u003c/a\u003e is configured without a missing member handler factory, or the factory returns \n\u003ccode\u003enull\u003c/code\u003e for a particular handler creation invocation, the default behavior is used. The default behavior is to return \n\u003ccode\u003enull\u003c/code\u003e from \n\u003ca href\u003d\"BeansLinker.html#getGuardedInvocation(jdk.dynalink.linker.LinkRequest,jdk.dynalink.linker.LinkerServices)\"\u003e\u003ccode\u003eBeansLinker.getGuardedInvocation(LinkRequest, LinkerServices)\u003c/code\u003e\u003c/a\u003e when it can be determined at link time that the linked operation will never address an existing member. This lets the \n\u003ccode\u003eDynamicLinker\u003c/code\u003e attempt the next linker if there is one, or ultimately fail the link request with \n\u003ca href\u003d\"../NoSuchDynamicMethodException.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003eNoSuchDynamicMethodException\u003c/code\u003e\u003c/a\u003e. For other cases (typically all unnamed member operations as well as most named operations on collection elements) \n\u003ccode\u003eBeansLinker\u003c/code\u003e will produce a conditional linkage that will return \n\u003ccode\u003enull\u003c/code\u003e when invoked at runtime with a name that does not match any member for getters and silently ignore the passed values for setters. \n\u003ch2\u003eImplementing exception-throwing behavior\u003c/h2\u003e Note that if the language-specific behavior for an operation on a missing member is to throw an exception then the factory should produce a method handle that throws the exception when invoked, and must not throw an exception itself, as the linkage for the missing member is often conditional.",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/beans/BeansLinker.html#%3Cinit%3E(jdk.dynalink.beans.MissingMemberHandlerFactory)\"\u003e\u003ccode\u003eBeansLinker(MissingMemberHandlerFactory)\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

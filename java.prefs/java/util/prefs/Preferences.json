@@ -1,0 +1,1470 @@
+{
+  "packageName": "java.util.prefs",
+  "simpleName": "Preferences",
+  "moduleName": "java.prefs",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "MAX_KEY_LENGTH",
+      "comment": "Maximum length of string allowed as a key (80 characters).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.prefs.Preferences.MAX_KEY_LENGTH\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "MAX_VALUE_LENGTH",
+      "comment": "Maximum length of string allowed as a value (8192 characters).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.prefs.Preferences.MAX_VALUE_LENGTH\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "MAX_NAME_LENGTH",
+      "comment": "Maximum length of a node name (80 characters).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.util.prefs.Preferences.MAX_NAME_LENGTH\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.prefs.Preferences",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "c"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "userNodeForPackage",
+      "comment": "Returns the preference node from the calling user\u0027s preference tree that is associated (by convention) with the specified class\u0027s package. The convention is as follows: the absolute path name of the node is the fully qualified package name, preceded by a slash (\u0027/\u0027), and with each period (\u0027.\u0027) replaced by a slash. For example the absolute path name of the node associated with the class com.acme.widget.Foo is /com/acme/widget. This convention does not apply to the unnamed package, whose associated preference node is \u003cunnamed\u003e. This node is not intended for long term use, but for convenience in the early development of programs that do not yet belong to a package, and for \"throwaway\" programs. Valuable data should not be stored at this node as it is shared by all programs that use it. A class Foo wishing to access preferences pertaining to its package can obtain a preference node as follows:     static Preferences prefs \u003d Preferences.userNodeForPackage(Foo.class);\n This idiom obviates the need for using a string to describe the preferences node and decreases the likelihood of a run-time failure. (If the class name is misspelled, it will typically result in a compile-time error.) Invoking this method will result in the creation of the returned node and its ancestors if they do not already exist. If the returned node did not exist prior to this call, this node and any ancestors that were created by this call are not guaranteed to become permanent until the flush method is called on the returned node (or one of its ancestors or descendants).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - the class for whose package a user preference node is desired."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ec\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is present and it denies \n\u003ccode\u003eRuntimePermission(\"preferences\")\u003c/code\u003e."
+        ],
+        "return": [
+          "the user preference node associated with the package of which \n\u003ccode\u003ec\u003c/code\u003e is a member."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.prefs.Preferences",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "c"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "systemNodeForPackage",
+      "comment": "Returns the preference node from the system preference tree that is associated (by convention) with the specified class\u0027s package. The convention is as follows: the absolute path name of the node is the fully qualified package name, preceded by a slash (\u0027/\u0027), and with each period (\u0027.\u0027) replaced by a slash. For example the absolute path name of the node associated with the class com.acme.widget.Foo is /com/acme/widget. This convention does not apply to the unnamed package, whose associated preference node is \u003cunnamed\u003e. This node is not intended for long term use, but for convenience in the early development of programs that do not yet belong to a package, and for \"throwaway\" programs. Valuable data should not be stored at this node as it is shared by all programs that use it. A class Foo wishing to access preferences pertaining to its package can obtain a preference node as follows:   static Preferences prefs \u003d Preferences.systemNodeForPackage(Foo.class);\n This idiom obviates the need for using a string to describe the preferences node and decreases the likelihood of a run-time failure. (If the class name is misspelled, it will typically result in a compile-time error.) Invoking this method will result in the creation of the returned node and its ancestors if they do not already exist. If the returned node did not exist prior to this call, this node and any ancestors that were created by this call are not guaranteed to become permanent until the flush method is called on the returned node (or one of its ancestors or descendants).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - the class for whose package a system preference node is desired."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ec\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager is present and it denies \n\u003ccode\u003eRuntimePermission(\"preferences\")\u003c/code\u003e."
+        ],
+        "return": [
+          "the system preference node associated with the package of which \n\u003ccode\u003ec\u003c/code\u003e is a member."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.prefs.Preferences",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "userRoot",
+      "comment": "Returns the root preference node for the calling user.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is present and it denies \n\u003ccode\u003eRuntimePermission(\"preferences\")\u003c/code\u003e."
+        ],
+        "return": [
+          "the root preference node for the calling user."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.prefs.Preferences",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "systemRoot",
+      "comment": "Returns the root preference node for the system.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is present and it denies \n\u003ccode\u003eRuntimePermission(\"preferences\")\u003c/code\u003e."
+        ],
+        "return": [
+          "the root preference node for the system."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "put",
+      "comment": "Associates the specified value with the specified key in this preference node.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key with which the specified value is to be associated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - value to be associated with the specified key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if key or value is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey.length()\u003c/code\u003e exceeds \n\u003ccode\u003eMAX_KEY_LENGTH\u003c/code\u003e or if \n\u003ccode\u003evalue.length\u003c/code\u003e exceeds \n\u003ccode\u003eMAX_VALUE_LENGTH\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either key or value contain the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "def"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "get",
+      "comment": "Returns the value associated with the specified key in this preference node. Returns the specified default if there is no value associated with the key, or the backing store is inaccessible. Some implementations may store default values in their backing stores. If there is no value associated with the specified key but there is such a stored default, it is returned in preference to the specified default.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose associated value is to be returned.",
+          "\u003ccode\u003edef\u003c/code\u003e - the value to be returned in the event that this preference node has no value associated with \n\u003ccode\u003ekey\u003c/code\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e. (A \n\u003ccode\u003enull\u003c/code\u003e value for \n\u003ccode\u003edef\u003c/code\u003e \n\u003ci\u003eis\u003c/i\u003e permitted.)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ],
+        "return": [
+          "the value associated with \n\u003ccode\u003ekey\u003c/code\u003e, or \n\u003ccode\u003edef\u003c/code\u003e if no value is associated with \n\u003ccode\u003ekey\u003c/code\u003e, or the backing store is inaccessible."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "remove",
+      "comment": "Removes the value associated with the specified key in this preference node, if any. If this implementation supports stored defaults, and there is such a default for the specified preference, the stored default will be \"exposed\" by this call, in the sense that it will be returned by a succeeding call to get.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose mapping is to be removed from the preference node."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "clear",
+      "comment": "Removes all of the preferences (key-value associations) in this preference node. This call has no effect on any descendants of this node. If this implementation supports stored defaults, and this node in the preferences hierarchy contains any such defaults, the stored defaults will be \"exposed\" by this call, in the sense that they will be returned by succeeding calls to get.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if this operation cannot be completed due to a failure in the backing store, or inability to communicate with it.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "putInt",
+      "comment": "Associates a string representing the specified int value with the specified key in this preference node. The associated string is the one that would be returned if the int value were passed to Integer.toString(int). This method is intended for use in conjunction with getInt(java.lang.String, int).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#getInt(java.lang.String,int)\"\u003e\u003ccode\u003egetInt(String,int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key with which the string form of value is to be associated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - value whose string form is to be associated with key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey.length()\u003c/code\u003e exceeds \n\u003ccode\u003eMAX_KEY_LENGTH\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "def"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getInt",
+      "comment": "Returns the int value represented by the string associated with the specified key in this preference node. The string is converted to an integer as by Integer.parseInt(String). Returns the specified default if there is no value associated with the key, the backing store is inaccessible, or if Integer.parseInt(String) would throw a NumberFormatException if the associated value were passed. This method is intended for use in conjunction with putInt(java.lang.String, int). If the implementation supports stored defaults and such a default exists, is accessible, and could be converted to an int with Integer.parseInt, this int is returned in preference to the specified default.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#putInt(java.lang.String,int)\"\u003e\u003ccode\u003eputInt(String,int)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose associated value is to be returned as an int.",
+          "\u003ccode\u003edef\u003c/code\u003e - the value to be returned in the event that this preference node has no value associated with \n\u003ccode\u003ekey\u003c/code\u003e or the associated value cannot be interpreted as an int, or the backing store is inaccessible."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ],
+        "return": [
+          "the int value represented by the string associated with \n\u003ccode\u003ekey\u003c/code\u003e in this preference node, or \n\u003ccode\u003edef\u003c/code\u003e if the associated value does not exist or cannot be interpreted as an int."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "putLong",
+      "comment": "Associates a string representing the specified long value with the specified key in this preference node. The associated string is the one that would be returned if the long value were passed to Long.toString(long). This method is intended for use in conjunction with getLong(java.lang.String, long).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#getLong(java.lang.String,long)\"\u003e\u003ccode\u003egetLong(String,long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key with which the string form of value is to be associated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - value whose string form is to be associated with key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey.length()\u003c/code\u003e exceeds \n\u003ccode\u003eMAX_KEY_LENGTH\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "def"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getLong",
+      "comment": "Returns the long value represented by the string associated with the specified key in this preference node. The string is converted to a long as by Long.parseLong(String). Returns the specified default if there is no value associated with the key, the backing store is inaccessible, or if Long.parseLong(String) would throw a NumberFormatException if the associated value were passed. This method is intended for use in conjunction with putLong(java.lang.String, long). If the implementation supports stored defaults and such a default exists, is accessible, and could be converted to a long with Long.parseLong, this long is returned in preference to the specified default.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#putLong(java.lang.String,long)\"\u003e\u003ccode\u003eputLong(String,long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose associated value is to be returned as a long.",
+          "\u003ccode\u003edef\u003c/code\u003e - the value to be returned in the event that this preference node has no value associated with \n\u003ccode\u003ekey\u003c/code\u003e or the associated value cannot be interpreted as a long, or the backing store is inaccessible."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ],
+        "return": [
+          "the long value represented by the string associated with \n\u003ccode\u003ekey\u003c/code\u003e in this preference node, or \n\u003ccode\u003edef\u003c/code\u003e if the associated value does not exist or cannot be interpreted as a long."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "putBoolean",
+      "comment": "Associates a string representing the specified boolean value with the specified key in this preference node. The associated string is \"true\" if the value is true, and \"false\" if it is false. This method is intended for use in conjunction with getBoolean(java.lang.String, boolean).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#getBoolean(java.lang.String,boolean)\"\u003e\u003ccode\u003egetBoolean(String,boolean)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key with which the string form of value is to be associated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - value whose string form is to be associated with key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey.length()\u003c/code\u003e exceeds \n\u003ccode\u003eMAX_KEY_LENGTH\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "def"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getBoolean",
+      "comment": "Returns the boolean value represented by the string associated with the specified key in this preference node. Valid strings are \"true\", which represents true, and \"false\", which represents false. Case is ignored, so, for example, \"TRUE\" and \"False\" are also valid. This method is intended for use in conjunction with putBoolean(java.lang.String, boolean). Returns the specified default if there is no value associated with the key, the backing store is inaccessible, or if the associated value is something other than \"true\" or \"false\", ignoring case. If the implementation supports stored defaults and such a default exists and is accessible, it is used in preference to the specified default, unless the stored default is something other than \"true\" or \"false\", ignoring case, in which case the specified default is used.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#putBoolean(java.lang.String,boolean)\"\u003e\u003ccode\u003eputBoolean(String,boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose associated value is to be returned as a boolean.",
+          "\u003ccode\u003edef\u003c/code\u003e - the value to be returned in the event that this preference node has no value associated with \n\u003ccode\u003ekey\u003c/code\u003e or the associated value cannot be interpreted as a boolean, or the backing store is inaccessible."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ],
+        "return": [
+          "the boolean value represented by the string associated with \n\u003ccode\u003ekey\u003c/code\u003e in this preference node, or \n\u003ccode\u003edef\u003c/code\u003e if the associated value does not exist or cannot be interpreted as a boolean."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "putFloat",
+      "comment": "Associates a string representing the specified float value with the specified key in this preference node. The associated string is the one that would be returned if the float value were passed to Float.toString(float). This method is intended for use in conjunction with getFloat(java.lang.String, float).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#getFloat(java.lang.String,float)\"\u003e\u003ccode\u003egetFloat(String,float)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key with which the string form of value is to be associated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - value whose string form is to be associated with key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey.length()\u003c/code\u003e exceeds \n\u003ccode\u003eMAX_KEY_LENGTH\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "field": {
+            "name": "def"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getFloat",
+      "comment": "Returns the float value represented by the string associated with the specified key in this preference node. The string is converted to an integer as by Float.parseFloat(String). Returns the specified default if there is no value associated with the key, the backing store is inaccessible, or if Float.parseFloat(String) would throw a NumberFormatException if the associated value were passed. This method is intended for use in conjunction with putFloat(java.lang.String, float). If the implementation supports stored defaults and such a default exists, is accessible, and could be converted to a float with Float.parseFloat, this float is returned in preference to the specified default.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#putFloat(java.lang.String,float)\"\u003e\u003ccode\u003eputFloat(String,float)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose associated value is to be returned as a float.",
+          "\u003ccode\u003edef\u003c/code\u003e - the value to be returned in the event that this preference node has no value associated with \n\u003ccode\u003ekey\u003c/code\u003e or the associated value cannot be interpreted as a float, or the backing store is inaccessible."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ],
+        "return": [
+          "the float value represented by the string associated with \n\u003ccode\u003ekey\u003c/code\u003e in this preference node, or \n\u003ccode\u003edef\u003c/code\u003e if the associated value does not exist or cannot be interpreted as a float."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "putDouble",
+      "comment": "Associates a string representing the specified double value with the specified key in this preference node. The associated string is the one that would be returned if the double value were passed to Double.toString(double). This method is intended for use in conjunction with getDouble(java.lang.String, double).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#getDouble(java.lang.String,double)\"\u003e\u003ccode\u003egetDouble(String,double)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key with which the string form of value is to be associated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - value whose string form is to be associated with key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey.length()\u003c/code\u003e exceeds \n\u003ccode\u003eMAX_KEY_LENGTH\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "double",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "def"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getDouble",
+      "comment": "Returns the double value represented by the string associated with the specified key in this preference node. The string is converted to an integer as by Double.parseDouble(String). Returns the specified default if there is no value associated with the key, the backing store is inaccessible, or if Double.parseDouble(String) would throw a NumberFormatException if the associated value were passed. This method is intended for use in conjunction with putDouble(java.lang.String, double). If the implementation supports stored defaults and such a default exists, is accessible, and could be converted to a double with Double.parseDouble, this double is returned in preference to the specified default.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#putDouble(java.lang.String,double)\"\u003e\u003ccode\u003eputDouble(String,double)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose associated value is to be returned as a double.",
+          "\u003ccode\u003edef\u003c/code\u003e - the value to be returned in the event that this preference node has no value associated with \n\u003ccode\u003ekey\u003c/code\u003e or the associated value cannot be interpreted as a double, or the backing store is inaccessible."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ],
+        "return": [
+          "the double value represented by the string associated with \n\u003ccode\u003ekey\u003c/code\u003e in this preference node, or \n\u003ccode\u003edef\u003c/code\u003e if the associated value does not exist or cannot be interpreted as a double."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "putByteArray",
+      "comment": "Associates a string representing the specified byte array with the specified key in this preference node. The associated string is the Base64 encoding of the byte array, as defined in RFC 2045, Section 6.8, with one minor change: the string will consist solely of characters from the Base64 Alphabet; it will not contain any newline characters. Note that the maximum length of the byte array is limited to three quarters of MAX_VALUE_LENGTH so that the length of the Base64 encoded String does not exceed MAX_VALUE_LENGTH. This method is intended for use in conjunction with getByteArray(java.lang.String, byte[]).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#getByteArray(java.lang.String,byte%5B%5D)\"\u003e\u003ccode\u003egetByteArray(String,byte[])\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key with which the string form of value is to be associated.",
+          "\u003ccode\u003evalue\u003c/code\u003e - value whose string form is to be associated with key."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if key or value is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key.length() exceeds MAX_KEY_LENGTH or if value.length exceeds MAX_VALUE_LENGTH*3/4.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "key"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "def"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getByteArray",
+      "comment": "Returns the byte array value represented by the string associated with the specified key in this preference node. Valid strings are Base64 encoded binary data, as defined in RFC 2045, Section 6.8, with one minor change: the string must consist solely of characters from the Base64 Alphabet; no newline characters or extraneous characters are permitted. This method is intended for use in conjunction with putByteArray(java.lang.String, byte[]). Returns the specified default if there is no value associated with the key, the backing store is inaccessible, or if the associated value is not a valid Base64 encoded byte array (as defined above). If the implementation supports stored defaults and such a default exists and is accessible, it is used in preference to the specified default, unless the stored default is not a valid Base64 encoded byte array (as defined above), in which case the specified default is used.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#get(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eget(String,String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#putByteArray(java.lang.String,byte%5B%5D)\"\u003e\u003ccode\u003eputByteArray(String,byte[])\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ekey\u003c/code\u003e - key whose associated value is to be returned as a byte array.",
+          "\u003ccode\u003edef\u003c/code\u003e - the value to be returned in the event that this preference node has no value associated with \n\u003ccode\u003ekey\u003c/code\u003e or the associated value cannot be interpreted as a byte array, or the backing store is inaccessible."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ekey\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e. (A \n\u003ccode\u003enull\u003c/code\u003e value for \n\u003ccode\u003edef\u003c/code\u003e \n\u003ci\u003eis\u003c/i\u003e permitted.)",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if key contains the null control character, code point U+0000."
+        ],
+        "return": [
+          "the byte array value represented by the string associated with \n\u003ccode\u003ekey\u003c/code\u003e in this preference node, or \n\u003ccode\u003edef\u003c/code\u003e if the associated value does not exist or cannot be interpreted as a byte array."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "keys",
+      "comment": "Returns all of the keys that have an associated value in this preference node. (The returned array will be of size zero if this node has no preferences.) If the implementation supports stored defaults and there are any such defaults at this node that have not been overridden, by explicit preferences, the defaults are returned in the array in addition to any explicit preferences.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if this operation cannot be completed due to a failure in the backing store, or inability to communicate with it.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "return": [
+          "an array of the keys that have an associated value in this preference node."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "childrenNames",
+      "comment": "Returns the names of the children of this preference node, relative to this node. (The returned array will be of size zero if this node has no children.)",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if this operation cannot be completed due to a failure in the backing store, or inability to communicate with it.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "return": [
+          "the names of the children of this preference node."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.prefs.Preferences",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "parent",
+      "comment": "Returns the parent of this preference node, or null if this is the root.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "return": [
+          "the parent of this preference node."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.prefs.Preferences",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pathName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "node",
+      "comment": "Returns the named preference node in the same tree as this node, creating it and any of its ancestors if they do not already exist. Accepts a relative or absolute path name. Relative path names (which do not begin with the slash character (\u0027/\u0027)) are interpreted relative to this preference node. If the returned node did not exist prior to this call, this node and any ancestors that were created by this call are not guaranteed to become permanent until the flush method is called on the returned node (or one of its ancestors or descendants).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#flush()\"\u003e\u003ccode\u003eflush()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epathName\u003c/code\u003e - the path name of the preference node to return."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the path name is invalid (i.e., it contains multiple consecutive slash characters, or ends with a slash character and is more than one character long).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if path name is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ],
+        "return": [
+          "the specified preference node."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pathName"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "nodeExists",
+      "comment": "Returns true if the named preference node exists in the same tree as this node. Relative path names (which do not begin with the slash character (\u0027/\u0027)) are interpreted relative to this preference node. If this node (or an ancestor) has already been removed with the removeNode() method, it is legal to invoke this method, but only with the path name \"\"; the invocation will return false. Thus, the idiom p.nodeExists(\"\") may be used to test whether p has been removed.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epathName\u003c/code\u003e - the path name of the node whose existence is to be checked."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if this operation cannot be completed due to a failure in the backing store, or inability to communicate with it.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the path name is invalid (i.e., it contains multiple consecutive slash characters, or ends with a slash character and is more than one character long).",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if path name is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method and \n\u003ccode\u003epathName\u003c/code\u003e is not the empty string (\n\u003ccode\u003e\"\"\u003c/code\u003e)."
+        ],
+        "return": [
+          "true if the specified node exists."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "removeNode",
+      "comment": "Removes this preference node and all of its descendants, invalidating any preferences contained in the removed nodes. Once a node has been removed, attempting any method other than name(), absolutePath(), isUserNode(), flush() or nodeExists(\"\") on the corresponding Preferences instance will fail with an IllegalStateException. (The methods defined on Object can still be invoked on a node after it has been removed; they will not throw IllegalStateException.) The removal is not guaranteed to be persistent until the flush method is called on this node (or an ancestor). If this implementation supports stored defaults, removing a node exposes any stored defaults at or below this node. Thus, a subsequent call to nodeExists on this node\u0027s path name may return true, and a subsequent call to node on this path name may return a (different) Preferences instance representing a non-empty collection of preferences and/or children.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#flush()\"\u003e\u003ccode\u003eflush()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if this operation cannot be completed due to a failure in the backing store, or inability to communicate with it.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has already been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if this method is invoked on the root node."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "name",
+      "comment": "Returns this preference node\u0027s name, relative to its parent.",
+      "tagMap": {
+        "return": [
+          "this preference node\u0027s name, relative to its parent."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "absolutePath",
+      "comment": "Returns this preference node\u0027s absolute path name.",
+      "tagMap": {
+        "return": [
+          "this preference node\u0027s absolute path name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isUserNode",
+      "comment": "Returns true if this preference node is in the user preference tree, false if it\u0027s in the system preference tree.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if this preference node is in the user preference tree, \n\u003ccode\u003efalse\u003c/code\u003e if it\u0027s in the system preference tree."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "toString",
+      "comment": "Returns a string representation of this preferences node, as if computed by the expression:(this.isUserNode() ? \"User\" : \"System\") + \" Preference Node: \" + this.absolutePath().",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of the object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "flush",
+      "comment": "Forces any changes in the contents of this preference node and its descendants to the persistent store. Once this method returns successfully, it is safe to assume that all changes made in the subtree rooted at this node prior to the method invocation have become permanent. Implementations are free to flush changes into the persistent store at any time. They do not need to wait for this method to be called. When a flush occurs on a newly created node, it is made persistent, as are any ancestors (and descendants) that have yet to be made persistent. Note however that any preference value changes in ancestors are not guaranteed to be made persistent. If this method is invoked on a node that has been removed with the removeNode() method, flushSpi() is invoked on this node, but not on others.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#sync()\"\u003e\u003ccode\u003esync()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if this operation cannot be completed due to a failure in the backing store, or inability to communicate with it."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "sync",
+      "comment": "Ensures that future reads from this preference node and its descendants reflect any changes that were committed to the persistent store (from any VM) prior to the sync invocation. As a side-effect, forces any changes in the contents of this preference node and its descendants to the persistent store, as if the flush method had been invoked on this node.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#flush()\"\u003e\u003ccode\u003eflush()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if this operation cannot be completed due to a failure in the backing store, or inability to communicate with it.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.prefs.PreferenceChangeListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pcl"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "addPreferenceChangeListener",
+      "comment": "Registers the specified listener to receive preference change events for this preference node. A preference change event is generated when a preference is added to this node, removed from this node, or when the value associated with a preference is changed. (Preference change events are not generated by the removeNode() method, which generates a node change event. Preference change events are generated by the clear method.) Events are only guaranteed for changes made within the same JVM as the registered listener, though some implementations may generate events for changes made outside this JVM. Events may be generated before the changes have been made persistent. Events are not generated when preferences are modified in descendants of this node; a caller desiring such events must register with each descendant.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removePreferenceChangeListener(java.util.prefs.PreferenceChangeListener)\"\u003e\u003ccode\u003eremovePreferenceChangeListener(PreferenceChangeListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#addNodeChangeListener(java.util.prefs.NodeChangeListener)\"\u003e\u003ccode\u003eaddNodeChangeListener(NodeChangeListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epcl\u003c/code\u003e - The preference change listener to add."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epcl\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.prefs.PreferenceChangeListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pcl"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "removePreferenceChangeListener",
+      "comment": "Removes the specified preference change listener, so it no longer receives preference change events.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#addPreferenceChangeListener(java.util.prefs.PreferenceChangeListener)\"\u003e\u003ccode\u003eaddPreferenceChangeListener(PreferenceChangeListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003epcl\u003c/code\u003e - The preference change listener to remove."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epcl\u003c/code\u003e was not a registered preference change listener on this node.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.prefs.NodeChangeListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ncl"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "addNodeChangeListener",
+      "comment": "Registers the specified listener to receive node change events for this node. A node change event is generated when a child node is added to or removed from this node. (A single removeNode() invocation results in multiple node change events, one for every node in the subtree rooted at the removed node.) Events are only guaranteed for changes made within the same JVM as the registered listener, though some implementations may generate events for changes made outside this JVM. Events may be generated before the changes have become permanent. Events are not generated when indirect descendants of this node are added or removed; a caller desiring such events must register with each descendant. Few guarantees can be made regarding node creation. Because nodes are created implicitly upon access, it may not be feasible for an implementation to determine whether a child node existed in the backing store prior to access (for example, because the backing store is unreachable or cached information is out of date). Under these circumstances, implementations are neither required to generate node change events nor prohibited from doing so.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNodeChangeListener(java.util.prefs.NodeChangeListener)\"\u003e\u003ccode\u003eremoveNodeChangeListener(NodeChangeListener)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#addPreferenceChangeListener(java.util.prefs.PreferenceChangeListener)\"\u003e\u003ccode\u003eaddPreferenceChangeListener(PreferenceChangeListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003encl\u003c/code\u003e - The \n\u003ccode\u003eNodeChangeListener\u003c/code\u003e to add."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003encl\u003c/code\u003e is null.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.prefs.NodeChangeListener",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ncl"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "removeNodeChangeListener",
+      "comment": "Removes the specified NodeChangeListener, so it no longer receives change events.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#addNodeChangeListener(java.util.prefs.NodeChangeListener)\"\u003e\u003ccode\u003eaddNodeChangeListener(NodeChangeListener)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003encl\u003c/code\u003e - The \n\u003ccode\u003eNodeChangeListener\u003c/code\u003e to remove."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003encl\u003c/code\u003e was not a registered \n\u003ccode\u003eNodeChangeListener\u003c/code\u003e on this node.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "os"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "exportNode",
+      "comment": "Emits on the specified output stream an XML document representing all of the preferences contained in this node (but not its descendants). This XML document is, in effect, an offline backup of the node. The XML document will have the following DOCTYPE declaration: \n \u003c!DOCTYPE preferences SYSTEM \"http://java.sun.com/dtd/preferences.dtd\"\u003e\n The UTF-8 character encoding will be used. This method is an exception to the general rule that the results of concurrently executing multiple methods in this class yields results equivalent to some serial execution. If the preferences at this node are modified concurrently with an invocation of this method, the exported preferences comprise a \"fuzzy snapshot\" of the preferences contained in the node; some of the concurrent modifications may be reflected in the exported data while others may not.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#importPreferences(java.io.InputStream)\"\u003e\u003ccode\u003eimportPreferences(InputStream)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eos\u003c/code\u003e - the output stream on which to emit the XML document."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if writing to the specified output stream results in an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if preference data cannot be read from backing store.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.prefs.BackingStoreException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "os"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "exportSubtree",
+      "comment": "Emits an XML document representing all of the preferences contained in this node and all of its descendants. This XML document is, in effect, an offline backup of the subtree rooted at the node. The XML document will have the following DOCTYPE declaration: \n \u003c!DOCTYPE preferences SYSTEM \"http://java.sun.com/dtd/preferences.dtd\"\u003e\n The UTF-8 character encoding will be used. This method is an exception to the general rule that the results of concurrently executing multiple methods in this class yields results equivalent to some serial execution. If the preferences or nodes in the subtree rooted at this node are modified concurrently with an invocation of this method, the exported preferences comprise a \"fuzzy snapshot\" of the subtree; some of the concurrent modifications may be reflected in the exported data while others may not.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#importPreferences(java.io.InputStream)\"\u003e\u003ccode\u003eimportPreferences(InputStream)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#exportNode(java.io.OutputStream)\"\u003e\u003ccode\u003eexportNode(OutputStream)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eos\u003c/code\u003e - the output stream on which to emit the XML document."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if writing to the specified output stream results in an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003eBackingStoreException\u003c/a\u003e\u003c/code\u003e - if preference data cannot be read from backing store.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if this node (or an ancestor) has been removed with the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/Preferences.html#removeNode()\"\u003e\u003ccode\u003eremoveNode()\u003c/code\u003e\u003c/a\u003e method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        },
+        {
+          "name": "java.util.prefs.InvalidPreferencesFormatException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.InputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "is"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "importPreferences",
+      "comment": "Imports all of the preferences represented by the XML document on the specified input stream. The document may represent user preferences or system preferences. If it represents user preferences, the preferences will be imported into the calling user\u0027s preference tree (even if they originally came from a different user\u0027s preference tree). If any of the preferences described by the document inhabit preference nodes that do not exist, the nodes will be created. The XML document must have the following DOCTYPE declaration: \n \u003c!DOCTYPE preferences SYSTEM \"http://java.sun.com/dtd/preferences.dtd\"\u003e\n (This method is designed for use in conjunction with exportNode(OutputStream) and exportSubtree(OutputStream). This method is an exception to the general rule that the results of concurrently executing multiple methods in this class yields results equivalent to some serial execution. The method behaves as if implemented on top of the other public methods in this class, notably node(String) and put(String, String).",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/RuntimePermission.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eRuntimePermission\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eis\u003c/code\u003e - the input stream from which to read the XML document."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if reading from the specified input stream results in an \n\u003ccode\u003eIOException\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.prefs/java/util/prefs/InvalidPreferencesFormatException.html\" title\u003d\"class in java.util.prefs\"\u003eInvalidPreferencesFormatException\u003c/a\u003e\u003c/code\u003e - Data on input stream does not constitute a valid XML document with the mandated document type.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - If a security manager is present and it denies \n\u003ccode\u003eRuntimePermission(\"preferences\")\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Sole constructor. (For invocation by subclass constructors, typically implicit.)",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.util.prefs.Preferences",
+  "comment": "A node in a hierarchical collection of preference data. This class allows applications to store and retrieve user and system preference and configuration data. This data is stored persistently in an implementation-dependent backing store. Typical implementations include flat files, OS-specific registries, directory servers and SQL databases. The user of this class needn\u0027t be concerned with details of the backing store. \n\u003cp\u003eThere are two separate trees of preference nodes, one for user preferences and one for system preferences. Each user has a separate user preference tree, and all users in a given system share the same system preference tree. The precise description of \"user\" and \"system\" will vary from implementation to implementation. Typical information stored in the user preference tree might include font choice, color choice, or preferred window location and size for a particular application. Typical information stored in the system preference tree might include installation configuration data for an application. \u003c/p\u003e\n\u003cp\u003eNodes in a preference tree are named in a similar fashion to directories in a hierarchical file system. Every node in a preference tree has a \u003ci\u003enode name\u003c/i\u003e (which is not necessarily unique), a unique \u003ci\u003eabsolute path name\u003c/i\u003e, and a path name \u003ci\u003erelative\u003c/i\u003e to each ancestor including itself. \u003c/p\u003e\n\u003cp\u003eThe root node has a node name of the empty string (\"\"). Every other node has an arbitrary node name, specified at the time it is created. The only restrictions on this name are that it cannot be the empty string, and it cannot contain the slash character (\u0027/\u0027). \u003c/p\u003e\n\u003cp\u003eThe root node has an absolute path name of \u003ccode\u003e\"/\"\u003c/code\u003e. Children of the root node have absolute path names of \u003ccode\u003e\"/\" + \u003c/code\u003e\u003ci\u003e\u0026lt;node name\u0026gt;\u003c/i\u003e. All other nodes have absolute path names of \u003ci\u003e\u0026lt;parent\u0027s absolute path name\u0026gt;\u003c/i\u003e\u003ccode\u003e + \"/\" + \u003c/code\u003e\u003ci\u003e\u0026lt;node name\u0026gt;\u003c/i\u003e. Note that all absolute path names begin with the slash character. \u003c/p\u003e\n\u003cp\u003eA node \u003ci\u003en\u003c/i\u003e\u0027s path name relative to its ancestor \u003ci\u003ea\u003c/i\u003e is simply the string that must be appended to \u003ci\u003ea\u003c/i\u003e\u0027s absolute path name in order to form \u003ci\u003en\u003c/i\u003e\u0027s absolute path name, with the initial slash character (if present) removed. Note that: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eNo relative path names begin with the slash character. \u003c/li\u003e\n \u003cli\u003eEvery node\u0027s path name relative to itself is the empty string. \u003c/li\u003e\n \u003cli\u003eEvery node\u0027s path name relative to its parent is its node name (except for the root node, which does not have a parent). \u003c/li\u003e\n \u003cli\u003eEvery node\u0027s path name relative to the root is its absolute path name with the initial slash character removed. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eNote finally that: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eNo path name contains multiple consecutive slash characters. \u003c/li\u003e\n \u003cli\u003eNo path name with the exception of the root\u0027s absolute path name ends in the slash character. \u003c/li\u003e\n \u003cli\u003eAny string that conforms to these two rules is a valid path name. \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eAll of the methods that modify preferences data are permitted to operate asynchronously; they may return immediately, and changes will eventually propagate to the persistent backing store with an implementation-dependent delay. The \u003ccode\u003eflush\u003c/code\u003e method may be used to synchronously force updates to the backing store. Normal termination of the Java Virtual Machine will \u003ci\u003enot\u003c/i\u003e result in the loss of pending updates -- an explicit \u003ccode\u003eflush\u003c/code\u003e invocation is \u003ci\u003enot\u003c/i\u003e required upon termination to ensure that pending updates are made persistent. \u003c/p\u003e\n\u003cp\u003eAll of the methods that read preferences from a \u003ccode\u003ePreferences\u003c/code\u003e object require the invoker to provide a default value. The default value is returned if no value has been previously set \u003ci\u003eor if the backing store is unavailable\u003c/i\u003e. The intent is to allow applications to operate, albeit with slightly degraded functionality, even if the backing store becomes unavailable. Several methods, like \u003ccode\u003eflush\u003c/code\u003e, have semantics that prevent them from operating if the backing store is unavailable. Ordinary applications should have no need to invoke any of these methods, which can be identified by the fact that they are declared to throw \u003ca href\u003d\"BackingStoreException.html\" title\u003d\"class in java.util.prefs\"\u003e\u003ccode\u003eBackingStoreException\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003eThe methods in this class may be invoked concurrently by multiple threads in a single JVM without the need for external synchronization, and the results will be equivalent to some serial execution. If this class is used concurrently \u003ci\u003eby multiple JVMs\u003c/i\u003e that store their preference data in the same backing store, the data store will not be corrupted, but no other guarantees are made concerning the consistency of the preference data. \u003c/p\u003e\n\u003cp\u003eThis class contains an export/import facility, allowing preferences to be \"exported\" to an XML document, and XML documents representing preferences to be \"imported\" back into the system. This facility may be used to back up all or part of a preference tree, and subsequently restore from the backup. \u003c/p\u003e\n\u003cp\u003eThe XML document has the following DOCTYPE declaration: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\n \u0026lt;!DOCTYPE preferences SYSTEM \"http://java.sun.com/dtd/preferences.dtd\"\u0026gt;\n \u003c/code\u003e\u003c/pre\u003e Note that the system URI (http://java.sun.com/dtd/preferences.dtd) is \n\u003ci\u003enot\u003c/i\u003e accessed when exporting or importing preferences; it merely serves as a string to uniquely identify the DTD, which is: \n\u003cpre\u003e\u003ccode\u003e\n    \u0026lt;?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u0026gt;\n\n    \u0026lt;!-- DTD for a Preferences tree. --\u0026gt;\n\n    \u0026lt;!-- The preferences element is at the root of an XML document\n         representing a Preferences tree. --\u0026gt;\n    \u0026lt;!ELEMENT preferences (root)\u0026gt;\n\n    \u0026lt;!-- The preferences element contains an optional version attribute,\n          which specifies version of DTD. --\u0026gt;\n    \u0026lt;!ATTLIST preferences EXTERNAL_XML_VERSION CDATA \"0.0\" \u0026gt;\n\n    \u0026lt;!-- The root element has a map representing the root\u0027s preferences\n         (if any), and one node for each child of the root (if any). --\u0026gt;\n    \u0026lt;!ELEMENT root (map, node*) \u0026gt;\n\n    \u0026lt;!-- Additionally, the root contains a type attribute, which\n         specifies whether it\u0027s the system or user root. --\u0026gt;\n    \u0026lt;!ATTLIST root\n              type (system|user) #REQUIRED \u0026gt;\n\n    \u0026lt;!-- Each node has a map representing its preferences (if any),\n         and one node for each child (if any). --\u0026gt;\n    \u0026lt;!ELEMENT node (map, node*) \u0026gt;\n\n    \u0026lt;!-- Additionally, each node has a name attribute --\u0026gt;\n    \u0026lt;!ATTLIST node\n              name CDATA #REQUIRED \u0026gt;\n\n    \u0026lt;!-- A map represents the preferences stored at a node (if any). --\u0026gt;\n    \u0026lt;!ELEMENT map (entry*) \u0026gt;\n\n    \u0026lt;!-- An entry represents a single preference, which is simply\n          a key-value pair. --\u0026gt;\n    \u0026lt;!ELEMENT entry EMPTY \u0026gt;\n    \u0026lt;!ATTLIST entry\n              key   CDATA #REQUIRED\n              value CDATA #REQUIRED \u0026gt;\n \u003c/code\u003e\u003c/pre\u003e Every \n\u003ccode\u003ePreferences\u003c/code\u003e implementation must have an associated \n\u003ca href\u003d\"PreferencesFactory.html\" title\u003d\"interface in java.util.prefs\"\u003e\u003ccode\u003ePreferencesFactory\u003c/code\u003e\u003c/a\u003e implementation. Every Java(TM) SE implementation must provide some means of specifying which \n\u003ccode\u003ePreferencesFactory\u003c/code\u003e implementation is used to generate the root preferences nodes. This allows the administrator to replace the default preferences implementation with an alternative implementation.\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "implNote": [
+      "The \n\u003ccode\u003ePreferencesFactory\u003c/code\u003e implementation is located as follows: \n\u003col\u003e \n \u003cli\u003e\u003cp\u003eIf the system property \u003ccode\u003e\u003cspan id\u003d\"java.util.prefs.PreferencesFactory\" class\u003d\"search-tag-result\"\u003ejava.util.prefs.PreferencesFactory\u003c/span\u003e\u003c/code\u003e is defined, then it is taken to be the fully-qualified name of a class implementing the \u003ccode\u003ePreferencesFactory\u003c/code\u003e interface. The class is loaded and instantiated; if this process fails then an unspecified error is thrown.\u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e\u003cp\u003e If a \u003ccode\u003ePreferencesFactory\u003c/code\u003e implementation class file has been installed in a jar file that is visible to the \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassLoader.html#getSystemClassLoader()\"\u003e\u003ccode\u003esystem class loader\u003c/code\u003e\u003c/a\u003e, and that jar file contains a provider-configuration file named \u003ccode\u003ejava.util.prefs.PreferencesFactory\u003c/code\u003e in the resource directory \u003ccode\u003eMETA-INF/services\u003c/code\u003e, then the first class name specified in that file is taken. If more than one such jar file is provided, the first one found will be used. The class is loaded and instantiated; if this process fails then an unspecified error is thrown. \u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e\u003cp\u003eFinally, if neither the above-mentioned system property nor an extension jar file is provided, then the system-wide default \u003ccode\u003ePreferencesFactory\u003c/code\u003e implementation for the underlying platform is loaded and instantiated.\u003c/p\u003e\u003c/li\u003e \n\u003c/ol\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

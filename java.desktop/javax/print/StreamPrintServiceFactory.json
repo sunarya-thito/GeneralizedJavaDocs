@@ -1,0 +1,130 @@
+{
+  "packageName": "javax.print",
+  "simpleName": "StreamPrintServiceFactory",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "javax.print.StreamPrintServiceFactory",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.print.DocFlavor",
+            "type": "Class"
+          },
+          "field": {
+            "name": "flavor"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "outputMimeType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "lookupStreamPrintServiceFactories",
+      "comment": "Locates factories for print services that can be used with a print job to output a stream of data in the format specified by outputMimeType. The outputMimeType parameter describes the document type that you want to create, whereas the flavor parameter describes the format in which the input data will be provided by the application to the StreamPrintService. Although null is an acceptable value to use in the lookup of stream printing services, it\u0027s typical to search for a particular desired format, such as Postscript(TM).",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eflavor\u003c/code\u003e - of the input document type - \n\u003ccode\u003enull\u003c/code\u003e means match all types",
+          "\u003ccode\u003eoutputMimeType\u003c/code\u003e - representing the required output format, used to identify suitable stream printer factories. A value of \n\u003ccode\u003enull\u003c/code\u003e means match all formats."
+        ],
+        "return": [
+          "matching factories for stream print service instance, empty if no suitable factories could be located"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getOutputFormat",
+      "comment": "Queries the factory for the document format that is emitted by printers obtained from this factory.",
+      "tagMap": {
+        "return": [
+          "the output format described as a mime type"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.print.DocFlavor",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getSupportedDocFlavors",
+      "comment": "Queries the factory for the document flavors that can be accepted by printers obtained from this factory.",
+      "tagMap": {
+        "return": [
+          "array of supported doc flavors"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.print.StreamPrintService",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.OutputStream",
+            "type": "Class"
+          },
+          "field": {
+            "name": "out"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getPrintService",
+      "comment": "Returns a StreamPrintService that can print to the specified output stream. The output stream is created and managed by the application. It is the application\u0027s responsibility to close the stream and to ensure that this Printer is not reused. The application should not close this stream until any print job created from the printer is complete. Doing so earlier may generate a PrinterException and an event indicating that the job failed. Whereas a PrintService connected to a physical printer can be reused, a StreamPrintService connected to a stream cannot. The underlying StreamPrintService may be disposed by the print system with the dispose method before returning from the print method of DocPrintJob so that the print system knows this printer is no longer usable. This is equivalent to a physical printer going offline - permanently. Applications may supply a null print stream to create a queryable service. It is not valid to create a PrintJob for such a stream. Implementations which allocate resources on construction should examine the stream and may wish to only allocate resources if the stream is non-null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eout\u003c/code\u003e - destination stream for generated output"
+        ],
+        "return": [
+          "a \n\u003ccode\u003ePrintService\u003c/code\u003e which will generate the format specified by the \n\u003ccode\u003eDocFlavor\u003c/code\u003e supported by this factory"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructor for subclasses to call.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.print.StreamPrintServiceFactory",
+  "comment": "A \n\u003ccode\u003eStreamPrintServiceFactory\u003c/code\u003e is the factory for \n\u003ca href\u003d\"StreamPrintService.html\" title\u003d\"class in javax.print\"\u003e\u003ccode\u003eStreamPrintService\u003c/code\u003e\u003c/a\u003e instances, which can print to an output stream in a particular document format described as a mime type. A typical output document format may be Postscript(TM). \n\u003cp\u003e This class is implemented by a service and located by the implementation using the \u003ca href\u003d\"../../../java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e facility. \u003c/p\u003e\n\u003cp\u003e Applications locate instances of this class by calling the \u003ca href\u003d\"#lookupStreamPrintServiceFactories(javax.print.DocFlavor,java.lang.String)\"\u003e\u003ccode\u003elookupStreamPrintServiceFactories(DocFlavor, String)\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e Applications can use a \u003ccode\u003eStreamPrintService\u003c/code\u003e obtained from a factory in place of a \u003ccode\u003ePrintService\u003c/code\u003e which represents a physical printer device.\u003c/p\u003e",
+  "tagMap": {}
+}

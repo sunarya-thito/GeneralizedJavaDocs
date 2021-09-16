@@ -1,0 +1,153 @@
+{
+  "packageName": "javax.crypto.spec",
+  "simpleName": "OAEPParameterSpec",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "javax.crypto.spec.OAEPParameterSpec",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "DEFAULT",
+      "comment": "The OAEP parameter set with all default values.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getDigestAlgorithm",
+      "comment": "Returns the message digest algorithm name.",
+      "tagMap": {
+        "return": [
+          "the message digest algorithm name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMGFAlgorithm",
+      "comment": "Returns the mask generation function algorithm name.",
+      "tagMap": {
+        "return": [
+          "the mask generation function algorithm name."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.spec.AlgorithmParameterSpec",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMGFParameters",
+      "comment": "Returns the parameters for the mask generation function.",
+      "tagMap": {
+        "return": [
+          "the parameters for the mask generation function."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.crypto.spec.PSource",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getPSource",
+      "comment": "Returns the source of encoding input P.",
+      "tagMap": {
+        "return": [
+          "the source of encoding input P."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mdName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mgfName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.spec.AlgorithmParameterSpec",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mgfSpec"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.crypto.spec.PSource",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pSrc"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a parameter set for OAEP padding as defined in the PKCS #1 standard using the specified message digest algorithm mdName, mask generation function algorithm mgfName, parameters for the mask generation function mgfSpec, and source of the encoding input P pSrc.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003emdName\u003c/code\u003e - the algorithm name for the message digest.",
+          "\u003ccode\u003emgfName\u003c/code\u003e - the algorithm name for the mask generation function.",
+          "\u003ccode\u003emgfSpec\u003c/code\u003e - the parameters for the mask generation function. If null is specified, null will be returned by getMGFParameters().",
+          "\u003ccode\u003epSrc\u003c/code\u003e - the source of the encoding input P."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emdName\u003c/code\u003e, \n\u003ccode\u003emgfName\u003c/code\u003e, or \n\u003ccode\u003epSrc\u003c/code\u003e is null."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.crypto.spec.OAEPParameterSpec",
+  "comment": "This class specifies the set of parameters used with OAEP Padding, as defined in the \n\u003ca href\u003d\"https://tools.ietf.org/rfc/rfc8017.txt\"\u003ePKCS#1 v2.2\u003c/a\u003e standard. Its ASN.1 definition in PKCS#1 standard is described below: \n\u003cpre\u003e RSAES-OAEP-params ::\u003d SEQUENCE {\n   hashAlgorithm      [0] HashAlgorithm     DEFAULT sha1,\n   maskGenAlgorithm   [1] MaskGenAlgorithm  DEFAULT mgf1SHA1,\n   pSourceAlgorithm   [2] PSourceAlgorithm  DEFAULT pSpecifiedEmpty\n }\n \u003c/pre\u003e where \n\u003cpre\u003e HashAlgorithm ::\u003d AlgorithmIdentifier {\n   {OAEP-PSSDigestAlgorithms}\n }\n MaskGenAlgorithm ::\u003d AlgorithmIdentifier { {PKCS1MGFAlgorithms} }\n PSourceAlgorithm ::\u003d AlgorithmIdentifier {\n   {PKCS1PSourceAlgorithms}\n }\n\n OAEP-PSSDigestAlgorithms    ALGORITHM-IDENTIFIER ::\u003d {\n   { OID id-sha1       PARAMETERS NULL }|\n   { OID id-sha224     PARAMETERS NULL }|\n   { OID id-sha256     PARAMETERS NULL }|\n   { OID id-sha384     PARAMETERS NULL }|\n   { OID id-sha512     PARAMETERS NULL }|\n   { OID id-sha512-224 PARAMETERS NULL }|\n   { OID id-sha512-256 PARAMETERS NULL },\n   ...  -- Allows for future expansion --\n }\n PKCS1MGFAlgorithms    ALGORITHM-IDENTIFIER ::\u003d {\n   { OID id-mgf1 PARAMETERS HashAlgorithm },\n   ...  -- Allows for future expansion --\n }\n PKCS1PSourceAlgorithms    ALGORITHM-IDENTIFIER ::\u003d {\n   { OID id-pSpecified PARAMETERS EncodingParameters },\n   ...  -- Allows for future expansion --\n }\n EncodingParameters ::\u003d OCTET STRING(SIZE(0..MAX))\n \u003c/pre\u003e \n\u003cp\u003eNote: the OAEPParameterSpec.DEFAULT uses the following: \u003c/p\u003e\n\u003cpre\u003e     message digest  -- \"SHA-1\"\n     mask generation function (mgf) -- \"MGF1\"\n     parameters for mgf -- MGF1ParameterSpec.SHA1\n     source of encoding input -- PSource.PSpecified.DEFAULT\n \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/spec/MGF1ParameterSpec.html\" title\u003d\"class in java.security.spec\"\u003e\u003ccode\u003eMGF1ParameterSpec\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/javax/crypto/spec/PSource.html\" title\u003d\"class in javax.crypto.spec\"\u003e\u003ccode\u003ePSource\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

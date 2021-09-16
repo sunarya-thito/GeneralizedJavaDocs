@@ -1,0 +1,692 @@
+{
+  "packageName": "java.util.concurrent",
+  "simpleName": "SubmissionPublisher",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.concurrent.Flow$Subscriber",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.concurrent.SubmissionPublisher",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "subscriber"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "subscribe",
+      "comment": "Adds the given Subscriber unless already subscribed. If already subscribed, the Subscriber\u0027s onError method is invoked on the existing subscription with an IllegalStateException. Otherwise, upon success, the Subscriber\u0027s onSubscribe method is invoked asynchronously with a new Flow.Subscription. If onSubscribe throws an exception, the subscription is cancelled. Otherwise, if this SubmissionPublisher was closed exceptionally, then the subscriber\u0027s onError method is invoked with the corresponding exception, or if closed without exception, the subscriber\u0027s onComplete method is invoked. Subscribers may enable receiving items by invoking the request method of the new Subscription, and may unsubscribe by invoking its cancel method.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.Publisher.html#subscribe(java.util.concurrent.Flow.Subscriber)\"\u003esubscribe\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/Flow.Publisher.html\" title\u003d\"interface in java.util.concurrent\"\u003eFlow.Publisher\u003c/a\u003e\u0026lt;\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/SubmissionPublisher.html\" title\u003d\"type parameter in SubmissionPublisher\"\u003eT\u003c/a\u003e\u0026gt;\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003esubscriber\u003c/code\u003e - the subscriber"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if subscriber is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.concurrent.SubmissionPublisher",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "item"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "submit",
+      "comment": "Publishes the given item to each current subscriber by asynchronously invoking its onNext method, blocking uninterruptibly while resources for any subscriber are unavailable. This method returns an estimate of the maximum lag (number of items submitted but not yet consumed) among all current subscribers. This value is at least one (accounting for this submitted item) if there are any subscribers, else zero. If the Executor for this publisher throws a RejectedExecutionException (or any other RuntimeException or Error) when attempting to asynchronously notify subscribers, then this exception is rethrown, in which case not all subscribers will have been issued this item.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - the (non-null) item to publish"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if item is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if thrown by Executor"
+        ],
+        "return": [
+          "the estimated maximum lag among subscribers"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.concurrent.SubmissionPublisher",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "item"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.function.BiPredicate",
+            "parameters": [
+              {
+                "name": "java.util.concurrent.Flow$Subscriber",
+                "parameters": [
+                  {
+                    "lowerBounds": [
+                      {
+                        "owner": "java.util.concurrent.SubmissionPublisher",
+                        "name": "T",
+                        "type": "Variable"
+                      }
+                    ],
+                    "type": "Wildcard"
+                  }
+                ],
+                "type": "Class"
+              },
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.concurrent.SubmissionPublisher",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "onDrop"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "offer",
+      "comment": "Publishes the given item, if possible, to each current subscriber by asynchronously invoking its onNext method. The item may be dropped by one or more subscribers if resource limits are exceeded, in which case the given handler (if non-null) is invoked, and if it returns true, retried once. Other calls to methods in this class by other threads are blocked while the handler is invoked. Unless recovery is assured, options are usually limited to logging the error and/or issuing an onError signal to the subscriber. This method returns a status indicator: If negative, it represents the (negative) number of drops (failed attempts to issue the item to a subscriber). Otherwise it is an estimate of the maximum lag (number of items submitted but not yet consumed) among all current subscribers. This value is at least one (accounting for this submitted item) if there are any subscribers, else zero. If the Executor for this publisher throws a RejectedExecutionException (or any other RuntimeException or Error) when attempting to asynchronously notify subscribers, or the drop handler throws an exception when processing a dropped item, then this exception is rethrown.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - the (non-null) item to publish",
+          "\u003ccode\u003eonDrop\u003c/code\u003e - if non-null, the handler invoked upon a drop to a subscriber, with arguments of the subscriber and item; if it returns true, an offer is re-attempted (once)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if item is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if thrown by Executor"
+        ],
+        "return": [
+          "if negative, the (negative) number of drops; otherwise an estimate of maximum lag"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "java.util.concurrent.SubmissionPublisher",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "item"
+          }
+        },
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "timeout"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.concurrent.TimeUnit",
+            "type": "Class"
+          },
+          "field": {
+            "name": "unit"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.function.BiPredicate",
+            "parameters": [
+              {
+                "name": "java.util.concurrent.Flow$Subscriber",
+                "parameters": [
+                  {
+                    "lowerBounds": [
+                      {
+                        "owner": "java.util.concurrent.SubmissionPublisher",
+                        "name": "T",
+                        "type": "Variable"
+                      }
+                    ],
+                    "type": "Wildcard"
+                  }
+                ],
+                "type": "Class"
+              },
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.concurrent.SubmissionPublisher",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "onDrop"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "offer",
+      "comment": "Publishes the given item, if possible, to each current subscriber by asynchronously invoking its onNext method, blocking while resources for any subscription are unavailable, up to the specified timeout or until the caller thread is interrupted, at which point the given handler (if non-null) is invoked, and if it returns true, retried once. (The drop handler may distinguish timeouts from interrupts by checking whether the current thread is interrupted.) Other calls to methods in this class by other threads are blocked while the handler is invoked. Unless recovery is assured, options are usually limited to logging the error and/or issuing an onError signal to the subscriber. This method returns a status indicator: If negative, it represents the (negative) number of drops (failed attempts to issue the item to a subscriber). Otherwise it is an estimate of the maximum lag (number of items submitted but not yet consumed) among all current subscribers. This value is at least one (accounting for this submitted item) if there are any subscribers, else zero. If the Executor for this publisher throws a RejectedExecutionException (or any other RuntimeException or Error) when attempting to asynchronously notify subscribers, or the drop handler throws an exception when processing a dropped item, then this exception is rethrown.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eitem\u003c/code\u003e - the (non-null) item to publish",
+          "\u003ccode\u003etimeout\u003c/code\u003e - how long to wait for resources for any subscriber before giving up, in units of \n\u003ccode\u003eunit\u003c/code\u003e",
+          "\u003ccode\u003eunit\u003c/code\u003e - a \n\u003ccode\u003eTimeUnit\u003c/code\u003e determining how to interpret the \n\u003ccode\u003etimeout\u003c/code\u003e parameter",
+          "\u003ccode\u003eonDrop\u003c/code\u003e - if non-null, the handler invoked upon a drop to a subscriber, with arguments of the subscriber and item; if it returns true, an offer is re-attempted (once)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalStateException.html\" title\u003d\"class in java.lang\"\u003eIllegalStateException\u003c/a\u003e\u003c/code\u003e - if closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if item is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003eRejectedExecutionException\u003c/a\u003e\u003c/code\u003e - if thrown by Executor"
+        ],
+        "return": [
+          "if negative, the (negative) number of drops; otherwise an estimate of maximum lag"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "close",
+      "comment": "Unless already closed, issues onComplete signals to current subscribers, and disallows subsequent attempts to publish. Upon return, this method does NOT guarantee that all subscribers have yet completed.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "error"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "closeExceptionally",
+      "comment": "Unless already closed, issues onError signals to current subscribers with the given error, and disallows subsequent attempts to publish. Future subscribers also receive the given error. Upon return, this method does NOT guarantee that all subscribers have yet completed.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eerror\u003c/code\u003e - the \n\u003ccode\u003eonError\u003c/code\u003e argument sent to subscribers"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if error is null"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isClosed",
+      "comment": "Returns true if this publisher is not accepting submissions.",
+      "tagMap": {
+        "return": [
+          "true if closed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Throwable",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getClosedException",
+      "comment": "Returns the exception associated with closeExceptionally, or null if not closed or if closed normally.",
+      "tagMap": {
+        "return": [
+          "the exception, or null if none"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "hasSubscribers",
+      "comment": "Returns true if this publisher has any subscribers.",
+      "tagMap": {
+        "return": [
+          "true if this publisher has any subscribers"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getNumberOfSubscribers",
+      "comment": "Returns the number of current subscribers.",
+      "tagMap": {
+        "return": [
+          "the number of current subscribers"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.Executor",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getExecutor",
+      "comment": "Returns the Executor used for asynchronous delivery.",
+      "tagMap": {
+        "return": [
+          "the Executor used for asynchronous delivery"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getMaxBufferCapacity",
+      "comment": "Returns the maximum per-subscriber buffer capacity.",
+      "tagMap": {
+        "return": [
+          "the maximum per-subscriber buffer capacity"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.List",
+        "parameters": [
+          {
+            "name": "java.util.concurrent.Flow$Subscriber",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.concurrent.SubmissionPublisher",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getSubscribers",
+      "comment": "Returns a list of current subscribers for monitoring and tracking purposes, not for invoking Flow.Subscriber methods on the subscribers.",
+      "tagMap": {
+        "return": [
+          "list of current subscribers"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.concurrent.Flow$Subscriber",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.concurrent.SubmissionPublisher",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "subscriber"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "isSubscribed",
+      "comment": "Returns true if the given Subscriber is currently subscribed.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esubscriber\u003c/code\u003e - the subscriber"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if subscriber is null"
+        ],
+        "return": [
+          "true if currently subscribed"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "estimateMinimumDemand",
+      "comment": "Returns an estimate of the minimum number of items requested (via request) but not yet produced, among all current subscribers.",
+      "tagMap": {
+        "return": [
+          "the estimate, or zero if no subscribers"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "estimateMaximumLag",
+      "comment": "Returns an estimate of the maximum number of items produced but not yet consumed among all current subscribers.",
+      "tagMap": {
+        "return": [
+          "the estimate"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletableFuture",
+        "parameters": [
+          {
+            "name": "java.lang.Void",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.function.Consumer",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "owner": "java.util.concurrent.SubmissionPublisher",
+                    "name": "T",
+                    "type": "Variable"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "consumer"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "consume",
+      "comment": "Processes all published items using the given Consumer function. Returns a CompletableFuture that is completed normally when this publisher signals onComplete, or completed exceptionally upon any error, or an exception is thrown by the Consumer, or the returned CompletableFuture is cancelled, in which case no further items are processed.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003econsumer\u003c/code\u003e - the function applied to each onNext item"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if consumer is null"
+        ],
+        "return": [
+          "a CompletableFuture that is completed normally when the publisher signals onComplete, and exceptionally upon any error or cancellation"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.concurrent.Executor",
+            "type": "Class"
+          },
+          "field": {
+            "name": "executor"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxBufferCapacity"
+          }
+        },
+        {
+          "type": {
+            "name": "java.util.function.BiConsumer",
+            "parameters": [
+              {
+                "lowerBounds": [
+                  {
+                    "name": "java.util.concurrent.Flow$Subscriber",
+                    "parameters": [
+                      {
+                        "lowerBounds": [
+                          {
+                            "owner": "java.util.concurrent.SubmissionPublisher",
+                            "name": "T",
+                            "type": "Variable"
+                          }
+                        ],
+                        "type": "Wildcard"
+                      }
+                    ],
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              },
+              {
+                "lowerBounds": [
+                  {
+                    "name": "java.lang.Throwable",
+                    "type": "Class"
+                  }
+                ],
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "handler"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new SubmissionPublisher using the given Executor for async delivery to subscribers, with the given maximum buffer size for each subscriber, and, if non-null, the given handler invoked when any Subscriber throws an exception in method onNext.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eexecutor\u003c/code\u003e - the executor to use for async delivery, supporting creation of at least one independent thread",
+          "\u003ccode\u003emaxBufferCapacity\u003c/code\u003e - the maximum capacity for each subscriber\u0027s buffer (the enforced capacity may be rounded up to the nearest power of two and/or bounded by the largest value supported by this implementation; method \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/SubmissionPublisher.html#getMaxBufferCapacity()\"\u003e\u003ccode\u003egetMaxBufferCapacity()\u003c/code\u003e\u003c/a\u003e returns the actual value)",
+          "\u003ccode\u003ehandler\u003c/code\u003e - if non-null, procedure to invoke upon exception thrown in method \n\u003ccode\u003eonNext\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if executor is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if maxBufferCapacity not positive"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.concurrent.Executor",
+            "type": "Class"
+          },
+          "field": {
+            "name": "executor"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxBufferCapacity"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new SubmissionPublisher using the given Executor for async delivery to subscribers, with the given maximum buffer size for each subscriber, and no handler for Subscriber exceptions in method onNext.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eexecutor\u003c/code\u003e - the executor to use for async delivery, supporting creation of at least one independent thread",
+          "\u003ccode\u003emaxBufferCapacity\u003c/code\u003e - the maximum capacity for each subscriber\u0027s buffer (the enforced capacity may be rounded up to the nearest power of two and/or bounded by the largest value supported by this implementation; method \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/concurrent/SubmissionPublisher.html#getMaxBufferCapacity()\"\u003e\u003ccode\u003egetMaxBufferCapacity()\u003c/code\u003e\u003c/a\u003e returns the actual value)"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if executor is null",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if maxBufferCapacity not positive"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a new SubmissionPublisher using the ForkJoinPool.commonPool() for async delivery to subscribers (unless it does not support a parallelism level of at least two, in which case, a new Thread is created to run each task), with maximum buffer capacity of Flow.defaultBufferSize(), and no handler for Subscriber exceptions in method onNext.",
+      "tagMap": {}
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.util.concurrent.SubmissionPublisher",
+  "comment": "A \n\u003ca href\u003d\"Flow.Publisher.html\" title\u003d\"interface in java.util.concurrent\"\u003e\u003ccode\u003eFlow.Publisher\u003c/code\u003e\u003c/a\u003e that asynchronously issues submitted (non-null) items to current subscribers until it is closed. Each current subscriber receives newly submitted items in the same order unless drops or exceptions are encountered. Using a SubmissionPublisher allows item generators to act as compliant \n\u003ca href\u003d\"http://www.reactive-streams.org/\"\u003e reactive-streams\u003c/a\u003e Publishers relying on drop handling and/or blocking for flow control. \n\u003cp\u003eA SubmissionPublisher uses the \u003ca href\u003d\"Executor.html\" title\u003d\"interface in java.util.concurrent\"\u003e\u003ccode\u003eExecutor\u003c/code\u003e\u003c/a\u003e supplied in its constructor for delivery to subscribers. The best choice of Executor depends on expected usage. If the generator(s) of submitted items run in separate threads, and the number of subscribers can be estimated, consider using a \u003ca href\u003d\"Executors.html#newFixedThreadPool(int)\"\u003e\u003ccode\u003eExecutors.newFixedThreadPool(int)\u003c/code\u003e\u003c/a\u003e. Otherwise consider using the default, normally the \u003ca href\u003d\"ForkJoinPool.html#commonPool()\"\u003e\u003ccode\u003eForkJoinPool.commonPool()\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003eBuffering allows producers and consumers to transiently operate at different rates. Each subscriber uses an independent buffer. Buffers are created upon first use and expanded as needed up to the given maximum. (The enforced capacity may be rounded up to the nearest power of two and/or bounded by the largest value supported by this implementation.) Invocations of \u003ca href\u003d\"Flow.Subscription.html#request(long)\"\u003e\u003ccode\u003erequest\u003c/code\u003e\u003c/a\u003e do not directly result in buffer expansion, but risk saturation if unfilled requests exceed the maximum capacity. The default value of \u003ca href\u003d\"Flow.html#defaultBufferSize()\"\u003e\u003ccode\u003eFlow.defaultBufferSize()\u003c/code\u003e\u003c/a\u003e may provide a useful starting point for choosing a capacity based on expected rates, resources, and usages. \u003c/p\u003e\n\u003cp\u003eA single SubmissionPublisher may be shared among multiple sources. Actions in a source thread prior to publishing an item or issuing a signal \u003ca href\u003d\"package-summary.html#MemoryVisibility\"\u003e \u003ci\u003ehappen-before\u003c/i\u003e\u003c/a\u003e actions subsequent to the corresponding access by each subscriber. But reported estimates of lag and demand are designed for use in monitoring, not for synchronization control, and may reflect stale or inaccurate views of progress. \u003c/p\u003e\n\u003cp\u003ePublication methods support different policies about what to do when buffers are saturated. Method \u003ca href\u003d\"#submit(T)\"\u003e\u003ccode\u003esubmit\u003c/code\u003e\u003c/a\u003e blocks until resources are available. This is simplest, but least responsive. The \u003ccode\u003eoffer\u003c/code\u003e methods may drop items (either immediately or with bounded timeout), but provide an opportunity to interpose a handler and then retry. \u003c/p\u003e\n\u003cp\u003eIf any Subscriber method throws an exception, its subscription is cancelled. If a handler is supplied as a constructor argument, it is invoked before cancellation upon an exception in method \u003ca href\u003d\"Flow.Subscriber.html#onNext(T)\"\u003e\u003ccode\u003eonNext\u003c/code\u003e\u003c/a\u003e, but exceptions in methods \u003ca href\u003d\"Flow.Subscriber.html#onSubscribe(java.util.concurrent.Flow.Subscription)\"\u003e\u003ccode\u003eonSubscribe\u003c/code\u003e\u003c/a\u003e, \u003ca href\u003d\"Flow.Subscriber.html#onError(java.lang.Throwable)\"\u003e\u003ccode\u003eonError\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"Flow.Subscriber.html#onComplete()\"\u003e\u003ccode\u003eonComplete\u003c/code\u003e\u003c/a\u003e are not recorded or handled before cancellation. If the supplied Executor throws \u003ca href\u003d\"RejectedExecutionException.html\" title\u003d\"class in java.util.concurrent\"\u003e\u003ccode\u003eRejectedExecutionException\u003c/code\u003e\u003c/a\u003e (or any other RuntimeException or Error) when attempting to execute a task, or a drop handler throws an exception when processing a dropped item, then the exception is rethrown. In these cases, not all subscribers will have been issued the published item. It is usually good practice to \u003ca href\u003d\"#closeExceptionally(java.lang.Throwable)\"\u003e\u003ccode\u003ecloseExceptionally\u003c/code\u003e\u003c/a\u003e in these cases. \u003c/p\u003e\n\u003cp\u003eMethod \u003ca href\u003d\"#consume(java.util.function.Consumer)\"\u003e\u003ccode\u003econsume(Consumer)\u003c/code\u003e\u003c/a\u003e simplifies support for a common case in which the only action of a subscriber is to request and process all items using a supplied function. \u003c/p\u003e\n\u003cp\u003eThis class may also serve as a convenient base for subclasses that generate items, and use the methods in this class to publish them. For example here is a class that periodically publishes the items generated from a supplier. (In practice you might add methods to independently start and stop generation, to share Executors among publishers, and so on, or use a SubmissionPublisher as a component rather than a superclass.) \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class PeriodicPublisher\u0026lt;T\u0026gt; extends SubmissionPublisher\u0026lt;T\u0026gt; {\n   final ScheduledFuture\u0026lt;?\u0026gt; periodicTask;\n   final ScheduledExecutorService scheduler;\n   PeriodicPublisher(Executor executor, int maxBufferCapacity,\n                     Supplier\u0026lt;? extends T\u0026gt; supplier,\n                     long period, TimeUnit unit) {\n     super(executor, maxBufferCapacity);\n     scheduler \u003d new ScheduledThreadPoolExecutor(1);\n     periodicTask \u003d scheduler.scheduleAtFixedRate(\n       () -\u0026gt; submit(supplier.get()), 0, period, unit);\n   }\n   public void close() {\n     periodicTask.cancel(false);\n     scheduler.shutdown();\n     super.close();\n   }\n }\u003c/code\u003e\u003c/pre\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eHere is an example of a \u003ca href\u003d\"Flow.Processor.html\" title\u003d\"interface in java.util.concurrent\"\u003e\u003ccode\u003eFlow.Processor\u003c/code\u003e\u003c/a\u003e implementation. It uses single-step requests to its publisher for simplicity of illustration. A more adaptive version could monitor flow using the lag estimate returned from \u003ccode\u003esubmit\u003c/code\u003e, along with other utility methods. \u003c/p\u003e\n\u003cpre\u003e \u003ccode\u003e\n class TransformProcessor\u0026lt;S,T\u0026gt; extends SubmissionPublisher\u0026lt;T\u0026gt;\n   implements Flow.Processor\u0026lt;S,T\u0026gt; {\n   final Function\u0026lt;? super S, ? extends T\u0026gt; function;\n   Flow.Subscription subscription;\n   TransformProcessor(Executor executor, int maxBufferCapacity,\n                      Function\u0026lt;? super S, ? extends T\u0026gt; function) {\n     super(executor, maxBufferCapacity);\n     this.function \u003d function;\n   }\n   public void onSubscribe(Flow.Subscription subscription) {\n     (this.subscription \u003d subscription).request(1);\n   }\n   public void onNext(S item) {\n     subscription.request(1);\n     submit(function.apply(item));\n   }\n   public void onError(Throwable ex) { closeExceptionally(ex); }\n   public void onComplete() { close(); }\n }\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "9"
+    ]
+  }
+}

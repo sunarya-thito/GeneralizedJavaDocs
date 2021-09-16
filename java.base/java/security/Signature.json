@@ -1,0 +1,1020 @@
+{
+  "packageName": "java.security",
+  "simpleName": "Signature",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.security.SignatureSpi",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "UNINITIALIZED",
+      "comment": "Possible state value, signifying that this signature object has not yet been initialized.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.security.Signature.UNINITIALIZED\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "SIGN",
+      "comment": "Possible state value, signifying that this signature object has been initialized for signing.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.security.Signature.SIGN\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 28,
+      "name": "VERIFY",
+      "comment": "Possible state value, signifying that this signature object has been initialized for verification.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.security.Signature.VERIFY\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 4,
+      "name": "state",
+      "comment": "Current state of this signature object.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "java.security.Signature",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "algorithm"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getInstance",
+      "comment": "Returns a Signature object that implements the specified signature algorithm. This method traverses the list of registered security Providers, starting with the most preferred Provider. A new Signature object encapsulating the SignatureSpi implementation from the first Provider that supports the specified algorithm is returned. Note that the list of registered providers may be retrieved via the Security.getProviders() method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Provider.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eProvider\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ealgorithm\u003c/code\u003e - the standard name of the algorithm requested. See the Signature section in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/security/standard-names.html#signature-algorithms\"\u003e Java Security Standard Algorithm Names Specification\u003c/a\u003e for information about standard algorithm names."
+        ],
+        "implNote": [
+          "The JDK Reference Implementation additionally uses the \n\u003ccode\u003ejdk.security.provider.preferred\u003c/code\u003e \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Security.html#getProperty(java.lang.String)\"\u003e\u003ccode\u003eSecurity\u003c/code\u003e\u003c/a\u003e property to determine the preferred provider order for the specified algorithm. This may be different than the order of providers returned by \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Security.html#getProviders()\"\u003e\u003ccode\u003eSecurity.getProviders()\u003c/code\u003e\u003c/a\u003e."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if no \n\u003ccode\u003eProvider\u003c/code\u003e supports a \n\u003ccode\u003eSignature\u003c/code\u003e implementation for the specified algorithm",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ealgorithm\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the new \n\u003ccode\u003eSignature\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.Signature",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        },
+        {
+          "name": "java.security.NoSuchProviderException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "algorithm"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getInstance",
+      "comment": "Returns a Signature object that implements the specified signature algorithm. A new Signature object encapsulating the SignatureSpi implementation from the specified provider is returned. The specified provider must be registered in the security provider list. Note that the list of registered providers may be retrieved via the Security.getProviders() method.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Provider.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eProvider\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ealgorithm\u003c/code\u003e - the name of the algorithm requested. See the Signature section in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/security/standard-names.html#signature-algorithms\"\u003e Java Security Standard Algorithm Names Specification\u003c/a\u003e for information about standard algorithm names.",
+          "\u003ccode\u003eprovider\u003c/code\u003e - the name of the provider."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the provider name is \n\u003ccode\u003enull\u003c/code\u003e or empty",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if a \n\u003ccode\u003eSignatureSpi\u003c/code\u003e implementation for the specified algorithm is not available from the specified provider",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchProviderException.html\" title\u003d\"class in java.security\"\u003eNoSuchProviderException\u003c/a\u003e\u003c/code\u003e - if the specified provider is not registered in the security provider list",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ealgorithm\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the new \n\u003ccode\u003eSignature\u003c/code\u003e object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.Signature",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.NoSuchAlgorithmException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "algorithm"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.Provider",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "getInstance",
+      "comment": "Returns a Signature object that implements the specified signature algorithm. A new Signature object encapsulating the SignatureSpi implementation from the specified Provider object is returned. Note that the specified Provider object does not have to be registered in the provider list.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Provider.html\" title\u003d\"class in java.security\"\u003e\u003ccode\u003eProvider\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ealgorithm\u003c/code\u003e - the name of the algorithm requested. See the Signature section in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/security/standard-names.html#signature-algorithms\"\u003e Java Security Standard Algorithm Names Specification\u003c/a\u003e for information about standard algorithm names.",
+          "\u003ccode\u003eprovider\u003c/code\u003e - the provider."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the provider is \n\u003ccode\u003enull\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/NoSuchAlgorithmException.html\" title\u003d\"class in java.security\"\u003eNoSuchAlgorithmException\u003c/a\u003e\u003c/code\u003e - if a \n\u003ccode\u003eSignatureSpi\u003c/code\u003e implementation for the specified algorithm is not available from the specified \n\u003ccode\u003eProvider\u003c/code\u003e object",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ealgorithm\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "the new \n\u003ccode\u003eSignature\u003c/code\u003e object"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.Provider",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getProvider",
+      "comment": "Returns the provider of this signature object.",
+      "tagMap": {
+        "return": [
+          "the provider of this signature object"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.PublicKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "publicKey"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "initVerify",
+      "comment": "Initializes this object for verification. If this method is called again with a different argument, it negates the effect of this call.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epublicKey\u003c/code\u003e - the public key of the identity whose signature is going to be verified."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if the key is invalid."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.cert.Certificate",
+            "type": "Class"
+          },
+          "field": {
+            "name": "certificate"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "initVerify",
+      "comment": "Initializes this object for verification, using the public key from the given certificate. If the certificate is of type X.509 and has a key usage extension field marked as critical, and the value of the key usage extension field implies that the public key in the certificate and its corresponding private key are not supposed to be used for digital signatures, an InvalidKeyException is thrown.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecertificate\u003c/code\u003e - the certificate of the identity whose signature is going to be verified."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if the public key in the certificate is not encoded properly or does not include required parameter information or cannot be used for digital signature purposes."
+        ],
+        "since": [
+          "1.3"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.PrivateKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "privateKey"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "initSign",
+      "comment": "Initialize this object for signing. If this method is called again with a different argument, it negates the effect of this call.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprivateKey\u003c/code\u003e - the private key of the identity whose signature is going to be generated."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if the key is invalid."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidKeyException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.PrivateKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "privateKey"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.SecureRandom",
+            "type": "Class"
+          },
+          "field": {
+            "name": "random"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "initSign",
+      "comment": "Initialize this object for signing. If this method is called again with a different argument, it negates the effect of this call.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprivateKey\u003c/code\u003e - the private key of the identity whose signature is going to be generated.",
+          "\u003ccode\u003erandom\u003c/code\u003e - the source of randomness for this signature."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidKeyException.html\" title\u003d\"class in java.security\"\u003eInvalidKeyException\u003c/a\u003e\u003c/code\u003e - if the key is invalid."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "sign",
+      "comment": "Returns the signature bytes of all the data updated. The format of the signature depends on the underlying signature scheme. A call to this method resets this signature object to the state it was in when previously initialized for signing via a call to initSign(PrivateKey). That is, the object is reset and available to generate another signature from the same signer, if desired, via new calls to update and sign.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly or if this signature algorithm is unable to process the input data provided."
+        ],
+        "return": [
+          "the signature bytes of the signing operation\u0027s result."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "outbuf"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "sign",
+      "comment": "Finishes the signature operation and stores the resulting signature bytes in the provided buffer outbuf, starting at offset. The format of the signature depends on the underlying signature scheme. This signature object is reset to its initial state (the state it was in after a call to one of the initSign methods) and can be reused to generate further signatures with the same private key.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eoutbuf\u003c/code\u003e - buffer for the signature result.",
+          "\u003ccode\u003eoffset\u003c/code\u003e - offset into \n\u003ccode\u003eoutbuf\u003c/code\u003e where the signature is stored.",
+          "\u003ccode\u003elen\u003c/code\u003e - number of bytes within \n\u003ccode\u003eoutbuf\u003c/code\u003e allotted for the signature."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly, if this signature algorithm is unable to process the input data provided, or if \n\u003ccode\u003elen\u003c/code\u003e is less than the actual signature length.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoutbuf\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or \n\u003ccode\u003eoffset\u003c/code\u003e or \n\u003ccode\u003elen\u003c/code\u003e is less than 0, or the sum of \n\u003ccode\u003eoffset\u003c/code\u003e and \n\u003ccode\u003elen\u003c/code\u003e is greater than the length of \n\u003ccode\u003eoutbuf\u003c/code\u003e."
+        ],
+        "return": [
+          "the number of bytes placed into \n\u003ccode\u003eoutbuf\u003c/code\u003e."
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "signature"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "verify",
+      "comment": "Verifies the passed-in signature. A call to this method resets this signature object to the state it was in when previously initialized for verification via a call to initVerify(PublicKey). That is, the object is reset and available to verify another signature from the identity whose public key was specified in the call to initVerify.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esignature\u003c/code\u003e - the signature bytes to be verified."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly, the passed-in signature is improperly encoded or of the wrong type, if this signature algorithm is unable to process the input data provided, etc."
+        ],
+        "return": [
+          "true if the signature was verified, false if not."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "signature"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "offset"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "length"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "verify",
+      "comment": "Verifies the passed-in signature in the specified array of bytes, starting at the specified offset. A call to this method resets this signature object to the state it was in when previously initialized for verification via a call to initVerify(PublicKey). That is, the object is reset and available to verify another signature from the identity whose public key was specified in the call to initVerify.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esignature\u003c/code\u003e - the signature bytes to be verified.",
+          "\u003ccode\u003eoffset\u003c/code\u003e - the offset to start from in the array of bytes.",
+          "\u003ccode\u003elength\u003c/code\u003e - the number of bytes to use, starting at offset."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly, the passed-in signature is improperly encoded or of the wrong type, if this signature algorithm is unable to process the input data provided, etc.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the \n\u003ccode\u003esignature\u003c/code\u003e byte array is \n\u003ccode\u003enull\u003c/code\u003e, or the \n\u003ccode\u003eoffset\u003c/code\u003e or \n\u003ccode\u003elength\u003c/code\u003e is less than 0, or the sum of the \n\u003ccode\u003eoffset\u003c/code\u003e and \n\u003ccode\u003elength\u003c/code\u003e is greater than the length of the \n\u003ccode\u003esignature\u003c/code\u003e byte array."
+        ],
+        "return": [
+          "true if the signature was verified, false if not."
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class"
+          },
+          "field": {
+            "name": "b"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "update",
+      "comment": "Updates the data to be signed or verified by a byte.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the byte to use for the update."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "data"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "update",
+      "comment": "Updates the data to be signed or verified, using the specified array of bytes.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edata\u003c/code\u003e - the byte array to use for the update."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "data"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "off"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "update",
+      "comment": "Updates the data to be signed or verified, using the specified array of bytes, starting at the specified offset.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edata\u003c/code\u003e - the array of bytes.",
+          "\u003ccode\u003eoff\u003c/code\u003e - the offset to start from in the array of bytes.",
+          "\u003ccode\u003elen\u003c/code\u003e - the number of bytes to use, starting at offset."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003edata\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or \n\u003ccode\u003eoff\u003c/code\u003e or \n\u003ccode\u003elen\u003c/code\u003e is less than 0, or the sum of \n\u003ccode\u003eoff\u003c/code\u003e and \n\u003ccode\u003elen\u003c/code\u003e is greater than the length of \n\u003ccode\u003edata\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.SignatureException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "data"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "update",
+      "comment": "Updates the data to be signed or verified using the specified ByteBuffer. Processes the data.remaining() bytes starting at data.position(). Upon return, the buffer\u0027s position will be equal to its limit; its limit will not have changed.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003edata\u003c/code\u003e - the ByteBuffer"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureException.html\" title\u003d\"class in java.security\"\u003eSignatureException\u003c/a\u003e\u003c/code\u003e - if this signature object is not initialized properly."
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getAlgorithm",
+      "comment": "Returns the name of the algorithm for this signature object.",
+      "tagMap": {
+        "return": [
+          "the name of the algorithm for this signature object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns a string representation of this signature object, providing information that includes the state of the object and the name of the algorithm used.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a string representation of this signature object."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidParameterException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "param"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "setParameter",
+      "comment": "Sets the specified algorithm parameter to the specified value. This method supplies a general-purpose mechanism through which it is possible to set the various parameters of this object. A parameter may be any settable parameter for the algorithm, such as a parameter size, or a source of random bits for signature generation (if appropriate), or an indication of whether or not to perform a specific but optional computation. A uniform algorithm-specific naming scheme for each parameter is desirable but left unspecified at this time.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Signature.html#getParameter(java.lang.String)\"\u003e\u003ccode\u003egetParameter(java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eparam\u003c/code\u003e - the string identifier of the parameter.",
+          "\u003ccode\u003evalue\u003c/code\u003e - the parameter value."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidParameterException.html\" title\u003d\"class in java.security\"\u003eInvalidParameterException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eparam\u003c/code\u003e is an invalid parameter for this signature algorithm engine, the parameter is already set and cannot be set again, a security exception occurs, and so on."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidAlgorithmParameterException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.spec.AlgorithmParameterSpec",
+            "type": "Class"
+          },
+          "field": {
+            "name": "params"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "setParameter",
+      "comment": "Initializes this signature engine with the specified parameter set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Signature.html#getParameters()\"\u003e\u003ccode\u003egetParameters()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eparams\u003c/code\u003e - the parameters"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidAlgorithmParameterException.html\" title\u003d\"class in java.security\"\u003eInvalidAlgorithmParameterException\u003c/a\u003e\u003c/code\u003e - if the given parameters are inappropriate for this signature engine"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.AlgorithmParameters",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getParameters",
+      "comment": "Returns the parameters used with this signature object. If this signature has been initialized with parameters (by calling setParameter(AlgorithmParameterSpec) or setParameter(String, Object)) and the underlying signature implementation supports returning the parameters as AlgorithmParameters, this method returns the same parameters. If the parameters were not set, this method may return a combination of default and randomly generated parameter values if the underlying signature implementation supports it and can successfully generate them. Otherwise, null is returned.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Signature.html#setParameter(java.security.spec.AlgorithmParameterSpec)\"\u003e\u003ccode\u003esetParameter(AlgorithmParameterSpec)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "the parameters used with this signature, or \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.security.InvalidParameterException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "param"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getParameter",
+      "comment": "Gets the value of the specified algorithm parameter. This method supplies a general-purpose mechanism through which it is possible to get the various parameters of this object. A parameter may be any settable parameter for the algorithm, such as a parameter size, or a source of random bits for signature generation (if appropriate), or an indication of whether or not to perform a specific but optional computation. A uniform algorithm-specific naming scheme for each parameter is desirable but left unspecified at this time.",
+      "annotations": [
+        {
+          "type": "Deprecated"
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/Signature.html#setParameter(java.lang.String,java.lang.Object)\"\u003e\u003ccode\u003esetParameter(String, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eparam\u003c/code\u003e - the string name of the parameter."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/InvalidParameterException.html\" title\u003d\"class in java.security\"\u003eInvalidParameterException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eparam\u003c/code\u003e is an invalid parameter for this engine, or another exception occurs while trying to get this parameter."
+        ],
+        "return": [
+          "the object that represents the parameter value, or \n\u003ccode\u003enull\u003c/code\u003e if there is none."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.CloneNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "clone",
+      "comment": "Returns a clone if the implementation is cloneable.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Cloneable.html\" title\u003d\"interface in java.lang\"\u003e\u003ccode\u003eCloneable\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureSpi.html#clone()\"\u003eclone\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/SignatureSpi.html\" title\u003d\"class in java.security\"\u003eSignatureSpi\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/CloneNotSupportedException.html\" title\u003d\"class in java.lang\"\u003eCloneNotSupportedException\u003c/a\u003e\u003c/code\u003e - if this is called on an implementation that does not support \n\u003ccode\u003eCloneable\u003c/code\u003e."
+        ],
+        "return": [
+          "a clone if the implementation is cloneable."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "algorithm"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Creates a Signature object for the specified algorithm.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ealgorithm\u003c/code\u003e - the standard string name of the algorithm. See the Signature section in the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/specs/security/standard-names.html#signature-algorithms\"\u003e Java Security Standard Algorithm Names Specification\u003c/a\u003e for information about standard algorithm names."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.security.Signature",
+  "comment": "The Signature class is used to provide applications the functionality of a digital signature algorithm. Digital signatures are used for authentication and integrity assurance of digital data. \n\u003cp\u003e The signature algorithm can be, among others, the NIST standard DSA, using DSA and SHA-256. The DSA algorithm using the SHA-256 message digest algorithm can be specified as \u003ccode\u003eSHA256withDSA\u003c/code\u003e. In the case of RSA the signing algorithm could be specified as, for example, \u003ccode\u003eSHA256withRSA\u003c/code\u003e. The algorithm name must be specified, as there is no default. \u003c/p\u003e\n\u003cp\u003e A Signature object can be used to generate and verify digital signatures. \u003c/p\u003e\n\u003cp\u003e There are three phases to the use of a Signature object for either signing data or verifying a signature:\u003c/p\u003e\n\u003col\u003e \n \u003cli\u003eInitialization, with either \n  \u003cul\u003e \n   \u003cli\u003ea public key, which initializes the signature for verification (see \u003ca href\u003d\"#initVerify(java.security.PublicKey)\"\u003e\u003ccode\u003einitVerify\u003c/code\u003e\u003c/a\u003e), or \u003c/li\u003e\n   \u003cli\u003ea private key (and optionally a Secure Random Number Generator), which initializes the signature for signing (see \u003ca href\u003d\"#initSign(java.security.PrivateKey)\"\u003e\u003ccode\u003einitSign(PrivateKey)\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#initSign(java.security.PrivateKey,java.security.SecureRandom)\"\u003e\u003ccode\u003einitSign(PrivateKey, SecureRandom)\u003c/code\u003e\u003c/a\u003e). \u003c/li\u003e\n  \u003c/ul\u003e \u003c/li\u003e\n \u003cli\u003eUpdating \u003cp\u003eDepending on the type of initialization, this will update the bytes to be signed or verified. See the \u003ca href\u003d\"#update(byte)\"\u003e\u003ccode\u003eupdate\u003c/code\u003e\u003c/a\u003e methods. \u003c/p\u003e\u003c/li\u003e\n \u003cli\u003eSigning or Verifying a signature on all updated bytes. See the \u003ca href\u003d\"#sign()\"\u003e\u003ccode\u003esign\u003c/code\u003e\u003c/a\u003e methods and the \u003ca href\u003d\"#verify(byte%5B%5D)\"\u003e\u003ccode\u003everify\u003c/code\u003e\u003c/a\u003e method. \u003c/li\u003e\n \u003cp\u003e\u003c/p\u003e\n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eNote that this class is abstract and extends from \u003ccode\u003eSignatureSpi\u003c/code\u003e for historical reasons. Application developers should only take notice of the methods defined in this \u003ccode\u003eSignature\u003c/code\u003e class; all the methods in the superclass are intended for cryptographic service providers who wish to supply their own implementations of digital signature algorithms. \u003c/p\u003e\n\u003cp\u003e Every implementation of the Java platform is required to support the following standard \u003ccode\u003eSignature\u003c/code\u003e algorithms: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003ccode\u003eSHA1withDSA\u003c/code\u003e\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003eSHA256withDSA\u003c/code\u003e\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003eSHA1withRSA\u003c/code\u003e\u003c/li\u003e \n \u003cli\u003e\u003ccode\u003eSHA256withRSA\u003c/code\u003e\u003c/li\u003e \n\u003c/ul\u003e These algorithms are described in the \n\u003ca href\u003d\"../../../../specs/security/standard-names.html#signature-algorithms\"\u003e Signature section\u003c/a\u003e of the Java Security Standard Algorithm Names Specification. Consult the release documentation for your implementation to see if any other algorithms are supported.\n\u003cp\u003e\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.1"
+    ]
+  }
+}

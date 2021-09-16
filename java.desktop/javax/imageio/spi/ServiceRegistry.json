@@ -1,0 +1,848 @@
+{
+  "packageName": "javax.imageio.spi",
+  "simpleName": "ServiceRegistry",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "providerClass"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.ClassLoader",
+            "type": "Class"
+          },
+          "field": {
+            "name": "loader"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "lookupProviders",
+      "comment": "Searches for implementations of a particular service class using the given class loader. The service class must be one of the service types listed in the class specification. If it is not, IllegalArgumentException will be thrown. This method transforms the name of the given service class into a provider-configuration filename as described in the class comment and then uses the getResources method of the given class loader to find all available files with that name. These files are then read and parsed to produce a list of provider-class names. The iterator that is returned uses the given class loader to look up and then instantiate each element of the list. Because it is possible for extensions to be installed into a running Java virtual machine, this method may return different results each time it is invoked.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the providerClass."
+        ],
+        "param": [
+          "\u003ccode\u003eproviderClass\u003c/code\u003e - a \n\u003ccode\u003eClass\u003c/code\u003e object indicating the class or interface of the service providers being detected.",
+          "\u003ccode\u003eloader\u003c/code\u003e - the class loader to be used to load provider-configuration files and instantiate provider classes, or \n\u003ccode\u003enull\u003c/code\u003e if the system class loader (or, failing that the bootstrap class loader) is to be used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eproviderClass\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or if it is not one of the allowed service types."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eIterator\u003c/code\u003e that yields provider objects for the given service, in some arbitrary order. The iterator will throw an \n\u003ccode\u003eError\u003c/code\u003e if a provider-configuration file violates the specified format or if a provider class cannot be found and instantiated."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "providerClass"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "lookupProviders",
+      "comment": "Locates and incrementally instantiates the available providers of a given service using the context class loader. This convenience method is equivalent to:    ClassLoader cl \u003d Thread.currentThread().getContextClassLoader();\n   return Service.providers(service, cl);\n The service class must be one of the service types listed in the class specification. If it is not, IllegalArgumentException will be thrown.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the providerClass."
+        ],
+        "param": [
+          "\u003ccode\u003eproviderClass\u003c/code\u003e - a \n\u003ccode\u003eClass\u003c/code\u003e object indicating the class or interface of the service providers being detected."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eproviderClass\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or if it is not one of the allowed service types."
+        ],
+        "return": [
+          "An \n\u003ccode\u003eIterator\u003c/code\u003e that yields provider objects for the given service, in some arbitrary order. The iterator will throw an \n\u003ccode\u003eError\u003c/code\u003e if a provider-configuration file violates the specified format or if a provider class cannot be found and instantiated."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getCategories",
+      "comment": "Returns an Iterator of Class objects indicating the current set of categories. The iterator will be empty if no categories exist.",
+      "tagMap": {
+        "return": [
+          "an \n\u003ccode\u003eIterator\u003c/code\u003e containing \n\u003ccode\u003eClass\u003c/code\u003e objects."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "T",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "category"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "registerServiceProvider",
+      "comment": "Adds a service provider object to the registry. The provider is associated with the given category. If provider implements the RegisterableService interface, its onRegistration method will be called. Its onDeregistration method will be called each time it is deregistered from a category, for example if a category is removed or the registry is garbage collected.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the provider."
+        ],
+        "param": [
+          "\u003ccode\u003eprovider\u003c/code\u003e - the service provide object to be registered.",
+          "\u003ccode\u003ecategory\u003c/code\u003e - the category under which to register the provider."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eprovider\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if there is no category corresponding to \n\u003ccode\u003ecategory\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if provider does not implement the \n\u003ccode\u003eClass\u003c/code\u003e defined by \n\u003ccode\u003ecategory\u003c/code\u003e."
+        ],
+        "return": [
+          "true if no provider of the same class was previously registered in the same category category."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "registerServiceProvider",
+      "comment": "Adds a service provider object to the registry. The provider is associated within each category present in the registry whose Class it implements. If provider implements the RegisterableService interface, its onRegistration method will be called once for each category it is registered under. Its onDeregistration method will be called each time it is deregistered from a category or when the registry is finalized.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprovider\u003c/code\u003e - the service provider object to be registered."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eprovider\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Iterator",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "providers"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "registerServiceProviders",
+      "comment": "Adds a set of service provider objects, taken from an Iterator to the registry. Each provider is associated within each category present in the registry whose Class it implements. For each entry of providers that implements the RegisterableService interface, its onRegistration method will be called once for each category it is registered under. Its onDeregistration method will be called each time it is deregistered from a category or when the registry is finalized.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eproviders\u003c/code\u003e - an Iterator containing service provider objects to be registered."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eproviders\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e or contains a \n\u003ccode\u003enull\u003c/code\u003e entry."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "T",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "category"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "deregisterServiceProvider",
+      "comment": "Removes a service provider object from the given category. If the provider was not previously registered, nothing happens and false is returned. Otherwise, true is returned. If an object of the same class as provider but not equal (using \u003d\u003d) to provider is registered, it will not be deregistered. If provider implements the RegisterableService interface, its onDeregistration method will be called.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the provider."
+        ],
+        "param": [
+          "\u003ccode\u003eprovider\u003c/code\u003e - the service provider object to be deregistered.",
+          "\u003ccode\u003ecategory\u003c/code\u003e - the category from which to deregister the provider."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eprovider\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if there is no category corresponding to \n\u003ccode\u003ecategory\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ClassCastException.html\" title\u003d\"class in java.lang\"\u003eClassCastException\u003c/a\u003e\u003c/code\u003e - if provider does not implement the class defined by \n\u003ccode\u003ecategory\u003c/code\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the provider was previously registered in the same category category, \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "deregisterServiceProvider",
+      "comment": "Removes a service provider object from all categories that contain it.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprovider\u003c/code\u003e - the service provider object to be deregistered."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eprovider\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "provider"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "contains",
+      "comment": "Returns true if provider is currently registered.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eprovider\u003c/code\u003e - the service provider object to be queried."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eprovider\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the given provider has been registered."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "category"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "useOrdering"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getServiceProviders",
+      "comment": "Returns an Iterator containing all registered service providers in the given category. If useOrdering is false, the iterator will return all of the server provider objects in an arbitrary order. Otherwise, the ordering will respect any pairwise orderings that have been set. If the graph of pairwise orderings contains cycles, any providers that belong to a cycle will not be returned.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the category."
+        ],
+        "param": [
+          "\u003ccode\u003ecategory\u003c/code\u003e - the category to be retrieved from.",
+          "\u003ccode\u003euseOrdering\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if pairwise orderings should be taken account in ordering the returned objects."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if there is no category corresponding to \n\u003ccode\u003ecategory\u003c/code\u003e."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eIterator\u003c/code\u003e containing service provider objects from the given category, possibly in order."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.Iterator",
+        "parameters": [
+          {
+            "name": "T",
+            "type": "Class"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "category"
+          }
+        },
+        {
+          "type": {
+            "name": "javax.imageio.spi.ServiceRegistry$Filter",
+            "type": "Class"
+          },
+          "field": {
+            "name": "filter"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "useOrdering"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getServiceProviders",
+      "comment": "Returns an Iterator containing service provider objects within a given category that satisfy a criterion imposed by the supplied ServiceRegistry.Filter object\u0027s filter method. The useOrdering argument controls the ordering of the results using the same rules as getServiceProviders(Class, boolean).",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the category."
+        ],
+        "param": [
+          "\u003ccode\u003ecategory\u003c/code\u003e - the category to be retrieved from.",
+          "\u003ccode\u003efilter\u003c/code\u003e - an instance of \n\u003ccode\u003eServiceRegistry.Filter\u003c/code\u003e whose \n\u003ccode\u003efilter\u003c/code\u003e method will be invoked.",
+          "\u003ccode\u003euseOrdering\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e if pairwise orderings should be taken account in ordering the returned objects."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if there is no category corresponding to \n\u003ccode\u003ecategory\u003c/code\u003e."
+        ],
+        "return": [
+          "an \n\u003ccode\u003eIterator\u003c/code\u003e containing service provider objects from the given category, possibly in order."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "T",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "providerClass"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getServiceProviderByClass",
+      "comment": "Returns the currently registered service provider object that is of the given class type. At most one object of a given class is allowed to be registered at any given time. If no registered object has the desired class type, null is returned.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the provider."
+        ],
+        "param": [
+          "\u003ccode\u003eproviderClass\u003c/code\u003e - the \n\u003ccode\u003eClass\u003c/code\u003e of the desired service provider object."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eproviderClass\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "a currently registered service provider object with the desired \n\u003ccode\u003eClass\u003c/code\u003e type, or \n\u003ccode\u003enull\u003c/code\u003e is none is present."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "category"
+          }
+        },
+        {
+          "type": {
+            "name": "T",
+            "type": "Class"
+          },
+          "field": {
+            "name": "firstProvider"
+          }
+        },
+        {
+          "type": {
+            "name": "T",
+            "type": "Class"
+          },
+          "field": {
+            "name": "secondProvider"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setOrdering",
+      "comment": "Sets a pairwise ordering between two service provider objects within a given category. If one or both objects are not currently registered within the given category, or if the desired ordering is already set, nothing happens and false is returned. If the providers previously were ordered in the reverse direction, that ordering is removed. The ordering will be used by the getServiceProviders methods when their useOrdering argument is true.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the category."
+        ],
+        "param": [
+          "\u003ccode\u003ecategory\u003c/code\u003e - a \n\u003ccode\u003eClass\u003c/code\u003e object indicating the category under which the preference is to be established.",
+          "\u003ccode\u003efirstProvider\u003c/code\u003e - the preferred provider.",
+          "\u003ccode\u003esecondProvider\u003c/code\u003e - the provider to which \n\u003ccode\u003efirstProvider\u003c/code\u003e is preferred."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either provider is \n\u003ccode\u003enull\u003c/code\u003e or they are the same object.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if there is no category corresponding to \n\u003ccode\u003ecategory\u003c/code\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if a previously unset ordering was established."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "name": "T",
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "category"
+          }
+        },
+        {
+          "type": {
+            "name": "T",
+            "type": "Class"
+          },
+          "field": {
+            "name": "firstProvider"
+          }
+        },
+        {
+          "type": {
+            "name": "T",
+            "type": "Class"
+          },
+          "field": {
+            "name": "secondProvider"
+          }
+        }
+      ],
+      "genericParameters": [
+        {
+          "name": "T",
+          "type": "Variable"
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "unsetOrdering",
+      "comment": "Sets a pairwise ordering between two service provider objects within a given category. If one or both objects are not currently registered within the given category, or if no ordering is currently set between them, nothing happens and false is returned. The ordering will be used by the getServiceProviders methods when their useOrdering argument is true.",
+      "tagMap": {
+        "Type Parameters:": [
+          "\u003ccode\u003eT\u003c/code\u003e - the type of the category."
+        ],
+        "param": [
+          "\u003ccode\u003ecategory\u003c/code\u003e - a \n\u003ccode\u003eClass\u003c/code\u003e object indicating the category under which the preference is to be disestablished.",
+          "\u003ccode\u003efirstProvider\u003c/code\u003e - the formerly preferred provider.",
+          "\u003ccode\u003esecondProvider\u003c/code\u003e - the provider to which \n\u003ccode\u003efirstProvider\u003c/code\u003e was formerly preferred."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if either provider is \n\u003ccode\u003enull\u003c/code\u003e or they are the same object.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if there is no category corresponding to \n\u003ccode\u003ecategory\u003c/code\u003e."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if a previously set ordering was disestablished."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Class",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "category"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "deregisterAll",
+      "comment": "Deregisters all service provider object currently registered under the given category.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecategory\u003c/code\u003e - the category to be emptied."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if there is no category corresponding to \n\u003ccode\u003ecategory\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "deregisterAll",
+      "comment": "Deregisters all currently registered service providers from all categories.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.Throwable",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "finalize",
+      "comment": "Finalizes this object prior to garbage collection. The deregisterAll method is called to deregister all currently registered service providers. This method should not be called from application code.",
+      "annotations": [
+        {
+          "type": "Deprecated",
+          "values": [
+            {
+              "name": "since",
+              "value": "9"
+            }
+          ]
+        }
+      ],
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/WeakReference.html\" title\u003d\"class in java.lang.ref\"\u003e\u003ccode\u003eWeakReference\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/ref/PhantomReference.html\" title\u003d\"class in java.lang.ref\"\u003e\u003ccode\u003ePhantomReference\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#finalize()\"\u003efinalize\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html\" title\u003d\"class in java.lang\"\u003eThrowable\u003c/a\u003e\u003c/code\u003e - if an error occurs during superclass finalization."
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Iterator",
+            "parameters": [
+              {
+                "name": "java.lang.Class",
+                "parameters": [
+                  {
+                    "type": "Wildcard"
+                  }
+                ],
+                "type": "Class"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "categories"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Constructs a ServiceRegistry instance with a set of categories taken from the categories argument. The categories must all be members of the set of service types listed in the class specification.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecategories\u003c/code\u003e - an \n\u003ccode\u003eIterator\u003c/code\u003e containing \n\u003ccode\u003eClass\u003c/code\u003e objects to be used to define categories."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003ecategories\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e, or if one of the categories is not an allowed service type."
+        ]
+      }
+    }
+  ],
+  "innerClasses": [
+    "javax.imageio.spi.ServiceRegistry$Filter"
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "javax.imageio.spi.ServiceRegistry",
+  "comment": "A registry for service provider instances for Image I/O service types. \n\u003cp\u003e Service providers are stored in one or more \u003ci\u003ecategories\u003c/i\u003e, each of which is defined by a class or interface (described by a \u003ccode\u003eClass\u003c/code\u003e object) that all of its members must implement. \u003c/p\u003e\n\u003cp\u003eThe set of categories supported by this class is limited to the following standard Image I/O service types: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003ca href\u003d\"ImageInputStreamSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageInputStreamSpi\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e\n \u003cli\u003e\u003ca href\u003d\"ImageOutputStreamSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageOutputStreamSpi\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e\n \u003cli\u003e\u003ca href\u003d\"ImageReaderSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageReaderSpi\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e\n \u003cli\u003e\u003ca href\u003d\"ImageTranscoderSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageTranscoderSpi\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e\n \u003cli\u003e\u003ca href\u003d\"ImageWriterSpi.html\" title\u003d\"class in javax.imageio.spi\"\u003e\u003ccode\u003eImageWriterSpi\u003c/code\u003e\u003c/a\u003e \u003c/li\u003e\n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eAn attempt to load a provider that is not a subtype of one of the above types will result in \u003ccode\u003eIllegalArgumentException\u003c/code\u003e. \u003c/p\u003e\n\u003cp\u003e For the general mechanism to load service providers, see \u003ca href\u003d\"../../../../java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e, which is the underlying standard mechanism used by this class. \u003c/p\u003e\n\u003cp\u003e Only a single instance of a given leaf class (that is, the actual class returned by \u003ccode\u003egetClass()\u003c/code\u003e, as opposed to any inherited classes or interfaces) may be registered. That is, suppose that the \u003ccode\u003ecom.mycompany.mypkg.GreenImageReaderProvider\u003c/code\u003e class is a subclass of \u003ccode\u003ejavax.imageio.spi.ImageReaderSpi\u003c/code\u003e. If a \u003ccode\u003eGreenImageReaderProvider\u003c/code\u003e instance is registered, it will be stored in the category defined by the \u003ccode\u003eImageReaderSpi\u003c/code\u003e class. If a new instance of \u003ccode\u003eGreenImageReaderProvider\u003c/code\u003e is registered, it will replace the previous instance. In practice, service provider objects are usually singletons so this behavior is appropriate. \u003c/p\u003e\n\u003cp\u003e The service provider classes should be lightweight and quick to load. Implementations of these interfaces should avoid complex dependencies on other classes and on native code. The usual pattern for more complex services is to register a lightweight proxy for the heavyweight service. \u003c/p\u003e\n\u003cp\u003e An application may customize the contents of a registry as it sees fit, so long as it has the appropriate runtime permission. \u003c/p\u003e\n\u003cp\u003e For information on how to create and deploy service providers, refer to the documentation on \u003ca href\u003d\"../../../../java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/javax/imageio/spi/RegisterableService.html\" title\u003d\"interface in javax.imageio.spi\"\u003e\u003ccode\u003eRegisterableService\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ServiceLoader.html\" title\u003d\"class in java.util\"\u003e\u003ccode\u003eServiceLoader\u003c/code\u003e\u003c/a\u003e"
+    ]
+  }
+}

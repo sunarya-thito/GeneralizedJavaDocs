@@ -1,0 +1,1509 @@
+{
+  "packageName": "java.io",
+  "simpleName": "RandomAccessFile",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.io.FileDescriptor",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getFD",
+      "comment": "Returns the opaque file descriptor object associated with this stream.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/FileDescriptor.html\" title\u003d\"class in java.io\"\u003e\u003ccode\u003eFileDescriptor\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the file descriptor object associated with this stream."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.FileChannel",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getChannel",
+      "comment": "Returns the unique FileChannel object associated with this file. The position of the returned channel will always be equal to this object\u0027s file-pointer offset as returned by the getFilePointer method. Changing this object\u0027s file-pointer offset, whether explicitly or by reading or writing bytes, will change the position of the channel, and vice versa. Changing the file\u0027s length via this object will change the length seen via the file channel, and vice versa.",
+      "tagMap": {
+        "return": [
+          "the file channel associated with this file"
+        ],
+        "since": [
+          "1.4"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "read",
+      "comment": "Reads a byte of data from this file. The byte is returned as an integer in the range 0 to 255 (0x00-0x0ff). This method blocks if no input is yet available. Although RandomAccessFile is not a subclass of InputStream, this method behaves in exactly the same way as the InputStream.read() method of InputStream.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs. Not thrown if end-of-file has been reached."
+        ],
+        "return": [
+          "the next byte of data, or \n\u003ccode\u003e-1\u003c/code\u003e if the end of the file has been reached."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "off"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "read",
+      "comment": "Reads up to len bytes of data from this file into an array of bytes. This method blocks until at least one byte of input is available. Although RandomAccessFile is not a subclass of InputStream, this method behaves in exactly the same way as the InputStream.read(byte[], int, int) method of InputStream.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the buffer into which the data is read.",
+          "\u003ccode\u003eoff\u003c/code\u003e - the start offset in array \n\u003ccode\u003eb\u003c/code\u003e at which the data is written.",
+          "\u003ccode\u003elen\u003c/code\u003e - the maximum number of bytes read."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If the first byte cannot be read for any reason other than end of file, or if the random access file has been closed, or if some other I/O error occurs.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eb\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eoff\u003c/code\u003e is negative, \n\u003ccode\u003elen\u003c/code\u003e is negative, or \n\u003ccode\u003elen\u003c/code\u003e is greater than \n\u003ccode\u003eb.length - off\u003c/code\u003e"
+        ],
+        "return": [
+          "the total number of bytes read into the buffer, or \n\u003ccode\u003e-1\u003c/code\u003e if there is no more data because the end of the file has been reached."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "read",
+      "comment": "Reads up to b.length bytes of data from this file into an array of bytes. This method blocks until at least one byte of input is available. Although RandomAccessFile is not a subclass of InputStream, this method behaves in exactly the same way as the InputStream.read(byte[]) method of InputStream.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the buffer into which the data is read."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If the first byte cannot be read for any reason other than end of file, or if the random access file has been closed, or if some other I/O error occurs.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If \n\u003ccode\u003eb\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "the total number of bytes read into the buffer, or \n\u003ccode\u003e-1\u003c/code\u003e if there is no more data because the end of this file has been reached."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readFully",
+      "comment": "Reads b.length bytes from this file into the byte array, starting at the current file pointer. This method reads repeatedly from the file until the requested number of bytes are read. This method blocks until the requested number of bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readFully(byte%5B%5D)\"\u003ereadFully\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the buffer into which the data is read."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eb\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading all the bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "off"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readFully",
+      "comment": "Reads exactly len bytes from this file into the byte array, starting at the current file pointer. This method reads repeatedly from the file until the requested number of bytes are read. This method blocks until the requested number of bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readFully(byte%5B%5D,int,int)\"\u003ereadFully\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the buffer into which the data is read.",
+          "\u003ccode\u003eoff\u003c/code\u003e - the start offset into the data array \n\u003ccode\u003eb\u003c/code\u003e.",
+          "\u003ccode\u003elen\u003c/code\u003e - the number of bytes to read."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eb\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IndexOutOfBoundsException.html\" title\u003d\"class in java.lang\"\u003eIndexOutOfBoundsException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eoff\u003c/code\u003e is negative, \n\u003ccode\u003elen\u003c/code\u003e is negative, or \n\u003ccode\u003elen\u003c/code\u003e is greater than \n\u003ccode\u003eb.length - off\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading all the bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "n"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "skipBytes",
+      "comment": "Attempts to skip over n bytes of input discarding the skipped bytes. This method may skip over some smaller number of bytes, possibly zero. This may result from any of a number of conditions; reaching end of file before n bytes have been skipped is only one possibility. This method never throws an EOFException. The actual number of bytes skipped is returned. If n is negative, no bytes are skipped.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#skipBytes(int)\"\u003eskipBytes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003en\u003c/code\u003e - the number of bytes to be skipped."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the actual number of bytes skipped."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "b"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "write",
+      "comment": "Writes the specified byte to this file. The write starts at the current file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#write(int)\"\u003ewrite\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the \n\u003ccode\u003ebyte\u003c/code\u003e to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "write",
+      "comment": "Writes b.length bytes from the specified byte array to this file, starting at the current file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#write(byte%5B%5D)\"\u003ewrite\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the data."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "b"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "off"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "len"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "write",
+      "comment": "Writes len bytes from the specified byte array starting at offset off to this file.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#write(byte%5B%5D,int,int)\"\u003ewrite\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eb\u003c/code\u003e - the data.",
+          "\u003ccode\u003eoff\u003c/code\u003e - the start offset in the data.",
+          "\u003ccode\u003elen\u003c/code\u003e - the number of bytes to write."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFilePointer",
+      "comment": "Returns the current offset in this file.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the offset from the beginning of the file, in bytes, at which the next read or write occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pos"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "seek",
+      "comment": "Sets the file-pointer offset, measured from the beginning of this file, at which the next read or write occurs. The offset may be set beyond the end of the file. Setting the offset beyond the end of the file does not change the file length. The file length will change only by writing after the offset has been set beyond the end of the file.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003epos\u003c/code\u003e - the offset position, measured in bytes from the beginning of the file, at which to set the file pointer."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003epos\u003c/code\u003e is less than \n\u003ccode\u003e0\u003c/code\u003e or if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "length",
+      "comment": "Returns the length of this file.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the length of this file, measured in bytes."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "newLength"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setLength",
+      "comment": "Sets the length of this file. If the present length of the file as returned by the length method is greater than the newLength argument then the file will be truncated. In this case, if the file offset as returned by the getFilePointer method is greater than newLength then after this method returns the offset will be equal to newLength. If the present length of the file as returned by the length method is smaller than the newLength argument then the file will be extended. In this case, the contents of the extended portion of the file are not defined.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003enewLength\u003c/code\u003e - The desired length of the file"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If an I/O error occurs"
+        ],
+        "since": [
+          "1.2"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "close",
+      "comment": "Closes this random access file stream and releases any system resources associated with the stream. A closed random access file cannot perform input or output operations and cannot be reopened. If this file has an associated channel then the channel is closed as well.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html\" title\u003d\"interface in java.lang\"\u003eAutoCloseable\u003c/a\u003e\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html#close()\"\u003eclose\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Closeable.html\" title\u003d\"interface in java.io\"\u003eCloseable\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readBoolean",
+      "comment": "Reads a boolean from this file. This method reads a single byte from the file, starting at the current file pointer. A value of 0 represents false. Any other value represents true. This method blocks until the byte is read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readBoolean()\"\u003ereadBoolean\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file has reached the end.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the \n\u003ccode\u003eboolean\u003c/code\u003e value read."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readByte",
+      "comment": "Reads a signed eight-bit value from this file. This method reads a byte from the file, starting from the current file pointer. If the byte read is b, where 0 \u003c\u003d b \u003c\u003d 255, then the result is:      (byte)(b)\n This method blocks until the byte is read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readByte()\"\u003ereadByte\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file has reached the end.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next byte of this file as a signed eight-bit \n\u003ccode\u003ebyte\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readUnsignedByte",
+      "comment": "Reads an unsigned eight-bit number from this file. This method reads a byte from this file, starting at the current file pointer, and returns that byte. This method blocks until the byte is read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readUnsignedByte()\"\u003ereadUnsignedByte\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file has reached the end.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next byte of this file, interpreted as an unsigned eight-bit number."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "short",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readShort",
+      "comment": "Reads a signed 16-bit number from this file. The method reads two bytes from this file, starting at the current file pointer. If the two bytes read, in order, are b1 and b2, where each of the two values is between 0 and 255, inclusive, then the result is equal to:      (short)((b1 \u003c\u003c 8) | b2)\n This method blocks until the two bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readShort()\"\u003ereadShort\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading two bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next two bytes of this file, interpreted as a signed 16-bit number."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readUnsignedShort",
+      "comment": "Reads an unsigned 16-bit number from this file. This method reads two bytes from the file, starting at the current file pointer. If the bytes read, in order, are b1 and b2, where 0 \u003c\u003d b1, b2 \u003c\u003d 255, then the result is equal to:      (b1 \u003c\u003c 8) | b2\n This method blocks until the two bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readUnsignedShort()\"\u003ereadUnsignedShort\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading two bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next two bytes of this file, interpreted as an unsigned 16-bit integer."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "char",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readChar",
+      "comment": "Reads a character from this file. This method reads two bytes from the file, starting at the current file pointer. If the bytes read, in order, are b1 and b2, where 0 \u003c\u003d b1, b2 \u003c\u003d 255, then the result is equal to:      (char)((b1 \u003c\u003c 8) | b2)\n This method blocks until the two bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readChar()\"\u003ereadChar\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading two bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next two bytes of this file, interpreted as a \n\u003ccode\u003echar\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readInt",
+      "comment": "Reads a signed 32-bit integer from this file. This method reads 4 bytes from the file, starting at the current file pointer. If the bytes read, in order, are b1, b2, b3, and b4, where 0 \u003c\u003d b1, b2, b3, b4 \u003c\u003d 255, then the result is equal to:      (b1 \u003c\u003c 24) | (b2 \u003c\u003c 16) + (b3 \u003c\u003c 8) + b4\n This method blocks until the four bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readInt()\"\u003ereadInt\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading four bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next four bytes of this file, interpreted as an \n\u003ccode\u003eint\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readLong",
+      "comment": "Reads a signed 64-bit integer from this file. This method reads eight bytes from the file, starting at the current file pointer. If the bytes read, in order, are b1, b2, b3, b4, b5, b6, b7, and b8, where:      0 \u003c\u003d b1, b2, b3, b4, b5, b6, b7, b8 \u003c\u003d255,\n then the result is equal to:      ((long)b1 \u003c\u003c 56) + ((long)b2 \u003c\u003c 48)\n     + ((long)b3 \u003c\u003c 40) + ((long)b4 \u003c\u003c 32)\n     + ((long)b5 \u003c\u003c 24) + ((long)b6 \u003c\u003c 16)\n     + ((long)b7 \u003c\u003c 8) + b8\n This method blocks until the eight bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readLong()\"\u003ereadLong\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading eight bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next eight bytes of this file, interpreted as a \n\u003ccode\u003elong\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "float",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readFloat",
+      "comment": "Reads a float from this file. This method reads an int value, starting at the current file pointer, as if by the readInt method and then converts that int to a float using the intBitsToFloat method in class Float. This method blocks until the four bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/RandomAccessFile.html#readInt()\"\u003e\u003ccode\u003ereadInt()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Float.html#intBitsToFloat(int)\"\u003e\u003ccode\u003eFloat.intBitsToFloat(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readFloat()\"\u003ereadFloat\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading four bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next four bytes of this file, interpreted as a \n\u003ccode\u003efloat\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "double",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readDouble",
+      "comment": "Reads a double from this file. This method reads a long value, starting at the current file pointer, as if by the readLong method and then converts that long to a double using the longBitsToDouble method in class Double. This method blocks until the eight bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/RandomAccessFile.html#readLong()\"\u003e\u003ccode\u003ereadLong()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Double.html#longBitsToDouble(long)\"\u003e\u003ccode\u003eDouble.longBitsToDouble(long)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readDouble()\"\u003ereadDouble\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading eight bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next eight bytes of this file, interpreted as a \n\u003ccode\u003edouble\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readLine",
+      "comment": "Reads the next line of text from this file. This method successively reads bytes from the file, starting at the current file pointer, until it reaches a line terminator or the end of the file. Each byte is converted into a character by taking the byte\u0027s value for the lower eight bits of the character and setting the high eight bits of the character to zero. This method does not, therefore, support the full Unicode character set. A line of text is terminated by a carriage-return character (\u0027\\r\u0027), a newline character (\u0027\\n\u0027), a carriage-return character immediately followed by a newline character, or the end of the file. Line-terminating characters are discarded and are not included as part of the string returned. This method blocks until a newline character is read, a carriage return and the byte following it are read (to see if it is a newline), the end of the file is reached, or an exception is thrown.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readLine()\"\u003ereadLine\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ],
+        "return": [
+          "the next line of text from this file, or null if end of file is encountered before even one byte is read."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "readUTF",
+      "comment": "Reads in a string from this file. The string has been encoded using a modified UTF-8 format. The first two bytes are read, starting from the current file pointer, as if by readUnsignedShort. This value gives the number of following bytes that are in the encoded string, not the length of the resulting string. The following bytes are then interpreted as bytes encoding characters in the modified UTF-8 format and are converted into characters. This method blocks until all the bytes are read, the end of the stream is detected, or an exception is thrown.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/RandomAccessFile.html#readUnsignedShort()\"\u003e\u003ccode\u003ereadUnsignedShort()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html#readUTF()\"\u003ereadUTF\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataInput.html\" title\u003d\"interface in java.io\"\u003eDataInput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/EOFException.html\" title\u003d\"class in java.io\"\u003eEOFException\u003c/a\u003e\u003c/code\u003e - if this file reaches the end before reading all the bytes.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/UTFDataFormatException.html\" title\u003d\"class in java.io\"\u003eUTFDataFormatException\u003c/a\u003e\u003c/code\u003e - if the bytes do not represent valid modified UTF-8 encoding of a Unicode string."
+        ],
+        "return": [
+          "a Unicode string."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeBoolean",
+      "comment": "Writes a boolean to the file as a one-byte value. The value true is written out as the value (byte)1; the value false is written out as the value (byte)0. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeBoolean(boolean)\"\u003ewriteBoolean\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a \n\u003ccode\u003eboolean\u003c/code\u003e value to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeByte",
+      "comment": "Writes a byte to the file as a one-byte value. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeByte(int)\"\u003ewriteByte\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a \n\u003ccode\u003ebyte\u003c/code\u003e value to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeShort",
+      "comment": "Writes a short to the file as two bytes, high byte first. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeShort(int)\"\u003ewriteShort\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a \n\u003ccode\u003eshort\u003c/code\u003e to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeChar",
+      "comment": "Writes a char to the file as a two-byte value, high byte first. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeChar(int)\"\u003ewriteChar\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a \n\u003ccode\u003echar\u003c/code\u003e value to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeInt",
+      "comment": "Writes an int to the file as four bytes, high byte first. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeInt(int)\"\u003ewriteInt\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - an \n\u003ccode\u003eint\u003c/code\u003e to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeLong",
+      "comment": "Writes a long to the file as eight bytes, high byte first. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeLong(long)\"\u003ewriteLong\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a \n\u003ccode\u003elong\u003c/code\u003e to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "float",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeFloat",
+      "comment": "Converts the float argument to an int using the floatToIntBits method in class Float, and then writes that int value to the file as a four-byte quantity, high byte first. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Float.html#floatToIntBits(float)\"\u003e\u003ccode\u003eFloat.floatToIntBits(float)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeFloat(float)\"\u003ewriteFloat\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a \n\u003ccode\u003efloat\u003c/code\u003e value to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "double",
+            "type": "Class"
+          },
+          "field": {
+            "name": "v"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeDouble",
+      "comment": "Converts the double argument to a long using the doubleToLongBits method in class Double, and then writes that long value to the file as an eight-byte quantity, high byte first. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Double.html#doubleToLongBits(double)\"\u003e\u003ccode\u003eDouble.doubleToLongBits(double)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeDouble(double)\"\u003ewriteDouble\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ev\u003c/code\u003e - a \n\u003ccode\u003edouble\u003c/code\u003e value to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "s"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeBytes",
+      "comment": "Writes the string to the file as a sequence of bytes. Each character in the string is written out, in sequence, by discarding its high eight bits. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeBytes(java.lang.String)\"\u003ewriteBytes\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003es\u003c/code\u003e - a string of bytes to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "s"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeChars",
+      "comment": "Writes a string to the file as a sequence of characters. Each character is written to the data output stream as if by the writeChar method. The write starts at the current position of the file pointer.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/RandomAccessFile.html#writeChar(int)\"\u003e\u003ccode\u003ewriteChar(int)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeChars(java.lang.String)\"\u003ewriteChars\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003es\u003c/code\u003e - a \n\u003ccode\u003eString\u003c/code\u003e value to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "str"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "writeUTF",
+      "comment": "Writes a string to the file using modified UTF-8 encoding in a machine-independent manner. First, two bytes are written to the file, starting at the current file pointer, as if by the writeShort method giving the number of bytes to follow. This value is the number of bytes actually written out, not the length of the string. Following the length, each character of the string is output, in sequence, using the modified UTF-8 encoding for each character.",
+      "tagMap": {
+        "Specified by:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html#writeUTF(java.lang.String)\"\u003ewriteUTF\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in interface\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/DataOutput.html\" title\u003d\"interface in java.io\"\u003eDataOutput\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003estr\u003c/code\u003e - a string to be written."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - if an I/O error occurs."
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.FileNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mode"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a random access file stream to read from, and optionally to write to, a file with the specified name. A new FileDescriptor object is created to represent the connection to the file. The mode argument specifies the access mode with which the file is to be opened. The permitted values and their meanings are as specified for the RandomAccessFile(File,String) constructor. If there is a security manager, its checkRead method is called with the name argument as its argument to see if read access to the file is allowed. If the mode allows writing, the security manager\u0027s checkWrite method is also called with the name argument as its argument to see if write access to the file is allowed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eSecurityException\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkRead(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkWrite(java.lang.String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - the system-dependent filename",
+          "\u003ccode\u003emode\u003c/code\u003e - the access \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/RandomAccessFile.html#mode\"\u003emode\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the mode argument is not equal to one of \n\u003ccode\u003e\"r\"\u003c/code\u003e, \n\u003ccode\u003e\"rw\"\u003c/code\u003e, \n\u003ccode\u003e\"rws\"\u003c/code\u003e, or \n\u003ccode\u003e\"rwd\"\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/FileNotFoundException.html\" title\u003d\"class in java.io\"\u003eFileNotFoundException\u003c/a\u003e\u003c/code\u003e - if the mode is \n\u003ccode\u003e\"r\"\u003c/code\u003e but the given string does not denote an existing regular file, or if the mode begins with \n\u003ccode\u003e\"rw\"\u003c/code\u003e but the given string does not denote an existing, writable regular file and a new regular file of that name cannot be created, or if some other error occurs while opening or creating the file",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckRead\u003c/code\u003e method denies read access to the file or the mode is \n\u003ccode\u003e\"rw\"\u003c/code\u003e and the security manager\u0027s \n\u003ccode\u003echeckWrite\u003c/code\u003e method denies write access to the file"
+        ]
+      }
+    },
+    {
+      "throwsClasses": [
+        {
+          "name": "java.io.FileNotFoundException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.io.File",
+            "type": "Class"
+          },
+          "field": {
+            "name": "file"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "mode"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates a random access file stream to read from, and optionally to write to, the file specified by the File argument. A new FileDescriptor object is created to represent this file connection. The mode argument specifies the access mode in which the file is to be opened. The permitted values and their meanings are: Access mode permitted values and meanings Value Meaning \"r\" Open for reading only. Invoking any of the write methods of the resulting object will cause an IOException to be thrown. \"rw\" Open for reading and writing. If the file does not already exist then an attempt will be made to create it. \"rws\" Open for reading and writing, as with \"rw\", and also require that every update to the file\u0027s content or metadata be written synchronously to the underlying storage device. \"rwd\" Open for reading and writing, as with \"rw\", and also require that every update to the file\u0027s content be written synchronously to the underlying storage device. The \"rws\" and \"rwd\" modes work much like the force(boolean) method of the FileChannel class, passing arguments of true and false, respectively, except that they always apply to every I/O operation and are therefore often more efficient. If the file resides on a local storage device then when an invocation of a method of this class returns it is guaranteed that all changes made to the file by that invocation will have been written to that device. This is useful for ensuring that critical information is not lost in the event of a system crash. If the file does not reside on a local device then no such guarantee is made. The \"rwd\" mode can be used to reduce the number of I/O operations performed. Using \"rwd\" only requires updates to the file\u0027s content to be written to storage; using \"rws\" requires updates to both the file\u0027s content and its metadata to be written, which generally requires at least one more low-level I/O operation. If there is a security manager, its checkRead method is called with the pathname of the file argument as its argument to see if read access to the file is allowed. If the mode allows writing, the security manager\u0027s checkWrite method is also called with the path argument to see if write access to the file is allowed.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkRead(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkRead(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityManager.html#checkWrite(java.lang.String)\"\u003e\u003ccode\u003eSecurityManager.checkWrite(java.lang.String)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/FileChannel.html#force(boolean)\"\u003e\u003ccode\u003eFileChannel.force(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003efile\u003c/code\u003e - the file object",
+          "\u003ccode\u003emode\u003c/code\u003e - the access mode, as described \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/RandomAccessFile.html#mode\"\u003eabove\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the mode argument is not equal to one of \n\u003ccode\u003e\"r\"\u003c/code\u003e, \n\u003ccode\u003e\"rw\"\u003c/code\u003e, \n\u003ccode\u003e\"rws\"\u003c/code\u003e, or \n\u003ccode\u003e\"rwd\"\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/FileNotFoundException.html\" title\u003d\"class in java.io\"\u003eFileNotFoundException\u003c/a\u003e\u003c/code\u003e - if the mode is \n\u003ccode\u003e\"r\"\u003c/code\u003e but the given file object does not denote an existing regular file, or if the mode begins with \n\u003ccode\u003e\"rw\"\u003c/code\u003e but the given file object does not denote an existing, writable regular file and a new regular file of that name cannot be created, or if some other error occurs while opening or creating the file",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and its \n\u003ccode\u003echeckRead\u003c/code\u003e method denies read access to the file or the mode is \n\u003ccode\u003e\"rw\"\u003c/code\u003e and the security manager\u0027s \n\u003ccode\u003echeckWrite\u003c/code\u003e method denies write access to the file"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.io.RandomAccessFile",
+  "comment": "Instances of this class support both reading and writing to a random access file. A random access file behaves like a large array of bytes stored in the file system. There is a kind of cursor, or index into the implied array, called the \n\u003cem\u003efile pointer\u003c/em\u003e; input operations read bytes starting at the file pointer and advance the file pointer past the bytes read. If the random access file is created in read/write mode, then output operations are also available; output operations write bytes starting at the file pointer and advance the file pointer past the bytes written. Output operations that write past the current end of the implied array cause the array to be extended. The file pointer can be read by the \n\u003ccode\u003egetFilePointer\u003c/code\u003e method and set by the \n\u003ccode\u003eseek\u003c/code\u003e method. \n\u003cp\u003e It is generally true of all the reading routines in this class that if end-of-file is reached before the desired number of bytes has been read, an \u003ccode\u003eEOFException\u003c/code\u003e (which is a kind of \u003ccode\u003eIOException\u003c/code\u003e) is thrown. If any byte cannot be read for any reason other than end-of-file, an \u003ccode\u003eIOException\u003c/code\u003e other than \u003ccode\u003eEOFException\u003c/code\u003e is thrown. In particular, an \u003ccode\u003eIOException\u003c/code\u003e may be thrown if the stream has been closed.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.0"
+    ]
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "packageName": "java.lang.invoke",
+  "simpleName": "StringConcatFactory",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.invoke.CallSite",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.invoke.StringConcatException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodHandles$Lookup",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lookup"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "concatType"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "makeConcat",
+      "comment": "Facilitates the creation of optimized String concatenation methods, that can be used to efficiently concatenate a known number of arguments of known types, possibly after type adaptation and partial evaluation of arguments. Typically used as a bootstrap method for invokedynamic call sites, to support the string concatenation feature of the Java Programming Language. When the target of the CallSite returned from this method is invoked, it returns the result of String concatenation, taking all function arguments passed to the linkage method as inputs for concatenation. The target signature is given by concatType. For a target accepting: zero inputs, concatenation results in an empty string; one input, concatenation results in the single input converted as per JLS 5.1.11 \"String Conversion\"; otherwise two or more inputs, the inputs are concatenated as per requirements stated in JLS 15.18.1 \"String Concatenation Operator +\". The inputs are converted as per JLS 5.1.11 \"String Conversion\", and combined from left to right. Assume the linkage arguments are as follows: concatType, describing the CallSite signature Then the following linkage invariants must hold: The number of parameter slots in concatType is less than or equal to 200 The return type in concatType is assignable from String",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-5.html#jls-5.1.11\"\u003e5.1.11 String Conversion\u003c/a\u003e\n\u003cbr\u003e\n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-15.html#jls-15.18.1\"\u003e15.18.1 String Concatenation Operator +\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elookup\u003c/code\u003e - Represents a lookup context with the accessibility privileges of the caller. Specifically, the lookup context must have \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.Lookup.html#hasFullPrivilegeAccess()\"\u003efull privilege access\u003c/a\u003e. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is stacked automatically by the VM.",
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the method to implement. This name is arbitrary, and has no meaning for this linkage method. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003eNameAndType\u003c/code\u003e of the \n\u003ccode\u003eInvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM.",
+          "\u003ccode\u003econcatType\u003c/code\u003e - The expected signature of the \n\u003ccode\u003eCallSite\u003c/code\u003e. The parameter types represent the types of concatenation arguments; the return type is always assignable from \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eString\u003c/code\u003e\u003c/a\u003e. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003eNameAndType\u003c/code\u003e of the \n\u003ccode\u003e InvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/StringConcatException.html\" title\u003d\"class in java.lang.invoke\"\u003eStringConcatException\u003c/a\u003e\u003c/code\u003e - If any of the linkage invariants described here are violated, or the lookup context does not have private access privileges.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If any of the incoming arguments is null. This will never happen when a bootstrap method is called with invokedynamic."
+        ],
+        "return": [
+          "a CallSite whose target can be used to perform String concatenation, with dynamic concatenation arguments described by the given \n\u003ccode\u003econcatType\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.invoke.CallSite",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.lang.invoke.StringConcatException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodHandles$Lookup",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lookup"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodType",
+            "type": "Class"
+          },
+          "field": {
+            "name": "concatType"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "recipe"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "constants"
+          },
+          "varArgs": {}
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 9,
+      "name": "makeConcatWithConstants",
+      "comment": "Facilitates the creation of optimized String concatenation methods, that can be used to efficiently concatenate a known number of arguments of known types, possibly after type adaptation and partial evaluation of arguments. Typically used as a bootstrap method for invokedynamic call sites, to support the string concatenation feature of the Java Programming Language. When the target of the CallSite returned from this method is invoked, it returns the result of String concatenation, taking all function arguments and constants passed to the linkage method as inputs for concatenation. The target signature is given by concatType, and does not include constants. For a target accepting: zero inputs, concatenation results in an empty string; one input, concatenation results in the single input converted as per JLS 5.1.11 \"String Conversion\"; otherwise two or more inputs, the inputs are concatenated as per requirements stated in JLS 15.18.1 \"String Concatenation Operator +\". The inputs are converted as per JLS 5.1.11 \"String Conversion\", and combined from left to right. The concatenation recipe is a String description for the way to construct a concatenated String from the arguments and constants. The recipe is processed from left to right, and each character represents an input to concatenation. Recipe characters mean: \\1 (Unicode point 0001): an ordinary argument. This input is passed through dynamic argument, and is provided during the concatenation method invocation. This input can be null. \\2 (Unicode point 0002): a constant. This input passed through static bootstrap argument. This constant can be any value representable in constant pool. If necessary, the factory would call toString to perform a one-time String conversion. Any other char value: a single character constant. Assume the linkage arguments are as follows: concatType, describing the CallSite signature recipe, describing the String recipe constants, the vararg array of constants Then the following linkage invariants must hold: The number of parameter slots in concatType is less than or equal to 200 The parameter count in concatType is equal to number of \\1 tags in recipe The return type in concatType is assignable from String, and matches the return type of the returned MethodHandle The number of elements in constants is equal to number of \\2 tags in recipe",
+      "tagMap": {
+        "See Java Language Specification:": [
+          "\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-5.html#jls-5.1.11\"\u003e5.1.11 String Conversion\u003c/a\u003e\n\u003cbr\u003e\n\u003ca href\u003d\"https://docs.oracle.com/javase/specs/jls/se16/html/jls-15.html#jls-15.18.1\"\u003e15.18.1 String Concatenation Operator +\u003c/a\u003e\n\u003cbr\u003e"
+        ],
+        "apiNote": [
+          "Code generators have three distinct ways to process a constant string operand S in a string concatenation expression. First, S can be materialized as a reference (using ldc) and passed as an ordinary argument (recipe \u0027\\1\u0027). Or, S can be stored in the constant pool and passed as a constant (recipe \u0027\\2\u0027) . Finally, if S contains neither of the recipe tag characters (\u0027\\1\u0027, \u0027\\2\u0027) then S can be interpolated into the recipe itself, causing its characters to be inserted into the result."
+        ],
+        "param": [
+          "\u003ccode\u003elookup\u003c/code\u003e - Represents a lookup context with the accessibility privileges of the caller. Specifically, the lookup context must have \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/MethodHandles.Lookup.html#hasFullPrivilegeAccess()\"\u003efull privilege access\u003c/a\u003e. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is stacked automatically by the VM.",
+          "\u003ccode\u003ename\u003c/code\u003e - The name of the method to implement. This name is arbitrary, and has no meaning for this linkage method. When used with \n\u003ccode\u003einvokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003eNameAndType\u003c/code\u003e of the \n\u003ccode\u003eInvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM.",
+          "\u003ccode\u003econcatType\u003c/code\u003e - The expected signature of the \n\u003ccode\u003eCallSite\u003c/code\u003e. The parameter types represent the types of dynamic concatenation arguments; the return type is always assignable from \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eString\u003c/code\u003e\u003c/a\u003e. When used with \n\u003ccode\u003e invokedynamic\u003c/code\u003e, this is provided by the \n\u003ccode\u003e NameAndType\u003c/code\u003e of the \n\u003ccode\u003eInvokeDynamic\u003c/code\u003e structure and is stacked automatically by the VM.",
+          "\u003ccode\u003erecipe\u003c/code\u003e - Concatenation recipe, described above.",
+          "\u003ccode\u003econstants\u003c/code\u003e - A vararg parameter representing the constants passed to the linkage method."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/invoke/StringConcatException.html\" title\u003d\"class in java.lang.invoke\"\u003eStringConcatException\u003c/a\u003e\u003c/code\u003e - If any of the linkage invariants described here are violated, or the lookup context does not have private access privileges.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - If any of the incoming arguments is null, or any constant in \n\u003ccode\u003erecipe\u003c/code\u003e is null. This will never happen when a bootstrap method is called with invokedynamic."
+        ],
+        "return": [
+          "a CallSite whose target can be used to perform String concatenation, with dynamic concatenation arguments described by the given \n\u003ccode\u003econcatType\u003c/code\u003e."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 17,
+  "name": "java.lang.invoke.StringConcatFactory",
+  "comment": "\u003cp\u003eMethods to facilitate the creation of String concatenation methods, that can be used to efficiently concatenate a known number of arguments of known types, possibly after type adaptation and partial evaluation of arguments. These methods are typically used as \u003cem\u003ebootstrap methods\u003c/em\u003e for \u003ccode\u003e invokedynamic\u003c/code\u003e call sites, to support the \u003cem\u003estring concatenation\u003c/em\u003e feature of the Java Programming Language. \u003c/p\u003e\n\u003cp\u003eIndirect access to the behavior specified by the provided \u003ccode\u003e MethodHandle\u003c/code\u003e proceeds in order through two phases: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003e\u003cem\u003eLinkage\u003c/em\u003e occurs when the methods in this class are invoked. They take as arguments a method type describing the concatenated arguments count and types, and optionally the String \u003cem\u003erecipe\u003c/em\u003e, plus the constants that participate in the String concatenation. The details on accepted recipe shapes are described further below. Linkage may involve dynamically loading a new class that implements the expected concatenation behavior. The \u003ccode\u003eCallSite\u003c/code\u003e holds the \u003ccode\u003eMethodHandle\u003c/code\u003e pointing to the exact concatenation method. The concatenation methods may be shared among different \u003ccode\u003eCallSite\u003c/code\u003es, e.g. if linkage methods produce them as pure functions.\u003c/li\u003e \n \u003cli\u003e\u003cem\u003eInvocation\u003c/em\u003e occurs when a generated concatenation method is invoked with the exact dynamic arguments. This may occur many times for a single concatenation method. The method referenced by the behavior \u003ccode\u003e MethodHandle\u003c/code\u003e is invoked with the static arguments and any additional dynamic arguments provided on invocation, as if by \u003ca href\u003d\"MethodHandle.html#invoke(java.lang.Object...)\"\u003e\u003ccode\u003eMethodHandle.invoke(Object...)\u003c/code\u003e\u003c/a\u003e.\u003c/li\u003e \n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e This class provides two forms of linkage methods: a simple version (\u003ca href\u003d\"#makeConcat(java.lang.invoke.MethodHandles.Lookup,java.lang.String,java.lang.invoke.MethodType)\"\u003e\u003ccode\u003emakeConcat(java.lang.invoke.MethodHandles.Lookup, String, MethodType)\u003c/code\u003e\u003c/a\u003e) using only the dynamic arguments, and an advanced version (\u003ca href\u003d\"#makeConcatWithConstants(java.lang.invoke.MethodHandles.Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.String,java.lang.Object...)\"\u003e\u003ccode\u003emakeConcatWithConstants(java.lang.invoke.MethodHandles.Lookup, String, MethodType, String, Object...)\u003c/code\u003e\u003c/a\u003e using the advanced forms of capturing the constant arguments. The advanced strategy can produce marginally better invocation bytecode, at the expense of exploding the number of shapes of string concatenation methods present at runtime, because those shapes would include constant static arguments as well.\u003c/p\u003e",
+  "tagMap": {
+    "apiNote": [
+      "\u003cp\u003eThere is a JVM limit (classfile structural constraint): no method can call with more than 255 slots. This limits the number of static and dynamic arguments one can pass to bootstrap method. Since there are potential concatenation strategies that use \u003ccode\u003eMethodHandle\u003c/code\u003e combinators, we need to reserve a few empty slots on the parameter lists to capture the temporal results. This is why bootstrap methods in this factory do not accept more than 200 argument slots. Users requiring more than 200 argument slots in concatenation are expected to split the large concatenation in smaller expressions.\u003c/p\u003e"
+    ],
+    "since": [
+      "9"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "WritableByteChannel",
+  "moduleName": "java.base",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.nio.channels.Channel",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "java.io.IOException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "src"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "write",
+      "comment": "Writes a sequence of bytes to this channel from the given buffer. An attempt is made to write up to r bytes to the channel, where r is the number of bytes remaining in the buffer, that is, src.remaining(), at the moment this method is invoked. Suppose that a byte sequence of length n is written, where 0 \u003c\u003d n \u003c\u003d r. This byte sequence will be transferred from the buffer starting at index p, where p is the buffer\u0027s position at the moment this method is invoked; the index of the last byte written will be p + n - 1. Upon return the buffer\u0027s position will be equal to p + n; its limit will not have changed. Unless otherwise specified, a write operation will return only after writing all of the r requested bytes. Some types of channels, depending upon their state, may write only some of the bytes or possibly none at all. A socket channel in non-blocking mode, for example, cannot write any more bytes than are free in the socket\u0027s output buffer. This method may be invoked at any time. If another thread has already initiated a write operation upon this channel, however, then an invocation of this method will block until the first operation is complete.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003esrc\u003c/code\u003e - The buffer from which bytes are to be retrieved"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/NonWritableChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eNonWritableChannelException\u003c/a\u003e\u003c/code\u003e - If this channel was not opened for writing",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedChannelException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedChannelException\u003c/a\u003e\u003c/code\u003e - If this channel is closed",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/AsynchronousCloseException.html\" title\u003d\"class in java.nio.channels\"\u003eAsynchronousCloseException\u003c/a\u003e\u003c/code\u003e - If another thread closes this channel while the write operation is in progress",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/ClosedByInterruptException.html\" title\u003d\"class in java.nio.channels\"\u003eClosedByInterruptException\u003c/a\u003e\u003c/code\u003e - If another thread interrupts the current thread while the write operation is in progress, thereby closing the channel and setting the current thread\u0027s interrupt status",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/IOException.html\" title\u003d\"class in java.io\"\u003eIOException\u003c/a\u003e\u003c/code\u003e - If some other I/O error occurs"
+        ],
+        "return": [
+          "The number of bytes written, possibly zero"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.nio.channels.WritableByteChannel",
+  "comment": "A channel that can write bytes. \n\u003cp\u003e Only one write operation upon a writable channel may be in progress at any given time. If one thread initiates a write operation upon a channel then any other thread that attempts to initiate another write operation will block until the first operation is complete. Whether or not other kinds of I/O operations may proceed concurrently with a write operation depends upon the type of the channel. \u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.4"
+    ]
+  }
+}

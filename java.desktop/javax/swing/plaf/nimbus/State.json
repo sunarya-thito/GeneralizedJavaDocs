@@ -1,0 +1,80 @@
+{
+  "packageName": "javax.swing.plaf.nimbus",
+  "simpleName": "State",
+  "moduleName": "java.desktop",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "owner": "javax.swing.plaf.nimbus.State",
+            "name": "T",
+            "type": "Variable"
+          },
+          "field": {
+            "name": "c"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1028,
+      "name": "isInState",
+      "comment": "Gets whether the specified JComponent is in the custom state represented by this class. This is an extremely performance sensitive loop. Please take proper precautions to ensure that it executes quickly. Nimbus uses this method to help determine what state a JComponent is in. For example, a custom State could exist for JProgressBar such that it would return true when the progress bar is indeterminate. Such an implementation of this method would simply be:  return c.isIndeterminate();",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ec\u003c/code\u003e - the JComponent to test. This will never be null."
+        ],
+        "return": [
+          "true if \n\u003ccode\u003ec\u003c/code\u003e is in the custom state represented by this \n\u003ccode\u003eState\u003c/code\u003e instance"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Create a new custom State. Specify the name for the state. The name should be unique within the states set for any one particular component. The name of the state should coincide with the name used in UIDefaults. For example, the following would be correct: \n     defaults.put(\"Button.States\", \"Enabled, Foo, Disabled\");\n     defaults.put(\"Button.Foo\", new FooState(\"Foo\"));",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - a simple user friendly name for the state, such as \"Indeterminate\" or \"EmbeddedPanel\" or \"Blurred\". It is customary to use camel case, with the first letter capitalized."
+        ]
+      }
+    }
+  ],
+  "genericParameters": [
+    {
+      "name": "T",
+      "upperBounds": [
+        {
+          "name": "javax.swing.JComponent",
+          "type": "Class"
+        }
+      ],
+      "type": "Variable"
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.swing.plaf.nimbus.State",
+  "comment": "\u003cp\u003eRepresents a built in, or custom, state in Nimbus.\u003c/p\u003e \n\u003cp\u003eSynth provides several built in states, which are: \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003eEnabled\u003c/li\u003e \n \u003cli\u003eMouse Over\u003c/li\u003e \n \u003cli\u003ePressed\u003c/li\u003e \n \u003cli\u003eDisabled\u003c/li\u003e \n \u003cli\u003eFocused\u003c/li\u003e \n \u003cli\u003eSelected\u003c/li\u003e \n \u003cli\u003eDefault\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003eHowever, there are many more states that could be described in a LookAndFeel, and it would be nice to style components differently based on these different states. For example, a progress bar could be \"indeterminate\". It would be very convenient to allow this to be defined as a \"state\".\u003c/p\u003e \n\u003cp\u003eThis class, State, is intended to be used for such situations. Simply implement the abstract #isInState method. It returns true if the given JComponent is \"in this state\", false otherwise. This method will be called \u003cem\u003emany\u003c/em\u003e times in \u003cem\u003eperformance sensitive loops\u003c/em\u003e. It must execute very quickly.\u003c/p\u003e \n\u003cp\u003eFor example, the following might be an implementation of a custom \"Indeterminate\" state for JProgressBars:\u003c/p\u003e \n\u003cpre\u003e\u003ccode\u003e\n     public final class IndeterminateState extends State\u0026lt;JProgressBar\u0026gt; {\n         public IndeterminateState() {\n             super(\"Indeterminate\");\n         }\n\n         @Override\n         protected boolean isInState(JProgressBar c) {\n             return c.isIndeterminate();\n         }\n     }\n \u003c/code\u003e\u003c/pre\u003e",
+  "tagMap": {}
+}

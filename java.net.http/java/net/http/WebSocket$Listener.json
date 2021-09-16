@@ -1,0 +1,367 @@
+{
+  "packageName": "java.net.http",
+  "simpleName": "Listener",
+  "moduleName": "java.net.http",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          },
+          "field": {
+            "name": "webSocket"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onOpen",
+      "comment": "A WebSocket has been connected. This is the initial invocation and it is made once. It is typically used to make a request for more invocations.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent to: \n\u003cpre\u003e\u003ccode\u003e    webSocket.request(1); \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewebSocket\u003c/code\u003e - the WebSocket that has been connected"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletionStage",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          },
+          "field": {
+            "name": "webSocket"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.CharSequence",
+            "type": "Class"
+          },
+          "field": {
+            "name": "data"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "last"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onText",
+      "comment": "A textual data has been received. Return a CompletionStage which will be used by the WebSocket as an indication it may reclaim the CharSequence. Do not access the CharSequence after this CompletionStage has completed.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent to: \n\u003cpre\u003e\u003ccode\u003e    webSocket.request(1);\n    return null; \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewebSocket\u003c/code\u003e - the WebSocket on which the data has been received",
+          "\u003ccode\u003edata\u003c/code\u003e - the data",
+          "\u003ccode\u003elast\u003c/code\u003e - whether this invocation completes the message"
+        ],
+        "implNote": [
+          "The \n\u003ccode\u003edata\u003c/code\u003e is always a legal UTF-16 sequence."
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletionStage\u003c/code\u003e which completes when the \n\u003ccode\u003eCharSequence\u003c/code\u003e may be reclaimed; or \n\u003ccode\u003enull\u003c/code\u003e if it may be reclaimed immediately"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletionStage",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          },
+          "field": {
+            "name": "webSocket"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "data"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "last"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onBinary",
+      "comment": "A binary data has been received. This data is located in bytes from the buffer\u0027s position to its limit. Return a CompletionStage which will be used by the WebSocket as an indication it may reclaim the ByteBuffer. Do not access the ByteBuffer after this CompletionStage has completed.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent to: \n\u003cpre\u003e\u003ccode\u003e    webSocket.request(1);\n    return null; \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewebSocket\u003c/code\u003e - the WebSocket on which the data has been received",
+          "\u003ccode\u003edata\u003c/code\u003e - the data",
+          "\u003ccode\u003elast\u003c/code\u003e - whether this invocation completes the message"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletionStage\u003c/code\u003e which completes when the \n\u003ccode\u003eByteBuffer\u003c/code\u003e may be reclaimed; or \n\u003ccode\u003enull\u003c/code\u003e if it may be reclaimed immediately"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletionStage",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          },
+          "field": {
+            "name": "webSocket"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "message"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onPing",
+      "comment": "A Ping message has been received. As guaranteed by the WebSocket Protocol, the message consists of not more than 125 bytes. These bytes are located from the buffer\u0027s position to its limit. Given that the WebSocket implementation will automatically send a reciprocal pong when a ping is received, it is rarely required to send a pong message explicitly when a ping is received. Return a CompletionStage which will be used by the WebSocket as a signal it may reclaim the ByteBuffer. Do not access the ByteBuffer after this CompletionStage has completed.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent to: \n\u003cpre\u003e\u003ccode\u003e    webSocket.request(1);\n    return null; \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewebSocket\u003c/code\u003e - the WebSocket on which the message has been received",
+          "\u003ccode\u003emessage\u003c/code\u003e - the message"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletionStage\u003c/code\u003e which completes when the \n\u003ccode\u003eByteBuffer\u003c/code\u003e may be reclaimed; or \n\u003ccode\u003enull\u003c/code\u003e if it may be reclaimed immediately"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletionStage",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          },
+          "field": {
+            "name": "webSocket"
+          }
+        },
+        {
+          "type": {
+            "name": "java.nio.ByteBuffer",
+            "type": "Class"
+          },
+          "field": {
+            "name": "message"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onPong",
+      "comment": "A Pong message has been received. As guaranteed by the WebSocket Protocol, the message consists of not more than 125 bytes. These bytes are located from the buffer\u0027s position to its limit. Return a CompletionStage which will be used by the WebSocket as a signal it may reclaim the ByteBuffer. Do not access the ByteBuffer after this CompletionStage has completed.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation is equivalent to: \n\u003cpre\u003e\u003ccode\u003e    webSocket.request(1);\n    return null; \u003c/code\u003e\u003c/pre\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewebSocket\u003c/code\u003e - the WebSocket on which the message has been received",
+          "\u003ccode\u003emessage\u003c/code\u003e - the message"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletionStage\u003c/code\u003e which completes when the \n\u003ccode\u003eByteBuffer\u003c/code\u003e may be reclaimed; or \n\u003ccode\u003enull\u003c/code\u003e if it may be reclaimed immediately"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.util.concurrent.CompletionStage",
+        "parameters": [
+          {
+            "type": "Wildcard"
+          }
+        ],
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          },
+          "field": {
+            "name": "webSocket"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "statusCode"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "reason"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onClose",
+      "comment": "Receives a Close message indicating the WebSocket\u0027s input has been closed. This is the last invocation from the specified WebSocket. By the time this invocation begins the WebSocket\u0027s input will have been closed. A Close message consists of a status code and a reason for closing. The status code is an integer from the range 1000 \u003c\u003d code \u003c\u003d 65535. The reason is a string which has a UTF-8 representation not longer than 123 bytes. If the WebSocket\u0027s output is not already closed, the CompletionStage returned by this method will be used as an indication that the WebSocket\u0027s output may be closed. The WebSocket will close its output at the earliest of completion of the returned CompletionStage or invoking either of the sendClose or abort methods.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation of this method returns \n\u003ccode\u003enull\u003c/code\u003e, indicating that the output should be closed immediately."
+        ],
+        "apiNote": [
+          "Returning a \n\u003ccode\u003eCompletionStage\u003c/code\u003e that never completes, effectively disables the reciprocating closure of the output. \n\u003cp\u003e To specify a custom closure code or reason code the \u003ccode\u003esendClose\u003c/code\u003e method may be invoked from inside the \u003ccode\u003eonClose\u003c/code\u003e invocation: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e    public CompletionStage\u0026lt;?\u0026gt; onClose(WebSocket webSocket,\n                                      int statusCode,\n                                      String reason) {\n        webSocket.sendClose(CUSTOM_STATUS_CODE, CUSTOM_REASON);\n        return new CompletableFuture\u0026lt;Void\u0026gt;();\n    } \u003c/code\u003e \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ewebSocket\u003c/code\u003e - the WebSocket on which the message has been received",
+          "\u003ccode\u003estatusCode\u003c/code\u003e - the status code",
+          "\u003ccode\u003ereason\u003c/code\u003e - the reason"
+        ],
+        "return": [
+          "a \n\u003ccode\u003eCompletionStage\u003c/code\u003e which completes when the \n\u003ccode\u003eWebSocket\u003c/code\u003e may be closed; or \n\u003ccode\u003enull\u003c/code\u003e if it may be closed immediately"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.net.http.WebSocket",
+            "type": "Class"
+          },
+          "field": {
+            "name": "webSocket"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Throwable",
+            "type": "Class"
+          },
+          "field": {
+            "name": "error"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "onError",
+      "comment": "An error has occurred. This is the last invocation from the specified WebSocket. By the time this invocation begins both the WebSocket\u0027s input and output will have been closed. A WebSocket may invoke this method on the associated listener at any time after it has invoked onOpen, regardless of whether or not any invocations have been requested from the WebSocket. If an exception is thrown from this method, resulting behavior is undefined.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ewebSocket\u003c/code\u003e - the WebSocket on which the error has occurred",
+          "\u003ccode\u003eerror\u003c/code\u003e - the error"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 521,
+  "name": "java.net.http.WebSocket$Listener",
+  "comment": "The receiving interface of \n\u003ccode\u003eWebSocket\u003c/code\u003e. \n\u003cp\u003e A \u003ccode\u003eWebSocket\u003c/code\u003e invokes methods of the associated listener passing itself as an argument. These methods are invoked in a thread-safe manner, such that the next invocation may start only after the previous one has finished. \u003c/p\u003e\n\u003cp\u003e When data has been received, the \u003ccode\u003eWebSocket\u003c/code\u003e invokes a receive method. Methods \u003ccode\u003eonText\u003c/code\u003e, \u003ccode\u003eonBinary\u003c/code\u003e, \u003ccode\u003eonPing\u003c/code\u003e and \u003ccode\u003eonPong\u003c/code\u003e must return a \u003ccode\u003eCompletionStage\u003c/code\u003e that completes once the message has been received by the listener. If a listener\u0027s method returns \u003ccode\u003enull\u003c/code\u003e rather than a \u003ccode\u003eCompletionStage\u003c/code\u003e, \u003ccode\u003eWebSocket\u003c/code\u003e will behave as if the listener returned a \u003ccode\u003eCompletionStage\u003c/code\u003e that is already completed normally. \u003c/p\u003e\n\u003cp\u003e An \u003ccode\u003eIOException\u003c/code\u003e raised in \u003ccode\u003eWebSocket\u003c/code\u003e will result in an invocation of \u003ccode\u003eonError\u003c/code\u003e with that exception (if the input is not closed). Unless otherwise stated if the listener\u0027s method throws an exception or a \u003ccode\u003eCompletionStage\u003c/code\u003e returned from a method completes exceptionally, the WebSocket will invoke \u003ccode\u003eonError\u003c/code\u003e with this exception.\u003c/p\u003e",
+  "tagMap": {
+    "apiNote": [
+      "The strict sequential order of invocations from \n\u003ccode\u003eWebSocket\u003c/code\u003e to \n\u003ccode\u003eListener\u003c/code\u003e means, in particular, that the \n\u003ccode\u003eListener\u003c/code\u003e\u0027s methods are treated as non-reentrant. This means that \n\u003ccode\u003eListener\u003c/code\u003e implementations do not need to be concerned with possible recursion or the order in which they invoke \n\u003ccode\u003eWebSocket.request\u003c/code\u003e in relation to their processing logic. \n\u003cp\u003e Careful attention may be required if a listener is associated with more than a single \u003ccode\u003eWebSocket\u003c/code\u003e. In this case invocations related to different instances of \u003ccode\u003eWebSocket\u003c/code\u003e may not be ordered and may even happen concurrently. \u003c/p\u003e\n\u003cp\u003e \u003ccode\u003eCompletionStage\u003c/code\u003es returned from the receive methods have nothing to do with the \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.net.http/java/net/http/WebSocket.html#counter\"\u003ecounter of invocations\u003c/a\u003e. Namely, a \u003ccode\u003eCompletionStage\u003c/code\u003e does not have to be completed in order to receive more invocations of the listener\u0027s methods. Here is an example of a listener that requests invocations, one at a time, until a complete message has been accumulated, then processes the result, and completes the \u003ccode\u003eCompletionStage\u003c/code\u003e: \u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e    WebSocket.Listener listener \u003d new WebSocket.Listener() {\n\n        List\u0026lt;CharSequence\u0026gt; parts \u003d new ArrayList\u0026lt;\u0026gt;();\n        CompletableFuture\u0026lt;?\u0026gt; accumulatedMessage \u003d new CompletableFuture\u0026lt;\u0026gt;();\n\n        public CompletionStage\u0026lt;?\u0026gt; onText(WebSocket webSocket,\n                                         CharSequence message,\n                                         boolean last) {\n            parts.add(message);\n            webSocket.request(1);\n            if (last) {\n                processWholeText(parts);\n                parts \u003d new ArrayList\u0026lt;\u0026gt;();\n                accumulatedMessage.complete(null);\n                CompletionStage\u0026lt;?\u0026gt; cf \u003d accumulatedMessage;\n                accumulatedMessage \u003d new CompletableFuture\u0026lt;\u0026gt;();\n                return cf;\n            }\n            return accumulatedMessage;\n        }\n    ...\n    } \u003c/code\u003e \u003c/pre\u003e\n\u003cp\u003e\u003c/p\u003e"
+    ],
+    "since": [
+      "11"
+    ]
+  }
+}

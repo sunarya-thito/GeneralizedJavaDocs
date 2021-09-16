@@ -1,0 +1,378 @@
+{
+  "packageName": "javax.xml.validation",
+  "simpleName": "ValidatorHandler",
+  "moduleName": "java.xml",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "org.xml.sax.ContentHandler",
+            "type": "Class"
+          },
+          "field": {
+            "name": "receiver"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setContentHandler",
+      "comment": "Sets the ContentHandler which receives the augmented validation result. When a ContentHandler is specified, a ValidatorHandler will work as a filter and basically copy the incoming events to the specified ContentHandler. In doing so, a ValidatorHandler may modify the events, for example by adding defaulted attributes. A ValidatorHandler may buffer events to certain extent, but to allow ValidatorHandler to be used by a parser, the following requirement has to be met. When ContentHandler.startElement(String, String, String, Attributes), ContentHandler.endElement(String, String, String), ContentHandler.startDocument(), or ContentHandler.endDocument() are invoked on a ValidatorHandler, the same method on the user-specified ContentHandler must be invoked for the same event before the callback returns. ValidatorHandler may not introduce new elements that were not present in the input. ValidatorHandler may not remove attributes that were present in the input. When a callback method on the specified ContentHandler throws an exception, the same exception object must be thrown from the ValidatorHandler. The ErrorHandler should not be notified of such an exception. This method can be called even during a middle of a validation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ereceiver\u003c/code\u003e - A \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e or a null value."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.xml.sax.ContentHandler",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getContentHandler",
+      "comment": "Gets the ContentHandler which receives the augmented validation result.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#setContentHandler(org.xml.sax.ContentHandler)\"\u003e\u003ccode\u003esetContentHandler(ContentHandler)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "This method returns the object that was last set through the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#getContentHandler()\"\u003e\u003ccode\u003egetContentHandler()\u003c/code\u003e\u003c/a\u003e method, or null if that method has never been called since this \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e has created."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "org.xml.sax.ErrorHandler",
+            "type": "Class"
+          },
+          "field": {
+            "name": "errorHandler"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setErrorHandler",
+      "comment": "Sets the ErrorHandler to receive errors encountered during the validation. Error handler can be used to customize the error handling process during a validation. When an ErrorHandler is set, errors found during the validation will be first sent to the ErrorHandler. The error handler can abort further validation immediately by throwing SAXException from the handler. Or for example it can print an error to the screen and try to continue the validation by returning normally from the ErrorHandler If any Throwable is thrown from an ErrorHandler, the same Throwable object will be thrown toward the root of the call stack. ValidatorHandler is not allowed to throw SAXException without first reporting it to ErrorHandler. When the ErrorHandler is null, the implementation will behave as if the following ErrorHandler is set:  class DraconianErrorHandler implements ErrorHandler {\n     public void fatalError( SAXParseException e ) throws SAXException {\n         throw e;\n     }\n     public void error( SAXParseException e ) throws SAXException {\n         throw e;\n     }\n     public void warning( SAXParseException e ) throws SAXException {\n         // noop\n     }\n }\n When a new ValidatorHandler object is created, initially this field is set to null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eerrorHandler\u003c/code\u003e - A new error handler to be set. This parameter can be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.xml.sax.ErrorHandler",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getErrorHandler",
+      "comment": "Gets the current ErrorHandler set to this ValidatorHandler.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#setErrorHandler(org.xml.sax.ErrorHandler)\"\u003e\u003ccode\u003esetErrorHandler(ErrorHandler)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "This method returns the object that was last set through the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#setErrorHandler(org.xml.sax.ErrorHandler)\"\u003e\u003ccode\u003esetErrorHandler(ErrorHandler)\u003c/code\u003e\u003c/a\u003e method, or null if that method has never been called since this \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e has created."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "org.w3c.dom.ls.LSResourceResolver",
+            "type": "Class"
+          },
+          "field": {
+            "name": "resourceResolver"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "setResourceResolver",
+      "comment": "Sets the LSResourceResolver to customize resource resolution while in a validation episode. ValidatorHandler uses a LSResourceResolver when it needs to locate external resources while a validation, although exactly what constitutes \"locating external resources\" is up to each schema language. When the LSResourceResolver is null, the implementation will behave as if the following LSResourceResolver is set:  class DumbLSResourceResolver implements LSResourceResolver {\n     public LSInput resolveResource(\n         String publicId, String systemId, String baseURI) {\n\n         return null; // always return null\n     }\n }\n If a LSResourceResolver throws a RuntimeException (or instances of its derived classes), then the ValidatorHandler will abort the parsing and the caller of the validate method will receive the same RuntimeException. When a new ValidatorHandler object is created, initially this field is set to null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eresourceResolver\u003c/code\u003e - A new resource resolver to be set. This parameter can be null."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "org.w3c.dom.ls.LSResourceResolver",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getResourceResolver",
+      "comment": "Gets the current LSResourceResolver set to this ValidatorHandler.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#setErrorHandler(org.xml.sax.ErrorHandler)\"\u003e\u003ccode\u003esetErrorHandler(ErrorHandler)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "This method returns the object that was last set through the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#setResourceResolver(org.w3c.dom.ls.LSResourceResolver)\"\u003e\u003ccode\u003esetResourceResolver(LSResourceResolver)\u003c/code\u003e\u003c/a\u003e method, or null if that method has never been called since this \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e has created."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.xml.validation.TypeInfoProvider",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getTypeInfoProvider",
+      "comment": "Obtains the TypeInfoProvider implementation of this ValidatorHandler. The obtained TypeInfoProvider can be queried during a parse to access the type information determined by the validator. Some schema languages do not define the notion of type, for those languages, this method may not be supported. However, to be compliant with this specification, implementations for W3C XML Schema 1.0 must support this operation.",
+      "tagMap": {
+        "return": [
+          "null if the validator / schema language does not support the notion of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/w3c/dom/TypeInfo.html\" title\u003d\"interface in org.w3c.dom\"\u003e\u003ccode\u003eTypeInfo\u003c/code\u003e\u003c/a\u003e. Otherwise a non-null valid \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/TypeInfoProvider.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eTypeInfoProvider\u003c/code\u003e\u003c/a\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.xml.sax.SAXNotRecognizedException",
+          "type": "Class"
+        },
+        {
+          "name": "org.xml.sax.SAXNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getFeature",
+      "comment": "Look up the value of a feature flag. The feature name is any fully-qualified URI. It is possible for a ValidatorHandler to recognize a feature name but temporarily be unable to return its value. Some feature values may be available only in specific contexts, such as before, during, or after a validation. Implementors are free (and encouraged) to invent their own features, using names built on their own URIs.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#setFeature(java.lang.String,boolean)\"\u003e\u003ccode\u003esetFeature(String, boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The feature name, which is a non-null fully-qualified URI."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotRecognizedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotRecognizedException\u003c/a\u003e\u003c/code\u003e - If the feature value can\u0027t be assigned or retrieved.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotSupportedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotSupportedException\u003c/a\u003e\u003c/code\u003e - When the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e recognizes the feature name but cannot determine its value at this time.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - When \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "The current value of the feature (true or false)."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.xml.sax.SAXNotRecognizedException",
+          "type": "Class"
+        },
+        {
+          "name": "org.xml.sax.SAXNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "value"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setFeature",
+      "comment": "Set a feature for this ValidatorHandler. Feature can be used to control the way a ValidatorHandler parses schemas. The feature name is any fully-qualified URI. It is possible for a SchemaFactory to expose a feature value but to be unable to change the current value. Some feature values may be immutable or mutable only in specific contexts, such as before, during, or after a validation. All implementations are required to support the XMLConstants.FEATURE_SECURE_PROCESSING feature. When the feature is: true: the implementation will limit XML processing to conform to implementation limits. Examples include entity expansion limits and XML Schema constructs that would consume large amounts of resources. If XML processing is limited for security reasons, it will be reported via a call to the registered ErrorHandler.fatalError(SAXParseException exception). See setErrorHandler(ErrorHandler errorHandler). false: the implementation will processing XML according to the XML specifications without regard to possible implementation limits.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#getFeature(java.lang.String)\"\u003e\u003ccode\u003egetFeature(String)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The feature name, which is a non-null fully-qualified URI.",
+          "\u003ccode\u003evalue\u003c/code\u003e - The requested value of the feature (true or false)."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotRecognizedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotRecognizedException\u003c/a\u003e\u003c/code\u003e - If the feature value can\u0027t be assigned or retrieved.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotSupportedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotSupportedException\u003c/a\u003e\u003c/code\u003e - When the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e recognizes the feature name but cannot set the requested value.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - When \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.xml.sax.SAXNotRecognizedException",
+          "type": "Class"
+        },
+        {
+          "name": "org.xml.sax.SAXNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "object"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "setProperty",
+      "comment": "Set the value of a property. The property name is any fully-qualified URI. It is possible for a ValidatorHandler to recognize a property name but to be unable to change the current value. Some property values may be immutable or mutable only in specific contexts, such as before, during, or after a validation. ValidatorHandlers are not required to recognize setting any specific property names.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The property name, which is a non-null fully-qualified URI.",
+          "\u003ccode\u003eobject\u003c/code\u003e - The requested value for the property."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotRecognizedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotRecognizedException\u003c/a\u003e\u003c/code\u003e - If the property value can\u0027t be assigned or retrieved.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotSupportedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotSupportedException\u003c/a\u003e\u003c/code\u003e - When the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e recognizes the property name but cannot set the requested value.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - When \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "org.xml.sax.SAXNotRecognizedException",
+          "type": "Class"
+        },
+        {
+          "name": "org.xml.sax.SAXNotSupportedException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "name"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "getProperty",
+      "comment": "Look up the value of a property. The property name is any fully-qualified URI. It is possible for a ValidatorHandler to recognize a property name but temporarily be unable to return its value. Some property values may be available only in specific contexts, such as before, during, or after a validation. ValidatorHandlers are not required to recognize any specific property names. Implementors are free (and encouraged) to invent their own properties, using names built on their own URIs.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/javax/xml/validation/ValidatorHandler.html#setProperty(java.lang.String,java.lang.Object)\"\u003e\u003ccode\u003esetProperty(String, Object)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003ename\u003c/code\u003e - The property name, which is a non-null fully-qualified URI."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotRecognizedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotRecognizedException\u003c/a\u003e\u003c/code\u003e - If the property value can\u0027t be assigned or retrieved.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.xml/org/xml/sax/SAXNotSupportedException.html\" title\u003d\"class in org.xml.sax\"\u003eSAXNotSupportedException\u003c/a\u003e\u003c/code\u003e - When the XMLReader recognizes the property name but cannot determine its value at this time.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - When \n\u003ccode\u003ename\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e."
+        ],
+        "return": [
+          "The current value of the property."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructor for derived classes. The constructor does nothing. Derived classes must create ValidatorHandler objects that have null ErrorHandler and null LSResourceResolver.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.xml.validation.ValidatorHandler",
+  "comment": "Streaming validator that works on SAX stream. \n\u003cp\u003e A \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e object is not thread-safe and not reentrant. In other words, it is the application\u0027s responsibility to make sure that one \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e object is not used from more than one thread at any given time. \u003c/p\u003e\n\u003cp\u003e \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e checks if the SAX events follow the set of constraints described in the associated \u003ca href\u003d\"Schema.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eSchema\u003c/code\u003e\u003c/a\u003e, and additionally it may modify the SAX events (for example by adding default values, etc.) \u003c/p\u003e\n\u003cp\u003e \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e extends from \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e, but it refines the underlying \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e in the following way: \u003c/p\u003e\n\u003col\u003e \n \u003cli\u003estartElement/endElement events must receive non-null String for \u003ccode\u003euri\u003c/code\u003e, \u003ccode\u003elocalName\u003c/code\u003e, and \u003ccode\u003eqname\u003c/code\u003e, even though SAX allows some of them to be null. Similarly, the user-specified \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e will receive non-null Strings for all three parameters. \u003c/li\u003e\n \u003cli\u003eApplications must ensure that \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e\u0027s \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html#startPrefixMapping(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eContentHandler.startPrefixMapping(String,String)\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html#endPrefixMapping(java.lang.String)\"\u003e\u003ccode\u003eContentHandler.endPrefixMapping(String)\u003c/code\u003e\u003c/a\u003e are invoked properly. Similarly, the user-specified \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e will receive startPrefixMapping/endPrefixMapping events. If the \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e introduces additional namespace bindings, the user-specified \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e will receive additional startPrefixMapping/endPrefixMapping events. \u003c/li\u003e\n \u003cli\u003e\u003ca href\u003d\"../../../org/xml/sax/Attributes.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eAttributes\u003c/code\u003e\u003c/a\u003e for the \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html#startElement(java.lang.String,java.lang.String,java.lang.String,org.xml.sax.Attributes)\"\u003e\u003ccode\u003eContentHandler.startElement(String,String,String,Attributes)\u003c/code\u003e\u003c/a\u003e method may or may not include xmlns* attributes. \u003c/li\u003e\n\u003c/ol\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e A \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e is automatically reset every time the startDocument method is invoked. \u003c/p\u003e\n\u003ch2\u003eRecognized Properties and Features\u003c/h2\u003e \n\u003cp\u003e This spec defines the following feature that must be recognized by all \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e implementations. \u003c/p\u003e\n\u003ch3\u003e\u003ccode\u003ehttp://xml.org/sax/features/namespace-prefixes\u003c/code\u003e\u003c/h3\u003e \n\u003cp\u003e This feature controls how a \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e introduces namespace bindings that were not present in the original SAX event stream. When this feature is set to true, it must make sure that the user\u0027s \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e will see the corresponding \u003ccode\u003exmlns*\u003c/code\u003e attribute in the \u003ca href\u003d\"../../../org/xml/sax/Attributes.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eAttributes\u003c/code\u003e\u003c/a\u003e object of the \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html#startElement(java.lang.String,java.lang.String,java.lang.String,org.xml.sax.Attributes)\"\u003e\u003ccode\u003eContentHandler.startElement(String,String,String,Attributes)\u003c/code\u003e\u003c/a\u003e callback. Otherwise, \u003ccode\u003exmlns*\u003c/code\u003e attributes must not be added to \u003ca href\u003d\"../../../org/xml/sax/Attributes.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eAttributes\u003c/code\u003e\u003c/a\u003e that\u0027s passed to the user-specified \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e. \u003c/p\u003e\n\u003cp\u003e (Note that regardless of this switch, namespace bindings are always notified to applications through \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html#startPrefixMapping(java.lang.String,java.lang.String)\"\u003e\u003ccode\u003eContentHandler.startPrefixMapping(String,String)\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html#endPrefixMapping(java.lang.String)\"\u003e\u003ccode\u003eContentHandler.endPrefixMapping(String)\u003c/code\u003e\u003c/a\u003e methods of the \u003ca href\u003d\"../../../org/xml/sax/ContentHandler.html\" title\u003d\"interface in org.xml.sax\"\u003e\u003ccode\u003eContentHandler\u003c/code\u003e\u003c/a\u003e specified by the user.) \u003c/p\u003e\n\u003cp\u003e Note that this feature does \u003cem\u003eNOT\u003c/em\u003e affect the way a \u003ca href\u003d\"ValidatorHandler.html\" title\u003d\"class in javax.xml.validation\"\u003e\u003ccode\u003eValidatorHandler\u003c/code\u003e\u003c/a\u003e receives SAX events. It merely changes the way it augments SAX events. \u003c/p\u003e\n\u003cp\u003eThis feature is set to \u003ccode\u003efalse\u003c/code\u003e by default.\u003c/p\u003e",
+  "tagMap": {
+    "since": [
+      "1.5"
+    ]
+  }
+}

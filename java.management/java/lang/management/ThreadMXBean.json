@@ -1,0 +1,931 @@
+{
+  "packageName": "java.lang.management",
+  "simpleName": "ThreadMXBean",
+  "moduleName": "java.management",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.management.PlatformManagedObject",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadCount",
+      "comment": "Returns the current number of live threads including both daemon and non-daemon threads.",
+      "tagMap": {
+        "return": [
+          "the current number of live threads."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getPeakThreadCount",
+      "comment": "Returns the peak live thread count since the Java virtual machine started or peak was reset.",
+      "tagMap": {
+        "return": [
+          "the peak live thread count."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getTotalStartedThreadCount",
+      "comment": "Returns the total number of threads created and also started since the Java virtual machine started.",
+      "tagMap": {
+        "return": [
+          "the total number of threads started."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDaemonThreadCount",
+      "comment": "Returns the current number of live daemon threads.",
+      "tagMap": {
+        "return": [
+          "the current number of live daemon threads."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getAllThreadIds",
+      "comment": "Returns all live thread IDs. Some threads included in the returned array may have been terminated when this method returns.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\")."
+        ],
+        "return": [
+          "an array of \n\u003ccode\u003elong\u003c/code\u003e, each is a thread ID."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "id"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadInfo",
+      "comment": "Returns the thread info for a thread of the specified id with no stack trace. This method is equivalent to calling: getThreadInfo(id, 0); This method returns a ThreadInfo object representing the thread information for the thread of the specified ID. The stack trace, locked monitors, and locked synchronizers in the returned ThreadInfo object will be empty. If a thread of the given ID is not alive or does not exist, this method will return null. A thread is alive if it has been started and has not yet died. MBeanServer access: The mapped type of ThreadInfo is CompositeData with attributes as specified in the ThreadInfo.from method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the thread ID of the thread. Must be positive."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eid \u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\")."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e object for the thread of the given ID with no stack trace, no locked monitor and no synchronizer info; \n\u003ccode\u003enull\u003c/code\u003e if the thread of the given ID is not alive or it does not exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "ids"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadInfo",
+      "comment": "Returns the thread info for each thread whose ID is in the input array ids with no stack trace. This method is equivalent to calling:    getThreadInfo(ids, 0);\n This method returns an array of the ThreadInfo objects. The stack trace, locked monitors, and locked synchronizers in each ThreadInfo object will be empty. If a thread of a given ID is not alive or does not exist, the corresponding element in the returned array will contain null. A thread is alive if it has been started and has not yet died. MBeanServer access: The mapped type of ThreadInfo is CompositeData with attributes as specified in the ThreadInfo.from method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eids\u003c/code\u003e - an array of thread IDs."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any element in the input array \n\u003ccode\u003eids\u003c/code\u003e is \n\u003ccode\u003e\u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\")."
+        ],
+        "return": [
+          "an array of the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e objects, each containing information about a thread whose ID is in the corresponding element of the input array of IDs with no stack trace, no locked monitor and no synchronizer info."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "id"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxDepth"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadInfo",
+      "comment": "Returns a thread info for a thread of the specified id, with stack trace of a specified number of stack trace elements. The maxDepth parameter indicates the maximum number of StackTraceElement to be retrieved from the stack trace. If maxDepth \u003d\u003d Integer.MAX_VALUE, the entire stack trace of the thread will be dumped. If maxDepth \u003d\u003d 0, no stack trace of the thread will be dumped. This method does not obtain the locked monitors and locked synchronizers of the thread. When the Java virtual machine has no stack trace information about a thread or maxDepth \u003d\u003d 0, the stack trace in the ThreadInfo object will be an empty array of StackTraceElement. If a thread of the given ID is not alive or does not exist, this method will return null. A thread is alive if it has been started and has not yet died. MBeanServer access: The mapped type of ThreadInfo is CompositeData with attributes as specified in the ThreadInfo.from method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the thread ID of the thread. Must be positive.",
+          "\u003ccode\u003emaxDepth\u003c/code\u003e - the maximum number of entries in the stack trace to be dumped. \n\u003ccode\u003eInteger.MAX_VALUE\u003c/code\u003e could be used to request the entire stack to be dumped."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eid \u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emaxDepth is negative\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\")."
+        ],
+        "return": [
+          "a \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e of the thread of the given ID with no locked monitor and synchronizer info. \n\u003ccode\u003enull\u003c/code\u003e if the thread of the given ID is not alive or it does not exist."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "ids"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxDepth"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadInfo",
+      "comment": "Returns the thread info for each thread whose ID is in the input array ids, with stack trace of a specified number of stack trace elements. The maxDepth parameter indicates the maximum number of StackTraceElement to be retrieved from the stack trace. If maxDepth \u003d\u003d Integer.MAX_VALUE, the entire stack trace of the thread will be dumped. If maxDepth \u003d\u003d 0, no stack trace of the thread will be dumped. This method does not obtain the locked monitors and locked synchronizers of the threads. When the Java virtual machine has no stack trace information about a thread or maxDepth \u003d\u003d 0, the stack trace in the ThreadInfo object will be an empty array of StackTraceElement. This method returns an array of the ThreadInfo objects, each is the thread information about the thread with the same index as in the ids array. If a thread of the given ID is not alive or does not exist, null will be set in the corresponding element in the returned array. A thread is alive if it has been started and has not yet died. MBeanServer access: The mapped type of ThreadInfo is CompositeData with attributes as specified in the ThreadInfo.from method.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eids\u003c/code\u003e - an array of thread IDs",
+          "\u003ccode\u003emaxDepth\u003c/code\u003e - the maximum number of entries in the stack trace to be dumped. \n\u003ccode\u003eInteger.MAX_VALUE\u003c/code\u003e could be used to request the entire stack to be dumped."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emaxDepth is negative\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if any element in the input array \n\u003ccode\u003eids\u003c/code\u003e is \n\u003ccode\u003e\u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\")."
+        ],
+        "return": [
+          "an array of the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e objects, each containing information about a thread whose ID is in the corresponding element of the input array of IDs with no locked monitor and synchronizer info."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isThreadContentionMonitoringSupported",
+      "comment": "Tests if the Java virtual machine supports thread contention monitoring.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the Java virtual machine supports thread contention monitoring; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isThreadContentionMonitoringEnabled",
+      "comment": "Tests if thread contention monitoring is enabled.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadContentionMonitoringSupported()\"\u003e\u003ccode\u003eisThreadContentionMonitoringSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support thread contention monitoring."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if thread contention monitoring is enabled; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "enable"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setThreadContentionMonitoringEnabled",
+      "comment": "Enables or disables thread contention monitoring. Thread contention monitoring is disabled by default.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadContentionMonitoringSupported()\"\u003e\u003ccode\u003eisThreadContentionMonitoringSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eenable\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e to enable; \n\u003ccode\u003efalse\u003c/code\u003e to disable."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support thread contention monitoring.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"control\")."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCurrentThreadCpuTime",
+      "comment": "Returns the total CPU time for the current thread in nanoseconds. The returned value is of nanoseconds precision but not necessarily nanoseconds accuracy. If the implementation distinguishes between user mode time and system mode time, the returned CPU time is the amount of time that the current thread has executed in user mode or system mode. This is a convenience method for local management use and is equivalent to calling:    getThreadCpuTime(Thread.currentThread().getId());",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#getCurrentThreadUserTime()\"\u003e\u003ccode\u003egetCurrentThreadUserTime()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isCurrentThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisCurrentThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeEnabled()\"\u003e\u003ccode\u003eisThreadCpuTimeEnabled()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#setThreadCpuTimeEnabled(boolean)\"\u003e\u003ccode\u003esetThreadCpuTimeEnabled(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support CPU time measurement for the current thread."
+        ],
+        "return": [
+          "the total CPU time for the current thread if CPU time measurement is enabled; \n\u003ccode\u003e-1\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getCurrentThreadUserTime",
+      "comment": "Returns the CPU time that the current thread has executed in user mode in nanoseconds. The returned value is of nanoseconds precision but not necessarily nanoseconds accuracy. This is a convenience method for local management use and is equivalent to calling:    getThreadUserTime(Thread.currentThread().getId());",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#getCurrentThreadCpuTime()\"\u003e\u003ccode\u003egetCurrentThreadCpuTime()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isCurrentThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisCurrentThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeEnabled()\"\u003e\u003ccode\u003eisThreadCpuTimeEnabled()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#setThreadCpuTimeEnabled(boolean)\"\u003e\u003ccode\u003esetThreadCpuTimeEnabled(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support CPU time measurement for the current thread."
+        ],
+        "return": [
+          "the user-level CPU time for the current thread if CPU time measurement is enabled; \n\u003ccode\u003e-1\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "id"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadCpuTime",
+      "comment": "Returns the total CPU time for a thread of the specified ID in nanoseconds. The returned value is of nanoseconds precision but not necessarily nanoseconds accuracy. If the implementation distinguishes between user mode time and system mode time, the returned CPU time is the amount of time that the thread has executed in user mode or system mode. If the thread of the specified ID is not alive or does not exist, this method returns -1. If CPU time measurement is disabled, this method returns -1. A thread is alive if it has been started and has not yet died. If CPU time measurement is enabled after the thread has started, the Java virtual machine implementation may choose any time up to and including the time that the capability is enabled as the point where CPU time measurement starts.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#getThreadUserTime(long)\"\u003e\u003ccode\u003egetThreadUserTime(long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeEnabled()\"\u003e\u003ccode\u003eisThreadCpuTimeEnabled()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#setThreadCpuTimeEnabled(boolean)\"\u003e\u003ccode\u003esetThreadCpuTimeEnabled(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the thread ID of a thread"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eid \u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support CPU time measurement for other threads."
+        ],
+        "return": [
+          "the total CPU time for a thread of the specified ID if the thread of the specified ID exists, the thread is alive, and CPU time measurement is enabled; \n\u003ccode\u003e-1\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class"
+          },
+          "field": {
+            "name": "id"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadUserTime",
+      "comment": "Returns the CPU time that a thread of the specified ID has executed in user mode in nanoseconds. The returned value is of nanoseconds precision but not necessarily nanoseconds accuracy. If the thread of the specified ID is not alive or does not exist, this method returns -1. If CPU time measurement is disabled, this method returns -1. A thread is alive if it has been started and has not yet died. If CPU time measurement is enabled after the thread has started, the Java virtual machine implementation may choose any time up to and including the time that the capability is enabled as the point where CPU time measurement starts.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#getThreadCpuTime(long)\"\u003e\u003ccode\u003egetThreadCpuTime(long)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeEnabled()\"\u003e\u003ccode\u003eisThreadCpuTimeEnabled()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#setThreadCpuTimeEnabled(boolean)\"\u003e\u003ccode\u003esetThreadCpuTimeEnabled(boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eid\u003c/code\u003e - the thread ID of a thread"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003eid \u0026lt;\u003d 0\u003c/code\u003e.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support CPU time measurement for other threads."
+        ],
+        "return": [
+          "the user-level CPU time for a thread of the specified ID if the thread of the specified ID exists, the thread is alive, and CPU time measurement is enabled; \n\u003ccode\u003e-1\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isThreadCpuTimeSupported",
+      "comment": "Tests if the Java virtual machine implementation supports CPU time measurement for any thread. A Java virtual machine implementation that supports CPU time measurement for any thread will also support CPU time measurement for the current thread.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the Java virtual machine supports CPU time measurement for any thread; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isCurrentThreadCpuTimeSupported",
+      "comment": "Tests if the Java virtual machine supports CPU time measurement for the current thread. This method returns true if isThreadCpuTimeSupported() returns true.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the Java virtual machine supports CPU time measurement for current thread; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isThreadCpuTimeEnabled",
+      "comment": "Tests if thread CPU time measurement is enabled.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isCurrentThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisCurrentThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support CPU time measurement for other threads nor for the current thread."
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if thread CPU time measurement is enabled; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "enable"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "setThreadCpuTimeEnabled",
+      "comment": "Enables or disables thread CPU time measurement. The default is platform dependent.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isCurrentThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisCurrentThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eenable\u003c/code\u003e - \n\u003ccode\u003etrue\u003c/code\u003e to enable; \n\u003ccode\u003efalse\u003c/code\u003e to disable."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support CPU time measurement for any threads nor for the current thread.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"control\")."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "findMonitorDeadlockedThreads",
+      "comment": "Finds cycles of threads that are in deadlock waiting to acquire object monitors. That is, threads that are blocked waiting to enter a synchronization block or waiting to reenter a synchronization block after an Object.wait call, where each thread owns one monitor while trying to obtain another monitor already held by another thread in a cycle. More formally, a thread is monitor deadlocked if it is part of a cycle in the relation \"is waiting for an object monitor owned by\". In the simplest case, thread A is blocked waiting for a monitor owned by thread B, and thread B is blocked waiting for a monitor owned by thread A. This method is designed for troubleshooting use, but not for synchronization control. It might be an expensive operation. This method finds deadlocks involving only object monitors. To find deadlocks involving both object monitors and ownable synchronizers, the findDeadlockedThreads method should be used.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#findDeadlockedThreads()\"\u003e\u003ccode\u003efindDeadlockedThreads()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\")."
+        ],
+        "return": [
+          "an array of IDs of the threads that are monitor deadlocked, if any; \n\u003ccode\u003enull\u003c/code\u003e otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resetPeakThreadCount",
+      "comment": "Resets the peak thread count to the current number of live threads.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#getPeakThreadCount()\"\u003e\u003ccode\u003egetPeakThreadCount()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#getThreadCount()\"\u003e\u003ccode\u003egetThreadCount()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"control\")."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "long",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "findDeadlockedThreads",
+      "comment": "Finds cycles of threads that are in deadlock waiting to acquire object monitors or ownable synchronizers. Threads are deadlocked in a cycle waiting for a lock of these two types if each thread owns one lock while trying to acquire another lock already held by another thread in the cycle. This method is designed for troubleshooting use, but not for synchronization control. It might be an expensive operation.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003e\u003ccode\u003eisSynchronizerUsageSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#findMonitorDeadlockedThreads()\"\u003e\u003ccode\u003efindMonitorDeadlockedThreads()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\").",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - if the Java virtual machine does not support monitoring of ownable synchronizer usage."
+        ],
+        "return": [
+          "an array of IDs of the threads that are deadlocked waiting for object monitors or ownable synchronizers, if any; \n\u003ccode\u003enull\u003c/code\u003e otherwise."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isObjectMonitorUsageSupported",
+      "comment": "Tests if the Java virtual machine supports monitoring of object monitor usage.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#dumpAllThreads(boolean,boolean)\"\u003e\u003ccode\u003edumpAllThreads(boolean, boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the Java virtual machine supports monitoring of object monitor usage; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "isSynchronizerUsageSupported",
+      "comment": "Tests if the Java virtual machine supports monitoring of ownable synchronizer usage.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#dumpAllThreads(boolean,boolean)\"\u003e\u003ccode\u003edumpAllThreads(boolean, boolean)\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if the Java virtual machine supports monitoring of ownable synchronizer usage; \n\u003ccode\u003efalse\u003c/code\u003e otherwise."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "ids"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedMonitors"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedSynchronizers"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadInfo",
+      "comment": "Returns the thread info for each thread whose ID is in the input array ids, with stack trace and synchronization information. This is equivalent to calling: getThreadInfo(ids, lockedMonitors, lockedSynchronizers, Integer.MAX_VALUE)",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003e\u003ccode\u003eisObjectMonitorUsageSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003e\u003ccode\u003eisSynchronizerUsageSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eids\u003c/code\u003e - an array of thread IDs.",
+          "\u003ccode\u003elockedMonitors\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, retrieves all locked monitors.",
+          "\u003ccode\u003elockedSynchronizers\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, retrieves all locked ownable synchronizers."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\").",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - \n\u003cul\u003e \n \u003cli\u003eif \u003ccode\u003elockedMonitors\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003eobject monitor usage\u003c/a\u003e; or\u003c/li\u003e \n \u003cli\u003eif \u003ccode\u003elockedSynchronizers\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003eownable synchronizer usage\u003c/a\u003e.\u003c/li\u003e \n\u003c/ul\u003e"
+        ],
+        "return": [
+          "an array of the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e objects, each containing information about a thread whose ID is in the corresponding element of the input array of IDs."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "long",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "ids"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedMonitors"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedSynchronizers"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxDepth"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getThreadInfo",
+      "comment": "Returns the thread info for each thread whose ID is in the input array ids, with stack trace of the specified maximum number of elements and synchronization information. If maxDepth \u003d\u003d 0, no stack trace of the thread will be dumped. This method obtains a snapshot of the thread information for each thread including: stack trace of the specified maximum number of elements, the object monitors currently locked by the thread if lockedMonitors is true, and the ownable synchronizers currently locked by the thread if lockedSynchronizers is true. This method returns an array of the ThreadInfo objects, each is the thread information about the thread with the same index as in the ids array. If a thread of the given ID is not alive or does not exist, null will be set in the corresponding element in the returned array. A thread is alive if it has been started and has not yet died. If a thread does not lock any object monitor or lockedMonitors is false, the returned ThreadInfo object will have an empty MonitorInfo array. Similarly, if a thread does not lock any synchronizer or lockedSynchronizers is false, the returned ThreadInfo object will have an empty LockInfo array. When both lockedMonitors and lockedSynchronizers parameters are false, it is equivalent to calling:      getThreadInfo(ids, maxDepth)\n This method is designed for troubleshooting use, but not for synchronization control. It might be an expensive operation. MBeanServer access: The mapped type of ThreadInfo is CompositeData with attributes as specified in the ThreadInfo.from method.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003e\u003ccode\u003eisObjectMonitorUsageSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003e\u003ccode\u003eisSynchronizerUsageSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eids\u003c/code\u003e - an array of thread IDs.",
+          "\u003ccode\u003elockedMonitors\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, retrieves all locked monitors.",
+          "\u003ccode\u003elockedSynchronizers\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, retrieves all locked ownable synchronizers.",
+          "\u003ccode\u003emaxDepth\u003c/code\u003e - indicates the maximum number of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/StackTraceElement.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eStackTraceElement\u003c/code\u003e\u003c/a\u003e to be retrieved from the stack trace."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emaxDepth\u003c/code\u003e is negative.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\").",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - \n\u003cul\u003e \n \u003cli\u003eif \u003ccode\u003elockedMonitors\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003eobject monitor usage\u003c/a\u003e; or\u003c/li\u003e \n \u003cli\u003eif \u003ccode\u003elockedSynchronizers\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003eownable synchronizer usage\u003c/a\u003e.\u003c/li\u003e \n\u003c/ul\u003e"
+        ],
+        "return": [
+          "an array of the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e objects, each containing information about a thread whose ID is in the corresponding element of the input array of IDs."
+        ],
+        "since": [
+          "10"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedMonitors"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedSynchronizers"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "dumpAllThreads",
+      "comment": "Returns the thread info for all live threads with stack trace and synchronization information. This is equivalent to calling: dumpAllThreads(lockedMonitors, lockedSynchronizers, Integer.MAX_VALUE)",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003e\u003ccode\u003eisObjectMonitorUsageSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003e\u003ccode\u003eisSynchronizerUsageSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elockedMonitors\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, dump all locked monitors.",
+          "\u003ccode\u003elockedSynchronizers\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, dump all locked ownable synchronizers."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\").",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - \n\u003cul\u003e \n \u003cli\u003eif \u003ccode\u003elockedMonitors\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003eobject monitor usage\u003c/a\u003e; or\u003c/li\u003e \n \u003cli\u003eif \u003ccode\u003elockedSynchronizers\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003eownable synchronizer usage\u003c/a\u003e.\u003c/li\u003e \n\u003c/ul\u003e"
+        ],
+        "return": [
+          "an array of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e for all live threads."
+        ],
+        "since": [
+          "1.6"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.management.ThreadInfo",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedMonitors"
+          }
+        },
+        {
+          "type": {
+            "name": "boolean",
+            "type": "Class"
+          },
+          "field": {
+            "name": "lockedSynchronizers"
+          }
+        },
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "maxDepth"
+          }
+        }
+      ],
+      "isDefaultMethod": true,
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "dumpAllThreads",
+      "comment": "Returns the thread info for all live threads with stack trace of the specified maximum number of elements and synchronization information. if maxDepth \u003d\u003d 0, no stack trace of the thread will be dumped. Some threads included in the returned array may have been terminated when this method returns. This method returns an array of ThreadInfo objects as specified in the getThreadInfo(long[], boolean, boolean, int) method.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation throws \n\u003ccode\u003eUnsupportedOperationException\u003c/code\u003e."
+        ],
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003e\u003ccode\u003eisObjectMonitorUsageSupported()\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003e\u003ccode\u003eisSynchronizerUsageSupported()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003elockedMonitors\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, dump all locked monitors.",
+          "\u003ccode\u003elockedSynchronizers\u003c/code\u003e - if \n\u003ccode\u003etrue\u003c/code\u003e, dump all locked ownable synchronizers.",
+          "\u003ccode\u003emaxDepth\u003c/code\u003e - indicates the maximum number of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/StackTraceElement.html\" title\u003d\"class in java.lang\"\u003e\u003ccode\u003eStackTraceElement\u003c/code\u003e\u003c/a\u003e to be retrieved from the stack trace."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if \n\u003ccode\u003emaxDepth\u003c/code\u003e is negative.",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/SecurityException.html\" title\u003d\"class in java.lang\"\u003eSecurityException\u003c/a\u003e\u003c/code\u003e - if a security manager exists and the caller does not have ManagementPermission(\"monitor\").",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html\" title\u003d\"class in java.lang\"\u003eUnsupportedOperationException\u003c/a\u003e\u003c/code\u003e - \n\u003cul\u003e \n \u003cli\u003eif \u003ccode\u003elockedMonitors\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isObjectMonitorUsageSupported()\"\u003eobject monitor usage\u003c/a\u003e; or\u003c/li\u003e \n \u003cli\u003eif \u003ccode\u003elockedSynchronizers\u003c/code\u003e is \u003ccode\u003etrue\u003c/code\u003e but the Java virtual machine does not support monitoring of \u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadMXBean.html#isSynchronizerUsageSupported()\"\u003eownable synchronizer usage\u003c/a\u003e.\u003c/li\u003e \n\u003c/ul\u003e"
+        ],
+        "return": [
+          "an array of \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ThreadInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e for all live threads."
+        ],
+        "since": [
+          "10"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "java.lang.management.ThreadMXBean",
+  "comment": "The management interface for the thread system of the Java virtual machine. \n\u003cp\u003e A Java virtual machine has a single instance of the implementation class of this interface. This instance implementing this interface is an \u003ca href\u003d\"ManagementFactory.html#MXBean\"\u003eMXBean\u003c/a\u003e that can be obtained by calling the \u003ca href\u003d\"ManagementFactory.html#getThreadMXBean()\"\u003e\u003ccode\u003eManagementFactory.getThreadMXBean()\u003c/code\u003e\u003c/a\u003e method or from the \u003ca href\u003d\"ManagementFactory.html#getPlatformMBeanServer()\"\u003e\u003ccode\u003eplatform MBeanServer\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eObjectName\u003c/code\u003e for uniquely identifying the MXBean for the thread system within an MBeanServer is: \u003c/p\u003e\n\u003cblockquote\u003e \n \u003ca href\u003d\"ManagementFactory.html#THREAD_MXBEAN_NAME\"\u003e\u003ccode\u003ejava.lang:type\u003dThreading\u003c/code\u003e\u003c/a\u003e \n\u003c/blockquote\u003e It can be obtained by calling the \n\u003ca href\u003d\"PlatformManagedObject.html#getObjectName()\"\u003e\u003ccode\u003ePlatformManagedObject.getObjectName()\u003c/code\u003e\u003c/a\u003e method. \n\u003cp\u003e\u003c/p\u003e\n\u003ch2\u003eThread ID\u003c/h2\u003e Thread ID is a positive long value returned by calling the \n\u003ca href\u003d\"../../../../java.base/java/lang/Thread.html#getId()\"\u003e\u003ccode\u003eThread.getId()\u003c/code\u003e\u003c/a\u003e method for a thread. The thread ID is unique during its lifetime. When a thread is terminated, this thread ID may be reused. \n\u003cp\u003e Some methods in this interface take a thread ID or an array of thread IDs as the input parameter and return per-thread information. \u003c/p\u003e\n\u003ch2\u003eThread CPU time\u003c/h2\u003e A Java virtual machine implementation may support measuring the CPU time for the current thread, for any thread, or for no threads. \n\u003cp\u003e The \u003ca href\u003d\"#isThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e method can be used to determine if a Java virtual machine supports measuring of the CPU time for any thread. The \u003ca href\u003d\"#isCurrentThreadCpuTimeSupported()\"\u003e\u003ccode\u003eisCurrentThreadCpuTimeSupported()\u003c/code\u003e\u003c/a\u003e method can be used to determine if a Java virtual machine supports measuring of the CPU time for the current thread. A Java virtual machine implementation that supports CPU time measurement for any thread will also support that for the current thread. \u003c/p\u003e\n\u003cp\u003e The CPU time provided by this interface has nanosecond precision but not necessarily nanosecond accuracy. \u003c/p\u003e\n\u003cp\u003e A Java virtual machine may disable CPU time measurement by default. The \u003ca href\u003d\"#isThreadCpuTimeEnabled()\"\u003e\u003ccode\u003eisThreadCpuTimeEnabled()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#setThreadCpuTimeEnabled(boolean)\"\u003e\u003ccode\u003esetThreadCpuTimeEnabled(boolean)\u003c/code\u003e\u003c/a\u003e methods can be used to test if CPU time measurement is enabled and to enable/disable this support respectively. Enabling thread CPU measurement could be expensive in some Java virtual machine implementations. \u003c/p\u003e\n\u003ch2\u003eThread Contention Monitoring\u003c/h2\u003e Some Java virtual machines may support thread contention monitoring. When thread contention monitoring is enabled, the accumulated elapsed time that the thread has blocked for synchronization or waited for notification will be collected and returned in the \n\u003ca href\u003d\"ThreadInfo.html#SyncStats\"\u003e\u003ccode\u003eThreadInfo\u003c/code\u003e\u003c/a\u003e object. \n\u003cp\u003e The \u003ca href\u003d\"#isThreadContentionMonitoringSupported()\"\u003e\u003ccode\u003eisThreadContentionMonitoringSupported()\u003c/code\u003e\u003c/a\u003e method can be used to determine if a Java virtual machine supports thread contention monitoring. The thread contention monitoring is disabled by default. The \u003ca href\u003d\"#setThreadContentionMonitoringEnabled(boolean)\"\u003e\u003ccode\u003esetThreadContentionMonitoringEnabled(boolean)\u003c/code\u003e\u003c/a\u003e method can be used to enable thread contention monitoring. \u003c/p\u003e\n\u003ch2\u003eSynchronization Information and Deadlock Detection\u003c/h2\u003e Some Java virtual machines may support monitoring of \n\u003ca href\u003d\"#isObjectMonitorUsageSupported()\"\u003eobject monitor usage\u003c/a\u003e and \n\u003ca href\u003d\"#isSynchronizerUsageSupported()\"\u003eownable synchronizer usage\u003c/a\u003e. The \n\u003ca href\u003d\"#getThreadInfo(long%5B%5D,boolean,boolean)\"\u003e\u003ccode\u003egetThreadInfo(long[], boolean, boolean)\u003c/code\u003e\u003c/a\u003e and \n\u003ca href\u003d\"#dumpAllThreads(boolean,boolean)\"\u003e\u003ccode\u003edumpAllThreads(boolean, boolean)\u003c/code\u003e\u003c/a\u003e methods can be used to obtain the thread stack trace and synchronization information including which \n\u003ca href\u003d\"LockInfo.html\" title\u003d\"class in java.lang.management\"\u003e\u003ci\u003elock\u003c/i\u003e\u003c/a\u003e a thread is blocked to acquire or waiting on and which locks the thread currently owns. \n\u003cp\u003e The \u003ccode\u003eThreadMXBean\u003c/code\u003e interface provides the \u003ca href\u003d\"#findMonitorDeadlockedThreads()\"\u003e\u003ccode\u003efindMonitorDeadlockedThreads()\u003c/code\u003e\u003c/a\u003e and \u003ca href\u003d\"#findDeadlockedThreads()\"\u003e\u003ccode\u003efindDeadlockedThreads()\u003c/code\u003e\u003c/a\u003e methods to find deadlocks in the running application.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/ManagementFactory.html#getPlatformMXBeans(java.lang.Class)\"\u003e\u003ccode\u003eManagementFactory.getPlatformMXBeans(Class)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/javax/management/package-summary.html\"\u003e JMX Specification.\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.management/java/lang/management/package-summary.html#examples\"\u003e Ways to Access MXBeans\u003c/a\u003e"
+    ],
+    "since": [
+      "1.5"
+    ]
+  }
+}

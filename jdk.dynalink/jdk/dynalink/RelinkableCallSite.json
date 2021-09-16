@@ -1,0 +1,131 @@
+{
+  "packageName": "jdk.dynalink",
+  "simpleName": "RelinkableCallSite",
+  "moduleName": "jdk.dynalink",
+  "type": "INTERFACE",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "relinkAndInvoke"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "initialize",
+      "comment": "Invoked by dynamic linker to initialize the relinkable call site by setting a relink-and-invoke method handle. The call site implementation is supposed to set this method handle as its target using CallSite.setTarget(MethodHandle). Relink-and-invoke is the initial method handle set by DynamicLinker.link(RelinkableCallSite) that will cause the call site to be relinked to an appropriate target on its first invocation based on its arguments, and that linked target will then be invoked (hence the name). This linking protocol effectively delays linking until the call site is invoked with actual arguments and thus ensures that linkers can make nuanced linking decisions based on those arguments and not just on the static method type of the call site.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003erelinkAndInvoke\u003c/code\u003e - a relink-and-invoke method handle supplied by Dynalink."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "jdk.dynalink.CallSiteDescriptor",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "getDescriptor",
+      "comment": "Returns the descriptor for this call site.",
+      "tagMap": {
+        "return": [
+          "the descriptor for this call site."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.dynalink.linker.GuardedInvocation",
+            "type": "Class"
+          },
+          "field": {
+            "name": "guardedInvocation"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "relinkAndInvoke"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "relink",
+      "comment": "This method will be called by the dynamic linker every time the call site is relinked (but see resetAndRelink(GuardedInvocation, MethodHandle) for an exception). It will be passed a GuardedInvocation that the call site should incorporate into its target method handle. When this method is called, the call site is allowed to keep other non-invalidated invocations around for implementation of polymorphic inline caches and compose them with this invocation to form its final target.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eguardedInvocation\u003c/code\u003e - the guarded invocation that the call site should incorporate into its target method handle.",
+          "\u003ccode\u003erelinkAndInvoke\u003c/code\u003e - a relink-and-invoke method handle. This is a method handle matching the method type of the call site that is supplied by the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/DynamicLinker.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003eDynamicLinker\u003c/code\u003e\u003c/a\u003e as a callback. It should be used by this call site as the ultimate fallback when it can\u0027t invoke its target with the passed arguments. The fallback method is such that when it\u0027s invoked, it\u0027ll try to obtain an adequate target \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/GuardedInvocation.html\" title\u003d\"class in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardedInvocation\u003c/code\u003e\u003c/a\u003e for the invocation, and subsequently invoke \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/RelinkableCallSite.html#relink(jdk.dynalink.linker.GuardedInvocation,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003erelink(GuardedInvocation, MethodHandle)\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/RelinkableCallSite.html#resetAndRelink(jdk.dynalink.linker.GuardedInvocation,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003eresetAndRelink(GuardedInvocation, MethodHandle)\u003c/code\u003e\u003c/a\u003e, and finally invoke the target."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "jdk.dynalink.linker.GuardedInvocation",
+            "type": "Class"
+          },
+          "field": {
+            "name": "guardedInvocation"
+          }
+        },
+        {
+          "type": {
+            "name": "java.lang.invoke.MethodHandle",
+            "type": "Class"
+          },
+          "field": {
+            "name": "relinkAndInvoke"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 0,
+      "name": "resetAndRelink",
+      "comment": "This method will be called by the dynamic linker every time the call site is relinked and the linker wishes the call site to throw away any prior linkage state (that is how it differs from relink(GuardedInvocation, MethodHandle)). It will be passed a GuardedInvocation that the call site should use to build its new target method handle. When this method is called, the call site is discouraged from keeping any previous state, and is supposed to only link the current invocation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eguardedInvocation\u003c/code\u003e - the guarded invocation that the call site should use to build its target method handle.",
+          "\u003ccode\u003erelinkAndInvoke\u003c/code\u003e - a relink-and-invoke method handle. This is a method handle matching the method type of the call site that is supplied by the \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/DynamicLinker.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003eDynamicLinker\u003c/code\u003e\u003c/a\u003e as a callback. It should be used by this call site as the ultimate fallback when it can\u0027t invoke its target with the passed arguments. The fallback method is such that when it\u0027s invoked, it\u0027ll try to obtain an adequate target \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/linker/GuardedInvocation.html\" title\u003d\"class in jdk.dynalink.linker\"\u003e\u003ccode\u003eGuardedInvocation\u003c/code\u003e\u003c/a\u003e for the invocation, and subsequently invoke \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/RelinkableCallSite.html#relink(jdk.dynalink.linker.GuardedInvocation,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003erelink(GuardedInvocation, MethodHandle)\u003c/code\u003e\u003c/a\u003e or \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/jdk.dynalink/jdk/dynalink/RelinkableCallSite.html#resetAndRelink(jdk.dynalink.linker.GuardedInvocation,java.lang.invoke.MethodHandle)\"\u003e\u003ccode\u003eresetAndRelink(GuardedInvocation, MethodHandle)\u003c/code\u003e\u003c/a\u003e, and finally invoke the target."
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 513,
+  "name": "jdk.dynalink.RelinkableCallSite",
+  "comment": "Interface for call sites managed by a \n\u003ca href\u003d\"DynamicLinker.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003eDynamicLinker\u003c/code\u003e\u003c/a\u003e. Users of Dynalink must use subclasses of \n\u003ca href\u003d\"../../../java.base/java/lang/invoke/CallSite.html\" title\u003d\"class in java.lang.invoke\"\u003e\u003ccode\u003eCallSite\u003c/code\u003e\u003c/a\u003e that also implement this interface as their call site implementations. There is a readily usable \n\u003ca href\u003d\"support/SimpleRelinkableCallSite.html\" title\u003d\"class in jdk.dynalink.support\"\u003e\u003ccode\u003eSimpleRelinkableCallSite\u003c/code\u003e\u003c/a\u003e subclass that implements monomorphic inline caching strategy as well as \n\u003ca href\u003d\"support/ChainedCallSite.html\" title\u003d\"class in jdk.dynalink.support\"\u003e\u003ccode\u003eChainedCallSite\u003c/code\u003e\u003c/a\u003e that implements a polymorphic inline caching strategy and retains a chain of previously linked method handles. A relinkable call site will be managed by a \n\u003ca href\u003d\"DynamicLinker.html\" title\u003d\"class in jdk.dynalink\"\u003e\u003ccode\u003eDynamicLinker\u003c/code\u003e\u003c/a\u003e object after being associated with it using its \n\u003ca href\u003d\"DynamicLinker.html#link(T)\"\u003e\u003ccode\u003eDynamicLinker.link(RelinkableCallSite)\u003c/code\u003e\u003c/a\u003e method.",
+  "tagMap": {}
+}

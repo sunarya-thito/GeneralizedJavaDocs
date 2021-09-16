@@ -1,0 +1,423 @@
+{
+  "packageName": "java.nio.channels",
+  "simpleName": "SelectionKey",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "OP_READ",
+      "comment": "Operation-set bit for read operations. Suppose that a selection key\u0027s interest set contains OP_READ at the start of a selection operation. If the selector detects that the corresponding channel is ready for reading, has reached end-of-stream, has been remotely shut down for further writing, or has an error pending, then it will add OP_READ to the key\u0027s ready-operation set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.nio.channels.SelectionKey.OP_READ\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "OP_WRITE",
+      "comment": "Operation-set bit for write operations. Suppose that a selection key\u0027s interest set contains OP_WRITE at the start of a selection operation. If the selector detects that the corresponding channel is ready for writing, has been remotely shut down for further reading, or has an error pending, then it will add OP_WRITE to the key\u0027s ready set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.nio.channels.SelectionKey.OP_WRITE\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "OP_CONNECT",
+      "comment": "Operation-set bit for socket-connect operations. Suppose that a selection key\u0027s interest set contains OP_CONNECT at the start of a selection operation. If the selector detects that the corresponding socket channel is ready to complete its connection sequence, or has an error pending, then it will add OP_CONNECT to the key\u0027s ready set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.nio.channels.SelectionKey.OP_CONNECT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "type": {
+        "name": "int",
+        "type": "Class"
+      },
+      "memberType": "JavaField",
+      "modifiers": 25,
+      "name": "OP_ACCEPT",
+      "comment": "Operation-set bit for socket-accept operations. Suppose that a selection key\u0027s interest set contains OP_ACCEPT at the start of a selection operation. If the selector detects that the corresponding server-socket channel is ready to accept another connection, or has an error pending, then it will add OP_ACCEPT to the key\u0027s ready set.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/constant-values.html#java.nio.channels.SelectionKey.OP_ACCEPT\"\u003eConstant Field Values\u003c/a\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SelectableChannel",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "channel",
+      "comment": "Returns the channel for which this key was created. This method will continue to return the channel even after the key is cancelled.",
+      "tagMap": {
+        "return": [
+          "This key\u0027s channel"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.Selector",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "selector",
+      "comment": "Returns the selector for which this key was created. This method will continue to return the selector even after the key is cancelled.",
+      "tagMap": {
+        "return": [
+          "This key\u0027s selector"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "isValid",
+      "comment": "Tells whether or not this key is valid. A key is valid upon creation and remains so until it is cancelled, its channel is closed, or its selector is closed.",
+      "tagMap": {
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, this key is valid"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "cancel",
+      "comment": "Requests that the registration of this key\u0027s channel with its selector be cancelled. Upon return the key will be invalid and will have been added to its selector\u0027s cancelled-key set. The key will be removed from all of the selector\u0027s key sets during the next selection operation. If this key has already been cancelled then invoking this method has no effect. Once cancelled, a key remains forever invalid. This method may be invoked at any time. It synchronizes on the selector\u0027s cancelled-key set, and therefore may block briefly if invoked concurrently with a cancellation or selection operation involving the same selector.",
+      "tagMap": {}
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "interestOps",
+      "comment": "Retrieves this key\u0027s interest set. It is guaranteed that the returned set will only contain operation bits that are valid for this key\u0027s channel.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "This key\u0027s interest set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.nio.channels.SelectionKey",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ops"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "interestOps",
+      "comment": "Sets this key\u0027s interest set to the given value. This method may be invoked at any time. If this method is invoked while a selection operation is in progress then it has no effect upon that operation; the change to the key\u0027s interest set will be seen by the next selection operation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eops\u003c/code\u003e - The new interest set"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If a bit in the set does not correspond to an operation that is supported by this key\u0027s channel, that is, if \n\u003ccode\u003e(ops \u0026amp; ~channel().validOps()) !\u003d 0\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "This selection key"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ops"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "interestOpsOr",
+      "comment": "Atomically sets this key\u0027s interest set to the bitwise union (\"or\") of the existing interest set and the given value. This method is guaranteed to be atomic with respect to other concurrent calls to this method or to interestOpsAnd(int). This method may be invoked at any time. If this method is invoked while a selection operation is in progress then it has no effect upon that operation; the change to the key\u0027s interest set will be seen by the next selection operation.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation synchronizes on this key and invokes \n\u003ccode\u003einterestOps()\u003c/code\u003e and \n\u003ccode\u003einterestOps(int)\u003c/code\u003e to retrieve and set this key\u0027s interest set."
+        ],
+        "param": [
+          "\u003ccode\u003eops\u003c/code\u003e - The interest set to apply"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - If a bit in the set does not correspond to an operation that is supported by this key\u0027s channel, that is, if \n\u003ccode\u003e(ops \u0026amp; ~channel().validOps()) !\u003d 0\u003c/code\u003e",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "The previous interest set"
+        ],
+        "since": [
+          "11"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "int",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ops"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "interestOpsAnd",
+      "comment": "Atomically sets this key\u0027s interest set to the bitwise intersection (\"and\") of the existing interest set and the given value. This method is guaranteed to be atomic with respect to other concurrent calls to this method or to interestOpsOr(int). This method may be invoked at any time. If this method is invoked while a selection operation is in progress then it has no effect upon that operation; the change to the key\u0027s interest set will be seen by the next selection operation.",
+      "tagMap": {
+        "implSpec": [
+          "The default implementation synchronizes on this key and invokes \n\u003ccode\u003einterestOps()\u003c/code\u003e and \n\u003ccode\u003einterestOps(int)\u003c/code\u003e to retrieve and set this key\u0027s interest set."
+        ],
+        "apiNote": [
+          "Unlike the \n\u003ccode\u003einterestOps(int)\u003c/code\u003e and \n\u003ccode\u003einterestOpsOr(int)\u003c/code\u003e methods, this method does not throw \n\u003ccode\u003eIllegalArgumentException\u003c/code\u003e when invoked with bits in the interest set that do not correspond to an operation that is supported by this key\u0027s channel. This is to allow operation bits in the interest set to be cleared using bitwise complement values, e.g., \n\u003ccode\u003einterestOpsAnd(~SelectionKey.OP_READ)\u003c/code\u003e will remove the \n\u003ccode\u003eOP_READ\u003c/code\u003e from the interest set without affecting other bits."
+        ],
+        "param": [
+          "\u003ccode\u003eops\u003c/code\u003e - The interest set to apply"
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "The previous interest set"
+        ],
+        "since": [
+          "11"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "int",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "readyOps",
+      "comment": "Retrieves this key\u0027s ready-operation set. It is guaranteed that the returned set will only contain operation bits that are valid for this key\u0027s channel.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "This key\u0027s ready-operation set"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isReadable",
+      "comment": "Tests whether this key\u0027s channel is ready for reading. An invocation of this method of the form k.isReadable() behaves in exactly the same way as the expression \n k.readyOps() \u0026 OP_READ !\u003d 0\n If this key\u0027s channel does not support read operations then this method always returns false.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, \n\u003ccode\u003ereadyOps() \u0026amp; OP_READ\u003c/code\u003e is nonzero"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isWritable",
+      "comment": "Tests whether this key\u0027s channel is ready for writing. An invocation of this method of the form k.isWritable() behaves in exactly the same way as the expression \n k.readyOps() \u0026 OP_WRITE !\u003d 0\n If this key\u0027s channel does not support write operations then this method always returns false.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, \n\u003ccode\u003ereadyOps() \u0026amp; OP_WRITE\u003c/code\u003e is nonzero"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isConnectable",
+      "comment": "Tests whether this key\u0027s channel has either finished, or failed to finish, its socket-connection operation. An invocation of this method of the form k.isConnectable() behaves in exactly the same way as the expression \n k.readyOps() \u0026 OP_CONNECT !\u003d 0\n If this key\u0027s channel does not support socket-connect operations then this method always returns false.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, \n\u003ccode\u003ereadyOps() \u0026amp; OP_CONNECT\u003c/code\u003e is nonzero"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "isAcceptable",
+      "comment": "Tests whether this key\u0027s channel is ready to accept a new socket connection. An invocation of this method of the form k.isAcceptable() behaves in exactly the same way as the expression \n k.readyOps() \u0026 OP_ACCEPT !\u003d 0\n If this key\u0027s channel does not support socket-accept operations then this method always returns false.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/CancelledKeyException.html\" title\u003d\"class in java.nio.channels\"\u003eCancelledKeyException\u003c/a\u003e\u003c/code\u003e - If this key has been cancelled"
+        ],
+        "return": [
+          "\u003ccode\u003etrue\u003c/code\u003e if, and only if, \n\u003ccode\u003ereadyOps() \u0026amp; OP_ACCEPT\u003c/code\u003e is nonzero"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.Object",
+            "type": "Class"
+          },
+          "field": {
+            "name": "ob"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "attach",
+      "comment": "Attaches the given object to this key. An attached object may later be retrieved via the attachment method. Only one object may be attached at a time; invoking this method causes any previous attachment to be discarded. The current attachment may be discarded by attaching null.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eob\u003c/code\u003e - The object to be attached; may be \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "return": [
+          "The previously-attached object, if any, otherwise \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "attachment",
+      "comment": "Retrieves the current attachment.",
+      "tagMap": {
+        "return": [
+          "The object currently attached to this key, or \n\u003ccode\u003enull\u003c/code\u003e if there is no attachment"
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs an instance of this class.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "java.nio.channels.SelectionKey",
+  "comment": "A token representing the registration of a \n\u003ca href\u003d\"SelectableChannel.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelectableChannel\u003c/code\u003e\u003c/a\u003e with a \n\u003ca href\u003d\"Selector.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelector\u003c/code\u003e\u003c/a\u003e. \n\u003cp\u003e A selection key is created each time a channel is registered with a selector. A key remains valid until it is \u003ci\u003ecancelled\u003c/i\u003e by invoking its \u003ca href\u003d\"#cancel()\"\u003e\u003ccode\u003ecancel\u003c/code\u003e\u003c/a\u003e method, by closing its channel, or by closing its selector. Cancelling a key does not immediately remove it from its selector; it is instead added to the selector\u0027s \u003ca href\u003d\"Selector.html#ks\"\u003e\u003ci\u003ecancelled-key set\u003c/i\u003e\u003c/a\u003e for removal during the next selection operation. The validity of a key may be tested by invoking its \u003ca href\u003d\"#isValid()\"\u003e\u003ccode\u003eisValid\u003c/code\u003e\u003c/a\u003e method. \u003ca id\u003d\"opsets\"\u003e\u003c/a\u003e \u003c/p\u003e\n\u003cp\u003e A selection key contains two \u003ci\u003eoperation sets\u003c/i\u003e represented as integer values. Each bit of an operation set denotes a category of selectable operations that are supported by the key\u0027s channel. \u003c/p\u003e\n\u003cul\u003e \n \u003cli\u003e\u003cp\u003e The \u003ci\u003einterest set\u003c/i\u003e determines which operation categories will be tested for readiness the next time one of the selector\u0027s selection methods is invoked. The interest set is initialized with the value given when the key is created; it may later be changed via the \u003ca href\u003d\"#interestOps(int)\"\u003e\u003ccode\u003einterestOps(int)\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\u003c/li\u003e \n \u003cli\u003e\u003cp\u003e The \u003ci\u003eready set\u003c/i\u003e identifies the operation categories for which the key\u0027s channel has been detected to be ready by the key\u0027s selector. The ready set is initialized to zero when the key is created; it may later be updated by the selector during a selection operation, but it cannot be updated directly. \u003c/p\u003e\u003c/li\u003e \n\u003c/ul\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e That a selection key\u0027s ready set indicates that its channel is ready for some operation category is a hint, but not a guarantee, that an operation in such a category may be performed by a thread without causing the thread to block. A ready set is most likely to be accurate immediately after the completion of a selection operation. It is likely to be made inaccurate by external events and by I/O operations that are invoked upon the corresponding channel. \u003c/p\u003e\n\u003cp\u003e This class defines all known operation-set bits, but precisely which bits are supported by a given channel depends upon the type of the channel. Each subclass of \u003ca href\u003d\"SelectableChannel.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelectableChannel\u003c/code\u003e\u003c/a\u003e defines a \u003ca href\u003d\"SelectableChannel.html#validOps()\"\u003e\u003ccode\u003evalidOps()\u003c/code\u003e\u003c/a\u003e method which returns a set identifying just those operations that are supported by the channel. An attempt to set or test an operation-set bit that is not supported by a key\u0027s channel will result in an appropriate run-time exception. \u003c/p\u003e\n\u003cp\u003e It is often necessary to associate some application-specific data with a selection key, for example an object that represents the state of a higher-level protocol and handles readiness notifications in order to implement that protocol. Selection keys therefore support the \u003ci\u003eattachment\u003c/i\u003e of a single arbitrary object to a key. An object can be attached via the \u003ca href\u003d\"#attach(java.lang.Object)\"\u003e\u003ccode\u003eattach\u003c/code\u003e\u003c/a\u003e method and then later retrieved via the \u003ca href\u003d\"#attachment()\"\u003e\u003ccode\u003eattachment\u003c/code\u003e\u003c/a\u003e method. \u003c/p\u003e\n\u003cp\u003e Selection keys are safe for use by multiple concurrent threads. A selection operation will always use the interest-set value that was current at the moment that the operation began. \u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/SelectableChannel.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelectableChannel\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/channels/Selector.html\" title\u003d\"class in java.nio.channels\"\u003e\u003ccode\u003eSelector\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}

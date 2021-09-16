@@ -1,0 +1,170 @@
+{
+  "packageName": "javax.naming",
+  "simpleName": "ReferralException",
+  "moduleName": "java.naming",
+  "type": "CLASS",
+  "superClass": {
+    "name": "javax.naming.NamingException",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.lang.Object",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getReferralInfo",
+      "comment": "Retrieves information (such as URLs) related to this referral. The program may examine or display this information to the user to determine whether to continue with the referral, or to determine additional information needs to be supplied in order to continue with the referral.",
+      "tagMap": {
+        "return": [
+          "Non-null referral information related to this referral."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.naming.Context",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.naming.NamingException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getReferralContext",
+      "comment": "Retrieves the context at which to continue the method. Regardless of whether a referral is encountered directly during a context operation, or indirectly, for example, during a search enumeration, the referral exception should provide a context at which to continue the operation. The referral context is created using the environment properties of the context that threw the ReferralException. To continue the operation, the client program should re-invoke the method using the same arguments as the original invocation.",
+      "tagMap": {
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/NamingException.html\" title\u003d\"class in javax.naming\"\u003eNamingException\u003c/a\u003e\u003c/code\u003e - If a naming exception was encountered. Call either \n\u003ccode\u003eretryReferral()\u003c/code\u003e or \n\u003ccode\u003eskipReferral()\u003c/code\u003e to continue processing referrals."
+        ],
+        "return": [
+          "The non-null context at which to continue the method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.naming.Context",
+        "type": "Class"
+      },
+      "throwsClasses": [
+        {
+          "name": "javax.naming.NamingException",
+          "type": "Class"
+        }
+      ],
+      "parameters": [
+        {
+          "type": {
+            "name": "java.util.Hashtable",
+            "parameters": [
+              {
+                "type": "Wildcard"
+              },
+              {
+                "type": "Wildcard"
+              }
+            ],
+            "type": "Class"
+          },
+          "field": {
+            "name": "env"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "getReferralContext",
+      "comment": "Retrieves the context at which to continue the method using environment properties. Regardless of whether a referral is encountered directly during a context operation, or indirectly, for example, during a search enumeration, the referral exception should provide a context at which to continue the operation. The referral context is created using env as its environment properties. This method should be used instead of the no-arg overloaded form when the caller needs to use different environment properties for the referral context. It might need to do this, for example, when it needs to supply different authentication information to the referred server in order to create the referral context. To continue the operation, the client program should re-invoke the method using the same arguments as the original invocation.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003eenv\u003c/code\u003e - The possibly null environment to use when retrieving the referral context. If null, no environment properties will be used."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.naming/javax/naming/NamingException.html\" title\u003d\"class in javax.naming\"\u003eNamingException\u003c/a\u003e\u003c/code\u003e - If a naming exception was encountered. Call either \n\u003ccode\u003eretryReferral()\u003c/code\u003e or \n\u003ccode\u003eskipReferral()\u003c/code\u003e to continue processing referrals."
+        ],
+        "return": [
+          "The non-null context at which to continue the method."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "boolean",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "skipReferral",
+      "comment": "Discards the referral about to be processed. A call to this method should be followed by a call to getReferralContext to allow the processing of other referrals to continue. The following code fragment shows a typical usage pattern.   } catch (ReferralException e) {\n      if (!shallIFollow(e.getReferralInfo())) {\n          if (!e.skipReferral()) {\n              return;\n          }\n      }\n      ctx \u003d e.getReferralContext();\n  }",
+      "tagMap": {
+        "return": [
+          "true If more referral processing is pending; false otherwise."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "void",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1025,
+      "name": "retryReferral",
+      "comment": "Retries the referral currently being processed. A call to this method should be followed by a call to getReferralContext to allow the current referral to be retried. The following code fragment shows a typical usage pattern.   } catch (ReferralException e) {\n      while (true) {\n          try {\n              ctx \u003d e.getReferralContext(env);\n              break;\n          } catch (NamingException ne) {\n              if (! shallIRetry()) {\n                  return;\n              }\n              // modify environment properties (env), if necessary\n              e.retryReferral();\n          }\n      }\n  }",
+      "tagMap": {}
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "explanation"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs a new instance of ReferralException using the explanation supplied. All other fields are set to null.",
+      "tagMap": {
+        "see": [
+          "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Throwable.html#getMessage()\"\u003e\u003ccode\u003eThrowable.getMessage()\u003c/code\u003e\u003c/a\u003e"
+        ],
+        "param": [
+          "\u003ccode\u003eexplanation\u003c/code\u003e - Additional detail about this exception. Can be null."
+        ]
+      }
+    },
+    {
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 4,
+      "comment": "Constructs a new instance of ReferralException. All fields are set to null.",
+      "tagMap": {}
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1025,
+  "name": "javax.naming.ReferralException",
+  "comment": "This abstract class is used to represent a referral exception, which is generated in response to a \n\u003cem\u003ereferral\u003c/em\u003e such as that returned by LDAP v3 servers. \n\u003cp\u003e A service provider provides a subclass of \u003ccode\u003eReferralException\u003c/code\u003e by providing implementations for \u003ccode\u003egetReferralInfo()\u003c/code\u003e and \u003ccode\u003egetReferralContext()\u003c/code\u003e (and appropriate constructors and/or corresponding \"set\" methods). \u003c/p\u003e\n\u003cp\u003e The following code sample shows how \u003ccode\u003eReferralException\u003c/code\u003e can be used. \u003c/p\u003e\n\u003cblockquote\u003e\n \u003cpre\u003e\u003ccode\u003e\n      while (true) {\n          try {\n              bindings \u003d ctx.listBindings(name);\n              while (bindings.hasMore()) {\n                  b \u003d bindings.next();\n                  ...\n              }\n              break;\n          } catch (ReferralException e) {\n              ctx \u003d e.getReferralContext();\n          }\n      }\n \u003c/code\u003e\u003c/pre\u003e\n\u003c/blockquote\u003e \n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e \u003ccode\u003eReferralException\u003c/code\u003e is an abstract class. Concrete implementations determine its synchronization and serialization properties. \u003c/p\u003e\n\u003cp\u003e An environment parameter passed to the \u003ccode\u003egetReferralContext()\u003c/code\u003e method is owned by the caller. The service provider will not modify the object or keep a reference to it, but may keep a reference to a clone of it.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/serialized-form.html#javax.naming.ReferralException\"\u003eSerialized Form\u003c/a\u003e"
+    ],
+    "since": [
+      "1.3"
+    ]
+  }
+}

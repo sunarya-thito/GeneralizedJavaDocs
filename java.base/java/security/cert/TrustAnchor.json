@@ -1,0 +1,265 @@
+{
+  "packageName": "java.security.cert",
+  "simpleName": "TrustAnchor",
+  "moduleName": "java.base",
+  "type": "CLASS",
+  "superClass": {
+    "name": "java.lang.Object",
+    "type": "Class"
+  },
+  "members": [
+    {
+      "returnType": {
+        "name": "java.security.cert.X509Certificate",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getTrustedCert",
+      "comment": "Returns the most-trusted CA certificate.",
+      "tagMap": {
+        "return": [
+          "a trusted \n\u003ccode\u003eX509Certificate\u003c/code\u003e or \n\u003ccode\u003enull\u003c/code\u003e if the trust anchor was not specified as a trusted certificate"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "javax.security.auth.x500.X500Principal",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getCA",
+      "comment": "Returns the name of the most-trusted CA as an X500Principal.",
+      "tagMap": {
+        "return": [
+          "the X.500 distinguished name of the most-trusted CA, or \n\u003ccode\u003enull\u003c/code\u003e if the trust anchor was not specified as a trusted public key and name or X500Principal pair"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getCAName",
+      "comment": "Returns the name of the most-trusted CA in RFC 2253 String format.",
+      "tagMap": {
+        "return": [
+          "the X.500 distinguished name of the most-trusted CA, or \n\u003ccode\u003enull\u003c/code\u003e if the trust anchor was not specified as a trusted public key and name or X500Principal pair"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.security.PublicKey",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getCAPublicKey",
+      "comment": "Returns the public key of the most-trusted CA.",
+      "tagMap": {
+        "return": [
+          "the public key of the most-trusted CA, or \n\u003ccode\u003enull\u003c/code\u003e if the trust anchor was not specified as a trusted public key and name or X500Principal pair"
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "byte",
+        "type": "Class",
+        "arrayDimensions": [
+          {}
+        ]
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 17,
+      "name": "getNameConstraints",
+      "comment": "Returns the name constraints parameter. The specified name constraints are associated with this trust anchor and are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are returned as a byte array. This byte array contains the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 5280 and X.509. The ASN.1 notation for this structure is supplied in the documentation for TrustAnchor(X509Certificate trustedCert, byte[] nameConstraints) . Note that the byte array returned is cloned to protect against subsequent modifications.",
+      "tagMap": {
+        "return": [
+          "a byte array containing the ASN.1 DER encoding of a NameConstraints extension used for checking name constraints, or \n\u003ccode\u003enull\u003c/code\u003e if not set."
+        ]
+      }
+    },
+    {
+      "returnType": {
+        "name": "java.lang.String",
+        "type": "Class"
+      },
+      "parameters": [],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "name": "toString",
+      "comment": "Returns a formatted string describing the TrustAnchor.",
+      "tagMap": {
+        "Overrides:": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()\"\u003etoString\u003c/a\u003e\u003c/code\u003e\u0026nbsp;in class\u0026nbsp;\n\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html\" title\u003d\"class in java.lang\"\u003eObject\u003c/a\u003e\u003c/code\u003e"
+        ],
+        "return": [
+          "a formatted string describing the \n\u003ccode\u003eTrustAnchor\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.security.cert.X509Certificate",
+            "type": "Class"
+          },
+          "field": {
+            "name": "trustedCert"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "nameConstraints"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an instance of TrustAnchor with the specified X509Certificate and optional name constraints, which are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are specified as a byte array. This byte array should contain the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 5280 and X.509. The ASN.1 definition of this structure appears below. \n  NameConstraints ::\u003d SEQUENCE {\n       permittedSubtrees       [0]     GeneralSubtrees OPTIONAL,\n       excludedSubtrees        [1]     GeneralSubtrees OPTIONAL }\n\n  GeneralSubtrees ::\u003d SEQUENCE SIZE (1..MAX) OF GeneralSubtree\n\n  GeneralSubtree ::\u003d SEQUENCE {\n       base                    GeneralName,\n       minimum         [0]     BaseDistance DEFAULT 0,\n       maximum         [1]     BaseDistance OPTIONAL }\n\n  BaseDistance ::\u003d INTEGER (0..MAX)\n\n  GeneralName ::\u003d CHOICE {\n       otherName                       [0]     OtherName,\n       rfc822Name                      [1]     IA5String,\n       dNSName                         [2]     IA5String,\n       x400Address                     [3]     ORAddress,\n       directoryName                   [4]     Name,\n       ediPartyName                    [5]     EDIPartyName,\n       uniformResourceIdentifier       [6]     IA5String,\n       iPAddress                       [7]     OCTET STRING,\n       registeredID                    [8]     OBJECT IDENTIFIER}\n Note that the name constraints byte array supplied is cloned to protect against subsequent modifications.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003etrustedCert\u003c/code\u003e - a trusted \n\u003ccode\u003eX509Certificate\u003c/code\u003e",
+          "\u003ccode\u003enameConstraints\u003c/code\u003e - a byte array containing the ASN.1 DER encoding of a NameConstraints extension to be used for checking name constraints. Only the value of the extension is included, not the OID or criticality flag. Specify \n\u003ccode\u003enull\u003c/code\u003e to omit the parameter."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the name constraints cannot be decoded",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003eX509Certificate\u003c/code\u003e is \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "javax.security.auth.x500.X500Principal",
+            "type": "Class"
+          },
+          "field": {
+            "name": "caPrincipal"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PublicKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pubKey"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "nameConstraints"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an instance of TrustAnchor where the most-trusted CA is specified as an X500Principal and public key. Name constraints are an optional parameter, and are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are specified as a byte array. This byte array contains the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 5280 and X.509. The ASN.1 notation for this structure is supplied in the documentation for TrustAnchor(X509Certificate trustedCert, byte[] nameConstraints) . Note that the name constraints byte array supplied here is cloned to protect against subsequent modifications.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecaPrincipal\u003c/code\u003e - the name of the most-trusted CA as X500Principal",
+          "\u003ccode\u003epubKey\u003c/code\u003e - the public key of the most-trusted CA",
+          "\u003ccode\u003enameConstraints\u003c/code\u003e - a byte array containing the ASN.1 DER encoding of a NameConstraints extension to be used for checking name constraints. Only the value of the extension is included, not the OID or criticality flag. Specify \n\u003ccode\u003enull\u003c/code\u003e to omit the parameter."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003ecaPrincipal\u003c/code\u003e or \n\u003ccode\u003epubKey\u003c/code\u003e parameter is \n\u003ccode\u003enull\u003c/code\u003e"
+        ],
+        "since": [
+          "1.5"
+        ]
+      }
+    },
+    {
+      "parameters": [
+        {
+          "type": {
+            "name": "java.lang.String",
+            "type": "Class"
+          },
+          "field": {
+            "name": "caName"
+          }
+        },
+        {
+          "type": {
+            "name": "java.security.PublicKey",
+            "type": "Class"
+          },
+          "field": {
+            "name": "pubKey"
+          }
+        },
+        {
+          "type": {
+            "name": "byte",
+            "type": "Class",
+            "arrayDimensions": [
+              {}
+            ]
+          },
+          "field": {
+            "name": "nameConstraints"
+          }
+        }
+      ],
+      "memberType": "JavaMethod",
+      "modifiers": 1,
+      "comment": "Creates an instance of TrustAnchor where the most-trusted CA is specified as a distinguished name and public key. Name constraints are an optional parameter, and are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are specified as a byte array. This byte array contains the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 5280 and X.509. The ASN.1 notation for this structure is supplied in the documentation for TrustAnchor(X509Certificate trustedCert, byte[] nameConstraints) . Note that the name constraints byte array supplied here is cloned to protect against subsequent modifications.",
+      "tagMap": {
+        "param": [
+          "\u003ccode\u003ecaName\u003c/code\u003e - the X.500 distinguished name of the most-trusted CA in \n\u003ca href\u003d\"http://www.ietf.org/rfc/rfc2253.txt\"\u003eRFC 2253\u003c/a\u003e \n\u003ccode\u003eString\u003c/code\u003e format",
+          "\u003ccode\u003epubKey\u003c/code\u003e - the public key of the most-trusted CA",
+          "\u003ccode\u003enameConstraints\u003c/code\u003e - a byte array containing the ASN.1 DER encoding of a NameConstraints extension to be used for checking name constraints. Only the value of the extension is included, not the OID or criticality flag. Specify \n\u003ccode\u003enull\u003c/code\u003e to omit the parameter."
+        ],
+        "throws": [
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/IllegalArgumentException.html\" title\u003d\"class in java.lang\"\u003eIllegalArgumentException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003ecaName\u003c/code\u003e parameter is empty \n\u003ccode\u003e(caName.length() \u003d\u003d 0)\u003c/code\u003e or incorrectly formatted or the name constraints cannot be decoded",
+          "\u003ccode\u003e\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/NullPointerException.html\" title\u003d\"class in java.lang\"\u003eNullPointerException\u003c/a\u003e\u003c/code\u003e - if the specified \n\u003ccode\u003ecaName\u003c/code\u003e or \n\u003ccode\u003epubKey\u003c/code\u003e parameter is \n\u003ccode\u003enull\u003c/code\u003e"
+        ]
+      }
+    }
+  ],
+  "memberType": "JavaClass",
+  "modifiers": 1,
+  "name": "java.security.cert.TrustAnchor",
+  "comment": "A trust anchor or most-trusted Certification Authority (CA). \n\u003cp\u003e This class represents a \"most-trusted CA\", which is used as a trust anchor for validating X.509 certification paths. A most-trusted CA includes the public key of the CA, the CA\u0027s name, and any constraints upon the set of paths which may be validated using this key. These parameters can be specified in the form of a trusted \u003ccode\u003eX509Certificate\u003c/code\u003e or as individual parameters. \u003c/p\u003e\n\u003cp\u003e \u003cb\u003eConcurrent Access\u003c/b\u003e \u003c/p\u003e\n\u003cp\u003eAll \u003ccode\u003eTrustAnchor\u003c/code\u003e objects must be immutable and thread-safe. That is, multiple threads may concurrently invoke the methods defined in this class on a single \u003ccode\u003eTrustAnchor\u003c/code\u003e object (or more than one) with no ill effects. Requiring \u003ccode\u003eTrustAnchor\u003c/code\u003e objects to be immutable and thread-safe allows them to be passed around to various pieces of code without worrying about coordinating access. This stipulation applies to all public fields and methods of this class and any added or overridden by subclasses.\u003c/p\u003e",
+  "tagMap": {
+    "see": [
+      "\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/cert/PKIXParameters.html#%3Cinit%3E(java.security.KeyStore)\"\u003e\u003ccode\u003ePKIXParameters(Set)\u003c/code\u003e\u003c/a\u003e, \n\u003ca href\u003d\"https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/security/cert/PKIXBuilderParameters.html#%3Cinit%3E(java.security.KeyStore,java.security.cert.CertSelector)\"\u003e\u003ccode\u003ePKIXBuilderParameters(Set, CertSelector)\u003c/code\u003e\u003c/a\u003e"
+    ],
+    "since": [
+      "1.4"
+    ]
+  }
+}
